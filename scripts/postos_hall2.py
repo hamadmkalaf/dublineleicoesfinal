@@ -1,6 +1,6 @@
 """Marca os postos de voluntario sobre o desenho de fluxo atual do Hall 2.
 
-Le "PLANO COM FLUXOS MELHORADO.png", desenha um marcador numerado em cada
+Le "referencias/plano-fluxos-rascunho-2-entradas.png" (antigo "PLANO COM FLUXOS MELHORADO.png"), desenha um marcador numerado em cada
 posto e acrescenta um painel de legenda a direita. Nao altera o desenho
 original: as coordenadas de POSTOS foram lidas sobre a imagem e ficam aqui
 para serem corrigidas se o desenho mudar.
@@ -78,7 +78,7 @@ def marcador(d, x, y, codigo, cor, r=19):
 
 
 def main() -> None:
-    base = Image.open(BASE / "PLANO COM FLUXOS MELHORADO.png").convert("RGB")
+    base = Image.open(BASE / "referencias" / "plano-fluxos-rascunho-2-entradas.png").convert("RGB")
     larg_painel = 560
     altura = base.height + 130  # folga para o painel de notas
     tela = Image.new("RGB", (base.width + larg_painel, altura), "white")

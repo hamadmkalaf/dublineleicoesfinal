@@ -1,3 +1,5 @@
+> **Nota da transferência (16/09/2026).** Este arquivo veio de `hamadmkalaf/eleicoes2026` (branch `claude/happy-ramanujan-2a1n4m`). A seção "Branches" e as referências a PRs descrevem o repositório antigo, que ficou como arquivo; neste repositório tudo está numa árvore só. Leia `README.md` primeiro.
+
 # eleicoes2026
 
 Análise das seções eleitorais de Dublin e desenho da operação de votação do

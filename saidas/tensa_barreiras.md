@@ -1,6 +1,6 @@
 # Separadores Tensa para o Hall 2 — os quatro traçados de 13/09
 
-> Gerado por `scripts/gera_barreiras_hall2.py` de `saidas/tensa_barreiras.json` (`scripts/tensa_barreiras.py`, 2026-09-14). Não editar à mão.
+> Gerado por `scripts/gera_barreiras_hall2.py` de `saidas/tensa_barreiras.json` (`scripts/tensa_barreiras.py`, 2026-09-16). Não editar à mão.
 
 > **Traçado adotado: 1e.** 82 postes, 91 com reserva de 10 %, 59 fitas de 2 m (118 m de barreira), EUR 1.445,00 ex-VAT com entrega. Contra os 100 postes já contratados: -9.
 

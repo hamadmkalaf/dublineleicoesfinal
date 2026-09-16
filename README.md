@@ -1,133 +1,165 @@
 # Eleições 2026 · Posto de Dublin
 
 Repositório final do planejamento do posto de votação de Dublin (Irlanda) para
-o 1º turno de **4 de outubro de 2026**, no **Royal Dublin Society, Hall 2 e
-Ring 3** (Merrion Road, Ballsbridge, Dublin 4). Contém apenas as versões
-finais e o que as reproduz. O repositório de trabalho anterior,
-`hamadmkalaf/eleicoes2026`, fica como arquivo morto; o roteiro da transferência
-está em [`transferencia/TRANSFERENCIA.md`](transferencia/TRANSFERENCIA.md).
+o 1º turno de **4 de outubro de 2026**, no **Royal Dublin Society, Hall 2**
+(Merrion Road, Ballsbridge, Dublin 4). Consolida numa árvore só o que estava
+espalhado por 29 branches de `hamadmkalaf/eleicoes2026`, que fica como
+arquivo. Como isso foi feito, e o que ficou em aberto por causa disso:
+[`transferencia/EXECUCAO_2026-09-16.md`](transferencia/EXECUCAO_2026-09-16.md).
+
+## Leia nesta ordem
+
+1. Este README.
+2. [`contexto_eleicoes_dublin_2026.md`](contexto_eleicoes_dublin_2026.md):
+   o histórico do problema e a cronologia das decisões (tem trechos
+   superados, marcados no texto).
+3. [`CONFERENCIA_PRANCHETA_2026-09-15.md`](CONFERENCIA_PRANCHETA_2026-09-15.md):
+   a conferência dos números contra os PDFs oficiais e o porquê do arranjo
+   final das mesas.
+4. [`PENDENCIAS.md`](PENDENCIAS.md) e
+   [`docs/decisoes_em_aberto.md`](docs/decisoes_em_aberto.md): o que falta
+   fazer e o que falta decidir.
+5. [`DOCUMENTACAO_PROJETO.md`](DOCUMENTACAO_PROJETO.md) e os `docs/SESSAO_*.md`:
+   documentação das etapas e passagens entre sessões, para quem for retomar
+   uma delas.
 
 ## 1. O que está decidido
 
 **As agregações.** 16.794 eleitores aptos, 51 seções, 28 urnas num único
-local. 23 urnas somam duas seções (429 a 797 eleitores); 5 operam com uma só,
-perto de 400. Três urnas críticas, todas de duas seções de Dublin: MRV 22
-(3313 + 3889), MRV 24 (3322 + 3752) e MRV 23 (3315 + 3778). Um quarto do
-eleitorado (4.213) mora fora de Dublin. Página: `saidas/dublin_agregacoes.html`
-("Urnas de Dublin", https://claude.ai/artifact/8YfHrRWvw7j8rZEZ2PgKiv).
+local. 23 urnas somam duas seções (429 a 797 eleitores); 5 operam com uma só.
+Três urnas críticas, todas de duas seções de Dublin: MRV 22 (3313 + 3889),
+MRV 24 (3322 + 3752) e MRV 23 (3315 + 3778). Um quarto do eleitorado (4.213)
+mora fora de Dublin. Conferido em 15/09 contra os três PDFs do Cartório
+Eleitoral (`data/oficiais/`): nenhuma divergência.
 
-**As portas.** Decisão do Posto de 06/09/2026, confirmada em 13/09: entradas
-S4 (A), S5 (B) e S6 (C) na fachada sul; saídas S2 e S8. Identidade das filas
-por letra.
+**As portas.** Entradas S4 (A), S5 (B) e S6 (C) na fachada sul; saídas S2 e
+S8; S7 preferencial; O1 e N1 fechadas (06/09, confirmado 13/09). Filas
+identificadas por letra.
 
-**A fila externa (Ring 3).** Cenário 3 adaptado: raias leste-oeste, vão entre
-zonas de 1,20 m, um CCB de apoio intermediário por divisória, bordas rígidas
-só onde a fila empurra. Fecha em **180 CCBs (360,0 m)** e 506,0 m de fita
-grossa, dentro dos 200 CCBs do estoque da organizadora, sem compra. Lotação
-2.118. Folha: `saidas/ring3_montagem.html` ("Montagem do Ring 3",
-https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV); planta:
-`saidas/ring3_planta.svg`.
+**As mesas.** Arranjo **Paredes_ABC** (15/09, `cenarios/paredes-abc-20260915.json`):
+cada entrada serve uma parede inteira, A oeste, B norte, C leste, com 3.834 ·
+3.832 · 3.833 comparecentes esperados por porta. Duas numerações convivem: o
+MRV oficial (cadernos, convocação) e o número eleitor 1 a 28 (sinalização).
+Peça: `saidas/prancheta_por_secao.html`.
 
-**Dentro do salão.** Sem checkpoint: fitas coloridas no piso levam da porta à
-mesa (decisão de 14/09). Postes Tensa só nas filas de mesa. Cada entrada serve
-uma parede inteira (A oeste, B norte, C leste; decisão de 15/09). Detalhe nas
-páginas em `artefatos/`.
+**Dentro do salão.** Sem checkpoint: fitas no piso levam da porta à mesa
+(14/09). Postes Tensa só nas filas de mesa (4 m no par, 10 m nas três
+vermelhas). Identificação pelo caderno físico impõe ≤ 55 s por eleitor nas
+três urnas críticas para fechar às 17h.
 
-O contexto consolidado, com a cronologia das decisões, está em
-[`contexto_eleicoes_dublin_2026.md`](contexto_eleicoes_dublin_2026.md).
+**A fila externa está em disputa.** Ver a seção 2.
 
 ## 2. O que está aberto
 
-- [`PENDENCIAS.md`](PENDENCIAS.md): orçamento final, comunicação com
-  eleitores e mesários, funcionamento da MRV, apresentação do projeto.
-- **Quatro pendências técnicas da folha do Ring 3** (seção "Quatro coisas
-  para fechar" em `saidas/ring3_montagem.html`): a ponta fixa da divisória
-  ainda amarra em fita; medir uma CCB na entrega (largura real do painel); a
-  boca real do fundo não dá 1,00 m; confirmar com o safety officer do RDS as
-  duas premissas marcadas.
-- **Decisão D9** (identificação no caderno físico), registrada em
-  `artefatos/posto-de-dublin-2026/pecas/decisoes.html`: condiciona o ritmo
-  das três urnas críticas (≤ 55 s por eleitor para fechar às 17h).
+- **Ring 3, sim ou não.** Em 15/09 a conferência registra que o RDS proibiu
+  fila no terreno dele e que não houve autorização de Brasília ("o Ring 3
+  não existe mais"); o plano passou a ser fila **dentro** do Hall 2
+  (`plano_filas_confinado_hall2.md`, `saidas/filas_sem_ring3.json`). Em 16/09,
+  em sessão paralela, foi fechada e publicada a **Montagem do Ring 3**
+  (`saidas/ring3_montagem.html`: cenário 3 adaptado, 180 CCBs, 506 m de fita,
+  lotação 2.118). Os dois estão neste repositório. Decidir qual vale é o
+  primeiro item de qualquer sessão nova.
+- **Decisão D9**, identificação no caderno físico (`docs/decisoes_em_aberto.md`,
+  `saidas/decisoes_em_aberto.html`): a única decisão de fluxo sem opção
+  vigente.
+- **Os dois geradores de `data/decisoes.json` não conversam** (ver seção 3).
+- Quatro pendências técnicas da folha do Ring 3, se o Ring 3 valer: a ponta
+  fixa da divisória ainda amarra em fita; medir uma CCB na entrega; a boca
+  real do fundo não dá 1,00 m; confirmar com o safety officer do RDS as duas
+  premissas marcadas.
+- Tudo o mais em [`PENDENCIAS.md`](PENDENCIAS.md): orçamento final,
+  comunicação com eleitores e mesários, funcionamento da MRV.
 
 ## 3. Como reproduzir
 
 ```bash
-pip install pandas openpyxl
-python3 scripts/mapa_agregacoes.py    # data/raw → saidas/Dublin_2026_agregacoes.xlsx + saidas/dados.json
-python3 scripts/gera_pagina.py        # saidas/dados.json → saidas/dublin_agregacoes.html
-python3 scripts/ring3_montagem.py     # geometria e materiais do Ring 3 → saidas/ring3_planta.svg
-python3 scripts/gera_pagina_ring3.py  # template + números → saidas/ring3_montagem.html
+pip install pandas openpyxl Pillow pdfplumber pymupdf   # e Node 22 para o simulador
 ```
 
-Os scripts resolvem caminho pelo próprio arquivo e rodam de qualquer
-diretório; não é preciso `cd scripts`. `parse_dados.py` roda sozinho e
-imprime um resumo da carga.
+Há três cadeias, e a ordem entre elas importa.
 
-**Verificação (16/09/2026, pandas 3.0.5):** os quatro rodam a partir de
-`/tmp`; `dados.json`, `dublin_agregacoes.html`, `ring3_montagem.html` e
-`ring3_planta.svg` são reproduzidos byte a byte. O `.xlsx` nunca é byte a
-byte, porque o formato grava a data de criação; confira abas e totais, não
-bytes. `ring3_montagem.py` imprime `CCB: 180` e `compra 0 | sobra 20`.
-`mapa_agregacoes.py` falha em vez de gravar saída errada se as validações não
-passarem: soma por seção = soma por urna = total do perfil (16.794 por três
-caminhos), 51 seções, 28 urnas, e o total de cada urna igual ao
-`QT_ELEITOR_ELEICAO_FEDERAL` que o TSE publica.
+**A. Cadeia consolidada de 14/09** (agregação, planta-base, prancheta,
+simulador, Ring 3 oficial, sinalização externa, decisões, barreiras, fitas no
+piso, instruções, dashboard). Os comandos, etapa por etapa, estão em
+[`docs/README_origem_2026-09-14.md`](docs/README_origem_2026-09-14.md), seção
+"Como rodar". Algumas etapas pedem `cd scripts`, como indicado lá.
 
-**Não renomeie os arquivos de `data/raw/`**: `parse_dados.py` os abre pelo
-nome literal. Também não mova `scripts/` para um subdiretório: os caminhos
-saem de `parent.parent`.
+**B. Cadeias das branches de 15/09**, cada uma independente, com os comandos
+em [`docs/README_branches_folha.md`](docs/README_branches_folha.md): filas sem
+o Ring 3 (`filas_sem_ring3`, `plano_filas`, `serpentina_hall2`,
+`prancheta_capacidade`, `tres_portas` e os `desenha_*`), voluntários
+(`voluntarios`, `postos_hall2`, `postos_rota_ring3`), sinalização interna
+(`plano_sinalizacao`, `gera_pagina_sinalizacao`), `zonas_balanceadas`, e o
+Ring 3 montado:
+
+```bash
+python3 scripts/ring3_montagem.py            # CCB: 180 · compra 0 | sobra 20 → saidas/ring3_planta.svg
+python3 scripts/gera_pagina_ring3_montagem.py  # → saidas/ring3_montagem.html
+```
+
+**C. Cadeia de 16/09, por último**, porque a etapa 1 da cadeia A reescreve
+`data/decisoes.json` com o cenário anterior (Hamad_Final) e esta o devolve ao
+vigente (Paredes_ABC):
+
+```bash
+python3 scripts/gera_decisoes_base.py --grava    # as 28 mesas, aptos e esperados, dos PDFs
+python3 scripts/arranjo_paredes.py --grava       # o arranjo e o cenário Paredes_ABC
+python3 scripts/gera_prancheta_por_secao.py      # → saidas/prancheta_por_secao.html
+python3 scripts/confere_prancheta.py             # sai 1 se algo divergir dos PDFs
+python3 scripts/confere_arranjo.py               # sai 1 se o arranjo violar um dos sete itens
+```
+
+Tudo isso foi executado neste repositório em 16/09/2026; o resultado está em
+`transferencia/EXECUCAO_2026-09-16.md`. `saidas/Dublin_2026_agregacoes.xlsx`
+nunca é byte a byte (o formato grava a data): compare abas, não bytes.
+Toda saída em `saidas/` é gerada; editar à mão se perde na próxima geração.
+
+**Não renomeie os arquivos de `data/raw/`** (`parse_dados.py` os abre pelo
+nome literal) e não mova `scripts/` (os caminhos saem de `parent.parent`).
 
 ## 4. De onde vêm os dados
 
-Os três arquivos em `data/raw/` vieram da pasta do Google Drive do usuário:
-
-| Arquivo | Gerado em | Papel |
+| Arquivo | Origem | Papel |
 |---|---|---|
-| `eleitorado_local_votacao_2026_ZZ.csv` | 13/08/2026 | Seção a seção no exterior: papel (Principal/Agregada), `NR_SECAO_PRINCIPAL`, `QT_ELEITOR_SECAO` |
-| `Filtrado_Dublin.csv` | 14/07/2026 | Perfil do eleitorado de Dublin, com `NR_SECAO` × `NM_LOCAL_VOTACAO` × `QT_ELEITORES` |
-| `mapa_agregacoes_TSE.png` | 13/08/2026 | Mapa oficial de pares principal → agregada |
+| `data/oficiais/aptos_por_secao_dublin_2026-07-13.pdf` | ELO, 13/07 | as 51 seções com aptos e condado de origem |
+| `data/oficiais/secoes_agregadas_dublin_2026.pdf` | Cartório Eleitoral | os 28 pares principal → agregada |
+| `data/oficiais/mrv_mesarios_dublin_2026-09-13.pdf` | Convoca+, 13/09 | os 109 mesários nomeados por MRV |
+| `data/raw/eleitorado_local_votacao_2026_ZZ.csv` | TSE, 13/08 | seção a seção no exterior |
+| `data/raw/Filtrado_Dublin.csv` | TSE, 14/07 | perfil do eleitorado de Dublin |
+| `data/raw/mapa_agregacoes_TSE.png` | TSE, 13/08 | mapa de pares; **superado pelos PDFs** e com um erro (3752 sob 3222, que é do Porto; a correta é 3322) |
+| `data/prancheta_hall2.json` | medido da planta do RDS | geometria do salão, do módulo e das 18 portas |
+| `data/fotos/` | levantamento de 24/08 | fotos do RDS usadas na rota e na sinalização |
 
-Ambos os CSVs estão em **latin-1**, separados por `;`. O `Filtrado_Dublin.csv`
-foi re-exportado com a linha inteira envolvida em aspas e as aspas internas
-duplicadas; `scripts/parse_dados.py` trata isso. Não "normalize" os arquivos
-para UTF-8: a carga quebra.
-
-`NM_LOCAL_VOTACAO` no arquivo de perfil é o local de votação original do
-eleitor e é usado como referência de onde ele reside.
-
-**Erro conhecido no PNG do TSE:** o mapa lista a seção agregada 3752 sob a
-principal 3222, que pertence ao Porto. A correta é a 3322. O CSV prevalece; o
-caso está na aba `Inconsistencias` do `.xlsx`.
-
-Os dois CSVs são dados abertos do TSE e não identificam eleitores: são
-contagens por seção. O repositório é privado por outro motivo: reúne planta,
-barreiras, staff e orçamento de um local de votação com data e hora públicas.
+Os CSVs estão em latin-1, separados por `;`; o `Filtrado_Dublin.csv` vem com
+a linha inteira entre aspas e `parse_dados.py` trata isso. Não "normalize"
+para UTF-8. Nenhum dos dois identifica eleitores: são contagens por seção.
 
 `referencias/` guarda o que veio de terceiros e não é gerado aqui: a planta do
-RDS Hall 2, o material sobre a MRV, a agregação na versão do TSE, a proposta de
-agregação e o rascunho à mão do plano de fluxo com duas entradas
-(`plano-fluxos-rascunho-2-entradas.png`, superado pela decisão de três portas
-mas único desenho manuscrito do projeto).
+RDS Hall 2, o material sobre a MRV, a agregação na versão do TSE, a proposta
+de agregação e o rascunho à mão do plano com duas entradas (superado).
+
+O repositório deve ser **privado**: reúne planta, barreiras, staff e orçamento
+de um local de votação com data e hora públicas. Foi criado público; mudar em
+Settings.
 
 ## 5. O que é `artefatos/`
 
-Cópias de leitura das páginas publicadas no claude.ai (plantas do salão,
-sinalização, rota do eleitor, pranchetas, simulador, barreiras e o painel
-"Posto de Dublin 2026"). **A fonte de verdade de cada uma é o URL, não o
-arquivo.** Os scripts que as geraram nunca foram commitados e não existem
-mais; as páginas são o único registro. Índice, URLs, versões lidas e o que
-foi classificado como histórico: [`artefatos/README.md`](artefatos/README.md).
-Inventário completo dos 17 artefatos, com a decisão sobre cada um:
-[`transferencia/manifesto-artefatos.tsv`](transferencia/manifesto-artefatos.tsv).
+Cópias das páginas publicadas no claude.ai, na versão em que foram lidas em
+16/09, com URL e versão em [`artefatos/README.md`](artefatos/README.md). A
+fonte de verdade de cada página é o URL; para atualizar, republicar no mesmo
+URL. As mesmas páginas, regeneradas a partir dos scripts, estão em `saidas/`.
 
 ## Estrutura
 
 ```
-README.md · PENDENCIAS.md · contexto_eleicoes_dublin_2026.md
-data/raw/        fontes TSE (nomes intocados)
-scripts/         parse_dados · mapa_agregacoes · gera_pagina · ring3_montagem · gera_pagina_ring3 · template
-saidas/          xlsx · dados.json · dublin_agregacoes.html · ring3_montagem.html · ring3_planta.svg
-referencias/     recebidos de terceiros
-artefatos/       HTML exportado do claude.ai (ver README de lá)
-transferencia/   roteiro e manifesto da migração
+README.md · CLAUDE.md · PENDENCIAS.md · DOCUMENTACAO_PROJETO.md · CONFERENCIA_PRANCHETA_2026-09-15.md
+contexto_*.md · plano_*.md · orcamento_*.md · handoff_*.md · registro_*.md · pesquisa_*.md
+data/raw/        fontes TSE (nomes intocados)   data/oficiais/  PDFs do Cartório   data/fotos/
+data/*.json      decisões, prancheta, MRVs, decisões em aberto
+scripts/         os geradores (Python) e templates   simulador/   motor de fluxo (Node)
+cenarios/        arranjos das mesas, o vigente é paredes-abc-20260915.json
+saidas/          tudo o que os scripts geram, incluindo saidas/dashboard/
+docs/            passagens de sessão, READMEs de origem, instruções de fluxo
+referencias/     recebidos de terceiros   artefatos/   páginas exportadas do claude.ai
+transferencia/   roteiro, manifesto e registro de execução da migração
 ```
