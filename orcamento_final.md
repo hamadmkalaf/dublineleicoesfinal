@@ -1,6 +1,6 @@
 # Orçamento final — tabela preenchível (1º turno, RDS Hall 2, 04/10/2026)
 
-> Criado em 13/09/2026 para a pendência 2 do `PENDENCIAS`. Duas tabelas: o que
+> Criado em 13/09/2026 para a pendência 2 do `PENDENCIAS.md`. Duas tabelas: o que
 > **já existe** (contratado ou em mãos) e o que **ainda custa** e depende de
 > decisão ou de cotação. As células marcadas `___` são para o Posto preencher a
 > cada cotação recebida. Referências: itens a–f do telegrama revisado

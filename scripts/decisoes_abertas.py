@@ -69,7 +69,7 @@ DECISOES = [
         "vigente": None,
         "depende_de": [],
         "restricoes": ["F2"],
-        "fontes": ["PENDENCIAS item 5", "contexto_eleicoes_dublin_2026.md §8.2",
+        "fontes": ["PENDENCIAS.md item 5", "contexto_eleicoes_dublin_2026.md §8.2",
                    "DOCUMENTACAO_PROJETO.md §4.2 e §9.7"],
         "opcoes": [
             {"id": "unico", "rotulo": "(i) Caderno único em ordem alfabética, um mesário identificando",

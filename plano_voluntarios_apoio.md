@@ -164,7 +164,7 @@ gerir fila.
 **A unifila orçada não cobre o Ring.** As 23 raias exigem ~24 corridas de barreira
 por zona: 24 × 38,60 m ≈ **926 m**. O orçamento tem **200 m** (100 separadores,
 EUR 1.303). Faltam da ordem de 700 m, a menos que o gradil do Ring já traga
-estrutura interna. É questão a fechar antes do orçamento final (`PENDENCIAS` item 2)
+estrutura interna. É questão a fechar antes do orçamento final (`PENDENCIAS.md` item 2)
 — sem raias, o pátio não é fila, é aglomeração.
 
 **Todo o Ring é descoberto.** Com o salão de votação no Hall 2 e a fila ao ar livre,
@@ -193,7 +193,7 @@ do salão é o único abrigo de escala disponível.
 
 | Efetivo | Nº | Situação |
 |---|---|---|
-| Mesários | ~84 (28 × 3) + suplentes | Lista do TSE pendente (`PENDENCIAS` item 4) |
+| Mesários | ~84 (28 × 3) + suplentes | Lista do TSE pendente (`PENDENCIAS.md` item 4) |
 | Secretários de seção | 28 | 1 por urna. Reforçar os das três mesas com serpentina interna de 20 (3313, 3315, 3322). |
 | Segurança contratada | 20 + 1 na véspera | Orçado, EUR 6.774,84 |
 | **Voluntários de fluxo** | **57** | Este documento |
@@ -204,7 +204,7 @@ Total credenciado: ~190–200 pessoas.
 
 ## 9. Custo estimado do voluntariado
 
-Estimativa, não orçamento cotado — `PENDENCIAS` item 2.
+Estimativa, não orçamento cotado — `PENDENCIAS.md` item 2.
 
 | Item | Cálculo | EUR |
 |---|---|---|
@@ -223,7 +223,7 @@ Não inclui a barreira de fila faltante (§6), que é item de outra ordem de gra
 1. **Barreira das raias do Ring** — ~926 m necessários contra 200 m orçados.
 2. **Protocolo de chuva** e cobertura da cabeça das filas.
 3. **Lista nominal** para o balcão RE4.
-4. **Método de identificação do eleitor** (`PENDENCIAS` item 5). Caderno físico
+4. **Método de identificação do eleitor** (`PENDENCIAS.md` item 5). Caderno físico
    aumenta o tempo por eleitor, empurra fila para o Ring e torna RE4 crítico.
 5. **Confirmar a expectativa de comparecimento** — o quadro da §3 é linear na taxa
    de chegada de pico.

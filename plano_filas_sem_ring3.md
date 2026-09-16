@@ -191,7 +191,7 @@ cumulativos, não alternativos:
 terreno** — os estacionamentos/pátios entre os portões (Merrion Rd, Anglesea Rd,
 Simmonscourt Rd) e o Hall 2. É terreno privado já sob contrato, o que elimina a
 questão de licença de via pública, permite banheiros químicos (já em cotação na
-PENDENCIAS) e mantém o público dentro do perímetro dos 20 seguranças
+PENDENCIAS.md) e mantém o público dentro do perímetro dos 20 seguranças
 contratados. **Esse é o substituto correto do Ring 3, não a rua.**
 
 A rua deve ser tratada apenas como **transbordo de contingência**: um plano
@@ -215,7 +215,7 @@ com mais urnas.
 A faixa de 3 a 8 postos de consulta é o achado operacional mais barato do
 documento: **a diferença entre 30% e 10% de eleitores que não sabem sua seção
 vale 5 pessoas de equipe no pico** e reduz o tempo de triagem de todos os
-outros. Isso liga diretamente o item 3 da PENDENCIAS (plano de comunicação) ao
+outros. Isso liga diretamente o item 3 da PENDENCIAS.md (plano de comunicação) ao
 desenho de fluxo: a campanha deve ter uma única chamada dominante —
 **"descubra sua seção antes de sair de casa"** — com o link do TSE, e não uma
 peça genérica sobre data e local.
@@ -259,7 +259,7 @@ peça genérica sobre data e local.
 5. **Dimensões reais confirmadas.** O Hall 2 tem 50,2 × 44,5 m e 2.238 m²
    (ficha técnica do RDS). O recorte do canto sudoeste foi **estimado a partir
    da planta** (~11,7 × 7,4 m) e precisa de medição em vistoria.
-6. **Divisão dos cadernos na MRV** (item 5 da PENDENCIAS) — é o que produz o
+6. **Divisão dos cadernos na MRV** (item 5 da PENDENCIAS.md) — é o que produz o
    tempo por eleitor da linha 2. Enquanto não estiver resolvido, este plano
    opera com uma faixa, não com um número.
 
