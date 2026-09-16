@@ -30,8 +30,10 @@ jobs:
           python3 scripts/gera_decisoes_base.py --grava
           python3 scripts/arranjo_paredes.py --grava
           python3 scripts/gera_prancheta_por_secao.py
+          python3 scripts/gera_editor.py
           git diff --exit-code -- data/decisoes.json \
                                   cenarios/paredes-abc-20260915.json \
                                   saidas/dados.json \
                                   saidas/prancheta_por_secao.html \
-                                  saidas/dublin_agregacoes.html
+                                  saidas/dublin_agregacoes.html \
+                                  saidas/editor.html

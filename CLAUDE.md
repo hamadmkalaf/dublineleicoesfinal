@@ -35,6 +35,14 @@ usar o Ring 3. Propor de novo o que já foi medido e rejeitado custa uma sessão
 5. **Nunca abra um branch novo por sessão sem mesclar de volta.** Um branch só,
    com merge de volta, é o que evita a divergência que motivou a transferência.
 
+## O editor não é a cadeia
+
+`saidas/editor.html` serve para estudar posição, não para decidir. O que sai
+dele é um cenário; ele vira desenho quando é gravado em `cenarios/` e a cadeia
+roda de novo (passo 4 em diante) e as duas conferências passam. Regerar o
+editor (`python3 scripts/gera_editor.py`) depois de qualquer mudança em
+`data/decisoes.json`, senão a página passa a mostrar número velho.
+
 ## A cadeia
 
 Sete passos, sem rede, na ordem do `README.md`. A ordem 3 → 4 não é
