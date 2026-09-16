@@ -61,9 +61,29 @@ Premissas: fluxo contínuo de eleitores, 1 urna (MRV) por mesa, comparecimento p
   1. Identificação será eletrônica/biométrica (favorece 4) ou por caderno físico (favorece 5)?
   2. O local comporta fisicamente 32–35 urnas simultâneas?
 
-### 2.5 Ferramentas produzidas (podem ser recuperadas se necessário)
-- Planilha de simulação `contraproposta_agregacao_dublin.xlsx` com abas por cenário (C1_Proposta_TSE etc.).
-- Arquivo fonte oficial do TSE: `Irlanda_-_Dublin.xlsx`, aba "Dublin" (bloco "QUADRO ATUAL 2026" + bloco "PROPOSTA DE AGREGAÇÃO") e aba "NÃO MEXER" (validação).
+### 2.5 Ferramentas produzidas
+
+As duas planilhas desta seção **não estão neste repositório**: ficam no Google
+Drive do Posto, que segue sendo a fonte autoritativa delas. Localizadas em
+16/09/2026 (ver `transferencia/EXECUCAO_2026-09-16.md`):
+
+- Planilha de simulação, com abas por cenário (C1_Proposta_TSE etc.):
+  **`contraproposta_agregacao_dublin_envio_TSE.xlsx`**
+  (Drive, id `1dA9EURmSNCecLiqbOD7IW3PDV6X4MXnc`, de 13/07/2026). Há também
+  `nova_contraproposta_agregacao_dublin_30_32_v3.xlsx`
+  (id `1yvJcNJEMSz5_o6KzWJQzf5raRb3t7fTk`), versão anterior.
+- Arquivo fonte do TRE, aba "Dublin" (bloco "QUADRO ATUAL 2026" + bloco
+  "PROPOSTA DE AGREGAÇÃO") e aba "NÃO MEXER" (validação):
+  **`Irlanda - Dublin (1).xlsx`**
+  (Drive, id `1rxGGhmIt8bNhAG5YpChoII-z4HgCRqnQ`, de 13/07/2026). A proposta da
+  Embaixada está em `Irlanda - Dublin - Proposta embaixada.xlsx`
+  (id `1jEmgkWVjHKFCt9m4xNHZVw9Hi7Js2Hby`).
+
+**Cuidado de comparabilidade:** o arquivo do TRE traz **14.626 aptos** em 51
+seções, e todo o resto deste repositório trabalha com **16.794**. As duas
+fotografias do eleitorado não são intercambiáveis — ver §1 de
+`handoff_agregacao_dublin_2026.md`. Não compare resultados calculados sobre
+bases diferentes sem antes rodar os dois sobre a mesma.
 - Variantes de contraproposta com Dublin 100% isolada + interior agregado com teto de 800 aptos/mesa: Variante A (38 mesas, consolidação máxima) e Variante B (40 mesas, CV 2,5%, comparecimento uniforme 266–292/mesa) — **Variante B recomendada**.
 
 ---
