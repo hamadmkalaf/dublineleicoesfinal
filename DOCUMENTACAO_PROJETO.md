@@ -888,7 +888,7 @@ resolve é o arranjo de dois cadernos em paralelo.
 6. **Definir o arranjo da mesa receptora com o Cartório Eleitoral** (decide se
    o Ring 3 chega a ser usado). Em 13/09 ficou decidido que a identificação é
    por caderno físico; a divisão dos cadernos e quem identifica continuam em
-   aberto (PENDENCIAS item 5, sem recomendação).
+   aberto (PENDENCIAS.md item 5, sem recomendação).
 7. ~~Decidir o desenho (D3)~~ **Decidido em 13/09**: fita com CCB na ponta,
    raias leste-oeste, 66 apoios a cada 5 m; falta pedir ao fornecedor a
    distância máxima entre apoios e cotar a fita (`orcamento_final.md` C3–C5).
@@ -1190,7 +1190,7 @@ A prancheta não tem esse módulo desenhado. É a decisão que determina se o Ri
 Desde 13/09 as decisões de fluxo em aberto têm registro próprio, com
 dependências e efeitos: `scripts/decisoes_abertas.py` (§12). Os itens abaixo
 que são decisões (8, 9, 10, 11) apontam para lá; os que são tarefas ficaram em
-`PENDENCIAS`.
+`PENDENCIAS.md`.
 
 ### 9.8 Pendências consolidadas, por dono
 
@@ -1392,7 +1392,7 @@ com ela.
    urnas, as três críticas (MRV 22, 24, 23; ~590 comparecentes) só fecham às
    17h a ≤ 55 s por eleitor; as sete seguintes a ≤ 66–68 s
    (`contexto_eleicoes_dublin_2026.md` §8.2). A divisão dos cadernos e quem
-   identifica seguem em aberto, sem recomendação (PENDENCIAS item 5).
+   identifica seguem em aberto, sem recomendação (PENDENCIAS.md item 5).
 4. **4 seguranças** (não 20), mesários voluntários organizando o fluxo, polícia
    do lado de fora.
 
@@ -1438,7 +1438,7 @@ que mudaria em cada alternativa. O bloco da mesa receptora cita a decisão D9
 de mesa seguem a regra de 13/09 (4 m no par, 10 m na vermelha, sem fita na
 solta) e as mesas sem guia vêm de `tensa_barreiras.json`. Saídas: `docs/instrucoes_fluxo.md`,
 `saidas/instrucoes_fluxo.html` (copiado para o dashboard). É o material-base
-do webinar dos mesários (PENDENCIAS item 4).
+do webinar dos mesários (PENDENCIAS.md item 4).
 
 ### 12.4 O que entrou no dashboard nesta passagem
 
@@ -1451,7 +1451,7 @@ os cenários novos de `ring3.json` (os com baias saíram) e os sete traçados de
 `tensa_barreiras.json`, ganhou o bloco das fitas na seção 7 e a seção 8 de
 decisões; a linha do tempo vai até 13/09. `orcamento_final.md` (tabela
 preenchível de recursos e custos em aberto, cada custo ligado à decisão de que
-depende) e `PENDENCIAS` (itens 2, 5, 6 e 7 anotados) ficam fora da página, a
+depende) e `PENDENCIAS.md` (itens 2, 5, 6 e 7 anotados) ficam fora da página, a
 pedido.
 
 ### 12.5 Decisões de 13/09 (tarde): o que o Posto mudou depois de ver o dashboard

@@ -231,7 +231,7 @@ Na leste, **MRV 19** (seção 3308) tem 4 nomeados mas 3 sem resposta, e **MRV
 26** (3688) está sem 2º Mesário. Se as 25 pendências não virarem confirmação,
 sobram 83 pessoas para 28 mesas — 2,96 por mesa, contra as 4 previstas.
 
-Isso é matéria do item 4 do `PENDENCIAS` (plano de comunicação com mesários),
+Isso é matéria do item 4 do `PENDENCIAS.md` (plano de comunicação com mesários),
 não da prancheta. Mas a prancheta diz **por onde começar a ligar**: MRV 24 e
 MRV 11, nessa ordem.
 
@@ -276,7 +276,7 @@ comparecimento testadas.
 
 O que ainda merece uma decisão do Posto, em ordem de urgência:
 
-1. **Mesários da MRV 24 e da MRV 11** (item 4 do `PENDENCIAS`) — é o único
+1. **Mesários da MRV 24 e da MRV 11** (item 4 do `PENDENCIAS.md`) — é o único
    item que pode desfazer o equilíbrio no dia.
 2. ~~**Adotar "uma entrada por parede"** e regerar `data/decisoes.json`.~~
    **Feito em 15/09** — ver o adendo do item 9.

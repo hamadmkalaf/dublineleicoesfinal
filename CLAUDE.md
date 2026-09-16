@@ -24,9 +24,9 @@ posto do RDS Ballsbridge, Hall 2, para o 1º turno de 04/10/2026.
    14/09 (a lista de quinze mudanças do Posto, literal) e a passagem para a
    próxima sessão: estado, decisões em números, como rodar cada simulador e o
    que condiciona os resultados (o Hamad_Final já está em `cenarios/`).
-6. `docs/decisoes_em_aberto.md` e `PENDENCIAS`: o que falta decidir (com
+6. `docs/decisoes_em_aberto.md` e `PENDENCIAS.md`: o que falta decidir (com
    dependências) e o que falta fazer. Não confundir: decisão de fluxo vai em
-   `scripts/decisoes_abertas.py`; tarefa vai em `PENDENCIAS`.
+   `scripts/decisoes_abertas.py`; tarefa vai em `PENDENCIAS.md`.
 
 ## Branches
 
@@ -128,7 +128,7 @@ acordada do salão. Duas regras valem para tudo que for produzido depois:
 - Dashboard: `scripts/gera_dashboard.py` monta `saidas/dashboard/` (index +
   cópias das ferramentas e peças) e roda por último. Sem orçamento nem lista
   de tarefas na página, a pedido do Posto (foram para o Planner e para
-  `PENDENCIAS` / `orcamento_final.md`); as decisões de fluxo em aberto, sim,
+  `PENDENCIAS.md` / `orcamento_final.md`); as decisões de fluxo em aberto, sim,
   entram (decisão do Posto de 13/09).
 - Ring 3 ao vivo (`simulador/portas.js`) desenha os cinco desenhos anteriores
   a 11/09 e abre no leste-oeste sem baias (`DESENHO_DECIDIDO = "H"`), o mais

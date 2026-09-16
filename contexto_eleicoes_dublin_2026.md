@@ -233,7 +233,7 @@ Urnas que estouram a janela de 9h, por tempo médio por eleitor:
 | 75 s | 12 |
 | 90 s | 16 |
 
-**Leitura:** como não há mais como reduzir o pico de eleitores por urna (decisão 2) e o caderno é a única identificação (decisão 3), a única variável restante é o **tempo por eleitor na mesa**. O projeto passa a ter como meta operacional **≤ 55 s por eleitor nas 3 urnas Dublin+Dublin e ≤ 66 s nas 7 seguintes**. Com caderno, isso só é atingível se a identificação for **paralelizada** com o ato de votar (o mesário localiza o próximo eleitor no caderno enquanto o anterior está na cabine), de modo que o tempo de ciclo seja o máximo entre identificação e voto, e não a soma. É exatamente a pendência 5 do arquivo PENDENCIAS (organização dos cadernos, quem identifica).
+**Leitura:** como não há mais como reduzir o pico de eleitores por urna (decisão 2) e o caderno é a única identificação (decisão 3), a única variável restante é o **tempo por eleitor na mesa**. O projeto passa a ter como meta operacional **≤ 55 s por eleitor nas 3 urnas Dublin+Dublin e ≤ 66 s nas 7 seguintes**. Com caderno, isso só é atingível se a identificação for **paralelizada** com o ato de votar (o mesário localiza o próximo eleitor no caderno enquanto o anterior está na cabine), de modo que o tempo de ciclo seja o máximo entre identificação e voto, e não a soma. É exatamente a pendência 5 do arquivo PENDENCIAS.md (organização dos cadernos, quem identifica).
 
 ### 8.3 Pontos que permanecem em aberto
 1. **(a) Fluxo interno da mesa com caderno** (decisão D9): divisão do caderno (por letra ou por seção agregada), quem identifica, e se a assinatura do eleitor ocorre antes ou em paralelo à liberação da urna.

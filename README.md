@@ -113,9 +113,24 @@ python3 scripts/ring3_montagem.py            # CCB: 180 · compra 0 | sobra 20 �
 python3 scripts/gera_pagina_ring3_montagem.py  # → saidas/ring3_montagem.html
 ```
 
-**C. Cadeia de 16/09, por último**, porque a etapa 1 da cadeia A reescreve
-`data/decisoes.json` com o cenário anterior (Hamad_Final) e esta o devolve ao
-vigente (Paredes_ABC):
+**C. Cadeia de 16/09.** Produz o arranjo e a prancheta por seção.
+
+> **Leia antes de rodar.** `scripts/arranjo_paredes.py --grava` **não é
+> determinístico**: a busca dele é semeada pelo arranjo que já está em
+> `data/decisoes.json`, e há vários arranjos igualmente equilibrados. Rodando
+> sobre o estado commitado, reproduz o Paredes_ABC byte a byte. Rodando depois
+> de `scripts/gera_decisoes.py` (etapa 1 da cadeia A), que reescreve o arquivo
+> com o cenário anterior, ele escolhe **outro** arranjo — igualmente
+> equilibrado e diferente, com mesas trocando de parede.
+>
+> Isso importa porque a sinalização publicada lista quais seções entram por
+> qual porta. Um arranjo diferente invalida as duas peças publicadas em
+> silêncio. **Trate o arranjo como estado commitado, não como saída:** só rode
+> `arranjo_paredes.py --grava` para adotar deliberadamente um arranjo novo, e
+> nesse caso regenere e republique a sinalização. Se rodar a cadeia A, devolva
+> `data/decisoes.json`, `cenarios/paredes-abc-20260915.json` e
+> `saidas/prancheta_por_secao.html` ao commit (`git checkout --`) em vez de
+> regenerá-los.
 
 ```bash
 python3 scripts/gera_decisoes_base.py --grava    # as 28 mesas, aptos e esperados, dos PDFs

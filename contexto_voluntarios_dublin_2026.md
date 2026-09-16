@@ -48,7 +48,7 @@ Essas duas respostas são o que viabilizou a decisão de desenho da seção 4.
 - **Mesa Receptora de Votos (MRV) é a mesa**, não a urna: presidente, 1º e 2º
   mesários e secretários. O `contexto_eleicoes_dublin_2026.md` usa "MRV" como
   sinônimo de urna em vários pontos — leitura a corrigir, porque contamina o
-  item 5 da `PENDENCIAS` ("funcionamento da MRV").
+  item 5 da `PENDENCIAS.md` ("funcionamento da MRV").
 - **"Apoio logístico" é categoria formal** nomeada pela Justiça Eleitoral,
   distinta de mesário, "no número e nos períodos necessários". É sob essa figura
   que os voluntários deveriam ser nomeados.
@@ -138,7 +138,7 @@ substituir.
 | `saidas/postos_hall2.png` | Mapa da zona 3 |
 | `saidas/postos_rota_ring3.png` | Mapa das zonas 1 e 2 |
 | `contexto_eleicoes_dublin_2026.md` | Contexto anterior: agregações, orçamento, layout |
-| `PENDENCIAS` | Lista de tarefas do posto; este plano cobre parte dos itens 4 e 5 |
+| `PENDENCIAS.md` | Lista de tarefas do posto; este plano cobre parte dos itens 4 e 5 |
 
 Os códigos dos postos são gerados pelo modelo, e os dois scripts de desenho
 conferem os códigos que marcam contra o JSON — se o modelo mudar e o mapa não,

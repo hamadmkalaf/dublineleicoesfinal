@@ -36,7 +36,7 @@ Dono: Posto + Cartório Eleitoral · depende de: nada · condiciona: D2, D6, D7
   - se esta: **D2** → Se houver checkpoint, a pré-triagem acontece nele; sem checkpoint, acontece na fila da mesa, por orientador.
   - se esta: **D7** → 1 orientador a cada 3 mesas conferindo documento na fila.
 
-Fontes: `PENDENCIAS item 5` · `contexto_eleicoes_dublin_2026.md §8.2` · `DOCUMENTACAO_PROJETO.md §4.2 e §9.7`
+Fontes: `PENDENCIAS.md item 5` · `contexto_eleicoes_dublin_2026.md §8.2` · `DOCUMENTACAO_PROJETO.md §4.2 e §9.7`
 
 ### D2 — (b) Checkpoint ou sinalização por fitas?
 
