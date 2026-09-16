@@ -47,6 +47,16 @@ Peça: `saidas/prancheta_por_secao.html`.
 vermelhas). Identificação pelo caderno físico impõe ≤ 55 s por eleitor nas
 três urnas críticas para fechar às 17h.
 
+**A sinalização.** Revisão de 16/09: mesas sem número, o eleitor precisa saber
+só a seção, e a consulta encolheu para seção → porta. Ponto "descubra sua
+seção" (P0) na calçada da Merrion Road, fora do recinto; tudo o que é externo
+vai em mesh amarrado em grade, gradil ou CCB, sem base. 16 peças externas, 21
+internas, EUR 1.820 na faixa de EUR 1.700 a 1.900. Páginas:
+`saidas/rota_do_eleitor_v2.html`
+(https://claude.ai/artifact/1PQjgzstbiNorfJgagXhB5) e
+`saidas/sinalizacao_hall2_v2.html`
+(https://claude.ai/artifact/BcT5yzxRkSaUsbbHQQgjWF).
+
 **A fila externa está em disputa.** Ver a seção 2.
 
 ## 2. O que está aberto
@@ -63,6 +73,12 @@ três urnas críticas para fechar às 17h.
   `saidas/decisoes_em_aberto.html`): a única decisão de fluxo sem opção
   vigente.
 - **Os dois geradores de `data/decisoes.json` não conversam** (ver seção 3).
+- **Dois estimadores de comparecimento** sobre o mesmo arranjo:
+  `scripts/comparecimento.py` (base B) dá 3.834 / 3.832 / 3.833 por porta,
+  total 11.499; `scripts/zonas_balanceadas.py` dá 3.860 / 3.755 / 3.802, total
+  11.417, com as taxas 74/50 fixas que o `CLAUDE.md` proíbe. O arranjo é o
+  mesmo e os aptos batem; só o estimador difere. Detalhe e caminho sugerido em
+  `transferencia/EXECUCAO_2026-09-16.md`.
 - Quatro pendências técnicas da folha do Ring 3, se o Ring 3 valer: a ponta
   fixa da divisória ainda amarra em fita; medir uma CCB na entrega; a boca
   real do fundo não dá 1,00 m; confirmar com o safety officer do RDS as duas
@@ -108,6 +124,20 @@ python3 scripts/gera_prancheta_por_secao.py      # → saidas/prancheta_por_seca
 python3 scripts/confere_prancheta.py             # sai 1 se algo divergir dos PDFs
 python3 scripts/confere_arranjo.py               # sai 1 se o arranjo violar um dos sete itens
 ```
+
+**D. Sinalização v2** (Rota do Eleitor e Sinalização interna). Independente das
+outras: usa só a biblioteca padrão e lê `data/prancheta_paredes_abc.json` e
+`saidas/dados.json`.
+
+```bash
+python3 scripts/sinalizacao_v2.py   # → saidas/rota_do_eleitor_v2.html, sinalizacao_hall2_v2.html, sinalizacao_v2.json
+```
+
+Falha em vez de gravar se as 51 seções não aparecerem uma vez, se os aptos não
+somarem 16.794 ou se as 28 mesas não fecharem. Deve imprimir
+`blocos: [5, 5, 6]`, `secoes/porta: [18, 16, 17]` e `TOTAL 1820.0`. Conferência
+de integridade e o roteiro de republicação dos dois artefatos:
+`transferencia/TRANSFERENCIA_SINALIZACAO.md`.
 
 Tudo isso foi executado neste repositório em 16/09/2026; o resultado está em
 `transferencia/EXECUCAO_2026-09-16.md`. `saidas/Dublin_2026_agregacoes.xlsx`
@@ -161,5 +191,5 @@ cenarios/        arranjos das mesas, o vigente é paredes-abc-20260915.json
 saidas/          tudo o que os scripts geram, incluindo saidas/dashboard/
 docs/            passagens de sessão, READMEs de origem, instruções de fluxo
 referencias/     recebidos de terceiros   artefatos/   páginas exportadas do claude.ai
-transferencia/   roteiro, manifesto e registro de execução da migração
+transferencia/   roteiros (TRANSFERENCIA, MIGRACAO, TRANSFERENCIA_SINALIZACAO), manifesto e registro de execução
 ```
