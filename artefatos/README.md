@@ -70,10 +70,20 @@ não foi exportado como avulso: está superado pela Montagem do Ring 3, e a
 
 **"Teses Temáticas"** é de outro projeto e não foi migrado.
 
-## O que não veio junto
+## Os geradores existem
 
-Os scripts que geraram estas páginas (`scripts/salao.py`, `scripts/ring3.py`,
-`scripts/decisoes.py`, `scripts/tres_portas.py`, `scripts/comparecimento.py`
-e outros citados nos rodapés) **nunca foram commitados** em nenhum
-repositório e não são recuperáveis. Estas páginas são, portanto, o único
-registro do que eles calcularam. Não as regenere: não há com quê.
+O roteiro `transferencia/TRANSFERENCIA.md` dizia que os scripts citados nos
+rodapés destas páginas (`salao.py`, `ring3.py`, `decisoes.py`,
+`tres_portas.py`, `comparecimento.py`…) nunca tinham sido commitados. Estavam
+em branches não mescladas da origem e agora estão em `scripts/` e
+`simulador/`; ver `transferencia/EXECUCAO_2026-09-16.md`. As saídas
+correspondentes estão em `saidas/` (por exemplo `saidas/planta_base.html`,
+`saidas/editor.html`, `saidas/simulador_fluxo.html`, `saidas/ring3_horizontal.html`,
+`saidas/plano_sinalizacao.html`, `saidas/plano_sinalizacao_interna.html`,
+`saidas/prancheta_por_secao.html`, `saidas/dashboard/`).
+
+Ainda assim as cópias desta pasta têm valor próprio: são a versão
+**publicada** de cada página, na data em que foi lida, com o URL que foi
+compartilhado. Quando uma saída regenerada em `saidas/` divergir da cópia
+aqui, a diferença é o que mudou entre a publicação e o estado atual dos
+dados.

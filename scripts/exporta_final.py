@@ -35,7 +35,7 @@ FONTES = [
      "TSE 14/07: perfil do eleitorado de Dublin; alimenta saidas/dados.json"),
     ("data/prancheta_hall2.json", "fonte",
      "geometria medida do salão, do módulo e das 18 portas"),
-    ("RDS_Hall_2_Floorplan_(1).pdf", "fonte",
+    ("referencias/rds-hall2-planta.pdf", "fonte",
      "planta original do RDS, de onde a geometria foi lida"),
 ]
 
@@ -72,8 +72,8 @@ DOCS = [
      "a conferência e os onze adendos: o porquê de cada decisão"),
     ("contexto_eleicoes_dublin_2026.md", "doc",
      "o histórico do problema; tem trechos superados, marcados no próprio texto"),
-    ("PENDENCIAS", "doc", "o que falta fazer, por dono"),
-    ("TRANSFERENCIA.md", "doc", "este plano de transferência"),
+    ("PENDENCIAS.md", "doc", "o que falta fazer, por dono"),
+    ("transferencia/TRANSFERENCIA.md", "doc", "o plano de transferência"),
 ]
 
 MANIFESTO = FONTES + CADEIA + ESTADO + SAIDAS + DOCS
@@ -87,7 +87,7 @@ DESCARTES = [
      "cenário anterior, substituído pelo Paredes_ABC"),
     ("cenarios/equitativo.json",
      "cenário anterior, substituído pelo Paredes_ABC"),
-    ("PLANO COM FLUXOS MELHORADO.png",
+    ("referencias/plano-fluxos-rascunho-2-entradas.png",
      "rascunho de fluxo anterior à planta medida"),
     ("README.md",
      "é do escopo antigo (só agregações); o repositório novo precisa de um próprio"),
