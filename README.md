@@ -85,6 +85,41 @@ A prancheta pelas seções está publicada em
 <https://claude.ai/artifact/Szv5egKpHy3umh4udAybvr>. Republicar a partir do
 mesmo arquivo (`saidas/prancheta_por_secao.html`) mantém o endereço.
 
+## A prancheta manipulável
+
+```bash
+python3 scripts/gera_editor.py     # → saidas/editor.html
+```
+
+O editor abre no cenário de trabalho (Paredes_ABC), desenha as 28 mesas em
+escala, as zonas protegidas e os serpenteados de 16/09, e serve para **estudar
+posição**: arrastar uma mesa, girar de 90 em 90, medir distâncias, ver o que
+isso faz com os corredores. Ele não recalcula nada e não decide nada — o que
+sai dele é um cenário, que só vira desenho depois de gravado em `cenarios/` e
+de a cadeia rodar de novo.
+
+Ele não entra nos sete passos de propósito: nada da cadeia depende dele.
+
+## O que veio dos outros branches do repositório antigo
+
+Estes não são gerados aqui; vieram por decisão item a item na transferência de
+16/09. Os que carregam conteúdo superado abrem com um **aviso de safra** que
+diz exatamente o quê.
+
+| Arquivo | O que é |
+|---|---|
+| `DOCUMENTACAO_PROJETO.md` | a documentação consolidada das sete etapas (06/09) |
+| `orcamento_final.md`, `orcamentos_itens_pequenos.md` | o orçamento, entregável |
+| `handoff_agregacao_dublin_2026.md` | a única origem escrita das taxas de 2022 por condado |
+| `pesquisa_horarios_pico_votacao.md` | a base da curva de chegada |
+| `saidas/analise_gargalos.md` | o que decide identificação em uma ou duas posições |
+| `plano_filas_tres_portas.md` | o plano de filas vigente, com dois desenhos em `saidas/` |
+| `data/fotos/*.jpg` | o levantamento fotográfico do local, 24/08 |
+
+Ficaram para trás, por decisão: o dashboard (20 páginas de antes de 15/09), o
+simulador de fluxo, o plano de sinalização do Ring 3 (ver `PENDENCIAS` §8), a
+documentação do Ring 3 e as passagens de sessão.
+
 ## Onde está o resto
 
 - `CONFERENCIA_PRANCHETA_2026-09-15.md` — a conferência e os onze adendos: o
