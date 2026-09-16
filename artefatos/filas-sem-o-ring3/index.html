@@ -1,0 +1,350 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Filas sem o Ring 3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#f5f4f0; --surface:#fffefb; --sunk:#edece6;
+    --ink:#16202a; --ink2:#4a5a68; --ink3:#7c8a96;
+    --rule:#dcd8ce; --rule2:#c6c1b4;
+    --accent:#1f5f8b; --accent2:#6b3f86; --accent-w:#dbe6ee;
+    --ok:#2f6f4e; --warn:#8f6410; --crit:#a63226;
+    --ok-w:#e0ece5; --warn-w:#f2e9d4; --crit-w:#f3e1de;
+    --sheet:#fbfaf8;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#0e141a; --surface:#151f28; --sunk:#111a22;
+      --ink:#e6ecf1; --ink2:#a6b4c0; --ink3:#72818d;
+      --rule:#25313b; --rule2:#33414d;
+      --accent:#6fa8d0; --accent2:#b18cd0; --accent-w:#1b2e3d;
+      --ok:#62ab84; --warn:#cda355; --crit:#df8375;
+      --ok-w:#182a22; --warn-w:#2b2415; --crit-w:#2e1c1a;
+      --sheet:#e8e6e2;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0e141a; --surface:#151f28; --sunk:#111a22;
+    --ink:#e6ecf1; --ink2:#a6b4c0; --ink3:#72818d;
+    --rule:#25313b; --rule2:#33414d;
+    --accent:#6fa8d0; --accent2:#b18cd0; --accent-w:#1b2e3d;
+    --ok:#62ab84; --warn:#cda355; --crit:#df8375;
+    --ok-w:#182a22; --warn-w:#2b2415; --crit-w:#2e1c1a;
+    --sheet:#e8e6e2;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:15.5px; line-height:1.62; margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding-inline:20px; padding-block:0 72px}
+  h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",Arial,sans-serif;
+    text-wrap:balance; margin:0}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink3)}
+
+  /* ---- cabeçalho ---- */
+  header{border-bottom:1px solid var(--rule2); padding-block:44px 26px; margin-bottom:38px}
+  h1{font-size:clamp(38px,7vw,64px); font-weight:700; letter-spacing:-.018em; line-height:1.02;
+     margin-block:14px 12px}
+  .deck{font-size:clamp(17px,2.4vw,20px); color:var(--ink2); max-width:62ch; line-height:1.5}
+  .spec{display:flex; flex-wrap:wrap; gap:0 34px; margin-top:26px; border-top:1px solid var(--rule);
+    padding-top:16px}
+  .spec div{display:flex; flex-direction:column; gap:1px; padding-block:4px}
+  .spec dt,.spec .k{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink3);
+    font-family:"IBM Plex Mono",monospace}
+  .spec .v{font-family:"IBM Plex Mono",monospace; font-size:19px; font-weight:500}
+
+  section{margin-block:52px}
+  h2{font-size:26px; font-weight:700; letter-spacing:-.01em; margin-bottom:6px}
+  h2 .num{color:var(--ink3); font-weight:600; margin-right:10px; font-size:19px;
+    font-family:"IBM Plex Mono",monospace}
+  .sub{color:var(--ink2); max-width:68ch; margin-bottom:22px}
+  p{max-width:68ch}
+  section > p + p{margin-top:.9em}
+
+  /* ---- gráfico de barras ---- */
+  .chart{background:var(--surface); border:1px solid var(--rule); padding:22px 22px 16px}
+  .chart-t{font-size:13px; font-weight:600; margin-bottom:2px}
+  .chart-s{font-size:12px; color:var(--ink3); margin-bottom:20px}
+  .rows{display:grid; gap:9px}
+  .row{display:grid; grid-template-columns:92px 1fr 56px; gap:12px; align-items:center}
+  .row .lab{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink2); text-align:right}
+  .row .val{font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-weight:500;
+    color:var(--ink); font-variant-numeric:tabular-nums}
+  .track{position:relative; height:22px; background:var(--sunk)}
+  .track::after{content:""; position:absolute; left:21.7%; top:-4px; bottom:-4px;
+    border-left:2px dashed var(--rule2)}
+  .bar{height:100%; background:var(--accent); border-radius:0 3px 3px 0; position:relative; z-index:1}
+  .bar.over{background:var(--crit)}
+  .bar.edge{background:var(--warn)}
+  .cap{display:grid; grid-template-columns:92px 1fr 56px; gap:12px; margin-bottom:2px}
+  .cap i{grid-column:2; position:relative; display:block; height:15px; font-style:normal}
+  .cap i b{position:absolute; left:21.7%; transform:translateX(-50%); white-space:nowrap;
+    font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:500;
+    letter-spacing:.03em; color:var(--ink3)}
+  .grp{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink3); margin:14px 0 2px 104px}
+
+  /* ---- chips ---- */
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:500;
+    padding:2px 9px; border:1px solid currentColor; white-space:nowrap;
+    font-family:"IBM Plex Mono",monospace}
+  .chip.ok{color:var(--ok); background:var(--ok-w)}
+  .chip.warn{color:var(--warn); background:var(--warn-w)}
+  .chip.crit{color:var(--crit); background:var(--crit-w)}
+  .chip::before{content:"●"; font-size:8px}
+
+  /* ---- prancha ---- */
+  figure{margin:0}
+  .sheet{background:var(--sheet); border:1px solid var(--rule2); padding:10px; overflow-x:auto}
+  .sheet img{display:block; width:100%; min-width:840px; max-width:100%}
+  figcaption{font-size:12.5px; color:var(--ink3); margin-top:10px; max-width:70ch}
+
+  /* ---- sequência do fluxo ---- */
+  ol.flow{list-style:none; margin:26px 0 0; padding:0; display:grid; gap:0;
+    border-top:1px solid var(--rule)}
+  ol.flow li{display:grid; grid-template-columns:30px 1fr; gap:14px; padding-block:13px;
+    border-bottom:1px solid var(--rule); align-items:baseline}
+  ol.flow .n{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--accent); font-weight:500}
+  ol.flow b{font-weight:600}
+  ol.flow span{color:var(--ink2)}
+
+  /* ---- tabelas ---- */
+  .tw{overflow-x:auto; border:1px solid var(--rule); background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:14px; min-width:520px}
+  th,td{text-align:left; padding:9px 14px; border-bottom:1px solid var(--rule)}
+  thead th{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ink3); font-weight:500; background:var(--sunk);
+    border-bottom:1px solid var(--rule2); white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td.n,th.n{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+  tr.tot td{font-weight:600; background:var(--sunk); border-top:1px solid var(--rule2)}
+  .code{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--ink2)}
+  .fila{font-family:"IBM Plex Mono",monospace; font-weight:500}
+  .fila.a{color:#0e7490} .fila.b{color:#b8741a} .fila.c{color:#a23b72}
+  :root[data-theme="dark"] .fila.a,:root:not([data-theme="light"]) .fila.a{color:#5cc3d6}
+  :root[data-theme="dark"] .fila.b,:root:not([data-theme="light"]) .fila.b{color:#e0a552}
+  :root[data-theme="dark"] .fila.c,:root:not([data-theme="light"]) .fila.c{color:#d98ab5}
+  @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .fila.a{color:#0e7490} :root:not([data-theme="dark"]) .fila.b{color:#b8741a} :root:not([data-theme="dark"]) .fila.c{color:#a23b72}}
+
+  /* ---- barra de área ---- */
+  .area{display:flex; gap:2px; height:38px; margin-top:6px}
+  .area div{display:flex; align-items:center; justify-content:center; font-family:"IBM Plex Mono",monospace;
+    font-size:11px; font-weight:500; overflow:hidden; white-space:nowrap}
+  .a1{background:var(--accent-w); color:var(--ink2)}
+  .a2{background:var(--accent); color:var(--surface)}
+  .a3{background:var(--sunk); color:var(--ink2); border:1px dashed var(--rule2)}
+  .a4{background:var(--warn-w); color:var(--warn)}
+  .a5{background:var(--sunk); color:var(--ink3)}
+  .akey{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:10px; font-size:12px; color:var(--ink2)}
+  .akey b{font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--ink)}
+
+  /* ---- destaque ---- */
+  .callout{border-left:3px solid var(--crit); background:var(--surface); padding:18px 22px;
+    margin-top:26px}
+  .callout h3{font-size:17px; font-weight:700; margin-bottom:6px}
+  .callout p{font-size:14.5px; color:var(--ink2); max-width:64ch; margin:0}
+  .callout p + p{margin-top:.7em}
+  .verdict{border-left:3px solid var(--accent)}
+  .verdict h3{color:var(--accent)}
+
+  .sn{font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:12px}
+  .sn.y{color:var(--ok)} .sn.n{color:var(--crit)}
+  td.hl{background:var(--accent-w)}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:22px}
+  @media (max-width:720px){.two{grid-template-columns:1fr}}
+  .box{border:1px solid var(--rule); background:var(--surface); padding:16px 18px}
+  .box h3{font-size:15px; font-weight:700; margin-bottom:5px}
+  .box p{font-size:14px; color:var(--ink2); margin:0; max-width:none}
+  .big{font-family:"IBM Plex Mono",monospace; font-size:30px; font-weight:500;
+    letter-spacing:-.02em; display:block; line-height:1.1; margin-bottom:2px}
+  .big.a{color:var(--accent)} .big.b{color:var(--ink3)}
+
+  /* ---- decisões ---- */
+  ul.dec{list-style:none; margin:22px 0 0; padding:0; border-top:1px solid var(--rule)}
+  ul.dec li{padding:13px 0 13px 30px; border-bottom:1px solid var(--rule); position:relative;
+    max-width:76ch}
+  ul.dec li::before{content:"☐"; position:absolute; left:2px; top:11px; color:var(--ink3); font-size:15px}
+  ul.dec b{font-weight:600}
+  ul.dec span{color:var(--ink2)}
+
+  footer{border-top:1px solid var(--rule2); margin-top:56px; padding-top:22px;
+    font-size:12.5px; color:var(--ink3)}
+  footer p{max-width:76ch; margin:0 0 .7em}
+  footer b{color:var(--ink2); font-weight:600}
+
+  @media (max-width:640px){
+    .row,.cap{grid-template-columns:62px 1fr 48px; gap:9px}
+    .row .lab{font-size:11px}
+    .grp{margin-left:71px}
+    .spec{gap:0 22px}
+    .area div{font-size:9.5px}
+  }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">RDS Hall 2 · prancheta Hamad_Final · 1º turno 04.10.2026</div>
+  <h1>Filas sem o Ring 3</h1>
+  <p class="deck">Três entradas — S4, S5 e S6 —, saídas em S2 e S8, mesas onde estão nas três
+  paredes. A fila ocupa a zona da fachada sul até o centro, em seis blocos, dois por porta, com
+  a mesma capacidade em cada porta. Cabem <b>580 pessoas</b>; a saída S2 custa 29% disso.</p>
+  <div class="spec">
+    <div><span class="k">Cabem no projeto</span><span class="v">580</span></div>
+    <div><span class="k">Por porta</span><span class="v">193 · 194 · 194</span></div>
+    <div><span class="k">Máximo admissível</span><span class="v">757</span></div>
+    <div><span class="k">Canais</span><span class="v">25 × 1,10 m</span></div>
+    <div><span class="k">Unifilas</span><span class="v">240</span></div>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">01</span>O desenho</h2>
+  <p class="sub">Canais norte-sul de 1,10 m, corredores de 1,20 m entre blocos, triagem de 4,0 m
+  junto à fachada, faixas perimetrais de 7,0 m preservadas. O corredor de saída para S2 passa por
+  cima do recorte sudoeste e desce até a porta.</p>
+  <figure>
+    <div class="sheet"><img src="tp.svg" alt="Planta do Hall 2 com as 28 mesas nas paredes oeste, norte e leste, entradas A (S4), B (S5) e C (S6) na fachada sul, saídas S2 e S8, e seis blocos de serpentina norte-sul: A1 no canto oeste com 125 pessoas, A2 com 68, B1 com 83, B2 com 111, C1 com 83 e C2 com 110. O corredor de saída para S2 contorna o recorte e cruza a entrada de A1 num ponto marcado."></div>
+    <figcaption>As três condições: máximo com circulação; blocos por porta em múltiplos de 3; mesma
+    capacidade por porta. A igualdade é obtida recuando a entrada do último bloco de cada porta —
+    A2 e C2 — até que as três portas tenham os mesmos metros de canal.</figcaption>
+  </figure>
+
+  <div class="tw" style="margin-top:24px"><table>
+    <thead><tr><th>Bloco</th><th>Porta</th><th class="n">Canais</th><th class="n">Profundidade</th><th class="n">Canal</th><th class="n">Pessoas</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td class="fila a">A1</td><td>A · S4</td><td class="n">7</td><td class="n">11,8 m</td><td class="n">83 m</td><td class="n">125</td><td class="code">a oeste do corredor S2</td></tr>
+      <tr><td class="fila a">A2</td><td>A · S4</td><td class="n">3</td><td class="n">14,9 m</td><td class="n">45 m</td><td class="n">68</td><td class="code">recuado para igualar</td></tr>
+      <tr><td class="fila b">B1</td><td>B · S5</td><td class="n">3</td><td class="n">18,2 m</td><td class="n">55 m</td><td class="n">83</td><td></td></tr>
+      <tr><td class="fila b">B2</td><td>B · S5</td><td class="n">4</td><td class="n">18,2 m</td><td class="n">73 m</td><td class="n">111</td><td></td></tr>
+      <tr><td class="fila c">C1</td><td>C · S6</td><td class="n">3</td><td class="n">18,2 m</td><td class="n">55 m</td><td class="n">83</td><td></td></tr>
+      <tr><td class="fila c">C2</td><td>C · S6</td><td class="n">5</td><td class="n">14,6 m</td><td class="n">73 m</td><td class="n">110</td><td class="code">recuado para igualar</td></tr>
+      <tr class="tot"><td colspan="2">A 128 m · B 128 m · C 128 m</td><td class="n">25</td><td></td><td class="n">383 m</td><td class="n">580</td><td></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Por que 6 blocos, e não 3 ou 9</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Configuração</th><th class="n">Confortável</th><th class="n">Projeto</th><th class="n">Máximo</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td class="hl"><b>6 blocos, 2 por porta</b></td><td class="n hl">416</td><td class="n hl"><b>580</b></td><td class="n hl">757</td><td class="hl"><span class="chip ok">usa o canto oeste</span></td></tr>
+      <tr><td>3 blocos, 1 por porta</td><td class="n">356</td><td class="n">497</td><td class="n">648</td><td><span class="chip warn">perde o canto oeste</span></td></tr>
+      <tr><td>9 blocos, 3 por porta</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td><span class="chip crit">inviável</span></td></tr>
+    </tbody>
+  </table></div>
+  <p style="margin-top:18px"><b>3 blocos perdem o canto oeste.</b> Com um bloco só por porta, os 7
+  canais a oeste do corredor de S2 não podem ser usados: se fossem o único bloco da porta A, as
+  portas B e C teriam de encolher a 83 m para manter a igualdade. O ótimo ignora o canto e para
+  em 497.</p>
+  <p><b>6 blocos usam o canto.</b> A porta A ganha A1 no canto e completa com A2 a leste do
+  corredor. É a única configuração que respeita as regras e ainda aproveita toda a largura —
+  17% acima de 3 blocos.</p>
+  <p><b>9 blocos não fecham.</b> Oito blocos a leste de S2 exigem sete corredores; sobram 14
+  canais para 8 blocos, menos de 2 por bloco. Com dois canais não há serpentina, há um corredor
+  de ida e volta. Se "múltiplos de 3" for lido como áreas por porta e não como blocos físicos,
+  cada porta subdivide seus dois blocos com sinalização, sem barreira a mais.</p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>O custo da saída S2</h2>
+  <p class="sub">S2 fica em x ≈ 17 m — dentro da largura da zona de fila, não no flanco como S8.
+  Levar até ela quem votou nas paredes oeste e norte tem três custos.</p>
+  <p>Três metros de largura da zona para o corredor vertical. Seis metros de profundidade nos
+  sete canais do canto oeste, porque o corredor passa por cima do recorte. E <b>um cruzamento</b>:
+  quem entra por S4 e vai para A1 atravessa o fluxo de saída a caminho de S2. É um cruzamento de
+  pedestres com fiscal — rotineiro, mas é o único ponto do desenho onde entrada e saída se tocam,
+  e está marcado na prancha.</p>
+
+  <div class="tw" style="margin-top:22px"><table>
+    <thead><tr><th>Variante</th><th class="n">Projeto</th><th class="n">Máximo</th><th class="n">Por porta</th><th class="n">Cruzamentos</th></tr></thead>
+    <tbody>
+      <tr><td class="hl"><b>S2 e S8 abertas</b> — o pedido</td><td class="n hl"><b>580</b></td><td class="n hl">757</td><td class="n hl">193</td><td class="n hl">1</td></tr>
+      <tr><td>S2 fechada, tudo sai por S8 / S7</td><td class="n">747</td><td class="n">975</td><td class="n">249</td><td class="n">0</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout verdict">
+    <h3>Fechar S2 vale 29% — e zero cruzamentos</h3>
+    <p>Quem votou nas paredes oeste e norte circula pelo piso norte e desce pela faixa leste até
+    S8 ou S7. O corredor de S2 desaparece, o canto oeste ganha profundidade, o cruzamento some.
+    O preço é uma caminhada de até ~60 m para quem votou na parede oeste e todo o egresso
+    concentrado num só lado — S8/S7 comportam o fluxo (~1.300 saídas/h no pico), mas é uma decisão
+    de evacuação que o responsável de incêndio do RDS precisa ver.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">04</span>O que vai para a rua</h2>
+  <div class="chart">
+    <div class="chart-t">Pico de eleitores simultaneamente em fila</div>
+    <div class="chart-s">por perfil de chegada e tempo de atendimento por eleitor</div>
+    <div class="cap"><i><b>580 — o que cabe dentro</b></i></div>
+    <div class="rows">
+      <div class="grp" style="margin-top:0">Perfil base</div>
+      <div class="row"><div class="lab">45 s</div><div class="track"><div class="bar" style="width:9.3%"></div></div><div class="val">248</div></div>
+      <div class="row"><div class="lab">60 s</div><div class="track"><div class="bar" style="width:15.5%"></div></div><div class="val">415</div></div>
+      <div class="row"><div class="lab">75 s</div><div class="track"><div class="bar edge" style="width:44.5%"></div></div><div class="val">1.188</div></div>
+      <div class="row"><div class="lab">90 s</div><div class="track"><div class="bar over" style="width:75.4%"></div></div><div class="val">2.013</div></div>
+      <div class="grp">Pico de manhã</div>
+      <div class="row"><div class="lab">45 s</div><div class="track"><div class="bar" style="width:19.1%"></div></div><div class="val">511</div></div>
+      <div class="row"><div class="lab">60 s</div><div class="track"><div class="bar edge" style="width:33.7%"></div></div><div class="val">899</div></div>
+      <div class="row"><div class="lab">75 s</div><div class="track"><div class="bar over" style="width:65.4%"></div></div><div class="val">1.746</div></div>
+      <div class="row"><div class="lab">90 s</div><div class="track"><div class="bar over" style="width:100%"></div></div><div class="val">2.671</div></div>
+    </div>
+  </div>
+  <div class="tw" style="margin-top:22px"><table>
+    <thead><tr><th>Perfil</th><th class="n">t/eleitor</th><th class="n">Pico</th><th class="n">Na rua · S2 aberta (580)</th><th class="n">Na rua · S2 fechada (747)</th></tr></thead>
+    <tbody>
+      <tr><td>Base</td><td class="n">60 s</td><td class="n">415</td><td class="n"><span class="sn y">0</span></td><td class="n"><span class="sn y">0</span></td></tr>
+      <tr><td class="hl">Pico de manhã</td><td class="n hl">60 s</td><td class="n hl">899</td><td class="n hl"><span class="sn n">319</span></td><td class="n hl"><span class="sn n">152</span></td></tr>
+      <tr><td>Base</td><td class="n">75 s</td><td class="n">1.188</td><td class="n"><span class="sn n">608</span></td><td class="n"><span class="sn n">441</span></td></tr>
+      <tr><td>Pico de manhã</td><td class="n">75 s</td><td class="n">1.746</td><td class="n"><span class="sn n">1.166</span></td><td class="n"><span class="sn n">999</span></td></tr>
+      <tr><td>Pico de manhã</td><td class="n">90 s</td><td class="n">2.671</td><td class="n"><span class="sn n">2.091</span></td><td class="n"><span class="sn n">1.924</span></td></tr>
+    </tbody>
+  </table></div>
+  <p style="margin-top:18px">A ordem de grandeza continua sendo decidida pelo tempo por eleitor,
+  não pelo desenho da fila. Entre 60 e 75 segundos a rua passa de uma manhã difícil para o estado
+  normal do dia.</p>
+</section>
+
+<section>
+  <h2><span class="num">05</span>O que precisa ser decidido</h2>
+  <ul class="dec">
+    <li><b>S2 aberta ou fechada.</b> <span>580 com um cruzamento supervisionado, ou 747 sem
+      cruzamento e com todo o egresso a leste. Decisão de evacuação — passa pelo responsável de
+      incêndio do RDS.</span></li>
+    <li><b>Confirmar as cotas das portas na planta.</b> <span>S2 = 17,0 m, S4 = 24,6, S5 = 30,2,
+      S6 = 35,9, S8 = 43,5 foram lidas da prancheta com ±1 m. O corredor de S2 e o tamanho de A1
+      dependem disso.</span></li>
+    <li><b>Medir o recorte sudoeste.</b> <span>Mantido em 11,7 × 7,4 m pela planta do RDS; a
+      prancheta sugere ~8 × 7 m. Se for o menor, A1 ganha 2 a 3 canais.</span></li>
+    <li><b>Faixa perimetral: 7,0 ou 5,5 m.</b> <span>Há um degrau em 5,6 m — abaixo dele entra um
+      canal por bloco. Medir contra a mesa, a cabine e a urna reais.</span></li>
+    <li><b>Abrir o Hall 2 às 7h00.</b> <span>Segue sendo a medida de maior efeito e menor custo
+      para a fila de abertura: meia hora a mais no contrato de segurança.</span></li>
+  </ul>
+</section>
+
+<footer>
+  <p><b>Premissas.</b> Canal de 1,10 m; passo de 0,65 m por pessoa no projeto, 0,90 m confortável,
+  0,50 m no máximo admissível (2,0 p/m²); meia pessoa perdida por curva; mínimo de 3 canais por
+  bloco; bloco recuado não fica mais raso que 6,0 m. Faixa perimetral de 7,0 m, triagem de 4,0 m,
+  corredor de S2 de 3,0 m, corredores de 1,20 m entre blocos — estimativas de projeto, não cotas
+  da prancheta. Portas lidas da prancheta como fração da fachada sul entre o recorte e o canto
+  sudeste. Comparecimento de 11.416 (74% Dublin, 50% interior) e perfis de chegada como nos
+  documentos anteriores; o perfil é premissa, não dado. A igualdade por porta foi obtida por busca
+  exaustiva sobre a repartição de canais entre blocos.</p>
+  <p>Números gerados por <span class="mono">scripts/tres_portas.py</span> e
+  <span class="mono">scripts/desenha_tres_portas.py</span> sobre
+  <span class="mono">saidas/dados.json</span>.</p>
+</footer>
+</div>
+
+</body></html>
