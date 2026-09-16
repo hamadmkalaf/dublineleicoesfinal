@@ -9,7 +9,9 @@ Cole este bloco no novo chat para dar todo o contexto. Projeto: logística das e
 Usamos duas fotografias do eleitorado que **não são intercambiáveis**:
 
 - **Base "markdown" (16.794 aptos, 51 seções):** Dublin 32 seções / 12.581 aptos; interior 19 seções / 4.213 aptos. Foi a base das Propostas 1 e 2.
-- **Arquivo do TRE `Irlanda_-_Dublin.xlsx` (14.626 aptos, 51 seções):** proposta oficial já agregada em **20 mesas**. Foi a base da Simulação 3.
+- **Arquivo do TRE `Irlanda - Dublin (1).xlsx` (14.626 aptos, 51 seções;
+  no Drive do Posto, id `1rxGGhmIt8bNhAG5YpChoII-z4HgCRqnQ`, não neste
+  repositório — ver §2.5 de `contexto_eleicoes_dublin_2026.md`):** proposta oficial já agregada em **20 mesas**. Foi a base da Simulação 3.
 
 A diferença (~2.168 aptos) parece vir de limpeza/atualização do cadastro, concentrada no interior. **Propostas 1–2 e a Simulação 3 não são diretamente comparáveis** por usarem eleitorados diferentes. Para comparar em pé de igualdade, rodar as propostas sobre o arquivo do TRE (14.626).
 
