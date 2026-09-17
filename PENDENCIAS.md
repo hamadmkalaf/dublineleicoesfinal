@@ -146,11 +146,19 @@ EM ABERTO NO DESENHO DO HALL 2 — herdado da transferência de 16/09/2026
 
 6. plano_filas.py (no branch de filas do repositório antigo) ainda usa 11.416
    fixo no código em vez da base B (11.499). Corrigir ao trazer, se trazer.
+   [17/09] Ele foi trazido: está em scripts/plano_filas.py, e a linha 190 ainda
+   tem o 11416 fixo. A correção continua pendente; o que mudou é que agora é
+   aqui que se corrige.
 
 7. DENSIDADE DESIGUAL ENTRE PAREDES: 131 esperados por metro na oeste contra
    107 na leste. Carga igual não é fila igual.
 
 8. PLANO DE SINALIZAÇÃO INTERNA — não existe mais nenhum válido.
+   [17/09] RESOLVIDO pela consolidação em main: a sinalização v2 de 16/09
+   (scripts/sinalizacao_v2.py, saidas/rota_do_eleitor_v2.html e
+   saidas/sinalizacao_hall2_v2.html) nasceu do desenho atual — 3 entradas,
+   2 saídas, S7 preferencial, triagem na porta — e está na árvore. Deixa de
+   bloquear a impressão. Ver docs/CONTEXTO_DO_PROJETO.md §6.4.
    O que havia (branch claude/serene-rubin-tdzmlb) é do Ring 3: triagem A/B/C
    na boca do serpenteado, total de 11.416, numeração eleitor antiga. Não foi
    transferido, por decisão de 16/09. O novo precisa nascer do desenho atual:
@@ -162,6 +170,9 @@ EM ABERTO NO DESENHO DO HALL 2 — herdado da transferência de 16/09/2026
    faixa de emergência leste, a sala de apoio nem os serpenteados. Os scripts
    que o produziram ficaram no repositório antigo (um deles com 11.416 fixo —
    ver item 6). Entrou aqui como peça entregue, não como parte da cadeia.
+   [17/09] Os scripts também foram trazidos (scripts/plano_filas.py,
+   scripts/tres_portas.py, scripts/simula_fluxo.py). Refazer o dimensionamento
+   contra as zonas de 16/09 segue pendente.
 
 10. ORÇAMENTO — reavaliar as quatro linhas do Ring 3.
     R7 (separadores CCB), R8 (espaço), C5 (fita de contorno) e C6 (placas de

@@ -7,9 +7,19 @@ espalhado por 29 branches de `hamadmkalaf/eleicoes2026`, que fica como
 arquivo. Como isso foi feito, e o que ficou em aberto por causa disso:
 [`transferencia/EXECUCAO_2026-09-16.md`](transferencia/EXECUCAO_2026-09-16.md).
 
+Em **17/09/2026** as três branches vivas deste repositório (a consolidação
+integral, a transferência curada do Hall 2 e a estratégia de comunicação)
+foram mescladas em `main`. O contexto inteiro do projeto, o mapa da árvore, o
+que ficou em conflito entre as duas transferências e como cada colisão foi
+resolvida estão em
+[`docs/CONTEXTO_DO_PROJETO.md`](docs/CONTEXTO_DO_PROJETO.md).
+
 ## Leia nesta ordem
 
-1. Este README.
+1. Este README, e
+   [`docs/CONTEXTO_DO_PROJETO.md`](docs/CONTEXTO_DO_PROJETO.md) se você chega
+   ao projeto sem histórico: ele explica o problema, os números, a cronologia
+   das decisões e o que está em disputa.
 2. [`contexto_eleicoes_dublin_2026.md`](contexto_eleicoes_dublin_2026.md):
    o histórico do problema e a cronologia das decisões (tem trechos
    superados, marcados no texto).
