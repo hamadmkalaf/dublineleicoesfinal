@@ -1,3 +1,20 @@
+> ## ⚠ ESTE ARQUIVO ESTÁ DESATUALIZADO NUM PONTO — RING 3
+>
+> **O Ring 3 foi CONFIRMADO pelo Posto em 16/09/2026.** Tudo o que este
+> documento diz sobre o Ring 3 ter sido abandonado, proibido pelo RDS ou "não
+> existir mais" está **revertido**, e a fila externa no terreno do RDS voltou a
+> ser o plano. A fila confinada dentro do Hall 2 é contingência.
+>
+> Com a confirmação, as larguras das zonas também mudaram: elas eram
+> proporcionais às cotas do Ring 3 antigo (A 3.642 / B 4.215 / C 3.642) e
+> passaram a sair do esperado por entrada de Paredes_ABC — **12,87 · 12,86 ·
+> 12,87 m**, 179 CCBs, percurso máximo de 296 m.
+>
+> Esta branch é uma das origens da consolidação em `main` e não recebeu essa
+> correção: ela vive em `main` (`data/decisoes.json`, bloco `ring3`;
+> `scripts/ring3_montagem.py`; `docs/CONTEXTO_DO_PROJETO.md` §6.1). **Leia a
+> `main` antes de usar qualquer número de Ring 3 deste arquivo.**
+
 # Eleições 2026 — Posto de Dublin, RDS Ballsbridge, Hall 2
 
 Planejamento do posto de votação do Consulado/Embaixada em Dublin para o
