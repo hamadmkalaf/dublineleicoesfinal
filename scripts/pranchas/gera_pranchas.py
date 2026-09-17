@@ -115,19 +115,34 @@ corpo = f"""  <div style="flex-grow: 1; display: flex; flex-direction: column; j
 peca('P0-Consulta.dc.html', 2000, 1000, corpo)
 
 # ------------------------------------------------------------- tabela mestra
-def tabela_mestra(cols=3, dig=40, chip=30, gap=9):
+def tabela_mestra(cols=6, alt_px=340, larg_px=920):
+    """As 51 linhas seção -> porta, dimensionadas para CABER em alt_px.
+
+    A versão anterior fixava o corpo da letra e deixava a tabela transbordar:
+    numa peça de 500 px de altura o conteúdo dava 1129 px, e o overflow:hidden
+    comia metade das seções -- em silêncio.  Agora o corpo sai da altura
+    disponível, e gera_artes.py --render confere que nada foi cortado.
+    """
     itens = sorted(mestra.items())
-    por = -(-len(itens) // cols)
+    por = -(-len(itens) // cols)                 # linhas por coluna
+    linha_px = alt_px / por
+    dig = max(11, round(linha_px * 0.62))        # dígito da seção
+    chip = max(9, round(linha_px * 0.50))        # letra da porta
+    gap = max(2, round(linha_px * 0.12))
+    col_px = larg_px / cols
+    # "0000" + chip + folga tem de caber na largura da coluna
+    if dig * 2.6 + chip * 1.7 > col_px:
+        dig = max(11, round((col_px - chip * 1.7) / 2.6))
     colunas = [itens[i*por:(i+1)*por] for i in range(cols)]
-    out = [f'<div style="display: grid; grid-template-columns: repeat({cols}, minmax(0, 1fr)); gap: 0 34px; flex-grow: 1;">']
+    out = [f'<div style="display: grid; grid-template-columns: repeat({cols}, minmax(0, 1fr)); gap: 0 {max(10, round(col_px*0.10))}px; flex-grow: 1; overflow: hidden;">']
     for col in colunas:
-        out.append('<div style="display: flex; flex-direction: column; justify-content: space-between;">')
+        out.append(f'<div style="display: flex; flex-direction: column; justify-content: flex-start;">')
         for sec, p in col:
             out.append(
-                f'<div style="display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #D8DCE0; padding: {gap//2}px 0;">'
+                f'<div style="display: flex; align-items: center; gap: {max(4, gap)}px; border-bottom: 1px solid #D8DCE0; padding: {gap//2}px 0;">'
                 f'<span style="font-family: {DISP}; font-weight: 700; font-size: {dig}px; color: {MARINHO}; font-variant-numeric: tabular-nums;">{sec}</span>'
                 f'<span style="flex-grow: 1;"></span>'
-                f'<span style="min-width: {chip+14}px; text-align: center; background: {COR[p]}; color: {TEXTO[p]}; font-family: {DISP}; font-weight: 800; font-size: {chip}px; line-height: {chip+10}px; padding: 0 8px;">{p}</span>'
+                f'<span style="min-width: {round(chip*1.5)}px; text-align: center; background: {COR[p]}; color: {TEXTO[p]}; font-family: {DISP}; font-weight: 800; font-size: {chip}px; line-height: {round(chip*1.35)}px; padding: 0 5px;">{p}</span>'
                 f'</div>')
         out.append('</div>')
     out.append('</div>')
@@ -138,10 +153,10 @@ for nome, titulo, sub in (
         ('P1-Portao.dc.html', 'SUA SEÇÃO → SUA PORTA', 'Section → door · a letra é a sua fila do portão até a urna.')):
     corpo = f"""  <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 16px 40px 20px; gap: 10px;">
     <div style="display: flex; align-items: baseline; gap: 18px;">
-      <div style="font-family: {DISP}; font-weight: 800; font-size: 40px; color: {MARINHO}; letter-spacing: -0.01em;">{titulo}</div>
+      <div style="font-family: {DISP}; font-weight: 800; font-size: 38px; color: {MARINHO}; letter-spacing: -0.015em; white-space: nowrap;">{titulo}</div>
       <div style="font-family: {SANS}; font-weight: 600; font-size: 19px; color: #5A6270;">{sub}</div>
     </div>
-{tabela_mestra()}
+{tabela_mestra(cols=6, alt_px=330, larg_px=920)}
   </div>
 """
     peca(nome, 2000, 1000, corpo)
@@ -149,7 +164,7 @@ for nome, titulo, sub in (
 # ------------------------------------------------- P2 parede leste (PVC 1,8 x 1,2)
 corpo = f"""  <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 16px 34px 20px; gap: 8px;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 42px; color: {MARINHO};">SUA SEÇÃO → SUA PORTA</div>
-{tabela_mestra(cols=3, dig=42, chip=32, gap=12)}
+{tabela_mestra(cols=5, alt_px=350, larg_px=832)}
     <div style="display: flex; align-items: center; gap: 14px; background: {MARINHO}; color: #FFFFFF; padding: 12px 20px; font-family: {DISP}; font-weight: 700; font-size: 30px;">
       <span>A FILA SEGUE ADIANTE</span>
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -162,7 +177,7 @@ peca('P2-ParedeLeste.dc.html', 1800, 1200, corpo)
 corpo = f"""  <div style="flex-grow: 1; display: flex; padding: 14px 34px 18px; gap: 26px;">
     <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;">
       <div style="font-family: {DISP}; font-weight: 800; font-size: 36px; color: {MARINHO};">SUA SEÇÃO → SUA PORTA</div>
-{tabela_mestra(cols=2, dig=34, chip=26, gap=6)}
+{tabela_mestra(cols=4, alt_px=330, larg_px=600)}
     </div>
     <div style="width: 300px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 16px; border-left: 4px solid #D8DCE0; padding-left: 26px;">
       <div style="font-family: {SANS}; font-weight: 700; font-size: 20px; color: #5A6270; text-transform: uppercase; letter-spacing: 0.08em;">Siga o corredor</div>
@@ -191,7 +206,7 @@ for L in ('A', 'B', 'C'):
       <div style="font-family: {SANS}; font-weight: 600; font-size: 19px; opacity: 0.86;">parede {PAREDE[L]} · {PORTA[L]}</div>
     </div>
     <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px; justify-content: center;">
-      <div style="font-family: {SANS}; font-weight: 700; font-size: 22px; letter-spacing: 0.08em; opacity: 0.9;">ENTRE AQUI SE A SUA SEÇÃO ESTÁ NESTA LISTA</div>
+      <div style="font-family: {SANS}; font-weight: 700; font-size: 23px; letter-spacing: 0.03em; opacity: 0.92; white-space: nowrap;">SUA SEÇÃO ESTÁ AQUI? ENTRE.</div>
       <div style="display: grid; grid-template-columns: repeat({ncol}, minmax(0, 1fr)); gap: 7px 16px;">{grade}</div>
       <div style="font-family: {SANS}; font-weight: 700; font-size: 21px; border-top: 3px solid {REGUA[L]}; padding-top: 9px; margin-top: 4px;">Não está aqui? Siga em frente pelo corredor.</div>
     </div>
@@ -226,9 +241,9 @@ peca('P5-Preferencial.dc.html', 2000, 1000, corpo)
 # ------------------------------------------------------------------ P7 saida
 w, h = mm(594), mm(420)
 html = CAB + f"""<div style="width: {w}px; height: {h}px; box-sizing: border-box; background: {MARINHO}; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
-  <div style="display: flex; align-items: center; gap: 16px;">
-    <div style="font-family: {DISP}; font-weight: 800; font-size: 75px; line-height: 1;">SAÍDA</div>
-    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: {DISP}; font-weight: 800; font-size: 68px; line-height: 1;">SAÍDA</div>
+    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </div>
   <div style="font-family: {SANS}; font-weight: 700; font-size: 28px; opacity: 0.85;">WAY OUT</div>
   <div style="font-family: {SANS}; font-weight: 600; font-size: 22px; opacity: 0.7;">→ Merrion Road</div>
