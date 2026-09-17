@@ -1,5 +1,12 @@
 # Análise de gargalos — 28 urnas fixadas (RDS Hall 2, 04/10/2026)
 
+> **AVISO DE SAFRA — 16/09/2026.** O corpo do documento continua válido: a
+> configuração de 28 urnas, os 16.794 aptos, os 11.499 esperados e a conclusão
+> sobre identificação em uma ou duas posições não mudaram. Só a frase sobre o
+> espaço está superada — o **Ring 3 foi abandonado em 15/09** e toda a fila é
+> dimensionada dentro do Hall 2 (`plano_filas_tres_portas.md`). O script citado,
+> `scripts/simula_fluxo.py`, ficou no repositório antigo.
+
 Registro do que foi apurado depois de encerrada a negociação com o TRE. A
 configuração está fixada: **28 urnas, 28 mesas receptoras (1:1), 51 seções,
 16.794 aptos**, janela 8h–17h. Identificação por **caderno físico impresso**.

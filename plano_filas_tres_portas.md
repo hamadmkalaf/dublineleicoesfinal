@@ -1,5 +1,27 @@
 # Serpentina para três entradas — prancheta Hamad_Final
 
+> **AVISO DE SAFRA — 16/09/2026.** É o plano de filas vigente, e o único dos
+> quatro da série que parte das **três entradas em três paredes** (S4/S5/S6,
+> 9/9/10 mesas) — por isso ele veio, e não o `plano_filas_confinado_hall2.md`,
+> que é de 14/09 e ainda punha as entradas A e B juntas na parede sul.
+>
+> Duas ressalvas, as duas por ser de **15/09**:
+>
+> 1. Ele não conhece as decisões de **16/09** — os recuos de 3 m em N2 e O2, a
+>    faixa de emergência na fachada leste, a sala de apoio entre O1 e a parede
+>    norte, e os serpenteados de ~20 pessoas à frente de cada mesa vermelha.
+>    Essas zonas estão em `data/decisoes.json` (`zonas_protegidas` e
+>    `serpenteados`) e aparecem hachuradas em `saidas/editor.html`.
+> 2. Os scripts que produzem estes números (`tres_portas.py` e os três de que
+>    ele depende) **ficaram no repositório antigo**: dependiam do estado
+>    anterior, e um deles carrega 11.416 fixo no código em vez da base B
+>    (11.499). O documento e os dois desenhos entram aqui como peça entregue,
+>    não como parte da cadeia — refazer o dimensionamento contra o desenho atual
+>    é pendência aberta.
+>
+> O cenário citado como "Hamad_Final" tem a mesma repartição de mesas por parede
+> do **Paredes_ABC**, que é o vigente.
+
 Desenho de fila para a prancheta atual: **28 mesas nas paredes oeste, norte e
 leste (9 / 9 / 10), entradas S4 (A), S5 (B) e S6 (C), saídas S2 e S8.** Nada
 de mesa foi movido. A fila ocupa a zona da fachada sul até o centro do salão.
