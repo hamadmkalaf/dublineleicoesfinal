@@ -21,7 +21,12 @@ AMARELO = '#F8C030'
 OURO    = '#E6B00F'
 MARINHO = '#042B5A'
 OFFW    = '#F0F0E8'
-COR   = {'A': '#0B6E9E', 'B': '#B04E0A', 'C': '#4A7C1E'}
+# As tres fitas compradas pelo Posto (foto de 17/09). O texto de cada campo
+# segue a luminancia do fundo: branco no azul, marinho no amarelo e na abobora.
+COR   = {'A': '#33507E', 'B': '#E8C63A', 'C': '#DE7343'}
+TEXTO = {'A': '#FFFFFF', 'B': '#042B5A', 'C': '#042B5A'}
+REGUA = {'A': 'rgba(255,255,255,0.5)', 'B': 'rgba(4,43,90,0.35)', 'C': 'rgba(4,43,90,0.35)'}
+FAIXA = OFFW   # a faixa institucional deixou de ser amarela: amarelo agora e a porta B
 PAREDE = {'A': 'oeste', 'B': 'norte', 'C': 'leste'}
 PORTA  = {'A': 'S4', 'B': 'S5', 'C': 'S6'}
 FLAG   = ('#E6B00F', '#398CB0', '#5F8722')
@@ -68,9 +73,9 @@ def faixa(larg_px, alt_px, nota=''):
         f'<path d="M0 {6+i*11} q 9 -5 18 0 t 18 0 t 18 0" fill="none" '
         f'stroke="{c}" stroke-width="7" stroke-linecap="round"/>'
         for i, c in enumerate(FLAG))
-    return f"""  <div style="height: {h}px; flex-shrink: 0; background: {AMARELO}; display: flex; align-items: center; justify-content: space-between; padding: 0 {round(h*0.34)}px; box-sizing: border-box;">
+    return f"""  <div style="height: {h}px; flex-shrink: 0; background: {FAIXA}; border-bottom: 3px solid {MARINHO}; display: flex; align-items: center; justify-content: space-between; padding: 0 {round(h*0.34)}px; box-sizing: border-box;">
     <div style="display: flex; align-items: center; gap: {round(h*0.2)}px;">
-      <svg width="{round(54*esc)}" height="{round(54*esc)}" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="{MARINHO}" stroke-width="3.4"/><path d="M27 6 a21 21 0 0 1 0 42" fill="{MARINHO}"/><rect x="24" y="24" width="15" height="15" fill="{AMARELO}"/></svg>
+      <svg width="{round(54*esc)}" height="{round(54*esc)}" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="{MARINHO}" stroke-width="3.4"/><path d="M27 6 a21 21 0 0 1 0 42" fill="{MARINHO}"/><rect x="24" y="24" width="15" height="15" fill="{FAIXA}"/></svg>
       <div style="font-family: {DISP}; font-weight: 700; font-size: {round(15*esc)}px; line-height: 1.02; color: {MARINHO}; letter-spacing: -0.01em;">Justiça<br>Eleitoral</div>
     </div>
     <div style="display: flex; align-items: center; gap: {round(h*0.16)}px;">
@@ -122,7 +127,7 @@ def tabela_mestra(cols=3, dig=40, chip=30, gap=9):
                 f'<div style="display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #D8DCE0; padding: {gap//2}px 0;">'
                 f'<span style="font-family: {DISP}; font-weight: 700; font-size: {dig}px; color: {MARINHO}; font-variant-numeric: tabular-nums;">{sec}</span>'
                 f'<span style="flex-grow: 1;"></span>'
-                f'<span style="min-width: {chip+14}px; text-align: center; background: {COR[p]}; color: #FFFFFF; font-family: {DISP}; font-weight: 800; font-size: {chip}px; line-height: {chip+10}px; padding: 0 8px;">{p}</span>'
+                f'<span style="min-width: {chip+14}px; text-align: center; background: {COR[p]}; color: {TEXTO[p]}; font-family: {DISP}; font-weight: 800; font-size: {chip}px; line-height: {chip+10}px; padding: 0 8px;">{p}</span>'
                 f'</div>')
         out.append('</div>')
     out.append('</div>')
@@ -162,9 +167,9 @@ corpo = f"""  <div style="flex-grow: 1; display: flex; padding: 14px 34px 18px; 
     <div style="width: 300px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 16px; border-left: 4px solid #D8DCE0; padding-left: 26px;">
       <div style="font-family: {SANS}; font-weight: 700; font-size: 20px; color: #5A6270; text-transform: uppercase; letter-spacing: 0.08em;">Siga o corredor</div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 58px; text-align: center; background: {COR['C']}; color: #FFF; font-family: {DISP}; font-weight: 800; font-size: 40px; line-height: 58px;">C</span><span style="font-family: {SANS}; font-weight: 600; font-size: 21px; color: {MARINHO};">primeiro</span></div>
-        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 58px; text-align: center; background: {COR['B']}; color: #FFF; font-family: {DISP}; font-weight: 800; font-size: 40px; line-height: 58px;">B</span><span style="font-family: {SANS}; font-weight: 600; font-size: 21px; color: {MARINHO};">depois</span></div>
-        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 58px; text-align: center; background: {COR['A']}; color: #FFF; font-family: {DISP}; font-weight: 800; font-size: 40px; line-height: 58px;">A</span><span style="font-family: {SANS}; font-weight: 600; font-size: 21px; color: {MARINHO};">no fim</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 58px; text-align: center; background: {COR['C']}; color: {TEXTO['C']}; font-family: {DISP}; font-weight: 800; font-size: 40px; line-height: 58px;">C</span><span style="font-family: {SANS}; font-weight: 600; font-size: 21px; color: {MARINHO};">primeiro</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 58px; text-align: center; background: {COR['B']}; color: {TEXTO['B']}; font-family: {DISP}; font-weight: 800; font-size: 40px; line-height: 58px;">B</span><span style="font-family: {SANS}; font-weight: 600; font-size: 21px; color: {MARINHO};">depois</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 58px; text-align: center; background: {COR['A']}; color: {TEXTO['A']}; font-family: {DISP}; font-weight: 800; font-size: 40px; line-height: 58px;">A</span><span style="font-family: {SANS}; font-weight: 600; font-size: 21px; color: {MARINHO};">no fim</span></div>
       </div>
     </div>
   </div>
@@ -176,10 +181,10 @@ for L in ('A', 'B', 'C'):
     secs = [str(s).zfill(4) for s in sorted(portas[L]['secoes'])]
     z = R['zonas'][L]
     grade = ''.join(
-        f'<span style="font-family: {DISP}; font-weight: 700; font-size: 40px; color: #FFFFFF; font-variant-numeric: tabular-nums;">{s}</span>'
+        f'<span style="font-family: {DISP}; font-weight: 700; font-size: 40px; color: {TEXTO[L]}; font-variant-numeric: tabular-nums;">{s}</span>'
         for s in secs)
     ncol = 6
-    corpo = f"""  <div style="flex-grow: 1; background: {COR[L]}; display: flex; padding: 18px 34px 20px; gap: 30px; color: #FFFFFF;">
+    corpo = f"""  <div style="flex-grow: 1; background: {COR[L]}; display: flex; padding: 18px 34px 20px; gap: 30px; color: {TEXTO[L]};">
     <div style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
       <div style="font-family: {DISP}; font-weight: 800; font-size: 200px; line-height: 0.82; letter-spacing: -0.04em;">{L}</div>
       <div style="font-family: {SANS}; font-weight: 700; font-size: 24px; letter-spacing: 0.04em; margin-top: 6px;">PORTA {L}</div>
@@ -188,7 +193,7 @@ for L in ('A', 'B', 'C'):
     <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px; justify-content: center;">
       <div style="font-family: {SANS}; font-weight: 700; font-size: 22px; letter-spacing: 0.08em; opacity: 0.9;">ENTRE AQUI SE A SUA SEÇÃO ESTÁ NESTA LISTA</div>
       <div style="display: grid; grid-template-columns: repeat({ncol}, minmax(0, 1fr)); gap: 7px 16px;">{grade}</div>
-      <div style="font-family: {SANS}; font-weight: 700; font-size: 21px; border-top: 3px solid rgba(255,255,255,0.45); padding-top: 9px; margin-top: 4px;">Não está aqui? Siga em frente pelo corredor.</div>
+      <div style="font-family: {SANS}; font-weight: 700; font-size: 21px; border-top: 3px solid {REGUA[L]}; padding-top: 9px; margin-top: 4px;">Não está aqui? Siga em frente pelo corredor.</div>
     </div>
   </div>
 """
@@ -200,7 +205,7 @@ for L in ('A', 'B', 'C'):
     html = CAB + f"""<div style="width: {w}px; height: {h}px; box-sizing: border-box; background: #DCE6EC; display: flex; align-items: center; justify-content: center;">
   <div style="display: flex; align-items: center; gap: 26px;">
     <div style="font-family: {SANS}; font-weight: 700; font-size: 44px; color: {MARINHO}; letter-spacing: 0.02em;">ENTRADA</div>
-    <div style="width: 150px; height: 150px; background: {COR[L]}; color: #FFFFFF; font-family: {DISP}; font-weight: 800; font-size: 150px; line-height: 150px; text-align: center;">{L}</div>
+    <div style="width: 150px; height: 150px; background: {COR[L]}; color: {TEXTO[L]}; font-family: {DISP}; font-weight: 800; font-size: 150px; line-height: 150px; text-align: center;">{L}</div>
   </div>
 </div>
 """ + RODAPE % (w, h)

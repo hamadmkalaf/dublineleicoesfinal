@@ -13,7 +13,10 @@ MM = 0.5
 def mm(v): return round(v * MM, 1)
 
 AMARELO='#F8C030'; MARINHO='#042B5A'; OFFW='#F0F0E8'
-COR={'A':'#0B6E9E','B':'#B04E0A','C':'#4A7C1E'}
+# As tres fitas compradas pelo Posto (foto de 17/09).
+COR={'A':'#33507E','B':'#E8C63A','C':'#DE7343'}
+TEXTO={'A':'#FFFFFF','B':'#042B5A','C':'#042B5A'}
+FAIXA=OFFW   # a faixa institucional deixou de ser amarela: amarelo agora e a porta B
 PAREDE={'A':'oeste','B':'norte','C':'leste'}
 PORTA={'A':'S4','B':'S5','C':'S6'}
 FLAG=('#E6B00F','#398CB0','#5F8722')
@@ -50,9 +53,9 @@ class Component extends DCLogic {
 def faixa(alt_px):
     h=alt_px; esc=h/90.0
     ondas=''.join(f'<path d="M0 {6+i*11} q 9 -5 18 0 t 18 0 t 18 0" fill="none" stroke="{c}" stroke-width="7" stroke-linecap="round"/>' for i,c in enumerate(FLAG))
-    return f"""  <div style="height: {h}px; flex-shrink: 0; background: {AMARELO}; display: flex; align-items: center; justify-content: space-between; padding: 0 {round(h*0.34)}px; box-sizing: border-box;">
+    return f"""  <div style="height: {h}px; flex-shrink: 0; background: {FAIXA}; border-bottom: 3px solid {MARINHO}; display: flex; align-items: center; justify-content: space-between; padding: 0 {round(h*0.34)}px; box-sizing: border-box;">
     <div style="display: flex; align-items: center; gap: {round(h*0.2)}px;">
-      <svg width="{round(54*esc)}" height="{round(54*esc)}" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="{MARINHO}" stroke-width="3.4"/><path d="M27 6 a21 21 0 0 1 0 42" fill="{MARINHO}"/><rect x="24" y="24" width="15" height="15" fill="{AMARELO}"/></svg>
+      <svg width="{round(54*esc)}" height="{round(54*esc)}" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="{MARINHO}" stroke-width="3.4"/><path d="M27 6 a21 21 0 0 1 0 42" fill="{MARINHO}"/><rect x="24" y="24" width="15" height="15" fill="{FAIXA}"/></svg>
       <div style="font-family: {DISP}; font-weight: 700; font-size: {round(15*esc)}px; line-height: 1.02; color: {MARINHO};">Justiça<br>Eleitoral</div>
     </div>
     <div style="display: flex; align-items: center; gap: {round(h*0.16)}px;">
@@ -81,7 +84,7 @@ for L in ('A','B','C'):
             f'<span style="font-family: {SANS}; font-weight: 700; font-size: 15px; color: #7A828C; min-width: 34px;">{b["id"][-2:]}</span>'
             f'<span style="font-family: {DISP}; font-weight: 700; font-size: 30px; color: {MARINHO}; font-variant-numeric: tabular-nums; letter-spacing: 0.01em;">{secs}</span>'
             f'</div>')
-    corpo = faixa(round(h*0.10)) + f"""  <div style="background: {COR[L]}; color: #FFFFFF; padding: 18px 26px 16px; display: flex; align-items: center; gap: 18px;">
+    corpo = faixa(round(h*0.10)) + f"""  <div style="background: {COR[L]}; color: {TEXTO[L]}; padding: 18px 26px 16px; display: flex; align-items: center; gap: 18px;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 150px; line-height: 0.8; letter-spacing: -0.04em;">{L}</div>
     <div>
       <div style="font-family: {SANS}; font-weight: 800; font-size: 34px; letter-spacing: 0.02em;">PORTA {L}</div>
@@ -102,7 +105,7 @@ def xbanner(L, b, nome):
     w,h = mm(600), mm(1600)
     secs=[str(s).zfill(4) for s in sorted(b['secoes'])]
     nums=''.join(f'<div style="font-family: {DISP}; font-weight: 800; font-size: 60px; line-height: 1.12; color: {MARINHO}; font-variant-numeric: tabular-nums;">{s}</div>' for s in secs)
-    corpo = faixa(round(h*0.09)) + f"""  <div style="background: {COR[L]}; color: #FFFFFF; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
+    corpo = faixa(round(h*0.09)) + f"""  <div style="background: {COR[L]}; color: {TEXTO[L]}; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 52px; line-height: 1;">{L}</div>
     <div style="font-family: {SANS}; font-weight: 700; font-size: 17px; text-align: right; line-height: 1.2;">parede {PAREDE[L]}<br><span style="opacity: 0.85;">grupo {b['id'][-2:]}</span></div>
   </div>
@@ -197,7 +200,7 @@ def planta_hall():
         for b in p['blocos']:
             bx,by = b['pos_banner']
             o.append(f'<circle cx="{X(bx):.1f}" cy="{Y(by):.1f}" r="11" fill="{COR[L]}"/>')
-            o.append(f'<text x="{X(bx):.1f}" y="{Y(by)+4:.1f}" text-anchor="middle" font-family="{SANS}" font-weight="800" font-size="10" fill="#FFF">{b["id"][-2:]}</text>')
+            o.append(f'<text x="{X(bx):.1f}" y="{Y(by)+4:.1f}" text-anchor="middle" font-family="{SANS}" font-weight="800" font-size="10" fill="{TEXTO[L]}">{b["id"][-2:]}</text>')
             for c in b['coord']:
                 if p['parede']=='oeste':   mx,my = 1.4, c
                 elif p['parede']=='norte': mx,my = c, LY-1.4
@@ -208,7 +211,7 @@ def planta_hall():
         o.append(f'<line x1="{X(a):.1f}" y1="{Y(0):.0f}" x2="{X(bb):.1f}" y2="{Y(0):.0f}" stroke="{COR[L]}" stroke-width="7"/>')
         o.append(f'<text x="{X((a+bb)/2):.1f}" y="{Y(0)+22:.0f}" text-anchor="middle" font-family="{SANS}" font-weight="800" font-size="13" fill="{COR[L]}">{PORTA[L]} · {L}</text>')
         o.append(f'<rect x="{X((a+bb)/2)-10:.1f}" y="{Y(3.2):.1f}" width="20" height="20" fill="{COR[L]}"/>')
-        o.append(f'<text x="{X((a+bb)/2):.1f}" y="{Y(3.2)+14:.1f}" text-anchor="middle" font-family="{SANS}" font-weight="800" font-size="10" fill="#FFF">P6</text>')
+        o.append(f'<text x="{X((a+bb)/2):.1f}" y="{Y(3.2)+14:.1f}" text-anchor="middle" font-family="{SANS}" font-weight="800" font-size="10" fill="{TEXTO[L]}">P6</text>')
     o.append(f'<text x="{X(LX/2):.0f}" y="{Y(0)+46:.0f}" text-anchor="middle" font-family="{SANS}" font-weight="700" font-size="12" fill="#5A6270" letter-spacing="1.2">FACHADA SUL · PARA O APRON E O RING 3</text>')
     o.append(f'<line x1="{X(0):.0f}" y1="{Y(LY)-24:.0f}" x2="{X(10):.0f}" y2="{Y(LY)-24:.0f}" stroke="{MARINHO}" stroke-width="2.5"/>')
     o.append(f'<text x="{X(10)+8:.0f}" y="{Y(LY)-20:.0f}" font-family="{SANS}" font-size="12" fill="#5A6270">10 m</text>')

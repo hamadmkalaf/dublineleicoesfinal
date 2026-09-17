@@ -30,7 +30,7 @@ que ela traz, e que a sinalização do posto não inventa:
 | Azul claro | `#77ACCF` | apoios, fundos secundários |
 | Verde bandeira | `#95C11F` / `#5F8722` | faixa do E |
 | Laranja | `#F07E26` | títulos de campanha, destaques |
-| Off-white | `#F0F0E8` | fundo alternativo |
+| Off-white | `#F0F0E8` | fundo alternativo, e a faixa institucional desde 17/09 |
 
 ## 2. Onde a identidade e a operação se chocam
 
@@ -45,37 +45,58 @@ cor deixa de codificar. **Decisão:** o amarelo fica na **faixa institucional**
 da cor da porta. A peça continua reconhecível como Eleições 2026 pela faixa, e
 continua codificando pela cor.
 
-**2. As cores de porta em uso não são da paleta oficial.** Até 16/09 eram
-azul `#1f5fa8`, âmbar `#b8760a` e magenta `#8b3a8e`. O magenta não existe na
-identidade, e o âmbar briga com o amarelo da campanha. **Decisão:** as três
-cores passam a ser derivadas da **bandeira no logotipo** — azul, laranja e
-verde — escurecidas até o contraste necessário:
+**2. A cor de cada porta é a cor da fita comprada.** Decisão do Posto, 17/09:
+as três fitas de piso já estão em mãos, e são elas que mandam. A peça impressa
+persegue a fita, não o contrário — o eleitor liga a placa ao chão que está
+pisando. Saem o azul `#1f5fa8`, o âmbar `#b8760a` e o magenta `#8b3a8e`.
 
-| Porta | Antes | **Agora** | Origem | Contraste com branco |
+| Porta | Fita | Cor | Texto sobre ela | Contraste |
 |---|---|---|---|---|
-| **A** (S4, parede oeste) | `#1f5fa8` | **`#0B6E9E`** | azul da faixa do E | 5,62:1 |
-| **B** (S5, parede norte) | `#b8760a` | **`#B04E0A`** | laranja da campanha | 5,33:1 |
-| **C** (S6, parede leste) | `#8b3a8e` | **`#4A7C1E`** | verde da faixa do E | 5,01:1 |
+| **A** (S4, parede oeste) | azul | **`#33507E`** | branco | 8,1:1 |
+| **B** (S5, parede norte) | amarela | **`#E8C63A`** | **marinho `#042B5A`** | 8,4:1 |
+| **C** (S6, parede leste) | abóbora | **`#DE7343`** | **marinho `#042B5A`** | 4,4:1 |
 
-Os três seguram texto branco com folga e entre si, e nenhum se confunde com o
-amarelo da faixa institucional.
+> Os três hexes foram **lidos a olho da foto do estoque**, não medidos. Antes
+> de fechar arte com a gráfica, confirme contra o rolo — a referência do
+> produto, ou uma foto do rolo sobre papel branco em luz de dia. Um erro aqui
+> aparece no dia, com a placa ao lado da fita.
 
-> **Ainda não aplicado nos geradores.** `scripts/sinalizacao_v2.py` continua
-> com `CORES = {A: #1f5fa8, B: #b8760a, C: #8b3a8e}`, e as duas páginas
-> publicadas seguem nelas. Trocar repinta as duas peças e obriga a republicar
-> nas mesmas URLs — é decisão do Posto, sobre a proposta, não da sessão.
+**Duas consequências que não são de gosto:**
 
-> **A cor é apoio, não identidade.** A decisão do Posto de 13/09 continua
-> valendo: quem identifica a fila para o eleitor é a **letra** (A, B, C). Isso
-> é o que protege o plano de um eleitor com daltonia — azul, laranja e verde
-> é um trio razoável, mas laranja e verde se aproximam para deuteranopes, e a
-> letra resolve. Em nenhuma peça a cor aparece sem a letra ao lado.
+**a) A faixa institucional deixou de ser amarela.** Com a porta B amarela, uma
+faixa amarela no topo de toda peça passaria a dizer "B" a 30 m — inclusive nas
+peças de A e de C. A faixa virou **off-white `#F0F0E8` com régua marinha**, e o
+amarelo só aparece dentro do logotipo. O amarelo agora significa uma coisa só:
+porta B.
+
+**b) A cor da fita não serve como cor de texto.** Amarelo `#E8C63A` sobre fundo
+claro dá **1,7:1** — ilegível. Cada porta passa a ter duas cores com o mesmo
+matiz: a da fita, para **preenchimento**, e uma **tinta** escurecida, para
+**texto sobre fundo claro**.
+
+| Porta | Preenchimento (fita) | Tinta (texto) | Contraste da tinta |
+|---|---|---|---|
+| A | `#33507E` | `#33507E` (a mesma) | 7,3:1 |
+| B | `#E8C63A` | `#7D6004` | 5,3:1 |
+| C | `#DE7343` | `#9C4118` | 5,9:1 |
+
+Nas páginas geradas isso são os tokens `--a/--b/--c` (fita) e
+`--a-ink/--b-ink/--c-ink` (tinta), em `scripts/sinalizacao_v2.py`.
+
+> **A cor é apoio, e agora isso é necessidade, não precaução.** A decisão do
+> Posto de 13/09 — quem identifica a fila é a **letra** — deixou de ser folga.
+> Para um deuteranope, o amarelo de B e a abóbora de C viram dois
+> amarelo-esverdeados (`#D1D136` e `#9D9D3B`) que só diferem em claridade; e
+> entre si, as duas cores têm contraste de **1,9:1**. Sob chuva, ao longe ou de
+> relance, B e C podem se confundir. **A letra é o que separa as duas** — em
+> nenhuma peça a cor aparece sem ela, e nas peças de B e C a letra tem de ser a
+> maior coisa no campo.
 
 ## 3. Regras de aplicação
 
-1. **Toda peça carrega a faixa institucional**: amarelo `#F8C030`, marca
-   Justiça Eleitoral à esquerda, logotipo Eleições 2026 à direita, altura de
-   12% a 18% da peça.
+1. **Toda peça carrega a faixa institucional**: off-white `#F0F0E8` com régua
+   marinha embaixo, marca Justiça Eleitoral à esquerda, logotipo Eleições 2026
+   à direita, altura de 9% a 18% da peça. Nunca amarela — ver §2.a.
 2. **Uma informação por peça.** A peça externa responde a uma pergunta só
    (qual é a minha porta?); a interna, a outra (onde está a minha seção?).
 3. **Número de seção sempre com quatro dígitos**, como no e-Título.

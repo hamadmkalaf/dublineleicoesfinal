@@ -572,21 +572,21 @@
   ]
  },
  "cores": {
-  "A": "#1f5fa8",
-  "B": "#b8760a",
-  "C": "#8b3a8e"
+  "A": "#33507E",
+  "B": "#E8C63A",
+  "C": "#DE7343"
  },
  "cores_escuro": {
-  "A": "#79b0ea",
-  "B": "#e8b354",
-  "C": "#cb8ace"
+  "A": "#8FA9D6",
+  "B": "#F0D45E",
+  "C": "#EE9468"
  },
  "portas": [
   {
    "letra": "A",
    "parede": "oeste",
    "porta": "S4",
-   "cor": "#1f5fa8",
+   "cor": "#33507E",
    "nome_cor": "azul",
    "mesas": 9,
    "blocos": [
@@ -818,8 +818,8 @@
    "letra": "B",
    "parede": "norte",
    "porta": "S5",
-   "cor": "#b8760a",
-   "nome_cor": "âmbar",
+   "cor": "#E8C63A",
+   "nome_cor": "amarelo",
    "mesas": 9,
    "blocos": [
     {
@@ -1042,8 +1042,8 @@
    "letra": "C",
    "parede": "leste",
    "porta": "S6",
-   "cor": "#8b3a8e",
-   "nome_cor": "magenta",
+   "cor": "#DE7343",
+   "nome_cor": "abóbora",
    "mesas": 10,
    "blocos": [
     {

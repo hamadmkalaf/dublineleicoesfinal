@@ -39,9 +39,18 @@ VAO_DO_PAR = 3.9        # m entre as duas mesas de um par (corredor de 3,0 m)
 TOL = 0.05
 
 # Identidade visual comum as duas paginas, igual a da prancheta e do Ring 3.
-CORES = {"A": "#1f5fa8", "B": "#b8760a", "C": "#8b3a8e"}
-CORES_ESCURO = {"A": "#79b0ea", "B": "#e8b354", "C": "#cb8ace"}
-NOME_COR = {"A": "azul", "B": "âmbar", "C": "magenta"}
+# Decisao do Posto, 17/09/2026: a cor de cada porta e a cor da fita de piso
+# comprada (foto do estoque).  Substitui azul/ambar/magenta.  O texto sobre
+# cada campo segue a luminancia do fundo -- branco no azul, marinho no amarelo
+# e na abobora -- porque branco sobre amarelo da 1,7:1 e e ilegivel.
+CORES = {"A": "#33507E", "B": "#E8C63A", "C": "#DE7343"}
+CORES_ESCURO = {"A": "#8FA9D6", "B": "#F0D45E", "C": "#EE9468"}
+TEXTO_SOBRE = {"A": "#FFFFFF", "B": "#042B5A", "C": "#042B5A"}
+# A cor da fita e cor de PREENCHIMENTO.  Como TEXTO sobre fundo claro ela nao
+# serve: o amarelo da fita sobre o fundo da pagina da 1,7:1.  A tinta abaixo e
+# a mesma cor escurecida ate 4,5:1 ou mais, e e o que pinta letra e numero.
+CORES_TINTA = {"A": "#33507E", "B": "#7D6004", "C": "#9C4118"}
+NOME_COR = {"A": "azul", "B": "amarelo", "C": "abóbora"}
 PAREDE = {"A": "oeste", "B": "norte", "C": "leste"}
 PORTA_DA_PAREDE = {v: k for k, v in PAREDE.items()}
 
@@ -353,15 +362,21 @@ def esc(t):
 
 def tokens_css():
     return f"""
+  /* --x  = a cor da fita, para PREENCHIMENTO
+     --x-ink  = a mesma cor escurecida, para TEXTO sobre fundo claro
+     --x-soft = o tom claro da mesma cor, para fundo de chip            */
   :root{{ --a:{CORES['A']}; --b:{CORES['B']}; --c:{CORES['C']};
-    --a-soft:#e2edf8; --b-soft:#f8eed9; --c-soft:#f2e4f3; }}
+    --a-ink:{CORES_TINTA['A']}; --b-ink:{CORES_TINTA['B']}; --c-ink:{CORES_TINTA['C']};
+    --a-soft:#e3e8f2; --b-soft:#faf2d6; --c-soft:#fbe7dc; }}
   @media (prefers-color-scheme:dark){{ :root:not([data-theme="light"]){{
     --a:{CORES_ESCURO['A']}; --b:{CORES_ESCURO['B']}; --c:{CORES_ESCURO['C']};
-    --a-soft:#1a2c40; --b-soft:#33290f; --c-soft:#332034; }} }}
+    --a-ink:{CORES_ESCURO['A']}; --b-ink:{CORES_ESCURO['B']}; --c-ink:{CORES_ESCURO['C']};
+    --a-soft:#1c2740; --b-soft:#33290f; --c-soft:#3a231a; }} }}
   :root[data-theme="dark"]{{
     --a:{CORES_ESCURO['A']}; --b:{CORES_ESCURO['B']}; --c:{CORES_ESCURO['C']};
-    --a-soft:#1a2c40; --b-soft:#33290f; --c-soft:#332034; }}
-  .t-a{{--k:var(--a);--k-soft:var(--a-soft)}} .t-b{{--k:var(--b);--k-soft:var(--b-soft)}} .t-c{{--k:var(--c);--k-soft:var(--c-soft)}}
+    --a-ink:{CORES_ESCURO['A']}; --b-ink:{CORES_ESCURO['B']}; --c-ink:{CORES_ESCURO['C']};
+    --a-soft:#1c2740; --b-soft:#33290f; --c-soft:#3a231a; }}
+  .t-a{{--k:var(--a);--k-soft:var(--a-soft);--k-ink:var(--a-ink)}} .t-b{{--k:var(--b);--k-soft:var(--b-soft);--k-ink:var(--b-ink)}} .t-c{{--k:var(--c);--k-soft:var(--c-soft);--k-ink:var(--c-ink)}}
 """
 
 
@@ -474,7 +489,7 @@ CSS_ORC = """
   .mrow .sec{font-weight:600;font-variant-numeric:tabular-nums}
   .mrow .dots{flex:1;border-bottom:1px dotted var(--rule);height:.7em}
   .chip{display:inline-block;min-width:22px;text-align:center;font-family:var(--sans);font-weight:700;
-    font-size:12px;line-height:19px;border-radius:2px;padding:0 5px;background:var(--k-soft);color:var(--k);
+    font-size:12px;line-height:19px;border-radius:2px;padding:0 5px;background:var(--k-soft);color:var(--k-ink);
     box-shadow:inset 0 0 0 1px var(--k)}
 """
 
@@ -786,7 +801,7 @@ def pagina_rota(S):
   .spec .big{{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--ink);display:block;margin:0 0 4px;letter-spacing:-.02em}}
   .zonas{{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:22px 0}}
   .zona{{background:var(--surface);border:1px solid var(--rule);border-left:5px solid var(--k);padding:16px;display:flex;flex-direction:column;gap:9px}}
-  .zona h4{{font-family:var(--sans);color:var(--k);font-size:15px;margin:0}}
+  .zona h4{{font-family:var(--sans);color:var(--k-ink);font-size:15px;margin:0}}
   .zona .sub{{font-family:var(--mono);font-size:12px;margin:0}}
   .grid-sec{{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 10px;font-family:var(--mono);font-size:14px;font-weight:600}}
   ul.plain{{list-style:none;margin:20px 0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:74ch}}
@@ -989,12 +1004,12 @@ section.band:last-of-type{{border-bottom:0}}
 .hd{{display:flex;flex-direction:column;gap:7px}}
 .tiles{{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}}
 .tile{{background:var(--card);border:1px solid var(--rule);border-top:5px solid var(--k);padding:18px 18px 14px;display:flex;flex-direction:column;gap:12px}}
-.tile-k{{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:var(--k);margin:0;line-height:1}}
+.tile-k{{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:var(--k-ink);margin:0;line-height:1}}
 .tile-w{{font-size:.78rem;color:var(--muted);margin:0;letter-spacing:.04em;text-transform:uppercase;font-family:var(--disp);font-weight:500}}
 .tile dl{{margin:0;display:flex;flex-direction:column}}
 .tile dl div{{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:5px 0;border-top:1px solid var(--rule-soft)}}
 .tile dl dt{{color:var(--muted);font-size:.8rem}} .tile dl dd{{margin:0;font-family:var(--mono);font-size:.93rem;font-variant-numeric:tabular-nums}}
-.tile dl .hi dd{{font-weight:600;color:var(--k)}}
+.tile dl .hi dd{{font-weight:600;color:var(--k-ink)}}
 figure.plan{{margin:0;display:flex;flex-direction:column;gap:12px}}
 .plan-wrap{{background:var(--card);border:1px solid var(--rule);padding:12px}}
 svg.planta{{display:block;width:100%;height:auto;max-width:100%}}
@@ -1022,14 +1037,14 @@ ol.journey li:last-child{{border-bottom:1px solid var(--rule)}}
 .qty{{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px solid var(--rule);padding:1px 7px;border-radius:99px;white-space:nowrap}}
 .j-b p{{font-size:.95rem;color:var(--mid);max-width:60ch}}
 .wall{{display:flex;flex-direction:column;gap:10px;margin-top:8px}}
-.wall h3{{color:var(--k);display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}}
+.wall h3{{color:var(--k-ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}}
 .wall h3 span{{font-family:var(--mono);font-size:.74rem;color:var(--muted);font-weight:400}}
 .scroll,.tscroll{{overflow-x:auto;background:var(--card);border:1px solid var(--rule)}}
 table{{border-collapse:collapse;width:100%;min-width:600px;font-size:.88rem}}
 th,td{{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule-soft)}}
 thead th{{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--rule);white-space:nowrap}}
 tbody tr:last-child td,tbody tr:last-child th{{border-bottom:0}}
-tbody th{{font-family:var(--mono);font-weight:600;color:var(--k);white-space:nowrap}}
+tbody th{{font-family:var(--mono);font-weight:600;color:var(--k-ink);white-space:nowrap}}
 td.num{{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--mid);text-align:right}}
 td.pt{{font-family:var(--mono);font-weight:600;white-space:nowrap}}
 td.secs{{min-width:210px}}
@@ -1038,7 +1053,7 @@ td.secs{{min-width:210px}}
 .tag-par{{background:var(--k);color:var(--card)}} .tag-isolada{{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1px var(--rule)}}
 .listas{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}}
 .lista{{background:var(--card);border:1px solid var(--rule);border-left:5px solid var(--k);padding:16px;display:flex;flex-direction:column;gap:10px}}
-.lista h4{{color:var(--k);font-size:1rem}} .lista .sub{{font-family:var(--mono);font-size:.72rem;color:var(--muted)}}
+.lista h4{{color:var(--k-ink);font-size:1rem}} .lista .sub{{font-family:var(--mono);font-size:.72rem;color:var(--muted)}}
 .grupo{{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:start;padding-top:6px;border-top:1px solid var(--rule-soft)}}
 .gn{{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding-top:3px}}
 .grid-sec{{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 10px}} .grid-sec .sec{{margin:0;color:var(--ink)}}
