@@ -68,7 +68,8 @@ sintoma de bug.
 | MRV do DJE como identidade da mesa | 06/09 | `data/decisoes.json`, campo `numeracao` |
 | Numeração eleitor: 1 na mesa mais ao sul da oeste, sentido horário | 13/09 | `arranjo_paredes.numeracao_eleitor()` |
 | Uma entrada por parede: A→oeste, B→norte, C→leste | 15/09 | `arranjo_paredes.ENTRADA` |
-| Ring 3 abandonado | 15/09 | `data/decisoes.json`, bloco `ring3` |
+| ~~Ring 3 abandonado~~ **Ring 3 confirmado** (reverte 15/09) | 16/09 | `data/decisoes.json`, bloco `ring3` |
+| Larguras das zonas do Ring 3 pelo esperado de Paredes_ABC, não pelas cotas antigas | 16/09 | `scripts/ring3_montagem.py` → `saidas/ring3_montagem.json` |
 | Portas: S4/S5/S6 entradas, S2/S8 saídas, S7 preferencial | 16/09 | `arranjo_paredes.PAPEIS_PORTA` |
 | N2 e O2 desobstruídas, recuo de 3 m | 16/09 | `decisoes.zonas_protegidas` |
 | Faixa de emergência de 3 m na fachada leste | 16/09 | idem |

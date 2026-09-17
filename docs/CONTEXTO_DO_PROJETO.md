@@ -38,8 +38,9 @@ Duas restrições moldaram o desenho:
 - **A identificação é por caderno físico impresso** (decisão de 13/09). Isso
   impõe o gargalo: nas três urnas mais carregadas, o posto precisa fechar cada
   eleitor em **≤ 55 s** para terminar às 17h.
-- **A fila tem de caber dentro do Hall 2** — o RDS proibiu fila no terreno
-  dele. É este o ponto em disputa descrito em §6.1.
+- **A fila principal é externa, no Ring 3** — cercado de 44 × 35 m no terreno
+  do RDS, suspenso em 15/09 e **confirmado pelo Posto em 16/09** (§6.1). A fila
+  confinada dentro do Hall 2 continua desenhada, como contingência.
 
 Contexto do ano: 2026 coincide com a presidência irlandesa do Conselho da UE, o
 que reduziu a oferta de espaços e encareceu a locação (o local mais barato,
@@ -110,7 +111,8 @@ base B e cai junto com ela se a base mudar.
 | 11–12/09 | barreiras internas, fitas no piso, dashboard | `saidas/barreiras_hall2.html`, `docs/registro_fitas_no_piso_2026-09-12.md` |
 | 13/09 | identificação por **caderno físico**; 4 seguranças (não 20); fila identificada por **letra** (A/B/C); duas numerações de mesa (MRV oficial + número eleitor 1–28) | `CONFERENCIA_PRANCHETA_2026-09-15.md`, `orcamento_final.md` |
 | 14/09 | **sem checkpoint**: fitas no piso levam da porta à mesa; postes Tensa só nas filas de mesa | `docs/alternativa_fitas_no_piso.md`, `plano_filas_*.md` |
-| 15/09 | **uma entrada por parede** — A→oeste, B→norte, C→leste (arranjo **Paredes_ABC**); **Ring 3 abandonado** | `cenarios/paredes-abc-20260915.json`, `CONFERENCIA_PRANCHETA_2026-09-15.md` |
+| 15/09 | **uma entrada por parede** — A→oeste, B→norte, C→leste (arranjo **Paredes_ABC**); Ring 3 suspenso | `cenarios/paredes-abc-20260915.json`, `CONFERENCIA_PRANCHETA_2026-09-15.md` |
+| 16/09 | **Ring 3 CONFIRMADO** pelo Posto — reverte a suspensão de 15/09; vale a montagem do cenário 3 adaptado | `data/decisoes.json`, bloco `ring3`; `scripts/ring3_montagem.py` |
 | 16/09 | recuos de 3 m em N2 e O2; faixa de emergência na fachada leste; sala de apoio entre O1 e a parede norte; serpenteado de ~20 pessoas à frente de cada mesa vermelha; **sinalização v2** (mesa sem número, consulta reduzida a seção → porta) | `data/decisoes.json` (`zonas_protegidas`, `serpenteados`), `scripts/sinalizacao_v2.py` |
 | 17/09 | estratégia de comunicação em redes sociais; **consolidação das branches em `main`** | `ESTRATEGIA-COMUNICACAO-REDES-SOCIAIS.md`, este documento |
 
@@ -220,24 +222,44 @@ python3 scripts/confere_arranjo.py     # os sete itens do arranjo
 
 Esta é a seção que economiza uma sessão inteira de quem retoma o projeto.
 
-### 6.1 Ring 3: sim ou não — a decisão mais cara em aberto
+### 6.1 Ring 3 — RESOLVIDO em 16/09: confirmado
 
-O "Ring 3" era a fila **externa**, no terreno do RDS. Duas sessões de 16/09
-dizem coisas opostas, e as duas estão neste repositório:
+O "Ring 3" é a fila **externa**, no terreno do RDS. Ele foi suspenso em 15/09
+(o RDS teria proibido fila no terreno e faltava autorização de Brasília) e
+**confirmado pelo Posto em 16/09**. Vale a montagem do **cenário 3 adaptado**:
+44 × 35 m, corredor em L de 3,0 m, três zonas de raias leste-oeste, entrada
+pelo canto nordeste (`saidas/ring3_montagem.html`, `saidas/ring3_planta.svg`).
+A fila confinada no Hall 2 (`plano_filas_confinado_hall2.md`,
+`saidas/filas_sem_ring3.json`) fica como **contingência**, não como plano.
 
-- **Abandonado** (15/09): o RDS proibiu fila no terreno dele e não houve
-  autorização de Brasília. O plano passou a ser fila **dentro** do Hall 2 —
-  `plano_filas_confinado_hall2.md`, `saidas/filas_sem_ring3.json`.
-- **Montado e publicado** (16/09, sessão paralela): "Montagem do Ring 3",
-  cenário 3 adaptado, 180 CCBs, 506 m de fita, lotação 2.118 —
-  `saidas/ring3_montagem.html`.
+A confirmação não foi só trocar um sinal. As larguras das zonas eram
+proporcionais às **cotas do Ring 3 antigo** (A 3.642 / B 4.215 / C 3.642), que
+são anteriores ao arranjo Paredes_ABC. Com uma entrada por parede as três
+portas carregam praticamente a mesma coisa, e a proporção mudou. O que a
+correção deu (17/09, `scripts/ring3_montagem.py` lendo `data/decisoes.json`):
 
-**Decidir qual vale é o primeiro item de qualquer sessão nova.** A decisão
-arrasta: quatro linhas do orçamento (R7 separadores CCB, R8 espaço, C5 fita de
-contorno, C6 placas de porta nas CCBs), o dimensionamento das filas e quatro
-pendências técnicas da folha do Ring 3 (a ponta fixa da divisória, medir uma
-CCB na entrega, a boca real do fundo que não dá 1,00 m, e duas premissas a
-confirmar com o *safety officer* do RDS).
+| | Antes (cotas mortas) | Agora (Paredes_ABC) |
+|---|---|---|
+| Larguras A · B · C | 12,23 · 14,14 · 12,23 m | **12,87 · 12,86 · 12,87 m** |
+| CCBs | 180 | **179** (de 200 em estoque) |
+| Fita grossa | 506 m | 506 m |
+| Lotação | 2.118 | 2.118 |
+| Percurso máximo | 325 m | **296 m** |
+| Vão máximo de fita | 4,47 m | **3,83 m** |
+| Boca de cada zona | 2,23 · 2,14 · 2,23 m | **2,87 · 2,86 · 2,87 m** |
+| Desvio zona → porta | A 3,55 · B 0 · C 0,55 m | **A 2,91 · B 0 · C 0 m** |
+
+Tudo melhorou ou ficou igual. **O que sobra é a zona A:** a boca dela fica
+2,91 m a oeste do eixo da porta A. Não é erro de conta — é a disposição: o
+cercado começa a oeste da primeira porta, e três zonas em terços não têm como
+cada uma cair sob a sua. Ou o cruzamento vira trabalho de orientador, ou o
+Ring se desloca para leste. Medir no local antes de decidir.
+
+Continuam abertas as quatro pendências técnicas da folha do Ring 3: a ponta
+fixa da divisória ainda amarra em fita, medir uma CCB na entrega, a boca real
+do fundo não dá 1,00 m, e duas premissas a confirmar com o *safety officer* do
+RDS. E as quatro linhas de orçamento do Ring (R7, R8, C5, C6) voltam a valer,
+sobre a geometria nova.
 
 ### 6.2 Dois estimadores de comparecimento sobre o mesmo arranjo
 
@@ -265,7 +287,7 @@ os dois é trabalho de projeto, ainda não feito.**
 | `PENDENCIAS.md` §8 ("em aberto no desenho") | "PLANO DE SINALIZAÇÃO INTERNA — não existe mais nenhum válido. BLOQUEIA imprimir placa." | **Resolvido pela consolidação**: a sinalização v2 de 16/09 nasceu do desenho atual (3 entradas, 2 saídas, S7 preferencial) e está na árvore |
 | `PENDENCIAS.md` §6 e §9, `plano_filas_tres_portas.md` | "os scripts ficaram no repositório antigo" | **Superado**: `scripts/plano_filas.py`, `scripts/tres_portas.py` e `scripts/simula_fluxo.py` estão aqui. Continua valendo o alerta de que `plano_filas.py` usa **11.416 fixo no código** em vez da base B (11.499) — corrigir antes de usar |
 | `saidas/analise_gargalos.md` (aviso de safra) | "o script citado ficou no repositório antigo" | idem: `scripts/simula_fluxo.py` está na árvore |
-| `simulador/teste_portas.js` | 4 de 144 verificações falham (quotas das zonas B e C do Ring 3) | **Falha herdada, anterior à consolidação**, e ligada ao Ring 3 abandonado. Some se o Ring 3 cair de vez; não afeta as duas conferências |
+| `simulador/teste_portas.js` | 4 de 144 verificações falham (quotas das zonas B e C do Ring 3) | **Falha herdada, anterior à consolidação.** Com o Ring 3 confirmado ela deixa de ser inofensiva: o simulador ainda deriva mesa → entrada pelas cotas antigas (3.642/4.215/3.642), que a montagem confirmada abandonou. Portar `simulador/portas.js` para o esperado de Paredes_ABC é pendência aberta; não afeta as duas conferências |
 | `docs/CLAUDE_origem_eleicoes2026.md` | descreve branches e PRs do repositório antigo | preservado como registro; **onde divergir do `CLAUDE.md`, vale o `CLAUDE.md`** |
 
 ### 6.5 Medidas que ainda são suposição

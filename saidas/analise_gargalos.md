@@ -2,10 +2,12 @@
 
 > **AVISO DE SAFRA — 16/09/2026.** O corpo do documento continua válido: a
 > configuração de 28 urnas, os 16.794 aptos, os 11.499 esperados e a conclusão
-> sobre identificação em uma ou duas posições não mudaram. Só a frase sobre o
-> espaço está superada — o **Ring 3 foi abandonado em 15/09** e toda a fila é
-> dimensionada dentro do Hall 2 (`plano_filas_tres_portas.md`). O script citado,
-> `scripts/simula_fluxo.py`, ficou no repositório antigo.
+> sobre identificação em uma ou duas posições não mudaram. A frase sobre o
+> espaço voltou a valer: o Ring 3 foi suspenso em 15/09 e **confirmado em
+> 16/09**, e a fila externa no terreno do RDS é de novo o plano
+> (`saidas/ring3_montagem.html`); a fila confinada no Hall 2
+> (`plano_filas_tres_portas.md`) fica como contingência. O script citado,
+> `scripts/simula_fluxo.py`, está em `scripts/` desde a consolidação de 17/09.
 
 Registro do que foi apurado depois de encerrada a negociação com o TRE. A
 configuração está fixada: **28 urnas, 28 mesas receptoras (1:1), 51 seções,

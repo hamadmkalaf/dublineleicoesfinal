@@ -515,34 +515,47 @@
   "zonas": {
    "A": [
     6.285,
-    18.515
+    19.155
    ],
    "B": [
-    19.715,
-    33.855
+    20.355,
+    33.215
    ],
    "C": [
-    35.055,
+    34.415,
     47.285
    ]
   },
   "raias": 23,
-  "passo_raia": 1.4,
+  "passo_raia": 1.3913,
   "bocas": {
    "A": [
     16.285,
-    18.515
+    19.155
    ],
    "B": [
-    31.715,
-    33.855
+    30.355,
+    33.215
    ],
    "C": [
-    45.055,
+    44.415,
     47.285
    ]
   },
-  "entrada": "canto nordeste"
+  "entrada": "canto nordeste",
+  "bom": {
+   "ccb": 179,
+   "ccb_estoque": 200,
+   "ccb_comprar": 0,
+   "fita_m": 506.0,
+   "lotacao_total": 2118,
+   "vao_max_fita": 3.83
+  },
+  "desvio_porta": {
+   "A": 2.91,
+   "B": 0.0,
+   "C": 0.0
+  }
  },
  "parede_leste": {
   "comprimento": 44.0,

@@ -67,18 +67,30 @@ internas, EUR 1.820 na faixa de EUR 1.700 a 1.900. Páginas:
 `saidas/sinalizacao_hall2_v2.html`
 (https://claude.ai/artifact/BcT5yzxRkSaUsbbHQQgjWF).
 
-**A fila externa está em disputa.** Ver a seção 2.
+**A fila externa: Ring 3 confirmado (16/09).** O Posto confirmou o Ring 3, e
+a suspensão de 15/09 fica revertida. Vale a **Montagem do Ring 3** — cenário 3
+adaptado, 44 × 35 m, corredor em L de 3,0 m, três zonas de raias leste-oeste
+(`saidas/ring3_montagem.html`, `saidas/ring3_planta.svg`). As larguras das
+zonas deixaram de vir das cotas do Ring 3 antigo e passaram a sair do esperado
+por entrada de Paredes_ABC: **12,87 · 12,86 · 12,87 m** (eram 12,23 · 14,14 ·
+12,23), **179 CCBs** dos 200 em estoque, 506 m de fita, lotação 2.118. O plano
+de fila confinada no Hall 2 (`plano_filas_confinado_hall2.md`) fica como
+alternativa de contingência.
 
 ## 2. O que está aberto
 
-- **Ring 3, sim ou não.** Em 15/09 a conferência registra que o RDS proibiu
-  fila no terreno dele e que não houve autorização de Brasília ("o Ring 3
-  não existe mais"); o plano passou a ser fila **dentro** do Hall 2
-  (`plano_filas_confinado_hall2.md`, `saidas/filas_sem_ring3.json`). Em 16/09,
-  em sessão paralela, foi fechada e publicada a **Montagem do Ring 3**
-  (`saidas/ring3_montagem.html`: cenário 3 adaptado, 180 CCBs, 506 m de fita,
-  lotação 2.118). Os dois estão neste repositório. Decidir qual vale é o
-  primeiro item de qualquer sessão nova.
+- ~~**Ring 3, sim ou não.**~~ **Resolvido em 16/09: o Posto confirmou o
+  Ring 3.** A suspensão de 15/09 está revertida em `data/decisoes.json`, bloco
+  `ring3`. O que a confirmação reabriu, e que é trabalho de verdade: a
+  sinalização externa e o orçamento foram feitos sobre a geometria antiga do
+  Ring — ver a **Zona A**, abaixo, e o §4 de
+  [`docs/CONTEXTO_DO_PROJETO.md`](docs/CONTEXTO_DO_PROJETO.md).
+- **A zona A não descarrega na porta A.** Com as zonas em terços quase iguais,
+  a boca da zona A fica **2,91 m a oeste** do eixo da porta A (era 3,55 m com
+  as larguras antigas). As zonas B e C alinham com as suas (desvio 0). É da
+  disposição do Ring, não da conta: o cercado começa 15,8 m a oeste da
+  primeira porta. Ou se aceita o cruzamento e ele vira trabalho de orientador,
+  ou se desloca o Ring para leste — medir no local antes de decidir.
 - **Decisão D9**, identificação no caderno físico (`docs/decisoes_em_aberto.md`,
   `saidas/decisoes_em_aberto.html`): a única decisão de fluxo sem opção
   vigente.

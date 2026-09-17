@@ -1,0 +1,69 @@
+{
+ "gerado_por": "scripts/ring3_montagem.py",
+ "situacao": "Ring 3 confirmado pelo Posto em 16/09/2026",
+ "base_larguras": {
+  "fonte": "data/decisoes.json (esperado por entrada)",
+  "esperado": {
+   "A": 3834,
+   "B": 3832,
+   "C": 3833
+  }
+ },
+ "ring": {
+  "largura": 44.0,
+  "profundidade": 35.0,
+  "corredor": 3.0,
+  "util": 41.0,
+  "prof_raias": 32.0,
+  "vao_zonas": 1.2,
+  "raias": 23,
+  "passo_raia": 1.3913,
+  "offset_x": 6.285
+ },
+ "zonas": {
+  "A": {
+   "largura": 12.87,
+   "x0": 6.285,
+   "x1": 19.155,
+   "boca": 2.87,
+   "boca_x0": 16.285,
+   "boca_x1": 19.155,
+   "porta_x": 15.78,
+   "desvio_porta": 2.91,
+   "raia_metros": 296.01,
+   "lotacao": 706
+  },
+  "B": {
+   "largura": 12.86,
+   "x0": 20.355,
+   "x1": 33.215,
+   "boca": 2.86,
+   "boca_x0": 30.355,
+   "boca_x1": 33.215,
+   "porta_x": 22.0,
+   "desvio_porta": 0.0,
+   "raia_metros": 295.78,
+   "lotacao": 706
+  },
+  "C": {
+   "largura": 12.87,
+   "x0": 34.415,
+   "x1": 47.285,
+   "boca": 2.87,
+   "boca_x0": 44.415,
+   "boca_x1": 47.285,
+   "porta_x": 28.22,
+   "desvio_porta": 0.0,
+   "raia_metros": 296.01,
+   "lotacao": 706
+  }
+ },
+ "bom": {
+  "ccb": 179,
+  "ccb_estoque": 200,
+  "ccb_comprar": 0,
+  "fita_m": 506.0,
+  "lotacao_total": 2118,
+  "vao_max_fita": 3.83
+ }
+}
