@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>P5-vinil-porta-A</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
+  @page { size: 1200mm 700mm; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  /* A peca fisica: 1200 x 700 mm.  A arte foi desenhada a 2.0 mm por px. */
+  .peca { width: 1200mm; height: 700mm; overflow: hidden; position: relative; }
+  .arte { position: absolute; top: 0; left: 0;
+           width: 600.0px; height: 350.0px;
+           transform: scale(7.559055); transform-origin: top left; }
+  @media screen { body { background: #DDE1E5; padding: 0; }
+                   .peca { margin: 0 auto; box-shadow: 0 0 0 1px #9AA3AB; background: #FFF; } }
+</style>
+</head>
+<body>
+<div class="peca"><div class="arte">
+<div style="width: 600.0px; height: 350.0px; box-sizing: border-box; background: #DCE6EC; display: flex; align-items: center; justify-content: center;">
+  <div style="display: flex; align-items: center; gap: 26px;">
+    <div style="font-family: 'Nunito Sans', system-ui, sans-serif; font-weight: 700; font-size: 44px; color: #042B5A; letter-spacing: 0.02em;">ENTRADA</div>
+    <div style="width: 150px; height: 150px; background: #33507E; color: #FFFFFF; font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 800; font-size: 150px; line-height: 150px; text-align: center;">A</div>
+  </div>
+</div>
+</div></div>
+</body>
+</html>

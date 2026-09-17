@@ -1,18 +1,23 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <script src="./support.js"></script>
+<meta charset="utf-8">
+<title>P0-tabela-mestra</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
+  @page { size: 2000mm 1000mm; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  /* A peca fisica: 2000 x 1000 mm.  A arte foi desenhada a 2.0 mm por px. */
+  .peca { width: 2000mm; height: 1000mm; overflow: hidden; position: relative; }
+  .arte { position: absolute; top: 0; left: 0;
+           width: 1000.0px; height: 500.0px;
+           transform: scale(7.559055); transform-origin: top left; }
+  @media screen { body { background: #DDE1E5; padding: 0; }
+                   .peca { margin: 0 auto; box-shadow: 0 0 0 1px #9AA3AB; background: #FFF; } }
+</style>
 </head>
 <body>
-<x-dc>
-<helmet>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
-    body { margin: 0; background: #F0F0E8; }
-    a { color: #0B6E9E; } a:hover { color: #042B5A; }
-  </style>
-</helmet>
+<div class="peca"><div class="arte">
 <div style="width: 1000.0px; height: 500.0px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden;">
   <div style="height: 75px; flex-shrink: 0; background: #F0F0E8; border-bottom: 3px solid #042B5A; display: flex; align-items: center; justify-content: space-between; padding: 0 26px; box-sizing: border-box;">
     <div style="display: flex; align-items: center; gap: 15px;">
@@ -101,11 +106,6 @@
   </div>
 
 </div>
-</x-dc>
-<script data-dc-script data-props='{"$preview":{"width":1000,"height":500}}'>
-class Component extends DCLogic {
-  renderVals() { return {}; }
-}
-</script>
+</div></div>
 </body>
 </html>

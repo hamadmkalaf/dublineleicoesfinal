@@ -80,9 +80,9 @@ for L in ('A','B','C'):
     for b in blocos:
         secs=' · '.join(str(s).zfill(4) for s in sorted(b['secoes']))
         linhas.append(
-            f'<div style="display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px solid #DDE1E5;">'
-            f'<span style="font-family: {SANS}; font-weight: 700; font-size: 15px; color: #7A828C; min-width: 34px;">{b["id"][-2:]}</span>'
-            f'<span style="font-family: {DISP}; font-weight: 700; font-size: 30px; color: {MARINHO}; font-variant-numeric: tabular-nums; letter-spacing: 0.01em;">{secs}</span>'
+            f'<div style="display: flex; align-items: baseline; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DDE1E5; flex-grow: 1;">'
+            f'<span style="font-family: {SANS}; font-weight: 800; font-size: 17px; color: #7A828C; min-width: 34px;">{b["id"][-2:]}</span>'
+            f'<span style="font-family: {DISP}; font-weight: 700; font-size: 26px; color: {MARINHO}; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; white-space: nowrap;">{secs}</span>'
             f'</div>')
     corpo = faixa(round(h*0.10)) + f"""  <div style="background: {COR[L]}; color: {TEXTO[L]}; padding: 18px 26px 16px; display: flex; align-items: center; gap: 18px;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 150px; line-height: 0.8; letter-spacing: -0.04em;">{L}</div>
@@ -93,9 +93,8 @@ for L in ('A','B','C'):
   </div>
   <div style="flex-grow: 1; padding: 20px 26px 26px; display: flex; flex-direction: column;">
     <div style="font-family: {SANS}; font-weight: 700; font-size: 19px; letter-spacing: 0.06em; color: #5A6270; margin-bottom: 8px;">PROCURE A SUA SEÇÃO · NA ORDEM EM QUE VOCÊ VAI ANDAR</div>
-    {''.join(linhas)}
-    <div style="flex-grow: 1;"></div>
-    <div style="font-family: {SANS}; font-weight: 700; font-size: 21px; color: {MARINHO}; border-top: 3px solid {COR[L]}; padding-top: 12px;">Cada grupo tem uma placa alta na boca do corredor.</div>
+    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: stretch;">{''.join(linhas)}</div>
+    <div style="font-family: {SANS}; font-weight: 700; font-size: 21px; color: {MARINHO}; border-top: 3px solid {COR[L]}; padding-top: 12px; margin-top: 10px;">Cada grupo tem uma placa alta na boca do corredor.</div>
   </div>
 """
     grava(f'P6-Painel{L}.dc.html', w, h, corpo)
