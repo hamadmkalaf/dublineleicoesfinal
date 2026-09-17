@@ -1,0 +1,229 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-17T14:55:15Z"
+ },
+ "title": "Sinalização Eleições 2026 · Posto de Dublin",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1300,
+   "h": 1080,
+   "title": "Sistema visual"
+  },
+  "Mapa-Ring3.dc.html": {
+   "x": 1380,
+   "y": 0,
+   "w": 1300,
+   "h": 1080,
+   "title": "Posições · Ring 3"
+  },
+  "Mapa-Hall2.dc.html": {
+   "x": 2760,
+   "y": 0,
+   "w": 1180,
+   "h": 1224,
+   "title": "Posições · Hall 2"
+  },
+  "P0-Consulta.dc.html": {
+   "x": 0,
+   "y": 1414,
+   "w": 1000,
+   "h": 500,
+   "title": "P0 · descubra sua seção · mesh 2,0 × 1,0 m"
+  },
+  "P0-Mestra.dc.html": {
+   "x": 1080,
+   "y": 1414,
+   "w": 1000,
+   "h": 500,
+   "title": "P0 · tabela mestra · mesh 2,0 × 1,0 m (×2)"
+  },
+  "P1-Portao.dc.html": {
+   "x": 2160,
+   "y": 1414,
+   "w": 1000,
+   "h": 500,
+   "title": "P1 · portão · mesh 2,0 × 1,0 m"
+  },
+  "P2-ParedeLeste.dc.html": {
+   "x": 0,
+   "y": 2104,
+   "w": 900,
+   "h": 600,
+   "title": "P2 · parede leste · PVC 1,8 × 1,2 m (×3)"
+  },
+  "P3-EntradaRing.dc.html": {
+   "x": 980,
+   "y": 2104,
+   "w": 1000,
+   "h": 500,
+   "title": "P3 · entrada do Ring · mesh 2,0 × 1,0 m"
+  },
+  "P5-Preferencial.dc.html": {
+   "x": 2060,
+   "y": 2104,
+   "w": 1000,
+   "h": 500,
+   "title": "P5 · preferencial · mesh 2,0 × 1,0 m"
+  },
+  "P4-ZonaA.dc.html": {
+   "x": 0,
+   "y": 2894,
+   "w": 1000,
+   "h": 500,
+   "title": "P4 · boca da zona A · mesh 2,0 × 1,0 m"
+  },
+  "P4-ZonaB.dc.html": {
+   "x": 1080,
+   "y": 2894,
+   "w": 1000,
+   "h": 500,
+   "title": "P4 · boca da zona B · mesh 2,0 × 1,0 m"
+  },
+  "P4-ZonaC.dc.html": {
+   "x": 2160,
+   "y": 2894,
+   "w": 1000,
+   "h": 500,
+   "title": "P4 · boca da zona C · mesh 2,0 × 1,0 m"
+  },
+  "P5-VinilA.dc.html": {
+   "x": 0,
+   "y": 3584,
+   "w": 600,
+   "h": 350,
+   "title": "P5 · vinil no vidro · letra 300 mm"
+  },
+  "P5-VinilB.dc.html": {
+   "x": 680,
+   "y": 3584,
+   "w": 600,
+   "h": 350,
+   "title": "P5 · vinil no vidro · letra 300 mm"
+  },
+  "P5-VinilC.dc.html": {
+   "x": 1360,
+   "y": 3584,
+   "w": 600,
+   "h": 350,
+   "title": "P5 · vinil no vidro · letra 300 mm"
+  },
+  "P7-Saida.dc.html": {
+   "x": 2040,
+   "y": 3584,
+   "w": 297,
+   "h": 210,
+   "title": "P7 · saída · correx A2 (×2)"
+  },
+  "P6-PainelA.dc.html": {
+   "x": 0,
+   "y": 4124,
+   "w": 425,
+   "h": 1000,
+   "title": "P6 · painel da porta A · pull-up 850 × 2000 mm"
+  },
+  "P6-PainelB.dc.html": {
+   "x": 505,
+   "y": 4124,
+   "w": 425,
+   "h": 1000,
+   "title": "P6 · painel da porta B · pull-up"
+  },
+  "P6-PainelC.dc.html": {
+   "x": 1010,
+   "y": 4124,
+   "w": 425,
+   "h": 1000,
+   "title": "P6 · painel da porta C · pull-up"
+  },
+  "P6-BlocoA3.dc.html": {
+   "x": 1515,
+   "y": 4124,
+   "w": 300,
+   "h": 800,
+   "title": "P6 · grupo A3 · x-banner 600 × 1600 mm"
+  },
+  "P6-BlocoC4.dc.html": {
+   "x": 1895,
+   "y": 4124,
+   "w": 300,
+   "h": 800,
+   "title": "P6 · grupo C4 · x-banner"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Mapa-Ring3.dc.html",
+  "Mapa-Hall2.dc.html",
+  "P0-Consulta.dc.html",
+  "P0-Mestra.dc.html",
+  "P1-Portao.dc.html",
+  "P2-ParedeLeste.dc.html",
+  "P3-EntradaRing.dc.html",
+  "P5-Preferencial.dc.html",
+  "P4-ZonaA.dc.html",
+  "P4-ZonaB.dc.html",
+  "P4-ZonaC.dc.html",
+  "P5-VinilA.dc.html",
+  "P5-VinilB.dc.html",
+  "P5-VinilC.dc.html",
+  "P7-Saida.dc.html",
+  "P6-PainelA.dc.html",
+  "P6-PainelB.dc.html",
+  "P6-PainelC.dc.html",
+  "P6-BlocoA3.dc.html",
+  "P6-BlocoC4.dc.html"
+ ],
+ "notes": {
+  "n0": {
+   "x": 0,
+   "y": -235,
+   "text": "O sistema e onde as peças ficam",
+   "kind": "title1",
+   "maxW": 3940
+  },
+  "n1": {
+   "x": 0,
+   "y": 1179,
+   "text": "Fora do recinto — a consulta acontece aqui",
+   "kind": "title1",
+   "maxW": 3160
+  },
+  "n2": {
+   "x": 0,
+   "y": 1869,
+   "text": "Na lateral do Hall 2 e na entrada do Ring 3",
+   "kind": "title1",
+   "maxW": 3060
+  },
+  "n3": {
+   "x": 0,
+   "y": 2659,
+   "text": "Nas bocas das três zonas — o último ponto em que errar custa pouco",
+   "kind": "title1",
+   "maxW": 3160
+  },
+  "n4": {
+   "x": 0,
+   "y": 3349,
+   "text": "Na fachada e dentro do salão",
+   "kind": "title1",
+   "maxW": 2337
+  },
+  "n5": {
+   "x": 0,
+   "y": 3889,
+   "text": "Os painéis de porta e as placas de grupo",
+   "kind": "title1",
+   "maxW": 2195
+  }
+ },
+ "designSystems": []
+}
