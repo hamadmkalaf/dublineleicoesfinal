@@ -60,6 +60,11 @@ verde — escurecidas até o contraste necessário:
 Os três seguram texto branco com folga e entre si, e nenhum se confunde com o
 amarelo da faixa institucional.
 
+> **Ainda não aplicado nos geradores.** `scripts/sinalizacao_v2.py` continua
+> com `CORES = {A: #1f5fa8, B: #b8760a, C: #8b3a8e}`, e as duas páginas
+> publicadas seguem nelas. Trocar repinta as duas peças e obriga a republicar
+> nas mesmas URLs — é decisão do Posto, sobre a proposta, não da sessão.
+
 > **A cor é apoio, não identidade.** A decisão do Posto de 13/09 continua
 > valendo: quem identifica a fila para o eleitor é a **letra** (A, B, C). Isso
 > é o que protege o plano de um eleitor com daltonia — azul, laranja e verde
