@@ -8,7 +8,10 @@ S = json.loads((REPO / 'saidas' / 'sinalizacao_v2.json').read_text(encoding='utf
 R = json.loads((REPO / 'saidas' / 'ring3_montagem.json').read_text(encoding='utf-8'))
 
 AMARELO='#F8C030'; OURO='#E6B00F'; MARINHO='#042B5A'; OFFW='#F0F0E8'
-COR={'A':'#0B6E9E','B':'#B04E0A','C':'#4A7C1E'}
+# As tres fitas compradas pelo Posto (foto de 17/09).
+COR={'A':'#33507E','B':'#E8C63A','C':'#DE7343'}
+TEXTO={'A':'#FFFFFF','B':'#042B5A','C':'#042B5A'}
+FAIXA=OFFW   # a faixa institucional deixou de ser amarela: amarelo agora e a porta B
 FLAG=('#E6B00F','#398CB0','#5F8722')
 SANS="'Nunito Sans', system-ui, sans-serif"
 DISP="'Archivo', 'Nunito Sans', sans-serif"
@@ -53,11 +56,11 @@ html = f"""<!doctype html>
 </helmet>
 <div style="width: {W}px; height: {H}px; box-sizing: border-box; background: {OFFW}; display: flex; flex-direction: column; overflow: hidden;">
 
-  <div style="background: {AMARELO}; padding: 26px 40px 24px; display: flex; align-items: flex-end; justify-content: space-between;">
+  <div style="background: {OFFW}; border-bottom: 4px solid {MARINHO}; padding: 26px 40px 24px; display: flex; align-items: flex-end; justify-content: space-between;">
     <div>
-      <div style="font-family: {SANS}; font-weight: 700; font-size: 13px; letter-spacing: 0.16em; color: {MARINHO}; opacity: 0.78;">PROPOSTA v1 · 17/09/2026</div>
+      <div style="font-family: {SANS}; font-weight: 700; font-size: 13px; letter-spacing: 0.16em; color: {MARINHO}; opacity: 0.78;">PROPOSTA v2 · 17/09/2026 · cores das fitas</div>
       <div style="font-family: {DISP}; font-weight: 800; font-size: 46px; line-height: 1.02; color: {MARINHO}; letter-spacing: -0.02em; margin-top: 6px;">Sinalização do posto de Dublin</div>
-      <div style="font-family: {SANS}; font-weight: 600; font-size: 17px; color: {MARINHO}; opacity: 0.82; margin-top: 4px;">RDS Hall 2 · 4 de outubro · 16.794 aptos · 51 seções · 3 portas · Ring 3 confirmado</div>
+      <div style="font-family: {SANS}; font-weight: 600; font-size: 17px; color: {MARINHO}; opacity: 0.82; margin-top: 4px;">RDS Hall 2 · 4 de outubro · 16.794 aptos · 51 seções · 3 portas · Ring 3 confirmado · cores das fitas</div>
     </div>
     <div style="display: flex; align-items: center; gap: 14px;">
       <svg width="62" height="44" viewBox="0 0 56 40" aria-hidden="true">{ondas}</svg>
@@ -69,28 +72,28 @@ html = f"""<!doctype html>
 
     <div style="display: flex; flex-direction: column; gap: 22px;">
       <div>
-        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">A cor da porta vem da bandeira do logotipo</h2>
-        <p style="margin: 0 0 14px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">As três faixas do <strong>E</strong> estilizado dão as três cores, escurecidas até segurar texto branco. O magenta e o âmbar que estavam em uso saem: um não existe na identidade, o outro briga com o amarelo da campanha.</p>
+        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">A cor da porta é a cor da fita comprada</h2>
+        <p style="margin: 0 0 14px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">Decisão do Posto, 17/09: a fita de piso já está em mãos, e é ela que manda. A peça impressa persegue a fita, não o contrário — o eleitor liga a placa ao chão que está pisando.</p>
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;">
-          {swatch(COR['A'],'Porta A · oeste · S4','azul da faixa · 5,62:1 com branco')}
-          {swatch(COR['B'],'Porta B · norte · S5','laranja da campanha · 5,33:1')}
-          {swatch(COR['C'],'Porta C · leste · S6','verde da faixa · 5,01:1')}
+          {swatch(COR['A'],'Porta A · oeste · S4','azul · texto branco, 8,1:1', TEXTO['A'])}
+          {swatch(COR['B'],'Porta B · norte · S5','amarelo · texto marinho, 8,4:1', TEXTO['B'])}
+          {swatch(COR['C'],'Porta C · leste · S6','abóbora · texto marinho, 4,4:1', TEXTO['C'])}
         </div>
       </div>
 
       <div>
-        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">O campo institucional</h2>
-        <p style="margin: 0 0 14px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">O amarelo é o campo da campanha — se cada peça for amarela, as três portas ficam iguais e a cor deixa de codificar. Ele vive numa faixa no topo, entre 9% e 18% da altura da peça; o corpo é da cor da porta.</p>
+        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">Por que a faixa institucional não é mais amarela</h2>
+        <p style="margin: 0 0 14px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">O amarelo da campanha era a faixa do topo de toda peça. Com a <strong>porta B amarela</strong>, essa faixa passaria a dizer &quot;B&quot; a 30 m, em toda peça — inclusive nas de A e de C. A faixa virou off-white com régua marinha; o amarelo agora só significa porta B.</p>
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;">
-          {swatch(AMARELO,'Amarelo campanha','faixa institucional', MARINHO)}
-          {swatch(MARINHO,'Marinho','toda tipografia')}
-          {swatch(OFFW,'Off-white','fundo das peças de lista', MARINHO)}
+          {swatch(OFFW,'Off-white','faixa institucional e fundo de lista', MARINHO)}
+          {swatch(MARINHO,'Marinho','tipografia, régua da faixa')}
+          {swatch(AMARELO,'Amarelo campanha','só no logotipo, dentro do lockup', MARINHO)}
         </div>
       </div>
 
       <div style="border-left: 5px solid {MARINHO}; padding: 12px 0 12px 16px; background: #FFFFFF;">
         <div style="font-family: {SANS}; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; color: {MARINHO}; margin-bottom: 6px;">A REGRA QUE NÃO SE QUEBRA</div>
-        <p style="margin: 0; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #333A42; max-width: 58ch;">A <strong>letra</strong> identifica a fila; a cor é apoio. Em nenhuma peça a cor aparece sozinha. É o que salva o eleitor com daltonia — laranja e verde se aproximam para deuteranopes, e a letra resolve.</p>
+        <p style="margin: 0; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #333A42; max-width: 58ch;">A <strong>letra</strong> identifica a fila; a cor é apoio. Em nenhuma peça a cor aparece sozinha. Com estas três, isso deixou de ser precaução e virou necessidade: para um deuteranope, o amarelo de B e a abóbora de C viram dois amarelo-esverdeados que só diferem em claridade, e entre si as duas têm contraste de 1,9:1. A letra é o que separa B de C.</p>
       </div>
     </div>
 
@@ -117,7 +120,7 @@ html = f"""<!doctype html>
             <div style="font-family: {SANS}; font-size: 13px; color: #6B737C; margin-top: 2px;">quatro dígitos, como no e-Título</div>
           </div>
           <div style="width: 74px; display: flex; align-items: center; justify-content: center; font-family: {SANS}; font-size: 26px; color: #9AA3AB;">→</div>
-          <div style="width: 140px; background: {COR['A']}; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div style="width: 140px; background: {COR['A']}; color: {TEXTO['A']}; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div style="font-family: {DISP}; font-weight: 800; font-size: 46px; line-height: 1;">A</div>
             <div style="font-family: {SANS}; font-weight: 600; font-size: 12.5px; opacity: 0.9;">porta A · oeste</div>
           </div>
