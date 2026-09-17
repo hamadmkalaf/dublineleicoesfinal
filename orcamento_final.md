@@ -1,8 +1,16 @@
 # Orçamento final — tabela preenchível (1º turno, RDS Hall 2, 04/10/2026)
 
 > **AVISO DE SAFRA — 16/09/2026.** Documento de 13/09, trazido inteiro porque
-> orçamento é entregável. Quatro linhas dependem do **Ring 3, abandonado em
-> 15/09**: R7 (separadores CCB), R8 (o espaço — o Hall 2 continua contratado, o
+> orçamento é entregável.
+>
+> **ATUALIZAÇÃO DE 17/09:** o Ring 3 foi **confirmado pelo Posto em 16/09** — a
+> suspensão de 15/09 está revertida. As quatro linhas abaixo voltam a valer, e
+> passam a ser medidas sobre a montagem confirmada: **179 CCBs** (dos 200 em
+> estoque, sobra 21), **506 m** de fita grossa, bocas de **2,87 m**. Reconferir
+> quantidade e preço; não eliminar as linhas. O texto original de 16/09 segue
+> abaixo, como registro.
+>
+> ~~Quatro linhas dependem do **Ring 3, abandonado em 15/09**:~~ R7 (separadores CCB), R8 (o espaço — o Hall 2 continua contratado, o
 > Ring 3 deixa de ser usado), C5 (fita de contorno das zonas) e C6 (placas de
 > porta nas CCBs). Reavaliar as quatro antes de fechar. As placas de porta que
 > o posto ainda precisa são as do desenho atual, e o plano de sinalização

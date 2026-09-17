@@ -177,6 +177,9 @@ EM ABERTO NO DESENHO DO HALL 2 — herdado da transferência de 16/09/2026
 10. ORÇAMENTO — reavaliar as quatro linhas do Ring 3.
     R7 (separadores CCB), R8 (espaço), C5 (fita de contorno) e C6 (placas de
     porta nas CCBs) foram orçadas para um Ring 3 que não existe mais.
+    [17/09] O Ring 3 foi CONFIRMADO em 16/09: as quatro linhas voltam a valer,
+    mas sobre a geometria nova (zonas de 12,87 m, 179 CCBs em vez de 180, boca
+    de 2,87 m em vez de 2,23). Reconferir quantidades, não eliminar linhas.
 
 11. O RECORTE DO CANTO SUDOESTE tem duas leituras: 11,7 × 7,4 m no
     plano_filas_tres_portas.md e ~8 × 7 m na prancheta medida. Afeta a sala de

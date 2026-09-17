@@ -5,6 +5,12 @@
 > 9/9/10 mesas) — por isso ele veio, e não o `plano_filas_confinado_hall2.md`,
 > que é de 14/09 e ainda punha as entradas A e B juntas na parede sul.
 >
+> **ATUALIZAÇÃO DE 17/09:** o Ring 3 foi **confirmado em 16/09**. Este plano
+> dimensiona a fila **dentro** do Hall 2, para o caso de não haver fila
+> externa; com o Ring 3 valendo, ele deixa de ser o plano e passa a ser a
+> **contingência** (falha do cercado, chuva forte, exigência do RDS no dia). O
+> plano vigente da fila externa é `saidas/ring3_montagem.html`.
+>
 > Duas ressalvas, as duas por ser de **15/09**:
 >
 > 1. Ele não conhece as decisões de **16/09** — os recuos de 3 m em N2 e O2, a

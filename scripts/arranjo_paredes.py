@@ -890,13 +890,22 @@ def grava(decisoes, grupos, arranjo, quando="2026-09-16"):
         "Decisão do Posto de 15/09/2026: cada entrada serve uma parede inteira e só ela — "
         "A (S4) a oeste, B (S5) ao norte, C (S6) a leste. Equilibrar as entradas e "
         "equilibrar as paredes passaram a ser o mesmo problema. Substitui a atribuição "
-        "por cota do Ring 3, que não existe mais.")
-    # o Ring 3 foi abandonado; as cotas que ele definia não valem mais
+        "por cota do Ring 3, e continua valendo com o Ring 3 confirmado.")
+    # O Ring 3 foi confirmado pelo Posto em 16/09/2026.  A atribuicao mesa ->
+    # entrada continua sendo a de Paredes_ABC (uma entrada por parede): o Ring
+    # 3 e a fila externa que alimenta as tres portas, nao uma cota propria.  As
+    # cotas antigas (A 3642 / B 4215 / C 3642) ficam mortas; as larguras das
+    # zonas do Ring saem do esperado por entrada, em scripts/ring3_montagem.py.
     if "ring3" in decisoes:
         decisoes["ring3"] = {
-            "situacao": "abandonado em 15/09/2026 — o RDS proibiu fila no terreno e não "
-                        "houve autorização de Brasília; a fila passa a ser dimensionada "
-                        "dentro do Hall 2, uma por parede.",
+            "situacao": "confirmado pelo Posto em 16/09/2026 — a fila externa no terreno "
+                        "do RDS volta a valer, com a montagem do cenário 3 adaptado "
+                        "(44 × 35 m, corredor em L de 3,0 m, três zonas de raias "
+                        "leste-oeste). Reverte a suspensão de 15/09.",
+            "decidido_em": "2026-09-16",
+            "montagem": "scripts/ring3_montagem.py → saidas/ring3_montagem.json",
+            "larguras_das_zonas": "proporcionais ao esperado por entrada de Paredes_ABC; "
+                                  "as cotas do Ring 3 antigo (3642/4215/3642) não valem mais",
         }
 
     cenario = {"nome": NOME_CENARIO, "base": "A", "id": ID_CENARIO,

@@ -45,20 +45,39 @@ NOME_COR = {"A": "azul", "B": "âmbar", "C": "magenta"}
 PAREDE = {"A": "oeste", "B": "norte", "C": "leste"}
 PORTA_DA_PAREDE = {v: k for k, v in PAREDE.items()}
 
-# Ring 3 - montagem adotada (artefato "Montagem do Ring 3", 15/09/2026).
-# Coordenadas no sistema da prancheta: x para leste a partir do canto sudoeste
-# do Hall 2, y para norte; a fachada sul esta em y = 0 e o apron vai ate -14.
-RING = {
-    "x0": 6.285, "x1": 50.285, "y_norte": -14.0, "y_sul": -49.0,
-    "apron": 14.0, "corredor": 3.0, "fundo": 3.0, "vao_zonas": 1.2,
-    "zonas": {  # x0, x1, largura
-        "A": (6.285, 18.515), "B": (19.715, 33.855), "C": (35.055, 47.285),
-    },
-    "raias": 23, "passo_raia": 1.40,
-    # boca de cada zona: extremo leste da borda sul, abertura = resto do modulo
-    "bocas": {"A": (16.285, 18.515), "B": (31.715, 33.855), "C": (45.055, 47.285)},
-    "entrada": "canto nordeste",
-}
+# Ring 3 - montagem adotada (artefato "Montagem do Ring 3"), CONFIRMADO pelo
+# Posto em 16/09/2026.  Coordenadas no sistema da prancheta: x para leste a
+# partir do canto sudoeste do Hall 2, y para norte; a fachada sul esta em
+# y = 0 e o apron vai ate -14.
+#
+# As larguras das zonas NAO sao mais digitadas aqui: ate 16/09 este bloco
+# trazia 12,23 / 14,14 / 12,23 m, proporcionais as cotas do Ring 3 antigo
+# (A 3642 / B 4215 / C 3642), anteriores ao arranjo Paredes_ABC.  Agora saem de
+# saidas/ring3_montagem.json, que scripts/ring3_montagem.py deriva do esperado
+# por entrada de data/decisoes.json.  Rode ring3_montagem.py antes deste.
+def _ring():
+    caminho = SAIDAS / "ring3_montagem.json"
+    if not caminho.exists():
+        raise SystemExit(
+            "falta saidas/ring3_montagem.json - rode antes:\n"
+            "    python3 scripts/ring3_montagem.py")
+    m = json.loads(caminho.read_text(encoding="utf-8"))
+    r, z = m["ring"], m["zonas"]
+    return {
+        "x0": r["offset_x"], "x1": round(r["offset_x"] + r["largura"], 3),
+        "y_norte": -14.0, "y_sul": round(-14.0 - r["profundidade"], 3),
+        "apron": 14.0, "corredor": r["corredor"], "fundo": r["corredor"],
+        "vao_zonas": r["vao_zonas"],
+        "zonas": {k: (z[k]["x0"], z[k]["x1"]) for k in ("A", "B", "C")},
+        "raias": r["raias"], "passo_raia": r["passo_raia"],
+        # boca de cada zona: extremo leste da borda sul, abertura = resto do modulo
+        "bocas": {k: (z[k]["boca_x0"], z[k]["boca_x1"]) for k in ("A", "B", "C")},
+        "entrada": "canto nordeste",
+        "bom": m["bom"],
+        "desvio_porta": {k: z[k]["desvio_porta"] for k in ("A", "B", "C")},
+    }
+
+RING = _ring()
 
 # Parede leste externa do Hall 2 (rota do eleitor), medida do canto norte.
 PAREDE_LESTE = {

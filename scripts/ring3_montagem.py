@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Ring 3 — cenario 3 adaptado. O mapa e a conta: os mesmos segmentos geram SVG e BOM."""
-import math, os
+import json, math, os
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -17,8 +17,22 @@ DENS = 2.386              # p por metro de raia (calibrado no artefato anterior)
 ESTOQUE = 200
 LAT_N = 8.0               # trecho norte das laterais que vira CCB
 
-# larguras proporcionais ao comparecimento esperado por porta
-esp = {'A': 3642, 'B': 4215, 'C': 3642}
+# Larguras proporcionais ao comparecimento esperado por porta.
+# ATE 16/09/2026 este bloco trazia as cotas do Ring 3 antigo (A 3642 / B 4215 /
+# C 3642), que sao anteriores ao arranjo Paredes_ABC e nao valem mais: com uma
+# entrada por parede, as tres portas carregam praticamente a mesma carga.  Com
+# o Ring 3 confirmado em 16/09, a fonte passa a ser o esperado por entrada de
+# data/decisoes.json -- a mesma que a prancheta e a sinalizacao usam.
+def _esperado_por_entrada():
+    d = json.load(open(os.path.join(RAIZ, 'data', 'decisoes.json'), encoding='utf-8'))
+    por = {'A': 0, 'B': 0, 'C': 0}
+    for m in d['mesas']:
+        por[m['entrada']] += m['esperado']
+    if sorted(por) != ['A', 'B', 'C'] or min(por.values()) <= 0:
+        raise SystemExit('decisoes.json nao trouxe as tres entradas com carga')
+    return por
+
+esp = _esperado_por_entrada()
 tot_esp = sum(esp.values())
 livre = UTIL - 2*VAO_ZONA
 W = {k: round(livre*v/tot_esp, 2) for k, v in esp.items()}
@@ -207,3 +221,31 @@ e('</svg>')
 svg = '\n'.join(o)
 open(os.path.join(RAIZ, 'saidas', 'ring3_planta.svg'), 'w').write(svg)
 print("svg ok", len(svg))
+
+# ---------- geometria para quem desenha em cima (sinalizacao) ----------
+# x0 do Ring no sistema da prancheta: canto sudoeste do Hall 2 = 0.
+OFFSET_X = 6.285
+saida = {
+    'gerado_por': 'scripts/ring3_montagem.py',
+    'situacao': 'Ring 3 confirmado pelo Posto em 16/09/2026',
+    'base_larguras': {'fonte': 'data/decisoes.json (esperado por entrada)', 'esperado': esp},
+    'ring': {'largura': RING_W, 'profundidade': RING_D, 'corredor': COR,
+             'util': UTIL, 'prof_raias': PROF, 'vao_zonas': VAO_ZONA,
+             'raias': LANES, 'passo_raia': round(MOD, 4), 'offset_x': OFFSET_X},
+    'zonas': {k: {'largura': W[k],
+                  'x0': round(OFFSET_X + x0[k], 3),
+                  'x1': round(OFFSET_X + x0[k] + W[k], 3),
+                  'boca': bocas[k],
+                  'boca_x0': round(OFFSET_X + x0[k] + W[k] - bocas[k], 3),
+                  'boca_x1': round(OFFSET_X + x0[k] + W[k], 3),
+                  'porta_x': portas[k], 'desvio_porta': desvio[k],
+                  'raia_metros': round(LANES * W[k], 2),
+                  'lotacao': round(LANES * W[k] * DENS)} for k in ('A', 'B', 'C')},
+    'bom': {'ccb': n_ccb, 'ccb_estoque': ESTOQUE, 'ccb_comprar': max(0, n_ccb - ESTOQUE),
+            'fita_m': round(m_fita, 1), 'lotacao_total': round(lot),
+            'vao_max_fita': round(vao_fita, 2)},
+}
+with open(os.path.join(RAIZ, 'saidas', 'ring3_montagem.json'), 'w', encoding='utf-8') as fh:
+    json.dump(saida, fh, ensure_ascii=False, indent=1)
+    fh.write('\n')
+print('ring3_montagem.json ok')
