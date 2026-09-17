@@ -40,7 +40,7 @@ com CCB só na ponta (82 separadores, 100 registrados; 13/09).
 | 9 | Ring 3 nas dimensões oficiais (44 × 35 m): quatro desenhos de fila comparados | `saidas/ring3_horizontal.html`, `saidas/ring3.json`, `saidas/plano_ring3_horizontal.md`, `scripts/ring3.py` | `saidas/plano_ring3_horizontal.md` |
 | 10 | Dashboard do plano (narrativa única, ferramentas embutidas, portas vivas) | `saidas/dashboard/index.html`, `saidas/ring3_vivo.html`, `simulador/portas.js`, `scripts/gera_dashboard.py`, `scripts/gera_ring3_vivo.py` | §0 e §11 de `DOCUMENTACAO_PROJETO.md` |
 | 11 | Fitas no piso em vez do checkpoint (simulação no motor oficial) | `saidas/fitas_piso.html`, `saidas/fitas_piso.json`, `simulador/fitas.js`, `scripts/fitas_piso.py` | `docs/alternativa_fitas_no_piso.md`, `docs/registro_fitas_no_piso_2026-09-12.md` |
-| 12 | Decisões de fluxo em aberto, com dependências, e instruções de fluxo para o treinamento (geradas das decisões vigentes) | `data/decisoes_abertas.json`, `docs/decisoes_em_aberto.md`, `docs/instrucoes_fluxo.md`, `saidas/instrucoes_fluxo.html`, `scripts/decisoes_abertas.py`, `scripts/gera_instrucoes_fluxo.py` | §12 de `DOCUMENTACAO_PROJETO.md`, `PENDENCIAS`, `orcamento_final.md` |
+| 12 | Decisões de fluxo em aberto, com dependências, e instruções de fluxo para o treinamento (geradas das decisões vigentes) | `data/decisoes_abertas.json`, `docs/decisoes_em_aberto.md`, `docs/instrucoes_fluxo.md`, `saidas/instrucoes_fluxo.html`, `scripts/decisoes_abertas.py`, `scripts/gera_instrucoes_fluxo.py` | §12 de `DOCUMENTACAO_PROJETO.md`, `PENDENCIAS.md`, `orcamento_final.md` |
 
 Artefatos publicados: o **dashboard do plano**
 (https://claude.ai/code/artifact/1c434ede-3d79-439c-b97b-a8121979bd03), que
@@ -97,7 +97,7 @@ módulo valida o grafo (acíclico, uma opção vigente por decisão) e grava
 "Decisões em aberto" do dashboard e `docs/instrucoes_fluxo.md` (instruções de
 gerenciamento de fluxo para o treinamento, um bloco por posto) saem do mesmo
 registro. Mudar uma decisão = trocar `vigente`, regenerar. Tarefas (não
-decisões) continuam em `PENDENCIAS`; o orçamento preenchível está em
+decisões) continuam em `PENDENCIAS.md`; o orçamento preenchível está em
 `orcamento_final.md`.
 
 Toda saída em `saidas/` é gerada por script: editar HTML ou SVG à mão se perde

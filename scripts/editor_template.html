@@ -201,7 +201,6 @@ footer .estado.guia{color:var(--entrada)}
 <header>
   <h1>Prancheta do Hall&nbsp;2</h1>
   <span class="sub">28 mesas receptoras · número eleitor em destaque, MRV do DJE ao lado · escala real · RDS Ballsbridge</span>
-  <span class="sub" id="portasVivas" hidden style="color:var(--aviso);font-weight:600"></span>
   <div class="dir">
     <div class="grupo" role="group" aria-label="Cenário">
       <button id="cenA" aria-pressed="true">Cenário A</button>
@@ -228,7 +227,6 @@ footer .estado.guia{color:var(--entrada)}
       <button id="zMais" title="Aproximar" aria-label="Aproximar">+</button>
       <button id="zMenos" title="Afastar" aria-label="Afastar">−</button>
       <button id="zTudo" title="Enquadrar o salão" aria-label="Enquadrar o salão">tudo</button>
-      <button id="zRing3" title="Enquadrar o salão e o Ring 3" aria-label="Enquadrar o salão e o Ring 3">+Ring 3</button>
     </div>
   </div>
 
@@ -299,7 +297,6 @@ footer .estado.guia{color:var(--entrada)}
         <label><input type="checkbox" id="optGrade"> Grade de 1 m</label>
         <label><input type="checkbox" id="optPortas" checked> Nome e papel das portas</label>
         <label><input type="checkbox" id="optCores" checked> Cor por comparecimento esperado</label>
-        <label><input type="checkbox" id="optRing3" checked> Ring 3 e apron</label>
         <label><input type="checkbox" id="optCotas" checked> Cotas vivas ao arrastar</label>
       </div>
       <div class="passo">
@@ -333,21 +330,14 @@ footer .estado.guia{color:var(--entrada)}
 </div>
 
 <script>
-@@portas_js@@
-</script>
-<script>
 const D = @@dados@@;
-/* Decisoes do Posto embutidas na geracao (scripts/decisoes.py): numeracao
-   MRV, comparecimento esperado e classe de cada mesa, papeis das portas,
-   entradas e contorno do Ring 3. */
-const DEC0 = D.decisoes || null;
-/* DEC e a decisao em vigor nesta pagina: a do Posto, ou a decisao viva que
-   simulador/portas.js deriva das portas clicadas no Simulador (publicadas por
-   localStorage e BroadcastChannel na mesma origem, ou pelo hash da URL). Aqui
-   so mudam os papeis das portas, as entradas, a entrada de cada mesa e o
-   contorno do Ring 3; as posicoes das mesas nao se movem. */
-let DEC = DEC0;
-const PT = (typeof Portas !== "undefined") ? Portas : null;
+/* A decisao do Posto, embutida na geracao a partir de data/decisoes.json:
+   numeracao MRV e numero eleitor, comparecimento esperado e classe de cada
+   mesa, papel de cada porta e a entrada (parede) de cada mesa.
+   Ela nao muda dentro desta pagina: mover mesa aqui e um estudo de posicao,
+   nao uma mudanca de decisao. Para mudar um numero, mude o script e rode a
+   cadeia -- ver CLAUDE.md. */
+const DEC = D.decisoes || null;
 
 const M = D.modulo, SAL = D.salao;
 const ALT = SAL.altura, LARG = SAL.largura;
@@ -667,53 +657,12 @@ function montaFundo(){
   el("polygon", {points: pts, fill: "none", stroke: "var(--traco)",
     "stroke-width": .18, "stroke-linejoin": "miter"}, gFundo);
 
-  montaRing3();
-
   for (let x = 0; x <= LARG; x++)
     el("line", {x1: fx(x), y1: fy(0), x2: fx(x), y2: fy(ALT),
       stroke: "var(--traco)", "stroke-width": .015, opacity: .3}, gGrade);
   for (let y = 0; y <= ALT; y++)
     el("line", {x1: fx(0), y1: fy(y), x2: fx(LARG), y2: fy(y),
       stroke: "var(--traco)", "stroke-width": .015, opacity: .3}, gGrade);
-}
-
-/* Ring 3 e apron ao sul da fachada, so como camada de leitura: o desenho em
-   escala dos serpenteados e o de saidas/layout_ring3.svg. O contorno vem de
-   scripts/salao.py via decisoes (centrado em S5 por estimativa). */
-let gRing3 = null;
-function montaRing3(){
-  const R = DEC && DEC.ring3;
-  gRing3 = el("g", {class: "ring3"}, gFundo);
-  if (!R || !R.rect) return;
-  const [x0, y0, x1, y1] = R.rect;
-  el("rect", {x: fx(x0), y: fy(0), width: x1 - x0, height: R.apron,
-    fill: "var(--piso)", opacity: .55}, gRing3);
-  const ta = el("text", {x: fx((x0 + x1) / 2), y: fy(-R.apron / 2) + .4,
-    "font-size": .95, fill: "var(--fraco)", "text-anchor": "middle",
-    "font-family": "IBM Plex Sans, sans-serif"}, gRing3);
-  ta.textContent = `apron pavimentado · ${vg(R.apron, 0)} m`;
-  el("rect", {x: fx(x0), y: fy(y1), width: x1 - x0, height: y1 - y0,
-    fill: "var(--folha)", stroke: "var(--traco)", "stroke-width": .14,
-    "stroke-dasharray": ".8 .5"}, gRing3);
-  const t = el("text", {x: fx((x0 + x1) / 2), y: fy(y1 - 2.2),
-    "font-size": 1.4, "font-weight": 700, fill: "var(--meio)", "text-anchor": "middle",
-    "font-family": "IBM Plex Sans, sans-serif"}, gRing3);
-  t.textContent = `RING 3 · ${vg(R.largura, 0)} × ${vg(R.profundidade, 0)} m · ${R.capacidade} pessoas`;
-  const t2 = el("text", {x: fx((x0 + x1) / 2), y: fy(y1 - 4.0),
-    "font-size": .9, fill: "var(--fraco)", "text-anchor": "middle",
-    "font-family": "IBM Plex Sans, sans-serif"}, gRing3);
-  const ents = DEC.entradas || [];
-  t2.textContent = (ents.length ? `serpenteado${ents.length > 1 ? "s" : ""} ${ents.map(e => e.id).join(", ")} descarrega${ents.length > 1 ? "m" : ""} em ${ents.map(e => e.porta).join(", ")}` : "") + (R.nome_desenho ? ` · ${R.nome_desenho}` : "") + " · " + (R.eixo || "");
-  for (const e of (DEC.entradas || [])) {
-    const p = D.portas.find(q => q.id === e.porta);
-    if (!p) continue;
-    const mx = (p.x1 + p.x2) / 2;
-    el("line", {x1: fx(mx), y1: fy(y1), x2: fx(mx), y2: fy(-.4),
-      stroke: e.hex, "stroke-width": .22, "stroke-dasharray": ".6 .4"}, gRing3);
-    const te = el("text", {x: fx(mx), y: fy(y1 - 6.5), "font-size": 1.1, "font-weight": 700,
-      fill: e.hex, "text-anchor": "middle", "font-family": "IBM Plex Sans, sans-serif"}, gRing3);
-    te.textContent = `${e.id} · ${e.capacidade}`;
-  }
 }
 
 function montaZonas(){
@@ -898,7 +847,6 @@ function aplicaVista(){
 function opcoes(){
   gGrade.style.display = $("optGrade").checked ? "" : "none";
   gZonas.style.display = $("optZonas").checked ? "" : "none";
-  if (gRing3) gRing3.style.display = $("optRing3").checked ? "" : "none";
   for (const t of gPortas.querySelectorAll(".rotuloPorta"))
     t.style.display = $("optPortas").checked ? "" : "none";
 }
@@ -948,7 +896,7 @@ function pintaEstado(){
                : "28 mesas na planta original");
 }
 /* Linhas do painel com o que as decisoes sabem da mesa: secoes, esperado,
-   classe e entrada do Ring 3. */
+   classe, parede e entrada. */
 function infoMesa(n){
   const i = DEC && DEC.mesas && DEC.mesas[n];
   if (!i) return "";
@@ -1288,21 +1236,9 @@ function zoom(k){
   vista.x = cx - vista.w / 2; vista.y = cy - vista.h / 2;
   aplicaVista();
 }
-function enquadraRing3(){
-  const R = DEC && DEC.ring3 && DEC.ring3.rect;
-  if (!R) { enquadra(); return; }
-  const marg = 3, y0 = R[1] - marg, y1 = ALT + marg;
-  const x0 = Math.min(0, R[0]) - marg, x1 = Math.max(LARG, R[2]) + marg;
-  const razao = svg.clientHeight / Math.max(svg.clientWidth, 1);
-  let w = x1 - x0, h = w * razao;
-  if (h < y1 - y0) { h = y1 - y0; w = h / razao; }
-  vista = {x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - h / 2, w, h};
-  aplicaVista();
-}
 $("zMais").onclick = () => zoom(1 / 1.3);
 $("zMenos").onclick = () => zoom(1.3);
 $("zTudo").onclick = enquadra;
-$("zRing3").onclick = enquadraRing3;
 $("desfazer").onclick = desfaz;
 $("refazer").onclick = refaz;
 
@@ -1352,7 +1288,7 @@ $("copiar").onclick = async () => {
   catch (e) { b.textContent = "Não deu — veja o console"; console.log(txt); }
   setTimeout(() => { b.textContent = "Copiar posições"; }, 1800);
 };
-for (const id of ["optAssentos", "optZonas", "optGrade", "optPortas", "optCores", "optRing3"])
+for (const id of ["optAssentos", "optZonas", "optGrade", "optPortas", "optCores"])
   $(id).onchange = () => { opcoes(); montaMesas(); };
 
 for (const b of $("paredes").querySelectorAll("button"))
@@ -1377,9 +1313,8 @@ $("alinhar").onclick = () => {
    repositorio.
    Apagar segue a mesma divisao: cenario local sai de vez; cenario publicado
    so pode ser ocultado aqui, porque removê-lo para todo mundo e republicar a
-   pagina. Ver cenarios/README.md no branch cenarios-hall2. */
-const GITHUB_OWNER = "hamadmkalaf", GITHUB_REPO = "eleicoes2026",
-      GITHUB_BRANCH_CENARIOS = "cenarios-hall2";
+   pagina. Os publicados sao os arquivos de cenarios/, lidos na geracao
+   por scripts/gera_editor.py. */
 const CHAVE_LOCAIS = "prancheta-hall2-cenarios-v1";
 const CHAVE_OCULTOS = "prancheta-hall2-ocultos-v1";
 const publicados = (Array.isArray(D.cenariosSalvos) ? D.cenariosSalvos : [])
@@ -1602,27 +1537,22 @@ carregar();
 montaFundo(); montaZonas(); montaPortas(); montaMesas(); montaMedidas();
 opcoes(); pintaLegendaCarga(); pintaPainel(); pintaHistorico(); enquadra();
 
-/* ---- portas vivas: segue o que o Simulador publicou ------------------ */
-function aplicaPortasVivas(msg){
-  if (!PT || !DEC0) return;
-  const res = PT.resolve(msg.estado, {portas: D.portas, dec: DEC0, desenho: msg.desenho || "vigente"});
-  if (res.erros.length) return;
-  DEC = PT.decisaoViva(DEC0, res);
-  if (gRing3) gRing3.remove();
-  montaRing3(); montaPortas(); montaMesas(); pintaLegendaCarga(); pintaPainel();
-  const b = $("portasVivas");
-  if (DEC === DEC0) { b.hidden = true; b.textContent = ""; }
-  else {
-    b.hidden = false;
-    b.textContent = "Portas vivas (do Simulador): entradas " + res.entradas.map(e => `${e.porta} (${e.id})`).join(", ") +
-      " · saídas " + res.saidas.join(", ") + " · difere da decisão de 06/09";
-  }
-}
-if (PT) {
-  const guardado = PT.le();
-  if (guardado && guardado.estado) aplicaPortasVivas(guardado);
-  PT.assina(msg => { if (msg.origem !== "prancheta") aplicaPortasVivas(msg); });
-}
 pintaSalvos();
+
+/* Abre no cenario de trabalho do Posto (DEC.cenarioTrabalho, hoje o
+   Paredes_ABC), e nao na posicao inicial do circuito: abrir no arranjo
+   superado e o jeito mais facil de ler numero errado. O rascunho local deste
+   navegador ganha do cenario de trabalho, porque foi a ultima coisa que quem
+   esta na prancheta fez. */
+(function abreNoCenarioDeTrabalho(){
+  let temRascunho = false;
+  try { temRascunho = !!JSON.parse(localStorage.getItem(CHAVE) || "null"); }
+  catch (e) {}
+  const alvo = DEC && DEC.cenarioTrabalho && DEC.cenarioTrabalho.id;
+  if (temRascunho || !alvo) return;
+  const c = publicados.find(p => p.id === alvo);
+  if (c) aplicaCenario(c);
+})();
+
 addEventListener("resize", enquadra);
 </script>

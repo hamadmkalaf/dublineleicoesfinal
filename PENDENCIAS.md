@@ -116,3 +116,57 @@ Pendencia por ponto.
     sobre o Posto, não sobre o TSE que definiu a agregação;
   - documentar por escrito que a configuração de 28 urnas foi imposta e que a mitigação
     possível é operacional (tempo por eleitor na mesa).
+
+
+================================================================
+EM ABERTO NO DESENHO DO HALL 2 — herdado da transferência de 16/09/2026
+(origem: TRANSFERENCIA.md §6.2; o que está decidido e congelado vai em CLAUDE.md)
+================================================================
+
+1. MESÁRIOS — é o único item que pode desfazer o desenho no dia.
+   109 nomeados para 112 lugares, 83 confirmados. As duas lacunas críticas:
+   - MRV 24: 588 esperados, a 2ª maior carga do posto;
+   - MRV 11: 504 esperados, sem Presidente nomeado.
+
+2. PROFUNDIDADE DA SALA DE APOIO (7,80 m) — é suposição, alinhada ao recorte
+   sudoeste da planta. Medir em campo.
+
+3. S7 TEM 1,27 m DE VÃO — serve um fluxo preferencial pequeno; se a fila
+   preferencial crescer, não absorve. Medir antes de imprimir a sinalização.
+
+4. AS TAXAS DE 2022 POR CONDADO NÃO TÊM FONTE PRIMÁRIA REGISTRADA.
+   91% do eleitorado está na taxa "direto", mas nunca se guardou de onde veio.
+   O que fecha isso é o perfil_comparecimento_abstencao_2022 do TSE, recorte ZZ:
+   https://dadosabertos.tse.jus.br/dataset/comparecimento-e-abstencao-2022
+   Não bloqueia nada; melhora a defesa do número.
+
+5. A NUMERAÇÃO MRV É INFERIDA como a ordem crescente da seção principal.
+   Bate com o bloco que veio do DJE, mas é inferência — avisado no cabeçalho
+   de scripts/gera_decisoes_base.py.
+
+6. plano_filas.py (no branch de filas do repositório antigo) ainda usa 11.416
+   fixo no código em vez da base B (11.499). Corrigir ao trazer, se trazer.
+
+7. DENSIDADE DESIGUAL ENTRE PAREDES: 131 esperados por metro na oeste contra
+   107 na leste. Carga igual não é fila igual.
+
+8. PLANO DE SINALIZAÇÃO INTERNA — não existe mais nenhum válido.
+   O que havia (branch claude/serene-rubin-tdzmlb) é do Ring 3: triagem A/B/C
+   na boca do serpenteado, total de 11.416, numeração eleitor antiga. Não foi
+   transferido, por decisão de 16/09. O novo precisa nascer do desenho atual:
+   3 entradas (S4/S5/S6), 2 saídas (S2/S8), S7 preferencial, triagem na porta.
+   BLOQUEIA imprimir placa.
+
+9. DIMENSIONAMENTO DE FILAS — refazer contra as zonas de 16/09.
+   plano_filas_tres_portas.md é de 15/09 e não conhece os recuos de N2 e O2, a
+   faixa de emergência leste, a sala de apoio nem os serpenteados. Os scripts
+   que o produziram ficaram no repositório antigo (um deles com 11.416 fixo —
+   ver item 6). Entrou aqui como peça entregue, não como parte da cadeia.
+
+10. ORÇAMENTO — reavaliar as quatro linhas do Ring 3.
+    R7 (separadores CCB), R8 (espaço), C5 (fita de contorno) e C6 (placas de
+    porta nas CCBs) foram orçadas para um Ring 3 que não existe mais.
+
+11. O RECORTE DO CANTO SUDOESTE tem duas leituras: 11,7 × 7,4 m no
+    plano_filas_tres_portas.md e ~8 × 7 m na prancheta medida. Afeta a sala de
+    apoio (item 2) e o número de canais do bloco A1. Medir em campo, junto.

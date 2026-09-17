@@ -61,7 +61,7 @@ a esta planta e descrevem duas entradas apenas — material histórico.
 - `contexto_eleicoes_dublin_2026.md` — contexto consolidado: orçamento, layout,
   simulações de tempo de votação, argumentação com o TSE.
 - `plano_voluntarios_apoio.md` — funções e efetivo de voluntários de fluxo.
-- `PENDENCIAS` — lista de tarefas em aberto do Posto.
+- `PENDENCIAS.md` — lista de tarefas em aberto do Posto.
 - `scripts/`, `saidas/` — pipeline de dados; os scripts falham em vez de gravar
   saída errada quando alguma validação não passa.
 
@@ -78,7 +78,7 @@ a esta planta e descrevem duas entradas apenas — material histórico.
 ## Pendências que movem números
 
 1. Método de identificação do eleitor — eletrônico/biométrico ou caderno físico
-   (`PENDENCIAS` item 5). Decide tempo por eleitor e criticidade do balcão de
+   (`PENDENCIAS.md` item 5). Decide tempo por eleitor e criticidade do balcão de
    consulta.
 2. Confirmação da expectativa de comparecimento.
 3. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900).
