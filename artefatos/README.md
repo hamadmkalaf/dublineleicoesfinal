@@ -12,6 +12,12 @@ identificador de versão que o serviço devolveu na leitura.
 
 ## Versões finais (fonte de verdade no URL)
 
+> **17/09/2026.** Entrou a proposta de sinalização, gerada neste repositório:
+> **Sinalização Eleições 2026 · Posto de Dublin**,
+> <https://claude.ai/artifact/Ek3FfeYnwvQLZEs4ZJ5Zzr> — canvas de 21 pranchas,
+> produzido por `scripts/pranchas/` sobre a identidade oficial
+> (`docs/identidade_visual.md`). É proposta, não arte final.
+
 | Título | URL | Versão lida | Arquivo |
 |---|---|---|---|
 | Posto de Dublin 2026 (painel-índice, 17 arquivos) | https://claude.ai/artifact/4VRSyeuFu8nSm1TFJ7xWXC | 1789410025-07c2 | `posto-de-dublin-2026/index.html` |

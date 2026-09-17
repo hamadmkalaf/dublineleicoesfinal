@@ -1,0 +1,217 @@
+# -*- coding: utf-8 -*-
+"""Prancha-mae: o sistema visual, e o index do canvas."""
+import json, pathlib, datetime
+
+REPO = pathlib.Path(__file__).resolve().parent.parent.parent
+OUT = REPO / 'saidas' / 'pranchas_sinalizacao' / 'project'
+S = json.loads((REPO / 'saidas' / 'sinalizacao_v2.json').read_text(encoding='utf-8'))
+R = json.loads((REPO / 'saidas' / 'ring3_montagem.json').read_text(encoding='utf-8'))
+
+AMARELO='#F8C030'; OURO='#E6B00F'; MARINHO='#042B5A'; OFFW='#F0F0E8'
+COR={'A':'#0B6E9E','B':'#B04E0A','C':'#4A7C1E'}
+FLAG=('#E6B00F','#398CB0','#5F8722')
+SANS="'Nunito Sans', system-ui, sans-serif"
+DISP="'Archivo', 'Nunito Sans', sans-serif"
+
+W,H = 1300, 1080
+
+def swatch(hexv, nome, papel, texto='#FFFFFF'):
+    return f"""<div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="height: 76px; background: {hexv}; display: flex; align-items: flex-end; padding: 8px 10px; box-sizing: border-box;"><span style="font-family: {SANS}; font-weight: 700; font-size: 12px; color: {texto};">{hexv}</span></div>
+      <div style="font-family: {SANS}; font-weight: 700; font-size: 14px; color: {MARINHO};">{nome}</div>
+      <div style="font-family: {SANS}; font-size: 12.5px; color: #6B737C; line-height: 1.35;">{papel}</div>
+    </div>"""
+
+ondas=''.join(f'<path d="M0 {6+i*11} q 9 -5 18 0 t 18 0 t 18 0" fill="none" stroke="{c}" stroke-width="7" stroke-linecap="round"/>' for i,c in enumerate(FLAG))
+
+dist = [('30 mm','6 m','tabela mestra, leitura parada'),
+        ('40 mm','8 m','tabela da parede leste'),
+        ('80 mm','15 m','seções na boca da zona'),
+        ('120 mm','20 m','seções no x-banner de grupo'),
+        ('150 mm','30 m','chamada do portão e do P0'),
+        ('300 mm','60 m','letra da porta, lida do Ring 3'),
+        ('400 mm','15 m em movimento','letra da zona na boca')]
+linhas_dist=''.join(
+    f'<tr><td style="padding: 7px 14px 7px 0; font-family: {DISP}; font-weight: 700; font-size: 17px; color: {MARINHO}; white-space: nowrap;">{a}</td>'
+    f'<td style="padding: 7px 14px 7px 0; font-family: {SANS}; font-weight: 600; font-size: 14px; color: #5A6270; white-space: nowrap;">{b}</td>'
+    f'<td style="padding: 7px 0; font-family: {SANS}; font-size: 14px; color: #6B737C;">{c}</td></tr>' for a,b,c in dist)
+
+html = f"""<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
+    body {{ margin: 0; background: #F0F0E8; }}
+    a {{ color: #0B6E9E; }} a:hover {{ color: #042B5A; }}
+  </style>
+</helmet>
+<div style="width: {W}px; height: {H}px; box-sizing: border-box; background: {OFFW}; display: flex; flex-direction: column; overflow: hidden;">
+
+  <div style="background: {AMARELO}; padding: 26px 40px 24px; display: flex; align-items: flex-end; justify-content: space-between;">
+    <div>
+      <div style="font-family: {SANS}; font-weight: 700; font-size: 13px; letter-spacing: 0.16em; color: {MARINHO}; opacity: 0.78;">PROPOSTA v1 · 17/09/2026</div>
+      <div style="font-family: {DISP}; font-weight: 800; font-size: 46px; line-height: 1.02; color: {MARINHO}; letter-spacing: -0.02em; margin-top: 6px;">Sinalização do posto de Dublin</div>
+      <div style="font-family: {SANS}; font-weight: 600; font-size: 17px; color: {MARINHO}; opacity: 0.82; margin-top: 4px;">RDS Hall 2 · 4 de outubro · 16.794 aptos · 51 seções · 3 portas · Ring 3 confirmado</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <svg width="62" height="44" viewBox="0 0 56 40" aria-hidden="true">{ondas}</svg>
+      <div><div style="font-family: {DISP}; font-weight: 700; font-size: 17px; letter-spacing: 0.10em; color: {MARINHO}; line-height: 1;">ELEIÇÕES</div><div style="font-family: {DISP}; font-weight: 800; font-size: 28px; color: {MARINHO}; line-height: 0.96;">2026</div></div>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 38px; padding: 26px 40px 30px;">
+
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div>
+        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">A cor da porta vem da bandeira do logotipo</h2>
+        <p style="margin: 0 0 14px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">As três faixas do <strong>E</strong> estilizado dão as três cores, escurecidas até segurar texto branco. O magenta e o âmbar que estavam em uso saem: um não existe na identidade, o outro briga com o amarelo da campanha.</p>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;">
+          {swatch(COR['A'],'Porta A · oeste · S4','azul da faixa · 5,62:1 com branco')}
+          {swatch(COR['B'],'Porta B · norte · S5','laranja da campanha · 5,33:1')}
+          {swatch(COR['C'],'Porta C · leste · S6','verde da faixa · 5,01:1')}
+        </div>
+      </div>
+
+      <div>
+        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">O campo institucional</h2>
+        <p style="margin: 0 0 14px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">O amarelo é o campo da campanha — se cada peça for amarela, as três portas ficam iguais e a cor deixa de codificar. Ele vive numa faixa no topo, entre 9% e 18% da altura da peça; o corpo é da cor da porta.</p>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;">
+          {swatch(AMARELO,'Amarelo campanha','faixa institucional', MARINHO)}
+          {swatch(MARINHO,'Marinho','toda tipografia')}
+          {swatch(OFFW,'Off-white','fundo das peças de lista', MARINHO)}
+        </div>
+      </div>
+
+      <div style="border-left: 5px solid {MARINHO}; padding: 12px 0 12px 16px; background: #FFFFFF;">
+        <div style="font-family: {SANS}; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; color: {MARINHO}; margin-bottom: 6px;">A REGRA QUE NÃO SE QUEBRA</div>
+        <p style="margin: 0; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #333A42; max-width: 58ch;">A <strong>letra</strong> identifica a fila; a cor é apoio. Em nenhuma peça a cor aparece sozinha. É o que salva o eleitor com daltonia — laranja e verde se aproximam para deuteranopes, e a letra resolve.</p>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div>
+        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">Corpo mínimo por distância de leitura</h2>
+        <p style="margin: 0 0 10px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">Toda prancha ao lado está a <strong>1 px = 2 mm</strong>. O que se vê na tela é a proporção real da peça impressa.</p>
+        <table style="border-collapse: collapse; width: 100%;">
+          <thead><tr>
+            <th style="text-align: left; padding: 0 14px 7px 0; font-family: {SANS}; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; color: #7A828C; border-bottom: 1.5px solid #C9CFD4;">CORPO</th>
+            <th style="text-align: left; padding: 0 14px 7px 0; font-family: {SANS}; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; color: #7A828C; border-bottom: 1.5px solid #C9CFD4;">LÊ-SE A</th>
+            <th style="text-align: left; padding: 0 0 7px; font-family: {SANS}; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; color: #7A828C; border-bottom: 1.5px solid #C9CFD4;">ONDE</th>
+          </tr></thead>
+          <tbody>{linhas_dist}</tbody>
+        </table>
+      </div>
+
+      <div>
+        <h2 style="margin: 0 0 4px; font-family: {DISP}; font-weight: 800; font-size: 21px; color: {MARINHO};">O que o eleitor precisa saber</h2>
+        <p style="margin: 0 0 12px; font-family: {SANS}; font-size: 14.5px; line-height: 1.5; color: #5A6270; max-width: 58ch;">Uma informação só: <strong>a seção</strong>. A mesa não tem número em peça nenhuma. A consulta é sempre a mesma — seção → porta — e se repete sete vezes, do gradil da Merrion Road até a boca da zona.</p>
+        <div style="display: flex; gap: 10px; align-items: stretch;">
+          <div style="flex-grow: 1; background: #FFFFFF; padding: 12px 14px;">
+            <div style="font-family: {DISP}; font-weight: 800; font-size: 30px; color: {MARINHO}; font-variant-numeric: tabular-nums;">3313</div>
+            <div style="font-family: {SANS}; font-size: 13px; color: #6B737C; margin-top: 2px;">quatro dígitos, como no e-Título</div>
+          </div>
+          <div style="width: 74px; display: flex; align-items: center; justify-content: center; font-family: {SANS}; font-size: 26px; color: #9AA3AB;">→</div>
+          <div style="width: 140px; background: {COR['A']}; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div style="font-family: {DISP}; font-weight: 800; font-size: 46px; line-height: 1;">A</div>
+            <div style="font-family: {SANS}; font-weight: 600; font-size: 12.5px; opacity: 0.9;">porta A · oeste</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #FFF4D6; border: 1.5px solid {OURO}; padding: 13px 16px;">
+        <div style="font-family: {SANS}; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; color: #8A6608; margin-bottom: 6px;">ANTES DE IR PARA A GRÁFICA</div>
+        <p style="margin: 0; font-family: {SANS}; font-size: 14px; line-height: 1.5; color: #5C4A12; max-width: 58ch;">O logotipo desenhado aqui é <strong>marcação de lugar</strong>: mostra onde a arte oficial entra e quanto espaço ela ocupa. A arte em vetor tem de vir do TSE, junto com a fonte da campanha e a autorização de uso da marca para posto no exterior.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{{"$preview":{{"width":{W},"height":{H}}}}}'>
+class Component extends DCLogic {{
+  renderVals() {{ return {{}}; }}
+}}
+</script>
+</body>
+</html>
+"""
+(OUT / 'Main.dc.html').write_text(html, encoding='utf-8')
+
+# ----------------------------------------------------------------- o index
+GAP, GAPR = 80, 190
+boards, order = {}, []
+notes = {}
+y = 0
+
+def linha(nome_nota, itens, y, titulo_desl=140):
+    """itens: lista de (arquivo, w, h, titulo, interativo)"""
+    x = 0
+    alt = 0
+    for arq, w, h, tit in itens:
+        boards[arq] = {'x': x, 'y': y, 'w': w, 'h': h, 'title': tit}
+        order.append(arq)
+        x += w + GAP
+        alt = max(alt, h)
+    if nome_nota:
+        notes['n%d' % len(notes)] = {'x': 0, 'y': y - 235, 'text': nome_nota,
+                                     'kind': 'title1', 'maxW': max(1200, x - GAP)}
+    return y + alt + GAPR, x - GAP
+
+y, _ = linha('O sistema e onde as peças ficam', [
+    ('Main.dc.html', 1300, 1080, 'Sistema visual'),
+    ('Mapa-Ring3.dc.html', 1300, 1080, 'Posições · Ring 3'),
+    ('Mapa-Hall2.dc.html', 1180, 1224, 'Posições · Hall 2'),
+], y)
+
+y, _ = linha('Fora do recinto — a consulta acontece aqui', [
+    ('P0-Consulta.dc.html', 1000, 500, 'P0 · descubra sua seção · mesh 2,0 × 1,0 m'),
+    ('P0-Mestra.dc.html', 1000, 500, 'P0 · tabela mestra · mesh 2,0 × 1,0 m (×2)'),
+    ('P1-Portao.dc.html', 1000, 500, 'P1 · portão · mesh 2,0 × 1,0 m'),
+], y)
+
+y, _ = linha('Na lateral do Hall 2 e na entrada do Ring 3', [
+    ('P2-ParedeLeste.dc.html', 900, 600, 'P2 · parede leste · PVC 1,8 × 1,2 m (×3)'),
+    ('P3-EntradaRing.dc.html', 1000, 500, 'P3 · entrada do Ring · mesh 2,0 × 1,0 m'),
+    ('P5-Preferencial.dc.html', 1000, 500, 'P5 · preferencial · mesh 2,0 × 1,0 m'),
+], y)
+
+y, _ = linha('Nas bocas das três zonas — o último ponto em que errar custa pouco', [
+    ('P4-ZonaA.dc.html', 1000, 500, 'P4 · boca da zona A · mesh 2,0 × 1,0 m'),
+    ('P4-ZonaB.dc.html', 1000, 500, 'P4 · boca da zona B · mesh 2,0 × 1,0 m'),
+    ('P4-ZonaC.dc.html', 1000, 500, 'P4 · boca da zona C · mesh 2,0 × 1,0 m'),
+], y)
+
+y, _ = linha('Na fachada e dentro do salão', [
+    ('P5-VinilA.dc.html', 600, 350, 'P5 · vinil no vidro · letra 300 mm'),
+    ('P5-VinilB.dc.html', 600, 350, 'P5 · vinil no vidro · letra 300 mm'),
+    ('P5-VinilC.dc.html', 600, 350, 'P5 · vinil no vidro · letra 300 mm'),
+    ('P7-Saida.dc.html', 297, 210, 'P7 · saída · correx A2 (×2)'),
+], y)
+
+y, _ = linha('Os painéis de porta e as placas de grupo', [
+    ('P6-PainelA.dc.html', 425, 1000, 'P6 · painel da porta A · pull-up 850 × 2000 mm'),
+    ('P6-PainelB.dc.html', 425, 1000, 'P6 · painel da porta B · pull-up'),
+    ('P6-PainelC.dc.html', 425, 1000, 'P6 · painel da porta C · pull-up'),
+    ('P6-BlocoA3.dc.html', 300, 800, 'P6 · grupo A3 · x-banner 600 × 1600 mm'),
+    ('P6-BlocoC4.dc.html', 300, 800, 'P6 · grupo C4 · x-banner'),
+], y)
+
+index = {
+    'v': 3,
+    'createdOnFiles': {'v': 1, 'at': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')},
+    'title': 'Sinalização Eleições 2026 · Posto de Dublin',
+    'launch': {'view': 'canvas'},
+    'pages': [],
+    'boards': boards,
+    'order': order,
+    'notes': notes,
+    'designSystems': [],
+}
+(OUT / 'canvas.json').write_text(json.dumps(index, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+print('Main + canvas.json:', len(boards), 'pranchas')
