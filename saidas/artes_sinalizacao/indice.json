@@ -1,0 +1,150 @@
+{
+ "gerado_por": "scripts/pranchas/gera_artes.py",
+ "escala": "1 px da prancha = 2 mm da peça",
+ "pecas": [
+  {
+   "arquivo": "P0-consulta",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "Calçada da Merrion Road, no gradil do RDS, 20–30 m antes do portão",
+   "prancha": "P0-Consulta.dc.html"
+  },
+  {
+   "arquivo": "P0-tabela-mestra",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 2,
+   "onde": "Gradil da Merrion Road, ao lado do ponto de consulta",
+   "prancha": "P0-Mestra.dc.html"
+  },
+  {
+   "arquivo": "P1-portao",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "Nas grades do portão de eleitores, uma folha de cada lado do vão",
+   "prancha": "P1-Portao.dc.html"
+  },
+  {
+   "arquivo": "P2-parede-leste",
+   "largura_mm": 2000,
+   "altura_mm": 1000,
+   "quantidade": 3,
+   "onde": "Vãos entre as 4 saídas de emergência da lateral leste, a 10,75 · 22,50 · 33,90 m do canto norte",
+   "prancha": "P2-ParedeLeste.dc.html"
+  },
+  {
+   "arquivo": "P3-entrada-ring3",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "Amarrado na CCB do corredor de chegada do Ring 3, logo depois do canto nordeste",
+   "prancha": "P3-EntradaRing.dc.html"
+  },
+  {
+   "arquivo": "P4-boca-zona-A",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "CCB de fechamento imediatamente antes da boca da zona A, virada para o trecho de fundo",
+   "prancha": "P4-ZonaA.dc.html"
+  },
+  {
+   "arquivo": "P4-boca-zona-B",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "CCB de fechamento imediatamente antes da boca da zona B",
+   "prancha": "P4-ZonaB.dc.html"
+  },
+  {
+   "arquivo": "P4-boca-zona-C",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "CCB de fechamento imediatamente antes da boca da zona C",
+   "prancha": "P4-ZonaC.dc.html"
+  },
+  {
+   "arquivo": "P5-vinil-porta-A",
+   "largura_mm": 1200,
+   "altura_mm": 700,
+   "quantidade": 1,
+   "onde": "Por dentro do vidro da fachada sul, sobre o vão da S4",
+   "prancha": "P5-VinilA.dc.html"
+  },
+  {
+   "arquivo": "P5-vinil-porta-B",
+   "largura_mm": 1200,
+   "altura_mm": 700,
+   "quantidade": 1,
+   "onde": "Por dentro do vidro da fachada sul, sobre o vão da S5",
+   "prancha": "P5-VinilB.dc.html"
+  },
+  {
+   "arquivo": "P5-vinil-porta-C",
+   "largura_mm": 1200,
+   "altura_mm": 700,
+   "quantidade": 1,
+   "onde": "Por dentro do vidro da fachada sul, sobre o vão da S6",
+   "prancha": "P5-VinilC.dc.html"
+  },
+  {
+   "arquivo": "P5-preferencial",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "Gradil branco de pedestres do apron, junto à porta S7",
+   "prancha": "P5-Preferencial.dc.html"
+  },
+  {
+   "arquivo": "P6-painel-porta-A",
+   "largura_mm": 1000,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "Logo depois da porta S4, dentro do salão, do lado oposto à curva do eleitor",
+   "prancha": "P6-PainelA.dc.html"
+  },
+  {
+   "arquivo": "P6-painel-porta-B",
+   "largura_mm": 1000,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "Logo depois da porta S5 — a porta cujo destino não se vê da entrada",
+   "prancha": "P6-PainelB.dc.html"
+  },
+  {
+   "arquivo": "P6-painel-porta-C",
+   "largura_mm": 1000,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "Logo depois da porta S6, dentro do salão",
+   "prancha": "P6-PainelC.dc.html"
+  },
+  {
+   "arquivo": "P6-bloco-A3",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "Boca do corredor do bloco A3 (MRV 22), a 4,6 m da parede oeste",
+   "prancha": "P6-BlocoA3.dc.html"
+  },
+  {
+   "arquivo": "P6-bloco-C4",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "Boca do corredor do bloco C4, a 4,6 m da parede leste",
+   "prancha": "P6-BlocoC4.dc.html"
+  },
+  {
+   "arquivo": "P7-saida",
+   "largura_mm": 594,
+   "altura_mm": 420,
+   "quantidade": 2,
+   "onde": "Dentro do salão, sobre cada vão de saída (S2 e S8)",
+   "prancha": "P7-Saida.dc.html"
+  }
+ ]
+}
