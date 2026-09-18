@@ -1,0 +1,39 @@
+name: confere
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  confere:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: instala as dependências da cadeia
+        run: pip install pandas openpyxl pdfplumber
+
+      - name: confere os dados, contra os três PDFs oficiais
+        run: python3 scripts/confere_prancheta.py
+
+      - name: confere os sete itens do arranjo
+        run: python3 scripts/confere_arranjo.py
+
+      - name: a cadeia reproduz o que está versionado
+        run: |
+          python3 scripts/mapa_agregacoes.py
+          python3 scripts/gera_pagina.py
+          python3 scripts/gera_decisoes_base.py --grava
+          python3 scripts/arranjo_paredes.py --grava
+          python3 scripts/gera_prancheta_por_secao.py
+          python3 scripts/gera_editor.py
+          git diff --exit-code -- data/decisoes.json \
+                                  cenarios/paredes-abc-20260915.json \
+                                  saidas/dados.json \
+                                  saidas/prancheta_por_secao.html \
+                                  saidas/dublin_agregacoes.html \
+                                  saidas/editor.html
