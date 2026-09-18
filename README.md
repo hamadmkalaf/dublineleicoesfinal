@@ -29,7 +29,11 @@ resolvida estão em
 4. [`PENDENCIAS.md`](PENDENCIAS.md) e
    [`docs/decisoes_em_aberto.md`](docs/decisoes_em_aberto.md): o que falta
    fazer e o que falta decidir.
-5. [`DOCUMENTACAO_PROJETO.md`](DOCUMENTACAO_PROJETO.md) e os `docs/SESSAO_*.md`:
+5. [`docs/CONTEXTO_SINALIZACAO_2026-09-18.md`](docs/CONTEXTO_SINALIZACAO_2026-09-18.md):
+   o contexto da sinalização — as 37 peças, a identidade, os formatos e o
+   orçamento sobre cotação. Para levar o assunto a outro repositório:
+   [`transferencia/TRANSFERENCIA_SINALIZACAO_2026-09-18.md`](transferencia/TRANSFERENCIA_SINALIZACAO_2026-09-18.md).
+6. [`DOCUMENTACAO_PROJETO.md`](DOCUMENTACAO_PROJETO.md) e os `docs/SESSAO_*.md`:
    documentação das etapas e passagens entre sessões, para quem for retomar
    uma delas.
 

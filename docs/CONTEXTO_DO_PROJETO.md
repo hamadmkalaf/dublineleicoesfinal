@@ -141,6 +141,13 @@ zonas protegidas de 16/09: recuo de 3 m em N2 e O2, faixa de emergência de 3 m
 na fachada leste, sala de apoio entre O1 e a parede norte (7,80 m de
 profundidade — **é suposição, falta medir em campo**).
 
+> **A sinalização tem contexto próprio.** Desde 18/09 o assunto — identidade,
+> arte, formatos, orçamento — vive em
+> [`CONTEXTO_SINALIZACAO_2026-09-18.md`](CONTEXTO_SINALIZACAO_2026-09-18.md),
+> e o roteiro para levá-lo a outro repositório, em
+> [`transferencia/TRANSFERENCIA_SINALIZACAO_2026-09-18.md`](../transferencia/TRANSFERENCIA_SINALIZACAO_2026-09-18.md).
+> O resumo abaixo é só o que o resto do projeto precisa saber.
+
 **A sinalização (v2, 16/09).** O eleitor precisa saber só a **seção**; a
 consulta encolheu para *seção → porta* e as mesas deixaram de exibir número na
 sinalização externa. Ponto "descubra sua seção" (**P0**) na calçada da Merrion
