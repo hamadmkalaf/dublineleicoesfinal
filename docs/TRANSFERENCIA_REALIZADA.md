@@ -97,10 +97,9 @@ repositório e **não precisou de reescrita**. Confirmado por inspeção.
 
 `docs/separadores/CONFERENCIA_PRANCHETA_2026-09-15.md` **não** estava na lista dos
 12 arquivos do roteiro dos separadores — é citado por ele como fonte. Foi trazido
-porque é onde o abandono do Ring 3 está registrado, e essa é a evidência central do
-conflito descrito em `docs/CONFLITO_RING3.md`. Ele cita scripts e documentos que
-ficaram na origem; o cabeçalho do arquivo declara quais, para que não sejam
-confundidos com links quebrados.
+porque é onde está o porquê de cada decisão de arranjo do Hall 2. Ele cita scripts e
+documentos que ficaram na origem; o cabeçalho do arquivo declara quais, para que não
+sejam confundidos com links quebrados.
 
 ## 6. Verificação de aceite — resultado
 
@@ -125,14 +124,22 @@ com resultado idêntico.
 | 2 | `98 unifilas em 133 m · reserva móvel 2` e `fita: 769 m (846 m com retoque) · 20 rolos de 50 m` | ✅ |
 | 3 | `--grava` duas vezes gera SVG byte a byte idênticos, e idênticos aos copiados | ✅ md5 conferido nos 4 SVG e no JSON, nas duas gravações e contra os arquivos copiados. **É o que prova que as três dependências chegaram inalteradas** |
 
-## 7. O que a transferência **não** resolveu
+## 7. Revisão de 18/09 — Ring 3 confirmado e artefatos versionados
 
-**Os dois temas discordam sobre o Ring 3**, e a contradição só aparece quando os
-dois chegam ao mesmo repositório. Nenhum dos dois roteiros menciona o outro.
+Depois da transferência, o Posto **confirmou o Ring 3** como pátio de fila, e os
+documentos daqui foram alinhados a isso: `data/decisoes.json`, o `CLAUDE.md`, o
+contexto dos separadores e a conferência de 15/09. Onde um trecho tirava a sua
+conclusão da hipótese contrária, o trecho foi **reescrito para continuar de pé**, e
+não apagado — caso da razão 1 do achado de arranjo, que agora se apoia nas três zonas
+iguais do pátio, e das duas notas de densidade.
 
-A contradição foi **registrada, não resolvida** — está isolada em
-`docs/CONFLITO_RING3.md`, com a prova documental e o que cai em cada hipótese.
-Resolver por edição de texto faria o repositório parecer coerente sem que nada
-tivesse sido decidido, e a próxima sessão herdaria uma falsa coerência.
+A confirmação é coerente com os artefatos: a folha `mapa/ring3_montagem.html` (16/09)
+traz a montagem com 180 CCBs, e o artefato de sinalização v2 (17/09) diz no cabeçalho
+*"Ring 3 confirmado"* e traz um `Mapa-Ring3` entre as suas pranchas. Os dois são
+posteriores ao arranjo de 15/09.
 
-É a primeira coisa a levar ao Posto.
+Na mesma revisão, os **artefatos ganharam fonte versionada** em `mapa/`, com o
+manifesto `mapa/artefatos.json` — URL, versão publicada e `sha256` de cada cópia. Ver
+`mapa/README.md`, que registra também **duas divergências entre artefatos** que
+continuam abertas: a largura das três zonas do Ring 3 (12,23/14,14/12,23 contra três
+iguais de ~12,87 m) e o número de CCBs (180 contra 179).

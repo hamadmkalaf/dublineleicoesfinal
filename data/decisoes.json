@@ -743,9 +743,9 @@
   }
  ],
  "ring3": {
-  "situacao": "abandonado em 15/09/2026 — o RDS proibiu fila no terreno e não houve autorização de Brasília; a fila passa a ser dimensionada dentro do Hall 2, uma por parede."
+  "situacao": "pátio de fila vigente, confirmado em 18/09/2026 — recinto ao ar livre de 44,0 × 35,0 m ao sul do Hall 2, três zonas de 23 raias, uma por parede (A oeste, B norte, C leste). Montagem em mapa/ring3_montagem.html."
  },
- "entradas_por_parede": "Decisão do Posto de 15/09/2026: cada entrada serve uma parede inteira e só ela — A (S4) a oeste, B (S5) ao norte, C (S6) a leste. Equilibrar as entradas e equilibrar as paredes passaram a ser o mesmo problema. Substitui a atribuição por cota do Ring 3, que não existe mais.",
+ "entradas_por_parede": "Decisão do Posto de 15/09/2026: cada entrada serve uma parede inteira e só ela — A (S4) a oeste, B (S5) ao norte, C (S6) a leste. Equilibrar as entradas e equilibrar as paredes passaram a ser o mesmo problema. Substitui a atribuição por cota do Ring 3: as três zonas do pátio passaram a ser dimensionadas iguais, uma por parede.",
  "sinalizacao_portas": {
   "N1": {
    "papel": "fechada",

@@ -13,9 +13,11 @@
 
 ## 1. O problema, em um parágrafo
 
-O Posto tem **100 unifilas** no orçamento (item d, EUR 1.303,00) e um salão em
-que **toda a fila tem de caber dentro** — o RDS proibiu fila no seu terreno e o
-Ring 3 foi abandonado em 15/09. A chefia aprovou **fita adesiva no chão** como
+O Posto tem **100 unifilas** no orçamento (item d, EUR 1.303,00) e um salão que
+precisa conduzir cada eleitor da porta até a mesa. A espera acontece **fora**, no
+pátio de fila do Ring 3; dentro do Hall 2 o que há é o percurso porta → mesa, mais
+o serpenteado à frente das três mesas de maior comparecimento. A chefia aprovou
+**fita adesiva no chão** como
 estrutura de fila, com o papel de sinalização das seções colado junto. A
 pergunta que esta conversa respondeu não foi "como montar a fila com unifila",
 e sim **que parte do desenho não pode ser fita** — porque o traçado completo do

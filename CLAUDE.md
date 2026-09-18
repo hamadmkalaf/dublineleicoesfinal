@@ -11,24 +11,7 @@ necessário para chegar a elas.
 |---|---|---|
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
-
----
-
-## ⚠ Leia primeiro: os dois temas discordam sobre o Ring 3
-
-**Os dois temas não são compatíveis como estão.** O tema dos separadores parte de
-que o **Ring 3 foi abandonado em 15/09** — o RDS proibiu fila no terreno dele, e
-`data/decisoes.json` registra isso como decisão. O tema dos voluntários mantém o
-Ring 3 como pátio de fila ao ar livre e apoia nele 5 dos seus 17 postos (R1–R5),
-mais o estágio do apron (A1–A3) e todos os achados quantitativos da sua §5.
-
-**Nada neste repositório resolve essa contradição, e ela não deve ser resolvida por
-edição de texto.** É decisão do Posto. Antes de usar qualquer número do tema de
-voluntários, leia **`docs/CONFLITO_RING3.md`**, que isola exatamente o que cai e o
-que sobrevive em cada hipótese.
-
-A seção de geometria abaixo é reproduzida **como veio** do tema de voluntários, ou
-seja, com o Ring 3 em pé. Está marcada.
+| **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
 
 ---
 
@@ -45,9 +28,9 @@ seja, com o Ring 3 em pé. Está marcada.
 
 ## Geometria do local (planta de 16/09/2026)
 
-> **Atenção:** o trecho do Ring 3 e do apron pressupõe fila fora do salão, que a
-> decisão de 15/09 em `data/decisoes.json` derrubou. Ver `docs/CONFLITO_RING3.md`.
-> O trecho do Hall 2 é o que os dois temas usam e **não** está em disputa.
+O Ring 3 como pátio de fila está **confirmado** (18/09). A folha de montagem —
+23 raias por zona, vão de 1,20 m, 180 CCBs dos 200 em estoque, 506 m de fita
+grossa, lotação 2.118 — está versionada em `mapa/ring3_montagem.html`.
 
 O percurso tem três trechos físicos distintos. **Ring 3 é o pátio de fila ao ar
 livre; Hall 2 é o salão de votação.**
@@ -155,21 +138,18 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - **Um branch só, com merge de volta.** A confusão no repositório de origem teve
   causa conhecida: cada sessão trabalhou num branch próprio e nenhuma mesclou de
   volta, e o sintoma mais caro foi um gerador lendo um `decisoes.json` que outro
-  branch já havia superado. O conflito do Ring 3 registrado acima é outro sintoma
-  do mesmo problema.
+  branch já havia superado.
 
 ## Pendências que movem números
 
 1. **O RDS permite fita adesiva no piso do Hall 2?** Bloqueante: se não, o desenho
    dos separadores cai inteiro, e as 100 unifilas passariam a ter de fazer sozinhas
    um trabalho de 395.
-2. **O Ring 3 está de pé ou não?** Ver `docs/CONFLITO_RING3.md`. Decide se 5 dos 17
-   postos de voluntários existem.
-3. Método de identificação do eleitor — eletrônico/biométrico ou caderno físico
+2. Método de identificação do eleitor — eletrônico/biométrico ou caderno físico
    (`PENDENCIAS.md` item 5). Decide tempo por eleitor e criticidade do balcão de
    consulta.
-4. Confirmação da expectativa de comparecimento.
-5. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900), as 15
+3. Confirmação da expectativa de comparecimento.
+4. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900), as 15
    unifilas adicionais (EUR 195,45) e os 8 rolos de fita.
 
 A lista completa e por tema está em `PENDENCIAS.md` e nas seções finais dos dois

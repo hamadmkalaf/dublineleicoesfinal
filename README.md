@@ -4,9 +4,8 @@ Organização logística do 1º turno (**04/10/2026**, 8h–17h) no RDS Ballsbri
 Dublin 4, e do eventual 2º turno (25/10/2026). Repositório **final**: carrega as
 versões vigentes, não o histórico de trabalho.
 
-> **Antes de usar qualquer número:** os dois temas aqui reunidos discordam sobre o
-> Ring 3. Leia **[`docs/CONFLITO_RING3.md`](docs/CONFLITO_RING3.md)**.
-> A memória do projeto está em [`CLAUDE.md`](CLAUDE.md).
+> A memória do projeto — fatos fixos, geometria, cenários e regras — está em
+> [`CLAUDE.md`](CLAUDE.md).
 
 ---
 
@@ -103,12 +102,12 @@ README.md                     este arquivo
 cenarios/                     paredes-abc-20260915.json — posição e rotação das 28 mesas
 data/                         prancheta_hall2.json, decisoes.json, grupos_mesas.json
 docs/
-  CONFLITO_RING3.md           ⚠ a contradição aberta entre os dois temas
   TRANSFERENCIA_REALIZADA.md  o que veio de onde, e o que ficou para trás
   contexto_geral.md           orçamento, layout, histórico e taxas de 2022
   separadores/                o tema dos separadores de fila
   voluntarios/                o tema dos voluntários e do fluxo
-mapa/                         voluntarios_postos.html + README com as URLs dos artefatos
+mapa/                         fonte versionada dos artefatos + artefatos.json (manifesto)
+  sinalizacao/                as 21 peças P0–P7, os dois mapas e o canvas
 plantas/                      imagens das plantas do Ring 3 e do Hall 2  (a preencher)
 saidas/                       dados.json e as saídas geradas do tema dos separadores
 scripts/                      separadores_fila.py, zonas_balanceadas.py
@@ -129,11 +128,10 @@ porque a agregação de seções não é tema deste repositório. Consequência 
 voltar a `hamadmkalaf/eleicoes2026`. Ele foi copiado sem alteração, e as
 conferências dos dois temas batem contra ele.
 
-**2. Faltam os desenhos que sustentam a geometria.** Quatro artefatos e as plantas
-em imagem não estavam em repositório nenhum. `mapa/README.md` lista as URLs e
-registra quais deles foram lidos na íntegra e quais não. **A descrição de geometria
-do `CLAUDE.md` é prosa escrita a partir dessas plantas; sem as imagens, ela perde a
-fonte.**
+**2. Faltam as plantas em imagem.** Os artefatos agora têm fonte versionada em
+`mapa/` (ver `mapa/README.md` e o manifesto `mapa/artefatos.json`), mas as **plantas
+em imagem** do Ring 3 e do Hall 2, das quais a descrição de geometria do `CLAUDE.md`
+foi escrita, continuam fora do repositório. Sem elas, a descrição perde a fonte.
 
 ---
 
@@ -141,7 +139,5 @@ fonte.**
 
 1. **O RDS permite fita adesiva no piso do Hall 2?** Se não, o desenho dos
    separadores cai inteiro. Ninguém confirmou.
-2. **O Ring 3 está de pé?** Ver [`docs/CONFLITO_RING3.md`](docs/CONFLITO_RING3.md).
-   Decide se 5 dos 17 postos de voluntários existem.
-3. Submeter o layout de barreira ao responsável de incêndio do RDS — barreira em
+2. Submeter o layout de barreira ao responsável de incêndio do RDS — barreira em
    zona de egresso muda o cálculo de evacuação, e isso se submete, não se comunica.
