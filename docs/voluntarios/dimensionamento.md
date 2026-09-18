@@ -139,7 +139,7 @@ que este documento trazia antes, que fica descartada. Comparecimento esperado de
 3.860 / 3.755 / 3.802 (spread de 2,8%), com uma das três urnas grandes em cada zona.
 Nada a mexer.
 
-**O Ring dá cerca de meia hora de fôlego.** 23 raias × (12,23 + 14,14 + 12,23) m =
+**O Ring dá cerca de meia hora de fôlego.** 23 raias × (3 × 12,87) m =
 **888 m de fila**. A 0,5–0,8 m por pessoa, isso comporta **1.100 a 1.800 pessoas**.
 Contra um pico de ~2.300 chegadas/h, o pátio cheio representa **30 a 45 minutos** de
 atraso absorvido. Passando disso, a fila sai pelo canto nordeste e volta para dentro
