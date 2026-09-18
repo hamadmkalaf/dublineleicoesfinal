@@ -1,0 +1,18 @@
+titulo	url	atualizado	tema	gerador_no_repo	status	acao_na_transferencia	exportado_em	arquivo_no_repositorio
+Montagem do Ring 3	https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV	2026-09-16	ring3	scripts/ring3_montagem.py	reproduzivel	migrar com gerador — versão final do Ring 3	2026-09-16	saidas/ring3_montagem.html (gerado)
+Urnas de Dublin	https://claude.ai/artifact/8YfHrRWvw7j8rZEZ2PgKiv	2026-08-13	secoes	scripts/mapa_agregacoes.py + scripts/gera_pagina.py	reproduzivel	migrar com gerador — versão final das agregações	2026-09-16	saidas/dublin_agregacoes.html (gerado)
+Prancheta pelas Seções	https://claude.ai/artifact/Szv5egKpHy3umh4udAybvr	2026-09-16	secoes	—	orfao	exportado	2026-09-16	artefatos/prancheta-pelas-secoes.html
+Rota do Eleitor RDS	https://claude.ai/artifact/1PQjgzstbiNorfJgagXhB5	2026-09-06	fluxo	—	orfao	exportado	2026-09-16	artefatos/rota-do-eleitor-rds.html
+Sinalização RDS Hall 2	https://claude.ai/artifact/BcT5yzxRkSaUsbbHQQgjWF	2026-09-15	sinalizacao	—	orfao	exportado	2026-09-16	artefatos/sinalizacao-rds-hall2.html
+Prancheta do Hall 2	https://claude.ai/artifact/XTd4LLmW9Fyh3UDLtjoc2T	2026-09-14	salao	—	orfao	exportado	2026-09-16	artefatos/prancheta-do-hall2.html
+Posto de Dublin 2026	https://claude.ai/artifact/4VRSyeuFu8nSm1TFJ7xWXC	2026-09-15	panorama	—	orfao	exportado — candidato a índice do novo repositório	2026-09-16	artefatos/posto-de-dublin-2026/index.html (+16 arquivos)
+Filas sem o Ring 3	https://claude.ai/artifact/P3x8Hy3j8gnEYKdwwfCSTe	2026-09-15	filas	—	orfao	exportado — contingência, verificar se ainda vale	2026-09-16	artefatos/filas-sem-o-ring3/index.html (+2 svg)
+Fitas no piso do Hall 2	https://claude.ai/artifact/T77jvrJmLK1HxTT4qFRAGY	2026-09-12	salao	—	orfao	exportado	2026-09-16	artefatos/fitas-no-piso-do-hall2.html
+Simulador do Hall 2	https://claude.ai/artifact/X1MEdK3CosTCZH9486JesV	2026-09-08	simulacao	—	orfao	exportado — tem JS, conferir se roda fora do claude.ai	2026-09-16	artefatos/simulador-do-hall2.html
+Barreiras do Hall 2	https://claude.ai/artifact/V1mFt2njTvD2VzntDK6Crt	2026-09-11	salao	—	orfao	exportado — verificar se foi superado por Montagem do Ring 3	2026-09-16	artefatos/barreiras-do-hall2.html
+Planta-base do Hall 2	https://claude.ai/artifact/9xHx31DwUUtEtgpsbxZHxf	2026-09-06	salao	—	orfao	exportado — base geométrica de vários outros	2026-09-16	artefatos/planta-base-do-hall2.html
+Ring 3, cenários de fila	https://claude.ai/artifact/QrLDxdnNexR5x5iPjLi51Y	2026-09-11	ring3	—	superado	NÃO migrar como versão final — superado por Montagem do Ring 3; guardar só se quiser o histórico da decisão	2026-09-16	artefatos/posto-de-dublin-2026/pecas/ring3_quatro.html (só a cópia do painel)
+As 28 Mesas nas Paredes	https://claude.ai/artifact/3AtxC7Qro6LvLwob25nK3d	2026-08-31	salao	—	superado	superado, guardado em historico/	2026-09-16	artefatos/historico/as-28-mesas-nas-paredes-2026-08-31.html
+Quantas mesas cabem no Hall 2	https://claude.ai/artifact/Jci5uV3yxscF1Fw2teRfdX	2026-09-03	salao	—	superado	superado, guardado em historico/	2026-09-16	artefatos/historico/quantas-mesas-cabem-no-hall2-2026-09-03.html
+Fluxo do Posto de Dublin	https://claude.ai/artifact/QTbGi2qDxYy76BnSXmxJSD	2026-08-28	fluxo	—	superado	superado, guardado em historico/	2026-09-16	artefatos/historico/fluxo-do-posto-de-dublin-2026-08-28.html
+Teses Temáticas — Arquivo de Pesquisa	https://claude.ai/artifact/6XBWS8yH2rFNMTZ4PhWXE9	2026-07-26	fora_de_escopo	—	nao_pertence	não migrar — outro projeto	—	— (não migrado)
