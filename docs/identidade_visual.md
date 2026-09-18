@@ -19,18 +19,36 @@ que ela traz, e que a sinalização do posto não inventa:
 | Grafismos | a estrela de quatro pontas (✦) e a linha ondulada |
 | Tipografia | display condensada, bold, caixa alta; texto em sans humanista de terminações arredondadas |
 
-### Cores amostradas das referências
+### A paleta oficial (carta "CORES", amostrada em 18/09)
 
-| Papel | Hex | Onde aparece |
-|---|---|---|
-| Amarelo campanha | `#F8C030` | fundo dominante das peças |
-| Ouro do logotipo | `#E6B00F` | o "2026" |
-| Marinho | `#042B5A` | "ELEIÇÕES", títulos, corpo de texto |
-| Azul bandeira | `#398CB0` | faixa do E, caixas de destaque |
-| Azul claro | `#77ACCF` | apoios, fundos secundários |
-| Verde bandeira | `#95C11F` / `#5F8722` | faixa do E |
-| Laranja | `#F07E26` | títulos de campanha, destaques |
-| Off-white | `#F0F0E8` | fundo alternativo, e a faixa institucional desde 17/09 |
+Onze tons em três famílias, "inspirados nas cores vibrantes da nossa bandeira
+nacional". São estes que pintam fundo, faixa e texto de apoio nas peças —
+antes de 18/09 a sinalização era branca e marinho, e não era a identidade.
+
+| Família | Tons |
+|---|---|
+| Verdes | `#5A6E6E` ardósia · `#648232` · `#96B43C` · `#B4C83C` limão |
+| Azuis | `#5A6E96` · `#6E82A0` · `#5A8CAA` · `#78AAC8` |
+| Quentes | `#DC963C` laranja · `#DCB43C` ouro · `#E6BE3C` amarelo |
+
+### O logotipo
+
+| Elemento | O que é |
+|---|---|
+| "ELEIÇÕES" | **carvão `#3F3F3F`**, não marinho |
+| o **E** | três ondas grossas — `#E8B800` amarelo, `#4888A8` azul, `#588018` verde — ocupando a caixa alta da letra; é a bandeira |
+| "2026" | **ouro `#E8B800`**, corpo maior que o da palavra acima |
+| hashtag | **#VOTO<span>NA</span>DEMOCRACIA**, o "NA" em azul |
+| assinatura | **nenhuma** — a marca da Justiça Eleitoral saiu das peças por decisão do Posto (18/09) |
+
+Ondas de amplitude baixa e traço grosso: é isso que faz três **barras** que se
+leem como um E. Desenhadas finas, o bloco vira rabisco e "ELEIÇÕES" abre um
+buraco no meio — foi o primeiro desenho, e não servia.
+
+### O fundo das peças
+
+`#F2EFE2` **osso**, não branco; divisões em `#E4DFCC`. A faixa institucional
+do topo é **ardósia `#5A6E6E`**, com o logotipo em branco e ouro.
 
 ## 2. Onde a identidade e a operação se chocam
 

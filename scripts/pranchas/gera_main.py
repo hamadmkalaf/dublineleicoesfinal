@@ -173,21 +173,21 @@ y, _ = linha('O sistema e onde as peças ficam', [
 ], y)
 
 y, _ = linha('Fora do recinto — a consulta acontece aqui', [
-    ('P0-Consulta.dc.html', 1000, 500, 'P0 · descubra sua seção · mesh 2,0 × 1,0 m'),
-    ('P0-Mestra.dc.html', 1000, 500, 'P0 · tabela mestra · mesh 2,0 × 1,0 m (×2)'),
-    ('P1-Portao.dc.html', 1000, 500, 'P1 · portão · mesh 2,0 × 1,0 m'),
+    ('P0-Consulta.dc.html', 1040, 410, 'P0 · descubra sua seção · fence banner 2080 × 820'),
+    ('P0-Mestra.dc.html', 1040, 410, 'P0 · tabela mestra · fence banner (×2)'),
+    ('P1-Portao.dc.html', 1040, 410, 'P1 · portão · fence banner'),
 ], y)
 
 y, _ = linha('Na lateral do Hall 2 e na entrada do Ring 3', [
-    ('P2-ParedeLeste.dc.html', 900, 600, 'P2 · parede leste · PVC 1,8 × 1,2 m (×3)'),
-    ('P3-EntradaRing.dc.html', 1000, 500, 'P3 · entrada do Ring · mesh 2,0 × 1,0 m'),
-    ('P5-Preferencial.dc.html', 1000, 500, 'P5 · preferencial · mesh 2,0 × 1,0 m'),
+    ('P2-ParedeLeste.dc.html', 1000, 500, 'P2 · parede leste · PVC 2000 × 1000 (×3)'),
+    ('P3-EntradaRing.dc.html', 1040, 410, 'P3 · entrada do Ring · fence banner'),
+    ('P5-Preferencial.dc.html', 1040, 410, 'P5 · preferencial · fence banner'),
 ], y)
 
 y, _ = linha('Nas bocas das três zonas — o último ponto em que errar custa pouco', [
-    ('P4-ZonaA.dc.html', 1000, 500, 'P4 · boca da zona A · mesh 2,0 × 1,0 m'),
-    ('P4-ZonaB.dc.html', 1000, 500, 'P4 · boca da zona B · mesh 2,0 × 1,0 m'),
-    ('P4-ZonaC.dc.html', 1000, 500, 'P4 · boca da zona C · mesh 2,0 × 1,0 m'),
+    ('P4-ZonaA.dc.html', 1040, 410, 'P4 · boca da zona A · fence banner'),
+    ('P4-ZonaB.dc.html', 1040, 410, 'P4 · boca da zona B · fence banner'),
+    ('P4-ZonaC.dc.html', 1040, 410, 'P4 · boca da zona C · fence banner'),
 ], y)
 
 y, _ = linha('Na fachada e dentro do salão', [
@@ -198,16 +198,29 @@ y, _ = linha('Na fachada e dentro do salão', [
 ], y)
 
 y, _ = linha('Os painéis de porta e as placas de grupo', [
-    ('P6-PainelA.dc.html', 425, 1000, 'P6 · painel da porta A · pull-up 850 × 2000 mm'),
-    ('P6-PainelB.dc.html', 425, 1000, 'P6 · painel da porta B · pull-up'),
-    ('P6-PainelC.dc.html', 425, 1000, 'P6 · painel da porta C · pull-up'),
-    ('P6-BlocoA3.dc.html', 300, 800, 'P6 · grupo A3 · x-banner 600 × 1600 mm'),
-    ('P6-BlocoC4.dc.html', 300, 800, 'P6 · grupo C4 · x-banner'),
+    ('P6-PainelA.dc.html', 500, 1000, 'P6 · painel da porta A · pull-up 1000 × 2000'),
+    ('P6-PainelB.dc.html', 500, 1000, 'P6 · painel da porta B · pull-up 1000 × 2000'),
+    ('P6-PainelC.dc.html', 500, 1000, 'P6 · painel da porta C · pull-up 1000 × 2000'),
+    ('P6-BlocoA3.dc.html', 425, 1000, 'P6 · grupo A3 · pull-up 850 × 2000'),
+    ('P6-BlocoC4.dc.html', 425, 1000, 'P6 · grupo C4 · pull-up 850 × 2000'),
 ], y)
+
+# O índice publicado carrega chaves que a página escreve por conta própria --
+# createdOnFiles e attachments.  Reescrever sem elas apaga estado do canvas,
+# então o que já existe é preservado.
+publicado = {}
+_ant = OUT / 'canvas.json'
+if _ant.exists():
+    try:
+        publicado = json.loads(_ant.read_text(encoding='utf-8'))
+    except Exception:
+        publicado = {}
 
 index = {
     'v': 3,
-    'createdOnFiles': {'v': 1, 'at': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')},
+    'createdOnFiles': publicado.get('createdOnFiles') or
+        {'v': 1, 'at': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')},
+    'attachments': publicado.get('attachments', {}),
     'title': 'Sinalização Eleições 2026 · Posto de Dublin',
     'launch': {'view': 'canvas'},
     'pages': [],
