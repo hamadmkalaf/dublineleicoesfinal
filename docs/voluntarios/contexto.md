@@ -125,14 +125,18 @@ No C2 as compensações 1 e 2 continuam valendo inteiras; só a terceira ganha f
 
 ## 5. Achados quantitativos, com a conta
 
-- **O Ring dá cerca de meia hora de fôlego.** 23 raias × (12,23 + 14,14 + 12,23) m =
+- **O Ring dá cerca de meia hora de fôlego.** 23 raias × (3 × 12,87) m =
   **888 m de fila**, que a 0,5–0,8 m por pessoa comportam **1.100 a 1.800 pessoas**.
   Contra um pico de ~2.300 chegadas/h, o pátio cheio absorve **30 a 45 minutos** de
   atraso. Passando disso a fila sai pelo canto nordeste e volta para o recinto da RDS.
 - **A unifila orçada não cobre o Ring.** As 23 raias exigem ~24 corridas de barreira por
   zona: 24 × 38,60 m ≈ **926 m**, contra **200 m** orçados (100 separadores, EUR 1.303).
   Faltam da ordem de 700 m, a menos que o gradil do Ring traga estrutura interna.
-  **Questão em aberto, anterior ao fechamento do orçamento.**
+  **Questão em aberto, anterior ao fechamento do orçamento.** A montagem confirmada do
+  Ring resolve o mesmo problema com **outro material** — ~180 CCBs (360 m de barreira
+  rígida) mais 506 m de fita grossa, dentro do estoque de 200 CCBs e sem compra
+  (`mapa/ring3_montagem.html`). São duas contas para a mesma raia: confirmar qual vale
+  antes de orçar.
 - **O Ring é inteiramente descoberto**, e a chance de chuva em 4 de outubro fica entre
   40% e 65% conforme o limiar da fonte. Até 1.800 pessoas na chuva. O miolo do Hall 2
   está vazio na planta e é o único abrigo de escala disponível — pede um protocolo de

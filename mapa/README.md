@@ -49,17 +49,23 @@ por peça, mais `canvas.json` com o título e a posição de cada prancha.
 | **P7** · saída | `P7-Saida` (correx A2, ×2) |
 | Mapas | `Mapa-Ring3` · `Mapa-Hall2` · `Main` (o sistema visual) |
 
-## Duas divergências entre artefatos, a resolver
+## Divergências entre artefatos
 
-Nenhuma foi resolvida aqui — as duas são medição de campo ou decisão do Posto.
+**Resolvida — a largura das três zonas.** As zonas do Ring 3 são **iguais, 12,87 m
+cada** (decisão do Posto, 18/09), como desenha o `Mapa-Ring3` do artefato de
+sinalização (17/09). `ring3_montagem.html` (16/09) desenha **12,23 / 14,14 / 12,23 m**
+e, nesse ponto, **está superado** — é uma cópia fiel do artefato publicado e por isso
+não foi editada. `CLAUDE.md` já registra as três iguais.
 
-1. **A largura das três zonas do Ring 3.** `ring3_montagem.html` (16/09) desenha
-   **A 12,23 · B 14,14 · C 12,23 m**, que é o que o `CLAUDE.md` também registra. O
-   `Mapa-Ring3` do artefato de sinalização (17/09) desenha as três **iguais, ~12,87 m
-   cada, 706 pessoas por zona**, dizendo que as larguras saem do esperado por entrada
-   de `Paredes_ABC`. São desenhos diferentes do mesmo pátio.
-2. **O número de CCBs.** 180 em `ring3_montagem.html`, **179** no `Mapa-Ring3`. Ambos
-   dentro dos 200 em estoque, então não muda a compra — mas muda a lista de montagem.
+A soma das três não muda (38,60 contra 38,61 m), então **nenhuma conta que dependa do
+total se altera**: os 888 m de fila e os ~926 m de barreira da §5 de
+`docs/voluntarios/contexto.md` continuam valendo como estavam.
+
+**Em aberto — o número de CCBs.** 180 em `ring3_montagem.html`, **179** no
+`Mapa-Ring3`. Os dois dentro dos 200 em estoque, então não muda a compra; muda a lista
+de montagem. A diferença é pequena o bastante para ser o arredondamento dos postes
+terminais quando as zonas passam de desiguais para iguais — **hipótese, não
+verificação**: quem montar a lista confere contra o pátio.
 
 ## Dois achados a levar ao plano de sinalização
 

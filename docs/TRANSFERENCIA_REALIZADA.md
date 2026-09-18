@@ -140,6 +140,7 @@ posteriores ao arranjo de 15/09.
 
 Na mesma revisão, os **artefatos ganharam fonte versionada** em `mapa/`, com o
 manifesto `mapa/artefatos.json` — URL, versão publicada e `sha256` de cada cópia. Ver
-`mapa/README.md`, que registra também **duas divergências entre artefatos** que
-continuam abertas: a largura das três zonas do Ring 3 (12,23/14,14/12,23 contra três
-iguais de ~12,87 m) e o número de CCBs (180 contra 179).
+`mapa/README.md`. Das duas divergências entre artefatos que a revisão encontrou, a
+largura das três zonas foi **decidida pelo Posto: são iguais, 12,87 m cada**, e
+`CLAUDE.md` e a §5 do contexto de voluntários já refletem isso — a soma não muda, então
+nenhuma conta se alterou. Continua aberto só o número de CCBs, 180 contra 179.
