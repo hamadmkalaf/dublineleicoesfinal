@@ -1662,47 +1662,69 @@
   "aptos": 16794
  },
  "modelos": {
-  "mesh": {
-   "nome": "Banner em mesh 2,0 × 1,0 m",
-   "desc": "Poliéster perfurado (70/30), bainha e ilhós a cada 50 cm. Deixa o vento passar; é a única peça admissível em grade, gradil e CCB.",
-   "preco": 60.0,
-   "fonte": "mesh 'from €20 + VAT' (Kaizen Print, Printroom); PVC 2×4 ft €25–45 (PrintNPack). Valor de 2×1 m é extrapolação."
+  "fence": {
+   "nome": "Fence banner 2080 × 820 mm",
+   "desc": "Feito para amarrar em grade e em barreira de multidão, com tie wraps. Disponível em malha perfurada windproof (270 g), que é o que o vento da Merrion Road pede.",
+   "preco": 32.44,
+   "escala": {
+    "1": 51.99,
+    "9": 291.99,
+    "17": 547.99,
+    "24": 748.99
+   },
+   "fonte": "Helloprint IE, Standard Fence Banners 208×82 cm, PVC Free Polyester 225 g, 18/09/2026."
   },
   "pvc": {
-   "nome": "Banner PVC 440 g 1,8 × 1,2 m",
-   "desc": "Lona fechada com ilhós, só onde a parede abriga do vento (lateral leste do Hall 2).",
+   "nome": "Banner PVC 2000 × 1000 mm",
+   "desc": "Lona fechada com ilhós nos cantos, só onde a parede abriga do vento (lateral leste do Hall 2). 200 × 100 cm é formato de catálogo.",
    "preco": 55.0,
-   "fonte": "banners maiores €60–150 (PrintNPack); £15/m² no Reino Unido (Synegraphics)."
+   "escala": {},
+   "fonte": "PENDENTE — a cotação do folder não chegou a ter a quantidade calculada. Valor ainda é premissa."
   },
-  "pullup": {
+  "pullup100": {
+   "nome": "Pull-up 1000 × 2000 mm",
+   "desc": "Roller banner Medium, cassete e base prata. Interno. Substitui o de 850 mm nos painéis de porta: 18% mais largo por € 3 a mais na peça.",
+   "preco": 30.75,
+   "escala": {
+    "1": 41.99,
+    "4": 122.99,
+    "15": 431.99,
+    "35": 993.99
+   },
+   "fonte": "Helloprint IE, Roller Banners Medium 100×200 cm, PVC padrão, suporte prata, 18/09/2026."
+  },
+  "pullup85": {
    "nome": "Pull-up 850 × 2000 mm",
-   "desc": "Cassete com base própria; interno. Letra da porta em 300 mm e as seções da parede em 60 mm.",
-   "preco": 85.0,
-   "fonte": "€80 (PrintNPack) a €90 (Bannerz.ie), inc. IVA."
-  },
-  "xbanner": {
-   "nome": "X-banner 600 × 1600 mm",
-   "desc": "Tripé em X com lona tensionada; o formato autoportante mais barato. Interno, um por bloco de mesas.",
-   "preco": 40.0,
-   "fonte": "PREMISSA — não verificado em fonte irlandesa; ordem de grandeza de pull-up de entrada menos a cassete."
+   "desc": "Roller banner Small. Interno, um por grupo de mesas. Substitui o X-banner 600 × 1600: maior e mais barato no lote.",
+   "preco": 24.87,
+   "escala": {
+    "1": 38.99,
+    "4": 109.99,
+    "15": 372.99,
+    "35": 874.99
+   },
+   "fonte": "Helloprint IE, Roller Banners Small 85×200 cm, PVC padrão, suporte prata, 18/09/2026."
   },
   "correx": {
    "nome": "Placa correx 4 mm A2",
    "desc": "Placa rígida leve, furada nos cantos para abraçadeira.",
    "preco": 15.0,
-   "fonte": "correx 'from €5' (Printco Dublin); A1 £35 + VAT no Reino Unido."
+   "escala": {},
+   "fonte": "PENDENTE — sem cotação no folder. Valor ainda é premissa."
   },
   "vinil": {
    "nome": "Vinil recortado por porta",
    "desc": "Letra da porta em 300 mm + ENTRADA, colado por dentro do vidro da fachada sul. Sem estrutura.",
    "preco": 30.0,
-   "fonte": "PREMISSA — recorte simples de 4–8 caracteres."
+   "escala": {},
+   "fonte": "PENDENTE — sem cotação no folder. Valor ainda é premissa."
   },
   "fixacao": {
-   "nome": "Fixação (abraçadeiras, ímãs, fita)",
-   "desc": "200 abraçadeiras de nylon 300 mm, 12 ganchos magnéticos para as portas de aço, fita dupla-face para o vinil.",
+   "nome": "Fixação (tie wraps, ímãs, fita)",
+   "desc": "Tie wraps para os fence banners (o fornecedor vende como opção da peça), 12 ganchos magnéticos para as portas de aço, fita dupla-face para o vinil.",
    "preco": 40.0,
-   "fonte": "PREMISSA — itens de ferragem."
+   "escala": {},
+   "fonte": "PENDENTE — itens de ferragem; a opção 'black tie wraps' do fornecedor ainda não foi precificada."
   }
  },
  "pecas": [
@@ -1710,10 +1732,10 @@
    "ponto": "P0",
    "nome": "Ponto “descubra sua seção”",
    "onde": "Calçada da Merrion Road, no gradil do RDS, 20–30 m antes do portão, fora do fluxo: mesa, 2–3 operadores com o caderno impresso e o e-Título",
-   "diz": "NÃO SABE SUA SEÇÃO? · Don’t know your section? · Consulte aqui ANTES de entrar · QR do e-Título",
-   "modelo": "mesh",
+   "diz": "NÃO SABE SUA SEÇÃO? · Consulte aqui ANTES de entrar · QR do e-Título",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado no gradil de ferro fundido, ilhós a ilhós",
+   "fixacao": "amarrado no gradil com tie wraps",
    "externo": true,
    "corpo": "letra 150 mm · lido a 30 m"
   },
@@ -1722,9 +1744,9 @@
    "nome": "Tabela mestra na calçada",
    "onde": "Gradil da Merrion Road, ao lado do ponto de consulta e no trecho onde a fila da calçada se forma",
    "diz": "SEÇÃO → PORTA · 51 linhas em 3 colunas, cor e letra da porta",
-   "modelo": "mesh",
+   "modelo": "fence",
    "qtd": 2,
-   "fixacao": "amarrado no gradil",
+   "fixacao": "amarrado no gradil com tie wraps",
    "externo": true,
    "corpo": "dígitos 30 mm · lido a 6 m"
   },
@@ -1733,9 +1755,9 @@
    "nome": "Portão de entrada do RDS",
    "onde": "Nas grades do portão de eleitores (Merrion Road), uma folha de cada lado do vão",
    "diz": "ELEIÇÕES BRASIL 2026 · ENTRADA DE ELEITORES → Hall 2 (Shelbourne Hall) · Preferencial: idoso, gestante, PcD →",
-   "modelo": "mesh",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado nas grades do portão",
+   "fixacao": "amarrado nas grades do portão com tie wraps",
    "externo": true,
    "corpo": "letra 150 mm"
   },
@@ -1744,9 +1766,9 @@
    "nome": "Tabela mestra no portão",
    "onde": "Na outra folha da grade do portão",
    "diz": "SEÇÃO → PORTA · 51 linhas",
-   "modelo": "mesh",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado nas grades do portão",
+   "fixacao": "amarrado nas grades do portão com tie wraps",
    "externo": true,
    "corpo": "dígitos 30 mm"
   },
@@ -1766,9 +1788,9 @@
    "nome": "Entrada do Ring 3",
    "onde": "Na CCB do corredor de chegada, logo depois do canto nordeste, virada para quem entra",
    "diz": "SEÇÃO → PORTA · 51 linhas · “siga o corredor: C, depois B, depois A”",
-   "modelo": "mesh",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado na CCB (painel de 2,0 m)",
+   "fixacao": "amarrado na CCB com tie wraps",
    "externo": true,
    "corpo": "dígitos 30 mm"
   },
@@ -1777,9 +1799,9 @@
    "nome": "Boca da zona A",
    "onde": "Na CCB de fechamento imediatamente antes da boca da zona A, virada para o trecho de fundo (quem caminha para oeste lê antes de chegar)",
    "diz": "ZONA A · PORTA A · 18 seções em 80 mm · “não está aqui? siga em frente / volte”",
-   "modelo": "mesh",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado na CCB (painel de 2,0 m × 1,1 m)",
+   "fixacao": "amarrado na CCB com tie wraps (a peça cobre o painel de 2,0 m)",
    "externo": true,
    "corpo": "letra 400 mm · seções 80 mm · lido a 15 m"
   },
@@ -1788,9 +1810,9 @@
    "nome": "Boca da zona B",
    "onde": "Na CCB de fechamento imediatamente antes da boca da zona B, virada para o trecho de fundo (quem caminha para oeste lê antes de chegar)",
    "diz": "ZONA B · PORTA B · 16 seções em 80 mm · “não está aqui? siga em frente / volte”",
-   "modelo": "mesh",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado na CCB (painel de 2,0 m × 1,1 m)",
+   "fixacao": "amarrado na CCB com tie wraps (a peça cobre o painel de 2,0 m)",
    "externo": true,
    "corpo": "letra 400 mm · seções 80 mm · lido a 15 m"
   },
@@ -1799,9 +1821,9 @@
    "nome": "Boca da zona C",
    "onde": "Na CCB de fechamento imediatamente antes da boca da zona C, virada para o trecho de fundo (quem caminha para oeste lê antes de chegar)",
    "diz": "ZONA C · PORTA C · 17 seções em 80 mm · “não está aqui? siga em frente / volte”",
-   "modelo": "mesh",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado na CCB (painel de 2,0 m × 1,1 m)",
+   "fixacao": "amarrado na CCB com tie wraps (a peça cobre o painel de 2,0 m)",
    "externo": true,
    "corpo": "letra 400 mm · seções 80 mm · lido a 15 m"
   },
@@ -1820,10 +1842,10 @@
    "ponto": "P5",
    "nome": "Entrada preferencial",
    "onde": "Gradil branco de pedestres do apron, junto à porta S7",
-   "diz": "ENTRADA PREFERENCIAL · Priority entrance · idoso, gestante, PcD, acompanhante · qualquer porta",
-   "modelo": "mesh",
+   "diz": "ENTRADA PREFERENCIAL · idoso, gestante, PcD, acompanhante · qualquer porta",
+   "modelo": "fence",
    "qtd": 1,
-   "fixacao": "amarrado no gradil do apron",
+   "fixacao": "amarrado no gradil do apron com tie wraps",
    "externo": true,
    "corpo": "letra 150 mm"
   },
@@ -1832,72 +1854,72 @@
    "nome": "Painel da porta A",
    "onde": "Logo depois da porta S4, dentro do salão, do lado oposto à curva do eleitor",
    "diz": "PORTA A · parede oeste · as 18 seções da parede, agrupadas por bloco, na ordem física",
-   "modelo": "pullup",
+   "modelo": "pullup100",
    "qtd": 1,
    "fixacao": "autoportante (cassete)",
    "externo": false,
-   "corpo": "letra 300 mm · seções 60 mm"
+   "corpo": "letra 300 mm · seções 70 mm"
   },
   {
    "ponto": "P6",
    "nome": "Painel da porta B",
    "onde": "Logo depois da porta S5, dentro do salão, do lado oposto à curva do eleitor",
    "diz": "PORTA B · parede norte · as 16 seções da parede, agrupadas por bloco, na ordem física",
-   "modelo": "pullup",
+   "modelo": "pullup100",
    "qtd": 1,
    "fixacao": "autoportante (cassete)",
    "externo": false,
-   "corpo": "letra 300 mm · seções 60 mm"
+   "corpo": "letra 300 mm · seções 70 mm"
   },
   {
    "ponto": "P6",
    "nome": "Painel da porta C",
    "onde": "Logo depois da porta S6, dentro do salão, do lado oposto à curva do eleitor",
    "diz": "PORTA C · parede leste · as 17 seções da parede, agrupadas por bloco, na ordem física",
-   "modelo": "pullup",
+   "modelo": "pullup100",
    "qtd": 1,
    "fixacao": "autoportante (cassete)",
    "externo": false,
-   "corpo": "letra 300 mm · seções 60 mm"
+   "corpo": "letra 300 mm · seções 70 mm"
   },
   {
    "ponto": "P6",
    "nome": "Banners de bloco — porta A",
    "onde": "Na boca do corredor de cada bloco da parede oeste, a 4,6 m da parede",
    "diz": "Só as seções do bloco (2 a 4 números), 4 dígitos, sem número de mesa",
-   "modelo": "xbanner",
+   "modelo": "pullup85",
    "qtd": 5,
-   "fixacao": "autoportante (tripé em X)",
+   "fixacao": "autoportante (cassete)",
    "externo": false,
-   "corpo": "seções 120 mm · lido a 20 m"
+   "corpo": "seções 130 mm · lido a 25 m"
   },
   {
    "ponto": "P6",
    "nome": "Banners de bloco — porta B",
    "onde": "Na boca do corredor de cada bloco da parede norte, a 4,6 m da parede",
    "diz": "Só as seções do bloco (2 a 4 números), 4 dígitos, sem número de mesa",
-   "modelo": "xbanner",
+   "modelo": "pullup85",
    "qtd": 5,
-   "fixacao": "autoportante (tripé em X)",
+   "fixacao": "autoportante (cassete)",
    "externo": false,
-   "corpo": "seções 120 mm · lido a 20 m"
+   "corpo": "seções 130 mm · lido a 25 m"
   },
   {
    "ponto": "P6",
    "nome": "Banners de bloco — porta C",
    "onde": "Na boca do corredor de cada bloco da parede leste, a 4,6 m da parede",
    "diz": "Só as seções do bloco (2 a 4 números), 4 dígitos, sem número de mesa",
-   "modelo": "xbanner",
+   "modelo": "pullup85",
    "qtd": 6,
-   "fixacao": "autoportante (tripé em X)",
+   "fixacao": "autoportante (cassete)",
    "externo": false,
-   "corpo": "seções 120 mm · lido a 20 m"
+   "corpo": "seções 130 mm · lido a 25 m"
   },
   {
    "ponto": "P7",
    "nome": "Saídas S2 e S8",
    "onde": "Dentro do salão, sobre cada vão de saída",
-   "diz": "SAÍDA · WAY OUT → Merrion Road",
+   "diz": "SAÍDA → Merrion Road",
    "modelo": "correx",
    "qtd": 2,
    "fixacao": "abraçadeira no batente / fita",
@@ -1921,34 +1943,34 @@
    {
     "peca": "Ponto “descubra sua seção”",
     "ponto": "P0",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Tabela mestra na calçada",
     "ponto": "P0",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 2,
-    "unit": 60.0,
-    "total": 120.0
+    "unit": 32.44,
+    "total": 64.88
    },
    {
     "peca": "Portão de entrada do RDS",
     "ponto": "P1",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Tabela mestra no portão",
     "ponto": "P1",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Tabela mestra na parede leste do Hall 2",
@@ -1961,34 +1983,34 @@
    {
     "peca": "Entrada do Ring 3",
     "ponto": "P3",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Boca da zona A",
     "ponto": "P4",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Boca da zona B",
     "ponto": "P4",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Boca da zona C",
     "ponto": "P4",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Letra da porta no vidro",
@@ -2001,58 +2023,58 @@
    {
     "peca": "Entrada preferencial",
     "ponto": "P5",
-    "modelo": "mesh",
+    "modelo": "fence",
     "qtd": 1,
-    "unit": 60.0,
-    "total": 60.0
+    "unit": 32.44,
+    "total": 32.44
    },
    {
     "peca": "Painel da porta A",
     "ponto": "P6",
-    "modelo": "pullup",
+    "modelo": "pullup100",
     "qtd": 1,
-    "unit": 85.0,
-    "total": 85.0
+    "unit": 30.75,
+    "total": 30.75
    },
    {
     "peca": "Painel da porta B",
     "ponto": "P6",
-    "modelo": "pullup",
+    "modelo": "pullup100",
     "qtd": 1,
-    "unit": 85.0,
-    "total": 85.0
+    "unit": 30.75,
+    "total": 30.75
    },
    {
     "peca": "Painel da porta C",
     "ponto": "P6",
-    "modelo": "pullup",
+    "modelo": "pullup100",
     "qtd": 1,
-    "unit": 85.0,
-    "total": 85.0
+    "unit": 30.75,
+    "total": 30.75
    },
    {
     "peca": "Banners de bloco — porta A",
     "ponto": "P6",
-    "modelo": "xbanner",
+    "modelo": "pullup85",
     "qtd": 5,
-    "unit": 40.0,
-    "total": 200.0
+    "unit": 24.87,
+    "total": 124.35
    },
    {
     "peca": "Banners de bloco — porta B",
     "ponto": "P6",
-    "modelo": "xbanner",
+    "modelo": "pullup85",
     "qtd": 5,
-    "unit": 40.0,
-    "total": 200.0
+    "unit": 24.87,
+    "total": 124.35
    },
    {
     "peca": "Banners de bloco — porta C",
     "ponto": "P6",
-    "modelo": "xbanner",
+    "modelo": "pullup85",
     "qtd": 6,
-    "unit": 40.0,
-    "total": 240.0
+    "unit": 24.87,
+    "total": 149.22
    },
    {
     "peca": "Saídas S2 e S8",
@@ -2072,9 +2094,9 @@
    }
   ],
   "por_modelo": {
-   "mesh": {
+   "fence": {
     "qtd": 10,
-    "total": 600.0
+    "total": 324.4
    },
    "pvc": {
     "qtd": 3,
@@ -2084,13 +2106,13 @@
     "qtd": 3,
     "total": 90.0
    },
-   "pullup": {
+   "pullup100": {
     "qtd": 3,
-    "total": 255.0
+    "total": 92.25
    },
-   "xbanner": {
+   "pullup85": {
     "qtd": 16,
-    "total": 640.0
+    "total": 397.92
    },
    "correx": {
     "qtd": 2,
@@ -2101,10 +2123,10 @@
     "total": 40.0
    }
   },
-  "total": 1820.0
+  "total": 1139.57
  },
  "faixa_orcamento": [
-  1700,
-  1900
+  1050,
+  1300
  ]
 }

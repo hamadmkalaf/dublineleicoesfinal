@@ -5,12 +5,12 @@
 <title>P5-preferencial</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
-  @page { size: 2000mm 1000mm; margin: 0; }
+  @page { size: 2080mm 820mm; margin: 0; }
   html, body { margin: 0; padding: 0; background: #FFFFFF; }
-  /* A peca fisica: 2000 x 1000 mm.  A arte foi desenhada a 2.0 mm por px. */
-  .peca { width: 2000mm; height: 1000mm; overflow: hidden; position: relative; }
+  /* A peca fisica: 2080 x 820 mm.  A arte foi desenhada a 2.0 mm por px. */
+  .peca { width: 2080mm; height: 820mm; overflow: hidden; position: relative; }
   .arte { position: absolute; top: 0; left: 0;
-           width: 1000.0px; height: 500.0px;
+           width: 1040.0px; height: 410.0px;
            transform: scale(7.559055); transform-origin: top left; }
   @media screen { body { background: #DDE1E5; padding: 0; }
                    .peca { margin: 0 auto; box-shadow: 0 0 0 1px #9AA3AB; background: #FFF; } }
@@ -18,27 +18,24 @@
 </head>
 <body>
 <div class="peca"><div class="arte">
-<div style="width: 1000.0px; height: 500.0px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden;">
-  <div style="height: 75px; flex-shrink: 0; background: #F0F0E8; border-bottom: 3px solid #042B5A; display: flex; align-items: center; justify-content: space-between; padding: 0 26px; box-sizing: border-box;">
-    <div style="display: flex; align-items: center; gap: 15px;">
-      <svg width="45" height="45" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="#042B5A" stroke-width="3.4"/><path d="M27 6 a21 21 0 0 1 0 42" fill="#042B5A"/><rect x="24" y="24" width="15" height="15" fill="#F0F0E8"/></svg>
-      <div style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 12px; line-height: 1.02; color: #042B5A; letter-spacing: -0.01em;">Justiça<br>Eleitoral</div>
-    </div>
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <svg width="47" height="33" viewBox="0 0 56 40" aria-hidden="true"><path d="M0 6 q 9 -5 18 0 t 18 0 t 18 0" fill="none" stroke="#E6B00F" stroke-width="7" stroke-linecap="round"/><path d="M0 17 q 9 -5 18 0 t 18 0 t 18 0" fill="none" stroke="#398CB0" stroke-width="7" stroke-linecap="round"/><path d="M0 28 q 9 -5 18 0 t 18 0 t 18 0" fill="none" stroke="#5F8722" stroke-width="7" stroke-linecap="round"/></svg>
-      <div style="text-align: left;">
-        <div style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.10em; color: #042B5A; line-height: 1;">ELEIÇÕES</div>
-        <div style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -0.01em; color: #042B5A; line-height: 0.96;">2026</div>
+<div style="width: 1040.0px; height: 410.0px; box-sizing: border-box; background: #F2EFE2; display: flex; flex-direction: column; overflow: hidden;">
+  <div style="height: 70px; flex-shrink: 0; background: #5A6E6E; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; box-sizing: border-box; overflow: hidden;">
+    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.9px; line-height: 1;">
+      <div style="display: flex; align-items: center; gap: 0.8px;">
+        <span style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 800; font-size: 13.0px; letter-spacing: 0.01em; color: #FFFFFF;">EL</span>
+        <svg width="9.6" height="9.6" viewBox="0 0 24 24" aria-hidden="true" style="display:block"><path d="M-1 4.6 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="#E8B800" stroke-width="6.3" stroke-linecap="butt"/><path d="M-1 12.2 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="#4888A8" stroke-width="6.3" stroke-linecap="butt"/><path d="M-1 19.799999999999997 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="#588018" stroke-width="6.3" stroke-linecap="butt"/></svg>
+        <span style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 800; font-size: 13.0px; letter-spacing: 0.01em; color: #FFFFFF;">IÇÕES</span>
       </div>
+      <div style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 800; font-size: 25.2px; letter-spacing: -0.01em; color: #F2CE3A;">2026</div>
     </div>
+    <div style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 14.0px; letter-spacing: 0.02em; color: #FFFFFF;">#VOTO<span style="color: #5A8CAA">NA</span>DEMOCRACIA</div>
   </div>
 
-  <div style="flex-grow: 1; display: flex; align-items: center; gap: 34px; padding: 0 40px;">
-    <svg width="130" height="130" viewBox="0 0 24 24" fill="none" stroke="#042B5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.6" r="2.1"/><path d="M12 7.5v6m0 0-3 6m3-6 3 6M7.5 10h9"/></svg>
+  <div style="flex-grow: 1; display: flex; align-items: center; gap: 34px; padding: 0 44px;">
+    <svg width="118" height="118" viewBox="0 0 24 24" fill="none" stroke="#648232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.6" r="2.1"/><path d="M12 7.5v6m0 0-3 6m3-6 3 6M7.5 10h9"/></svg>
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 800; font-size: 62px; line-height: 0.96; color: #042B5A;">ENTRADA PREFERENCIAL</div>
-      <div style="font-family: 'Nunito Sans', system-ui, sans-serif; font-weight: 700; font-size: 30px; color: #5A6270;">Priority entrance</div>
-      <div style="font-family: 'Nunito Sans', system-ui, sans-serif; font-weight: 600; font-size: 26px; color: #042B5A;">Idoso · gestante · PcD · com acompanhante — <strong>qualquer porta</strong></div>
+      <div style="font-family: 'Archivo', 'Nunito Sans', sans-serif; font-weight: 800; font-size: 66px; line-height: 0.96; color: #3F3F3F;">ENTRADA PREFERENCIAL</div>
+      <div style="font-family: 'Nunito Sans', system-ui, sans-serif; font-weight: 600; font-size: 27px; color: #6B6B6B;">Idoso · gestante · PcD · com acompanhante — <strong style="color: #648232">qualquer porta</strong></div>
     </div>
   </div>
 

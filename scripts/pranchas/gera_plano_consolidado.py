@@ -24,9 +24,10 @@ R = json.loads((REPO / 'saidas' / 'ring3_montagem.json').read_text(encoding='utf
 P = json.loads((REPO / 'data' / 'prancheta_hall2.json').read_text(encoding='utf-8'))
 ART = json.loads((REPO / 'saidas' / 'artes_sinalizacao' / 'indice.json').read_text(encoding='utf-8'))
 
-COR = {'A': '#33507E', 'B': '#E8C63A', 'C': '#DE7343'}
-TINTA = {'A': '#33507E', 'B': '#7D6004', 'C': '#9C4118'}
-MARINHO, OFFW, AMARELO = '#042B5A', '#F0F0E8', '#F8C030'
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from comum import PALETA, CARVAO, CARVAO_SUAVE, OSSO, OSSO_ESCURO, COR, TINTA
+MARINHO, OFFW, AMARELO = CARVAO, OSSO, PALETA['ouro']
 PAREDE = {'A': 'oeste', 'B': 'norte', 'C': 'leste'}
 PORTA = {'A': 'S4', 'B': 'S5', 'C': 'S6'}
 portas = {p['letra']: p for p in S['portas']}
@@ -279,15 +280,19 @@ ACHADOS = [
 
 PENDENCIAS = [
     'Confirmar os três hexes contra o rolo de fita — foram lidos da foto do estoque, não medidos.',
-    'Trazer o logotipo Eleições 2026 e a marca Justiça Eleitoral em vetor do TSE; o desenho destas '
-    'peças é marcação de lugar, e a autorização de uso da marca para posto no exterior ainda não existe.',
+    'Trazer o logotipo Eleições 2026 em vetor do TSE — o desenho destas peças é marcação de lugar — '
+    'e obter a autorização de uso da marca para posto no exterior.',
     'Confirmar a posição real das portas S4 · S5 · S6 e S7 contra a planta cotada do RDS.',
     'Medir em campo: a profundidade da sala de apoio (7,80 m é suposição), o vão da S7 e o recorte '
     'do canto sudoeste, que tem duas leituras no repositório.',
     'Decidir o cruzamento da zona A: aceitar os 2,91 m de desvio até a porta, com orientador, ou '
     'deslocar o Ring 3 para leste.',
     'Refazer a simulação das vias de fila sobre a Paredes_ABC antes de comprar fita e decalque.',
-    'Colar os preços do anexo do Posto na tabela e conferir a faixa de € 1.700–1.900.',
+    'Cotar as quatro linhas que continuam premissa: os 3 banners PVC da parede leste, os 3 vinis das '
+    'portas, as 2 placas correx de saída e a fixação.',
+    'Decidir o prazo de entrega. Pela cotação de 18/09, a entrega Saver é grátis e chega em 28/09 — seis '
+    'dias antes da eleição —, mas o arquivo tem de subir até 18/09 às 13:30. Standard (+ € 35) chega 23/09 '
+    'e Express (+ € 38) chega 22/09. É a decisão mais urgente da lista.',
 ]
 
 
@@ -375,9 +380,12 @@ def orcamento_html():
         for k, v in o['por_modelo'].items())
     return f"""<table class="orc"><thead><tr><th>Modelo</th><th class="n">Qtd</th><th class="n">Unit.</th><th class="n">Total</th></tr></thead>
 <tbody>{linhas}</tbody>
-<tfoot><tr><td>Total</td><td class="n">{sum(v['qtd'] for v in o['por_modelo'].values())}</td><td></td>
-<td class="n">€ {o['total']:.0f}</td></tr>
-<tr class="faixa"><td colspan="4">Faixa orçada: € {S['faixa_orcamento'][0]:,} – € {S['faixa_orcamento'][1]:,}</td></tr></tfoot></table>""".replace(',', '.')
+<tfoot><tr><td>Total sem IVA</td><td class="n">{sum(v['qtd'] for v in o['por_modelo'].values())}</td><td></td>
+<td class="n">€ {o['total']:.2f}</td></tr>
+<tr><td>IVA 23%</td><td></td><td></td><td class="n">€ {o['total']*0.23:.2f}</td></tr>
+<tr><td>Total a pagar</td><td></td><td></td><td class="n">€ {o['total']*1.23:.2f}</td></tr>
+<tr class="faixa"><td colspan="4">Entrega Saver grátis, chega 28/09 · Standard + € 35, chega 23/09 · Express + € 38, chega 22/09.
+Quatro linhas — PVC, vinil, correx e fixação — ainda são premissa: a cotação não as precificou.</td></tr></tfoot></table>""".replace(',', '.')
 
 
 ext = sum(p['qtd'] for p in S['pecas'] if p['externo'] and p['modelo'] != 'fixacao')
@@ -509,9 +517,10 @@ DOC = f"""<!doctype html>
 </section>
 
 <section class="bloco">
-  <h2>Onde os € 1.700–1.900 vão</h2>
-  <p class="lede">{ext} peças externas e {ins} internas. Preços de tabela de gráficas irlandesas,
-  inc. IVA — o anexo de preços do Posto ainda não chegou a estas contas.</p>
+  <h2>Onde o orçamento vai</h2>
+  <p class="lede">{ext} peças externas e {ins} internas. Preços do <strong>Helloprint IE</strong>, cotados
+  em 18/09/2026 e guardados em <code>Orçamentos/Sinalização</code> — vêm <strong>Excl. VAT</strong>.
+  Os formatos são os do catálogo do fornecedor: peça fora de catálogo custa mais e demora mais.</p>
   {orcamento_html()}
 </section>
 

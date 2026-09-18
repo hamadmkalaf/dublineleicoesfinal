@@ -426,7 +426,7 @@ PONTOS = [
     ("P7", "Saídas S2 e S8",
      "Nos flancos da fachada sul, fora do vão das entradas — os fluxos já se separam sozinhos",
      "Encaminha para a rua sem reentrar no Ring 3",
-     "SAÍDA / WAY OUT → Merrion Road",
+     "SAÍDA → Merrion Road",
      "2 painéis internos · 2 externos"),
 ]
 

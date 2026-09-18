@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Pecas internas do Hall 2 (P6, P7) e as duas plantas de posicionamento."""
-import json, pathlib, math
+"""Pecas internas do Hall 2 (P6) e as duas plantas de posicionamento.
+
+Formatos de 18/09: o painel de porta passa de pull-up 850 a 1000 x 2000 mm, e
+o banner de bloco deixa de ser X-banner 600 x 1600 e vira pull-up 850 x 2000 --
+maior E mais barato no lote (Helloprint: X-banner 60x160 sai a EUR 41/un em 15
+unidades, roller banner 85x200 a EUR 24,87).
+"""
+import json, pathlib, math, sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from comum import (PALETA, CARVAO, CARVAO_SUAVE, OSSO, OSSO_ESCURO, COR, TEXTO,
+                   TINTA, PAREDE, PORTA, SANS, DISP, faixa, estilo_pagina)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent.parent
 OUT = REPO / 'saidas' / 'pranchas_sinalizacao' / 'project'
@@ -12,17 +22,9 @@ P = json.loads((REPO / 'data' / 'prancheta_hall2.json').read_text(encoding='utf-
 MM = 0.5
 def mm(v): return round(v * MM, 1)
 
-AMARELO='#F8C030'; MARINHO='#042B5A'; OFFW='#F0F0E8'
-# As tres fitas compradas pelo Posto (foto de 17/09).
-COR={'A':'#33507E','B':'#E8C63A','C':'#DE7343'}
-TEXTO={'A':'#FFFFFF','B':'#042B5A','C':'#042B5A'}
-FAIXA=OFFW   # a faixa institucional deixou de ser amarela: amarelo agora e a porta B
-PAREDE={'A':'oeste','B':'norte','C':'leste'}
-PORTA={'A':'S4','B':'S5','C':'S6'}
-FLAG=('#E6B00F','#398CB0','#5F8722')
-SANS="'Nunito Sans', system-ui, sans-serif"
-DISP="'Archivo', 'Nunito Sans', sans-serif"
-portas={p['letra']:p for p in S['portas']}
+MARINHO = CARVAO          # a tipografia passou a ser carvão, não marinho
+OFFW = OSSO
+portas = {p['letra']: p for p in S['portas']}
 
 CAB = """<!doctype html>
 <html lang="pt-BR">
@@ -32,13 +34,7 @@ CAB = """<!doctype html>
 </head>
 <body>
 <x-dc>
-<helmet>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
-    body { margin: 0; background: #F0F0E8; }
-    a { color: #0B6E9E; } a:hover { color: #042B5A; }
-  </style>
-</helmet>
+"""+ estilo_pagina() +"""
 """
 RODAPE = """</x-dc>
 <script data-dc-script data-props='{"$preview":{"width":%d,"height":%d}}'>
@@ -50,41 +46,26 @@ class Component extends DCLogic {
 </html>
 """
 
-def faixa(alt_px):
-    h=alt_px; esc=h/90.0
-    ondas=''.join(f'<path d="M0 {6+i*11} q 9 -5 18 0 t 18 0 t 18 0" fill="none" stroke="{c}" stroke-width="7" stroke-linecap="round"/>' for i,c in enumerate(FLAG))
-    return f"""  <div style="height: {h}px; flex-shrink: 0; background: {FAIXA}; border-bottom: 3px solid {MARINHO}; display: flex; align-items: center; justify-content: space-between; padding: 0 {round(h*0.34)}px; box-sizing: border-box;">
-    <div style="display: flex; align-items: center; gap: {round(h*0.2)}px;">
-      <svg width="{round(54*esc)}" height="{round(54*esc)}" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="25" fill="none" stroke="{MARINHO}" stroke-width="3.4"/><path d="M27 6 a21 21 0 0 1 0 42" fill="{MARINHO}"/><rect x="24" y="24" width="15" height="15" fill="{FAIXA}"/></svg>
-      <div style="font-family: {DISP}; font-weight: 700; font-size: {round(15*esc)}px; line-height: 1.02; color: {MARINHO};">Justiça<br>Eleitoral</div>
-    </div>
-    <div style="display: flex; align-items: center; gap: {round(h*0.16)}px;">
-      <svg width="{round(56*esc)}" height="{round(40*esc)}" viewBox="0 0 56 40" aria-hidden="true">{ondas}</svg>
-      <div><div style="font-family: {DISP}; font-weight: 700; font-size: {round(15*esc)}px; letter-spacing: 0.10em; color: {MARINHO}; line-height: 1;">ELEIÇÕES</div><div style="font-family: {DISP}; font-weight: 800; font-size: {round(25*esc)}px; color: {MARINHO}; line-height: 0.96;">2026</div></div>
-    </div>
-  </div>
-"""
-
-def grava(nome, w, h, corpo, fundo='#FFFFFF'):
+def grava(nome, w, h, corpo, fundo=OSSO):
     html = CAB + f"""<div style="width: {w}px; height: {h}px; box-sizing: border-box; background: {fundo}; display: flex; flex-direction: column; overflow: hidden;">
 {corpo}
 </div>
 """ + RODAPE % (w, h)
     (OUT / nome).write_text(html, encoding='utf-8')
 
-# --------------------------------------------- P6 painel da porta (pull-up 850x2000)
+# ------------------------------------- P6 painel da porta (pull-up 1000x2000)
 for L in ('A','B','C'):
-    w,h = mm(850), mm(2000)
+    w,h = mm(1000), mm(2000)
     blocos = portas[L]['blocos']
     linhas=[]
     for b in blocos:
         secs=' · '.join(str(s).zfill(4) for s in sorted(b['secoes']))
         linhas.append(
-            f'<div style="display: flex; align-items: baseline; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DDE1E5; flex-grow: 1;">'
-            f'<span style="font-family: {SANS}; font-weight: 800; font-size: 17px; color: #7A828C; min-width: 34px;">{b["id"][-2:]}</span>'
+            f'<div style="display: flex; align-items: baseline; gap: 12px; padding: 12px 0; border-bottom: 1px solid {OSSO_ESCURO}; flex-grow: 1;">'
+            f'<span style="font-family: {SANS}; font-weight: 800; font-size: 17px; color: {CARVAO_SUAVE}; min-width: 34px;">{b["id"][-2:]}</span>'
             f'<span style="font-family: {DISP}; font-weight: 700; font-size: 26px; color: {MARINHO}; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; white-space: nowrap;">{secs}</span>'
             f'</div>')
-    corpo = faixa(round(h*0.10)) + f"""  <div style="background: {COR[L]}; color: {TEXTO[L]}; padding: 18px 26px 16px; display: flex; align-items: center; gap: 18px;">
+    corpo = faixa(round(h*0.115), w) + f"""  <div style="background: {COR[L]}; color: {TEXTO[L]}; padding: 18px 26px 16px; display: flex; align-items: center; gap: 18px;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 150px; line-height: 0.8; letter-spacing: -0.04em;">{L}</div>
     <div>
       <div style="font-family: {SANS}; font-weight: 800; font-size: 34px; letter-spacing: 0.02em;">PORTA {L}</div>
@@ -92,32 +73,32 @@ for L in ('A','B','C'):
     </div>
   </div>
   <div style="flex-grow: 1; padding: 20px 26px 26px; display: flex; flex-direction: column;">
-    <div style="font-family: {SANS}; font-weight: 700; font-size: 19px; letter-spacing: 0.06em; color: #5A6270; margin-bottom: 8px;">PROCURE A SUA SEÇÃO · NA ORDEM EM QUE VOCÊ VAI ANDAR</div>
+    <div style="font-family: {SANS}; font-weight: 700; font-size: 19px; letter-spacing: 0.06em; color: {CARVAO_SUAVE}; margin-bottom: 8px;">PROCURE A SUA SEÇÃO · NA ORDEM EM QUE VOCÊ VAI ANDAR</div>
     <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: stretch;">{''.join(linhas)}</div>
     <div style="font-family: {SANS}; font-weight: 700; font-size: 21px; color: {MARINHO}; border-top: 3px solid {COR[L]}; padding-top: 12px; margin-top: 10px;">Cada grupo tem uma placa alta na boca do corredor.</div>
   </div>
 """
     grava(f'P6-Painel{L}.dc.html', w, h, corpo)
 
-# ------------------------------------------- P6 x-banner de bloco (600x1600)
-def xbanner(L, b, nome):
-    w,h = mm(600), mm(1600)
+# ------------------------------- P6 banner de bloco (pull-up 850x2000)
+def banner_bloco(L, b, nome):
+    w,h = mm(850), mm(2000)
     secs=[str(s).zfill(4) for s in sorted(b['secoes'])]
     nums=''.join(f'<div style="font-family: {DISP}; font-weight: 800; font-size: 60px; line-height: 1.12; color: {MARINHO}; font-variant-numeric: tabular-nums;">{s}</div>' for s in secs)
-    corpo = faixa(round(h*0.09)) + f"""  <div style="background: {COR[L]}; color: {TEXTO[L]}; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
+    corpo = faixa(round(h*0.115), w) + f"""  <div style="background: {COR[L]}; color: {TEXTO[L]}; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 52px; line-height: 1;">{L}</div>
     <div style="font-family: {SANS}; font-weight: 700; font-size: 17px; text-align: right; line-height: 1.2;">parede {PAREDE[L]}<br><span style="opacity: 0.85;">grupo {b['id'][-2:]}</span></div>
   </div>
   <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px;">
-    <div style="font-family: {SANS}; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; color: #5A6270; margin-bottom: 10px;">SEÇÕES DESTE CORREDOR</div>
+    <div style="font-family: {SANS}; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; color: {CARVAO_SUAVE}; margin-bottom: 10px;">SEÇÕES DESTE CORREDOR</div>
     {nums}
   </div>
   <div style="height: 10px; background: {COR[L]}; flex-shrink: 0;"></div>
 """
     grava(nome, w, h, corpo)
 
-xbanner('A', portas['A']['blocos'][2], 'P6-BlocoA3.dc.html')   # a isolada MRV 22, mesa vermelha
-xbanner('C', portas['C']['blocos'][3], 'P6-BlocoC4.dc.html')   # um par de quatro secoes
+banner_bloco('A', portas['A']['blocos'][2], 'P6-BlocoA3.dc.html')   # a isolada MRV 22, mesa vermelha
+banner_bloco('C', portas['C']['blocos'][3], 'P6-BlocoC4.dc.html')   # um par de quatro secoes
 
 # --------------------------------------------------------- planta do Ring 3
 def planta_ring():
@@ -177,10 +158,10 @@ def planta_ring():
 
 corpo = f"""  <div style="padding: 26px 30px 0; display: flex; flex-direction: column; gap: 4px;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 30px; color: {MARINHO};">Onde cada peça externa fica — Ring 3</div>
-    <div style="font-family: {SANS}; font-weight: 600; font-size: 15px; color: #5A6270; max-width: 76ch;">Montagem confirmada em 16/09: 44 × 35 m, corredor em L de 3,0 m, {R['ring']['raias']} raias por zona. As larguras saem do esperado por entrada de Paredes_ABC. <strong>{R['bom']['ccb']} CCBs</strong> dos 200 em estoque, {R['bom']['fita_m']:.0f} m de fita, lotação {R['bom']['lotacao_total']}.</div>
+    <div style="font-family: {SANS}; font-weight: 600; font-size: 15px; color: {CARVAO_SUAVE}; max-width: 76ch;">Montagem confirmada em 16/09: 44 × 35 m, corredor em L de 3,0 m, {R['ring']['raias']} raias por zona. As larguras saem do esperado por entrada de Paredes_ABC. <strong>{R['bom']['ccb']} CCBs</strong> dos 200 em estoque, {R['bom']['fita_m']:.0f} m de fita, lotação {R['bom']['lotacao_total']}.</div>
   </div>
   <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center;">{planta_ring()}</div>
-  <div style="padding: 0 30px 22px; font-family: {SANS}; font-size: 14px; color: #5A6270;">A linha tracejada é o caminho da boca até a porta. <strong style="color: {COR['A']};">A zona A descarrega 2,91 m a oeste do eixo da porta A</strong> — o cercado começa a oeste da primeira porta, e três zonas em terços não caem cada uma sob a sua. É o ponto a resolver em campo.</div>
+  <div style="padding: 0 30px 22px; font-family: {SANS}; font-size: 14px; color: {CARVAO_SUAVE};">A linha tracejada é o caminho da boca até a porta. <strong style="color: {COR['A']};">A zona A descarrega 2,91 m a oeste do eixo da porta A</strong> — o cercado começa a oeste da primeira porta, e três zonas em terços não caem cada uma sob a sua. É o ponto a resolver em campo.</div>
 """
 grava('Mapa-Ring3.dc.html', 1300, 1080, corpo, fundo=OFFW)
 
@@ -220,10 +201,10 @@ def planta_hall():
 svg, sw, sh = planta_hall()
 corpo = f"""  <div style="padding: 26px 30px 0; display: flex; flex-direction: column; gap: 4px;">
     <div style="font-family: {DISP}; font-weight: 800; font-size: 30px; color: {MARINHO};">Onde cada peça interna fica — Hall 2</div>
-    <div style="font-family: {SANS}; font-weight: 600; font-size: 15px; color: #5A6270; max-width: 76ch;">Quadrado grande: o painel da porta (P6, pull-up), logo depois de cada entrada. Círculo: o x-banner do grupo de mesas, a 4,6 m da parede, na boca do corredor. As posições saem de <code>saidas/sinalizacao_v2.json</code>, campo <code>pos_banner</code>.</div>
+    <div style="font-family: {SANS}; font-weight: 600; font-size: 15px; color: {CARVAO_SUAVE}; max-width: 76ch;">Quadrado grande: o painel da porta (P6, pull-up), logo depois de cada entrada. Círculo: o x-banner do grupo de mesas, a 4,6 m da parede, na boca do corredor. As posições saem de <code>saidas/sinalizacao_v2.json</code>, campo <code>pos_banner</code>.</div>
   </div>
   <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center;">{svg}</div>
-  <div style="padding: 0 30px 22px; font-family: {SANS}; font-size: 14px; color: #5A6270;">16 x-banners no total: 5 na oeste, 5 na norte, 6 na leste — um por grupo de mesas. Nenhum traz número de mesa: só as seções do grupo.</div>
+  <div style="padding: 0 30px 22px; font-family: {SANS}; font-size: 14px; color: {CARVAO_SUAVE};">16 x-banners no total: 5 na oeste, 5 na norte, 6 na leste — um por grupo de mesas. Nenhum traz número de mesa: só as seções do grupo.</div>
 """
 grava('Mapa-Hall2.dc.html', max(1180, sw+60), sh+230, corpo, fundo=OFFW)
 print('internas e plantas: ok')

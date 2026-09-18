@@ -272,7 +272,7 @@ def documento():
 
     L.append(f"## 7. Saídas {' e '.join(dec['saidas'])}\n")
     L.append("- Quem votou sai pela porta de saída do flanco mais próximo. Ninguém volta pelo salão para conversar, fotografar ou esperar alguém.")
-    L.append("- Do lado de fora, seguir a placa \"SAÍDA / WAY OUT → Merrion Road\"; não reentrar no Ring 3 nem cruzar a fila de quem entra.")
+    L.append("- Do lado de fora, seguir a placa \"SAÍDA → Merrion Road\"; não reentrar no Ring 3 nem cruzar a fila de quem entra.")
     if P["D3"].get("corredor_em_L"):
         L.append("- S8 despeja no apron leste, onde a corrente de chegada desce: o marshal do cruzamento separa os dois fluxos.")
     L.append("")

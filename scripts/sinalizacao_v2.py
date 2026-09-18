@@ -101,51 +101,73 @@ PAREDE_LESTE = {
 # irlandesas em 16/09/2026 (inc. IVA), arredondados, e ficam editaveis na
 # pagina.  Trocar aqui (ou na pagina) recalcula tudo.
 # ---------------------------------------------------------------------------
+# Precos REAIS do fornecedor, nao mais premissa: Helloprint IE, cotacoes
+# capturadas em 18/09/2026 e guardadas em Orcamentos/Sinalizacao/.  Sao
+# Excl. VAT; o IVA irlandes de 23% entra na conta da pagina.  O preco unitario
+# cai por faixa de quantidade, e as faixas estao em "escala".
 MODELOS = {
-    "mesh": {
-        "nome": "Banner em mesh 2,0 × 1,0 m",
-        "desc": "Poliéster perfurado (70/30), bainha e ilhós a cada 50 cm. Deixa o vento passar; é a única peça admissível em grade, gradil e CCB.",
-        "preco": 60.0,
-        "fonte": "mesh 'from €20 + VAT' (Kaizen Print, Printroom); PVC 2×4 ft €25–45 (PrintNPack). Valor de 2×1 m é extrapolação.",
+    "fence": {
+        "nome": "Fence banner 2080 × 820 mm",
+        "desc": "Feito para amarrar em grade e em barreira de multidão, com tie wraps. Disponível em malha perfurada windproof (270 g), que é o que o vento da Merrion Road pede.",
+        "preco": 32.44,
+        "escala": {1: 51.99, 9: 291.99, 17: 547.99, 24: 748.99},
+        "fonte": "Helloprint IE, Standard Fence Banners 208×82 cm, PVC Free Polyester 225 g, 18/09/2026.",
     },
     "pvc": {
-        "nome": "Banner PVC 440 g 1,8 × 1,2 m",
-        "desc": "Lona fechada com ilhós, só onde a parede abriga do vento (lateral leste do Hall 2).",
+        "nome": "Banner PVC 2000 × 1000 mm",
+        "desc": "Lona fechada com ilhós nos cantos, só onde a parede abriga do vento (lateral leste do Hall 2). 200 × 100 cm é formato de catálogo.",
         "preco": 55.0,
-        "fonte": "banners maiores €60–150 (PrintNPack); £15/m² no Reino Unido (Synegraphics).",
+        "escala": {},
+        "fonte": "PENDENTE — a cotação do folder não chegou a ter a quantidade calculada. Valor ainda é premissa.",
     },
-    "pullup": {
+    "pullup100": {
+        "nome": "Pull-up 1000 × 2000 mm",
+        "desc": "Roller banner Medium, cassete e base prata. Interno. Substitui o de 850 mm nos painéis de porta: 18% mais largo por € 3 a mais na peça.",
+        "preco": 30.75,
+        "escala": {1: 41.99, 4: 122.99, 15: 431.99, 35: 993.99},
+        "fonte": "Helloprint IE, Roller Banners Medium 100×200 cm, PVC padrão, suporte prata, 18/09/2026.",
+    },
+    "pullup85": {
         "nome": "Pull-up 850 × 2000 mm",
-        "desc": "Cassete com base própria; interno. Letra da porta em 300 mm e as seções da parede em 60 mm.",
-        "preco": 85.0,
-        "fonte": "€80 (PrintNPack) a €90 (Bannerz.ie), inc. IVA.",
-    },
-    "xbanner": {
-        "nome": "X-banner 600 × 1600 mm",
-        "desc": "Tripé em X com lona tensionada; o formato autoportante mais barato. Interno, um por bloco de mesas.",
-        "preco": 40.0,
-        "fonte": "PREMISSA — não verificado em fonte irlandesa; ordem de grandeza de pull-up de entrada menos a cassete.",
+        "desc": "Roller banner Small. Interno, um por grupo de mesas. Substitui o X-banner 600 × 1600: maior e mais barato no lote.",
+        "preco": 24.87,
+        "escala": {1: 38.99, 4: 109.99, 15: 372.99, 35: 874.99},
+        "fonte": "Helloprint IE, Roller Banners Small 85×200 cm, PVC padrão, suporte prata, 18/09/2026.",
     },
     "correx": {
         "nome": "Placa correx 4 mm A2",
         "desc": "Placa rígida leve, furada nos cantos para abraçadeira.",
         "preco": 15.0,
-        "fonte": "correx 'from €5' (Printco Dublin); A1 £35 + VAT no Reino Unido.",
+        "escala": {},
+        "fonte": "PENDENTE — sem cotação no folder. Valor ainda é premissa.",
     },
     "vinil": {
         "nome": "Vinil recortado por porta",
         "desc": "Letra da porta em 300 mm + ENTRADA, colado por dentro do vidro da fachada sul. Sem estrutura.",
         "preco": 30.0,
-        "fonte": "PREMISSA — recorte simples de 4–8 caracteres.",
+        "escala": {},
+        "fonte": "PENDENTE — sem cotação no folder. Valor ainda é premissa.",
     },
     "fixacao": {
-        "nome": "Fixação (abraçadeiras, ímãs, fita)",
-        "desc": "200 abraçadeiras de nylon 300 mm, 12 ganchos magnéticos para as portas de aço, fita dupla-face para o vinil.",
+        "nome": "Fixação (tie wraps, ímãs, fita)",
+        "desc": "Tie wraps para os fence banners (o fornecedor vende como opção da peça), 12 ganchos magnéticos para as portas de aço, fita dupla-face para o vinil.",
         "preco": 40.0,
-        "fonte": "PREMISSA — itens de ferragem.",
+        "escala": {},
+        "fonte": "PENDENTE — itens de ferragem; a opção 'black tie wraps' do fornecedor ainda não foi precificada.",
     },
 }
-ORCAMENTO_MIN, ORCAMENTO_MAX = 1700, 1900
+
+# Prazo do fornecedor, da cotacao de 18/09: entrega Saver (gratis) chega em
+# 28/09, Standard +EUR 35 em 23/09, Express +EUR 38 em 22/09 -- e o arquivo
+# tem de subir ate 18/09 as 13:30 para esse calendario.
+PRAZO = {
+    "upload_ate": "18/09/2026, 13:30",
+    "saver": {"preco": 0.0, "chega": "28/09/2026"},
+    "standard": {"preco": 35.0, "chega": "23/09/2026"},
+    "express": {"preco": 38.0, "chega": "22/09/2026"},
+    "iva": 0.23,
+}
+ORCAMENTO_MIN, ORCAMENTO_MAX = 1050, 1300   # sem IVA, sobre as cotações reais de 18/09
 
 
 def carrega():
@@ -282,46 +304,46 @@ def lista_de_pecas(portas):
 
     add("P0", "Ponto “descubra sua seção”",
         "Calçada da Merrion Road, no gradil do RDS, 20–30 m antes do portão, fora do fluxo: mesa, 2–3 operadores com o caderno impresso e o e-Título",
-        "NÃO SABE SUA SEÇÃO? · Don’t know your section? · Consulte aqui ANTES de entrar · QR do e-Título",
-        "mesh", 1, "amarrado no gradil de ferro fundido, ilhós a ilhós", True, "letra 150 mm · lido a 30 m")
+        "NÃO SABE SUA SEÇÃO? · Consulte aqui ANTES de entrar · QR do e-Título",
+        "fence", 1, "amarrado no gradil com tie wraps", True, "letra 150 mm · lido a 30 m")
     add("P0", "Tabela mestra na calçada", "Gradil da Merrion Road, ao lado do ponto de consulta e no trecho onde a fila da calçada se forma",
-        "SEÇÃO → PORTA · 51 linhas em 3 colunas, cor e letra da porta", "mesh", 2,
-        "amarrado no gradil", True, "dígitos 30 mm · lido a 6 m")
+        "SEÇÃO → PORTA · 51 linhas em 3 colunas, cor e letra da porta", "fence", 2,
+        "amarrado no gradil com tie wraps", True, "dígitos 30 mm · lido a 6 m")
     add("P1", "Portão de entrada do RDS", "Nas grades do portão de eleitores (Merrion Road), uma folha de cada lado do vão",
         "ELEIÇÕES BRASIL 2026 · ENTRADA DE ELEITORES → Hall 2 (Shelbourne Hall) · Preferencial: idoso, gestante, PcD →",
-        "mesh", 1, "amarrado nas grades do portão", True, "letra 150 mm")
+        "fence", 1, "amarrado nas grades do portão com tie wraps", True, "letra 150 mm")
     add("P1", "Tabela mestra no portão", "Na outra folha da grade do portão",
-        "SEÇÃO → PORTA · 51 linhas", "mesh", 1, "amarrado nas grades do portão", True, "dígitos 30 mm")
+        "SEÇÃO → PORTA · 51 linhas", "fence", 1, "amarrado nas grades do portão com tie wraps", True, "dígitos 30 mm")
     add("P2", "Tabela mestra na parede leste do Hall 2",
         "Nos três vãos entre as quatro saídas de emergência da lateral leste, a 10,75 · 22,50 · 33,90 m do canto norte; borda inferior a 1,0 m",
         "SEÇÃO → PORTA · 51 linhas + seta “Ring 3 ↓”", "pvc", 3,
         "pendurado nas folhas das portas de serviço (aço pintado) com ganchos magnéticos; 4 cantos presos — parede abriga do vento",
         True, "dígitos 40 mm · lido a 8 m")
     add("P3", "Entrada do Ring 3", "Na CCB do corredor de chegada, logo depois do canto nordeste, virada para quem entra",
-        "SEÇÃO → PORTA · 51 linhas · “siga o corredor: C, depois B, depois A”", "mesh", 1,
-        "amarrado na CCB (painel de 2,0 m)", True, "dígitos 30 mm")
+        "SEÇÃO → PORTA · 51 linhas · “siga o corredor: C, depois B, depois A”", "fence", 1,
+        "amarrado na CCB com tie wraps", True, "dígitos 30 mm")
     for p in portas:
         add("P4", f"Boca da zona {p['letra']}",
             f"Na CCB de fechamento imediatamente antes da boca da zona {p['letra']}, virada para o trecho de fundo (quem caminha para oeste lê antes de chegar)",
             f"ZONA {p['letra']} · PORTA {p['letra']} · {len(p['secoes'])} seções em 80 mm · “não está aqui? siga em frente / volte”",
-            "mesh", 1, "amarrado na CCB (painel de 2,0 m × 1,1 m)", True, f"letra 400 mm · seções 80 mm · lido a 15 m")
+            "fence", 1, "amarrado na CCB com tie wraps (a peça cobre o painel de 2,0 m)", True, f"letra 400 mm · seções 80 mm · lido a 15 m")
     add("P5", "Letra da porta no vidro", "Por dentro da cortina de vidro da fachada sul, sobre cada vão de entrada S4 · S5 · S6",
         "ENTRADA + letra e cor da porta em 300 mm", "vinil", 3, "colado no vidro; sai sem resíduo", True, "300 mm · lido a 60 m, do Ring 3")
     add("P5", "Entrada preferencial", "Gradil branco de pedestres do apron, junto à porta S7",
-        "ENTRADA PREFERENCIAL · Priority entrance · idoso, gestante, PcD, acompanhante · qualquer porta", "mesh", 1,
-        "amarrado no gradil do apron", True, "letra 150 mm")
+        "ENTRADA PREFERENCIAL · idoso, gestante, PcD, acompanhante · qualquer porta", "fence", 1,
+        "amarrado no gradil do apron com tie wraps", True, "letra 150 mm")
     for p in portas:
         add("P6", f"Painel da porta {p['letra']}",
             f"Logo depois da porta {p['porta']}, dentro do salão, do lado oposto à curva do eleitor",
             f"PORTA {p['letra']} · parede {p['parede']} · as {len(p['secoes'])} seções da parede, agrupadas por bloco, na ordem física",
-            "pullup", 1, "autoportante (cassete)", False, "letra 300 mm · seções 60 mm")
+            "pullup100", 1, "autoportante (cassete)", False, "letra 300 mm · seções 70 mm")
     for p in portas:
         add("P6", f"Banners de bloco — porta {p['letra']}",
             f"Na boca do corredor de cada bloco da parede {p['parede']}, a 4,6 m da parede",
             "Só as seções do bloco (2 a 4 números), 4 dígitos, sem número de mesa",
-            "xbanner", len(p["blocos"]), "autoportante (tripé em X)", False, "seções 120 mm · lido a 20 m")
+            "pullup85", len(p["blocos"]), "autoportante (cassete)", False, "seções 130 mm · lido a 25 m")
     add("P7", "Saídas S2 e S8", "Dentro do salão, sobre cada vão de saída",
-        "SAÍDA · WAY OUT → Merrion Road", "correx", 2, "abraçadeira no batente / fita", False, "letra 150 mm")
+        "SAÍDA → Merrion Road", "correx", 2, "abraçadeira no batente / fita", False, "letra 150 mm")
     add("—", "Fixação", "Todas as peças", "—", "fixacao", 1, "—", True, "—")
     return P
 
@@ -826,7 +848,7 @@ def pagina_rota(S):
     <div class="fact"><dt>Portas</dt><dd>3 <span>A · B · C</span></dd></div>
     <div class="fact"><dt>Peças externas</dt><dd>{n_ext}</dd></div>
     <div class="fact"><dt>Peças internas</dt><dd>{n_int}</dd></div>
-    <div class="fact"><dt>Orçamento de referência</dt><dd>{eur(tot)} <span>faixa {eur(S["faixa_orcamento"][0])}–{eur(S["faixa_orcamento"][1])}</span></dd></div>
+    <div class="fact"><dt>Orçamento · sem IVA</dt><dd>{eur(tot)} <span>{eur(tot*1.23)} com IVA 23%</span></dd></div>
   </dl>
 </header>
 
@@ -836,7 +858,7 @@ def pagina_rota(S):
   <p>Na versão anterior o eleitor precisava descobrir a <em>mesa</em> e a <em>porta</em>. Com as mesas sem número, a mesa deixou de existir como informação: o eleitor procura a sua <strong>seção</strong> na lista da porta e, dentro do salão, procura a mesma seção no banner do bloco. A tabela mestra encolheu de três colunas para duas — <strong>seção → porta</strong> — e cabe num banner de 2 × 1 m com 51 linhas.</p>
   <p>O preço dessa simplificação é que <strong>não há mais nenhum atalho</strong>. Não existe regra numérica (as seções 33xx de Dublin estão nas três portas) e o condado também não serve: {amb} caem em duas portas cada. Quem chega sem saber o número da seção não consegue ser triado por ninguém, em lugar nenhum — e cada um desses casos, se for parar na garganta ou dentro do salão, custa um operador parado por dois ou três minutos. Por isso o plano ganha um ponto novo, <strong>P0, fora do RDS</strong>, na calçada, antes do portão: é ali, e só ali, que se resolve “não sei minha seção”. Depois do portão, todas as peças pressupõem a seção conhecida.</p>
   <p>A segunda mudança é o Ring 3. Não há mais garganta de pré-triagem nem três serpenteados centrados nas portas: o eleitor entra pelo <strong>canto nordeste</strong>, desce um corredor de 3 m pela lateral leste do cercado, vira no trecho de fundo e passa, nessa ordem, pelas <strong>bocas das zonas C, B e A</strong>. Cada boca é uma abertura de ~2,2 m numa linha de CCB — e é nas CCBs dessas bocas que os últimos banners externos se amarram. Dali em diante, a raia leva o eleitor sozinha até a porta certa.</p>
-  <p>A terceira mudança é de fixação, e vem do orçamento e do vento: <strong>nenhuma peça externa tem base</strong>. Tudo o que fica ao ar livre vai em mesh (tela perfurada, que deixa o vento passar) amarrado ilhós a ilhós nas grades do portão, no gradil da Merrion Road e nas CCBs do Ring 3; na lateral do Hall 2, onde a parede abriga, lona fechada pendurada nas portas de serviço. As peças internas, sem vento, podem ser autoportantes.</p>
+  <p>A terceira mudança é de fixação, e vem do orçamento e do vento: <strong>nenhuma peça externa tem base</strong>. Tudo o que fica ao ar livre vai em <strong>fence banner</strong> — o formato que o fornecedor faz para amarrar em grade e em barreira de multidão, com tie wraps, disponível em malha perfurada windproof — nas grades do portão, no gradil da Merrion Road e nas CCBs do Ring 3; na lateral do Hall 2, onde a parede abriga, lona fechada pendurada nas portas de serviço. As peças internas, sem vento, são autoportantes.</p>
 </section>
 
 <section id="rota">
@@ -885,7 +907,7 @@ def pagina_rota(S):
   <h2><span class="num">06</span>Vento, chuva e fixação</h2>
   <p>Dublin em outubro: entre 40% e 65% de chance de chuva no dia 4, conforme o limiar da fonte, e vento médio que uma lona fechada de 2 m² transforma em vela. A regra que sai daí é simples e vale para todas as peças externas.</p>
   <div class="specs">
-    <div class="spec"><h4>Externo em grade, gradil ou CCB</h4><span class="big">mesh</span><p>Tela perfurada 70/30. Reduz a carga de vento a um terço; é o que o próprio RDS amarra no gradil da Merrion Road.</p></div>
+    <div class="spec"><h4>Externo em grade, gradil ou CCB</h4><span class="big">fence banner</span><p>2080 × 820 mm, formato de catálogo do fornecedor, com tie wraps e opção de malha perfurada windproof (270 g). Reduz a carga de vento e dispensa base.</p></div>
     <div class="spec"><h4>Amarração</h4><span class="big">ilhós a ilhós</span><p>Abraçadeira em cada ilhós, a cada 50 cm, nas quatro bordas. Nenhum canto solto; nenhuma peça maior que o painel que a segura.</p></div>
     <div class="spec"><h4>Tamanho das peças de CCB</h4><span class="big">2,0 × 1,0 m</span><p>A CCB tem 2,0 m de largura e ~1,1 m de altura: a peça cobre o painel inteiro e não avança sobre a boca.</p></div>
     <div class="spec"><h4>Parede leste</h4><span class="big">lona 440 g</span><p>Só ali, porque a parede abriga. Pendurada na folha de aço da porta de serviço com ganchos magnéticos; testar um ímã na visita.</p></div>
@@ -899,12 +921,12 @@ def pagina_rota(S):
 
 <section id="orcamento">
   <h2><span class="num">07</span>Orçamento</h2>
-  <p class="lede">Modelos, quantidades e um total de referência dentro da faixa de {eur(S["faixa_orcamento"][0])} a {eur(S["faixa_orcamento"][1])}. Os preços unitários são editáveis.</p>
+  <p class="lede">Modelos, quantidades e o total. Os preços são do Helloprint IE (18/09/2026) e vêm <strong>Excl. VAT</strong>: some 23% para o valor a pagar. Quatro linhas — PVC, vinil, correx e fixação — ainda são premissa. Os preços unitários são editáveis.</p>
   {orcamento_html(S, "orc-rota")}
   <h3>Se estourar: ordem de cortes</h3>
   <ul class="plain">
-    <li><span class="n">1</span><span><b>P3, a tabela na entrada do Ring 3</b> (−1 mesh). O eleitor já leu a tabela quatro vezes antes; a boca da zona ainda confirma.</span></li>
-    <li><span class="n">2</span><span><b>Uma das duas tabelas mestras da calçada</b> (−1 mesh). Fica uma junto ao P0.</span></li>
+    <li><span class="n">1</span><span><b>P3, a tabela na entrada do Ring 3</b> (−1 fence banner). O eleitor já leu a tabela quatro vezes antes; a boca da zona ainda confirma.</span></li>
+    <li><span class="n">2</span><span><b>Uma das duas tabelas mestras da calçada</b> (−1 fence banner). Fica uma junto ao P0.</span></li>
     <li><span class="n">3</span><span><b>Painéis de porta em X-banner em vez de pull-up</b> (−3 × diferença). Perde robustez onde as pessoas esbarram, não perde informação.</span></li>
     <li><span class="n">4</span><span><b>P2 de três para duas lonas</b> (−1 PVC). A fila continua lendo a cada ~20 m.</span></li>
   </ul>
@@ -930,7 +952,7 @@ def pagina_rota(S):
 
 <footer>
   <p>Gerado por <code>scripts/sinalizacao_v2.py</code> a partir de <code>data/prancheta_paredes_abc.json</code> (prancheta Paredes_ABC, 15/09/2026) e <code>saidas/dados.json</code> (TSE). Geometria do Ring 3 da montagem adotada em 15/09/2026 (44 × 35 m, corredor em L de 3,0 m, 180 CCBs). Comparecimento esperado: base B, taxa de 2022 por domicílio de origem, não oficial. Validação automática: as 51 seções aparecem exatamente uma vez, os aptos somam 16.794 e as 28 mesas fecham.</p>
-  <p>Preços de referência (inc. IVA, 16/09/2026): pull-up 850 × 2000 €80–90 (PrintNPack, Bannerz.ie); mesh “from €20 + VAT” (Kaizen Print, Printroom); PVC pequeno €25–45 e grande €60–150 (PrintNPack); correx “from €5” (Printco). Onde não há fonte irlandesa a peça está marcada como premissa.</p>
+  <p>Preços do fornecedor (Helloprint IE, cotações de 18/09/2026, <strong>Excl. VAT</strong>; IVA irlandês de 23% por cima): fence banner 208 × 82 cm € 51,99 a unidade e € 291,99 em 9; roller banner 100 × 200 € 41,99 a unidade e € 122,99 em 4; roller banner 85 × 200 € 38,99 a unidade e € 372,99 em 15. PVC, vinil, correx e fixação continuam premissa — a cotação não chegou a precificá-los.</p>
 </footer>
 </div>
 """
@@ -1124,7 +1146,7 @@ footer code{{font-size:.78rem}}
     <li><span class="lvl">N2</span><div class="j-b"><div class="j-h"><h4>Banner de bloco</h4><span class="qty">{n_blocos} un · X-banner 600 × 1600 · peça crítica</span></div>
       <p>Na boca do corredor de cada par, a 4,6 m da parede, lido de dentro da fila em movimento: só as seções do bloco (duas a quatro), em 120 mm, quatro dígitos. <strong>Nenhum número de mesa.</strong> Dentro do par, cada mesa se distingue pelas suas seções — o eleitor da 3313 entra na via da 3313, não “na mesa da esquerda”.</p></div></li>
     <li><span class="lvl">N3</span><div class="j-b"><div class="j-h"><h4>Saídas</h4><span class="qty">2 un · correx A2</span></div>
-      <p>SAÍDA / WAY OUT sobre S2 e S8, que ficam nos flancos, fora do vão das entradas: os fluxos se separam sozinhos.</p></div></li>
+      <p>SAÍDA sobre S2 e S8, que ficam nos flancos, fora do vão das entradas: os fluxos se separam sozinhos.</p></div></li>
   </ol>
   <p class="col">Em todas as peças: seção com <strong>4 dígitos</strong>, como no e-Título (<code>0511</code>, não <code>511</code>); ordem crescente dentro de cada bloco; a cor da porta constante do gradil da Merrion Road ao banner do bloco — A azul, B âmbar, C magenta, a mesma paleta da prancheta e da montagem do Ring 3.</p>
 </section>
@@ -1174,7 +1196,7 @@ footer code{{font-size:.78rem}}
 </section>
 
 <section class="band">
-  <div class="hd"><p class="eyebrow">Orçamento · peças internas e externas</p><h2>Onde os {eur(S["faixa_orcamento"][0])}–{eur(S["faixa_orcamento"][1])} vão</h2></div>
+  <div class="hd"><p class="eyebrow">Orçamento · peças internas e externas</p><h2>Onde o orçamento vai</h2></div>
   <p class="col">A mesma tabela da Rota do Eleitor, para fechar as duas listas de uma vez. As peças internas não precisam de fixação: pull-up e X-banner são autoportantes. Os preços unitários são editáveis.</p>
   {orcamento_html(S, "orc-hall")}
 </section>
