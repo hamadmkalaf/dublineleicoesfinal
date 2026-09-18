@@ -1,8 +1,8 @@
 # Conferência final da prancheta do Hall 2 — 15/09/2026
 
-> **Procedência.** Documento histórico de 15/09/2026, trazido do repositório
-> `hamadmkalaf/eleicoes2026` (branch `claude/line-separator-layout-j61pe9`) porque é
-> onde está registrado o abandono do Ring 3 — ver `docs/CONFLITO_RING3.md`. Ele cita
+> **Procedência.** Documento de 15/09/2026, trazido do repositório
+> `hamadmkalaf/eleicoes2026` (branch `claude/line-separator-layout-j61pe9`), onde está
+> o porquê de cada decisão de arranjo do Hall 2. Ele cita
 > scripts e documentos que **não foram transferidos** (`scripts/arranjo_paredes.py`,
 > `scripts/confere_prancheta.py`, `scripts/plano_filas.py`, `scripts/ring3.py`,
 > `saidas/analise_gargalos.md`, `plano_filas_sem_ring3.md`,
@@ -199,9 +199,10 @@ Ring 3** — a zona de fila de B era mais larga, então B levou mais carga:
 
 Três razões para trocar:
 
-1. **O Ring 3 não existe mais.** O RDS proibiu fila no terreno dele e não
-   houve autorização de Brasília (`plano_filas_sem_ring3.md`). A cota que
-   justificava os +10% de B morreu com ele.
+1. **As três zonas do Ring 3 passaram a ser iguais.** A montagem confirmada
+   dimensiona as zonas pelo esperado por entrada de `Paredes_ABC` — 706 pessoas
+   em cada uma —, e não mais por uma cota que dava +10% a B. Sem essa cota, o
+   desvio que ela justificava deixa de ter de onde vir.
 2. **`simulador/equitativo.js` já assume a regra por parede**
    (`ENTRADA = {oeste: "A", norte: "B", leste: "C"}`). Hoje o gerador do
    arranjo e o arquivo de decisões dizem coisas diferentes sobre a mesma
@@ -210,8 +211,7 @@ Três razões para trocar:
    estão na ordem oeste → centro → leste; mandar cada porta para a parede
    correspondente é o percurso curto, não um desvio.
 
-Não é decisão desta conferência — é do Posto, e depende do desenho de fila
-confinado que substituiu o Ring 3. Mas é barato e melhora 573 → 4.
+Não é decisão desta conferência — é do Posto. Mas é barato e melhora 573 → 4.
 
 ### 6.2 Uma base de comparecimento fora do lugar
 
@@ -373,8 +373,8 @@ sem margem nenhuma. O arranjo novo não tem nada abaixo de 1,83 m.
 
 ### 9.4 O que isto não resolve
 
-- **A densidade continua desigual, e agora importa mais.** Sem o Ring 3, a fila
-  de cada entrada vive dentro do salão, na frente da sua parede. A norte leva
+- **A densidade continua desigual.** Cada entrada serve uma parede inteira, e é
+  na frente dela que o seu fluxo se acumula. A norte leva
   138,7 esperados por metro contra 105,5 da leste — 31% mais densa para a mesma
   carga, porque é 8,7 m mais curta. Carga igual não é fila igual: é a parede
   norte que enche primeiro.
@@ -446,8 +446,8 @@ mesários**, que são por MRV.
 ### 10.3 O que continua em aberto
 
 - **A densidade segue desigual**, e o item 5 a piorou um pouco: a norte agora
-  leva 135,9 esperados por metro contra 106,6 da leste. Sem o Ring 3, é a
-  parede norte que enche primeiro.
+  leva 135,9 esperados por metro contra 106,6 da leste: é a parede norte que
+  enche primeiro.
 - **S7 tem 1,27 m de vão.** Serve a um fluxo preferencial pequeno, mas é o
   ponto a medir em campo antes de imprimir a sinalização: se a fila
   preferencial crescer, 1,27 m não absorve.

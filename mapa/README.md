@@ -1,48 +1,97 @@
 # Mapas, plantas e artefatos
 
-## O que está versionado aqui
+Os artefatos que sustentam a geometria do projeto **têm fonte versionada aqui**. Antes
+existia só a URL da publicação, que não é versionamento: o repositório versiona o
+arquivo; a publicação pode mudar ou sair do ar sem deixar rastro.
 
-| Arquivo | O que é |
+O manifesto **[`artefatos.json`](artefatos.json)** registra, para cada um, a URL, a
+versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repositório.
+**É assim que se percebe que uma cópia envelheceu:** se o artefato for republicado, o
+`sha256` deixa de bater.
+
+## O que está versionado
+
+| Arquivo | Artefato | O que é |
+|---|---|---|
+| [`voluntarios_postos.html`](voluntarios_postos.html) | Escala de Voluntários | Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários. |
+| [`rota_do_eleitor.html`](rota_do_eleitor.html) | Rota do Eleitor RDS | Os pontos **P0–P7**, a tabela mestra seção → porta e o plano de sinalização. É a origem dos códigos de posto. |
+| [`prancheta_hall2.html`](prancheta_hall2.html) | Prancheta pelas Seções | Coordenadas reais das portas e das 28 mesas. A planta do salão em `voluntarios_postos.html` foi gerada delas. |
+| [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado: 23 raias por zona, vão de 1,20 m, **180 CCBs** dos 200 em estoque, 506 m de fita grossa, lotação 2.118. |
+| [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
+| [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **21 peças** P0–P7, os dois mapas de posição e o `canvas.json`. Fonte das seis cores de rolo e da convenção de rotular por grupo e seção. |
+
+As cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
+incluído — não foram editadas. A única exceção é `voluntarios_postos.html`, que já
+estava no repositório antes: é byte a byte igual ao artefato publicado a menos desse
+invólucro, e por isso foi mantida como está.
+
+O artefato de sinalização é um Artifact do tipo *Design*, e o seu `index.html` é só a
+casca da plataforma. O que vale é o conteúdo, em `sinalizacao/`: um arquivo `.dc.html`
+por peça, mais `canvas.json` com o título e a posição de cada prancha.
+
+> **Esses `.dc.html` são fonte, não página pronta.** Cada um carrega um `./support.js`
+> e um `<x-dc>` que só o runtime do tipo *Design* resolve — abrir um deles direto no
+> navegador não desenha a peça. Para ver as peças, use a URL do artefato; para saber o
+> que cada peça diz, medida a medida, leia o arquivo. O runtime em si (4 MB de
+> `artifact-type/`) **não** foi versionado: é da plataforma, não do projeto.
+
+### As peças, por ponto da rota
+
+| Ponto | Peças |
 |---|---|
-| `voluntarios_postos.html` | Os 17 postos marcados sobre a rota e sobre a planta do salão, com seletor dos quatro cenários de efetivo. Não referencia nenhum arquivo do repositório. Busca as fontes tipográficas no Google Fonts: **sem internet ele abre e funciona, com outra tipografia**. Se for usado no dia, onde pode não haver rede, vale embutir as fontes. |
+| **P0** · calçada | `P0-Consulta` (fence banner 2080 × 820) · `P0-Mestra` (tabela mestra, ×2) |
+| **P1** · portão | `P1-Portao` |
+| **P2** · lateral leste | `P2-ParedeLeste` (PVC 2000 × 1000, ×3) |
+| **P3** · entrada do Ring | `P3-EntradaRing` |
+| **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` |
+| **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) |
+| **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · `P6-BlocoA3` · `P6-BlocoC4` |
+| **P7** · saída | `P7-Saida` (correx A2, ×2) |
+| Mapas | `Mapa-Ring3` · `Mapa-Hall2` · `Main` (o sistema visual) |
 
-## O que ainda não está versionado — e devia estar
+## Duas divergências entre artefatos, a resolver
 
-Os desenhos abaixo sustentam a geometria descrita no `CLAUDE.md` e as posições de
-todos os postos, e **não estavam em repositório nenhum** quando os dois temas foram
-transferidos. Estão publicados como artefatos, o que **não é versionamento**: o
-repositório versiona o arquivo; a publicação é outra coisa, e pode mudar ou sair do
-ar sem deixar rastro.
+Nenhuma foi resolvida aqui — as duas são medição de campo ou decisão do Posto.
 
-**Guardar o fonte de cada um**, e não só a URL.
+1. **A largura das três zonas do Ring 3.** `ring3_montagem.html` (16/09) desenha
+   **A 12,23 · B 14,14 · C 12,23 m**, que é o que o `CLAUDE.md` também registra. O
+   `Mapa-Ring3` do artefato de sinalização (17/09) desenha as três **iguais, ~12,87 m
+   cada, 706 pessoas por zona**, dizendo que as larguras saem do esperado por entrada
+   de `Paredes_ABC`. São desenhos diferentes do mesmo pátio.
+2. **O número de CCBs.** 180 em `ring3_montagem.html`, **179** no `Mapa-Ring3`. Ambos
+   dentro dos 200 em estoque, então não muda a compra — mas muda a lista de montagem.
 
-| O quê | URL | Destino | Estado |
-|---|---|---|---|
-| **Rota do Eleitor** | https://claude.ai/artifact/1PQjgzstbiNorfJgagXhB5 | `mapa/rota_do_eleitor.html` | **lido na íntegra.** Define os pontos P0–P7, a tabela mestra seção → porta e o plano de sinalização. É a origem dos códigos de posto. |
-| **Prancheta do Hall 2 pelas seções** | https://claude.ai/artifact/Szv5egKpHy3umh4udAybvr | `mapa/prancheta_hall2.html` | **lido na íntegra.** Coordenadas reais das portas e das 28 mesas; a planta do salão no `voluntarios_postos.html` foi gerada delas. |
-| **Ring 3** | https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV | `mapa/ring3.html` | ⚠ **não foi lido na íntegra.** Conferir contra a §5 de `docs/voluntarios/contexto.md` — e ver `docs/CONFLITO_RING3.md` antes, porque o Ring pode não existir mais. |
-| **Sinalização interna** | https://claude.ai/artifact/BcT5yzxRkSaUsbbHQQgjWF | `mapa/sinalizacao_interna.html` | ⚠ **não foi lido na íntegra.** |
-| **Sinalização (cores, grupos e peças)** | https://claude.ai/artifact/Ek3FfeYnwvQLZEs4ZJ5Zzr | `mapa/sinalizacao.html` | Fonte das seis cores de rolo e da convenção de rotular por grupo e seção. O tema dos separadores depende dele. |
-| **Escala de Voluntários** | https://claude.ai/artifact/YaFNHUua2Hkqu7dtR7tf7A | — | Publicação do `voluntarios_postos.html`, que já está versionado aqui. |
-| **Plantas em imagem** do Ring 3 e do Hall 2 | — | `plantas/` | A geometria do `CLAUDE.md` é prosa escrita a partir delas. Sem as imagens, a descrição perde a fonte. |
-| **Caderno nominal de seções** (51 seções × nome do eleitor, do Cartório) | — | `data/` | Insumo do posto P0. **Pode não existir** — ver pendência 3 de `docs/voluntarios/contexto.md`. Obtê-la é a melhoria de maior retorno por euro gasto. |
+## Dois achados a levar ao plano de sinalização
 
-### Por que isto importa
+Vieram do tema dos separadores. O desenho dos separadores já os aplica; o plano de
+sinalização, ainda não.
 
-Dos quatro desenhos que sustentam o tema de voluntários, **dois foram lidos na
-íntegra** — a Rota do Eleitor e a prancheta do Hall 2. A geometria do Ring 3 e os
-pontos de sinalização interna vieram das descrições contidas no artefato da Rota do
-Eleitor. **Se os artefatos dedicados divergirem, os postos R2, R4 e R5 são os que se
-mexem.**
-
-Há ainda dois achados do tema dos separadores que são **correções ao plano de
-sinalização** e precisam ser levados a ele:
-
-1. O x-banner da parede leste está em **x = 45,70** no `sinalizacao_v2.json` e devia
-   estar em **42,70** — a 45,70 ele fica atrás das mesas, dentro da faixa protegida
-   das saídas de emergência L1–L4.
+1. O x-banner da parede leste está em **x = 45,70** e devia estar em **42,70** — a
+   45,70 ele fica atrás das mesas, dentro da faixa protegida das saídas de emergência
+   L1–L4.
 2. Nos três grupos de alto comparecimento (A3, B2, C5), os **4,60 m** caem dentro do
    serpenteado; nesses três o banner recua para **8,60 m**.
 
-O desenho dos separadores já aplica as duas correções. O plano de sinalização,
-ainda não.
+## O que ainda falta
+
+| O quê | Onde deve ficar | Observação |
+|---|---|---|
+| **Plantas em imagem** do Ring 3 e do Hall 2 | `plantas/` | A geometria do `CLAUDE.md` é prosa escrita a partir delas. Sem as imagens, a descrição perde a fonte. |
+| **Caderno nominal de seções** (51 seções × nome do eleitor, do Cartório) | `data/` | Insumo do posto P0. **Pode não existir** — ver pendência 3 de `docs/voluntarios/contexto.md`. Obtê-la é a melhoria de maior retorno por euro gasto. |
+
+## Como reconferir as cópias
+
+```bash
+python3 - <<'EOF'
+import hashlib, json
+m = json.load(open("mapa/artefatos.json", encoding="utf-8"))
+for a in m["artefatos"]:
+    if "sha256" not in a: continue
+    atual = hashlib.sha256(open(a["caminho"], "rb").read()).hexdigest()
+    print(("ok  " if atual == a["sha256"] else "MUDOU "), a["caminho"])
+EOF
+```
+
+Se um arquivo mudou, ou alguém o editou à mão — o que não se deve fazer, porque estas
+cópias são espelho do artefato — ou o artefato foi republicado e a cópia precisa ser
+refeita a partir da URL do manifesto.
