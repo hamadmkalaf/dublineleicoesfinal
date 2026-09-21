@@ -130,6 +130,27 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   avenida B duas vezes (ela entra inteira, não leva item de boca); e rotular por
   número de mesa. As três estão descritas em `docs/separadores/contexto.md`.
 
+## Regra da tabela mestra seção → porta
+
+A tabela "SUA SEÇÃO → SUA PORTA" das quatro peças de triagem — **P0-Mestra,
+P1-Portao, P2-ParedeLeste e P3-EntradaRing** — é **agrupada por porta** desde
+21/09/2026: bloco A, bloco B, bloco C, lado a lado, e dentro de cada bloco as
+seções em ordem crescente, lidas de cima para baixo em três colunas. A letra sai
+uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
+
+- **Não edite essas quatro peças à mão.** Rode `python3 scripts/tabela_mestra.py
+  --grava`. Sem `--grava` o script confere e sai com código 1 se as peças
+  divergirem do que ele geraria, e já serve de teste em integração contínua.
+- A correspondência seção → porta vem de `data/grupos_mesas.json`, que é **lido,
+  nunca escrito** por esse script.
+- As escalas tipográficas de cada peça estão no dicionário `ESCALAS`, no topo do
+  script. Elas foram dimensionadas para caber no canvas de cada peça (P2 é
+  1000 × 500; as outras três, 1040 × 410) com zero estouro. Mexeu em `num`,
+  `alt` ou `cab`: rerrenderize e confira que nada transborda.
+- O custo conhecido do agrupamento: quem não sabe a sua porta varre até três
+  blocos em vez de uma lista ordenada. A compensação é o dígito, que subiu de
+  17 px para 26 px (34 mm → 52 mm no impresso) porque a pastilha por linha saiu.
+
 ## Convenções
 
 - Números de eleitorado vêm sempre de `saidas/dados.json` (CSV oficial), nunca do
