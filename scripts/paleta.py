@@ -37,6 +37,8 @@ OFFWHITE = _p["neutros"]["offwhite"]["hex"]
 MARINHO = _p["neutros"]["marinho"]["hex"]
 BRANCO = _p["neutros"]["branco"]["hex"]
 ZONA = {k: (v["hex"], v["tinta"]) for k, v in _p["zona"].items() if len(k) == 1}
+FONTE = _p["fonte"]["css"]
+IMPORT_FONTE = _p["fonte"]["import"]
 PAREDE = {k: v["parede"] for k, v in _p["zona"].items() if len(k) == 1}
 PORTA = {k: v["porta"] for k, v in _p["zona"].items() if len(k) == 1}
 
@@ -67,6 +69,25 @@ PERMITIDAS = {c.upper() for c in (
 # faixa amarela no topo de toda peça passaria a dizer "porta B" a 30 metros,
 # inclusive nas peças de A e de C. As peças nunca receberam essa decisão e
 # seguiram com uma tarja escura. Estas regras aplicam a decisão.
+# A fonte da campanha é Montserrat. Archivo e Nunito Sans eram marcação de
+# lugar. Montserrat é mais larga no mesmo corpo, então a troca mexe em medida,
+# não só em estilo -- as peças foram remedidas com a fonte real instalada.
+TIPOGRAFIA = [
+    (re.compile(r"@import url\('https://fonts\.googleapis\.com/css2\?[^']*'\)"),
+     lambda m: f"@import url('{IMPORT_FONTE}')"),
+    (re.compile(r"font-family: 'Archivo', 'Nunito Sans', sans-serif"),
+     lambda m: f"font-family: {FONTE}"),
+    (re.compile(r"font-family: 'Nunito Sans', system-ui, sans-serif"),
+     lambda m: f"font-family: {FONTE}"),
+    (re.compile(r"font:(\s*\d+\s+[\d.]+px) (?:Nunito Sans|Archivo),\s*sans-serif"),
+     lambda m: f"font:{m.group(1)} Montserrat, sans-serif"),
+    (re.compile(r"font:(\s*\d+\s+[\d.]+px) '(?:Nunito Sans|Archivo)',\s*sans-serif"),
+     lambda m: f"font:{m.group(1)} 'Montserrat', sans-serif"),
+    # os mapas declaram a fonte como atributo de SVG, não como propriedade CSS
+    (re.compile(r'font-family="\'(?:Archivo\', \'Nunito Sans|Nunito Sans)\', (?:sans-serif|system-ui, sans-serif)"'),
+     lambda m: 'font-family="\'Montserrat\', system-ui, sans-serif"'),
+]
+
 FAIXA = [
     # o fundo da tarja e a régua
     (re.compile(r'(height: (\d+)px; flex-shrink: 0; )background: #404041;'),
@@ -118,6 +139,8 @@ def main():
         novo = html
         for padrao, troca in FAIXA:
             novo = padrao.sub(troca, novo)
+        for padrao, troca in TIPOGRAFIA:
+            novo = padrao.sub(troca, novo)
         for velho, nvo in SUBSTITUICOES.items():
             novo = re.sub(re.escape(velho), nvo, novo, flags=re.IGNORECASE)
         novo = novo.replace("@LOCKUP@", GRAFITE)
@@ -134,6 +157,11 @@ def main():
         if GRAFITE in alvo[i:f]:
             fora += 1
             print(f"{caminho.name:<22} grafite fora do lockup: a tipografia do corpo é marinho")
+        for velha in _p["fonte"]["superadas"]:
+            if velha in alvo:
+                fora += 1
+                print(f"{caminho.name:<22} usa fonte superada: {velha}")
+                break
         estranhas = sorted(hexes(alvo) - PERMITIDAS - set(SUBSTITUICOES))
         if estranhas:
             fora += 1

@@ -29,11 +29,11 @@ PECAS = RAIZ / "mapa" / "sinalizacao"
 # par (fundo, tinta) vale para a tarja do bloco e para a pastilha de cada seção
 # dentro dele: o bloco inteiro vira um campo de cor.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from paleta import ZONA as CORES  # noqa: E402
+from paleta import FONTE as FONTE_CSS, ZONA as CORES  # noqa: E402
 
 COLUNAS_POR_BLOCO = 3
 
-ARCHIVO = "'Archivo', 'Nunito Sans', sans-serif"
+ARCHIVO = FONTE_CSS
 
 # Uma escala por peça: a P0 e a P1 são banners de gradil lidos de perto, a P2
 # divide a altura com a tarja de rodapé e a P3 divide a largura com o painel

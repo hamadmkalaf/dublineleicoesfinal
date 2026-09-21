@@ -210,11 +210,22 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
 - **Tipografia do plano: marinho `#042B5A`**, não o grafite do logotipo. O
   grafite só é legítimo acima do fim da faixa; `scripts/paleta.py` reprova
   grafite no corpo da peça.
+- **Fonte: Montserrat** (`data/paleta.json`, campo `fonte`). É a fonte da
+  campanha, informada pelo Posto em 21/09. Archivo e Nunito Sans eram marcação
+  de lugar. Montserrat é **mais larga no mesmo corpo**, então a troca mexe em
+  medida e não só em estilo: as 36 peças foram remedidas no DOM com a fonte
+  real instalada, não com substituta. `scripts/paleta.py` reprova Archivo e
+  Nunito Sans.
+- **A autorização de uso da marca para posto no exterior foi concedida**
+  (21/09). O que ainda é reprodução, e não arquivo oficial, é o desenho do
+  lockup nas peças.
 - **As cores de zona não se ajustam à identidade.** `#33507E`, `#E8C63A` e
-  `#DE7343` são **cor de rolo de fita já em estoque** (`CORES_ZONA` em
-  `scripts/separadores_fila.py`): mexer numa delas é mexer numa compra. Por
-  isso o amarelo da B e o ouro da marca convivem sendo dois amarelos — e por
-  isso a tarja da B nunca encosta no logotipo.
+  `#DE7343` são **cor de rolo de fita já comprado** (`CORES_ZONA` em
+  `scripts/separadores_fila.py`): a peça impressa persegue a fita. Por isso o
+  amarelo da B e o ouro da marca convivem sendo dois amarelos — e por isso a
+  tarja da B nunca encosta no logotipo. **Em 21/09 o Posto abriu a
+  possibilidade de rever essa compra** (pendência 6): enquanto não se decide,
+  as três seguem como estão.
 - As quatro cores do laço do espectro autista são do símbolo, não do plano, e
   ficam de fora da conferência.
 
@@ -251,6 +262,18 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
    IVA vai de EUR 1.139,57 para EUR 1.169,57 (EUR 1.438,57 com IVA). Ressalva: o
    preço do vinil é uma das quatro linhas que a própria cotação marca como
    **premissa não precificada**, então o quarto vinil herda essa incerteza.
+
+6. **Rever a compra de fita pode destravar a paleta das portas.** Hoje
+   `#33507E`, `#E8C63A` e `#DE7343` não são escolha de projeto: são o rolo que
+   está em mãos. Se a compra for refeita, cai a razão de o amarelo da porta B
+   brigar com o ouro da marca, e cai também o problema de deuteranopia que a
+   prancha do sistema registra — B e C têm **1,9:1** entre si para quem não
+   distingue verde e vermelho, e hoje só a letra as separa. Uma paleta de fita
+   escolhida do zero resolveria as duas coisas de uma vez. O que a decisão
+   arrasta: `CORES_ZONA` em `scripts/separadores_fila.py`, `data/paleta.json`,
+   as 36 peças, os metros por cor do plano de separadores e a própria compra.
+   **Quem decidir precisa dos metros por cor antes**, porque a conta de fita é
+   por cor de rolo, não por metro total.
 
 A lista completa e por tema está em `PENDENCIAS.md` e nas seções finais dos dois
 contextos.
