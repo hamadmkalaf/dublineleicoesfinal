@@ -49,7 +49,7 @@
    "versao": "1789698164-e1ff",
    "caminho": "mapa/sinalizacao/",
    "o_que_e": "As 21 peças P0–P7, os dois mapas de posição e o canvas. Fonte das seis cores de rolo e da convenção de rotular por grupo e seção.",
-   "estado": "à frente do artefato publicado: em 21/09 a tabela mestra passou a ser agrupada e colorida por porta (P0-Mestra, P1, P2, P3), a entrada preferencial ganhou os cinco pictogramas brasileiros (P5-Preferencial, P5-VinilPref) e as placas de grupo passaram de duas para dezesseis (P6-BlocoA1 a P6-BlocoC6)",
+   "estado": "versionado na revisão de 21/09. O artefato publicado deste canvas (Ek3Ffe…) ainda está na versão de 17/09 e ficou atrás: quem republicá-lo deve subir as 22 peças geradas desta pasta",
    "arquivos": {
     "Main.dc.html": "c5828ac227420c27f8549a982584ee0823bbadd92be645186374c90d4742a474",
     "Mapa-Hall2.dc.html": "cffb72e15a8fc0f4a8b3702af9898863f75ae0a17c893736c04b9859d94e3d10",
@@ -99,6 +99,17 @@
    "o_que_e": "Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários.",
    "estado": "lido na íntegra",
    "sha256": "d65715289852943151161742afc9249d17f29a72647618a6a7156421597b0bd3"
+  },
+  {
+   "chave": "plano_consolidado",
+   "titulo": "Plano de sinalização, peça por peça",
+   "url": "https://claude.ai/artifact/EUNZhAFtSfUtRrLvqkvFVZ",
+   "versao": "v3 · 21/09/2026",
+   "caminho": "mapa/plano_sinalizacao.html",
+   "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
+   "estado": "em dia com mapa/sinalizacao/ desta revisão",
+   "sha256": "8444b835c3d7ea8502791dd21cd34a348719d66149ba358a513593715a844302",
+   "nota": "Reconstruído por scripts/reconstroi_plano_consolidado.py, que parte da versão publicada anterior e troca só o que mudou — não reescreve a prosa das fichas."
   }
  ]
 }
