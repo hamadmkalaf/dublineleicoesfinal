@@ -199,13 +199,14 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
 3. Confirmação da expectativa de comparecimento.
 4. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900), as 15
    unifilas adicionais (EUR 195,45) e os 8 rolos de fita.
-5. **As 14 placas de grupo a mais (21/09) não estão orçadas.** O plano tinha duas
-   (`P6-BlocoA3` e `P6-BlocoC4`) e passou a ter dezesseis, mais o vinil da porta
-   preferencial. São 14 pull-ups 850 × 2000 e 1 vinil a acrescentar à cotação de
-   sinalização — o valor unitário está nas telas de `Orçamentos/Sinalização/` e
-   **não foi transcrito para dado aqui**, então não há como somar sem reabrir a
-   cotação. Enquanto não se soma, o total de sinalização do plano está defasado
-   para menos.
+5. **O vinil da porta S7 (21/09) não está orçado.** A cotação de 18/09 já previa
+   **16 pull-ups 850 × 2000 a EUR 24,87 (EUR 398)** — ou seja, as dezesseis placas
+   de grupo sempre estiveram no orçamento; o que faltava eram as artes, e é isso
+   que a revisão de 21/09 fecha. O que entra de novo é só o quarto vinil de porta,
+   da S7 preferencial: a linha passa de 3 para 4 unidades, +EUR 30, e o total sem
+   IVA vai de EUR 1.139,57 para EUR 1.169,57 (EUR 1.438,57 com IVA). Ressalva: o
+   preço do vinil é uma das quatro linhas que a própria cotação marca como
+   **premissa não precificada**, então o quarto vinil herda essa incerteza.
 
 A lista completa e por tema está em `PENDENCIAS.md` e nas seções finais dos dois
 contextos.
