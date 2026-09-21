@@ -104,12 +104,12 @@
    "chave": "plano_consolidado",
    "titulo": "Plano de sinalização, peça por peça",
    "url": "https://claude.ai/artifact/EUNZhAFtSfUtRrLvqkvFVZ",
-   "versao": "v4 · 21/09/2026",
+   "versao": "v5 · 21/09/2026",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
    "estado": "em dia com mapa/sinalizacao/ desta revisão",
-   "sha256": "00f76bcca2159891d673b4410d0f23e351af83ff74ee3371c24c43de52dfd1f9",
-   "nota": "Reconstruído por scripts/reconstroi_plano_consolidado.py e recolorido por scripts/recolore_plano_consolidado.py: os dois partem da versão publicada anterior e trocam só o que mudou — não reescrevem a prosa das fichas."
+   "sha256": "3d60e198a53125ad6b6c2726850f88299b6da59bef0e5093002a043a4d5ec8d5",
+   "nota": "Atualizado por scripts/atualiza_plano_consolidado.py, que parte da versão publicada anterior e troca só o que mudou — nunca reescreve a prosa das fichas. A primeira reconstrução está em scripts/reconstroi_plano_consolidado.py."
   }
  ]
 }
