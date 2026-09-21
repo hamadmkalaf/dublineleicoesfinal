@@ -44,8 +44,8 @@ por peça, mais `canvas.json` com o título e a posição de cada prancha.
 | **P2** · lateral leste | `P2-ParedeLeste` (PVC 2000 × 1000, ×3) |
 | **P3** · entrada do Ring | `P3-EntradaRing` |
 | **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` |
-| **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) |
-| **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · `P6-BlocoA3` · `P6-BlocoC4` |
+| **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) · `P5-VinilPref` (porta S7) |
+| **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · **`P6-BlocoA1` a `P6-BlocoC6`** — as dezesseis placas de grupo (pull-up 850 × 2000) |
 | **P7** · saída | `P7-Saida` (correx A2, ×2) |
 | Mapas | `Mapa-Ring3` · `Mapa-Hall2` · `Main` (o sistema visual) |
 
@@ -60,6 +60,12 @@ não foi editada. `CLAUDE.md` já registra as três iguais.
 A soma das três não muda (38,60 contra 38,61 m), então **nenhuma conta que dependa do
 total se altera**: os 888 m de fila e os ~926 m de barreira da §5 de
 `docs/voluntarios/contexto.md` continuam valendo como estavam.
+
+**Superada — "preferencial em qualquer porta".** A tabela de `rota_do_eleitor.html`
+diz, na linha do P5, que a entrada preferencial vale em *"qualquer porta"*. **Não vale:**
+decisão do Posto de 21/09, o preferencial entra **pela S7, a porta à direita da C**. A peça
+`P5-Preferencial` já diz isso; `rota_do_eleitor.html` não foi editada porque é cópia fiel do
+artefato publicado, como o `ring3_montagem.html`. Quem republicar a Rota do Eleitor corrige lá.
 
 **Em aberto — o número de CCBs.** 180 em `ring3_montagem.html`, **179** no
 `Mapa-Ring3`. Os dois dentro dos 200 em estoque, então não muda a compra; muda a lista

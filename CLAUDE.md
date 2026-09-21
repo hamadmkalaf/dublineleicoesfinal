@@ -130,6 +130,105 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   avenida B duas vezes (ela entra inteira, não leva item de boca); e rotular por
   número de mesa. As três estão descritas em `docs/separadores/contexto.md`.
 
+## Regra da tabela mestra seção → porta
+
+A tabela "SUA SEÇÃO → SUA PORTA" das quatro peças de triagem — **P0-Mestra,
+P1-Portao, P2-ParedeLeste e P3-EntradaRing** — é **agrupada por porta** desde
+21/09/2026: bloco A, bloco B, bloco C, lado a lado, e dentro de cada bloco as
+seções em ordem crescente, lidas de cima para baixo em três colunas. A letra sai
+uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
+
+- **Não edite essas quatro peças à mão.** Rode `python3 scripts/tabela_mestra.py
+  --grava`. Sem `--grava` o script confere e sai com código 1 se as peças
+  divergirem do que ele geraria, e já serve de teste em integração contínua.
+- A correspondência seção → porta vem de `data/grupos_mesas.json`, que é **lido,
+  nunca escrito** por esse script.
+- As escalas tipográficas de cada peça estão no dicionário `ESCALAS`, no topo do
+  script. Elas foram dimensionadas para caber no canvas de cada peça (P2 é
+  1000 × 500; as outras três, 1040 × 410) com zero estouro. Mexeu em `num`,
+  `alt` ou `cab`: rerrenderize e confira que nada transborda.
+- O custo conhecido do agrupamento: quem não sabe a sua porta varre até três
+  blocos em vez de uma lista ordenada. A compensação é o dígito, que subiu de
+  17 px para 26 px (34 mm → 52 mm no impresso) porque a pastilha por linha saiu.
+- **Cada seção sai com o fundo na cor da sua porta**, a mesma da tarja do bloco:
+  A em `#33507E` com dígito branco (8,1:1), B em `#E8C63A` e C em `#DE7343` com
+  dígito **marinho `#042B5A`** (8,4:1 e 4,4:1). Os três blocos viram três campos
+  de cor. As razões são as da prancha do sistema, reconferidas.
+- **Ressalva de 21/09, em aberto.** A prancha do sistema diz: *"a letra
+  identifica a fila; a cor é apoio. Em nenhuma peça a cor aparece sozinha"* —
+  porque para um deuteranope o amarelo da B e a abóbora da C viram dois
+  amarelo-esverdeados com 1,9:1 entre si. Nas pastilhas agrupadas a letra saiu
+  da linha e ficou só na tarja do bloco. O bloco está logo acima e é grande,
+  mas a pastilha, sozinha, é cor sem letra. Se isso incomodar, a correção é pôr
+  a letra de volta em cada pastilha — ao custo do dígito, que encolhe.
+
+## Regra das artes que saem de dados
+
+`scripts/artes_sinalizacao.py` gera, de `data/grupos_mesas.json`:
+
+- **`P6-BlocoA1` a `P6-BlocoC6`** — as **dezesseis** placas de grupo, uma por par
+  de mesas, não só as dos grupos grandes. **O código do grupo é o título da
+  placa:** quem está no par C3 lê `C3` em 104 px no alto do banner, o mesmo
+  código que o painel da porta C usa na sua lista. Isso fecha a cadeia
+  porta → grupo → seção com o mesmo rótulo nos dois pontos.
+- **`P5-Preferencial` e `P5-VinilPref`** — os cinco pictogramas brasileiros de
+  atendimento preferencial, em `scripts/_pictogramas.py`, na ordem da
+  referência de 21/09: **idoso com bengala · gestante · adulto com criança de
+  colo · pessoa com muleta · laço do espectro autista**. A primeira versão
+  trazia cadeira de rodas no lugar da muleta; foi corrigida.
+- São **vetor redesenhado**, não a imagem de referência. As duas referências
+  guardadas em `Identidadevisual/` são raster: a de 17/09 tem 575 px e a de
+  21/09, 950 px **com marca d'água de banco de imagens** — ela anuncia
+  "EPS/CDR" mas o que chegou é o JPEG de vitrine. Esticada para os 2080 mm do
+  fence banner qualquer das duas sai borrada, e a arte do banco não pode ser
+  reproduzida sem a licença. Os cinco símbolos em si são de uso corrente e não
+  têm dono; o que se redesenha é eles, não o layout vendido.
+- Mesmo contrato dos outros geradores: sem `--grava` confere e sai com código 1.
+- O dígito das placas escala com quantas seções o grupo tem (`DIGITO`, no topo do
+  script): 130 px para uma seção, 80 px para quatro. Mexeu ali, rerrenderize.
+
+## Regra da paleta
+
+`data/paleta.json` é a fonte única, e `scripts/paleta.py` confere. Sem
+`--grava` ele sai com código 1 se alguma peça usar cor de fora.
+
+- **Identidade**, medida pixel a pixel no logotipo vetorizado que o Posto
+  entregou em 21/09 — não estimada: grafite `#404041`, ouro `#E5AE0F`, azul
+  `#3487AA`, verde `#5F882E`. Até 21/09 as quatro estavam erradas em **todas**
+  as 36 peças: `#F2CE3A` no lugar do ouro, `#4888A8` e `#5A8CAA` no do azul,
+  `#588018` e `#648232` no do verde.
+- **O logotipo é corpo estranho e guarda as cores dele.** Fora do lockup o ouro
+  não aparece: é o que a prancha do sistema quer dizer com *"só no logotipo"*.
+  O ouro sobre a faixa clara dá 1,8:1, e isso é aceito porque a WCAG isenta
+  marca registrada.
+- **Faixa institucional: off-white `#F0F0E8` com régua marinha `#042B5A`.** Essa
+  decisão é de 17/09 e está escrita na prancha do sistema — *"a faixa virou
+  off-white com régua marinha; o amarelo agora só significa porta B"* —, mas as
+  peças seguiram até 21/09 com uma tarja escura `#5A6E6E` que não existe na
+  marca. Motivo da decisão: uma faixa amarela no topo diria "porta B" a 30 m em
+  toda peça, inclusive nas de A e de C.
+- **Tipografia do plano: marinho `#042B5A`**, não o grafite do logotipo. O
+  grafite só é legítimo acima do fim da faixa; `scripts/paleta.py` reprova
+  grafite no corpo da peça.
+- **Fonte: Montserrat** (`data/paleta.json`, campo `fonte`). É a fonte da
+  campanha, informada pelo Posto em 21/09. Archivo e Nunito Sans eram marcação
+  de lugar. Montserrat é **mais larga no mesmo corpo**, então a troca mexe em
+  medida e não só em estilo: as 36 peças foram remedidas no DOM com a fonte
+  real instalada, não com substituta. `scripts/paleta.py` reprova Archivo e
+  Nunito Sans.
+- **A autorização de uso da marca para posto no exterior foi concedida**
+  (21/09). O que ainda é reprodução, e não arquivo oficial, é o desenho do
+  lockup nas peças.
+- **As cores de zona não se ajustam à identidade.** `#33507E`, `#E8C63A` e
+  `#DE7343` são **cor de rolo de fita já comprado** (`CORES_ZONA` em
+  `scripts/separadores_fila.py`): a peça impressa persegue a fita. Por isso o
+  amarelo da B e o ouro da marca convivem sendo dois amarelos — e por isso a
+  tarja da B nunca encosta no logotipo. **Em 21/09 o Posto abriu a
+  possibilidade de rever essa compra** (pendência 6): enquanto não se decide,
+  as três seguem como estão.
+- As quatro cores do laço do espectro autista são do símbolo, não do plano, e
+  ficam de fora da conferência.
+
 ## Convenções
 
 - Números de eleitorado vêm sempre de `saidas/dados.json` (CSV oficial), nunca do
@@ -155,6 +254,26 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 3. Confirmação da expectativa de comparecimento.
 4. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900), as 15
    unifilas adicionais (EUR 195,45) e os 8 rolos de fita.
+5. **O vinil da porta S7 (21/09) não está orçado.** A cotação de 18/09 já previa
+   **16 pull-ups 850 × 2000 a EUR 24,87 (EUR 398)** — ou seja, as dezesseis placas
+   de grupo sempre estiveram no orçamento; o que faltava eram as artes, e é isso
+   que a revisão de 21/09 fecha. O que entra de novo é só o quarto vinil de porta,
+   da S7 preferencial: a linha passa de 3 para 4 unidades, +EUR 30, e o total sem
+   IVA vai de EUR 1.139,57 para EUR 1.169,57 (EUR 1.438,57 com IVA). Ressalva: o
+   preço do vinil é uma das quatro linhas que a própria cotação marca como
+   **premissa não precificada**, então o quarto vinil herda essa incerteza.
+
+6. **Rever a compra de fita pode destravar a paleta das portas.** Hoje
+   `#33507E`, `#E8C63A` e `#DE7343` não são escolha de projeto: são o rolo que
+   está em mãos. Se a compra for refeita, cai a razão de o amarelo da porta B
+   brigar com o ouro da marca, e cai também o problema de deuteranopia que a
+   prancha do sistema registra — B e C têm **1,9:1** entre si para quem não
+   distingue verde e vermelho, e hoje só a letra as separa. Uma paleta de fita
+   escolhida do zero resolveria as duas coisas de uma vez. O que a decisão
+   arrasta: `CORES_ZONA` em `scripts/separadores_fila.py`, `data/paleta.json`,
+   as 36 peças, os metros por cor do plano de separadores e a própria compra.
+   **Quem decidir precisa dos metros por cor antes**, porque a conta de fita é
+   por cor de rolo, não por metro total.
 
 A lista completa e por tema está em `PENDENCIAS.md` e nas seções finais dos dois
 contextos.
