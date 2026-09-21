@@ -150,6 +150,29 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
 - O custo conhecido do agrupamento: quem não sabe a sua porta varre até três
   blocos em vez de uma lista ordenada. A compensação é o dígito, que subiu de
   17 px para 26 px (34 mm → 52 mm no impresso) porque a pastilha por linha saiu.
+- **Cada seção sai com o fundo na cor da sua porta**, a mesma da tarja do bloco:
+  A em `#33507E` com dígito branco, B em `#E8C63A` e C em `#DE7343` com dígito
+  `#3F3F3F`. Os três blocos viram três campos de cor. O par mais fraco é o C,
+  com 3,4:1 — passa no limiar de texto grande da WCAG por causa dos 52 mm, e é o
+  par já usado nas peças P4, P5 e P6; não mexer num sem mexer em todos.
+
+## Regra das artes que saem de dados
+
+`scripts/artes_sinalizacao.py` gera, de `data/grupos_mesas.json`:
+
+- **`P6-BlocoA1` a `P6-BlocoC6`** — as **dezesseis** placas de grupo, uma por par
+  de mesas, não só as dos grupos grandes. **O código do grupo é o título da
+  placa:** quem está no par C3 lê `C3` em 104 px no alto do banner, o mesmo
+  código que o painel da porta C usa na sua lista. Isso fecha a cadeia
+  porta → grupo → seção com o mesmo rótulo nos dois pontos.
+- **`P5-Preferencial` e `P5-VinilPref`** — os cinco pictogramas brasileiros de
+  atendimento preferencial (idoso, criança de colo, gestante, PcD, TEA), em
+  `scripts/_pictogramas.py`. São **vetor redesenhado**, não a imagem de
+  referência guardada em `Identidadevisual/`: a referência tem ~570 px de
+  largura e, esticada para os 2080 mm do fence banner, sairia borrada.
+- Mesmo contrato dos outros geradores: sem `--grava` confere e sai com código 1.
+- O dígito das placas escala com quantas seções o grupo tem (`DIGITO`, no topo do
+  script): 130 px para uma seção, 80 px para quatro. Mexeu ali, rerrenderize.
 
 ## Convenções
 
@@ -176,6 +199,13 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
 3. Confirmação da expectativa de comparecimento.
 4. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900), as 15
    unifilas adicionais (EUR 195,45) e os 8 rolos de fita.
+5. **As 14 placas de grupo a mais (21/09) não estão orçadas.** O plano tinha duas
+   (`P6-BlocoA3` e `P6-BlocoC4`) e passou a ter dezesseis, mais o vinil da porta
+   preferencial. São 14 pull-ups 850 × 2000 e 1 vinil a acrescentar à cotação de
+   sinalização — o valor unitário está nas telas de `Orçamentos/Sinalização/` e
+   **não foi transcrito para dado aqui**, então não há como somar sem reabrir a
+   cotação. Enquanto não se soma, o total de sinalização do plano está defasado
+   para menos.
 
 A lista completa e por tema está em `PENDENCIAS.md` e nas seções finais dos dois
 contextos.

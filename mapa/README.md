@@ -44,8 +44,8 @@ por peça, mais `canvas.json` com o título e a posição de cada prancha.
 | **P2** · lateral leste | `P2-ParedeLeste` (PVC 2000 × 1000, ×3) |
 | **P3** · entrada do Ring | `P3-EntradaRing` |
 | **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` |
-| **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) |
-| **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · `P6-BlocoA3` · `P6-BlocoC4` |
+| **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) · `P5-VinilPref` (porta S7) |
+| **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · **`P6-BlocoA1` a `P6-BlocoC6`** — as dezesseis placas de grupo (pull-up 850 × 2000) |
 | **P7** · saída | `P7-Saida` (correx A2, ×2) |
 | Mapas | `Mapa-Ring3` · `Mapa-Hall2` · `Main` (o sistema visual) |
 

@@ -111,7 +111,9 @@ mapa/                         fonte versionada dos artefatos + artefatos.json (m
 plantas/                      imagens das plantas do Ring 3 e do Hall 2  (a preencher)
 saidas/                       dados.json e as saídas geradas do tema dos separadores
 scripts/                      separadores_fila.py, zonas_balanceadas.py,
-                              tabela_mestra.py (tabela seção → porta das peças P0–P3)
+                              tabela_mestra.py (tabela seção → porta das peças P0–P3),
+                              artes_sinalizacao.py + _pictogramas.py (preferencial
+                              e as 16 placas de grupo)
 Identidadevisual/             identidade visual e banner
 Orçamentos/                   orçamentos, incl. sinalização
 ```

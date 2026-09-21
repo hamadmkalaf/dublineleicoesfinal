@@ -25,13 +25,14 @@ RAIZ = pathlib.Path(__file__).resolve().parent.parent
 FONTE = RAIZ / "data" / "grupos_mesas.json"
 PECAS = RAIZ / "mapa" / "sinalizacao"
 
-# As três cores de porta, iguais às do resto do plano de sinalização.
+# As três cores de porta, iguais às do resto do plano de sinalização. O mesmo
+# par (fundo, tinta) vale para a tarja do bloco e para a pastilha de cada seção
+# dentro dele: o bloco inteiro vira um campo de cor.
 CORES = {
     "A": ("#33507E", "#FFFFFF"),
     "B": ("#E8C63A", "#3F3F3F"),
     "C": ("#DE7343", "#3F3F3F"),
 }
-REGUA = "#E4DFCC"
 COLUNAS_POR_BLOCO = 3
 
 ARCHIVO = "'Archivo', 'Nunito Sans', sans-serif"
@@ -40,10 +41,10 @@ ARCHIVO = "'Archivo', 'Nunito Sans', sans-serif"
 # divide a altura com a tarja de rodapé e a P3 divide a largura com o painel
 # "siga o corredor". Medidas em px do canvas de 1040x410 (1 px = 2 mm).
 ESCALAS = {
-    "P0-Mestra": dict(num=26, alt=30, cab=30, cab_fonte=20, vao=18, vao_int=12, vao_cab=6),
-    "P1-Portao": dict(num=26, alt=30, cab=30, cab_fonte=20, vao=18, vao_int=12, vao_cab=6),
-    "P2-ParedeLeste": dict(num=26, alt=31, cab=32, cab_fonte=20, vao=15, vao_int=10, vao_cab=5),
-    "P3-EntradaRing": dict(num=22, alt=26, cab=28, cab_fonte=17, vao=12, vao_int=8, vao_cab=5),
+    "P0-Mestra": dict(num=26, alt=30, cab=30, cab_fonte=20, vao=18, vao_int=12, vao_cab=6, vao_linha=2),
+    "P1-Portao": dict(num=26, alt=30, cab=30, cab_fonte=20, vao=18, vao_int=12, vao_cab=6, vao_linha=2),
+    "P2-ParedeLeste": dict(num=26, alt=31, cab=32, cab_fonte=20, vao=15, vao_int=10, vao_cab=5, vao_linha=2),
+    "P3-EntradaRing": dict(num=22, alt=26, cab=28, cab_fonte=17, vao=12, vao_int=8, vao_cab=5, vao_linha=2),
 }
 
 
@@ -82,9 +83,10 @@ def bloco(porta, secoes, e):
     colunas = []
     for coluna in reparte(secoes, COLUNAS_POR_BLOCO):
         linhas = "".join(
-            f'<div style="border-bottom: 1px solid {REGUA}; padding: 1px 0;">'
+            f'<div style="background: {fundo}; margin-bottom: {e["vao_linha"]}px;'
+            f' padding: 0 8px; text-align: center;">'
             f'<span style="font-family: {ARCHIVO}; font-weight: 700; font-size: {e["num"]}px;'
-            f' line-height: {e["alt"]}px; color: #3F3F3F; font-variant-numeric: tabular-nums;">'
+            f' line-height: {e["alt"]}px; color: {tinta}; font-variant-numeric: tabular-nums;">'
             f"{secao:04d}</span></div>"
             for secao in coluna
         )
