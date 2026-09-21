@@ -118,6 +118,9 @@ def vinil_preferencial():
     return MOLDE.format(corpo=corpo, larg=600, alt=350)
 
 
+# O corpo da placa fica encostado no topo, não centrado: o pull-up tem 2000 mm e
+# o terço de baixo some atrás da fila. Assim o primeiro número cai por volta de
+# 1.400 mm do chão, acima da cabeça de quem está na frente.
 # Quanto menos seções no grupo, maior o dígito: a placa tem 725 px de corpo e
 # no máximo quatro números, então sobra altura para gastar em legibilidade.
 # 80 px no canvas de 425 px equivalem a 160 mm no pull-up de 850 mm.
@@ -140,7 +143,7 @@ def banner_bloco(grupo):
     <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 104px; line-height: 0.86; letter-spacing: -0.03em;">{grupo["id"]}</div>
     <div style="font-family: {NUNITO}; font-weight: 700; font-size: 22px; text-align: right; line-height: 1.25;">PORTA {porta}<br><span style="opacity: 0.85; font-weight: 600;">{PAREDE[porta]}</span></div>
   </div>
-  <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px;">
+  <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; padding: 30px 16px 16px;">
     <div style="font-family: {NUNITO}; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; color: {CINZA}; margin-bottom: 10px;">SEÇÕES DESTE CORREDOR</div>
     {numeros}
   </div>
