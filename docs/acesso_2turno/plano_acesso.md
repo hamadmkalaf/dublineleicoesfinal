@@ -158,6 +158,10 @@ informou hora de reabertura.
 
 ## 7. Como usar o Google Maps
 
+O plano marcado sobre o print de satélite do Google Maps está em
+`mapa/acesso_2turno_print.png` (desenho de `scripts/acesso_2turno_print.py`;
+posições em pixel lidas à mão sobre esse print, precisão de uns 20 px ≈ 50 m).
+
 1. Abrir <https://www.google.com/maps/d/> e criar um mapa.
 2. Importar `mapa/acesso_2turno.kml`. Cada pasta vira uma camada: percurso,
    vias, rotas, pontos.
