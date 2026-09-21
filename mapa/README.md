@@ -19,6 +19,7 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado: 23 raias por zona, vão de 1,20 m, **180 CCBs** dos 200 em estoque, 506 m de fita grossa, lotação 2.118. |
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
 | [`acesso_2turno.html`](acesso_2turno.html) · [`acesso_2turno.kml`](acesso_2turno.kml) | Acesso no 2º turno | **Gerados por `scripts/acesso_2turno.py`**, não copiados de artefato publicado: a página do plano de acesso no dia da maratona, e as camadas para o Google My Maps. Regenerar com `--grava`; não editar à mão. |
+| [`acesso_2turno_print.png`](acesso_2turno_print.png) | Acesso no 2º turno, sobre o Google Maps | O plano marcado sobre o print de satélite (`acesso_2turno_print_base.png`), por `scripts/acesso_2turno_print.py`. Posições em pixel lidas à mão sobre esse print. |
 | [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **21 peças** P0–P7, os dois mapas de posição e o `canvas.json`. Fonte das seis cores de rolo e da convenção de rotular por grupo e seção. |
 
 As cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
