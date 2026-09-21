@@ -1,0 +1,1179 @@
+{
+ "gerado_por": "scripts/acesso_2turno.py",
+ "data_evento": "2026-10-25",
+ "votacao": "08:00-17:00",
+ "fonte_policia": {
+  "percurso": "Milltown Bridge → Milltown Road → Clonskeagh Road → Roebuck Road → Fosters Avenue → faixa de ônibus inbound da N11 → viaduto da UCD → faixa de ônibus outbound (no sentido inbound) → direita na Nutley Lane → esquerda na Merrion Road (inbound) → Pembroke Road → Northumberland Road.",
+  "fechados_a_partir_das_10h": [
+   "Nutley Lane",
+   "Merrion Road (inbound)",
+   "Shelbourne Road",
+   "Haddington Road",
+   "Northumberland Road"
+  ],
+  "abertos": [
+   "Stillorgan Road (N11) — aberta ao tráfego geral o dia todo",
+   "Donnybrook Road, Morehampton Road e Leeson Street Upper — abertas",
+   "Anglesea Road — aberta ao tráfego do RDS; proibida a saída para a Merrion Road",
+   "Merrion Road — só outbound, a partir da Serpentine Avenue"
+  ],
+  "desvios": [
+   "Sandford Road (saindo de Ranelagh) → Eglinton Road → direita na Stillorgan Road",
+   "Rock Road inbound → desviado nos Merrion Gates pela Strand Road",
+   "Tráfego para o norte da cidade → Ringsend Road via Irishtown, ou East Link via Sean Moore Road"
+  ]
+ },
+ "pontos": {
+  "rds_merrion": {
+   "nome": "RDS · portão da Merrion Road (P1, eleitores a pé)",
+   "lat": 53.3267,
+   "lon": -6.2296,
+   "tipo": "portao",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32670%2C-6.22960"
+  },
+  "rds_anglesea": {
+   "nome": "RDS · Anglesea Gate (veículos, táxi, preferencial)",
+   "lat": 53.3258,
+   "lon": -6.2343,
+   "tipo": "portao",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32580%2C-6.23430"
+  },
+  "rds_simmons": {
+   "nome": "RDS · entrada Simmonscourt Road (saída de veículos para o sul, a confirmar)",
+   "lat": 53.3233,
+   "lon": -6.2296,
+   "tipo": "portao",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32330%2C-6.22960"
+  },
+  "hall2": {
+   "nome": "Hall 2 · salão de votação",
+   "lat": 53.3262,
+   "lon": -6.2312,
+   "tipo": "local",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32620%2C-6.23120"
+  },
+  "ring3": {
+   "nome": "Ring 3 · pátio de fila",
+   "lat": 53.3256,
+   "lon": -6.2308,
+   "tipo": "local",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32560%2C-6.23080"
+  },
+  "ballsbridge": {
+   "nome": "Ballsbridge · Merrion Rd × Pembroke Rd × Anglesea Rd",
+   "lat": 53.3287,
+   "lon": -6.2318,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32870%2C-6.23180"
+  },
+  "merrion_serp": {
+   "nome": "Merrion Rd × Serpentine Ave × Simmonscourt Rd",
+   "lat": 53.325,
+   "lon": -6.2264,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32500%2C-6.22640"
+  },
+  "merrion_nutley": {
+   "nome": "Merrion Rd × Nutley Lane",
+   "lat": 53.3224,
+   "lon": -6.2228,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32240%2C-6.22280"
+  },
+  "merrion_gates": {
+   "nome": "Merrion Gates (passagem de nível)",
+   "lat": 53.3165,
+   "lon": -6.2125,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.31650%2C-6.21250"
+  },
+  "donnybrook": {
+   "nome": "Donnybrook · Stillorgan Rd × Anglesea Rd × Donnybrook Rd",
+   "lat": 53.32,
+   "lon": -6.2382,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32000%2C-6.23820"
+  },
+  "n11_nutley": {
+   "nome": "Stillorgan Rd × Nutley Lane (RTÉ)",
+   "lat": 53.3135,
+   "lon": -6.2199,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.31350%2C-6.21990"
+  },
+  "ucd_flyover": {
+   "nome": "Viaduto da UCD",
+   "lat": 53.3105,
+   "lon": -6.217,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.31050%2C-6.21700"
+  },
+  "n11_fosters": {
+   "nome": "Stillorgan Rd × Fosters Ave",
+   "lat": 53.3058,
+   "lon": -6.212,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.30580%2C-6.21200"
+  },
+  "n11_booterstown": {
+   "nome": "Stillorgan Rd × Booterstown Ave",
+   "lat": 53.303,
+   "lon": -6.2075,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.30300%2C-6.20750"
+  },
+  "n11_mtmerrion": {
+   "nome": "Stillorgan Rd × Mount Merrion Ave",
+   "lat": 53.2995,
+   "lon": -6.2015,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.29950%2C-6.20150"
+  },
+  "eglinton_n11": {
+   "nome": "Eglinton Rd × Stillorgan Rd",
+   "lat": 53.3195,
+   "lon": -6.2395,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.31950%2C-6.23950"
+  },
+  "sandford_egl": {
+   "nome": "Sandford Rd × Eglinton Rd",
+   "lat": 53.3225,
+   "lon": -6.247,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32250%2C-6.24700"
+  },
+  "leeson_bridge": {
+   "nome": "Leeson Street Bridge",
+   "lat": 53.332,
+   "lon": -6.253,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.33200%2C-6.25300"
+  },
+  "morehampton": {
+   "nome": "Morehampton Road",
+   "lat": 53.3265,
+   "lon": -6.245,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32650%2C-6.24500"
+  },
+  "pembroke_north": {
+   "nome": "Pembroke Rd × Northumberland Rd × Lansdowne Rd",
+   "lat": 53.3305,
+   "lon": -6.2352,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.33050%2C-6.23520"
+  },
+  "north_hadd": {
+   "nome": "Northumberland Rd × Haddington Rd",
+   "lat": 53.333,
+   "lon": -6.238,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.33300%2C-6.23800"
+  },
+  "chegada": {
+   "nome": "Chegada da maratona (Mount Street Upper)",
+   "lat": 53.3375,
+   "lon": -6.244,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.33750%2C-6.24400"
+  },
+  "milltown": {
+   "nome": "Milltown Bridge (entrada dos corredores no Dublin 4)",
+   "lat": 53.3105,
+   "lon": -6.245,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.31050%2C-6.24500"
+  },
+  "clonskeagh": {
+   "nome": "Clonskeagh Road",
+   "lat": 53.311,
+   "lon": -6.234,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.31100%2C-6.23400"
+  },
+  "roebuck": {
+   "nome": "Roebuck Road",
+   "lat": 53.3085,
+   "lon": -6.229,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.30850%2C-6.22900"
+  },
+  "fosters": {
+   "nome": "Fosters Avenue",
+   "lat": 53.305,
+   "lon": -6.218,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.30500%2C-6.21800"
+  },
+  "sean_moore": {
+   "nome": "Strand Rd × Sean Moore Rd",
+   "lat": 53.3355,
+   "lon": -6.2105,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.33550%2C-6.21050"
+  },
+  "irishtown": {
+   "nome": "Irishtown",
+   "lat": 53.338,
+   "lon": -6.223,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.33800%2C-6.22300"
+  },
+  "ringsend_rd": {
+   "nome": "Ringsend Road",
+   "lat": 53.3415,
+   "lon": -6.23,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.34150%2C-6.23000"
+  },
+  "east_link": {
+   "nome": "East Link Bridge",
+   "lat": 53.344,
+   "lon": -6.219,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.34400%2C-6.21900"
+  },
+  "rock_rd_sul": {
+   "nome": "Rock Road (Booterstown)",
+   "lat": 53.308,
+   "lon": -6.202,
+   "tipo": "cruz",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.30800%2C-6.20200"
+  },
+  "dart_sandymount": {
+   "nome": "DART · Sandymount",
+   "lat": 53.3246,
+   "lon": -6.2172,
+   "tipo": "dart",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32460%2C-6.21720"
+  },
+  "dart_lansdowne": {
+   "nome": "DART · Lansdowne Road",
+   "lat": 53.3281,
+   "lon": -6.2277,
+   "tipo": "dart",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32810%2C-6.22770"
+  },
+  "dart_sydney": {
+   "nome": "DART · Sydney Parade",
+   "lat": 53.32,
+   "lon": -6.2118,
+   "tipo": "dart",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32000%2C-6.21180"
+  },
+  "dart_booterstown": {
+   "nome": "DART · Booterstown",
+   "lat": 53.3105,
+   "lon": -6.2,
+   "tipo": "dart",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.31050%2C-6.20000"
+  },
+  "bus_donnybrook": {
+   "nome": "Ônibus · paradas de Donnybrook (Stillorgan Rd, igreja)",
+   "lat": 53.3205,
+   "lon": -6.2372,
+   "tipo": "bus",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32050%2C-6.23720"
+  },
+  "trav_serp": {
+   "nome": "Travessia controlada 1 · Merrion Rd × Serpentine Ave (pedir à Garda)",
+   "lat": 53.325,
+   "lon": -6.2264,
+   "tipo": "travessia",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32500%2C-6.22640"
+  },
+  "trav_balls": {
+   "nome": "Travessia controlada 2 · Ballsbridge (pedir à Garda)",
+   "lat": 53.3287,
+   "lon": -6.2318,
+   "tipo": "travessia",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32870%2C-6.23180"
+  },
+  "p0_merrion": {
+   "nome": "P0 · «descubra sua seção», calçada da Merrion Road (lado do RDS)",
+   "lat": 53.3269,
+   "lon": -6.2299,
+   "tipo": "posto",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32690%2C-6.22990"
+  },
+  "p0_anglesea": {
+   "nome": "G1 · recepção no Anglesea Gate (posto novo)",
+   "lat": 53.32575,
+   "lon": -6.234,
+   "tipo": "posto",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32575%2C-6.23400"
+  },
+  "drop_off": {
+   "nome": "Embarque e desembarque de táxi e preferencial (dentro do Anglesea Gate)",
+   "lat": 53.3259,
+   "lon": -6.2338,
+   "tipo": "posto",
+   "gmaps": "https://www.google.com/maps/search/?api=1&query=53.32590%2C-6.23380"
+  }
+ },
+ "trechos": [
+  {
+   "nome": "Stillorgan Road (N11)",
+   "estado": "aberto",
+   "nota": "Aberta ao tráfego geral o dia todo. Corredores nas faixas de ônibus: contar com lentidão.",
+   "coords": [
+    [
+     53.32,
+     -6.2382
+    ],
+    [
+     53.3172,
+     -6.2318
+    ],
+    [
+     53.315,
+     -6.2258
+    ],
+    [
+     53.3135,
+     -6.2199
+    ],
+    [
+     53.3105,
+     -6.217
+    ],
+    [
+     53.3058,
+     -6.212
+    ],
+    [
+     53.303,
+     -6.2075
+    ],
+    [
+     53.2995,
+     -6.2015
+    ]
+   ]
+  },
+  {
+   "nome": "Merrion Road · Ballsbridge → Serpentine Ave",
+   "estado": "fechado",
+   "nota": "Percurso da maratona. Fechada nos dois sentidos a partir das 10h.",
+   "coords": [
+    [
+     53.3287,
+     -6.2318
+    ],
+    [
+     53.3267,
+     -6.2296
+    ],
+    [
+     53.325,
+     -6.2264
+    ]
+   ]
+  },
+  {
+   "nome": "Merrion Road · Serpentine Ave → Merrion Gates",
+   "estado": "so_outbound",
+   "nota": "Só outbound (para o sul) a partir da Serpentine Avenue. Inbound fechado.",
+   "coords": [
+    [
+     53.325,
+     -6.2264
+    ],
+    [
+     53.3224,
+     -6.2228
+    ],
+    [
+     53.32,
+     -6.2185
+    ],
+    [
+     53.3165,
+     -6.2125
+    ]
+   ]
+  },
+  {
+   "nome": "Nutley Lane",
+   "estado": "fechado",
+   "nota": "Percurso. Fechada a partir das 10h.",
+   "coords": [
+    [
+     53.3224,
+     -6.2228
+    ],
+    [
+     53.318,
+     -6.221
+    ],
+    [
+     53.3135,
+     -6.2199
+    ]
+   ]
+  },
+  {
+   "nome": "Pembroke Road",
+   "estado": "fechado",
+   "nota": "Percurso.",
+   "coords": [
+    [
+     53.3287,
+     -6.2318
+    ],
+    [
+     53.3305,
+     -6.2352
+    ],
+    [
+     53.3325,
+     -6.2408
+    ]
+   ]
+  },
+  {
+   "nome": "Northumberland Road",
+   "estado": "fechado",
+   "nota": "Percurso. Fechada a partir das 10h.",
+   "coords": [
+    [
+     53.3305,
+     -6.2352
+    ],
+    [
+     53.333,
+     -6.238
+    ],
+    [
+     53.3375,
+     -6.244
+    ]
+   ]
+  },
+  {
+   "nome": "Shelbourne Road",
+   "estado": "fechado",
+   "nota": "Fechada a partir das 10h.",
+   "coords": [
+    [
+     53.3292,
+     -6.2322
+    ],
+    [
+     53.3325,
+     -6.232
+    ],
+    [
+     53.3352,
+     -6.2335
+    ]
+   ]
+  },
+  {
+   "nome": "Haddington Road",
+   "estado": "fechado",
+   "nota": "Fechada a partir das 10h.",
+   "coords": [
+    [
+     53.3338,
+     -6.244
+    ],
+    [
+     53.333,
+     -6.238
+    ],
+    [
+     53.3345,
+     -6.234
+    ]
+   ]
+  },
+  {
+   "nome": "Anglesea Road",
+   "estado": "rds_sem_saida",
+   "nota": "Aberta ao tráfego do RDS. Proibida a saída para a Merrion Road: quem entra por aqui sai por Donnybrook.",
+   "coords": [
+    [
+     53.32,
+     -6.2382
+    ],
+    [
+     53.3225,
+     -6.2365
+    ],
+    [
+     53.3258,
+     -6.2343
+    ],
+    [
+     53.3287,
+     -6.2318
+    ]
+   ]
+  },
+  {
+   "nome": "Simmonscourt Road",
+   "estado": "aberto",
+   "nota": "Liga a Merrion Road (na Serpentine Ave) à Anglesea Road. Saída para a Merrion outbound: a confirmar com a Garda.",
+   "coords": [
+    [
+     53.325,
+     -6.2264
+    ],
+    [
+     53.3233,
+     -6.2296
+    ],
+    [
+     53.3222,
+     -6.2345
+    ]
+   ]
+  },
+  {
+   "nome": "Serpentine Avenue",
+   "estado": "aberto",
+   "nota": "Caminho a pé do DART Sandymount até a Merrion Road.",
+   "coords": [
+    [
+     53.325,
+     -6.2264
+    ],
+    [
+     53.3246,
+     -6.2172
+    ]
+   ]
+  },
+  {
+   "nome": "Lansdowne Road",
+   "estado": "aberto",
+   "nota": "Caminho a pé do DART Lansdowne Road até Ballsbridge.",
+   "coords": [
+    [
+     53.3305,
+     -6.2352
+    ],
+    [
+     53.3298,
+     -6.232
+    ],
+    [
+     53.3281,
+     -6.2277
+    ]
+   ]
+  },
+  {
+   "nome": "Donnybrook Rd · Morehampton Rd · Leeson St Upper",
+   "estado": "aberto",
+   "nota": "Abertas. Corredor de carro a partir do centro.",
+   "coords": [
+    [
+     53.32,
+     -6.2382
+    ],
+    [
+     53.3235,
+     -6.242
+    ],
+    [
+     53.3265,
+     -6.245
+    ],
+    [
+     53.33,
+     -6.25
+    ],
+    [
+     53.332,
+     -6.253
+    ]
+   ]
+  },
+  {
+   "nome": "Eglinton Road",
+   "estado": "desvio",
+   "nota": "Desvio do tráfego outbound da Sandford Road para a Stillorgan Road.",
+   "coords": [
+    [
+     53.3225,
+     -6.247
+    ],
+    [
+     53.3195,
+     -6.2395
+    ],
+    [
+     53.32,
+     -6.2382
+    ]
+   ]
+  },
+  {
+   "nome": "Sandford Road",
+   "estado": "aberto",
+   "nota": "",
+   "coords": [
+    [
+     53.326,
+     -6.252
+    ],
+    [
+     53.3225,
+     -6.247
+    ],
+    [
+     53.313,
+     -6.244
+    ]
+   ]
+  },
+  {
+   "nome": "Rock Road",
+   "estado": "aberto",
+   "nota": "Inbound desviado nos Merrion Gates para a Strand Road.",
+   "coords": [
+    [
+     53.3165,
+     -6.2125
+    ],
+    [
+     53.312,
+     -6.206
+    ],
+    [
+     53.308,
+     -6.202
+    ],
+    [
+     53.303,
+     -6.1985
+    ]
+   ]
+  },
+  {
+   "nome": "Strand Road → Sean Moore Road → East Link",
+   "estado": "desvio",
+   "nota": "Desvio do tráfego inbound da Rock Road. Não leva ao RDS.",
+   "coords": [
+    [
+     53.3165,
+     -6.2125
+    ],
+    [
+     53.322,
+     -6.2095
+    ],
+    [
+     53.33,
+     -6.2075
+    ],
+    [
+     53.3355,
+     -6.2105
+    ],
+    [
+     53.344,
+     -6.219
+    ]
+   ]
+  },
+  {
+   "nome": "Irishtown → Ringsend Road",
+   "estado": "desvio",
+   "nota": "Alternativa do desvio para o norte da cidade.",
+   "coords": [
+    [
+     53.3355,
+     -6.2105
+    ],
+    [
+     53.338,
+     -6.223
+    ],
+    [
+     53.3415,
+     -6.23
+    ]
+   ]
+  },
+  {
+   "nome": "Milltown Rd · Clonskeagh Rd · Roebuck Rd · Fosters Ave",
+   "estado": "percurso",
+   "nota": "Percurso dos corredores antes da N11.",
+   "coords": [
+    [
+     53.3105,
+     -6.245
+    ],
+    [
+     53.312,
+     -6.24
+    ],
+    [
+     53.311,
+     -6.234
+    ],
+    [
+     53.3085,
+     -6.229
+    ],
+    [
+     53.306,
+     -6.224
+    ],
+    [
+     53.305,
+     -6.218
+    ],
+    [
+     53.3058,
+     -6.212
+    ]
+   ]
+  },
+  {
+   "nome": "Linha do DART",
+   "estado": "dart",
+   "nota": "Funciona normalmente. É a forma mais previsível de chegar.",
+   "coords": [
+    [
+     53.3345,
+     -6.233
+    ],
+    [
+     53.3281,
+     -6.2277
+    ],
+    [
+     53.3246,
+     -6.2172
+    ],
+    [
+     53.32,
+     -6.2118
+    ],
+    [
+     53.3165,
+     -6.2125
+    ],
+    [
+     53.3105,
+     -6.2
+    ]
+   ]
+  }
+ ],
+ "percurso": [
+  [
+   53.3105,
+   -6.245
+  ],
+  [
+   53.312,
+   -6.24
+  ],
+  [
+   53.311,
+   -6.234
+  ],
+  [
+   53.3085,
+   -6.229
+  ],
+  [
+   53.306,
+   -6.224
+  ],
+  [
+   53.305,
+   -6.218
+  ],
+  [
+   53.3058,
+   -6.212
+  ],
+  [
+   53.3105,
+   -6.217
+  ],
+  [
+   53.3135,
+   -6.2199
+  ],
+  [
+   53.318,
+   -6.221
+  ],
+  [
+   53.3224,
+   -6.2228
+  ],
+  [
+   53.325,
+   -6.2264
+  ],
+  [
+   53.3267,
+   -6.2296
+  ],
+  [
+   53.3287,
+   -6.2318
+  ],
+  [
+   53.3305,
+   -6.2352
+  ],
+  [
+   53.333,
+   -6.238
+  ],
+  [
+   53.3375,
+   -6.244
+  ]
+ ],
+ "rotas": [
+  {
+   "cod": "V1",
+   "modo": "carro",
+   "nome": "Carro vindo do sul (Blackrock, Dún Laoghaire, Bray, M50)",
+   "resumo": "N11/Stillorgan Road → Donnybrook → Anglesea Road → Anglesea Gate. Nunca pela Rock Road: nos Merrion Gates o inbound é desviado para a Strand Road e não chega ao RDS.",
+   "coords": [
+    [
+     53.2995,
+     -6.2015
+    ],
+    [
+     53.303,
+     -6.2075
+    ],
+    [
+     53.3058,
+     -6.212
+    ],
+    [
+     53.3105,
+     -6.217
+    ],
+    [
+     53.3135,
+     -6.2199
+    ],
+    [
+     53.315,
+     -6.2258
+    ],
+    [
+     53.3172,
+     -6.2318
+    ],
+    [
+     53.32,
+     -6.2382
+    ],
+    [
+     53.3225,
+     -6.2365
+    ],
+    [
+     53.3258,
+     -6.2343
+    ]
+   ],
+   "gmaps": {
+    "origem": "Stillorgan Road, Mount Merrion, Dublin",
+    "destino": "RDS Anglesea Road Gate, Anglesea Road, Dublin 4",
+    "waypoints": [
+     "Donnybrook Church, Stillorgan Road, Dublin 4"
+    ],
+    "modo": "driving"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&origin=Stillorgan+Road%2C+Mount+Merrion%2C+Dublin&destination=RDS+Anglesea+Road+Gate%2C+Anglesea+Road%2C+Dublin+4&travelmode=driving&waypoints=Donnybrook+Church%2C+Stillorgan+Road%2C+Dublin+4"
+  },
+  {
+   "cod": "V2",
+   "modo": "carro",
+   "nome": "Carro vindo do centro, do oeste e do norte (M1, Port Tunnel, N4, N7)",
+   "resumo": "Leeson Street Upper → Morehampton Road → Donnybrook Road → Anglesea Road → Anglesea Gate. Não tentar Merrion Road, Shelbourne Road nem Northumberland Road.",
+   "coords": [
+    [
+     53.332,
+     -6.253
+    ],
+    [
+     53.33,
+     -6.25
+    ],
+    [
+     53.3265,
+     -6.245
+    ],
+    [
+     53.3235,
+     -6.242
+    ],
+    [
+     53.32,
+     -6.2382
+    ],
+    [
+     53.3225,
+     -6.2365
+    ],
+    [
+     53.3258,
+     -6.2343
+    ]
+   ],
+   "gmaps": {
+    "origem": "Leeson Street Bridge, Dublin 2",
+    "destino": "RDS Anglesea Road Gate, Anglesea Road, Dublin 4",
+    "waypoints": [
+     "Donnybrook Church, Stillorgan Road, Dublin 4"
+    ],
+    "modo": "driving"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&origin=Leeson+Street+Bridge%2C+Dublin+2&destination=RDS+Anglesea+Road+Gate%2C+Anglesea+Road%2C+Dublin+4&travelmode=driving&waypoints=Donnybrook+Church%2C+Stillorgan+Road%2C+Dublin+4"
+  },
+  {
+   "cod": "V3",
+   "modo": "carro",
+   "nome": "Saída de carro (todos os destinos)",
+   "resumo": "Anglesea Gate → Anglesea Road → Donnybrook, e daí N11 (sul) ou Morehampton/Leeson (centro). É proibido sair da Anglesea para a Merrion Road.",
+   "coords": [
+    [
+     53.3258,
+     -6.2343
+    ],
+    [
+     53.3225,
+     -6.2365
+    ],
+    [
+     53.32,
+     -6.2382
+    ]
+   ],
+   "gmaps": {
+    "origem": "RDS Anglesea Road Gate, Anglesea Road, Dublin 4",
+    "destino": "Donnybrook Church, Stillorgan Road, Dublin 4",
+    "waypoints": [],
+    "modo": "driving"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&origin=RDS+Anglesea+Road+Gate%2C+Anglesea+Road%2C+Dublin+4&destination=Donnybrook+Church%2C+Stillorgan+Road%2C+Dublin+4&travelmode=driving"
+  },
+  {
+   "cod": "V4",
+   "modo": "carro",
+   "nome": "Saída alternativa para o sul (a confirmar com a Garda)",
+   "resumo": "Entrada Simmonscourt Road → Merrion Road outbound (permitido a partir da Serpentine Avenue) → Merrion Gates → Rock Road. Só se a Garda confirmar que a boca da Simmonscourt fica liberada.",
+   "coords": [
+    [
+     53.3233,
+     -6.2296
+    ],
+    [
+     53.325,
+     -6.2264
+    ],
+    [
+     53.3224,
+     -6.2228
+    ],
+    [
+     53.32,
+     -6.2185
+    ],
+    [
+     53.3165,
+     -6.2125
+    ],
+    [
+     53.308,
+     -6.202
+    ]
+   ],
+   "gmaps": {
+    "origem": "RDS Simmonscourt, Simmonscourt Road, Dublin 4",
+    "destino": "Rock Road, Booterstown",
+    "waypoints": [
+     "Merrion Gates, Dublin 4"
+    ],
+    "modo": "driving"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&origin=RDS+Simmonscourt%2C+Simmonscourt+Road%2C+Dublin+4&destination=Rock+Road%2C+Booterstown&travelmode=driving&waypoints=Merrion+Gates%2C+Dublin+4"
+  },
+  {
+   "cod": "A1",
+   "modo": "ape",
+   "nome": "A pé do DART Sandymount",
+   "resumo": "Serpentine Avenue até a Merrion Road (≈750 m); travessia controlada 1 no cruzamento com a Simmonscourt Road; calçada do lado do RDS para o norte até o portão P1 (≈250 m). Total ≈1,0 km, 13 min.",
+   "coords": [
+    [
+     53.3246,
+     -6.2172
+    ],
+    [
+     53.325,
+     -6.2264
+    ],
+    [
+     53.3267,
+     -6.2296
+    ]
+   ],
+   "gmaps": {
+    "origem": "Sandymount DART Station",
+    "destino": "RDS Main Entrance, Merrion Road, Dublin 4",
+    "waypoints": [
+     "Serpentine Avenue, Dublin 4"
+    ],
+    "modo": "walking"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&origin=Sandymount+DART+Station&destination=RDS+Main+Entrance%2C+Merrion+Road%2C+Dublin+4&travelmode=walking&waypoints=Serpentine+Avenue%2C+Dublin+4"
+  },
+  {
+   "cod": "A2",
+   "modo": "ape",
+   "nome": "A pé do DART Lansdowne Road",
+   "resumo": "Lansdowne Road e Shelbourne Road (fechada a carros, livre a pé) até Ballsbridge (≈450 m); travessia controlada 2 da Pembroke/Merrion Road; calçada do lado do RDS para o sul até o portão P1 (≈250 m). Total ≈700 m, 9 min.",
+   "coords": [
+    [
+     53.3281,
+     -6.2277
+    ],
+    [
+     53.3298,
+     -6.232
+    ],
+    [
+     53.3287,
+     -6.2318
+    ],
+    [
+     53.3267,
+     -6.2296
+    ]
+   ],
+   "gmaps": {
+    "origem": "Lansdowne Road DART Station",
+    "destino": "RDS Main Entrance, Merrion Road, Dublin 4",
+    "waypoints": [],
+    "modo": "walking"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&origin=Lansdowne+Road+DART+Station&destination=RDS+Main+Entrance%2C+Merrion+Road%2C+Dublin+4&travelmode=walking"
+  },
+  {
+   "cod": "A3",
+   "modo": "ape",
+   "nome": "A pé de Donnybrook (ônibus 46A, 145, 155, 39A, 11 e desvios do 4/7)",
+   "resumo": "Da parada da igreja de Donnybrook pela Anglesea Road até o Anglesea Gate (≈750 m, 10 min). Não cruza o percurso. Rota interna do Anglesea Gate ao Ring 3: a confirmar com o RDS.",
+   "coords": [
+    [
+     53.3205,
+     -6.2372
+    ],
+    [
+     53.32,
+     -6.2382
+    ],
+    [
+     53.3225,
+     -6.2365
+    ],
+    [
+     53.3258,
+     -6.2343
+    ]
+   ],
+   "rotulo_em": 2,
+   "gmaps": {
+    "origem": "Donnybrook Church, Stillorgan Road, Dublin 4",
+    "destino": "RDS Anglesea Road Gate, Anglesea Road, Dublin 4",
+    "waypoints": [],
+    "modo": "walking"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&origin=Donnybrook+Church%2C+Stillorgan+Road%2C+Dublin+4&destination=RDS+Anglesea+Road+Gate%2C+Anglesea+Road%2C+Dublin+4&travelmode=walking"
+  },
+  {
+   "cod": "T1",
+   "modo": "taxi",
+   "nome": "Táxi, preferencial e pessoas com mobilidade reduzida",
+   "resumo": "Destino a informar ao motorista: «RDS Anglesea Road Gate». Embarque e desembarque dentro do portão. Não pedir «RDS Merrion Road»: o aplicativo pode tentar a Merrion Road fechada.",
+   "coords": [
+    [
+     53.32,
+     -6.2382
+    ],
+    [
+     53.3225,
+     -6.2365
+    ],
+    [
+     53.3258,
+     -6.2343
+    ],
+    [
+     53.3259,
+     -6.2338
+    ]
+   ],
+   "rotulo_em": 3,
+   "gmaps": {
+    "origem": "",
+    "destino": "RDS Anglesea Road Gate, Anglesea Road, Dublin 4",
+    "waypoints": [],
+    "modo": "driving"
+   },
+   "gmaps_url": "https://www.google.com/maps/dir/?api=1&destination=RDS+Anglesea+Road+Gate%2C+Anglesea+Road%2C+Dublin+4&travelmode=driving"
+  }
+ ],
+ "janelas": [
+  {
+   "ini": "07:00",
+   "fim": "10:00",
+   "regime": "Normal",
+   "o_que": "Todos os acessos abertos, como no 1º turno. Mesários, seguranças e entregas já dentro. Garda pode começar a conar antes das 10h: premissa a confirmar.",
+   "corredores": "Nenhum no RDS. Largadas em ondas às 8h45, 9h05, 9h25 e 9h45 no centro."
+  },
+  {
+   "ini": "10:00",
+   "fim": "10:45",
+   "regime": "Maratona · sem corredores ainda",
+   "o_que": "Fechamentos em vigor. Merrion Road vazia mas fechada. Trocar a sinalização de chegada para o regime maratona; abrir o G1 no Anglesea Gate.",
+   "corredores": "Os primeiros (elite) chegam ao RDS por volta das 10h45 — estimativa: km 40 a 3 min/km, largada 8h45."
+  },
+  {
+   "ini": "10:45",
+   "fim": "14:30",
+   "regime": "Maratona · pico",
+   "o_que": "Fluxo contínuo de corredores na Merrion Road. Travessias a pé só nos pontos controlados, com espera. Todo veículo pela Anglesea Road.",
+   "corredores": "Grosso do pelotão: ondas de 3h a 5h passam pelo km 40 entre 11h30 e 14h30 (estimativa)."
+  },
+  {
+   "ini": "14:30",
+   "fim": "16:00",
+   "regime": "Maratona · cauda",
+   "o_que": "Fluxo esparso; travessias mais fáceis. Fechamentos seguem até a Garda reabrir. Não presumir reabertura.",
+   "corredores": "Últimos corredores (≈6h da onda 4) por volta das 15h40 (estimativa). Reabertura provável entre 15h30 e 16h30: a confirmar."
+  },
+  {
+   "ini": "16:00",
+   "fim": "17:00",
+   "regime": "Reabertura progressiva (a confirmar)",
+   "o_que": "Tratar como regime maratona até confirmação da Garda no rádio. Última hora de votação: pico de chegada tardia — comunicar que quem está na fila às 17h vota.",
+   "corredores": "Varredura e recolha de cones."
+  },
+  {
+   "ini": "17:00",
+   "fim": "18:30",
+   "regime": "Normal",
+   "o_que": "Saída dos últimos eleitores, mesários e material. Merrion Road normal (premissa).",
+   "corredores": "—"
+  }
+ ]
+}
