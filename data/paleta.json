@@ -18,11 +18,12 @@
    "hex": "#5F882E",
    "onde": "a onda de baixo, o # da hashtag e o acento de ação"
   },
-  "nota_lockup": "O logotipo é corpo estranho e guarda as cores dele: ELEIÇÕES em grafite #404041, 2026 em ouro #E5AE0F, as três ondas em ouro/azul/verde. O ouro sobre a faixa off-white dá 1,8:1, e isso é aceito porque logotipo é logotipo — a WCAG isenta marca. Fora do lockup o ouro não aparece: é o que a prancha do sistema quer dizer com 'só no logotipo'."
+  "nota_lockup": "O logotipo é corpo estranho e guarda as cores dele: ELEIÇÕES em grafite #404041, 2026 em ouro #E5AE0F, as três ondas em ouro/azul/verde. O ouro sobre a faixa off-white dá 1,8:1, e isso é aceito porque logotipo é logotipo — a WCAG isenta marca. Fora do lockup o ouro não aparece: é o que a prancha do sistema quer dizer com 'só no logotipo'.",
+  "autorizacao": "o uso da marca Eleições 2026 por posto no exterior foi autorizado; o Posto informou em 21/09/2026. O que ainda é reprodução, e não arquivo oficial, é o desenho do lockup nas peças."
  },
  "zona": {
   "origem": "cor de rolo de fita de marcação de piso, já em estoque (scripts/separadores_fila.py, CORES_ZONA)",
-  "trava": "não alterar sem refazer a compra de fita e as conferências dos separadores",
+  "trava": "as três cores saem de rolo já comprado, então a peça impressa persegue a fita. Em 21/09 o Posto abriu a possibilidade de rever a compra: enquanto isso não se decide, estas três seguem valendo e nenhum gerador as toca. Se a compra mudar, mudam juntas CORES_ZONA em scripts/separadores_fila.py, este arquivo e as 36 peças.",
   "A": {
    "hex": "#33507E",
    "rolo": "azul",
@@ -101,5 +102,16 @@
   "#3F3F3F": "#404041",
   "#5A6E6E": "#404041",
   "#DC963C": "#5F882E"
+ },
+ "fonte": {
+  "familia": "Montserrat",
+  "origem": "fonte da campanha Eleições 2026, informada pelo Posto em 21/09/2026",
+  "import": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap",
+  "css": "'Montserrat', system-ui, sans-serif",
+  "superadas": [
+   "Archivo",
+   "Nunito Sans"
+  ],
+  "nota": "Archivo e Nunito Sans eram marcação de lugar, escolhidas antes de a fonte da campanha ser conhecida. Montserrat é mais larga que Archivo no mesmo corpo, então a troca não é só estética: as 36 peças foram remedidas no DOM com a Montserrat real instalada, não com fonte substituta."
  }
 }

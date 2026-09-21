@@ -22,15 +22,18 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from _pictogramas import picto_linha  # noqa: E402
-from paleta import (AZUL, CINZA, CREME, GRAFITE, MARINHO, OFFWHITE, OURO,  # noqa: E402
-                    PAREDE, VERDE, ZONA)
+from paleta import (AZUL, CINZA, CREME, GRAFITE, IMPORT_FONTE,  # noqa: E402
+                    MARINHO, OFFWHITE, OURO, PAREDE, VERDE, ZONA)
+from paleta import FONTE as FONTE_CSS  # noqa: E402
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 FONTE = RAIZ / "data" / "grupos_mesas.json"
 PECAS = RAIZ / "mapa" / "sinalizacao"
 
-ARCHIVO = "'Archivo', 'Nunito Sans', sans-serif"
-NUNITO = "'Nunito Sans', system-ui, sans-serif"
+# Montserrat é a fonte da campanha e cobre display e texto. Os dois nomes
+# ficam por compatibilidade com o resto do módulo.
+ARCHIVO = FONTE_CSS
+NUNITO = FONTE_CSS
 TINTA = MARINHO
 CORES = ZONA
 
@@ -44,7 +47,7 @@ MOLDE = """<!doctype html>
 <x-dc>
 <helmet>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
+    @import url('{IMPORT_FONTE}');
     body {{ margin: 0; background: #F2EFE2; }}
     a {{ color: {AZUL}; }} a:hover {{ color: {MARINHO}; }}
   </style>
@@ -61,7 +64,8 @@ class Component extends DCLogic {{
 """
 
 def _molde(corpo, larg, alt):
-    return MOLDE.format(corpo=corpo, larg=larg, alt=alt, AZUL=AZUL, MARINHO=MARINHO)
+    return MOLDE.format(corpo=corpo, larg=larg, alt=alt, AZUL=AZUL, MARINHO=MARINHO,
+                        IMPORT_FONTE=IMPORT_FONTE)
 
 
 # A bandeirinha do logotipo: onda de cima ouro, do meio azul, de baixo verde --
@@ -107,7 +111,7 @@ def preferencial():
     <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 58px; line-height: 1; color: {TINTA}; letter-spacing: -0.01em;">ATENDIMENTO PREFERENCIAL</div>
     <div style="width: 100%; height: 4px; background: {TINTA};"></div>
     {picto_linha(altura=158, vao=18, sufixo="pref")}
-    <div style="font-family: {NUNITO}; font-weight: 600; font-size: 23px; color: {CINZA}; white-space: nowrap;">Idoso · gestante · colo · PcD · TEA — <strong style="color: {VERDE}">qualquer porta, sem fila</strong></div>
+    <div style="font-family: {NUNITO}; font-weight: 600; font-size: 23px; color: {CINZA}; white-space: nowrap;">Idoso · gestante · colo · PcD · TEA — <strong style="color: {VERDE}">pela S7, a porta à direita da C</strong></div>
   </div>
 
 </div>"""

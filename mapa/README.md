@@ -61,6 +61,12 @@ A soma das três não muda (38,60 contra 38,61 m), então **nenhuma conta que de
 total se altera**: os 888 m de fila e os ~926 m de barreira da §5 de
 `docs/voluntarios/contexto.md` continuam valendo como estavam.
 
+**Superada — "preferencial em qualquer porta".** A tabela de `rota_do_eleitor.html`
+diz, na linha do P5, que a entrada preferencial vale em *"qualquer porta"*. **Não vale:**
+decisão do Posto de 21/09, o preferencial entra **pela S7, a porta à direita da C**. A peça
+`P5-Preferencial` já diz isso; `rota_do_eleitor.html` não foi editada porque é cópia fiel do
+artefato publicado, como o `ring3_montagem.html`. Quem republicar a Rota do Eleitor corrige lá.
+
 **Em aberto — o número de CCBs.** 180 em `ring3_montagem.html`, **179** no
 `Mapa-Ring3`. Os dois dentro dos 200 em estoque, então não muda a compra; muda a lista
 de montagem. A diferença é pequena o bastante para ser o arredondamento dos postes
