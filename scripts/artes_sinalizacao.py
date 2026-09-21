@@ -22,6 +22,8 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from _pictogramas import picto_linha  # noqa: E402
+from paleta import (AZUL, CINZA, CREME, GRAFITE, MARINHO, OFFWHITE, OURO,  # noqa: E402
+                    PAREDE, VERDE, ZONA)
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 FONTE = RAIZ / "data" / "grupos_mesas.json"
@@ -29,16 +31,8 @@ PECAS = RAIZ / "mapa" / "sinalizacao"
 
 ARCHIVO = "'Archivo', 'Nunito Sans', sans-serif"
 NUNITO = "'Nunito Sans', system-ui, sans-serif"
-CREME = "#F2EFE2"
-TINTA = "#3F3F3F"
-CINZA = "#6B6B6B"
-
-CORES = {
-    "A": ("#33507E", "#FFFFFF"),
-    "B": ("#E8C63A", "#3F3F3F"),
-    "C": ("#DE7343", "#3F3F3F"),
-}
-PAREDE = {"A": "parede oeste", "B": "parede norte", "C": "parede leste"}
+TINTA = MARINHO
+CORES = ZONA
 
 MOLDE = """<!doctype html>
 <html lang="pt-BR">
@@ -52,7 +46,7 @@ MOLDE = """<!doctype html>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap');
     body {{ margin: 0; background: #F2EFE2; }}
-    a {{ color: #5A8CAA; }} a:hover {{ color: #3F3F3F; }}
+    a {{ color: {AZUL}; }} a:hover {{ color: {MARINHO}; }}
   </style>
 </helmet>
 {corpo}
@@ -66,26 +60,36 @@ class Component extends DCLogic {{
 </html>
 """
 
-ONDAS = ('<svg width="{s}" height="{s}" viewBox="0 0 24 24" aria-hidden="true" style="display:block">'
-         '<path d="M-1 4.6 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="#E8B800" stroke-width="6.3" stroke-linecap="butt"/>'
-         '<path d="M-1 12.2 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="#4888A8" stroke-width="6.3" stroke-linecap="butt"/>'
-         '<path d="M-1 19.799999999999997 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="#588018" stroke-width="6.3" stroke-linecap="butt"/></svg>')
+def _molde(corpo, larg, alt):
+    return MOLDE.format(corpo=corpo, larg=larg, alt=alt, AZUL=AZUL, MARINHO=MARINHO)
+
+
+# A bandeirinha do logotipo: onda de cima ouro, do meio azul, de baixo verde --
+# as três medidas no vetor oficial, não estimadas.
+ONDAS = (
+    '<svg width="{s}" height="{s}" viewBox="0 0 24 24" aria-hidden="true" style="display:block">'
+    '<path d="M-1 4.6 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="' + OURO + '" stroke-width="6.3" stroke-linecap="butt"/>'
+    '<path d="M-1 12.2 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="' + AZUL + '" stroke-width="6.3" stroke-linecap="butt"/>'
+    '<path d="M-1 19.799999999999997 q 6.5 -2.0 13 0 t 13 0" fill="none" stroke="' + VERDE + '" stroke-width="6.3" stroke-linecap="butt"/></svg>')
 
 
 def cabecalho(alto, pal, ano, onda, pad, g1, g2, hashtag):
+    regua = 4 if alto > 90 else 3
     """A tarja de identidade do topo, nas duas escalas já usadas pelo plano."""
+    # Sobre a faixa off-white o lockup sai inteiro, com as cores dele.
     direita = ('<div style="font-family: ' + ARCHIVO + '; font-weight: 700; font-size: 14.0px;'
-               ' letter-spacing: 0.02em; color: #FFFFFF;">#VOTO<span style="color: #5A8CAA">NA</span>'
-               'DEMOCRACIA</div>') if hashtag else "    "
+               f' letter-spacing: 0.02em; color: {GRAFITE};">'
+               f'<span style="color: {VERDE}">#</span>VOTO'
+               f'<span style="color: {AZUL}">NA</span>DEMOCRACIA</div>') if hashtag else "    "
     justif = "space-between" if hashtag else "flex-start"
-    return f"""  <div style="height: {alto}px; flex-shrink: 0; background: #5A6E6E; display: flex; align-items: center; justify-content: {justif}; padding: 0 {pad}px; box-sizing: border-box; overflow: hidden;">
+    return f"""  <div style="height: {alto}px; flex-shrink: 0; background: {OFFWHITE}; border-bottom: {regua}px solid {MARINHO}; display: flex; align-items: center; justify-content: {justif}; padding: 0 {pad}px; box-sizing: border-box; overflow: hidden;">
     <div style="display: flex; flex-direction: column; align-items: flex-start; gap: {g1}px; line-height: 1;">
       <div style="display: flex; align-items: center; gap: {g2}px;">
-        <span style="font-family: {ARCHIVO}; font-weight: 800; font-size: {pal}px; letter-spacing: 0.01em; color: #FFFFFF;">EL</span>
+        <span style="font-family: {ARCHIVO}; font-weight: 800; font-size: {pal}px; letter-spacing: 0.01em; color: {GRAFITE};">EL</span>
         {ONDAS.format(s=onda)}
-        <span style="font-family: {ARCHIVO}; font-weight: 800; font-size: {pal}px; letter-spacing: 0.01em; color: #FFFFFF;">IÇÕES</span>
+        <span style="font-family: {ARCHIVO}; font-weight: 800; font-size: {pal}px; letter-spacing: 0.01em; color: {GRAFITE};">IÇÕES</span>
       </div>
-      <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: {ano}px; letter-spacing: -0.01em; color: #F2CE3A;">2026</div>
+      <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: {ano}px; letter-spacing: -0.01em; color: {OURO};">2026</div>
     </div>
     {direita}
   </div>"""
@@ -103,11 +107,11 @@ def preferencial():
     <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 58px; line-height: 1; color: {TINTA}; letter-spacing: -0.01em;">ATENDIMENTO PREFERENCIAL</div>
     <div style="width: 100%; height: 4px; background: {TINTA};"></div>
     {picto_linha(altura=158, vao=18, sufixo="pref")}
-    <div style="font-family: {NUNITO}; font-weight: 600; font-size: 23px; color: {CINZA}; white-space: nowrap;">Idoso · colo · gestante · PcD · TEA — <strong style="color: #648232">qualquer porta, sem fila</strong></div>
+    <div style="font-family: {NUNITO}; font-weight: 600; font-size: 23px; color: {CINZA}; white-space: nowrap;">Idoso · gestante · colo · PcD · TEA — <strong style="color: {VERDE}">qualquer porta, sem fila</strong></div>
   </div>
 
 </div>"""
-    return MOLDE.format(corpo=corpo, larg=1040, alt=410)
+    return _molde(corpo=corpo, larg=1040, alt=410)
 
 
 def vinil_preferencial():
@@ -115,7 +119,7 @@ def vinil_preferencial():
   <div style="font-family: {NUNITO}; font-weight: 800; font-size: 46px; color: {TINTA}; letter-spacing: 0.02em;">PREFERENCIAL</div>
   {picto_linha(altura=104, vao=12, sufixo="vinil")}
 </div>"""
-    return MOLDE.format(corpo=corpo, larg=600, alt=350)
+    return _molde(corpo=corpo, larg=600, alt=350)
 
 
 # O corpo da placa fica encostado no topo, não centrado: o pull-up tem 2000 mm e
@@ -141,7 +145,7 @@ def banner_bloco(grupo):
 {CAB_ALTO}
   <div style="background: {fundo}; color: {tinta}; padding: 14px 20px 16px; display: flex; align-items: center; justify-content: space-between;">
     <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 104px; line-height: 0.86; letter-spacing: -0.03em;">{grupo["id"]}</div>
-    <div style="font-family: {NUNITO}; font-weight: 700; font-size: 22px; text-align: right; line-height: 1.25;">PORTA {porta}<br><span style="opacity: 0.85; font-weight: 600;">{PAREDE[porta]}</span></div>
+    <div style="font-family: {NUNITO}; font-weight: 700; font-size: 22px; text-align: right; line-height: 1.25;">PORTA {porta}<br><span style="opacity: 0.85; font-weight: 600;">{"parede " + PAREDE[porta]}</span></div>
   </div>
   <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; padding: 30px 16px 16px;">
     <div style="font-family: {NUNITO}; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; color: {CINZA}; margin-bottom: 10px;">SEÇÕES DESTE CORREDOR</div>
@@ -150,7 +154,7 @@ def banner_bloco(grupo):
   <div style="height: 10px; background: {fundo}; flex-shrink: 0;"></div>
 
 </div>"""
-    return MOLDE.format(corpo=corpo, larg=425, alt=1000)
+    return _molde(corpo=corpo, larg=425, alt=1000)
 
 
 def pecas():
