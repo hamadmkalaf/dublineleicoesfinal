@@ -1,18 +1,34 @@
 """Os cinco pictogramas do atendimento preferencial brasileiro, em vetor.
 
-Redesenhados a partir da placa padrão "ATENDIMENTO PREFERENCIAL" (idoso,
-adulto com criança de colo, gestante, pessoa em cadeira de rodas e o laço de
-peças do espectro autista). São vetor, e não a imagem de referência, porque a
-imagem tem ~570 px de largura: ampliada para os 2080 mm do fence banner daria
-cerca de 7 px/cm, e a placa sairia borrada da gráfica.
+Redesenhados a partir da placa de referência entregue pelo Posto em 21/09:
+**idoso com bengala · gestante · adulto com criança de colo · pessoa com
+muleta · laço de peças do espectro autista**, nessa ordem. A versão anterior
+trazia uma pessoa em cadeira de rodas no lugar da muleta; foi corrigida.
+
+São vetor e não a imagem de referência por dois motivos. A referência é um
+**JPEG de 950 px com marca d'água de banco de imagens** — não um vetor, apesar
+do rótulo "EPS/CDR" que ela anuncia —, e ampliada para os 2080 mm do fence
+banner sairia borrada; e a arte de um banco de imagens não pode ser
+reproduzida sem a licença. Os cinco símbolos em si são de uso corrente e não
+têm dono; o que se redesenha aqui são eles, na tipologia e na tinta do plano,
+não o layout da placa vendida.
 
 `picto_linha(altura, vao, tinta, sufixo)` devolve o bloco HTML da fileira. O
 `sufixo` entra no id do pattern do laço, para que duas fileiras na mesma página
 — o artefato consolidado põe todas as peças juntas — não colidam.
 """
+import pathlib
+import sys
 
-TINTA = "#3F3F3F"
-LACO = "M33 96 C38 83 45 71 50 60 C55 49 68 48 68 36 C68 25 60 18 50 18 C40 18 32 25 32 36 C32 48 45 49 50 60 C55 71 62 83 67 96"
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from paleta import MARINHO  # noqa: E402
+
+TINTA = MARINHO
+LACO = ("M33 96 C38 83 45 71 50 60 C55 49 68 48 68 36 C68 25 60 18 50 18 "
+        "C40 18 32 25 32 36 C32 48 45 49 50 60 C55 71 62 83 67 96")
+# As quatro cores do próprio símbolo do espectro autista. Não são a paleta do
+# plano e por isso ficam de fora da conferência de `scripts/paleta.py`.
+PECAS_LACO = ("#3B7DC4", "#E03C3C", "#F2C230", "#6FB9E8")
 
 
 def _svg(lado, corpo):
@@ -21,58 +37,68 @@ def _svg(lado, corpo):
 
 
 def _idoso(lado, tinta):
+    """Idoso apoiado em bengala."""
     return _svg(lado, (
         f'<g fill="none" stroke="{tinta}" stroke-linecap="round" stroke-linejoin="round">'
-        '<path d="M64 55 L70 93" stroke-width="6"/>'
-        '<path d="M64 55 C58 47 49 48 47 54" stroke-width="6"/>'
-        f'<circle cx="28" cy="13" r="9" fill="{tinta}" stroke="none"/>'
-        '<path d="M29 20 C32 33 38 42 47 48" stroke-width="15"/>'
-        '<path d="M47 48 L30 68 L24 92" stroke-width="12"/>'
-        '<path d="M47 48 L53 70 L54 92" stroke-width="12"/>'
-        '<path d="M35 32 L62 54" stroke-width="10"/></g>'))
-
-
-def _colo(lado, tinta):
-    return _svg(lado, (
-        f'<g fill="none" stroke="{tinta}" stroke-linecap="round" stroke-linejoin="round">'
-        f'<circle cx="28" cy="13" r="9" fill="{tinta}" stroke="none"/>'
-        '<path d="M28 20 L28 58" stroke-width="16"/>'
-        '<path d="M25 58 L20 92" stroke-width="12"/>'
-        '<path d="M32 58 L41 91" stroke-width="12"/>'
-        '<path d="M29 32 L24 47 L54 44" stroke-width="9"/>'
-        f'<circle cx="59" cy="28" r="8.5" fill="{tinta}" stroke="none"/>'
-        '<path d="M58 35 L61 43" stroke-width="13"/></g>'))
+        '<path d="M60 52 C55 46 48 47 46 52" stroke-width="6"/>'
+        '<path d="M60 52 L66 92" stroke-width="6"/>'
+        f'<circle cx="38" cy="12" r="9" fill="{tinta}" stroke="none"/>'
+        '<path d="M38 21 C40 34 42 44 44 52" stroke-width="15"/>'
+        '<path d="M44 52 L34 72 L30 92" stroke-width="12"/>'
+        '<path d="M44 52 L50 72 L52 92" stroke-width="12"/>'
+        '<path d="M40 32 L58 52" stroke-width="9"/></g>'))
 
 
 def _gestante(lado, tinta):
     return _svg(lado, (
-        f'<g fill="none" stroke="{tinta}" stroke-linecap="round" stroke-linejoin="round">'
-        f'<circle cx="31" cy="13" r="9" fill="{tinta}" stroke="none"/>'
-        '<path d="M31 20 L30 60" stroke-width="15"/>'
-        f'<ellipse cx="43" cy="43" rx="14" ry="15" fill="{tinta}" stroke="none"/>'
-        '<path d="M27 60 L21 92" stroke-width="12"/>'
-        '<path d="M34 60 L45 91" stroke-width="12"/></g>'))
+        f'<g fill="{tinta}" stroke="{tinta}" stroke-linecap="round" stroke-linejoin="round">'
+        '<circle cx="40" cy="12" r="9" stroke="none"/>'
+        '<path d="M40 21 L38 48" stroke-width="14" fill="none"/>'
+        '<ellipse cx="53" cy="41" rx="13" ry="14" stroke="none"/>'
+        '<polygon points="30,46 50,46 59,76 23,76" stroke="none"/>'
+        '<path d="M33 76 L31 92" stroke-width="10" fill="none"/>'
+        '<path d="M48 76 L50 92" stroke-width="10" fill="none"/></g>'))
 
 
-def _cadeirante(lado, tinta):
+def _colo(lado, tinta):
+    """Adulto com criança de colo, o bebê atravessado nos braços."""
+    return _svg(lado, (
+        f'<g fill="{tinta}" stroke="{tinta}" stroke-linecap="round" stroke-linejoin="round">'
+        '<circle cx="36" cy="12" r="9" stroke="none"/>'
+        '<path d="M36 21 L36 46" stroke-width="15" fill="none"/>'
+        '<path d="M29 33 C32 47 46 51 60 45" stroke-width="9" fill="none"/>'
+        '<ellipse cx="52" cy="36" rx="13" ry="7" transform="rotate(-10 52 36)" stroke="none"/>'
+        '<circle cx="65" cy="31" r="6.5" stroke="none"/>'
+        '<polygon points="27,46 46,46 55,76 19,76" stroke="none"/>'
+        '<path d="M29 76 L27 92" stroke-width="10" fill="none"/>'
+        '<path d="M45 76 L47 92" stroke-width="10" fill="none"/></g>'))
+
+
+def _muleta(lado, tinta):
+    """Pessoa apoiada em muleta axilar."""
     return _svg(lado, (
         f'<g fill="none" stroke="{tinta}" stroke-linecap="round" stroke-linejoin="round">'
-        '<circle cx="52" cy="76" r="18" stroke-width="5.5"/>'
-        f'<circle cx="30" cy="11" r="8.5" fill="{tinta}" stroke="none"/>'
-        '<path d="M30 18 L31 50 L57 52" stroke-width="11"/>'
-        '<path d="M34 25 L52 34" stroke-width="7.5"/>'
-        '<path d="M60 54 L67 74" stroke-width="8.5"/>'
-        '<path d="M67 74 L79 78" stroke-width="7"/></g>'))
+        '<path d="M52 30 L64 30" stroke-width="4.5"/>'
+        '<path d="M55 32 L59 58" stroke-width="3.5"/>'
+        '<path d="M62 32 L60 58" stroke-width="3.5"/>'
+        '<path d="M54 47 L63 45" stroke-width="3.5"/>'
+        '<path d="M59.5 58 L61 92" stroke-width="5"/>'
+        f'<circle cx="34" cy="12" r="9" fill="{tinta}" stroke="none"/>'
+        '<path d="M34 21 C35 32 37 42 40 50" stroke-width="14"/>'
+        '<path d="M40 50 L31 70 L27 92" stroke-width="11"/>'
+        '<path d="M40 50 L46 70 L46 92" stroke-width="11"/>'
+        '<path d="M37 30 L53 42" stroke-width="8"/></g>'))
 
 
 def _laco(lado, tinta, sufixo):
     pid = f"pz-{sufixo}"
+    a, b, c, d = PECAS_LACO
     return _svg(lado, (
         f'<defs><pattern id="{pid}" width="11" height="11" patternUnits="userSpaceOnUse">'
-        '<rect width="11" height="11" fill="#3B7DC4"/>'
-        '<rect width="5.5" height="5.5" fill="#E03C3C"/>'
-        '<rect x="5.5" y="5.5" width="5.5" height="5.5" fill="#F2C230"/>'
-        '<rect x="5.5" width="5.5" height="5.5" fill="#6FB9E8"/>'
+        f'<rect width="11" height="11" fill="{a}"/>'
+        f'<rect width="5.5" height="5.5" fill="{b}"/>'
+        f'<rect x="5.5" y="5.5" width="5.5" height="5.5" fill="{c}"/>'
+        f'<rect x="5.5" width="5.5" height="5.5" fill="{d}"/>'
         '<path d="M5.5 0V11M0 5.5H11" stroke="#FFFFFF" stroke-width="1.2"/>'
         '</pattern></defs><g fill="none" stroke-linecap="round">'
         f'<path d="{LACO}" stroke="{tinta}" stroke-width="13"/>'
@@ -82,9 +108,9 @@ def _laco(lado, tinta, sufixo):
 def picto_linha(altura=165, vao=20, tinta=TINTA, sufixo="pref"):
     figuras = [
         _idoso(altura, tinta),
-        _colo(altura, tinta),
         _gestante(altura, tinta),
-        _cadeirante(altura, tinta),
+        _colo(altura, tinta),
+        _muleta(altura, tinta),
         _laco(altura, tinta, sufixo),
     ]
     return (f'<div style="display: flex; align-items: flex-end; justify-content: center;'

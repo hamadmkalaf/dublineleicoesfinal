@@ -28,11 +28,9 @@ PECAS = RAIZ / "mapa" / "sinalizacao"
 # As três cores de porta, iguais às do resto do plano de sinalização. O mesmo
 # par (fundo, tinta) vale para a tarja do bloco e para a pastilha de cada seção
 # dentro dele: o bloco inteiro vira um campo de cor.
-CORES = {
-    "A": ("#33507E", "#FFFFFF"),
-    "B": ("#E8C63A", "#3F3F3F"),
-    "C": ("#DE7343", "#3F3F3F"),
-}
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from paleta import ZONA as CORES  # noqa: E402
+
 COLUNAS_POR_BLOCO = 3
 
 ARCHIVO = "'Archivo', 'Nunito Sans', sans-serif"

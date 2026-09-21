@@ -100,7 +100,8 @@ CLAUDE.md                     memória do projeto: fatos fixos, geometria, cená
 PENDENCIAS.md                 pendências gerais do Posto
 README.md                     este arquivo
 cenarios/                     paredes-abc-20260915.json — posição e rotação das 28 mesas
-data/                         prancheta_hall2.json, decisoes.json, grupos_mesas.json
+data/                         prancheta_hall2.json, decisoes.json, grupos_mesas.json,
+                              paleta.json — fonte única das cores
 docs/
   TRANSFERENCIA_REALIZADA.md  o que veio de onde, e o que ficou para trás
   contexto_geral.md           orçamento, layout, histórico e taxas de 2022
@@ -113,7 +114,8 @@ saidas/                       dados.json e as saídas geradas do tema dos separa
 scripts/                      separadores_fila.py, zonas_balanceadas.py,
                               tabela_mestra.py (tabela seção → porta das peças P0–P3),
                               artes_sinalizacao.py + _pictogramas.py (preferencial
-                              e as 16 placas de grupo)
+                              e as 16 placas de grupo), paleta.py (conferência
+                              da paleta, lê data/paleta.json)
 Identidadevisual/             identidade visual e banner
 Orçamentos/                   orçamentos, incl. sinalização
 ```

@@ -151,10 +151,16 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
   blocos em vez de uma lista ordenada. A compensação é o dígito, que subiu de
   17 px para 26 px (34 mm → 52 mm no impresso) porque a pastilha por linha saiu.
 - **Cada seção sai com o fundo na cor da sua porta**, a mesma da tarja do bloco:
-  A em `#33507E` com dígito branco, B em `#E8C63A` e C em `#DE7343` com dígito
-  `#3F3F3F`. Os três blocos viram três campos de cor. O par mais fraco é o C,
-  com 3,4:1 — passa no limiar de texto grande da WCAG por causa dos 52 mm, e é o
-  par já usado nas peças P4, P5 e P6; não mexer num sem mexer em todos.
+  A em `#33507E` com dígito branco (8,1:1), B em `#E8C63A` e C em `#DE7343` com
+  dígito **marinho `#042B5A`** (8,4:1 e 4,4:1). Os três blocos viram três campos
+  de cor. As razões são as da prancha do sistema, reconferidas.
+- **Ressalva de 21/09, em aberto.** A prancha do sistema diz: *"a letra
+  identifica a fila; a cor é apoio. Em nenhuma peça a cor aparece sozinha"* —
+  porque para um deuteranope o amarelo da B e a abóbora da C viram dois
+  amarelo-esverdeados com 1,9:1 entre si. Nas pastilhas agrupadas a letra saiu
+  da linha e ficou só na tarja do bloco. O bloco está logo acima e é grande,
+  mas a pastilha, sozinha, é cor sem letra. Se isso incomodar, a correção é pôr
+  a letra de volta em cada pastilha — ao custo do dígito, que encolhe.
 
 ## Regra das artes que saem de dados
 
@@ -166,13 +172,51 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
   código que o painel da porta C usa na sua lista. Isso fecha a cadeia
   porta → grupo → seção com o mesmo rótulo nos dois pontos.
 - **`P5-Preferencial` e `P5-VinilPref`** — os cinco pictogramas brasileiros de
-  atendimento preferencial (idoso, criança de colo, gestante, PcD, TEA), em
-  `scripts/_pictogramas.py`. São **vetor redesenhado**, não a imagem de
-  referência guardada em `Identidadevisual/`: a referência tem ~570 px de
-  largura e, esticada para os 2080 mm do fence banner, sairia borrada.
+  atendimento preferencial, em `scripts/_pictogramas.py`, na ordem da
+  referência de 21/09: **idoso com bengala · gestante · adulto com criança de
+  colo · pessoa com muleta · laço do espectro autista**. A primeira versão
+  trazia cadeira de rodas no lugar da muleta; foi corrigida.
+- São **vetor redesenhado**, não a imagem de referência. As duas referências
+  guardadas em `Identidadevisual/` são raster: a de 17/09 tem 575 px e a de
+  21/09, 950 px **com marca d'água de banco de imagens** — ela anuncia
+  "EPS/CDR" mas o que chegou é o JPEG de vitrine. Esticada para os 2080 mm do
+  fence banner qualquer das duas sai borrada, e a arte do banco não pode ser
+  reproduzida sem a licença. Os cinco símbolos em si são de uso corrente e não
+  têm dono; o que se redesenha é eles, não o layout vendido.
 - Mesmo contrato dos outros geradores: sem `--grava` confere e sai com código 1.
 - O dígito das placas escala com quantas seções o grupo tem (`DIGITO`, no topo do
   script): 130 px para uma seção, 80 px para quatro. Mexeu ali, rerrenderize.
+
+## Regra da paleta
+
+`data/paleta.json` é a fonte única, e `scripts/paleta.py` confere. Sem
+`--grava` ele sai com código 1 se alguma peça usar cor de fora.
+
+- **Identidade**, medida pixel a pixel no logotipo vetorizado que o Posto
+  entregou em 21/09 — não estimada: grafite `#404041`, ouro `#E5AE0F`, azul
+  `#3487AA`, verde `#5F882E`. Até 21/09 as quatro estavam erradas em **todas**
+  as 36 peças: `#F2CE3A` no lugar do ouro, `#4888A8` e `#5A8CAA` no do azul,
+  `#588018` e `#648232` no do verde.
+- **O logotipo é corpo estranho e guarda as cores dele.** Fora do lockup o ouro
+  não aparece: é o que a prancha do sistema quer dizer com *"só no logotipo"*.
+  O ouro sobre a faixa clara dá 1,8:1, e isso é aceito porque a WCAG isenta
+  marca registrada.
+- **Faixa institucional: off-white `#F0F0E8` com régua marinha `#042B5A`.** Essa
+  decisão é de 17/09 e está escrita na prancha do sistema — *"a faixa virou
+  off-white com régua marinha; o amarelo agora só significa porta B"* —, mas as
+  peças seguiram até 21/09 com uma tarja escura `#5A6E6E` que não existe na
+  marca. Motivo da decisão: uma faixa amarela no topo diria "porta B" a 30 m em
+  toda peça, inclusive nas de A e de C.
+- **Tipografia do plano: marinho `#042B5A`**, não o grafite do logotipo. O
+  grafite só é legítimo acima do fim da faixa; `scripts/paleta.py` reprova
+  grafite no corpo da peça.
+- **As cores de zona não se ajustam à identidade.** `#33507E`, `#E8C63A` e
+  `#DE7343` são **cor de rolo de fita já em estoque** (`CORES_ZONA` em
+  `scripts/separadores_fila.py`): mexer numa delas é mexer numa compra. Por
+  isso o amarelo da B e o ouro da marca convivem sendo dois amarelos — e por
+  isso a tarja da B nunca encosta no logotipo.
+- As quatro cores do laço do espectro autista são do símbolo, não do plano, e
+  ficam de fora da conferência.
 
 ## Convenções
 
