@@ -125,10 +125,9 @@ com resultado idêntico.
 | 3 | `--grava` duas vezes gera SVG byte a byte idênticos, e idênticos aos copiados | ✅ md5 conferido nos 4 SVG e no JSON, nas duas gravações e contra os arquivos copiados. **É o que prova que as três dependências chegaram inalteradas** |
 
 > **Os números do critério 2 são os de 18/09 e ficam como registro da
-> transferência, não como estado atual.** O desenho foi revisto duas vezes desde
-> então: em 22/09 (zona C vermelha, avenida A até y = 40 m) e em 23/09 (avenidas
-> recuadas para o centro). O vigente está em `docs/separadores/` — hoje **96
-> unifilas em 135 m, reserva 4, 960 m de fita, 24 rolos**.
+> transferência, não como estado atual.** O desenho foi revisto em 22/09 (zona C
+> vermelha, avenida A até y = 40 m). O vigente está em `docs/separadores/` — hoje
+> **98 unifilas em 133 m, reserva 2, 777 m de fita, 20 rolos**.
 
 ## 7. Revisão de 18/09 — Ring 3 confirmado e artefatos versionados
 

@@ -337,53 +337,71 @@ def painel_porta(porta, grupos):
     return _molde(corpo=corpo, larg=500, alt=1000)
 
 
-def fim_corredor(porta, grupos):
-    """A peça do fim do corredor: para quem andou demais e passou do seu grupo.
+# O eixo da avenida B em coordenada do salão, de `separadores_fila.py`: ela sobe
+# entre x = 26,80 e 29,80 e termina em T na banda norte. Quem chega ao T está
+# virado para o norte, então oeste fica à esquerda e leste à direita.
+AVENIDA_B_VAO = (26.80, 29.80)
 
-    O corredor da parede leste termina ao norte do ultimo grupo, entao quem
-    chega ao fim tem TODOS os grupos atras de si -- e por isso as duas colunas
-    saem desiguais: o ultimo grupo de um lado, os outros cinco do outro. As
-    setas dizem esquerda e direita; os subtitulos dizem norte e sul, que e o
-    que nao depende de para onde o eleitor esta virado.
+
+def fim_avenida_b(grupos):
+    """A peça do fim da avenida B: o T, onde o fluxo da porta B se reparte.
+
+    É o único ponto do salão em que todo o comparecimento de uma entrada (3.832
+    esperados) passa por um metro quadrado e tem de escolher um lado. A peça
+    existe para que a escolha se faça andando, e não parado no T.
+
+    O corte é por **mesa**, não por grupo: o par B3 fica escarranchado no vão da
+    avenida — a mesa 3108·3422 a oeste dele, a 3302·3181 dentro dele —, então o
+    B3 sai à esquerda com a ressalva de que está bem em frente. Os subtítulos
+    dizem "na direção da porta A" e "na direção da porta C", que é o que não
+    depende de para onde o eleitor está virado.
     """
-    fundo, tinta = CORES[porta]
-    gs = em_ordem(grupos, porta)
-    esq, dire = [gs[-1]], list(reversed(gs[:-1]))
+    fundo, tinta = CORES["B"]
+    gs = em_ordem(grupos, "B")
+    meio = sum(AVENIDA_B_VAO) / 2
+    esq = [g for g in gs if sum(g["coord"]) / len(g["coord"]) < meio]
+    dire = [g for g in gs if sum(g["coord"]) / len(g["coord"]) >= meio]
+    if not esq or not dire:
+        raise SystemExit("o T da avenida B deixou de repartir a parede norte em dois")
+    # O grupo que o vão da avenida atravessa: fica "bem em frente", e é dito.
+    a, b = AVENIDA_B_VAO
+    em_frente = [g["id"] for g in gs if any(a <= c <= b for c in g["coord"])]
 
     def coluna(lista, direcao, titulo, sub):
         alinha = "flex-start" if direcao == "esq" else "flex-end"
         numeros = "".join(
-            f'<span style="font-family: {ARCHIVO}; font-weight: 700; font-size: 31px;'
+            f'<span style="font-family: {ARCHIVO}; font-weight: 700; font-size: 29px;'
             f' color: {TINTA}; font-variant-numeric: tabular-nums;">{s:04d}</span>'
             for g in lista for s in sorted(g["secoes"]))
         codigos = " · ".join(g["id"] for g in lista)
-        cabeca = (f'{seta(64, fundo, direcao)}'
-                  f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 26px;'
-                  f' letter-spacing: 0.03em; color: {fundo};">{titulo}</div>')
-        if direcao != "esq":
-            cabeca = (f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 26px;'
-                      f' letter-spacing: 0.03em; color: {fundo};">{titulo}</div>'
-                      f'{seta(64, fundo, direcao)}')
+        titulo_html = (f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 26px;'
+                       f' letter-spacing: 0.03em; color: {TINTA};">{titulo}</div>')
+        cabeca = (f'{seta(64, TINTA, direcao)}{titulo_html}' if direcao == "esq"
+                  else f'{titulo_html}{seta(64, TINTA, direcao)}')
         return (f'<div style="display: flex; flex-direction: column; align-items: {alinha}; gap: 6px; min-width: 0;">'
                 f'<div style="display: flex; align-items: center; gap: 12px;">{cabeca}</div>'
                 f'<div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 15px;'
                 f' letter-spacing: 0.05em; color: {CINZA};">{sub} · {codigos}</div>'
-                f'<div style="display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: {alinha};">{numeros}</div>'
+                f'<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; justify-content: {alinha};">{numeros}</div>'
                 f'</div>')
 
+    rodape = ("Todos os grupos da porta B estão nesta parede."
+              if not em_frente else
+              f"O grupo {' e '.join(em_frente)} fica bem em frente, logo à esquerda.")
     corpo = f"""<div style="width: 1040.0px; height: 410.0px; box-sizing: border-box; background: {BRANCO}; display: flex; flex-direction: column; overflow: hidden;">
 {CAB_BANNER}
 
-  <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 14px 30px 16px; gap: 10px;">
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 14px 30px 14px; gap: 8px;">
     <div style="display: flex; align-items: center; gap: 14px;">
-      <div style="background: {fundo}; color: {tinta}; font-family: {ARCHIVO}; font-weight: 800; font-size: 44px; line-height: 1; padding: 8px 16px 10px;">{porta}</div>
-      <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 31px; letter-spacing: 0.02em; color: {TINTA};">FIM DO CORREDOR · PASSOU DA SUA SEÇÃO?</div>
+      <div style="background: {fundo}; color: {tinta}; font-family: {ARCHIVO}; font-weight: 800; font-size: 44px; line-height: 1; padding: 8px 16px 10px;">B</div>
+      <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 31px; letter-spacing: 0.02em; color: {TINTA};">FIM DA AVENIDA · PARA QUE LADO?</div>
     </div>
-    <div style="display: flex; align-items: center; gap: 22px; flex-grow: 1;">
-      <div style="width: 232px; flex-shrink: 0;">{coluna(esq, "esq", "AQUI", "fim da parede, ao norte")}</div>
+    <div style="display: flex; align-items: center; gap: 20px; flex-grow: 1;">
+      <div style="flex-grow: 1; min-width: 0;">{coluna(esq, "esq", "À ESQUERDA", "na direção da porta A")}</div>
       <div style="width: 3px; align-self: stretch; background: {TINTA};"></div>
-      <div style="flex-grow: 1; min-width: 0;">{coluna(dire, "dir", "VOLTE", "para o sul, de volta à porta")}</div>
+      <div style="flex-grow: 1; min-width: 0;">{coluna(dire, "dir", "À DIREITA", "na direção da porta C")}</div>
     </div>
+    <div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 17px; color: {CINZA}; border-top: 3px solid {fundo}; padding-top: 8px;">{rodape}</div>
   </div>
 
 </div>"""
@@ -401,7 +419,7 @@ def pecas():
         saida[f"P6-Bloco{g['id']}"] = banner_bloco(g)
     for porta in "ABC":
         saida[f"P6-Painel{porta}"] = painel_porta(porta, grupos)
-    saida["P4-FimCorredorC"] = fim_corredor("C", grupos)
+    saida["P4-FimAvenidaB"] = fim_avenida_b(grupos)
     return saida
 
 

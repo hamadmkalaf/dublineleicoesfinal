@@ -105,11 +105,11 @@
    "chave": "plano_consolidado",
    "titulo": "Plano de sinalização, peça por peça",
    "url": "https://claude.ai/artifact/EUNZhAFtSfUtRrLvqkvFVZ",
-   "versao": "1790114985-d46c",
+   "versao": "1790200000-b8f1",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
-   "estado": "republicado em 23/09 (versão 7): painéis de porta gerados de dados com as pontas do corredor, peça nova do fim do corredor C, orçamento com o 12º fence banner",
-   "sha256": "2d4283a606bc2108976e4239c59eef3eeb2d6c300b0897b16182786c242860dc",
+   "estado": "v8, 23/09: peça nova no T da avenida B (P4-FimAvenidaB), painéis de porta gerados de dados, e a nota de que o recuo das avenidas foi desenhado e recusado",
+   "sha256": "7724c194414eade0e9d1706f48a15ae41cfadbcaceed83362d926eca6a752a9f",
    "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1."
   }
  ]
