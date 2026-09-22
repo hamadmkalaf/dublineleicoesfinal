@@ -94,11 +94,20 @@ reserva em curso.
 **C2 (15)** acrescenta o 4º operador do P0, as três cabeças de fila (R5) e duas bocas
 (R2, zonas C e A).
 
+**Revisão de 22/09 (geometria, não efetivo).** A boca de entrada da zona A passou
+para o **extremo oeste** do trecho de fundo — é ali que fica o R2 da A, o último
+posto que o eleitor encontra antes de subir as raias. Cada zona sai por uma
+**abertura de 2 m na face norte do gradil**, a mais próxima da sua porta (medidas
+do canto nordeste: C 13,87–15,87 m · B 22,50–24,50 m · A 31,13–33,13 m), e os R5
+ficam nessas aberturas. A sala de apoio é um recuo para dentro da parede oeste,
+fora do piso: o T2 fica nele. Os números dos quatro cenários não mudam.
+
 O preenchimento é uma **fila contínua da posição 10 à 49**, e não uma sequência de
 saltos entre cenários: com 13 pessoas preenche-se até a posição 13, com 17 até a 17.
 
 A ordem entre zonas segue a compressão da parede, dado que vem da prancheta:
-**oeste 155,7 esperados por metro, norte 138,6, leste 105,6**. Por isso A vem antes de B,
+**oeste 138,8 esperados por metro, norte 138,6, leste 105,6** (a oeste era 155,7 até 22/09,
+quando a parede ganhou 3 m úteis com a saída da sala de apoio do piso). Por isso A vem antes de B,
 que vem antes de C, tanto em R5 quanto em H1.
 
 ---
