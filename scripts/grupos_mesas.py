@@ -64,7 +64,8 @@ def main():
         g["entrada"] = ENTRADA[parede]
         g["porta"] = PORTA[g["entrada"]]
         g["coord"] = [coordenada(m, pos) for m in ms]
-        g["por_mesa"] = [sorted(s for s in (m["principal"], m["agregada"]) if s) for m in ms]
+        # por mesa, principal antes da agregada: é a ordem que a placa de grupo imprime
+        g["por_mesa"] = [[s for s in (m["principal"], m["agregada"]) if s] for m in ms]
         g["secoes"] = sorted(s for grupo in g["por_mesa"] for s in grupo)
         g["aptos"] = sum(m["aptos"] for m in ms)
         g["esperado"] = sum(m["esperado"] for m in ms)
