@@ -35,11 +35,12 @@ respeita:
 | Uma entrada por parede: A→oeste (S4), B→norte (S5), C→leste (S6) | 15/09 | `decisoes.entradas` |
 | Portas: S4/S5/S6 entradas, S2/S8 saídas, S7 preferencial | 16/09 | `decisoes.sinalizacao_portas` |
 | Zonas protegidas: recuos de S3, S7, R1, N2, O2 e faixa de emergência leste | 16/09 | `decisoes.zonas_protegidas` |
-| Serpenteado de ~20 pessoas à frente de cada mesa vermelha | 16/09 | `decisoes.serpenteados` |
+| Serpenteado de ~20 pessoas à frente de cada mesa de alta carga | 16/09 | `decisoes.serpenteados` |
 | Módulo de 4,10 m de profundidade, 0,90 m de largura | — | `data/prancheta_hall2.json` |
 | 16 grupos de mesas (A1–A5, B1–B5, C1–C6) e as suas seções | — | `data/grupos_mesas.json` |
 
-As três mesas de alto comparecimento — as "vermelhas" — são os grupos **A3**
+As três mesas de alto comparecimento — as "vermelhas" até 22/09, **roxas** no
+desenho desde então, porque vermelho passou a ser a cor da zona C — são os grupos **A3**
 (seções 3313 · 3889), **B2** (3315 · 3778) e **C5** (3322 · 3752), com 586 a 590
 comparecentes esperados cada.
 
@@ -77,7 +78,7 @@ externo encostar na alvenaria de 0,29 m entre S4 e S5).
 - **B (amarela, S5 → norte).** Sobe reta, 35,4 m, e **termina em T**: todo o
   fluxo da entrada B (3.832 esperados) passa por um só metro quadrado antes de
   se repartir. É a fragilidade conhecida do traçado.
-- **C (laranja, S6 → leste).** Sai pelos 3 m **oeste** de S6 — a leste de
+- **C (vermelho desde 22/09; laranja até então, S6 → leste).** Sai pelos 3 m **oeste** de S6 — a leste de
   x = 35,09 está o recuo da preferencial S7 — e abre para a banda leste, 6
   aberturas.
 
@@ -98,7 +99,11 @@ canalizar a saída dobraria a fita e criaria 28 cruzamentos com os ramais.
 ### 17/09 — as três que o Posto fixou
 
 **1. As cores são as das fitas em estoque.** A azul `#33507E`, B amarelo
-`#E8C63A`, C laranja `#DE7343` — as mesmas do artefato de sinalização
+`#E8C63A`, C laranja `#DE7343` — as mesmas do artefato de sinalização; **desde
+22/09 a C é vermelha `#C8102E`**, rolo a comprar, e as três mesas de alta carga,
+as portas de emergência e os avisos deixaram o vermelho semântico (roxo
+`#6A1B9A`, verde-água `#0E8A74` e cinza `#333A42`), para que vermelho signifique
+só "zona C" no desenho
 (`Ek3FfeYnwvQLZEs4ZJ5Zzr`), que já as usa nos painéis de porta. *Consequência
 que isso força:* amarelo virou cor de zona, então a **linha de espera não pode
 mais ser amarela** — passa a **zebrado preto-e-branco**. Saída em branco,
@@ -145,25 +150,29 @@ duas coisas seria contar os primeiros 6 m duas vezes.
 elas, 18,4 m de porta no total — e quem entra pela errada não se perde, é
 *conduzido até a parede errada*; (b) a **avenida B**, porque atravessa 35 m de
 piso aberto com a reserva de fila encostada nos dois flancos; (c) as **três
-vermelhas**, os únicos lugares com multidão parada declarada.
+de alta carga**, os únicos lugares com multidão parada declarada.
 
 ### A fita, por cor
 
 | Cor | Necessário | Em estoque | Saldo |
 |---|---:|---:|---:|
-| Azul (zona A) | 244,8 m | 165 m | **−79,8 m** |
+| Azul (zona A) | 253,1 m | 165 m | **−88,1 m** |
 | Amarelo (zona B) | 149,8 m | 165 m | +15,2 m |
-| Laranja (zona C) | 241,2 m | 165 m | **−76,2 m** |
+| Vermelho (zona C) | 241,2 m | — (era laranja) | **−241,2 m** |
 | Zebrado preto-e-branco (linha de espera) | 30,8 m | — | comprar |
 | Verde (preferencial S7) | 20,0 m | — | comprar |
 | Branco (rota de saída) | 82,0 m | — | comprar |
-| **Total** | **769 m** | | |
-| **Com 10% de retoque** | **846 m** | | |
+| **Total** | **777 m** | | |
+| **Com 10% de retoque** | **855 m** | | |
 
-**Faltam 8 rolos de 50 m**: 2 azul, 2 laranja, 1 zebrado, 1 verde, 2 branco.
-Ordem de EUR 100–160 (*estimativa, a cotar*).
+**Faltam 11 rolos de 50 m**: 2 azul, 5 vermelho, 1 zebrado, 1 verde, 2 branco.
+Ordem de EUR 140–220 (*estimativa, a cotar*). Até 22/09 eram 8 rolos (2 azul,
+2 laranja): a **revisão de 22/09** trocou a zona C de laranja para vermelho, e
+o rolo laranja em estoque (165 m) deixa de servir ao desenho. Os 8 m a mais de
+azul são a avenida A, que passou a terminar em y = 40,0 para servir o ramal da
+mesa 3179·0530, deslocada para 37,62 m na mesma revisão.
 
-Azul e laranja passam tanto do amarelo porque as bandas oeste e leste são bem
+Azul e vermelho passam tanto do amarelo porque as bandas oeste e leste são bem
 mais fundas que a norte, então os seus ramais são mais compridos. **A parede
 norte é barata em fita justamente porque a avenida B chega perpendicular:** o T
 que é a fragilidade do traçado é também o que encurta os seus ramais.
@@ -182,7 +191,7 @@ afirmação no texto. A boca foi para a metade leste de S4.
 emergência L1–L4. A 45,70 o x-banner fica atrás das mesas, dentro da faixa. O
 valor certo é **42,70**. A oeste (4,60) e a norte (39,80) estão corretas.
 
-**3. Nos três grupos vermelhos, 4,60 m cai dentro do serpenteado.** O
+**3. Nos três grupos de alta carga, 4,60 m cai dentro do serpenteado.** O
 serpenteado de A3, B2 e C5 ocupa de 4,10 a 8,30 m da parede; um x-banner a
 4,60 m fica no meio dele. Nesses três o banner recua para **8,60 m** — logo
 atrás da última raia, ainda visível de toda a fila.
@@ -240,7 +249,7 @@ sozinhas um trabalho de 395.
 1. Submeter o layout de barreira ao responsável de incêndio do RDS — barreira em
    zona de egresso muda o cálculo de evacuação, e isso se submete, não se
    comunica.
-2. As 15 unifilas adicionais e os 8 rolos de fita.
+2. As 15 unifilas adicionais e os 11 rolos de fita (5 deles vermelhos, desde 22/09).
 3. Se os 165 m em estoque são por cor ou no total.
 4. As bandas de 11,00 / 9,00 / 10,80 m pressupõem o módulo de 4,10 m da planta
    medida e o serpenteado de 4,20 m. Conferir com a mesa, a cabine e a urna
@@ -250,7 +259,7 @@ sozinhas um trabalho de 395.
 6. O **T da parede norte**. Se houver folga, vale estudar uma segunda perna para
    a avenida B — mas isso mexe na atribuição mesa → entrada, fechada desde
    15/09.
-7. Quem cola os 769 m de fita, e quando. É trabalho de véspera com o salão
+7. Quem cola os 777 m de fita, e quando. É trabalho de véspera com o salão
    vazio.
 
 ## 10. Fontes

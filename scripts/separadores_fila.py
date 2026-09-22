@@ -11,6 +11,9 @@ Decisoes de 17/09
 1. As cores sao as das fitas ja em estoque: A azul, B amarelo, C laranja -- as
    mesmas do artefato de sinalizacao. Amarelo virou cor de zona, entao a linha
    de espera deixou de ser amarela e passou a zebrado preto-e-branco.
+   **Revisao de 22/09:** C passou a vermelho (rolo a comprar), e por isso as
+   mesas de alta carga, as portas de emergencia e os avisos deixaram o vermelho
+   semantico -- ver ``CORES_ZONA`` e as constantes logo abaixo dela.
 2. Os rotulos sao por GRUPO de mesas e por SECAO -- nunca por numero de mesa.
    Os 16 grupos (A1..A5, B1..B5, C1..C6) vem de ``data/grupos_mesas.json``.
 3. **As avenidas nunca se cruzam.** ``confere()`` prova isso pela faixa de x de
@@ -125,11 +128,17 @@ def boca_avenida(m, planta):
 # --------------------------------------------------------------------------
 # Cada avenida e um par de trilhos. A geometria evita as zonas protegidas de
 # 16/09 (recuos de S3, S7, R1, N2, O2 e a faixa de emergencia da fachada leste).
-# Cores das fitas que o Posto ja tem em estoque (a foto de 17/09) e que o
-# artefato de sinalizacao Ek3FfeYnwvQLZEs4ZJ5Zzr ja usa nos paineis de porta:
-# A azul, B amarelo, C laranja. Amarelo passa a ser da zona B, entao a linha de
-# espera **nao pode mais ser amarela** -- vira zebrado preto-e-branco.
-CORES_ZONA = {"A": "#33507E", "B": "#E8C63A", "C": "#DE7343"}
+# Cores das fitas: A azul e B amarelo sao rolos que o Posto ja tem em estoque
+# (a foto de 17/09); C passou de laranja a **vermelho em 22/09** (decisao do
+# Posto, a mesma da sinalizacao -- data/paleta.json) e o rolo vermelho e a
+# comprar. Amarelo e da zona B, entao a linha de espera **nao pode ser
+# amarela** -- vira zebrado preto-e-branco. E vermelho passou a ser cor de
+# zona, entao deixou de ser a cor semantica do desenho: as tres mesas de alta
+# carga sao roxas (decisoes.classes.cores), a emergencia e verde-agua e os
+# avisos sao cinza-escuro.
+CORES_ZONA = {"A": "#33507E", "B": "#E8C63A", "C": "#C8102E"}
+COR_EMERGENCIA = "#0E8A74"
+COR_AVISO = "#333A42"
 ESTOQUE_FITA = 165.0   # metros por cor ja em estoque (a confirmar: cada ou total)
 
 # Regra de 17/09: **as avenidas nunca se cruzam.** Cada uma sai da sua porta e
@@ -149,9 +158,9 @@ AVENIDAS = {
     # S2 passar por fora da avenida.
     "A": {"parede": "oeste", "porta": "S4", "hex": CORES_ZONA["A"],
           "trilho_interno": [(21.83, 0.00), (21.83, 3.40), (11.00, 3.40),
-                             (11.00, 36.30)],
+                             (11.00, 40.00)],
           "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (14.00, 6.40),
-                             (14.00, 36.30)]},
+                             (14.00, 40.00)]},
     # B sobe reta de S5 ate a banda norte. Nao distribui em pente: termina em T.
     "B": {"parede": "norte", "porta": "S5", "hex": CORES_ZONA["B"],
           "trilho_interno": [(26.80, 0.00), (26.80, 35.40)],
@@ -177,7 +186,7 @@ CANAL_PREF = 10.00    # canal da entrada preferencial S7
 
 
 def serpenteado_trilhos(s):
-    """Os 3 trilhos de um serpenteado de 2 raias na frente de uma vermelha."""
+    """Os 3 trilhos de um serpenteado de 2 raias na frente de uma mesa de alta carga."""
     x1, y1, x2, y2 = s["rect"]
     prof = s["profundidade"]
     if s["parede"] == "oeste":      # cresce em +x, raias ao longo de y
@@ -259,7 +268,7 @@ def catalogo(planta, dec, mesas):
     for s in dec["serpenteados"]:
         m = next(x for x in mesas if x["mrv"] == s["mrv"])
         itens[f"serp_{s['mrv']}"] = {
-            "grupo": "vermelha", "entrada": m["entrada"], "hex": "#c0392b",
+            "grupo": "alta", "entrada": m["entrada"], "hex": dec["classes"]["cores"]["alta"]["hex"],
             "rotulo": f"serpenteado do grupo {m['grupo']} · seções "
                       f"{' · '.join(str(x) for x in m['grupo_secoes'])} "
                       f"({s['pessoas']:.0f} pessoas)",
@@ -321,17 +330,17 @@ def opcoes(itens, mesas):
               op1,
               "Um eleitor mal encaminhado custa mais do que um eleitor mal enfileirado: "
               "quem chega à parede errada volta atravessando o salão, contra o fluxo.",
-              "Nada segura as três vermelhas. Os 20 em pé à frente de cada uma ficam "
+              "Nada segura as três de alta carga. Os 20 em pé à frente de cada uma ficam "
               "contidos só por fita, que é justamente onde a fita não segura."),
         monta("Opção 2", "As cabeças de fila",
               "A barreira paga a contenção: vai onde as pessoas param de andar — as três "
-              "vermelhas e as mesas de maior carga — e o trajeto inteiro fica na fita.",
+              "de alta carga e as mesas de maior carga — e o trajeto inteiro fica na fita.",
               op2,
               "Pressão de multidão só existe onde a fila é estática. Corredor é fluxo "
               "andando, e fluxo andando obedece a linha pintada.",
               "A boca é o gargalo não paralelizável já identificado: 11,5 mil pessoas por "
               "18,4 m de porta, com as três correntes separadas apenas por fita."),
-        monta("Definitiva", "Bocas, avenida B e as três vermelhas",
+        monta("Definitiva", "Bocas, avenida B e as três de alta carga",
               "A barreira paga só o que a fita comprovadamente não faz: separar correntes "
               "que se cruzam e conter multidão parada.",
               op3,
@@ -353,7 +362,7 @@ def opcoes(itens, mesas):
 CORES_FITA = {
     "A": {"rotulo": "azul · zona A / parede oeste (em estoque)", "hex": CORES_ZONA["A"]},
     "B": {"rotulo": "amarelo · zona B / parede norte (em estoque)", "hex": CORES_ZONA["B"]},
-    "C": {"rotulo": "laranja · zona C / parede leste (em estoque)", "hex": CORES_ZONA["C"]},
+    "C": {"rotulo": "vermelho · zona C / parede leste (a comprar — era laranja até 22/09)", "hex": CORES_ZONA["C"]},
     # Amarelo virou cor de zona: a linha de espera NAO pode mais ser amarela.
     "espera": {"rotulo": "zebrado preto-e-branco · linha de espera", "hex": "#16202b"},
     "pref": {"rotulo": "verde · preferencial S7", "hex": "#1e8449"},
@@ -479,7 +488,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     add('<defs>'
         '<pattern id="prot" width="7" height="7" patternTransform="rotate(45)" '
         'patternUnits="userSpaceOnUse">'
-        '<line x1="0" y1="0" x2="0" y2="7" stroke="#c0392b" stroke-width="1.1" '
+        f'<line x1="0" y1="0" x2="0" y2="7" stroke="{COR_AVISO}" stroke-width="1.1" '
         'stroke-opacity=".28"/></pattern>'
         '<marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" '
         'markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>'
@@ -488,7 +497,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     add(f'<text x="{MARG_E}" y="34" font-size="21" font-weight="700" fill="#16202b">'
         f'{op["nome"]} · {op["subtitulo"]}</text>')
     saldo = (f'{op["reserva"]} em reserva móvel' if op["reserva"] >= 0
-             else f'<tspan fill="#c0392b">não cabe: faltam {-op["reserva"]} unidades</tspan>')
+             else f'<tspan fill="{COR_AVISO}">não cabe: faltam {-op["reserva"]} unidades</tspan>')
     add(f'<text x="{MARG_E}" y="56" font-size="12.5" fill="#5b6470">'
         f'{op["postes"]} unifilas em barreira ({op["metros"]:.0f} m de cinta esticada) '
         f'de {UNIFILAS} orçadas · {saldo}{titulo_extra}</text>')
@@ -503,14 +512,13 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     cont = " ".join(f"{px(x, y)[0]:.1f},{px(x, y)[1]:.1f}" for x, y in planta["salao"]["contorno"])
     add(f'<polygon points="{cont}" fill="#ffffff" stroke="#16202b" stroke-width="2"/>')
 
-    # zonas protegidas e sala de apoio
+    # zonas protegidas (a "sala de apoio" saiu em 22/09: e um recuo na parede
+    # oeste, fora do piso do salao, e nao uma zona do arranjo)
     for z in dec["zonas_protegidas"]:
         x1, y1, x2, y2 = z["rect"]
         a, b = px(x1, y2)
-        cor = "#8a94a6" if z["tipo"] == "sala_apoio" else "url(#prot)"
         add(f'<rect x="{a:.1f}" y="{b:.1f}" width="{(x2-x1)*S:.1f}" height="{(y2-y1)*S:.1f}" '
-            f'fill="{cor}" fill-opacity="{0.22 if z["tipo"]=="sala_apoio" else 1}" '
-            f'stroke="#c0392b" stroke-opacity=".35" stroke-dasharray="3 3"/>')
+            f'fill="url(#prot)" stroke="{COR_AVISO}" stroke-opacity=".35" stroke-dasharray="3 3"/>')
 
     # bandas de secao (a faixa de 9 m de cada parede usada)
     bandas = [(0, 0, BANDA_PAREDE["oeste"], ALT),
@@ -602,7 +610,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     # isso joga o x-banner dentro da faixa de emergencia. Aqui fica 42,70.
     for g in grupos:
         eixo = sum(g["coord"]) / len(g["coord"])
-        # Achado: nos tres grupos vermelhos os 4,60 m caem DENTRO do serpenteado
+        # Achado: nos tres grupos de alta carga os 4,60 m caem DENTRO do serpenteado
         # (4,10 a 8,30 da parede). Nesses, o x-banner recua para 8,60 m.
         rec = 8.60 if g["classe"] == "alta" else 4.60
         if g["parede"] == "oeste":
@@ -630,7 +638,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         sin = dec["sinalizacao_portas"].get(p["id"], {})
         papel = sin.get("papel", "livre")
         cor = {"entrada": CORES_ZONA.get(sin.get("entrada"), "#8a94a6"),
-               "saida": "#5b6470", "emergencia": "#c0392b", "preferencial": "#1e8449",
+               "saida": "#5b6470", "emergencia": COR_EMERGENCIA, "preferencial": "#1e8449",
                "fechada": "#b9bfc9", "livre": "#b9bfc9"}[papel]
         a1, b1 = px(p["x1"], p["y1"])
         a2, b2 = px(p["x2"], p["y2"])
@@ -741,7 +749,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     add(f'<text x="{lx}" y="{ly}" font-size="10.2" fill="#8a94a6">O risco</text>')
     ly += 14
     for linha in quebra(op["risco"], 42):
-        add(f'<text x="{lx}" y="{ly}" font-size="10.4" fill="#c0392b">{linha}</text>')
+        add(f'<text x="{lx}" y="{ly}" font-size="10.4" fill="{COR_AVISO}">{linha}</text>')
         ly += 13
 
     add(f'<text x="{MARG_E}" y="{H-14:.0f}" font-size="10" fill="#8a94a6">'
