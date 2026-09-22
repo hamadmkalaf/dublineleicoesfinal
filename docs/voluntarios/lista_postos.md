@@ -69,6 +69,15 @@ Colunas: **C1** = 9 (hoje) · **C2** = 15 · **C3** = 24 · **C4** = 49 (pico).
 | **R4** | Dentro das raias, uma por zona | Raia errada, quem não aguenta a serpentina em pé, mal-estar. | 0 | 0 | 0 | 3 |
 | **R5** | Cabeça de fila de cada zona, na abertura de 2 m da face norte (desde 22/09) | Dosagem para o apron: só libera quando a porta está andando. Às 17h00 marca o fim da fila. | 0 | 3 | 3 | 3 |
 
+> **Como se anda dentro do Ring, desde 23/09.** As laterais A|B e B|C passaram a ser
+> fechadas nas duas faces, e o que ficou entre elas é um **corredor de serviço de
+> 1,20 m** que percorre os 32 m das zonas. É por ele que R3, R4 e R5 se deslocam entre
+> zonas sem entrar em raia nenhuma, e é por ele que passa maca ou fiscal contra o
+> fluxo. Cada linha tem **6 portões** de uma CCB, um a cada 8 m — então nenhum ponto da
+> zona fica a mais de 4 m de uma saída para o corredor. Antes de 23/09 esse corredor
+> não existia como barreira: o vão entre zonas era só chão livre, e quem precisasse
+> atravessar cortava a fila.
+
 ### Apron e portas
 
 | Posto | Onde fica | O que faz | C1 | C2 | C3 | C4 |

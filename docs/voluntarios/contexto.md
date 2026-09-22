@@ -142,10 +142,13 @@ No C2 as compensações 1 e 2 continuam valendo inteiras; só a terceira ganha f
   zona: 24 × 38,60 m ≈ **926 m**, contra **200 m** orçados (100 separadores, EUR 1.303).
   Faltam da ordem de 700 m, a menos que o gradil do Ring traga estrutura interna.
   **Questão em aberto, anterior ao fechamento do orçamento.** A montagem confirmada do
-  Ring resolve o mesmo problema com **outro material** — ~180 CCBs (360 m de barreira
-  rígida) mais 506 m de fita grossa, dentro do estoque de 200 CCBs e sem compra
-  (`mapa/ring3_montagem.html`). São duas contas para a mesma raia: confirmar qual vale
-  antes de orçar.
+  Ring resolve o mesmo problema com **outro material** — **228 CCBs** (456 m de
+  barreira rígida) mais 506 m de fita grossa (`mapa/ring3_montagem.html`). Desde
+  **23/09** essa conta deixou de caber no estoque: o fechamento integral das laterais
+  A|B e B|C, pedido para haver onde afixar a fita que separa uma zona da outra, custa
+  64 CCBs e leva o total a 28 acima das 200 disponíveis — **locação de véspera de
+  ~EUR 364,56**. São duas contas para a mesma raia: confirmar qual vale antes de
+  orçar.
 - **O Ring é inteiramente descoberto**, e a chance de chuva em 4 de outubro fica entre
   40% e 65% conforme o limiar da fonte. Até 1.800 pessoas na chuva. O miolo do Hall 2
   está vazio na planta e é o único abrigo de escala disponível — pede um protocolo de

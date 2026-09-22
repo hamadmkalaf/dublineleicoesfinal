@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-09-22",
+ "gerado_em": "2026-09-23",
  "nota": "Fonte versionada dos artefatos publicados. Cada arquivo é a página tal como o serviço a entregou, invólucro da plataforma incluído. O sha256 é do arquivo neste repositório: se o artefato for republicado, ele muda, e é assim que se percebe que a cópia envelheceu.",
  "artefatos": [
   {
@@ -16,21 +16,21 @@
    "chave": "prancheta_hall2",
    "titulo": "Prancheta pelas Seções",
    "url": "https://claude.ai/artifact/Szv5egKpHy3umh4udAybvr",
-   "versao": "1790096082-7e3e",
+   "versao": "1790114840-ed5b",
    "caminho": "mapa/prancheta_hall2.html",
    "o_que_e": "Coordenadas reais das portas e das 28 mesas. A planta do salão em voluntarios_postos.html foi gerada delas.",
-   "estado": "republicada em 22/09 (versão 5): sala de apoio fora do piso, quatro mesas da parede oeste 1,50 m ao norte; lida na íntegra",
-   "sha256": "563ee18647f688051ca7bca8474c8083b3c9f4baba0e7f26e3ceaa7c2188e288"
+   "estado": "republicada em 23/09 (versão 6): parede oeste reordenada — as duplas de menor comparecimento na entrada do corredor; a cópia é a fonte, sem o invólucro",
+   "sha256": "8c1a2d7fffa6e6d78d655f33a331862c7b0810b2cc1a9e98261295fedf252588"
   },
   {
    "chave": "ring3_montagem",
    "titulo": "Montagem do Ring 3",
    "url": "https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV",
-   "versao": "1790086383-8771",
+   "versao": "1790114877-be85",
    "caminho": "mapa/ring3_montagem.html",
    "o_que_e": "O cenário 3 adaptado, revisto em 22/09: 23 raias por zona, três zonas iguais de 12,87 m, vão de 1,20 m, 180 CCBs dos 200 em estoque, 506 m de fita grossa, lotação 2.105, saídas na face norte junto às portas.",
-   "estado": "republicada em 22/09 (versão 2): zonas iguais, boca da A a oeste, saída da B no meio, quatro aberturas da face norte; 180 CCBs, lotação 2.105",
-   "sha256": "10f64412a94e17a1ee00fb0d9bf910720691051307c1435830fb09230df56308"
+   "estado": "republicada em 23/09 (versão 3): laterais A|B e B|C fechadas de ponta a ponta nas duas faces, 228 CCBs (28 a contratar), corredor de serviço de 1,20 m com portão a cada 8 m",
+   "sha256": "d9962f63ebaff8c1b6ec7e91aced14fb2d8387d66196081349ea4cd40aac4ca2"
   },
   {
    "chave": "sinalizacao_interna",
@@ -53,12 +53,13 @@
    "arquivos": {
     "Main.dc.html": "de908588320b0c2a830909fff84c0e8dbf89d4fe5ac6866c4ed7a26827ebabe5",
     "Mapa-Hall2.dc.html": "57ec6fb056e1e4ac33b125938938c6bf7e46a41df8237f976b0298136a82f483",
-    "Mapa-Ring3.dc.html": "19722d1c416ba5158c76bd31598017953ff4ebf6abdea800151fb07d4ccdff01",
+    "Mapa-Ring3.dc.html": "670096491d4e9dbe9bd07bdf337844389f298a552286a74cfba38086768f2309",
     "P0-Consulta.dc.html": "9845b15394226ca7b172fd514e777f10e4cb0ff03f82ec132f765fb3f8880722",
     "P0-Mestra.dc.html": "9133286af3a58e8f057d6171701897f5dd5ff1c6394bdbdf40ffbce910c120fe",
     "P1-Portao.dc.html": "cb8186e07f8e8089d568cffc675210640b2efc047663fe87e99be98b31fe30ea",
     "P2-ParedeLeste.dc.html": "d18198d2b769db1c4b21ff45637b8c481c4fc622e7e2996db8766acfccd2f5c1",
     "P3-EntradaRing.dc.html": "82ceffd226702a9ed9c8694fbfa1dec215f63805a4731d2cf91e8d843899ce44",
+    "P4-FimCorredorC.dc.html": "2e3a4a33d8aae02e38d780bf16e722059a16a26fd65f7803c7994606c9add534",
     "P4-ZonaA.dc.html": "247c6c84c6fe4382f9c5324ca91ffe054e17f87ab5488989b6242dd87a18864c",
     "P4-ZonaB.dc.html": "ed0e50b5bfcc1eda89f7ad8708707c275a48163741afb5d2692ce5030b7e41da",
     "P4-ZonaC.dc.html": "4b4c078bd49feb1e8fc68c21ff0904c51d21acf91e70645f5d8adebb8a845329",
@@ -67,11 +68,11 @@
     "P5-VinilB.dc.html": "6ad04686f59ccbb260f2ee73814d77240015d2cc46b9c1a6be7f19cfa58fd265",
     "P5-VinilC.dc.html": "26260488c548bb624e6eeb19e98776cf6ed4860eb5ea13d09f948c900a73ef1f",
     "P5-VinilPref.dc.html": "09268eca1f3aee90db8e4653bd84d8bc0a4e8bca0010eaaecca7e22ba971367e",
-    "P6-BlocoA1.dc.html": "fa5d45450aa9906a7cf0db31744e321e33a986b68b844fd38b927efa257d45f3",
-    "P6-BlocoA2.dc.html": "dc6253e76a2b448046f962c68392ff469991fde3620ea8a1905ab2dfd59ce3f6",
+    "P6-BlocoA1.dc.html": "3c550bf729b233fed13e1320a9c9858746743f51042567de672a9a9326750642",
+    "P6-BlocoA2.dc.html": "8caaff43e17959c352bd71fe5fc9df800e08af7db812cdc2b327d78a505876d6",
     "P6-BlocoA3.dc.html": "3825fd08525e9cb0df60214fda4940fdac1453912c0c4de709b96b0fe343e9cb",
-    "P6-BlocoA4.dc.html": "9f3596708b8573c19f91778cbf4c4c18340770cdef98db495e5b3ec1dd7d91e1",
-    "P6-BlocoA5.dc.html": "61633d6e20db823843c2256a11e6342bd1d3bf2ceec4f3c6a9b69a51e8d63d94",
+    "P6-BlocoA4.dc.html": "4a24f0b6882341acae418df7ad15141ee31ee9315787f08a541eaa8591c090aa",
+    "P6-BlocoA5.dc.html": "ff1ac9f1c2804d423c82b45993c32d94584029b59880e3b532ce74176943c856",
     "P6-BlocoB1.dc.html": "bfbff75ad30959e7714f59d3acc2df95cc5eebcc81e4f8ee28cd375573814e07",
     "P6-BlocoB2.dc.html": "a9d73fc9d9548b3df9510bf545639d36c18369f6b68eca9f596c72276a769b09",
     "P6-BlocoB3.dc.html": "aed3cd234051d9064d048ec3acc32e119cdb66e7a1a6af075e8b0f18e832c730",
@@ -83,32 +84,32 @@
     "P6-BlocoC4.dc.html": "82dfaadf3d1b9021a6ea093a6bb178dcadd88688edc9db45a8cfaf80f1620fdb",
     "P6-BlocoC5.dc.html": "8ae0252fc9849306bbeadd7ad62edd9a9d8ba6f033fb48b0f5b75d06abe61d22",
     "P6-BlocoC6.dc.html": "cd873632f0cbcb59f2286784c9b29aa7ed7874dff7c50e463b25bbed1f089d98",
-    "P6-PainelA.dc.html": "9a9bd8b5eea454c7459b167672d4e340c4482383256fef2adf28103e1fd8422a",
-    "P6-PainelB.dc.html": "ac26cb2fb3e7d2e3360b85369461b5c66f85483a0f4862ccde63da5c3331d77b",
-    "P6-PainelC.dc.html": "5115c77b2c386cda2ca4576b892aafeec0506ea3b0584fb064fcf6a545f51707",
+    "P6-PainelA.dc.html": "982b58d0dee77e2dfce0a947ce5c91d9d0763bb5a6b692ad0bd92f53bb4ee406",
+    "P6-PainelB.dc.html": "2abe1d9cb02d03b96e95ddbc11a82e680d4628a4509ba78b7843b9474b78ac1f",
+    "P6-PainelC.dc.html": "5f27cde52c69885d4acd0f73bd1c6bca369025728d467307a2bcaabeb3b55485",
     "P7-Saida.dc.html": "13762ef2c7906267a10232af0c9e77cf6470449b7b84bfb06cb0aacc2ca894f1",
-    "canvas.json": "66345dc8db89d567484fc9b0f6ef65b1045b2a688ddfede427d5a474ed35bbe1"
+    "canvas.json": "e40d33e83f02d9d01739e73cf8ee09003f6d3661e88332f7bc7cab936327c7b1"
    }
   },
   {
    "chave": "voluntarios_postos",
    "titulo": "Escala de Voluntários",
    "url": "https://claude.ai/artifact/YaFNHUua2Hkqu7dtR7tf7A",
-   "versao": "1790097304-6985",
+   "versao": "1790114908-e036",
    "caminho": "mapa/voluntarios_postos.html",
    "o_que_e": "Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários.",
-   "estado": "republicada em 22/09 (versão 4): boca da A a oeste, saídas na face norte, parede oeste deslocada; a cópia é a fonte, sem o invólucro",
-   "sha256": "0d78cb02e3c591b53d0dbd4a3cde1344d6a84322f5df2c900736d097d41ba1c9"
+   "estado": "republicada em 23/09 (versão 5): notas da parede oeste reordenada e das laterais fechadas do Ring; os quatro cenários não mudam",
+   "sha256": "5b970e8b253c6d1387e3670bc41ea7d37b468d58731cb3ea91cb9e6854b5fe21"
   },
   {
    "chave": "plano_consolidado",
    "titulo": "Plano de sinalização, peça por peça",
    "url": "https://claude.ai/artifact/EUNZhAFtSfUtRrLvqkvFVZ",
-   "versao": "1790097120-b404 · v6 · 22/09/2026",
+   "versao": "1790114985-d46c",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
-   "estado": "republicado em 22/09 (versão 6): zona C vermelha, P0 ×2 com QR do TSE, P4, preferencial, placas por mesa, mapas revistos",
-   "sha256": "c0fde482fc181285176f9fd96544c8b2afbd7d9b0feee4412f83677638b9a30c",
+   "estado": "republicado em 23/09 (versão 7): painéis de porta gerados de dados com as pontas do corredor, peça nova do fim do corredor C, orçamento com o 12º fence banner",
+   "sha256": "2d4283a606bc2108976e4239c59eef3eeb2d6c300b0897b16182786c242860dc",
    "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1."
   }
  ]

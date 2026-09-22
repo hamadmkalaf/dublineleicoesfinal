@@ -6,7 +6,9 @@ transferido) e desde então ninguém o regerava: a coordenada de cada grupo
 (`coord`) é a posição das suas mesas na parede, e ela sai do cenário de
 trabalho. Este script refaz **só** o que depende do arranjo — `coord` e, por
 conferência, `por_mesa`, `secoes`, `mrvs`, `parede`, `entrada`, `porta` — e
-deixa os ids, o `tipo` e a ordem dos grupos como estão.
+reetiqueta os ids pela posição na parede (o código é posicional: A1 é sempre o
+par mais ao sul da parede oeste). O `tipo`, a `classe` e o `id_origem` viajam
+com o par de mesas, não com o código.
 
 Lê, sem escrever: `data/decisoes.json`, `data/prancheta_hall2.json` e
 `cenarios/<cenario_trabalho>.json`.
@@ -76,19 +78,26 @@ def main():
     if len(todas) != 51 or len(set(todas)) != 51:
         raise SystemExit(f"{len(todas)} seções nos grupos, esperadas 51 sem repetição")
 
-    # os códigos crescem ao longo da parede: y na oeste e na leste (sul → norte), x na norte
+    # O código é POSICIONAL: cresce ao longo da parede — y na oeste e na leste
+    # (sul → norte), x na norte. Quem manda é o arranjo, então quando um par
+    # troca de lugar na parede ele troca de código junto, e o resto do registro
+    # (as seções, o tipo, a classe, o id de origem) viaja com o par. Foi o que
+    # aconteceu na parede oeste em 23/09: ver ORDEM_FIXA em arranjo_paredes.py.
     for parede in ("oeste", "norte", "leste"):
-        gs = sorted((g for g in novo["grupos"] if g["parede"] == parede), key=lambda g: min(g["coord"]))
-        ids = [g["id"] for g in gs]
-        if ids != sorted(ids):
-            raise SystemExit(f"parede {parede}: a ordem física {ids} não segue os códigos")
+        gs = sorted((g for g in novo["grupos"] if g["parede"] == parede),
+                    key=lambda g: min(g["coord"]))
+        codigos = sorted(g["id"] for g in gs)
+        for g, id_novo in zip(gs, codigos):
+            g["id"] = id_novo
+    novo["grupos"].sort(key=lambda g: (g["parede"] != "oeste", g["parede"] != "norte", g["id"]))
 
     texto = json.dumps(novo, ensure_ascii=False, indent=1)
     atual = ALVO.read_text(encoding="utf-8")
     if texto == atual:
         print("grupos_mesas.json em dia com o cenário", cenario["id"])
         return 0
-    mudou = [g["id"] for g, h in zip(dados["grupos"], novo["grupos"]) if g != h]
+    antes = {g["id"]: g for g in dados["grupos"]}
+    mudou = [g["id"] for g in novo["grupos"] if antes.get(g["id"]) != g]
     if grava:
         ALVO.write_text(texto, encoding="utf-8")
         print(f"regravado data/grupos_mesas.json · grupos alterados: {', '.join(mudou)}")

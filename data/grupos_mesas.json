@@ -4,73 +4,73 @@
  "grupos": [
   {
    "id": "A1",
-   "id_origem": "BA1",
+   "id_origem": "BA4",
    "entrada": "A",
    "parede": "oeste",
    "porta": "S4",
    "tipo": "par",
    "mrvs": [
-    20,
-    10
+    3,
+    6
    ],
    "coord": [
     8.03,
     11.93
    ],
    "secoes": [
-    1278,
-    1314,
-    3142,
-    3309
+    513,
+    522,
+    1105,
+    1352
    ],
    "por_mesa": [
     [
-     3309,
-     1314
+     513,
+     1105
     ],
     [
-     3142,
-     1278
+     1352,
+     522
     ]
    ],
-   "aptos": 1408,
-   "esperado": 861,
-   "classe": "media"
+   "aptos": 964,
+   "esperado": 679,
+   "classe": "baixa"
   },
   {
    "id": "A2",
-   "id_origem": "BA2",
+   "id_origem": "BA5",
    "entrada": "A",
    "parede": "oeste",
    "porta": "S4",
    "tipo": "par",
    "mrvs": [
-    11,
-    21
+    8,
+    12
    ],
    "coord": [
     14.33,
     18.23
    ],
    "secoes": [
-    3161,
-    3307,
-    3311,
-    3913
+    530,
+    2847,
+    3078,
+    3179
    ],
    "por_mesa": [
     [
-     3161,
-     3307
+     3078,
+     2847
     ],
     [
-     3311,
-     3913
+     3179,
+     530
     ]
    ],
-   "aptos": 1421,
-   "esperado": 970,
-   "classe": "media"
+   "aptos": 1105,
+   "esperado": 734,
+   "classe": "baixa"
   },
   {
    "id": "A3",
@@ -101,73 +101,73 @@
   },
   {
    "id": "A4",
-   "id_origem": "BA4",
+   "id_origem": "BA1",
    "entrada": "A",
    "parede": "oeste",
    "porta": "S4",
    "tipo": "par",
    "mrvs": [
-    3,
-    6
+    20,
+    10
    ],
    "coord": [
     27.42,
     31.32
    ],
    "secoes": [
-    513,
-    522,
-    1105,
-    1352
+    1278,
+    1314,
+    3142,
+    3309
    ],
    "por_mesa": [
     [
-     513,
-     1105
+     3309,
+     1314
     ],
     [
-     1352,
-     522
+     3142,
+     1278
     ]
    ],
-   "aptos": 964,
-   "esperado": 679,
-   "classe": "baixa"
+   "aptos": 1408,
+   "esperado": 861,
+   "classe": "media"
   },
   {
    "id": "A5",
-   "id_origem": "BA5",
+   "id_origem": "BA2",
    "entrada": "A",
    "parede": "oeste",
    "porta": "S4",
    "tipo": "par",
    "mrvs": [
-    8,
-    12
+    11,
+    21
    ],
    "coord": [
     33.72,
     37.62
    ],
    "secoes": [
-    530,
-    2847,
-    3078,
-    3179
+    3161,
+    3307,
+    3311,
+    3913
    ],
    "por_mesa": [
     [
-     3078,
-     2847
+     3161,
+     3307
     ],
     [
-     3179,
-     530
+     3311,
+     3913
     ]
    ],
-   "aptos": 1105,
-   "esperado": 734,
-   "classe": "baixa"
+   "aptos": 1421,
+   "esperado": 970,
+   "classe": "media"
   },
   {
    "id": "B1",

@@ -64,9 +64,10 @@ está por confirmar se são 165 m por cor ou no total.
 ## 4. O traçado
 
 **Banda da seção.** Cada parede usada reserva uma faixa que contém o módulo
-(4,10 m), o serpenteado (4,20 m) e a circulação de saída: **11,00 m na oeste,
-9,00 m na norte, 10,80 m na leste**. A banda vai da parede até o trilho mais
-próximo da avenida daquela parede.
+(4,10 m), o serpenteado (4,20 m) e a circulação de saída: desde 23/09,
+**13,00 m na oeste, 14,00 m na norte, 13,00 m na leste** (eram 11,00 / 9,00 /
+10,80). A banda vai da parede até o trilho mais próximo da avenida daquela
+parede, e alargá-la é literalmente empurrar a avenida para o centro do salão.
 
 **Avenidas.** Uma por entrada, 3,00 m de largura (a A tem 3,20 m, para o trilho
 externo encostar na alvenaria de 0,29 m entre S4 e S5).
@@ -75,15 +76,17 @@ externo encostar na alvenaria de 0,29 m entre S4 e S5).
   porta está sobre o recuo de emergência S3, que vai até x = 21,47 —, sobe
   3,40 m, vira a oeste por baixo das mesas da parede oeste e sobe rente à banda.
   Distribui em **pente**, 5 aberturas.
-- **B (amarela, S5 → norte).** Sobe reta, 35,4 m, e **termina em T**: todo o
+- **B (amarela, S5 → norte).** Sobe reta, 30,4 m desde 23/09, e **termina em T**: todo o
   fluxo da entrada B (3.832 esperados) passa por um só metro quadrado antes de
   se repartir. É a fragilidade conhecida do traçado.
 - **C (vermelho desde 22/09; laranja até então, S6 → leste).** Sai pelos 3 m **oeste** de S6 — a leste de
   x = 35,09 está o recuo da preferencial S7 — e abre para a banda leste, 6
   aberturas.
 
-**Ramal de mesa.** Canal de 1,10 m da avenida até 1,50 m da mesa: 6,90 m na
-oeste, 4,90 m na norte, 6,70 m na leste. Marcas de 0,65 m no chão — o passo de
+**Ramal de mesa.** Canal de 1,10 m da avenida até 1,50 m da mesa: desde 23/09,
+8,90 m na oeste, 9,90 m na norte, 8,90 m na leste (eram 6,90 / 4,90 / 6,70). O
+ramal atravessa a banda inteira, então alargar a banda alonga os 28 ramais — é
+daí que vem quase toda a fita a mais. Marcas de 0,65 m no chão — o passo de
 projeto do plano de filas —, que dão ao mesário a leitura do tamanho da fila sem
 contar cabeças.
 
@@ -115,7 +118,40 @@ do grupo"* — e ela está certa: o eleitor sabe a sua seção, não sabe que me
 sua.
 
 **3. As avenidas nunca se cruzam.** Cada uma vive numa faixa de x própria, e as
-três faixas são disjuntas: A 11,00–25,03, B 26,80–29,80, C 32,00–36,50.
+três faixas são disjuntas. Depois do recuo de 23/09: **A 13,00–25,03, B
+26,80–29,80, C 31,30–35,00** (eram A 11,00–25,03, B 26,80–29,80, C
+32,00–36,50). A C passou a desviar para **oeste** em vez de leste, e por isso a
+folga entre B e C caiu de 2,20 para **1,50 m** — ainda disjunta, e a
+conferência executável é quem garante isso a cada rodada.
+
+### 23/09 — o recuo das avenidas, e o que ele custou
+
+O Posto pediu **mais espaço para as filas encostadas nas paredes de mesa**:
+empurrar A e C 2 a 3 m para o lado da B (*"para não afetar a visibilidade dos
+painéis"*) e a B 5 a 10 m para o centro. O que foi feito, e por quê:
+
+| Parede | Banda antes | Banda agora | Deslocamento |
+|---|---:|---:|---:|
+| oeste (A) | 11,00 m | **13,00 m** | 2,00 m |
+| norte (B) | 9,00 m | **14,00 m** | 5,00 m |
+| leste (C) | 10,80 m | **13,00 m** | 2,20 m |
+
+**Por que a norte ficou no piso do intervalo pedido, e não no meio dele.** O T da
+avenida B é a borda sul da banda norte, e ele tem de cair entre o serpenteado do
+grupo C5, cuja raia mais ao norte está em y = 30,25, e o ramal do grupo C6, em
+y = 31,65. Com 14,00 m o T cai em y = 30,40 e passa a 0,15 m do serpenteado; com
+15,00 m ele cairia **em cima** dele. A próxima posição livre só aparece ao sul do
+serpenteado (y < 27,45), o que daria uma banda norte de 17 m — ela engoliria um
+pedaço da banda leste. **Os 5 m são o máximo que a geometria dá sem mexer no
+serpenteado da C5**, e o serpenteado é decisão de 16/09.
+
+**Por que oeste e leste ficaram iguais.** As três paredes recebem praticamente o
+mesmo comparecimento (3.834 / 3.832 / 3.833), então banda igual é o default; 2,00
+e 2,20 m cabem no "2 a 3 m" pedido, e mantêm as três faixas de avenida disjuntas.
+
+**O que isso custou, em uma linha:** +183 m de fita (777 → 960) e +7 rolos a
+comprar (11 → 18). **O que devolveu:** 6 unifilas, que foram para as bocas de A e
+C e para a reserva móvel. Barreira e fita andaram em sentidos opostos.
 
 ### A regra que completa a terceira
 
@@ -135,12 +171,17 @@ banda larga — o mais barato dos disponíveis.
 
 | Trecho | m | unifilas |
 |---|---:|---:|
-| Boca da avenida A (S4), dois trilhos, 6 m cada | 12,0 | 10 |
-| Boca da avenida C (S6), dois trilhos, 6 m cada | 12,0 | 10 |
-| Avenida B, os dois trilhos inteiros | 70,8 | 42 |
+| Boca da avenida A (S4), dois trilhos, 9 m cada | 18,0 | 12 |
+| Boca da avenida C (S6), dois trilhos, 9 m cada | 18,0 | 12 |
+| Avenida B, os dois trilhos inteiros | 60,8 | 36 |
 | Serpenteados dos grupos A3, B2 e C5 | 37,8 | 36 |
-| **Total** | **133 m** | **98** |
-| Reserva móvel | | **2** |
+| **Total** | **135 m** | **96** |
+| Reserva móvel | | **4** |
+
+*Revisão de 23/09:* o T da avenida B desceu com a banda norte e cada trilho
+encurtou 5,00 m, liberando 6 unifilas. Quatro alongaram as bocas de A e de C de
+6,00 para 9,00 m — onde o desenho de 17/09 já reconhecia falta de barreira — e
+duas foram para a reserva móvel. O total orçado de 100 não muda.
 
 A avenida B entra inteira e por isso não tem item de boca separado — contar as
 duas coisas seria contar os primeiros 6 m duas vezes.
@@ -156,26 +197,29 @@ de alta carga**, os únicos lugares com multidão parada declarada.
 
 | Cor | Necessário | Em estoque | Saldo |
 |---|---:|---:|---:|
-| Azul (zona A) | 253,1 m | 165 m | **−88,1 m** |
-| Amarelo (zona B) | 149,8 m | 165 m | +15,2 m |
-| Vermelho (zona C) | 241,2 m | — (era laranja) | **−241,2 m** |
+| Azul (zona A) | 290,9 m | 165 m | **−125,9 m** |
+| Amarelo (zona B) | 257,0 m | 165 m | **−92,0 m** |
+| Vermelho (zona C) | 291,0 m | — (era laranja) | **−291,0 m** |
 | Zebrado preto-e-branco (linha de espera) | 30,8 m | — | comprar |
 | Verde (preferencial S7) | 20,0 m | — | comprar |
-| Branco (rota de saída) | 82,0 m | — | comprar |
-| **Total** | **777 m** | | |
-| **Com 10% de retoque** | **855 m** | | |
+| Branco (rota de saída) | 70,8 m | — | comprar |
+| **Total** | **960 m** | | |
+| **Com 10% de retoque** | **1.057 m** | | |
 
-**Faltam 11 rolos de 50 m**: 2 azul, 5 vermelho, 1 zebrado, 1 verde, 2 branco.
-Ordem de EUR 140–220 (*estimativa, a cotar*). Até 22/09 eram 8 rolos (2 azul,
-2 laranja): a **revisão de 22/09** trocou a zona C de laranja para vermelho, e
-o rolo laranja em estoque (165 m) deixa de servir ao desenho. Os 8 m a mais de
-azul são a avenida A, que passou a terminar em y = 40,0 para servir o ramal da
-mesa 3179·0530, deslocada para 37,62 m na mesma revisão.
+**Faltam 18 rolos de 50 m**: 4 azul, 3 amarelo, 7 vermelho, 1 zebrado, 1 verde,
+2 branco. Ordem de EUR 230–360 (*estimativa, a cotar*). A escada da conta, para
+quem precisar reconstituí-la: 8 rolos em 17/09 (2 azul, 2 laranja) → **11 em
+22/09**, quando a zona C virou vermelha e o rolo laranja em estoque deixou de
+servir → **18 em 23/09**, quando as avenidas recuaram e os 28 ramais cresceram.
+O amarelo, que até 22/09 fechava com saldo positivo, passou a pedir 3 rolos.
 
-Azul e vermelho passam tanto do amarelo porque as bandas oeste e leste são bem
-mais fundas que a norte, então os seus ramais são mais compridos. **A parede
-norte é barata em fita justamente porque a avenida B chega perpendicular:** o T
-que é a fragilidade do traçado é também o que encurta os seus ramais.
+Azul e vermelho ainda passam do amarelo, mas não mais por profundidade de banda:
+desde 23/09 a norte é a mais funda das três. É porque as avenidas A e C **correm
+ao longo** das suas paredes e servem 9 e 10 ramais cada uma, enquanto a B chega
+**perpendicular** e distribui por um T. Até 22/09 a explicação era outra — as
+bandas oeste e leste eram bem mais fundas que a norte —, e o T, que sempre foi a
+fragilidade do traçado, era também o que barateava a parede norte em fita. Essa
+segunda metade acabou: o ramal da norte dobrou, de 4,90 para 9,90 m.
 
 ## 6. Achados
 
@@ -249,17 +293,18 @@ sozinhas um trabalho de 395.
 1. Submeter o layout de barreira ao responsável de incêndio do RDS — barreira em
    zona de egresso muda o cálculo de evacuação, e isso se submete, não se
    comunica.
-2. As 15 unifilas adicionais e os 11 rolos de fita (5 deles vermelhos, desde 22/09).
+2. As 15 unifilas adicionais e os **18 rolos de fita** (4 azul, 3 amarelo, 7
+   vermelho, 1 zebrado, 1 verde, 2 branco — contagem de 23/09).
 3. Se os 165 m em estoque são por cor ou no total.
-4. As bandas de 11,00 / 9,00 / 10,80 m pressupõem o módulo de 4,10 m da planta
-   medida e o serpenteado de 4,20 m. Conferir com a mesa, a cabine e a urna
-   reais.
+4. As bandas de **13,00 / 14,00 / 13,00 m** (23/09) pressupõem o módulo de
+   4,10 m da planta medida e o serpenteado de 4,20 m. Conferir com a mesa, a
+   cabine e a urna reais.
 5. A boca da avenida A deixa **36 cm** entre o trilho interno (x = 21,83) e o
    recuo S3 (até 21,47). É a folga mais apertada do traçado.
 6. O **T da parede norte**. Se houver folga, vale estudar uma segunda perna para
    a avenida B — mas isso mexe na atribuição mesa → entrada, fechada desde
    15/09.
-7. Quem cola os 777 m de fita, e quando. É trabalho de véspera com o salão
+7. Quem cola os 960 m de fita, e quando. É trabalho de véspera com o salão
    vazio.
 
 ## 10. Fontes
