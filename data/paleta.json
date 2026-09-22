@@ -23,7 +23,7 @@
  },
  "zona": {
   "origem": "cor de rolo de fita de marcação de piso, já em estoque (scripts/separadores_fila.py, CORES_ZONA)",
-  "trava": "as três cores saem de rolo já comprado, então a peça impressa persegue a fita. Em 21/09 o Posto abriu a possibilidade de rever a compra: enquanto isso não se decide, estas três seguem valendo e nenhum gerador as toca. Se a compra mudar, mudam juntas CORES_ZONA em scripts/separadores_fila.py, este arquivo e as 36 peças.",
+  "trava": "as três cores saem de rolo de fita, então a peça impressa persegue a fita. Em 22/09 o Posto decidiu que a zona C passa de laranja a VERMELHO: o rolo vermelho ainda não foi comprado, e #C8102E é a proposta até o rolo existir — quando chegar, o hex se ajusta ao rolo, e mudam juntas CORES_ZONA em scripts/separadores_fila.py, este arquivo e as 36 peças. A e B seguem sendo o rolo já em estoque.",
   "A": {
    "hex": "#33507E",
    "rolo": "azul",
@@ -39,17 +39,17 @@
    "tinta": "#042B5A"
   },
   "C": {
-   "hex": "#DE7343",
-   "rolo": "laranja",
+   "hex": "#C8102E",
+   "rolo": "vermelho (a comprar; era o rolo laranja #DE7343 até 22/09)",
    "parede": "leste",
    "porta": "S6",
-   "tinta": "#042B5A"
+   "tinta": "#FFFFFF"
   },
   "contraste": {
    "A": "branco sobre #33507E, 8,1:1",
    "B": "marinho sobre #E8C63A, 8,4:1",
-   "C": "marinho sobre #DE7343, 4,4:1",
-   "nota": "as três razões saem da prancha Main de 17/09 e foram reconferidas"
+   "C": "branco sobre #C8102E, 5,9:1 — marinho sobre o vermelho dá 2,4:1 e reprova, por isso a tinta da C virou branca em 22/09",
+   "nota": "as razões de A e B saem da prancha Main de 17/09 e foram reconferidas; a da C foi calculada em 22/09 pela fórmula da WCAG"
   }
  },
  "neutros": {
@@ -113,5 +113,14 @@
    "Nunito Sans"
   ],
   "nota": "Archivo e Nunito Sans eram marcação de lugar, escolhidas antes de a fonte da campanha ser conhecida. Montserrat é mais larga que Archivo no mesmo corpo, então a troca não é só estética: as 36 peças foram remedidas no DOM com a Montserrat real instalada, não com fonte substituta."
+ },
+ "preferencial": {
+  "hex": "#1E3674",
+  "onde": "fundo da peça P5-Preferencial, desde 22/09: azul medido na placa de referência que o Posto entregou nesse dia; a peça é empilhada como a referência e não leva a faixa institucional",
+  "tinta": "#FFFFFF"
+ },
+ "substituicoes_22_09": {
+  "nota": "A zona C deixou de ser laranja: decisão do Posto de 22/09, junto com o vermelho no layout final dos separadores. A tinta sobre a C passa a branco — scripts/paleta.py não troca tinta, só cor; as peças da C que não saem de gerador (P5-VinilC, P6-PainelC, Main) foram ajustadas à mão no mesmo commit.",
+  "#DE7343": "#C8102E"
  }
 }

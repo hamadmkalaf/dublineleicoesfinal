@@ -13,7 +13,9 @@ propósito, e é por isso que a tarja da B nunca encosta no logotipo.
 
     python3 scripts/paleta.py            confere e sai com código 1 se houver
                                          cor fora da paleta em mapa/sinalizacao/
-    python3 scripts/paleta.py --grava    aplica as substituições de 21/09
+    python3 scripts/paleta.py --grava    aplica as substituições (21/09 e 22/09)
+
+Desde 22/09 a zona C é vermelha (`#C8102E`, rolo a comprar), não laranja.
 """
 import json
 import pathlib
@@ -42,8 +44,13 @@ IMPORT_FONTE = _p["fonte"]["import"]
 PAREDE = {k: v["parede"] for k, v in _p["zona"].items() if len(k) == 1}
 PORTA = {k: v["porta"] for k, v in _p["zona"].items() if len(k) == 1}
 
-SUBSTITUICOES = {k.upper(): v.upper() for k, v in _p["substituicoes_21_09"].items()
-                 if k.startswith("#")}
+PREFERENCIAL = _p["preferencial"]["hex"]
+
+# Cada rodada de conferência deixa a sua lista (21/09: identidade medida;
+# 22/09: a zona C de laranja a vermelho). Todas continuam valendo.
+SUBSTITUICOES = {k.upper(): v.upper()
+                 for chave, lista in _p.items() if chave.startswith("substituicoes_")
+                 for k, v in lista.items() if k.startswith("#")}
 
 # O que pode aparecer numa peça sem ser erro. Fora a paleta em si: as cores do
 # laço do espectro autista, que são do símbolo e não do plano, e os tons
@@ -52,7 +59,7 @@ PERMITIDAS = {c.upper() for c in (
     GRAFITE, OURO, AZUL, VERDE, CREME, REGUA, CINZA, BRANCO,
     *[h for h, _ in ZONA.values()],
     *_p["laco_tea"]["hexes"],
-    MARINHO, OFFWHITE,
+    MARINHO, OFFWHITE, PREFERENCIAL,
     "#8A6608", "#5C4A12",            # ouro escurecido, para ler sobre ouro claro
     "#042B5A", "#0B6E9E",            # azuis escurecidos da prancha do sistema
     "#5A6270", "#6B737C", "#7A828C", "#9AA3AB", "#C9CFD4",   # cinzas de planta
