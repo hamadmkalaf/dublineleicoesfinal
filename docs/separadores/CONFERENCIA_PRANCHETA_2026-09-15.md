@@ -528,6 +528,16 @@ utilizáveis: é onde fica a sala de apoio.
 salão. O que o pedido fixa é o trecho de parede; a profundidade da sala precisa
 ser medida em campo antes de imprimir.
 
+**Adendo de 22/09.** A suposição caiu: a sala de apoio é um **recuo para dentro
+da parede oeste**, fora do piso do salão, e não uma zona sobre ele. A zona
+`sala_apoio` saiu de `decisoes.json`; o que fica livre é o acesso ao recuo, a
+partir da borda norte da O1 (y = 38,50). Com isso o trecho 2 da parede oeste
+passou a 22,98–39,25 m e as mesas A3, A4 e A5 andaram **1,50 m para o norte**
+(3313·3889 de 23,12 para 24,62 m, a 1,74 m do recuo da O2 em vez de 0,24), com a
+ordem das unidades fixada em `ORDEM_FIXA` de `scripts/arranjo_paredes.py` para não
+mudar códigos de grupo nem a numeração do eleitor. A parede oeste passa a 27,63 m
+úteis, 138,8 esperados por metro.
+
 ### 11.5 O aperto de 2,50 m não foi preciso
 
 A autorização para comprimir a dupla de 3,00 m para 2,50 m entrou no motor como
