@@ -524,7 +524,16 @@ def confere(dec):
 # --------------------------------------------------------------------------
 S = 15.0          # px por metro
 MARG_E, MARG_T = 52, 92
-LEGENDA = 278
+# Coluna da legenda. Em 23/09 passou de 278 para 400 px: os rotulos de trilho
+# deixaram de ser "interno/externo" e viraram "do lado da parede / do lado do
+# campo de retorno", que dizem o que o montador precisa e sao mais longos. A
+# 278 px eles saiam cortados no meio da frase, e a 330 px cabiam so quebrando
+# em duas linhas -- oito quebras, que estouravam a altura do canvas.
+LEGENDA = 400
+# Quantos caracteres cabem numa linha da legenda, no corpo de 10,6 px. A conta
+# e conservadora (0,55 px por caractere por ponto de corpo) porque a fonte real
+# do impresso e Montserrat, mais larga que a Inter do preview.
+LEG_COLS = int((LEGENDA - 54) / (10.6 * 0.55))
 
 
 def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
@@ -675,7 +684,15 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         a, b = px(bx, by)
         cor = CORES_ZONA[g["entrada"]]
         escuro = g["entrada"] != "B"
-        larg, alt = 68, 26
+        # A caixa acompanha a lista de seções. Ela era fixa em 68 px, o que bastava
+        # enquanto os grupos de quatro seções da parede oeste tinham números de
+        # três dígitos; depois da troca de pares de 23/09 o A4 ficou com
+        # "1278 1314 3142 3309" e o último dígito saía por cima da borda. Larguras
+        # medidas no render: dígito 0,55 em, espaço 0,28 em, mais 6 px de folga
+        # de cada lado.
+        sec_txt = " ".join(str(x) for x in g["secoes"])
+        w_txt = 6.6 * sum(0.28 if c == " " else 0.55 for c in sec_txt)
+        larg, alt = max(68, math.ceil(w_txt) + 12), 26
         rx = a if anc == "start" else (a - larg if anc == "end" else a - larg / 2)
         add(f'<rect x="{rx:.1f}" y="{b-alt/2:.1f}" width="{larg}" height="{alt}" rx="4" '
             f'fill="{cor}" stroke="#16202b" stroke-width=".8"/>')
@@ -683,8 +700,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         add(f'<text x="{rx+6:.1f}" y="{b-1:.1f}" font-size="12" font-weight="800" '
             f'fill="{tc}">{g["id"]}</text>')
         add(f'<text x="{rx+6:.1f}" y="{b+9:.1f}" font-size="6.6" font-weight="600" '
-            f'fill="{tc}" fill-opacity=".9">'
-            f'{" ".join(str(x) for x in g["secoes"])}</text>')
+            f'fill="{tc}" fill-opacity=".9">{sec_txt}</text>')
 
     # ---- portas ----
     for p in planta["portas"]:
@@ -765,10 +781,15 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
             f'stroke-width="5"/>')
         add(f'<line x1="{lx}" y1="{ly-4:.0f}" x2="{lx+20}" y2="{ly-4:.0f}" '
             f'stroke="{hexe}" stroke-width="2.4"/>')
-        add(f'<text x="{lx+28}" y="{ly}" font-size="10.6" fill="#31404f">{rot[:58]}</text>')
-        add(f'<text x="{lx+28}" y="{ly+12}" font-size="10" fill="#8a94a6">'
+        # O rotulo quebra em vez de ser cortado: ate 23/09 ele saia truncado em
+        # 58 caracteres e o fim da frase ficava fora do canvas.
+        linhas = quebra(rot, LEG_COLS)[:2]
+        for i, linha in enumerate(linhas):
+            add(f'<text x="{lx+28}" y="{ly + i*12:.0f}" font-size="10.6" '
+                f'fill="#31404f">{linha}</text>')
+        add(f'<text x="{lx+28}" y="{ly + len(linhas)*12:.0f}" font-size="10" fill="#8a94a6">'
             f'{metros:.1f} m · {pst} unifilas</text>')
-        ly += 30
+        ly += 18 + len(linhas) * 12
     ly += 8
     add(f'<line x1="{lx}" y1="{ly-14:.0f}" x2="{lx+210}" y2="{ly-14:.0f}" stroke="#dcdde1"/>')
     add(f'<text x="{lx}" y="{ly}" font-size="12" font-weight="700" fill="#16202b" '
@@ -782,8 +803,11 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         traco = "" if cor else ' stroke-dasharray="6 4"'
         add(f'<line x1="{lx}" y1="{ly-4:.0f}" x2="{lx+20}" y2="{ly-4:.0f}" '
             f'stroke="{cor or "#8a94a6"}" stroke-width="{3 if cor else 2}"{traco}/>')
-        add(f'<text x="{lx+28}" y="{ly}" font-size="10.6" fill="#31404f">{txt}</text>')
-        ly += 19
+        linhas = quebra(txt, LEG_COLS)[:2]
+        for i, linha in enumerate(linhas):
+            add(f'<text x="{lx+28}" y="{ly + i*12:.0f}" font-size="10.6" '
+                f'fill="#31404f">{linha}</text>')
+        ly += 19 + (len(linhas) - 1) * 12
     ly += 14
     add(f'<line x1="{lx}" y1="{ly-14:.0f}" x2="{lx+210}" y2="{ly-14:.0f}" stroke="#dcdde1"/>')
     for i, cl in enumerate(("alta", "media", "baixa")):
@@ -805,6 +829,15 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         add(f'<text x="{lx}" y="{ly}" font-size="10.4" fill="{COR_AVISO}">{linha}</text>')
         ly += 13
 
+    # A legenda cresce com o numero de itens e com o tamanho dos rotulos. Se ela
+    # passar do rodape, o desenho sai com texto cortado e ninguem percebe na
+    # folha impressa -- entao aqui e erro, nao aviso.
+    # ly ja esta um passo alem da ultima linha escrita, entao o limite e a
+    # propria linha de base do rodape: uma linha a mais na legenda (12 a 13 px)
+    # derruba a conferencia.
+    if ly > H - 14:
+        raise SystemExit(f"legenda estourou o canvas: termina em y = {ly:.0f}, "
+                         f"limite {H - 14:.0f}. Aumente LEGENDA ou encurte os rótulos.")
     add(f'<text x="{MARG_E}" y="{H-14:.0f}" font-size="10" fill="#8a94a6">'
         f'Hall 2 · RDS Ballsbridge · cenário Paredes_ABC · escala 1 m = {S:.0f} px · '
         f'poste a {VAO_POSTE:.2f} m (cinta de {CINTA:.2f} m esticada a 90%)</text>')
