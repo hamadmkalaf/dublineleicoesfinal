@@ -16,14 +16,14 @@ Geometria lida do cenário fechado `Paredes_ABC` — não altera nenhuma decisã
 
 **1. As cores são as das fitas já em estoque.** Zona A azul, zona B amarelo,
 zona C laranja — as mesmas do artefato de sinalização, que já as usa nos painéis
-de porta. As zonas são as áreas servidas por cada porta: A = S4 = parede oeste,
+de porta. *Desde 22/09 a zona C é vermelha* (adendo na seção 4). As zonas são as áreas servidas por cada porta: A = S4 = parede oeste,
 B = S5 = parede norte, C = S6 = parede leste.
 
 | Zona | Porta | Parede | Cor | Hex |
 |---|---|---|---|---|
 | A | S4 | oeste | azul | `#33507E` |
 | B | S5 | norte | amarelo | `#E8C63A` |
-| C | S6 | leste | laranja | `#DE7343` |
+| C | S6 | leste | vermelho (laranja até 22/09) | `#C8102E` |
 
 > **Consequência que isso força:** amarelo virou cor de zona, então a **linha de
 > espera não pode mais ser amarela** — viraria a cor da zona B no chão da zona
@@ -95,7 +95,7 @@ chega perpendicular à banda norte e **termina em T** — todo o fluxo da entrad
 (3.832 esperados) passa por um só metro quadrado antes de se repartir. É a
 fragilidade conhecida do traçado.
 
-**Avenida C (laranja, S6 → leste).** Sai pelos 3 m oeste de S6 — a leste de
+**Avenida C (vermelho, S6 → leste).** Sai pelos 3 m oeste de S6 — a leste de
 x = 35,09 está o recuo da preferencial S7 — e abre para a banda leste, 6
 aberturas.
 
@@ -124,7 +124,7 @@ as duas coisas seria contar os primeiros 6 m duas vezes.
 não faz o serviço: (a) a **boca**, porque as três portas são contíguas e quem
 entra pela errada não se perde — é conduzido até a parede errada; (b) a
 **avenida B**, porque atravessa 35 m de piso aberto com a reserva de fila
-encostada nos dois flancos; (c) as **três vermelhas**, porque são os únicos
+encostada nos dois flancos; (c) as **três de alta carga** (roxas no desenho desde 22/09; "vermelhas" até então), porque são os únicos
 lugares com multidão parada declarada (~20 pessoas cada, decisão de 16/09).
 
 **A reserva de 2 é insuficiente, e isto não é detalhe.** Fita colada às 7h não
@@ -143,29 +143,38 @@ canal preferencial — pediria **395 unifilas em 572 m**. As 100 orçadas são
 
 | Cor | Onde | Necessário | Em estoque | Saldo |
 |---|---|---:|---:|---:|
-| **Azul** | avenida A, 9 ramais oeste, marcas, galões | **244,8 m** | 165 m | **−79,8 m** |
+| **Azul** | avenida A, 9 ramais oeste, marcas, galões | **253,1 m** | 165 m | **−88,1 m** |
 | **Amarelo** | avenida B, distribuidor norte, 9 ramais, marcas | **149,8 m** | 165 m | +15,2 m |
-| **Laranja** | avenida C, 10 ramais leste, marcas, galões | **241,2 m** | 165 m | **−76,2 m** |
+| **Vermelho** (era laranja até 22/09) | avenida C, 10 ramais leste, marcas, galões | **241,2 m** | — | **−241,2 m** |
 | Zebrado preto-e-branco | as 28 linhas de espera | 30,8 m | — | comprar |
 | Verde | canal da preferencial S7 | 20,0 m | — | comprar |
 | Branco | rota de saída, setas do campo livre | 82,0 m | — | comprar |
-| **Total** | | **769 m** | | |
-| **Com 10% de retoque** | | **846 m** | | |
+| **Total** | | **777 m** | | |
+| **Com 10% de retoque** | | **855 m** | | |
 
-**Falta bastante fita azul e laranja.** Assumindo 165 m **por cor** em estoque
-(a confirmar — se for 165 m no total, a falta triplica), faltam **80 m de azul e
-76 m de laranja**, mais as três cores que ainda não existem. Em rolos de 50 m:
-**2 azul + 2 laranja + 1 zebrado + 1 verde + 2 branco = 8 rolos a comprar**,
-ordem de **EUR 100–160** (*estimativa minha, a cotar*).
+**Falta bastante fita azul, e toda a vermelha.** Assumindo 165 m **por cor** em
+estoque (a confirmar — se for 165 m no total, a falta triplica), faltam **88 m de
+azul e 241 m de vermelho**, mais as três cores que ainda não existem. Em rolos
+de 50 m: **2 azul + 5 vermelho + 1 zebrado + 1 verde + 2 branco = 11 rolos a
+comprar**, ordem de **EUR 140–220** (*estimativa minha, a cotar*).
 
-Por que azul e laranja passam tanto do amarelo: as bandas oeste (11,00 m) e
+*Adendo de 22/09.* Até esta revisão a zona C era laranja e a conta fechava em 8
+rolos (2 azul + 2 laranja). A decisão do Posto de 22/09 — vermelho no lugar do
+laranja, a mesma da sinalização — deixa o rolo laranja em estoque sem uso neste
+desenho e acrescenta os 5 rolos vermelhos. Os 8 m a mais de azul (244,8 → 253,1)
+são a avenida A, que passou a terminar em y = 40,0 m em vez de 36,3 para servir o
+ramal da mesa 3179·0530, deslocada para 37,62 m na mesma revisão (prancheta de
+22/09). O vermelho `#C8102E` é proposta até o rolo ser comprado: a peça impressa
+persegue a fita, então o hex final é o do rolo.
+
+Por que azul e vermelho passam tanto do amarelo: as bandas oeste (11,00 m) e
 leste (10,80 m) são bem mais fundas que a norte (9,00 m), então os 9 ramais de A
 e os 10 de C são mais compridos — 6,90 e 6,70 m contra 4,90 m — e a avenida A
 ainda tem a perna que vira para oeste. **A parede norte é barata em fita
 justamente porque a avenida B chega perpendicular**: o T que é a fragilidade do
 traçado é também o que encurta os seus ramais.
 
-**O que a metragem não diz:** 769 m de fita colada, curva a curva, com 6 cores e
+**O que a metragem não diz:** 777 m de fita colada, curva a curva, com 6 cores e
 16 marcadores de grupo, é trabalho de véspera com o salão vazio — não meia hora
 antes da abertura.
 
@@ -205,7 +214,7 @@ emergência L1–L4**. A 45,70 o x-banner fica atrás das mesas, dentro da faixa
 valor certo é **42,70** (47,30 − 4,60). A oeste (4,60) e a norte (39,80) estão
 corretas.
 
-**2. Nos três grupos vermelhos, 4,60 m cai dentro do serpenteado.** O
+**2. Nos três grupos de alta carga, 4,60 m cai dentro do serpenteado.** O
 serpenteado de A3, B2 e C5 ocupa de 4,10 a 8,30 m da parede. Um x-banner a
 4,60 m fica no meio dele. Nesses três, o banner recua para **8,60 m** — logo
 atrás da última raia, ainda visível de toda a fila.
@@ -223,7 +232,7 @@ do porquê.
 
 **Opção 1 — As três avenidas.** Toda a barreira nos flancos das avenidas,
 nenhuma nas cabeças de fila. Aposta: o eleitor mal encaminhado custa mais que o
-mal enfileirado. Descartada porque deixa as três vermelhas contidas só por fita
+mal enfileirado. Descartada porque deixa as três de alta carga contidas só por fita
 — e fila parada é exatamente onde a fita não segura. E, com a geometria
 definitiva, custa **104 unifilas**: não cabe.
 
@@ -256,7 +265,7 @@ foi arranjado: foi consequência de pôr as avenidas em faixas disjuntas.
 **Compras**
 
 3. As **15 unifilas adicionais** (EUR 195,45) para a reserva móvel.
-4. **8 rolos de fita**: 2 azul, 2 laranja, 1 zebrado preto-e-branco, 1 verde,
+4. **11 rolos de fita**: 2 azul, 5 vermelho, 1 zebrado preto-e-branco, 1 verde,
    2 branco.
 5. Confirmar se os 165 m em estoque são **por cor** ou no total.
 
@@ -270,7 +279,7 @@ foi arranjado: foi consequência de pôr as avenidas em faixas disjuntas.
 8. O **T da parede norte** é o ponto mais frágil. Se houver folga, vale estudar
    uma segunda perna para a avenida B — mas isso mexe na atribuição
    mesa → entrada, fechada desde 15/09.
-9. Quem cola os 769 m de fita, e quando.
+9. Quem cola os 777 m de fita, e quando.
 
 ---
 

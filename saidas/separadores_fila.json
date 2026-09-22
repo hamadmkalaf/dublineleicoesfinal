@@ -57,14 +57,14 @@
   "avenida_A_int": {
    "rotulo": "avenida A · trilho do lado da parede",
    "grupo": "avenida",
-   "metros": 47.13,
-   "postes": 28
+   "metros": 50.83,
+   "postes": 30
   },
   "avenida_A_ext": {
    "rotulo": "avenida A · trilho do lado do campo de retorno",
    "grupo": "avenida",
-   "metros": 47.33,
-   "postes": 28
+   "metros": 51.03,
+   "postes": 30
   },
   "avenida_B_int": {
    "rotulo": "avenida B · trilho do lado da parede",
@@ -122,19 +122,19 @@
   },
   "serp_22": {
    "rotulo": "serpenteado do grupo A3 · seções 3313 · 3889 (20 pessoas)",
-   "grupo": "vermelha",
+   "grupo": "alta",
    "metros": 12.6,
    "postes": 12
   },
   "serp_23": {
    "rotulo": "serpenteado do grupo B2 · seções 3315 · 3778 (20 pessoas)",
-   "grupo": "vermelha",
+   "grupo": "alta",
    "metros": 12.6,
    "postes": 12
   },
   "serp_24": {
    "rotulo": "serpenteado do grupo C5 · seções 3322 · 3752 (20 pessoas)",
-   "grupo": "vermelha",
+   "grupo": "alta",
    "metros": 12.6,
    "postes": 12
   },
@@ -289,7 +289,7 @@
    "postes": 5
   }
  },
- "catalogo_total_postes": 395,
+ "catalogo_total_postes": 399,
  "opcoes": [
   {
    "nome": "Opção 1",
@@ -303,14 +303,14 @@
     "avenida_B_ext",
     "avenida_C_int"
    ],
-   "postes": 104,
-   "reserva": -4,
-   "metros": 170.1,
+   "postes": 106,
+   "reserva": -6,
+   "metros": 173.8,
    "aposta": "Um eleitor mal encaminhado custa mais do que um eleitor mal enfileirado: quem chega à parede errada volta atravessando o salão, contra o fluxo.",
-   "risco": "Nada segura as três vermelhas. Os 20 em pé à frente de cada uma ficam contidos só por fita, que é justamente onde a fita não segura.",
+   "risco": "Nada segura as três de alta carga. Os 20 em pé à frente de cada uma ficam contidos só por fita, que é justamente onde a fita não segura.",
    "fita": {
     "por_cor": {
-     "A": 216.0,
+     "A": 220.6,
      "B": 162.5,
      "C": 219.8,
      "espera": 30.8,
@@ -318,7 +318,7 @@
      "neutro": 82.0
     },
     "com_retoque": {
-     "A": 237.6,
+     "A": 242.7,
      "B": 178.8,
      "C": 241.8,
      "espera": 33.9,
@@ -333,15 +333,15 @@
      "pref": 1,
      "neutro": 2
     },
-    "total": 731.1,
-    "total_com_retoque": 804.2,
+    "total": 735.7,
+    "total_com_retoque": 809.3,
     "rolos_total": 18
    }
   },
   {
    "nome": "Opção 2",
    "subtitulo": "As cabeças de fila",
-   "doutrina": "A barreira paga a contenção: vai onde as pessoas param de andar — as três vermelhas e as mesas de maior carga — e o trajeto inteiro fica na fita.",
+   "doutrina": "A barreira paga a contenção: vai onde as pessoas param de andar — as três de alta carga e as mesas de maior carga — e o trajeto inteiro fica na fita.",
    "itens": [
     "serp_22",
     "serp_23",
@@ -370,7 +370,7 @@
    "risco": "A boca é o gargalo não paralelizável já identificado: 11,5 mil pessoas por 18,4 m de porta, com as três correntes separadas apenas por fita.",
    "fita": {
     "por_cor": {
-     "A": 215.4,
+     "A": 223.7,
      "B": 196.2,
      "C": 219.7,
      "espera": 30.8,
@@ -378,7 +378,7 @@
      "neutro": 82.0
     },
     "com_retoque": {
-     "A": 236.9,
+     "A": 246.1,
      "B": 215.8,
      "C": 241.7,
      "espera": 33.9,
@@ -393,14 +393,14 @@
      "pref": 1,
      "neutro": 2
     },
-    "total": 764.1,
-    "total_com_retoque": 840.5,
+    "total": 772.4,
+    "total_com_retoque": 849.6,
     "rolos_total": 19
    }
   },
   {
    "nome": "Definitiva",
-   "subtitulo": "Bocas, avenida B e as três vermelhas",
+   "subtitulo": "Bocas, avenida B e as três de alta carga",
    "doutrina": "A barreira paga só o que a fita comprovadamente não faz: separar correntes que se cruzam e conter multidão parada.",
    "itens": [
     "boca_A_int",
@@ -420,7 +420,7 @@
    "risco": "Depois dos 6 m de boca, as avenidas A e C ficam na fita, e sobram 2 unifilas de reserva. Se o corte de caminho aparecer, 2 postes não respondem: é por isso que as 15 adicionais deixam de ser folga.",
    "fita": {
     "por_cor": {
-     "A": 244.8,
+     "A": 253.1,
      "B": 149.8,
      "C": 241.2,
      "espera": 30.8,
@@ -428,7 +428,7 @@
      "neutro": 82.0
     },
     "com_retoque": {
-     "A": 269.3,
+     "A": 278.4,
      "B": 164.8,
      "C": 265.3,
      "espera": 33.9,
@@ -443,8 +443,8 @@
      "pref": 1,
      "neutro": 2
     },
-    "total": 768.6,
-    "total_com_retoque": 845.5,
+    "total": 776.9,
+    "total_com_retoque": 854.6,
     "rolos_total": 20
    }
   }
