@@ -266,6 +266,130 @@ def banner_bloco(grupo):
     return _molde(corpo=corpo, larg=425, alt=1000)
 
 
+# --------------------------------------------------------------------------
+# Painel da porta e fim do corredor (23/09)
+# --------------------------------------------------------------------------
+# A ordem em que o eleitor encontra os grupos: na oeste e na leste a avenida
+# sobe do sul para o norte, entao e a ordem da coordenada; na norte a avenida
+# chega no meio, pelo T, e a lista segue a parede de oeste para leste.
+def em_ordem(grupos, porta):
+    gs = [g for g in grupos if g["entrada"] == porta]
+    return sorted(gs, key=lambda g: min(g["coord"]))
+
+
+# So as paredes cuja avenida corre RENTE a elas tem "comeco" e "fim": a A e a
+# C. Na B a avenida chega perpendicular e desemboca no meio da parede, entao
+# nem o primeiro nem o ultimo grupo ficam "no comeco" de coisa nenhuma.
+AVENIDA_RENTE = {"A": "oeste", "C": "leste"}
+MARCA_PONTA = {
+    "primeiro": "LOGO NA ENTRADA DO CORREDOR",
+    "ultimo": "NO FIM DO CORREDOR, O MAIS DISTANTE",
+}
+
+
+def painel_porta(porta, grupos):
+    """O pull-up de 1000 x 2000 mm que fica na porta, com os grupos da parede.
+
+    Ate 22/09 as tres peças eram escritas a mao, e a reordenacao da parede
+    oeste em 23/09 deixou a da porta A errada em quatro linhas. Agora sai de
+    `grupos_mesas.json`, como as dezesseis placas.
+    """
+    fundo, tinta = CORES[porta]
+    gs = em_ordem(grupos, porta)
+    linhas = []
+    for i, g in enumerate(gs):
+        marca = ""
+        if porta in AVENIDA_RENTE:
+            chave = "primeiro" if i == 0 else ("ultimo" if i == len(gs) - 1 else None)
+            if chave:
+                marca = (f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 13px;'
+                         f' letter-spacing: 0.06em; color: {fundo}; margin-top: 3px;">'
+                         f'{MARCA_PONTA[chave]}</div>')
+        numeros = " · ".join(f"{s:04d}" for s in sorted(g["secoes"]))
+        linhas.append(
+            f'<div style="display: flex; align-items: baseline; gap: 12px; padding: 10px 0;'
+            f' border-bottom: 1px solid #E4DFCC; flex-grow: 1;">'
+            f'<span style="font-family: {ARCHIVO}; font-weight: 800; font-size: 17px; color: {CINZA};'
+            f' min-width: 34px;">{g["id"]}</span>'
+            f'<span style="flex-grow: 1;">'
+            f'<span style="font-family: {ARCHIVO}; font-weight: 700; font-size: 26px; color: {TINTA};'
+            f' font-variant-numeric: tabular-nums; letter-spacing: -0.01em; white-space: nowrap;">'
+            f'{numeros}</span>{marca}</span></div>')
+    chamada = ("PROCURE A SUA SEÇÃO · NA ORDEM EM QUE VOCÊ VAI ANDAR"
+               if porta in AVENIDA_RENTE else
+               "PROCURE A SUA SEÇÃO · DA ESQUERDA PARA A DIREITA NA PAREDE")
+    corpo = f"""<div style="width: 500.0px; height: 1000.0px; box-sizing: border-box; background: {CREME}; display: flex; flex-direction: column; overflow: hidden;">
+{CAB_ALTO}
+  <div style="background: {fundo}; color: {tinta}; padding: 18px 26px 16px; display: flex; align-items: center; gap: 18px;">
+    <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 150px; line-height: 0.8; letter-spacing: -0.04em;">{porta}</div>
+    <div>
+      <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 34px; letter-spacing: 0.02em;">PORTA {porta}</div>
+      <div style="font-family: {ARCHIVO}; font-weight: 600; font-size: 22px; opacity: 0.88;">parede {PAREDE[porta]}</div>
+    </div>
+  </div>
+  <div style="flex-grow: 1; padding: 20px 26px 26px; display: flex; flex-direction: column;">
+    <div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 19px; letter-spacing: 0.06em; color: {CINZA}; margin-bottom: 8px;">{chamada}</div>
+    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: stretch;">{"".join(linhas)}</div>
+    <div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 21px; color: {TINTA}; border-top: 3px solid {fundo}; padding-top: 12px; margin-top: 10px;">Cada grupo tem uma placa alta na boca do corredor.</div>
+  </div>
+
+</div>"""
+    return _molde(corpo=corpo, larg=500, alt=1000)
+
+
+def fim_corredor(porta, grupos):
+    """A peça do fim do corredor: para quem andou demais e passou do seu grupo.
+
+    O corredor da parede leste termina ao norte do ultimo grupo, entao quem
+    chega ao fim tem TODOS os grupos atras de si -- e por isso as duas colunas
+    saem desiguais: o ultimo grupo de um lado, os outros cinco do outro. As
+    setas dizem esquerda e direita; os subtitulos dizem norte e sul, que e o
+    que nao depende de para onde o eleitor esta virado.
+    """
+    fundo, tinta = CORES[porta]
+    gs = em_ordem(grupos, porta)
+    esq, dire = [gs[-1]], list(reversed(gs[:-1]))
+
+    def coluna(lista, direcao, titulo, sub):
+        alinha = "flex-start" if direcao == "esq" else "flex-end"
+        numeros = "".join(
+            f'<span style="font-family: {ARCHIVO}; font-weight: 700; font-size: 31px;'
+            f' color: {TINTA}; font-variant-numeric: tabular-nums;">{s:04d}</span>'
+            for g in lista for s in sorted(g["secoes"]))
+        codigos = " · ".join(g["id"] for g in lista)
+        cabeca = (f'{seta(64, fundo, direcao)}'
+                  f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 26px;'
+                  f' letter-spacing: 0.03em; color: {fundo};">{titulo}</div>')
+        if direcao != "esq":
+            cabeca = (f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 26px;'
+                      f' letter-spacing: 0.03em; color: {fundo};">{titulo}</div>'
+                      f'{seta(64, fundo, direcao)}')
+        return (f'<div style="display: flex; flex-direction: column; align-items: {alinha}; gap: 6px; min-width: 0;">'
+                f'<div style="display: flex; align-items: center; gap: 12px;">{cabeca}</div>'
+                f'<div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 15px;'
+                f' letter-spacing: 0.05em; color: {CINZA};">{sub} · {codigos}</div>'
+                f'<div style="display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: {alinha};">{numeros}</div>'
+                f'</div>')
+
+    corpo = f"""<div style="width: 1040.0px; height: 410.0px; box-sizing: border-box; background: {BRANCO}; display: flex; flex-direction: column; overflow: hidden;">
+{CAB_BANNER}
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 14px 30px 16px; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div style="background: {fundo}; color: {tinta}; font-family: {ARCHIVO}; font-weight: 800; font-size: 44px; line-height: 1; padding: 8px 16px 10px;">{porta}</div>
+      <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 31px; letter-spacing: 0.02em; color: {TINTA};">FIM DO CORREDOR · PASSOU DA SUA SEÇÃO?</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 22px; flex-grow: 1;">
+      <div style="width: 232px; flex-shrink: 0;">{coluna(esq, "esq", "AQUI", "fim da parede, ao norte")}</div>
+      <div style="width: 3px; align-self: stretch; background: {TINTA};"></div>
+      <div style="flex-grow: 1; min-width: 0;">{coluna(dire, "dir", "VOLTE", "para o sul, de volta à porta")}</div>
+    </div>
+  </div>
+
+</div>"""
+    return _molde(corpo=corpo, larg=1040, alt=410)
+
+
 def pecas():
     grupos = json.loads(FONTE.read_text(encoding="utf-8"))["grupos"]
     saida = {"P0-Consulta": consulta(), "P5-Preferencial": preferencial(),
@@ -275,6 +399,9 @@ def pecas():
         saida[f"P4-Zona{porta}"] = p4(porta, portas[porta])
     for g in grupos:
         saida[f"P6-Bloco{g['id']}"] = banner_bloco(g)
+    for porta in "ABC":
+        saida[f"P6-Painel{porta}"] = painel_porta(porta, grupos)
+    saida["P4-FimCorredorC"] = fim_corredor("C", grupos)
     return saida
 
 

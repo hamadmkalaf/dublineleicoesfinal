@@ -149,39 +149,78 @@ ESTOQUE_FITA = 165.0   # metros por cor ja em estoque (a confirmar: cada ou tota
 # bandas trazem para fora.** Quem votou sai andando pela propria banda da sua
 # parede ate S2 (banda oeste) ou S8 (banda leste). Assim nenhum fluxo de saida
 # atravessa avenida nenhuma, e o campo central fica so como reserva de fila.
+# **Revisao de 23/09/2026 -- as tres avenidas recuam para o centro.** O pedido do
+# Posto foi alargar a banda de fila de cada parede empurrando a avenida daquela
+# parede para dentro do salao: 2 a 3 m para A e C ("para nao afetar a
+# visibilidade dos paineis") e 5 a 10 m para B. Os valores escolhidos poem as
+# tres bandas em numero redondo e sao os da tabela de BANDA_PAREDE, abaixo. O
+# trecho de cada avenida que encosta na PORTA nao se mexe -- porta e alvenaria;
+# o que muda e a perna longa e o tamanho do desvio que leva ate ela.
 AVENIDAS = {
     # A sai pelos 3,20 m LESTE de S4 -- a metade oeste da porta esta sobre o
     # recuo de emergencia S3, que vai ate x = 21,47 -- sobe 3,40 m, vira a oeste
     # por baixo das mesas da parede oeste e sobe rente a banda. O trilho externo
-    # em x = 25,03 encosta na alvenaria de 0,29 m que separa S4 de S5; a curva em
-    # x = 11,00 fica a leste do recuo R1 (ate 10,80) e deixa a rota de saida para
-    # S2 passar por fora da avenida.
+    # em x = 25,03 encosta na alvenaria de 0,29 m que separa S4 de S5. A perna
+    # longa passou de x = 11,00/14,00 para 13,00/16,00 (23/09): a curva continua
+    # a leste do recuo R1 (ate 10,80) e a rota de saida para S2 continua por
+    # fora da avenida, por baixo do trilho sul, em y < 3,40.
     "A": {"parede": "oeste", "porta": "S4", "hex": CORES_ZONA["A"],
-          "trilho_interno": [(21.83, 0.00), (21.83, 3.40), (11.00, 3.40),
-                             (11.00, 40.00)],
-          "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (14.00, 6.40),
-                             (14.00, 40.00)]},
+          "lado_parede": "interno",
+          "trilho_interno": [(21.83, 0.00), (21.83, 3.40), (13.00, 3.40),
+                             (13.00, 40.00)],
+          "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (16.00, 6.40),
+                             (16.00, 40.00)]},
     # B sobe reta de S5 ate a banda norte. Nao distribui em pente: termina em T.
+    # O T desceu de y = 35,40 para 30,40 (23/09) e a avenida encurtou 5,00 m em
+    # cada trilho -- e dai que saem as unifilas realocadas para as bocas de A e C.
     "B": {"parede": "norte", "porta": "S5", "hex": CORES_ZONA["B"],
-          "trilho_interno": [(26.80, 0.00), (26.80, 35.40)],
-          "trilho_externo": [(29.80, 0.00), (29.80, 35.40)]},
+          "lado_parede": None,
+          "trilho_interno": [(26.80, 0.00), (26.80, 44.40 - 14.00)],
+          "trilho_externo": [(29.80, 0.00), (29.80, 44.40 - 14.00)]},
     # C sai pelos 3 m oeste de S6 -- a leste de x = 35,09 esta o recuo da
-    # preferencial S7 -- e abre para a banda leste.
+    # preferencial S7 -- e abre para a banda leste. A perna longa passou de
+    # x = 33,50/36,50 para 31,30/34,30 (23/09): o desvio, que era de +1,50 para
+    # leste, virou de -0,70 para oeste, e a faixa da C continua disjunta da B.
     "C": {"parede": "leste", "porta": "S6", "hex": CORES_ZONA["C"],
-          "trilho_interno": [(32.00, 0.00), (32.00, 3.20), (33.50, 5.20),
-                             (33.50, 39.50)],
-          "trilho_externo": [(35.00, 0.00), (35.00, 3.20), (36.50, 5.20),
-                             (36.50, 39.50)]},
+          "lado_parede": "externo",
+          "trilho_interno": [(32.00, 0.00), (32.00, 3.20), (31.30, 5.20),
+                             (31.30, 39.50)],
+          "trilho_externo": [(35.00, 0.00), (35.00, 3.20), (34.30, 5.20),
+                             (34.30, 39.50)]},
 }
 # Distancia da parede ate o trilho mais proximo da avenida daquela parede: e o
 # que sobra para o modulo (4,10), o serpenteado (4,20) e a circulacao de saida.
-BANDA_PAREDE = {"oeste": 11.00, "norte": 9.00, "leste": 10.80}
+# Revisao de 23/09: as tres bandas cresceram. A oeste e a leste vao as duas a
+# 13,00 m -- as tres paredes recebem o mesmo comparecimento esperado (3.834 /
+# 3.832 / 3.833), entao a banda igual e o default, e 2,00 e 2,20 m cabem no "2 a
+# 3 m" pedido. A norte vai a 14,00 m, o PISO do intervalo de 5 a 10 m pedido, e
+# por um motivo duro: o T da avenida B e a borda sul da banda norte, e a borda
+# tem de passar entre o serpenteado da C5, cuja raia mais ao norte esta em
+# y = 30,25, e o ramal da C6, em y = 31,65. Em 14,00 m o T cai em y = 30,40 e
+# passa por 0,15 m do serpenteado; qualquer banda maior poe o T em cima dele. A
+# proxima posicao livre so aparece ao SUL do serpenteado (y < 27,45), o que
+# daria uma banda norte de 17 m que engoliria um pedaco da banda leste.
+# O ramal da norte passa de 4,90 para 9,90 m -- era o mais curto dos tres.
+BANDA_PAREDE = {"oeste": 13.00, "norte": 14.00, "leste": 13.00}
 # O T da parede norte: a avenida B chega perpendicular e tem de distribuir para
 # os dois lados. E o unico ponto do salao onde todo o fluxo de uma entrada passa
 # por um so metro quadrado.
-DISTRIBUIDOR_NORTE = [(10.20, 35.40), (42.30, 35.40)]
-BOCA_PROF = 6.00      # trecho de cada trilho de avenida barreirado junto a porta
-BOCA_SAIDA = 8.00     # trilho que protege a boca de cada saida (S2, S8)
+DISTRIBUIDOR_NORTE = [(10.20, 44.40 - BANDA_PAREDE["norte"]),
+                      (42.30, 44.40 - BANDA_PAREDE["norte"])]
+# Trecho de cada trilho de avenida barreirado junto a porta. Em 23/09 as bocas
+# de A e de C passaram de 6,00 para 9,00 m: a avenida B encurtou 6,00 m em cada
+# trilho quando o T desceu, e as unifilas que sobraram foram para onde o desenho
+# ja dizia que faltava barreira -- "depois dos 6 m de boca, as avenidas A e C
+# ficam na fita". A boca da B nao existe como item proprio: a avenida B entra
+# inteira na Definitiva.
+BOCA_PROF = {"A": 9.00, "B": 6.00, "C": 9.00}
+# Trilho que protege a boca de cada saida. A S2 fica DENTRO do envelope sul da
+# avenida A, e os 8,00 m de 17/09 cruzavam as duas pernas horizontais dela --
+# o trilho externo, em x = 14,00, passava por dentro do canal entre y = 6,40 e
+# 8,00. Com a avenida A em 13,00/16,00 (23/09) o canal para no trilho sul, em
+# y = 3,40: dali para o norte quem separa a saida da entrada e o proprio trilho
+# interno da avenida. A S8 nao tem avenida por cima e fica nos 8,00 m.
+BOCA_SAIDA = {"S2": 3.40, "S8": 8.00}
 CANAL_PREF = 10.00    # canal da entrada preferencial S7
 
 
@@ -213,6 +252,20 @@ def _recorta(pts, L):
     return saida
 
 
+def _lado_rotulo(av, lado):
+    """Qual dos dois trilhos da avenida encosta na banda da parede.
+
+    So faz sentido nas avenidas que correm paralelas a sua parede: na A e o
+    trilho interno, na C e o EXTERNO (a avenida C leva o desvio para o lado da
+    parede leste, e ate 23/09 a legenda dizia o contrario). A avenida B chega
+    perpendicular a sua parede, entao os dois trilhos sao laterais do corredor.
+    """
+    if av["lado_parede"] is None:
+        return f"trilho {'oeste' if lado == 'interno' else 'leste'} do corredor"
+    return ("trilho do lado da parede" if lado == av["lado_parede"]
+            else "trilho do lado do campo de retorno")
+
+
 def catalogo(planta, dec, mesas):
     """Todo trecho de barreira que o desenho gostaria de ter, com o seu preco."""
     itens = {}
@@ -225,21 +278,17 @@ def catalogo(planta, dec, mesas):
         for lado in ("interno", "externo"):
             itens[f"boca_{aid}_{lado[:3]}"] = {
                 "grupo": "boca", "entrada": aid, "hex": av["hex"],
-                "rotulo": f"boca da avenida {aid} ({av['porta']}) · trilho {lado}",
-                "trilhos": [_recorta(av[f"trilho_{lado}"], BOCA_PROF)],
+                "rotulo": f"boca da avenida {aid} ({av['porta']}) · {_lado_rotulo(av, lado)}",
+                "trilhos": [_recorta(av[f"trilho_{lado}"], BOCA_PROF[aid])],
             }
 
     for aid, av in AVENIDAS.items():
-        itens[f"avenida_{aid}_int"] = {
-            "grupo": "avenida", "entrada": aid, "hex": av["hex"],
-            "rotulo": f"avenida {aid} · trilho do lado da parede",
-            "trilhos": [av["trilho_interno"]],
-        }
-        itens[f"avenida_{aid}_ext"] = {
-            "grupo": "avenida", "entrada": aid, "hex": av["hex"],
-            "rotulo": f"avenida {aid} · trilho do lado do campo de retorno",
-            "trilhos": [av["trilho_externo"]],
-        }
+        for lado in ("interno", "externo"):
+            itens[f"avenida_{aid}_{lado[:3]}"] = {
+                "grupo": "avenida", "entrada": aid, "hex": av["hex"],
+                "rotulo": f"avenida {aid} · {_lado_rotulo(av, lado)}",
+                "trilhos": [av[f"trilho_{lado}"]],
+            }
     itens["distribuidor_norte"] = {
         "grupo": "cruzamento", "entrada": "B", "hex": "#e08a00",
         "rotulo": "distribuidor da parede norte — o T em que a avenida B desemboca",
@@ -249,14 +298,16 @@ def catalogo(planta, dec, mesas):
     itens["trilho_sul_A"] = {
         "grupo": "cruzamento", "entrada": "A", "hex": "#2a78d6",
         "rotulo": "trilho sul da perna A — separa a entrada da saída S2 e do recuo S3",
-        "trilhos": [[(11.00, 3.40), (25.03, 3.40)]],
+        "trilhos": [[(AVENIDAS["A"]["trilho_interno"][2][0], 3.40), (25.03, 3.40)]],
     }
     for pid, x1, x2 in (("S2", 13.25, 14.45), ("S8", 42.12, 43.32)):
+        alt = BOCA_SAIDA[pid]
         itens[f"boca_saida_{pid}"] = {
             "grupo": "cruzamento", "entrada": None, "hex": "#5b6470",
-            "rotulo": f"boca da saída {pid} — protege quem sai de quem entra",
-            "trilhos": [[(x1 - 0.6, 0.0), (x1 - 0.6, BOCA_SAIDA)],
-                        [(x2 + 0.6, 0.0), (x2 + 0.6, BOCA_SAIDA)]],
+            "rotulo": f"boca da saída {pid} — protege quem sai de quem entra "
+                      f"({alt:.2f} m)".replace(".", ","),
+            "trilhos": [[(x1 - 0.6, 0.0), (x1 - 0.6, alt)],
+                        [(x2 + 0.6, 0.0), (x2 + 0.6, alt)]],
         }
     itens["canal_S7"] = {
         "grupo": "cruzamento", "entrada": None, "hex": "#1e8449",
@@ -347,9 +398,11 @@ def opcoes(itens, mesas):
               "Fita é uma fronteira que se vê; barreira é uma fronteira que custa "
               "atravessar. Gasta-se barreira onde atravessar compensa — na boca, no "
               "cruzamento e na cabeça da fila cheia.",
-              "Depois dos 6 m de boca, as avenidas A e C ficam na fita, e sobram 2 "
-              "unifilas de reserva. Se o corte de caminho aparecer, 2 postes não "
-              "respondem: é por isso que as 15 adicionais deixam de ser folga."),
+              f"Depois dos {BOCA_PROF['A']:.0f} m de boca, as avenidas A e C ficam na "
+              "fita. A boca cresceu 3 m em 23/09 com as unifilas que sobraram do T da "
+              "avenida B, mas o que sobra de reserva móvel continua sendo um punhado: "
+              "se o corte de caminho aparecer, é por isso que as 15 adicionais deixam "
+              "de ser folga."),
     ]
 
 
@@ -882,14 +935,18 @@ def svg_detalhe(mesas, dec):
     add(f'<text x="{p[0]:.0f}" y="{p[1]+31:.0f}" font-size="11" fill="#5b6470" '
         f'text-anchor="middle">só passa quem o mesário chamar</text>')
 
-    # o papel da secao, fora da linha de pisada
-    a, b = px(banda - 2.05, y2 + 0.16)
-    add(f'<rect x="{a:.0f}" y="{b:.0f}" width="{1.45*E:.0f}" height="{0.72*E:.0f}" '
+    # o papel da secao, fora da linha de pisada. O exemplo e a primeira mesa que o
+    # eleitor da zona A encontra: o codigo do grupo sai do arranjo, nao do texto,
+    # porque a parede oeste ja foi reordenada duas vezes (22/09 e 23/09).
+    exemplo = next(m for m in mesas if m["parede"] == "oeste")
+    a, b = px(banda - 3.80, y2 + 0.16)
+    larg = 3.50 * E
+    add(f'<rect x="{a:.0f}" y="{b:.0f}" width="{larg:.0f}" height="{0.95*E:.0f}" '
         f'fill="#fff" stroke="#16202b" stroke-width="1.6"/>')
-    add(f'<text x="{a+48:.0f}" y="{b+22:.0f}" font-size="15" font-weight="700" '
-        f'fill="#16202b" text-anchor="middle">GRUPO A4</text>')
-    add(f'<text x="{a+48:.0f}" y="{b+40:.0f}" font-size="11" fill="#5b6470" '
-        f'text-anchor="middle">seções 513 · 1105</text>')
+    add(f'<text x="{a+larg/2:.0f}" y="{b+24:.0f}" font-size="15" font-weight="700" '
+        f'fill="#16202b" text-anchor="middle">GRUPO {exemplo["grupo"]}</text>')
+    add(f'<text x="{a+larg/2:.0f}" y="{b+43:.0f}" font-size="11" fill="#5b6470" '
+        f'text-anchor="middle">seções {" · ".join(str(s) for s in exemplo["secoes"])}</text>')
     nota = ("Papel plastificado, colado FORA da linha de pisada. No meio do canal ele "
             "some sob os pés e sob o corpo de quem está na frente: serve para confirmar, "
             "nunca para decidir.")

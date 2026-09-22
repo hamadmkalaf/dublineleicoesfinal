@@ -79,12 +79,27 @@ PASSO_VERMELHA = round(LARG_MODULO + VAO_VERMELHA, 2)    # 2,80 m
 # (3179·0530) fica em frente da O1, que e fechada no dia, sem passar de y =
 # 38,50, onde comeca o acesso ao recuo. O1 esta em 36,80-38,50.
 ACESSO_RECUO_Y = 38.50   # a partir daqui a parede oeste e o acesso ao recuo da sala de apoio
-# Ordem fixada das unidades por trecho (22/09): com o trecho maior o buscador
-# preferia por a vermelha entre as duplas, o que trocaria os codigos de grupo
-# (A3/A4), a numeracao eleitor e as dezesseis placas. O pedido do Posto foi so
-# "empurrar um pouco" o bloco para o norte, entao a sequencia de 16/09 fica.
+# Ordem fixada das unidades por trecho. Em 22/09 ela travou a sequencia de
+# 16/09, porque com o trecho maior o buscador preferia por a vermelha entre as
+# duplas, o que trocaria os codigos de grupo, a numeracao eleitor e as placas.
+#
+# **Revisao de 23/09/2026 (pedido do Posto).** As duas duplas do trecho sul
+# trocam de lugar com as duas do trecho norte, par a par: [20,10] <-> [3,6] e
+# [11,21] <-> [8,12]. As quatro sao duplas de mesma largura, entao elas caem
+# exatamente nos lugares umas das outras e nenhuma outra mesa se move -- a
+# vermelha 22 continua em y = 24,62 e a parede norte e a leste nao mudam.
+#
+# O motivo e a avenida A. Ela sobe de S4 ate o norte, e todo o fluxo da parede
+# oeste passa pelo seu trecho sul: quem vai a qualquer das cinco duplas anda
+# pelos primeiros metros. Uma fila que transborda do ramal para a avenida custa
+# tanto quanto o fluxo que ainda passa ali. Por isso as duas duplas de menor
+# comparecimento esperado ficam onde a avenida esta mais cheia (perto da porta)
+# e as duas maiores vao para o fim dela, onde so a propria fila ainda circula:
+# 679 + 734 no trecho sul, 861 + 970 no norte, contra 861 + 970 ao sul ate
+# 22/09. Os codigos de grupo sao posicionais -- A1 e sempre a dupla mais ao sul
+# --, entao quem troca de lugar troca de codigo junto: ver scripts/grupos_mesas.py.
 ORDEM_FIXA = {
-    "oeste": [[[20, 10], [11, 21]], [[22], [3, 6], [8, 12]]],
+    "oeste": [[[3, 6], [8, 12]], [[22], [20, 10], [11, 21]]],
 }
 PAREDES = {
     "oeste": {"rot": 0,   "eixo": "y", "fixo": 0.0,  "sentido": +1,

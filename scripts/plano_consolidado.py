@@ -36,6 +36,7 @@ ARQUIVO = {
     "P5-vinil-porta-A": "P5-VinilA", "P5-vinil-porta-B": "P5-VinilB", "P5-vinil-porta-C": "P5-VinilC",
     "P5-preferencial": "P5-Preferencial", "P5-vinil-preferencial": "P5-VinilPref",
     "P6-painel-porta-A": "P6-PainelA", "P6-painel-porta-B": "P6-PainelB", "P6-painel-porta-C": "P6-PainelC",
+    "P4-fim-corredor-C": "P4-FimCorredorC",
     "P7-saida": "P7-Saida",
 }
 
@@ -102,11 +103,16 @@ def secao(h, marca):
 
 
 def revisa(h, trocas, onde=None):
-    """Aplica (velho, novo) de forma idempotente, no trecho `onde` se dado."""
+    """Aplica (velho, novo[, marca]) de forma idempotente, no trecho `onde`.
+
+    `marca` é um fragmento cuja presença já basta para pular a troca. Serve
+    para a revisão de uma rodada cujo texto uma rodada posterior reescreveu em
+    parte: sem ela, a regra antiga não acha nem o velho nem o novo e aborta.
+    """
     a, f = onde if onde else (0, len(h))
     trecho = h[a:f]
-    for velho, novo in trocas:
-        if novo in trecho:
+    for velho, novo, *resto in trocas:
+        if (resto[0] if resto else novo) in trecho:
             continue
         if trecho.count(velho) != 1:
             raise SystemExit(f"revisão sem alvo único ({trecho.count(velho)}): {velho[:70]}")
@@ -129,13 +135,6 @@ def revisao_22_09(h):
 
     # cabeçalho e orçamento: o P0-Consulta passou a duas peças (+1 fence banner)
     h = revisa(h, [
-        ('<div class="fact"><dt>Peças externas</dt><dd>17</dd></div>', '<div class="fact"><dt>Peças externas</dt><dd>18</dd></div>'),
-        ('<div class="fact"><dt>Orçamento</dt><dd>€ 1170</dd></div>', '<div class="fact"><dt>Orçamento</dt><dd>€ 1202</dd></div>'),
-        ('<p class="lede">17 peças externas e 21 internas.', '<p class="lede">18 peças externas e 21 internas.'),
-        ('<tr><td>Fence banner 2080 × 820 mm</td><td class="n">10</td><td class="n">€ 32</td><td class="n">€ 324</td></tr>',
-         '<tr><td>Fence banner 2080 × 820 mm</td><td class="n">11</td><td class="n">€ 32</td><td class="n">€ 356</td></tr>'),
-        ('<tfoot><tr><td>Total sem IVA</td><td class="n">39</td><td></td>\n<td class="n">€ 1169.57</td></tr>\n<tr><td>IVA 23%</td><td></td><td></td><td class="n">€ 269.00</td></tr>\n<tr><td>Total a pagar</td><td></td><td></td><td class="n">€ 1438.57</td></tr>',
-         '<tfoot><tr><td>Total sem IVA</td><td class="n">40</td><td></td>\n<td class="n">€ 1201.97</td></tr>\n<tr><td>IVA 23%</td><td></td><td></td><td class="n">€ 276.45</td></tr>\n<tr><td>Total a pagar</td><td></td><td></td><td class="n">€ 1478.42</td></tr>'),
         ('O quarto vinil. da S7. entrou em 21/09 e herda essa incerteza.',
          'O quarto vinil. da S7. entrou em 21/09 e herda essa incerteza. O segundo P0-Consulta entrou em 22/09: é o 11º fence banner. a € 32.40 pelo unitário da cotação.'),
     ])
@@ -237,19 +236,111 @@ def revisao_22_09(h):
     # rodapé
     h = revisa(h, [
         ('<footer>\n  Revisão de <strong>21/09/2026</strong>, na segunda rodada: paleta medida no logotipo vetorizado,',
-         '<footer>\n  Revisão de <strong>22/09/2026</strong>, na terceira rodada: zona C vermelha (rolo a comprar), P0-Consulta em dois\n  pontos com o QR estático do site do TSE, bocas do Ring com o corpo branco, preferencial empilhada como a referência\n  do Posto, as dezesseis placas por mesa com setas, e os mapas com a boca da A a oeste, as saídas da face norte e a\n  parede oeste 1,50 m ao norte. Antes, em 21/09: paleta medida no logotipo vetorizado,'),
+         '<footer>\n  Revisão de <strong>22/09/2026</strong>, na terceira rodada: zona C vermelha (rolo a comprar), P0-Consulta em dois\n  pontos com o QR estático do site do TSE, bocas do Ring com o corpo branco, preferencial empilhada como a referência\n  do Posto, as dezesseis placas por mesa com setas, e os mapas com a boca da A a oeste, as saídas da face norte e a\n  parede oeste 1,50 m ao norte. Antes, em 21/09: paleta medida no logotipo vetorizado,', 'zona C vermelha (rolo a comprar), P0-Consulta em dois'),
         ('<code>scripts/tabela_mestra.py</code> monta a tabela seção → porta das quatro peças\n  de triagem, e <code>scripts/artes_sinalizacao.py</code> monta a entrada preferencial e as dezesseis\n  placas de grupo, e <code>scripts/paleta.py</code> reprova',
          '<code>scripts/tabela_mestra.py</code> monta a tabela seção → porta das quatro peças\n  de triagem, <code>scripts/artes_sinalizacao.py</code> monta o P0-Consulta (com o QR de\n  <code>scripts/qr_tse.py</code>), as três bocas do Ring, a entrada preferencial e as dezesseis\n  placas de grupo, <code>scripts/plano_consolidado.py</code> embute tudo nesta página, e <code>scripts/paleta.py</code> reprova'),
     ])
     return h
 
 
+# ---------------------------------------------------------------- revisão de 23/09
+FICHA_FIM_C = """<section class="ficha">
+  <div class="fc-arte">
+    <div class="arte" style="width:430px;height:170px"><div style="width:1040px;height:410px;transform:scale(0.4135);transform-origin:top left">
+CORPO_AQUI
+</div></div>
+    <p class="cap">2080 × 820 mm · arquivo <code>P4-fim-corredor-C</code></p>
+  </div>
+  <div class="fc-local">
+    <h3><span class="pt">P4</span>Fim do corredor C</h3>
+    <div class="ondemapa">MAPA_AQUI</div>
+    <p class="onde"><strong>Onde:</strong> Parede leste, no extremo norte da banda da zona C, virada para quem chega pelo corredor.</p>
+    <p class="texto">Peça nova em 23/09. O corredor da parede leste termina ao norte do último grupo, então quem anda até o fim tem <em>todos</em> os grupos atrás de si — não há nada adiante. A peça é a correção desse engano: de um lado a seta e as seções do C6, o grupo do fim da parede; do outro, as catorze seções que ficam para o sul, na ordem em que se volta a encontrá-las. As setas dizem esquerda e direita; os subtítulos dizem norte e sul, que é o que não muda com a direção para onde o eleitor está virado.</p>
+    <dl class="specs"><div class="sp"><dt>Medida</dt><dd>2080 × 820 mm</dd></div><div class="sp"><dt>Quantidade</dt><dd>1 peça</dd></div><div class="sp"><dt>Modelo</dt><dd>Fence banner 2080 × 820 mm</dd></div><div class="sp"><dt>Corpo</dt><dd>seções 62 mm · lido a 10 m</dd></div><div class="sp"><dt>Fixação</dt><dd>amarrado no trilho externo da avenida C com tie wraps</dd></div></dl>
+  </div>
+</section>
+"""
+
+MARCADOR_S6 = ('<rect x="225.9" y="276.2" width="16" height="16" fill="#C8102E" stroke="#3F3F3F" stroke-width="1.4"/>\n'
+               '<text x="233.9" y="287.2" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P6</text>')
+MARCADOR_FIM = ('<rect x="295.3" y="58.0" width="16" height="16" fill="#C8102E" stroke="#3F3F3F" stroke-width="1.4"/>\n'
+                '<text x="303.3" y="69.0" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P4</text>')
+
+
+def revisao_23_09(h):
+    """A peça nova do fim do corredor C, os painéis de porta que passaram a sair
+    de dados, e o orçamento com o 12º fence banner."""
+    # a ficha nova entra logo depois da do painel da porta C, que é a última
+    # peça de dentro do salão antes da saída; o mapa é o dela, com o marcador
+    # movido da porta S6 para o extremo norte da banda leste
+    if "P4-fim-corredor-C" not in h:
+        a, f = secao(h, "arquivo <code>P6-painel-porta-C</code>")
+        i = h.index('<div class="ondemapa">', a) + len('<div class="ondemapa">')
+        mapa = h[i:h.index("</svg>", i) + len("</svg>")]
+        assert MARCADOR_S6 in mapa
+        mapa = mapa.replace(MARCADOR_S6, MARCADOR_FIM)
+        ficha = FICHA_FIM_C.replace("MAPA_AQUI", mapa).replace("CORPO_AQUI", corpo("P4-FimCorredorC"))
+        h = h[:f] + "\n" + ficha + h[f:]
+
+    # os painéis de porta passam a sair de grupos_mesas.json, e os da A e da C
+    # marcam o primeiro e o último grupo do corredor
+    h = revisa(h, [
+        ('<p class="onde"><strong>Onde:</strong> Logo depois da porta S4, dentro do salão, do lado oposto à curva do eleitor.</p>',
+         '<p class="onde"><strong>Onde:</strong> Logo depois da porta S4, dentro do salão, do lado oposto à curva do eleitor.</p>\n'
+         '    <p class="texto">Desde 23/09 a lista sai de <code>data/grupos_mesas.json</code>, na ordem em que o eleitor encontra os grupos subindo o corredor, e marca as duas pontas: o <strong>A1</strong> logo na entrada e o <strong>A5</strong> no fim, o mais distante da porta. Foi a reordenação da parede oeste do mesmo dia que obrigou: as quatro duplas trocaram de lugar e a peça escrita à mão ficou errada em quatro linhas.</p>'),
+        ('<p class="onde"><strong>Onde:</strong> Logo depois da porta S6, dentro do salão.</p>',
+         '<p class="onde"><strong>Onde:</strong> Logo depois da porta S6, dentro do salão.</p>\n'
+         '    <p class="texto">Mesma regra da porta A, desde 23/09: a lista sai dos dados, na ordem de caminhada, com o <strong>C1</strong> logo na entrada e o <strong>C6</strong> no fim do corredor.</p>'),
+    ])
+
+    # orçamento: mais um fence banner
+    h = revisa(h, [
+        ('O segundo P0-Consulta entrou em 22/09: é o 11º fence banner. a € 32.40 pelo unitário da cotação.',
+         'O segundo P0-Consulta entrou em 22/09 e o fim do corredor C em 23/09: são o 11º e o 12º fence banner. a € 32.40 pelo unitário da cotação.'),
+    ])
+
+    h = revisa(h, [
+        ('<footer>\n  Revisão de <strong>22/09/2026</strong>, na terceira rodada:',
+         '<footer>\n  Revisão de <strong>23/09/2026</strong>, na quarta rodada: a parede oeste reordenada — as duas duplas de menor\n  comparecimento passaram para a entrada do corredor, e os códigos A1 a A5 foram junto com a posição —, os três\n  painéis de porta gerados de dados, e a peça nova do fim do corredor C. Antes, em <strong>22/09</strong>:'),
+    ])
+    return h
+
+
+# ---------------------------------------------------------------- contagem e orçamento
+# Quantidade de peças e orçamento saem por regex e não por par (velho, novo):
+# duas rodadas seguidas mexeram nos mesmos números, e um par datado quebra
+# assim que a rodada seguinte passa por cima dele.
+PECAS_EXTERNAS = 19
+FENCE_N, FENCE_UNIT = 12, 32.40
+ITENS_TOTAL = 41
+SEM_IVA, IVA, COM_IVA = 1234.37, 283.90, 1518.27
+
+
+def numeros(h):
+    h = re.sub(r'(<div class="fact"><dt>Peças externas</dt><dd>)\d+(</dd>)',
+               rf'\g<1>{PECAS_EXTERNAS}\g<2>', h)
+    h = re.sub(r'(<div class="fact"><dt>Orçamento</dt><dd>€ )\d+(</dd>)',
+               rf'\g<1>{SEM_IVA:.0f}\g<2>', h)
+    h = re.sub(r'(<p class="lede">)\d+( peças externas e 21 internas\.)',
+               rf'\g<1>{PECAS_EXTERNAS}\g<2>', h)
+    h = re.sub(r'(<tr><td>Fence banner 2080 × 820 mm</td><td class="n">)\d+'
+               r'(</td><td class="n">€ )[\d.]+(</td><td class="n">€ )[\d.]+(</td></tr>)',
+               rf'\g<1>{FENCE_N}\g<2>{FENCE_UNIT:.0f}\g<3>{FENCE_N * FENCE_UNIT:.0f}\g<4>', h)
+    h = re.sub(r'(<tfoot><tr><td>Total sem IVA</td><td class="n">)\d+(</td><td></td>\n'
+               r'<td class="n">€ )[\d.]+(</td></tr>\n<tr><td>IVA 23%</td><td></td><td></td>'
+               r'<td class="n">€ )[\d.]+(</td></tr>\n<tr><td>Total a pagar</td><td></td><td></td>'
+               r'<td class="n">€ )[\d.]+(</td></tr>)',
+               rf'\g<1>{ITENS_TOTAL}\g<2>{SEM_IVA}\g<3>{IVA}\g<4>{COM_IVA}\g<5>', h)
+    return h
+
+
 def monta():
     h = PAGINA.read_text(encoding="utf-8")
     h = revisao_22_09(h)
+    h = revisao_23_09(h)
     h = troca_artes(h)
     h = troca_galeria(h)
-    return h
+    return numeros(h)
 
 
 def main():

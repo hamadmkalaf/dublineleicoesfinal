@@ -16,10 +16,10 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`voluntarios_postos.html`](voluntarios_postos.html) | Escala de Voluntários | Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários. |
 | [`rota_do_eleitor.html`](rota_do_eleitor.html) | Rota do Eleitor RDS | Os pontos **P0–P7**, a tabela mestra seção → porta e o plano de sinalização. É a origem dos códigos de posto. |
 | [`prancheta_hall2.html`](prancheta_hall2.html) | Prancheta pelas Seções | Coordenadas reais das portas e das 28 mesas. A planta do salão em `voluntarios_postos.html` foi gerada delas. |
-| [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado, revisto em 22/09: 23 raias por zona, três zonas iguais, vão de 1,20 m, **180 CCBs** dos 200 em estoque, 506 m de fita grossa, lotação 2.105, boca da A a oeste e as quatro aberturas da face norte cotadas. |
+| [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado, revisto em 23/09: 23 raias por zona, três zonas iguais, vão de 1,20 m, **228 CCBs** (200 em estoque + 28 a contratar), 506 m de fita grossa, lotação 2.105, boca da A a oeste, as quatro aberturas da face norte cotadas e as laterais A\|B e B\|C fechadas nas duas faces, com corredor de serviço de 1,20 m e 12 portões. |
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
-| [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **36 peças** P0–P7, os dois mapas de posição e o `canvas.json`, na revisão de 22/09. Fonte das cores de rolo e da convenção de rotular por grupo e seção. |
-| [`plano_sinalizacao.html`](plano_sinalizacao.html) | Plano de sinalização, peça por peça | O plano consolidado (v6, 22/09), montado por `scripts/plano_consolidado.py` a partir das peças. |
+| [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **37 peças** P0–P7, os dois mapas de posição e o `canvas.json`, na revisão de 23/09. Fonte das cores de rolo e da convenção de rotular por grupo e seção. |
+| [`plano_sinalizacao.html`](plano_sinalizacao.html) | Plano de sinalização, peça por peça | O plano consolidado (v7, 23/09), montado por `scripts/plano_consolidado.py` a partir das peças. |
 
 As cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
 incluído — não foram editadas. A única exceção é `voluntarios_postos.html`, que já
@@ -44,7 +44,7 @@ por peça, mais `canvas.json` com o título e a posição de cada prancha.
 | **P1** · portão | `P1-Portao` |
 | **P2** · lateral leste | `P2-ParedeLeste` (PVC 2000 × 1000, ×3) |
 | **P3** · entrada do Ring | `P3-EntradaRing` |
-| **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` |
+| **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` · `P4-FimCorredorC` (fim do corredor da parede leste, 23/09) |
 | **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) · `P5-VinilPref` (porta S7) |
 | **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · **`P6-BlocoA1` a `P6-BlocoC6`** — as dezesseis placas de grupo (pull-up 850 × 2000) |
 | **P7** · saída | `P7-Saida` (correx A2, ×2) |
@@ -68,11 +68,16 @@ artefato publicado, como o `ring3_montagem.html`. Quem republicar a Rota do Elei
 
 **Resolvida — o número de CCBs.** Com as três zonas iguais o fechamento do fundo cai
 de 16 para 15 CCBs (179), e a CCB atravessada que fecha a meia raia morta da B (saída
-pelo meio, 22/09) devolve o total a **180**. A folha e o `Mapa-Ring3` dizem o mesmo.
+pelo meio, 22/09) devolve o total a **180**. Em 23/09 o fechamento das laterais A|B e
+B|C acrescenta 64 CCBs e leva o total a **228**, das quais 28 a contratar. A folha e o
+`Mapa-Ring3` dizem o mesmo.
 
-**Revisão de 22/09.** Prancheta (v5), Ring 3 (v2), plano de sinalização (v6) e escala
-de voluntários (v3) foram republicados e as cópias refeitas; o manifesto tem as
-versões e os sha256 novos. O que mudou está em `CLAUDE.md` e nos commits de 22/09.
+**Revisão de 23/09.** Prancheta (v6), Ring 3 (v3), plano de sinalização (v7) e escala
+de voluntários (v5) foram republicados e as cópias refeitas; o manifesto tem as
+versões e os sha256 novos. O que mudou está em `CLAUDE.md` e nos commits de 23/09:
+a parede oeste trocou dois pares de posição, as três avenidas recuaram para o centro
+do salão, as laterais do Ring 3 fecharam e a sinalização ganhou a `P4-FimCorredorC` e
+as marcas de ponta de corredor nos painéis A e C.
 
 ## Dois achados a levar ao plano de sinalização
 

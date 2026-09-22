@@ -261,7 +261,7 @@
    "esperado_exato": 351.49,
    "classe": "baixa",
    "cor": "#1e8449",
-   "eleitor": 6,
+   "eleitor": 1,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"
@@ -318,7 +318,7 @@
    "esperado_exato": 327.62,
    "classe": "baixa",
    "cor": "#1e8449",
-   "eleitor": 7,
+   "eleitor": 2,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"
@@ -356,7 +356,7 @@
    "esperado_exato": 310.79,
    "classe": "baixa",
    "cor": "#1e8449",
-   "eleitor": 8,
+   "eleitor": 3,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"
@@ -394,7 +394,7 @@
    "esperado_exato": 465.95,
    "classe": "media",
    "cor": "#d4a017",
-   "eleitor": 2,
+   "eleitor": 7,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"
@@ -413,7 +413,7 @@
    "esperado_exato": 503.78,
    "classe": "media",
    "cor": "#d4a017",
-   "eleitor": 3,
+   "eleitor": 8,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"
@@ -432,7 +432,7 @@
    "esperado_exato": 422.68,
    "classe": "baixa",
    "cor": "#1e8449",
-   "eleitor": 9,
+   "eleitor": 4,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"
@@ -584,7 +584,7 @@
    "esperado_exato": 394.56,
    "classe": "baixa",
    "cor": "#1e8449",
-   "eleitor": 1,
+   "eleitor": 6,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"
@@ -603,7 +603,7 @@
    "esperado_exato": 466.2,
    "classe": "media",
    "cor": "#d4a017",
-   "eleitor": 4,
+   "eleitor": 9,
    "parede": "oeste",
    "entrada": "A",
    "porta": "S4"

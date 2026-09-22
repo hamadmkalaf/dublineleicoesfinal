@@ -41,10 +41,19 @@ Pendencia por ponto.
    podem ser abertos no dia: corredor de chegada (0–3,00 m do canto nordeste) e
    as saídas C (13,87–15,87), B (22,50–24,50) e A (31,13–33,13 m). Sem isso o
    desenho de 22/09 das saídas junto às portas não existe.
-7. Comprar o rolo de fita vermelha da zona C (5 rolos de 50 m pela Definitiva) e
-   confirmar o hex #C8102E contra o rolo; os 2 azul, 1 zebrado, 1 verde e 2 branco
-   continuam na lista. O rolo laranja em estoque fica sem uso.
+7. Comprar 18 rolos de fita de 50 m (contagem de 23/09, depois do recuo das
+   avenidas): 4 azul, 3 amarelo, 7 vermelho, 1 zebrado, 1 verde, 2 branco.
+   Eram 11 em 22/09. Confirmar o hex #C8102E contra o rolo vermelho quando ele
+   chegar; o rolo laranja em estoque fica sem uso. Confirmar também se os 165 m
+   em estoque são por cor ou no total — se for no total, a compra triplica.
 8. Confirmar a URL do QR da P0-Consulta (consulta por nome no site do TSE) antes
    de imprimir; é a constante URL em scripts/qr_tse.py.
-9. Cotar o 11º fence banner (o segundo P0-Consulta): € 32,40 pelo unitário da
-   cotação de 18/09, total sem IVA € 1.201,97.
+9. Cotar os fence banners que a revisão acrescentou: o 11º é o segundo
+   P0-Consulta (22/09) e o 12º é a P4-FimCorredorC (23/09), € 32,40 cada pelo
+   unitário da cotação de 18/09. Com eles o plano vai a 41 itens, € 1.234,37 sem
+   IVA e € 1.518,27 com IVA.
+10. Decidir as 28 CCBs a mais para fechar as laterais A|B e B|C do Ring 3
+   (23/09): 228 no total contra 200 em estoque, locação de véspera de ~€ 364,56
+   pelo unitário de € 13,02. A alternativa sem contratar está desenhada na folha
+   (uma só linha de CCBs no eixo do vão, 196 no total), mas ela deixa 0,60 m de
+   cada lado e elimina o corredor de maca e fiscal. Orçamento contra segurança.
