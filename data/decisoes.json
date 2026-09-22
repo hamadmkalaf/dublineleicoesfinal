@@ -1,12 +1,12 @@
 {
  "decididoEm": "2026-09-06",
- "atualizadoEm": "2026-09-16",
+ "atualizadoEm": "2026-09-22",
  "numeracao": "NUMERAÇÃO OFICIAL: MRV do DJE/TRE-DF, identidade da mesa de uso interno; não depende da posição.",
  "numeracao_eleitor": "NUMERAÇÃO ELEITOR: 1 na mesa mais ao sul da parede oeste, sentido horário, 28 na mais ao sul da parede leste; voltada ao público.",
  "cenario_trabalho": {
   "id": "paredes-abc-20260915",
   "nome": "Paredes_ABC",
-  "criadoEm": "2026-09-16T00:00:00.000Z",
+  "criadoEm": "2026-09-22T00:00:00.000Z",
   "provisorio": false
  },
  "comparecimento": {
@@ -84,8 +84,8 @@
   "limiar_media": 450,
   "cores": {
    "alta": {
-    "cor": "vermelho",
-    "hex": "#c0392b",
+    "cor": "roxo",
+    "hex": "#6A1B9A",
     "rotulo": "alto comparecimento"
    },
    "media": {
@@ -151,8 +151,8 @@
    ],
    "esperado": 3834,
    "quota": 0.3334,
-   "metros_de_parede": 24.63,
-   "por_metro": 155.7,
+   "metros_de_parede": 27.63,
+   "por_metro": 138.8,
    "vao_dupla": 3.0
   },
   {
@@ -621,7 +621,7 @@
    "esperado": 590,
    "esperado_exato": 589.78,
    "classe": "alta",
-   "cor": "#c0392b",
+   "cor": "#6A1B9A",
    "eleitor": 5,
    "parede": "oeste",
    "entrada": "A",
@@ -640,7 +640,7 @@
    "esperado": 586,
    "esperado_exato": 586.08,
    "classe": "alta",
-   "cor": "#c0392b",
+   "cor": "#6A1B9A",
    "eleitor": 12,
    "parede": "norte",
    "entrada": "B",
@@ -659,7 +659,7 @@
    "esperado": 588,
    "esperado_exato": 587.56,
    "classe": "alta",
-   "cor": "#c0392b",
+   "cor": "#6A1B9A",
    "eleitor": 21,
    "parede": "leste",
    "entrada": "C",
@@ -743,7 +743,11 @@
   }
  ],
  "ring3": {
-  "situacao": "pátio de fila vigente, confirmado em 18/09/2026 — recinto ao ar livre de 44,0 × 35,0 m ao sul do Hall 2, três zonas de 23 raias, uma por parede (A oeste, B norte, C leste). Montagem em mapa/ring3_montagem.html."
+  "situacao": "pátio de fila vigente, confirmado em 18/09/2026 — recinto ao ar livre de 44,0 × 35,0 m ao sul do Hall 2, três zonas iguais de 23 raias, uma por parede (A oeste, B norte, C leste). Revisão de 22/09: boca da A a oeste, saída da B no meio, quatro aberturas na face norte. Montagem em mapa/ring3_montagem.html.",
+  "decidido_em": "2026-09-18",
+  "revisado_em": "2026-09-22",
+  "montagem": "scripts/ring3_montagem.py (hamadmkalaf/eleicoes2026) → saidas/ring3_montagem.json",
+  "larguras_das_zonas": "iguais, 12,87 / 12,86 / 12,87 m; as cotas do Ring 3 antigo (3642/4215/3642) não valem mais"
  },
  "entradas_por_parede": "Decisão do Posto de 15/09/2026: cada entrada serve uma parede inteira e só ela — A (S4) a oeste, B (S5) ao norte, C (S6) a leste. Equilibrar as entradas e equilibrar as paredes passaram a ser o mesmo problema. Substitui a atribuição por cota do Ring 3: as três zonas do pátio passaram a ser dimensionadas iguais, uma por parede.",
  "sinalizacao_portas": {
@@ -946,17 +950,6 @@
     3.0
    ],
    "rotulo": "S3 · recuo de emergência"
-  },
-  {
-   "tipo": "sala_apoio",
-   "porta": "O1",
-   "rect": [
-    0.0,
-    38.5,
-    7.8,
-    44.4
-   ],
-   "rotulo": "sala de apoio — vão entre O1 e a parede norte (profundidade a confirmar em campo)"
   }
  ],
  "serpenteados": [
@@ -966,9 +959,9 @@
    "mrv": 22,
    "rect": [
     4.1,
-    21.72,
+    23.22,
     8.3,
-    24.52
+    26.02
    ],
    "raias": 2,
    "passo_raia": 1.4,

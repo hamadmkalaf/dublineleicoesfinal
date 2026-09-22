@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-09-18",
+ "gerado_em": "2026-09-22",
  "nota": "Fonte versionada dos artefatos publicados. Cada arquivo é a página tal como o serviço a entregou, invólucro da plataforma incluído. O sha256 é do arquivo neste repositório: se o artefato for republicado, ele muda, e é assim que se percebe que a cópia envelheceu.",
  "artefatos": [
   {
@@ -16,21 +16,21 @@
    "chave": "prancheta_hall2",
    "titulo": "Prancheta pelas Seções",
    "url": "https://claude.ai/artifact/Szv5egKpHy3umh4udAybvr",
-   "versao": "1789567370-1e62",
+   "versao": "1790096082-7e3e",
    "caminho": "mapa/prancheta_hall2.html",
    "o_que_e": "Coordenadas reais das portas e das 28 mesas. A planta do salão em voluntarios_postos.html foi gerada delas.",
-   "estado": "lido na íntegra",
-   "sha256": "c00fa2de061ecf9492a48ad8e3b3a1a2ae7f5ed72ed8b1c0611a4ac1618efa8f"
+   "estado": "republicada em 22/09 (versão 5): sala de apoio fora do piso, quatro mesas da parede oeste 1,50 m ao norte; lida na íntegra",
+   "sha256": "563ee18647f688051ca7bca8474c8083b3c9f4baba0e7f26e3ceaa7c2188e288"
   },
   {
    "chave": "ring3_montagem",
    "titulo": "Montagem do Ring 3",
    "url": "https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV",
-   "versao": "1789567736-b3b4",
+   "versao": "1790086383-8771",
    "caminho": "mapa/ring3_montagem.html",
-   "o_que_e": "O cenário 3 adaptado: 23 raias por zona, vão de 1,20 m, 180 CCBs dos 200 em estoque, 506 m de fita grossa, lotação 2.118.",
-   "estado": "versionado nesta revisão",
-   "sha256": "c50c6c169e9e4561b89d4276bbb2836dc46f11c27b6c19f0bd0af51778af08a1"
+   "o_que_e": "O cenário 3 adaptado, revisto em 22/09: 23 raias por zona, três zonas iguais de 12,87 m, vão de 1,20 m, 180 CCBs dos 200 em estoque, 506 m de fita grossa, lotação 2.105, saídas na face norte junto às portas.",
+   "estado": "republicada em 22/09 (versão 2): zonas iguais, boca da A a oeste, saída da B no meio, quatro aberturas da face norte; 180 CCBs, lotação 2.105",
+   "sha256": "10f64412a94e17a1ee00fb0d9bf910720691051307c1435830fb09230df56308"
   },
   {
    "chave": "sinalizacao_interna",
