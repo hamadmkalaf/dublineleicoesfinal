@@ -149,78 +149,53 @@ ESTOQUE_FITA = 165.0   # metros por cor ja em estoque (a confirmar: cada ou tota
 # bandas trazem para fora.** Quem votou sai andando pela propria banda da sua
 # parede ate S2 (banda oeste) ou S8 (banda leste). Assim nenhum fluxo de saida
 # atravessa avenida nenhuma, e o campo central fica so como reserva de fila.
-# **Revisao de 23/09/2026 -- as tres avenidas recuam para o centro.** O pedido do
-# Posto foi alargar a banda de fila de cada parede empurrando a avenida daquela
-# parede para dentro do salao: 2 a 3 m para A e C ("para nao afetar a
-# visibilidade dos paineis") e 5 a 10 m para B. Os valores escolhidos poem as
-# tres bandas em numero redondo e sao os da tabela de BANDA_PAREDE, abaixo. O
-# trecho de cada avenida que encosta na PORTA nao se mexe -- porta e alvenaria;
-# o que muda e a perna longa e o tamanho do desvio que leva ate ela.
+# **Revisao de 23/09/2026, e o retorno a 22/09 no mesmo dia.** O Posto pediu
+# alargar a banda de fila de cada parede empurrando a avenida daquela parede
+# para dentro do salao: 2 a 3 m para A e C, 5 a 10 m para B. O desenho foi
+# feito (bandas de 13,00 / 14,00 / 13,00 m) e **rejeitado a vista da planta**:
+# com a B recuada 5 m, as avenidas B e C ficavam a 1,50 m uma da outra no meio
+# do salao, e o campo central de reserva de fila era espremido entre elas. A
+# geometria volta a de 22/09, abaixo. O que o recuo custava, para quem quiser
+# retomar a ideia: a fita ia de 777 para 960 m e os rolos a comprar de 11 para
+# 18, porque os 28 ramais atravessam a banda inteira e cresciam junto.
 AVENIDAS = {
     # A sai pelos 3,20 m LESTE de S4 -- a metade oeste da porta esta sobre o
     # recuo de emergencia S3, que vai ate x = 21,47 -- sobe 3,40 m, vira a oeste
     # por baixo das mesas da parede oeste e sobe rente a banda. O trilho externo
-    # em x = 25,03 encosta na alvenaria de 0,29 m que separa S4 de S5. A perna
-    # longa passou de x = 11,00/14,00 para 13,00/16,00 (23/09): a curva continua
-    # a leste do recuo R1 (ate 10,80) e a rota de saida para S2 continua por
-    # fora da avenida, por baixo do trilho sul, em y < 3,40.
+    # em x = 25,03 encosta na alvenaria de 0,29 m que separa S4 de S5; a curva em
+    # x = 11,00 fica a leste do recuo R1 (ate 10,80) e deixa a rota de saida para
+    # S2 passar por fora da avenida.
     "A": {"parede": "oeste", "porta": "S4", "hex": CORES_ZONA["A"],
           "lado_parede": "interno",
-          "trilho_interno": [(21.83, 0.00), (21.83, 3.40), (13.00, 3.40),
-                             (13.00, 40.00)],
-          "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (16.00, 6.40),
-                             (16.00, 40.00)]},
+          "trilho_interno": [(21.83, 0.00), (21.83, 3.40), (11.00, 3.40),
+                             (11.00, 40.00)],
+          "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (14.00, 6.40),
+                             (14.00, 40.00)]},
     # B sobe reta de S5 ate a banda norte. Nao distribui em pente: termina em T.
-    # O T desceu de y = 35,40 para 30,40 (23/09) e a avenida encurtou 5,00 m em
-    # cada trilho -- e dai que saem as unifilas realocadas para as bocas de A e C.
     "B": {"parede": "norte", "porta": "S5", "hex": CORES_ZONA["B"],
           "lado_parede": None,
-          "trilho_interno": [(26.80, 0.00), (26.80, 44.40 - 14.00)],
-          "trilho_externo": [(29.80, 0.00), (29.80, 44.40 - 14.00)]},
+          "trilho_interno": [(26.80, 0.00), (26.80, 35.40)],
+          "trilho_externo": [(29.80, 0.00), (29.80, 35.40)]},
     # C sai pelos 3 m oeste de S6 -- a leste de x = 35,09 esta o recuo da
-    # preferencial S7 -- e abre para a banda leste. A perna longa passou de
-    # x = 33,50/36,50 para 31,30/34,30 (23/09): o desvio, que era de +1,50 para
-    # leste, virou de -0,70 para oeste, e a faixa da C continua disjunta da B.
+    # preferencial S7 -- e abre para a banda leste.
     "C": {"parede": "leste", "porta": "S6", "hex": CORES_ZONA["C"],
           "lado_parede": "externo",
-          "trilho_interno": [(32.00, 0.00), (32.00, 3.20), (31.30, 5.20),
-                             (31.30, 39.50)],
-          "trilho_externo": [(35.00, 0.00), (35.00, 3.20), (34.30, 5.20),
-                             (34.30, 39.50)]},
+          "trilho_interno": [(32.00, 0.00), (32.00, 3.20), (33.50, 5.20),
+                             (33.50, 39.50)],
+          "trilho_externo": [(35.00, 0.00), (35.00, 3.20), (36.50, 5.20),
+                             (36.50, 39.50)]},
 }
 # Distancia da parede ate o trilho mais proximo da avenida daquela parede: e o
 # que sobra para o modulo (4,10), o serpenteado (4,20) e a circulacao de saida.
-# Revisao de 23/09: as tres bandas cresceram. A oeste e a leste vao as duas a
-# 13,00 m -- as tres paredes recebem o mesmo comparecimento esperado (3.834 /
-# 3.832 / 3.833), entao a banda igual e o default, e 2,00 e 2,20 m cabem no "2 a
-# 3 m" pedido. A norte vai a 14,00 m, o PISO do intervalo de 5 a 10 m pedido, e
-# por um motivo duro: o T da avenida B e a borda sul da banda norte, e a borda
-# tem de passar entre o serpenteado da C5, cuja raia mais ao norte esta em
-# y = 30,25, e o ramal da C6, em y = 31,65. Em 14,00 m o T cai em y = 30,40 e
-# passa por 0,15 m do serpenteado; qualquer banda maior poe o T em cima dele. A
-# proxima posicao livre so aparece ao SUL do serpenteado (y < 27,45), o que
-# daria uma banda norte de 17 m que engoliria um pedaco da banda leste.
-# O ramal da norte passa de 4,90 para 9,90 m -- era o mais curto dos tres.
-BANDA_PAREDE = {"oeste": 13.00, "norte": 14.00, "leste": 13.00}
+BANDA_PAREDE = {"oeste": 11.00, "norte": 9.00, "leste": 10.80}
 # O T da parede norte: a avenida B chega perpendicular e tem de distribuir para
 # os dois lados. E o unico ponto do salao onde todo o fluxo de uma entrada passa
-# por um so metro quadrado.
+# por um so metro quadrado -- e, desde 23/09, o ponto que a peca P4-FimAvenidaB
+# resolve, dizendo quais secoes ficam a esquerda e quais a direita.
 DISTRIBUIDOR_NORTE = [(10.20, 44.40 - BANDA_PAREDE["norte"]),
                       (42.30, 44.40 - BANDA_PAREDE["norte"])]
-# Trecho de cada trilho de avenida barreirado junto a porta. Em 23/09 as bocas
-# de A e de C passaram de 6,00 para 9,00 m: a avenida B encurtou 6,00 m em cada
-# trilho quando o T desceu, e as unifilas que sobraram foram para onde o desenho
-# ja dizia que faltava barreira -- "depois dos 6 m de boca, as avenidas A e C
-# ficam na fita". A boca da B nao existe como item proprio: a avenida B entra
-# inteira na Definitiva.
-BOCA_PROF = {"A": 9.00, "B": 6.00, "C": 9.00}
-# Trilho que protege a boca de cada saida. A S2 fica DENTRO do envelope sul da
-# avenida A, e os 8,00 m de 17/09 cruzavam as duas pernas horizontais dela --
-# o trilho externo, em x = 14,00, passava por dentro do canal entre y = 6,40 e
-# 8,00. Com a avenida A em 13,00/16,00 (23/09) o canal para no trilho sul, em
-# y = 3,40: dali para o norte quem separa a saida da entrada e o proprio trilho
-# interno da avenida. A S8 nao tem avenida por cima e fica nos 8,00 m.
-BOCA_SAIDA = {"S2": 3.40, "S8": 8.00}
+BOCA_PROF = {"A": 6.00, "B": 6.00, "C": 6.00}   # trecho barreirado junto a porta
+BOCA_SAIDA = {"S2": 8.00, "S8": 8.00}           # trilho que protege cada saida
 CANAL_PREF = 10.00    # canal da entrada preferencial S7
 
 
@@ -399,10 +374,9 @@ def opcoes(itens, mesas):
               "atravessar. Gasta-se barreira onde atravessar compensa — na boca, no "
               "cruzamento e na cabeça da fila cheia.",
               f"Depois dos {BOCA_PROF['A']:.0f} m de boca, as avenidas A e C ficam na "
-              "fita. A boca cresceu 3 m em 23/09 com as unifilas que sobraram do T da "
-              "avenida B, mas o que sobra de reserva móvel continua sendo um punhado: "
-              "se o corte de caminho aparecer, é por isso que as 15 adicionais deixam "
-              "de ser folga."),
+              "fita, e a reserva móvel é de duas unidades: se o corte de caminho "
+              "aparecer, não há com que responder. É por isso que as 15 adicionais "
+              "deixam de ser folga."),
     ]
 
 

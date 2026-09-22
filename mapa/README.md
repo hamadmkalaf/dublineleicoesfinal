@@ -44,7 +44,7 @@ por peça, mais `canvas.json` com o título e a posição de cada prancha.
 | **P1** · portão | `P1-Portao` |
 | **P2** · lateral leste | `P2-ParedeLeste` (PVC 2000 × 1000, ×3) |
 | **P3** · entrada do Ring | `P3-EntradaRing` |
-| **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` · `P4-FimCorredorC` (fim do corredor da parede leste, 23/09) |
+| **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` · `P4-FimAvenidaB` (o T da avenida B, 23/09) |
 | **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) · `P5-VinilPref` (porta S7) |
 | **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · **`P6-BlocoA1` a `P6-BlocoC6`** — as dezesseis placas de grupo (pull-up 850 × 2000) |
 | **P7** · saída | `P7-Saida` (correx A2, ×2) |
@@ -72,12 +72,13 @@ pelo meio, 22/09) devolve o total a **180**. Em 23/09 o fechamento das laterais 
 B|C acrescenta 64 CCBs e leva o total a **228**, das quais 28 a contratar. A folha e o
 `Mapa-Ring3` dizem o mesmo.
 
-**Revisão de 23/09.** Prancheta (v6), Ring 3 (v3), plano de sinalização (v7) e escala
+**Revisão de 23/09.** Prancheta (v6), Ring 3 (v3), plano de sinalização (v8) e escala
 de voluntários (v5) foram republicados e as cópias refeitas; o manifesto tem as
 versões e os sha256 novos. O que mudou está em `CLAUDE.md` e nos commits de 23/09:
-a parede oeste trocou dois pares de posição, as três avenidas recuaram para o centro
-do salão, as laterais do Ring 3 fecharam e a sinalização ganhou a `P4-FimCorredorC` e
-as marcas de ponta de corredor nos painéis A e C.
+a parede oeste trocou dois pares de posição, as laterais do Ring 3 fecharam e a
+sinalização ganhou a `P4-FimAvenidaB` e as marcas de ponta de corredor nos painéis A
+e C. **O recuo das avenidas foi desenhado e recusado no mesmo dia** — a geometria dos
+separadores continua a de 22/09.
 
 ## Dois achados a levar ao plano de sinalização
 

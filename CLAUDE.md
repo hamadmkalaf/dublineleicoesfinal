@@ -10,7 +10,7 @@ necessário para chegar a elas.
 | Tema | Onde vive | Estado |
 |---|---|---|
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
-| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, revisto em 23/09 (avenidas recuadas ao centro, bandas 13/14/13 m, 96 unifilas, 960 m de fita) |
+| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, revisto em 22/09 (zona C vermelha, avenida A até 40 m); 98 unifilas, 777 m de fita |
 | **Arranjo do Hall 2** — cenário, `decisoes.json`, prancheta | `scripts/arranjo_paredes.py` · `confere_arranjo.py` · `gera_prancheta_por_secao.py` | trazidos em 22/09; a prancheta sai deles |
 | **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
@@ -164,17 +164,18 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   isso as três mesas de alta carga saem em **roxo** (`classes.cores.alta` de
   `decisoes.json`), as portas de emergência em verde-água e os avisos em cinza —
   vermelho só significa "zona C". A avenida A termina em y = 40,0 m, para servir o
-  ramal da mesa em 37,62 m. Fita da Definitiva depois do recuo das avenidas
-  (23/09): **960 m, 18 rolos a comprar** (4 azul, 3 amarelo, 7 vermelho, 1
-  zebrado, 1 verde, 2 branco).
-- **Bandas de fila (23/09):** `BANDA_PAREDE` = oeste 13,00 · norte 14,00 · leste
-  13,00 m, contra 11,00 / 9,00 / 10,80 até 22/09. A norte parou em 14,00 porque o
-  T da avenida B tem de caber entre o serpenteado da C5 (y = 30,25) e o ramal da
-  C6 (y = 31,65): em 14,00 o T cai em y = 30,40. **Não subir a banda norte sem
-  mover o serpenteado da C5**, que é decisão de 16/09. As faixas de avenida
-  continuam disjuntas: A 13,00–25,03 · B 26,80–29,80 · C 31,30–35,00. A barreira
-  ficou em **96 unifilas em 135 m**, reserva móvel 4, com as bocas de A e C a
-  9,00 m (`BOCA_PROF`) pagas pelo encurtamento da avenida B.
+  ramal da mesa em 37,62 m. Fita da Definitiva: **777 m, 11 rolos a comprar**;
+  barreira em **98 unifilas em 133 m**, reserva móvel 2.
+- **O recuo das avenidas foi desenhado em 23/09 e recusado.** O pedido era
+  alargar a banda de fila de cada parede empurrando a avenida daquela parede para
+  o centro (bandas de 13,00 / 14,00 / 13,00 m). Não entrou: com a banda norte em
+  14,00 m — o máximo que a geometria dá, porque acima disso o T da avenida B cai
+  em cima do serpenteado da C5, em y = 30,25 — as avenidas B e C ficavam a 1,50 m
+  uma da outra e espremiam o campo central, que é a reserva de fila. A conta do
+  que custaria está em `docs/separadores/contexto.md` §5: 960 m de fita e 18
+  rolos, contra 6 unifilas devolvidas. **`BANDA_PAREDE` continua oeste 11,00 ·
+  norte 9,00 · leste 10,80 m**, e as faixas de avenida disjuntas em A
+  11,00–25,03 · B 26,80–29,80 · C 32,00–36,50.
 - **A conferência das avenidas sai com código 1** quando a geometria quebra. Rode
   `python3 scripts/separadores_fila.py` (sem `--grava`) antes de qualquer commit que
   toque em `AVENIDAS`, `BANDA_PAREDE` ou nas zonas protegidas. Sem `--grava` ele não
@@ -260,9 +261,14 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
   cada painel diz onde fica a **ponta** de cada corredor: o primeiro grupo leva
   "LOGO NA ENTRADA DO CORREDOR" e o último, "NO FIM DO CORREDOR, O MAIS DISTANTE".
   Na porta A isso é A1 e A5; na C, C1 e C6.
-- **`P4-FimCorredorC`** — fence banner de 1040 × 410 no **fim do corredor da
-  parede leste**, onde quem não achou a sua seção precisa saber para que lado
-  virar. Sai da mesma fonte de dados, com seta e a lista de seções de cada lado.
+- **`P4-FimAvenidaB`** — fence banner de 1040 × 410 no **T da avenida B**, o
+  único ponto do salão em que todo o fluxo de uma entrada tem de escolher um
+  lado. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na da
+  porta C, B4 e B5. O corte é **por mesa**, não por grupo: o par B3 fica
+  escarranchado no vão da avenida, com uma mesa de cada lado do eixo, então sai à
+  esquerda com a ressalva no rodapé de que está bem em frente. A primeira versão
+  desta peça foi feita para o fim do corredor C e **descartada** — o pedido era a
+  avenida B.
 - **`mapa/plano_sinalizacao.html`** é montado por `scripts/plano_consolidado.py`,
   que embute o corpo atual de cada `.dc.html` e aplica as revisões de texto de
   cada rodada de forma idempotente. Mesmo contrato: sem `--grava` confere.
@@ -356,10 +362,9 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
    preço do vinil é uma das quatro linhas que a própria cotação marca como
    **premissa não precificada**, então o quarto vinil herda essa incerteza.
 
-6. **A compra de fita foi refeita duas vezes: 22/09 (zona C vermelha) e 23/09
-   (avenidas recuadas).** `#C8102E` é proposta até o rolo ser comprado; o hex final
-   é o do rolo. Faltam **18 rolos de 50 m** (4 azul, 3 amarelo, 7 vermelho, 1
-   zebrado, 1 verde, 2 branco), contra 11 em 22/09 e 8 em 17/09; o rolo
+6. **A compra de fita foi parcialmente refeita em 22/09: a zona C passa a vermelho.**
+   `#C8102E` é proposta até o rolo ser comprado; o hex final é o do rolo. Faltam
+   **11 rolos de 50 m** (2 azul, 5 vermelho, 1 zebrado, 1 verde, 2 branco) e o rolo
    laranja em estoque (165 m) fica sem uso neste desenho. O amarelo da B continua
    brigando com o ouro da marca, e a ressalva de deuteranopia da prancha do
    sistema continua valendo para B; o par B/C deixou de ser dois amarelo-esverdeados.

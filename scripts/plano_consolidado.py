@@ -36,7 +36,7 @@ ARQUIVO = {
     "P5-vinil-porta-A": "P5-VinilA", "P5-vinil-porta-B": "P5-VinilB", "P5-vinil-porta-C": "P5-VinilC",
     "P5-preferencial": "P5-Preferencial", "P5-vinil-preferencial": "P5-VinilPref",
     "P6-painel-porta-A": "P6-PainelA", "P6-painel-porta-B": "P6-PainelB", "P6-painel-porta-C": "P6-PainelC",
-    "P4-fim-corredor-C": "P4-FimCorredorC",
+    "P4-fim-avenida-B": "P4-FimAvenidaB",
     "P7-saida": "P7-Saida",
 }
 
@@ -244,43 +244,68 @@ def revisao_22_09(h):
 
 
 # ---------------------------------------------------------------- revisão de 23/09
-FICHA_FIM_C = """<section class="ficha">
+FICHA_FIM_B = """<section class="ficha">
   <div class="fc-arte">
     <div class="arte" style="width:430px;height:170px"><div style="width:1040px;height:410px;transform:scale(0.4135);transform-origin:top left">
 CORPO_AQUI
 </div></div>
-    <p class="cap">2080 × 820 mm · arquivo <code>P4-fim-corredor-C</code></p>
+    <p class="cap">2080 × 820 mm · arquivo <code>P4-fim-avenida-B</code></p>
   </div>
   <div class="fc-local">
-    <h3><span class="pt">P4</span>Fim do corredor C</h3>
+    <h3><span class="pt">P4</span>Fim da avenida B</h3>
     <div class="ondemapa">MAPA_AQUI</div>
-    <p class="onde"><strong>Onde:</strong> Parede leste, no extremo norte da banda da zona C, virada para quem chega pelo corredor.</p>
-    <p class="texto">Peça nova em 23/09. O corredor da parede leste termina ao norte do último grupo, então quem anda até o fim tem <em>todos</em> os grupos atrás de si — não há nada adiante. A peça é a correção desse engano: de um lado a seta e as seções do C6, o grupo do fim da parede; do outro, as catorze seções que ficam para o sul, na ordem em que se volta a encontrá-las. As setas dizem esquerda e direita; os subtítulos dizem norte e sul, que é o que não muda com a direção para onde o eleitor está virado.</p>
-    <dl class="specs"><div class="sp"><dt>Medida</dt><dd>2080 × 820 mm</dd></div><div class="sp"><dt>Quantidade</dt><dd>1 peça</dd></div><div class="sp"><dt>Modelo</dt><dd>Fence banner 2080 × 820 mm</dd></div><div class="sp"><dt>Corpo</dt><dd>seções 62 mm · lido a 10 m</dd></div><div class="sp"><dt>Fixação</dt><dd>amarrado no trilho externo da avenida C com tie wraps</dd></div></dl>
+    <p class="onde"><strong>Onde:</strong> No T da avenida B, no fim dos 35,4 m que sobem da porta S5, virada para quem chega — a 3 m da banda da parede norte.</p>
+    <p class="texto">Peça nova em 23/09. A avenida B é a única que não corre rente à sua parede: ela sobe perpendicular e termina em <strong>T</strong>, e nesse metro quadrado todo o comparecimento da porta B — 3.832 esperados — tem de escolher um lado. A peça existe para que a escolha se faça <em>andando</em>, e não parado no T, que é o ponto mais frágil do traçado inteiro. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na direção da porta C, B4 e B5. O corte é por mesa, não por grupo: o par <strong>B3 fica escarranchado no vão da avenida</strong>, com uma mesa de cada lado do eixo, então ele sai à esquerda com a ressalva escrita no rodapé de que está bem em frente. Os subtítulos dizem "na direção da porta A" e "na direção da porta C" porque é o que não muda com a direção para onde o eleitor está virado.</p>
+    <dl class="specs"><div class="sp"><dt>Medida</dt><dd>2080 × 820 mm</dd></div><div class="sp"><dt>Quantidade</dt><dd>1 peça</dd></div><div class="sp"><dt>Modelo</dt><dd>Fence banner 2080 × 820 mm</dd></div><div class="sp"><dt>Corpo</dt><dd>seções 58 mm · lido a 10 m</dd></div><div class="sp"><dt>Fixação</dt><dd>amarrada na última unifila da avenida B com tie wraps</dd></div></dl>
   </div>
 </section>
 """
 
 MARCADOR_S6 = ('<rect x="225.9" y="276.2" width="16" height="16" fill="#C8102E" stroke="#3F3F3F" stroke-width="1.4"/>\n'
                '<text x="233.9" y="287.2" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P6</text>')
-MARCADOR_FIM = ('<rect x="295.3" y="58.0" width="16" height="16" fill="#C8102E" stroke="#3F3F3F" stroke-width="1.4"/>\n'
-                '<text x="303.3" y="69.0" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P4</text>')
+# O T da avenida B em coordenada da planta do plano: o eixo da avenida (x = 28,30 m)
+# e o fim dela (y = 35,40 m), pela escala do mapa — 6,20 px/m, origem em (20, 297).
+MARCADOR_T = ('<rect x="187.6" y="69.7" width="16" height="16" fill="#E8C63A" stroke="#3F3F3F" stroke-width="1.4"/>\n'
+              '<text x="195.6" y="80.7" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P4</text>')
+
+
+# O que a versão descartada da peça (fim do corredor C) deixou escrito no plano.
+MIGRA_C_PARA_B = [
+    ("O segundo P0-Consulta entrou em 22/09 e o fim do corredor C em 23/09: são o 11º e o 12º fence banner.",
+     "O segundo P0-Consulta entrou em 22/09 e o fim da avenida B em 23/09: são o 11º e o 12º fence banner."),
+    ("painéis de porta gerados de dados, e a peça nova do fim do corredor C. Antes, em <strong>22/09</strong>:",
+     "painéis de porta gerados de dados, e a peça nova do fim da avenida B. O recuo das avenidas, pedido e desenhado no\n  mesmo dia, foi revisto à vista da planta e não entrou: a geometria continua a de 22/09. Antes, em <strong>22/09</strong>:"),
+]
 
 
 def revisao_23_09(h):
-    """A peça nova do fim do corredor C, os painéis de porta que passaram a sair
+    """A peça nova do fim da avenida B, os painéis de porta que passaram a sair
     de dados, e o orçamento com o 12º fence banner."""
-    # a ficha nova entra logo depois da do painel da porta C, que é a última
-    # peça de dentro do salão antes da saída; o mapa é o dela, com o marcador
-    # movido da porta S6 para o extremo norte da banda leste
-    if "P4-fim-corredor-C" not in h:
+    # A primeira versão desta peça foi feita para o fim do corredor C. O Posto
+    # corrigiu o pedido no mesmo dia -- era a avenida B -, então a ficha da C
+    # sai se estiver presente. Vale como migração de quem gerou o plano antes
+    # da correção, e é inócua depois.
+    if "P4-fim-corredor-C" in h:
+        a, f = secao(h, "arquivo <code>P4-fim-corredor-C</code>")
+        h = h[:a].rstrip("\n") + "\n" + h[f:].lstrip("\n")
+    # As duas frases que citavam a peça descartada. `replace` simples, e não
+    # `revisa`, porque tem de ser inócuo quando o plano é remontado do estado
+    # de 22/09, em que nenhuma das duas existe.
+    for velho, novo in MIGRA_C_PARA_B:
+        h = h.replace(velho, novo)
+
+    # a ficha entra logo depois da do painel da porta B, que é a peça de porta
+    # imediatamente antes no percurso; o mapa é o da porta C, com o marcador
+    # movido da S6 para o T da avenida B
+    if "P4-fim-avenida-B" not in h:
         a, f = secao(h, "arquivo <code>P6-painel-porta-C</code>")
         i = h.index('<div class="ondemapa">', a) + len('<div class="ondemapa">')
         mapa = h[i:h.index("</svg>", i) + len("</svg>")]
         assert MARCADOR_S6 in mapa
-        mapa = mapa.replace(MARCADOR_S6, MARCADOR_FIM)
-        ficha = FICHA_FIM_C.replace("MAPA_AQUI", mapa).replace("CORPO_AQUI", corpo("P4-FimCorredorC"))
-        h = h[:f] + "\n" + ficha + h[f:]
+        mapa = mapa.replace(MARCADOR_S6, MARCADOR_T)
+        ficha = FICHA_FIM_B.replace("MAPA_AQUI", mapa).replace("CORPO_AQUI", corpo("P4-FimAvenidaB"))
+        _, fb = secao(h, "arquivo <code>P6-painel-porta-B</code>")
+        h = h[:fb] + "\n" + ficha + h[fb:]
 
     # os painéis de porta passam a sair de grupos_mesas.json, e os da A e da C
     # marcam o primeiro e o último grupo do corredor
@@ -296,12 +321,21 @@ def revisao_23_09(h):
     # orçamento: mais um fence banner
     h = revisa(h, [
         ('O segundo P0-Consulta entrou em 22/09: é o 11º fence banner. a € 32.40 pelo unitário da cotação.',
-         'O segundo P0-Consulta entrou em 22/09 e o fim do corredor C em 23/09: são o 11º e o 12º fence banner. a € 32.40 pelo unitário da cotação.'),
+         'O segundo P0-Consulta entrou em 22/09 e o fim da avenida B em 23/09: são o 11º e o 12º fence banner. a € 32.40 pelo unitário da cotação.'),
     ])
+
+    # A frase de 22/09 sobre o 11º fence banner é reinserida pela revisão daquela
+    # rodada a cada montagem, e a desta rodada a substitui -- mas só quando ainda
+    # não foi aplicada. Nas montagens seguintes as duas convivem, uma dentro da
+    # outra. Aqui a mais antiga sai: a nova já diz o que ela dizia.
+    h = h.replace(
+        "O segundo P0-Consulta entrou em 22/09: é o 11º fence banner. a € 32.40 "
+        "pelo unitário da cotação. O segundo P0-Consulta entrou em 22/09 e o fim "
+        "da avenida B", "O segundo P0-Consulta entrou em 22/09 e o fim da avenida B")
 
     h = revisa(h, [
         ('<footer>\n  Revisão de <strong>22/09/2026</strong>, na terceira rodada:',
-         '<footer>\n  Revisão de <strong>23/09/2026</strong>, na quarta rodada: a parede oeste reordenada — as duas duplas de menor\n  comparecimento passaram para a entrada do corredor, e os códigos A1 a A5 foram junto com a posição —, os três\n  painéis de porta gerados de dados, e a peça nova do fim do corredor C. Antes, em <strong>22/09</strong>:'),
+         '<footer>\n  Revisão de <strong>23/09/2026</strong>, na quarta rodada: a parede oeste reordenada — as duas duplas de menor\n  comparecimento passaram para a entrada do corredor, e os códigos A1 a A5 foram junto com a posição —, os três\n  painéis de porta gerados de dados, e a peça nova do fim da avenida B. O recuo das avenidas, pedido e desenhado no\n  mesmo dia, foi revisto à vista da planta e não entrou: a geometria continua a de 22/09. Antes, em <strong>22/09</strong>:'),
     ])
     return h
 
