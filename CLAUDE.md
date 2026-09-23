@@ -15,6 +15,11 @@ necessário para chegar a elas.
 | **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
 
+**O consolidado da última rodada está em
+[`docs/DECISOES_2026-09-23.md`](docs/DECISOES_2026-09-23.md)**: o que foi decidido
+em 23/09, o que foi desenhado e recusado no mesmo dia (o recuo das avenidas) com a
+conta do que custaria, e o que a rodada deixou em aberto.
+
 ---
 
 ## Fatos fixos
