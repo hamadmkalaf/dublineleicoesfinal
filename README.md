@@ -62,6 +62,7 @@ entrada a pé pelo portão da Merrion Road e pede à Garda duas travessias contr
 | Arquivo | O que é |
 |---|---|
 | [`docs/acesso_2turno/plano_acesso.md`](docs/acesso_2turno/plano_acesso.md) | **O plano.** Decisões da Garda e consequências, portões, rotas V1–V4 / A1–A3 / T1, o dia hora a hora, efeitos de segunda ordem, pedidos a terceiros, premissas. Anexo com o texto integral da polícia. |
+| [`docs/acesso_2turno/rotas_por_regiao.md`](docs/acesso_2turno/rotas_por_regiao.md) | As rotas por região da cidade (sul, leste, oeste, norte): melhor opção, segunda opção e o que evitar, com links do Google Maps. |
 | [`mapa/acesso_2turno.html`](mapa/acesso_2turno.html) | A página do plano com o esquema embutido e os links do Google Maps por rota. |
 | [`mapa/acesso_2turno.kml`](mapa/acesso_2turno.kml) | Camadas para importar no **Google My Maps**: percurso, vias, rotas, pontos. |
 | [`mapa/acesso_2turno_print.png`](mapa/acesso_2turno_print.png) | O plano marcado sobre o print de satélite do Google Maps (base em `acesso_2turno_print_base.png`; desenho em `scripts/acesso_2turno_print.py`, posições em pixel lidas à mão sobre esse print). |
