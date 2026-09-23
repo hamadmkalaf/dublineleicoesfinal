@@ -13,8 +13,8 @@ a parede contínua da lateral do Ring e o T da avenida B.
 
 **Estado no fim da rodada:** branch `23926v2` nos dois repositórios. Os
 geradores passam em modo conferência (sem `--grava`, código 0), à exceção de
-`qr_tse.py`, que pede o módulo `segno` e já falhava antes desta rodada. Duas
-cópias de artefato estão **à frente da publicação** — ver §4.
+`qr_tse.py`, que pede o módulo `segno` e já falhava antes desta rodada. Os dois
+artefatos tocados nesta rodada já foram republicados nas URLs do manifesto — ver §4.
 
 ---
 
@@ -162,13 +162,12 @@ Três coisas a registrar:
 | Artefato | Estado |
 |---|---|
 | Montagem do Ring 3 | **republicada** na mesma URL, versão 4: 202 CCBs, 2 a contratar. |
-| Plano de sinalização | cópia **à frente da publicação**: a P4 na boca da pequena avenida. Republicar. |
+| Plano de sinalização | **republicado** na mesma URL, versão 9: a P4 na boca da pequena avenida, o marcador em y = 33,60 m e o rodapé corrigido. |
 | Onde você vota no RDS | **novo**, publicado nesta rodada. Privado até que o compartilhamento seja aberto. |
 | Prancheta, Rota, Escala de voluntários, Sinalização | sem mudança nesta rodada. |
 
-`mapa/artefatos.json` marca o plano de sinalização com `"publicacao": "pendente"` e
-traz os sha256 das cópias deste repositório; a conferência de sha256 dá `ok` nas
-sete.
+`mapa/artefatos.json` não tem mais nenhuma entrada pendente de publicação e traz os
+sha256 das cópias deste repositório; a conferência de sha256 dá `ok` nas sete.
 
 O `Mapa-Ring3` de `mapa/sinalizacao/` foi corrigido de 228 para 202 CCBs. É peça
 de referência interna, mantida à mão — não tem gerador.
@@ -182,9 +181,9 @@ de referência interna, mantida à mão — não tem gerador.
 3. **Os 11 rolos de fita**, e se os 165 m em estoque são por cor ou no total.
 4. **O RDS permite abrir os quatro painéis do gradil da face norte do Ring 3?**
 5. **O RDS permite fita adesiva no piso do Hall 2?** Continua bloqueante.
-6. **Republicar `plano_sinalizacao.html`** na URL do manifesto, e **abrir o
-   compartilhamento do mapa público**, que nasceu privado. A folha do Ring 3 já foi
-   republicada nesta rodada, na mesma URL (versão 4).
+6. **Abrir o compartilhamento do mapa público**, que nasceu privado. As duas folhas
+   tocadas nesta rodada — Ring 3 (versão 4) e plano de sinalização (versão 9) — já
+   foram republicadas nas mesmas URLs.
 7. **A posição do portão B na Merrion Road**, a medir em campo antes de o mapa
    público ser divulgado como orientação de chegada.
 8. **O prazo de entrega da gráfica**, que a própria cotação marca como a decisão

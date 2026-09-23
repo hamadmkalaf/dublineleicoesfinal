@@ -338,7 +338,10 @@ def revisao_23_09(h):
 
     h = revisa(h, [
         ('<footer>\n  Revisão de <strong>22/09/2026</strong>, na terceira rodada:',
-         '<footer>\n  Revisão de <strong>23/09/2026</strong>, na quarta rodada: a parede oeste reordenada — as duas duplas de menor\n  comparecimento passaram para a entrada do corredor, e os códigos A1 a A5 foram junto com a posição —, os três\n  painéis de porta gerados de dados, e a peça nova do fim da avenida B. O recuo das avenidas, pedido e desenhado no\n  mesmo dia, foi revisto à vista da planta e não entrou: a geometria continua a de 22/09. Antes, em <strong>22/09</strong>:'),
+         '<footer>\n  Revisão de <strong>23/09/2026</strong>, na quarta rodada: a parede oeste reordenada — as duas duplas de menor\n  comparecimento passaram para a entrada do corredor, e os códigos A1 a A5 foram junto com a posição —, os três\n  painéis de porta gerados de dados, e a peça nova do fim da avenida B. O recuo das avenidas, pedido e desenhado no\n  mesmo dia, foi revisto à vista da planta e não entrou: a geometria continua a de 22/09. Antes, em <strong>22/09</strong>:',
+         # a rodada v2 reescreve a frase da geometria dentro deste mesmo rodapé:
+         # a marca de idempotência tem de ser só a data da rodada.
+         '<footer>\n  Revisão de <strong>23/09/2026</strong>'),
     ])
     return h
 
@@ -370,6 +373,15 @@ TEXTO_V2 = ('A peça existe para que a escolha se faça <em>andando</em>, e não
                '<strong>pequena avenida</strong> da parede norte: a peça passa a ser lida na '
                'boca dela, e a escolha de lado acontece de fato em movimento, dentro de uma '
                'faixa transversal, e não num metro quadrado.')
+# O rodapé da rodada de 23/09 dizia que nenhuma geometria tinha mudado. A pequena
+# avenida mudou uma, e só uma — é o que a frase passa a dizer.
+RODAPE_V1 = ('O recuo das avenidas, pedido e desenhado no\n'
+             '  mesmo dia, foi revisto à vista da planta e não entrou: a geometria continua a de 22/09.')
+RODAPE_V2 = ('O recuo das avenidas, pedido e desenhado no\n'
+             '  mesmo dia, foi revisto à vista da planta e não entrou. Na <strong>segunda rodada do mesmo\n'
+             '  dia</strong> saiu o último par de unifilas da avenida B: o 1,80 m que sobrou virou a\n'
+             '  <strong>pequena avenida da parede norte</strong>, e a P4 do fim da avenida passou a ser lida\n'
+             '  na boca dela. É a única mudança de geometria desde 22/09.')
 
 
 def revisao_23_09_v2(h):
@@ -385,6 +397,7 @@ def revisao_23_09_v2(h):
     a, f = secao(h, "arquivo <code>P4-fim-avenida-B</code>")
     h = revisa(h, [(ONDE_V1, ONDE_V2), (TEXTO_V1, TEXTO_V2),
                    (MARCADOR_T_V1, MARCADOR_T)], (a, f))
+    h = revisa(h, [(RODAPE_V1, RODAPE_V2)])
     return h
 
 

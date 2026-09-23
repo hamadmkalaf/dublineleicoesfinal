@@ -82,12 +82,13 @@ do fundo passou a alternar CCB e fita: a lateral cai de 64 para **44**, o fundo 
 para **9**, e o total a **202**, dos quais **2 a contratar**. A folha e o `Mapa-Ring3`
 dizem o mesmo.
 
-**Rodada 23926v2** (a segunda de 23/09). `ring3_montagem.html` **já foi republicada**
-na URL do manifesto, versão 4: amarração da lateral e do fechamento do fundo, 202 CCBs.
-`plano_sinalizacao.html` continua **à frente da publicação** — a ficha da
-`P4-FimAvenidaB` passa a situar a peça na boca da pequena avenida da parede norte — e o
-manifesto a marca com `"publicacao": "pendente"`. Entra também `mapa_publico.html`, que
-é fonte e não cópia. A conferência abaixo dá `ok` nas sete.
+**Rodada 23926v2** (a segunda de 23/09). `ring3_montagem.html` e
+`plano_sinalizacao.html` **já foram republicadas** nas URLs do manifesto — a primeira na
+versão 4 (amarração da lateral e do fechamento do fundo, 202 CCBs), a segunda na versão 9
+(a ficha da `P4-FimAvenidaB` situa a peça na boca da pequena avenida da parede norte, o
+marcador P4 desce de y = 35,40 para 33,60 m e o rodapé deixa de dizer que a geometria
+continua a de 22/09). Nenhuma cópia está à frente da publicação. Entra também
+`mapa_publico.html`, que é fonte e não cópia. A conferência abaixo dá `ok` nas sete.
 
 **Revisão de 23/09, v1.** Prancheta (v6), Ring 3 (v3), plano de sinalização (v8) e escala
 de voluntários (v5) foram republicados e as cópias refeitas; o manifesto tem as
