@@ -12,6 +12,7 @@ necessário para chegar a elas.
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Acesso no 2º turno (dia da Maratona)** | `docs/acesso_2turno/` · `scripts/acesso_2turno.py` · `mapa/acesso_2turno.html` · `.kml` | proposta de 21/09, a validar com a Garda e o RDS |
 
 ---
 
@@ -130,6 +131,25 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   avenida B duas vezes (ela entra inteira, não leva item de boca); e rotular por
   número de mesa. As três estão descritas em `docs/separadores/contexto.md`.
 
+## Acesso no 2º turno — 25/10/2026 é o dia da Maratona de Dublin
+
+Se houver 2º turno, a **Merrion Road é o percurso da maratona e fecha a partir das
+10h** (plano de trânsito da Garda, setembro de 2026; texto integral no anexo A de
+`docs/acesso_2turno/plano_acesso.md`). O plano de acesso muda **como se chega ao P0**,
+não o que acontece depois dele: Ring 3, zonas, portas e rota P0–P7 ficam iguais.
+
+- **Veículos só pelo Anglesea Gate**, entrada e saída por Donnybrook. A Garda proíbe
+  sair da Anglesea Road para a Merrion Road. Rock Road inbound não chega ao RDS.
+- **Pedestres pelo portão da Merrion Road (P1)**, pela calçada do lado do RDS. Quem
+  vem de DART (Sandymount, Lansdowne Road) cruza o percurso: o plano pede à Garda
+  **duas travessias controladas** (Merrion Rd × Serpentine Ave; Ballsbridge).
+- **Posto novo G1** no Anglesea Gate (2 pessoas) é proposta; **não foi editado em
+  `docs/voluntarios/lista_postos.md`**.
+- Horários dos corredores no RDS (≈10h45–15h40) e reabertura (≈16h) são **estimativas**.
+- `scripts/acesso_2turno.py` é a fonte única: gera KML (Google My Maps), SVG/PNG,
+  HTML, JSON e links do Google Maps, e **sai com código 1** se uma rota de veículo
+  tocar via fechada. Coordenadas aproximadas (30–60 m), a conferir no Google Maps.
+
 ## Convenções
 
 - Números de eleitorado vêm sempre de `saidas/dados.json` (CSV oficial), nunca do
@@ -155,6 +175,9 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 3. Confirmação da expectativa de comparecimento.
 4. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900), as 15
    unifilas adicionais (EUR 195,45) e os 8 rolos de fita.
+5. **2º turno:** travessias controladas da Garda e Anglesea Gate operado pelo RDS
+   (bloqueiam as rotas a pé e de veículo do plano de acesso); rota interna Anglesea
+   Gate → Ring 3; hora de reabertura da Merrion Road.
 
 A lista completa e por tema está em `PENDENCIAS.md` e nas seções finais dos dois
 contextos.

@@ -53,6 +53,23 @@ conduzir 11,5 mil eleitores da porta até a mesa. **Desenho definitivo, fechado 
 
 ---
 
+### Acesso no 2º turno — dia da Maratona de Dublin
+
+Se houver 2º turno (25/10/2026), a Merrion Road é o percurso da maratona e fecha a
+partir das 10h. O plano troca a entrada de veículos para o Anglesea Gate, mantém a
+entrada a pé pelo portão da Merrion Road e pede à Garda duas travessias controladas.
+
+| Arquivo | O que é |
+|---|---|
+| [`docs/acesso_2turno/plano_acesso.md`](docs/acesso_2turno/plano_acesso.md) | **O plano.** Decisões da Garda e consequências, portões, rotas V1–V4 / A1–A3 / T1, o dia hora a hora, efeitos de segunda ordem, pedidos a terceiros, premissas. Anexo com o texto integral da polícia. |
+| [`docs/acesso_2turno/rotas_por_regiao.md`](docs/acesso_2turno/rotas_por_regiao.md) | As rotas por região da cidade (sul, leste, oeste, norte): melhor opção, segunda opção e o que evitar, com links do Google Maps. |
+| [`mapa/acesso_2turno.html`](mapa/acesso_2turno.html) | A página do plano com o esquema embutido e os links do Google Maps por rota. |
+| [`mapa/acesso_2turno.kml`](mapa/acesso_2turno.kml) | Camadas para importar no **Google My Maps**: percurso, vias, rotas, pontos. |
+| [`mapa/acesso_2turno_print.png`](mapa/acesso_2turno_print.png) | O plano marcado sobre o print de satélite do Google Maps (base em `acesso_2turno_print_base.png`; desenho em `scripts/acesso_2turno_print.py`, posições em pixel lidas à mão sobre esse print). |
+| `saidas/acesso_2turno.svg` · `.png` | O esquema. |
+| `saidas/acesso_2turno_links.md` | Links do Google Maps prontos para colar na comunicação. |
+| `scripts/acesso_2turno.py` | Fonte única: gera tudo acima e confere que nenhuma rota de veículo toca via fechada. |
+
 ## Como rodar
 
 Sem dependências externas: só a biblioteca padrão do Python 3. Nada acessa a rede.
@@ -67,6 +84,10 @@ python3 scripts/separadores_fila.py --grava
 
 # Tema voluntários — confere a composição das três zonas
 python3 scripts/zonas_balanceadas.py
+
+# Tema acesso no 2º turno — confere as rotas; com --grava gera KML, SVG, HTML, JSON e links
+python3 scripts/acesso_2turno.py
+python3 scripts/acesso_2turno.py --grava
 ```
 
 ### O que a conferência tem de imprimir
