@@ -38,7 +38,7 @@ conduzir 11,5 mil eleitores da porta até a mesa. **Desenho definitivo, fechado 
 
 | Arquivo | O que é |
 |---|---|
-| [`docs/separadores/plano_separadores_fila.md`](docs/separadores/plano_separadores_fila.md) | O desenho definitivo: decisões, geometria, as 98 unifilas, a fita por cor, os achados e as pendências. |
+| [`docs/separadores/plano_separadores_fila.md`](docs/separadores/plano_separadores_fila.md) | O desenho definitivo: decisões, geometria, as 96 unifilas, a pequena avenida da parede norte, a fita por cor, os achados e as pendências. |
 | [`docs/separadores/contexto.md`](docs/separadores/contexto.md) | O contexto consolidado. **Leia antes de mexer em qualquer número.** |
 | [`docs/separadores/CONFERENCIA_PRANCHETA_2026-09-15.md`](docs/separadores/CONFERENCIA_PRANCHETA_2026-09-15.md) | Registro histórico de 15/09 — o porquê de cada decisão de arranjo, e onde o abandono do Ring 3 está registrado. |
 | `scripts/separadores_fila.py` | Monta o catálogo de barreira, precifica em postes, calcula a fita por cor, **confere a regra das avenidas** e desenha tudo. |
@@ -47,9 +47,9 @@ conduzir 11,5 mil eleitores da porta até a mesa. **Desenho definitivo, fechado 
 | `saidas/separadores_opcao1.svg` · `opcao2.svg` | As duas alternativas descartadas, mantidas como registro. |
 | `saidas/separadores_fila.json` | Premissas, catálogo e as três alocações. |
 
-**Números do desenho:** 98 unifilas em 133 m, reserva móvel de 2 · 769 m de fita
-(846 m com 10% de retoque), em 20 rolos de 50 m, seis cores · faltam **8 rolos**
-(2 azul, 2 laranja, 1 zebrado, 1 verde, 2 branco) e, por pedido, **15 unifilas**.
+**Números do desenho:** 96 unifilas em 129 m, reserva móvel de 4 · 802 m de fita
+(882 m com 10% de retoque), em 20 rolos de 50 m, seis cores · faltam **11 rolos**
+(2 azul, 5 vermelho, 1 zebrado, 1 verde, 2 branco) e, por pedido, **15 unifilas**.
 
 ---
 
@@ -82,8 +82,10 @@ As avenidas não se cruzam — faixas de x, disjuntas:
     nenhuma avenida invade zona protegida
 ```
 
-e, na alocação definitiva, `98 unifilas em 133 m · reserva móvel 2` e
-`fita: 769 m (846 m com retoque) · 20 rolos de 50 m`.
+e, na alocação definitiva, `96 unifilas em 129 m · reserva móvel 4` e
+`fita: 802 m (882 m com retoque) · 20 rolos de 50 m`.
+A linha seguinte confirma que a **pequena avenida da parede norte** está livre:
+`1.80 m entre y = 33.60 e y = 35.40 m, x de 11.00 a 36.50 m`.
 
 `scripts/zonas_balanceadas.py` imprime **3.860 / 3.755 / 3.802**, total de
 **11.417**, spread de **2,8%**, e *"Cada zona tem exatamente uma das três urnas

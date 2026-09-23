@@ -100,10 +100,23 @@ nenhum no campo central.
 vira a oeste por baixo das mesas da parede oeste e sobe rente à banda.
 Distribui em **pente**: 5 aberturas, uma por grupo.
 
-**Avenida B (amarela, S5 → norte).** Sobe reta, 35,4 m. Não distribui em pente:
-chega perpendicular à banda norte e **termina em T** — todo o fluxo da entrada B
-(3.832 esperados) passa por um só metro quadrado antes de se repartir. É a
-fragilidade conhecida do traçado.
+**Avenida B (amarela, S5 → norte).** Sobe reta e, **desde 24/09, a barreira dela
+para em 33,6 m** — um par de unifilas antes da banda norte. Não distribui em
+pente: chega perpendicular e termina numa **pequena avenida transversal**.
+
+**A pequena avenida da parede norte (24/09).** Até 23/09 a avenida B encostava no
+T, e o T era o único ponto do salão em que todo o fluxo de uma entrada (3.832
+esperados) escolhia um lado **parado**, num metro quadrado. Tirando o último par
+de unifilas — uma em cada trilho — a barreira para 1,80 m antes, e esse 1,80 m
+vira uma faixa transversal de **1,80 × 25,50 m**, entre y = 33,60 e y = 35,40,
+de x = 11,00 a x = 36,50. As duas bordas são fita; nenhuma é barreira. A escolha
+de lado passa a acontecer **andando**, e a `P4-FimAvenidaB` é lida na boca dela.
+
+Ela **para nas bordas das bandas oeste e leste** e não acompanha o distribuidor
+até x = 42,30: fora delas cortaria o ramal do **A5** (y = 33,72) a oeste e o do
+**C6** (y = 35,55) a leste, que correm em y constante na mesma altura — e a regra
+de 17/09 é que ninguém cruze fila parada. `confere_avenida_norte()` reprova o
+desenho se isso mudar; foi ela que apontou os dois ramais.
 
 **Avenida C (vermelho, S6 → leste).** Sai pelos 3 m oeste de S6 — a leste de
 x = 35,09 está o recuo da preferencial S7 — e abre para a banda leste, 6
@@ -111,7 +124,7 @@ aberturas.
 
 ---
 
-## 3. As 98 unifilas
+## 3. As 96 unifilas
 
 | Trecho | m | unifilas |
 |---|---:|---:|
@@ -119,13 +132,13 @@ aberturas.
 | Boca da avenida A (S4) · trilho do lado do campo de retorno | 6,0 | 5 |
 | Boca da avenida C (S6) · trilho do lado da parede | 6,0 | 5 |
 | Boca da avenida C (S6) · trilho do lado do campo de retorno | 6,0 | 5 |
-| Avenida B · trilho oeste do corredor | 35,4 | 21 |
-| Avenida B · trilho leste do corredor | 35,4 | 21 |
+| Avenida B · trilho oeste do corredor | 33,6 | 20 |
+| Avenida B · trilho leste do corredor | 33,6 | 20 |
 | Serpenteado do grupo **A3** · seções 3313 · 3889 | 12,6 | 12 |
 | Serpenteado do grupo **B2** · seções 3315 · 3778 | 12,6 | 12 |
 | Serpenteado do grupo **C5** · seções 3322 · 3752 | 12,6 | 12 |
-| **Total** | **133 m** | **98** |
-| Reserva móvel | | **2** |
+| **Total** | **129 m** | **96** |
+| Reserva móvel | | **4** |
 
 A avenida B entra **inteira** e por isso não tem item de boca separado — contar
 as duas coisas seria contar os primeiros 6 m duas vezes.
@@ -138,10 +151,11 @@ dois flancos; (c) as **três de alta carga** (roxas no desenho desde 22/09;
 "vermelhas" até então), porque são os únicos lugares com multidão parada
 declarada (~20 pessoas cada, decisão de 16/09).
 
-**A reserva de 2 é insuficiente, e isto não é detalhe.** Fita colada às 7h não
-se move às 13h; a barreira é a única parte do desenho que responde a uma
-surpresa. **Pedido: mais 15 unidades, EUR 195,45**, para levar a reserva a 17. É
-1,2% do orçamento do 1º turno.
+**A reserva de 4 continua insuficiente, e isto não é detalhe.** Fita colada às 7h
+não se move às 13h; a barreira é a única parte do desenho que responde a uma
+surpresa. A pequena avenida devolveu 2 unidades — era 2, é 4 —, o que muda a
+ordem de grandeza de coisa nenhuma. **Pedido: mais 15 unidades, EUR 195,45**,
+para levar a reserva a 19. É 1,2% do orçamento do 1º turno.
 
 Para o registro: o traçado completo — as três avenidas com os dois trilhos
 inteiros, o T da parede norte, as 28 cabeças de fila, as bocas de saída e o
@@ -155,19 +169,22 @@ canal preferencial — pediria da ordem de 390 unifilas. As 100 orçadas são
 | Cor | Onde | Necessário | Em estoque | Saldo |
 |---|---|---:|---:|---:|
 | **Azul** | avenida A, 9 ramais oeste, marcas, galões | **253,1 m** | 165 m | **−88,1 m** |
-| **Amarelo** | avenida B, distribuidor norte, 9 ramais, marcas | **149,8 m** | 165 m | +15,2 m |
+| **Amarelo** | avenida B, as duas bordas da pequena avenida, 9 ramais, marcas | **174,5 m** | 165 m | **−9,5 m** |
 | **Vermelho** (era laranja até 22/09) | avenida C, 10 ramais leste, marcas, galões | **241,2 m** | — | **−241,2 m** |
 | Zebrado preto-e-branco | as 28 linhas de espera | 30,8 m | — | comprar |
 | Verde | canal da preferencial S7 | 20,0 m | — | comprar |
 | Branco | rota de saída, setas do campo livre | 82,0 m | — | comprar |
-| **Total** | | **777 m** | | |
-| **Com 10% de retoque** | | **855 m** | | |
+| **Total** | | **802 m** | | |
+| **Com 10% de retoque** | | **882 m** | | |
 
 **Falta bastante fita azul, e toda a vermelha.** Assumindo 165 m **por cor** em
 estoque (a confirmar — se for 165 m no total, a falta triplica), faltam **88 m de
-azul e 241 m de vermelho**, mais as três cores que ainda não existem. Em rolos
-de 50 m: **2 azul + 5 vermelho + 1 zebrado + 1 verde + 2 branco = 11 rolos a
-comprar**, ordem de **EUR 140–220** (*estimativa minha, a cotar*).
+azul e 241 m de vermelho**, mais as três cores que ainda não existem. O amarelo
+passou a faltar em 24/09: a pequena avenida acrescentou 24,7 m e virou o saldo de
++15,2 para **−9,5 m**. Em rolos de 50 m a conta **não muda**, porque os 4 rolos de
+amarelo já cobriam os 165 m de estoque mais a diferença: **2 azul + 5 vermelho +
+1 zebrado + 1 verde + 2 branco = 11 rolos a comprar**, ordem de **EUR 140–220**
+(*estimativa minha, a cotar*).
 
 *Adendo de 23/09 — o recuo das avenidas, e por que ele não entrou.* O Posto pediu
 alargar a banda de fila de cada parede empurrando a avenida daquela parede para
@@ -179,10 +196,12 @@ serpenteado do grupo C5, cuja raia mais ao norte está em y = 30,25), e com esse
 espremendo o campo central que é a reserva de fila. O que ele custaria, para quem
 quiser retomar a ideia: como cada um dos 28 ramais atravessa a banda inteira,
 eles cresciam junto — o da norte dobrava, de 4,90 para 9,90 m — e a fita ia de
-777 para **960 m**, com os rolos a comprar subindo de 11 para **18** (o amarelo,
-que hoje fecha com saldo positivo, passaria a pedir 3). Em troca, a avenida B
-encurtava 5,00 m em cada trilho e devolvia 6 unifilas. **A geometria vigente é a
-de 22/09, a desta tabela.**
+777 para **960 m** (a base de 23/09; hoje a vigente é 802), com os rolos a comprar
+subindo de 11 para **18** (o amarelo, que então fechava com saldo positivo,
+passaria a pedir 3). Em troca, a avenida B encurtava 5,00 m em cada trilho e
+devolvia 6 unifilas. **A geometria vigente continua a de 22/09, com a única
+mudança de 24/09: o par de unifilas que virou a pequena avenida da parede
+norte.**
 
 *Adendo de 22/09.* Até essa revisão a zona C era laranja e a conta fechava em 8
 rolos (2 azul + 2 laranja). A decisão do Posto — vermelho no lugar do laranja, a
@@ -200,7 +219,7 @@ tem a perna que vira para oeste. **A parede norte é barata em fita justamente
 porque a avenida B chega perpendicular**: o T que é a fragilidade do traçado é
 também o que encurta os seus ramais.
 
-**O que a metragem não diz:** 777 m de fita colada, curva a curva, com 6 cores e
+**O que a metragem não diz:** 802 m de fita colada, curva a curva, com 6 cores e
 16 marcadores de grupo, é trabalho de véspera com o salão vazio — não meia hora
 antes da abertura.
 
@@ -306,7 +325,7 @@ gastar a barreira onde a fita não serve.
 8. O **T da parede norte** é o ponto mais frágil. Se houver folga, vale estudar
    uma segunda perna para a avenida B — mas isso mexe na atribuição
    mesa → entrada, fechada desde 15/09.
-9. Quem cola os 777 m de fita, e quando.
+9. Quem cola os 802 m de fita, e quando.
 
 ---
 

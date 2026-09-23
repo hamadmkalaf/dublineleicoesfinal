@@ -69,14 +69,14 @@
   "avenida_B_int": {
    "rotulo": "avenida B · trilho oeste do corredor",
    "grupo": "avenida",
-   "metros": 35.4,
-   "postes": 21
+   "metros": 33.6,
+   "postes": 20
   },
   "avenida_B_ext": {
    "rotulo": "avenida B · trilho leste do corredor",
    "grupo": "avenida",
-   "metros": 35.4,
-   "postes": 21
+   "metros": 33.6,
+   "postes": 20
   },
   "avenida_C_int": {
    "rotulo": "avenida C · trilho do lado do campo de retorno",
@@ -91,10 +91,16 @@
    "postes": 24
   },
   "distribuidor_norte": {
-   "rotulo": "distribuidor da parede norte — o T em que a avenida B desemboca",
+   "rotulo": "distribuidor da parede norte — borda norte da pequena avenida",
    "grupo": "cruzamento",
    "metros": 32.1,
    "postes": 19
+  },
+  "avenida_norte_sul": {
+   "rotulo": "pequena avenida da parede norte — borda sul, 1,80 m à frente do distribuidor",
+   "grupo": "cruzamento",
+   "metros": 25.5,
+   "postes": 16
   },
   "trilho_sul_A": {
    "rotulo": "trilho sul da perna A — separa a entrada da saída S2 e do recuo S3",
@@ -289,7 +295,7 @@
    "postes": 5
   }
  },
- "catalogo_total_postes": 399,
+ "catalogo_total_postes": 413,
  "opcoes": [
   {
    "nome": "Opção 1",
@@ -303,15 +309,15 @@
     "avenida_B_ext",
     "avenida_C_int"
    ],
-   "postes": 106,
-   "reserva": -6,
-   "metros": 173.8,
+   "postes": 104,
+   "reserva": -4,
+   "metros": 170.2,
    "aposta": "Um eleitor mal encaminhado custa mais do que um eleitor mal enfileirado: quem chega à parede errada volta atravessando o salão, contra o fluxo.",
    "risco": "Nada segura as três de alta carga. Os 20 em pé à frente de cada uma ficam contidos só por fita, que é justamente onde a fita não segura.",
    "fita": {
     "por_cor": {
      "A": 220.6,
-     "B": 162.5,
+     "B": 187.1,
      "C": 219.8,
      "espera": 30.8,
      "pref": 20.0,
@@ -319,7 +325,7 @@
     },
     "com_retoque": {
      "A": 242.7,
-     "B": 178.8,
+     "B": 205.8,
      "C": 241.8,
      "espera": 33.9,
      "pref": 22.0,
@@ -327,15 +333,15 @@
     },
     "rolos": {
      "A": 5,
-     "B": 4,
+     "B": 5,
      "C": 5,
      "espera": 1,
      "pref": 1,
      "neutro": 2
     },
-    "total": 735.7,
-    "total_com_retoque": 809.3,
-    "rolos_total": 18
+    "total": 760.3,
+    "total_com_retoque": 836.3,
+    "rolos_total": 19
    }
   },
   {
@@ -371,7 +377,7 @@
    "fita": {
     "por_cor": {
      "A": 223.7,
-     "B": 196.2,
+     "B": 217.2,
      "C": 219.7,
      "espera": 30.8,
      "pref": 20.0,
@@ -379,7 +385,7 @@
     },
     "com_retoque": {
      "A": 246.1,
-     "B": 215.8,
+     "B": 238.9,
      "C": 241.7,
      "espera": 33.9,
      "pref": 22.0,
@@ -393,8 +399,8 @@
      "pref": 1,
      "neutro": 2
     },
-    "total": 772.4,
-    "total_com_retoque": 849.6,
+    "total": 793.4,
+    "total_com_retoque": 872.7,
     "rolos_total": 19
    }
   },
@@ -413,15 +419,15 @@
     "serp_23",
     "serp_24"
    ],
-   "postes": 98,
-   "reserva": 2,
-   "metros": 132.6,
+   "postes": 96,
+   "reserva": 4,
+   "metros": 129.0,
    "aposta": "Fita é uma fronteira que se vê; barreira é uma fronteira que custa atravessar. Gasta-se barreira onde atravessar compensa — na boca, no cruzamento e na cabeça da fila cheia.",
    "risco": "Depois dos 6 m de boca, as avenidas A e C ficam na fita, e a reserva móvel é de duas unidades: se o corte de caminho aparecer, não há com que responder. É por isso que as 15 adicionais deixam de ser folga.",
    "fita": {
     "por_cor": {
      "A": 253.1,
-     "B": 149.8,
+     "B": 174.5,
      "C": 241.2,
      "espera": 30.8,
      "pref": 20.0,
@@ -429,7 +435,7 @@
     },
     "com_retoque": {
      "A": 278.4,
-     "B": 164.8,
+     "B": 192.0,
      "C": 265.3,
      "espera": 33.9,
      "pref": 22.0,
@@ -443,8 +449,8 @@
      "pref": 1,
      "neutro": 2
     },
-    "total": 776.9,
-    "total_com_retoque": 854.6,
+    "total": 801.6,
+    "total_com_retoque": 881.8,
     "rolos_total": 20
    }
   }
