@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-09-23",
+ "gerado_em": "2026-09-24",
  "nota": "Fonte versionada dos artefatos publicados. Cada arquivo é a página tal como o serviço a entregou, invólucro da plataforma incluído. O sha256 é do arquivo neste repositório: se o artefato for republicado, ele muda, e é assim que se percebe que a cópia envelheceu.",
  "artefatos": [
   {
@@ -28,9 +28,10 @@
    "url": "https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV",
    "versao": "1790114877-be85",
    "caminho": "mapa/ring3_montagem.html",
-   "o_que_e": "O cenário 3 adaptado, revisto em 22/09: 23 raias por zona, três zonas iguais de 12,87 m, vão de 1,20 m, 180 CCBs dos 200 em estoque, 506 m de fita grossa, lotação 2.105, saídas na face norte junto às portas.",
-   "estado": "republicada em 23/09 (versão 3): laterais A|B e B|C fechadas de ponta a ponta nas duas faces, 228 CCBs (28 a contratar), corredor de serviço de 1,20 m com portão a cada 8 m",
-   "sha256": "d9962f63ebaff8c1b6ec7e91aced14fb2d8387d66196081349ea4cd40aac4ca2"
+   "o_que_e": "O cenário 3 adaptado: 23 raias por zona, três zonas iguais de 12,87 m, vão de 1,20 m, 558,0 m de fita grossa, lotação 2.105, saídas na face norte junto às portas.",
+   "estado": "cópia de 24/09 **à frente da publicação**: CCB só nos pontos de amarração da fita, na lateral e no fechamento do fundo — 202 CCBs, 2 a contratar (eram 228 e 28), com a última CCB de cada zona encostada na porta da boca. Republicar na URL do manifesto antes de usar a versão publicada.",
+   "sha256": "e93fad69478dd9ae4d004f1e1224fc1dc89fc81a0602b6e25248d64fb61b88e3",
+   "publicacao": "pendente — a cópia deste repositório é a versão vigente"
   },
   {
    "chave": "sinalizacao_interna",
@@ -108,9 +109,10 @@
    "versao": "1790200000-b8f1",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
-   "estado": "v8, 23/09: peça nova no T da avenida B (P4-FimAvenidaB), painéis de porta gerados de dados, e a nota de que o recuo das avenidas foi desenhado e recusado",
-   "sha256": "7724c194414eade0e9d1706f48a15ae41cfadbcaceed83362d926eca6a752a9f",
-   "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1."
+   "estado": "cópia de 24/09 **à frente da publicação**: a ficha da P4-FimAvenidaB passa a situar a peça na boca da pequena avenida da parede norte (fim dos 33,6 m da avenida B), e o marcador P4 no mapa desce de y = 35,40 para 33,60 m. Republicar na URL do manifesto.",
+   "sha256": "5900d8372ec28d371897eb7aaceeca685a55c6641917a23926baf2b3793a471b",
+   "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1.",
+   "publicacao": "pendente — a cópia deste repositório é a versão vigente"
   }
  ]
 }

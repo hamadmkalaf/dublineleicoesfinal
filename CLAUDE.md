@@ -10,7 +10,7 @@ necessário para chegar a elas.
 | Tema | Onde vive | Estado |
 |---|---|---|
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
-| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, revisto em 22/09 (zona C vermelha, avenida A até 40 m); 98 unifilas, 777 m de fita |
+| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, revisto em 22/09 (zona C vermelha, avenida A até 40 m) e em 24/09 (pequena avenida da parede norte); 96 unifilas, 802 m de fita |
 | **Arranjo do Hall 2** — cenário, `decisoes.json`, prancheta | `scripts/arranjo_paredes.py` · `confere_arranjo.py` · `gera_prancheta_por_secao.py` | trazidos em 22/09; a prancheta sai deles |
 | **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
@@ -36,11 +36,31 @@ conta do que custaria, e o que a rodada deixou em aberto.
 ## Geometria do local (planta de 16/09/2026)
 
 O Ring 3 como pátio de fila está **confirmado** (18/09), com as **três zonas iguais**.
-A montagem — 23 raias por zona, vão de 1,20 m, **228 CCBs** (200 em estoque + **28 a
-contratar**, ~EUR 364,56), 506 m de fita grossa, lotação **2.105** — está em
-`mapa/ring3_montagem.html` (folha revista em 23/09, gerada por
+A montagem — 23 raias por zona, vão de 1,20 m, **202 CCBs** (200 em estoque + **2 a
+contratar**, ~EUR 26,04), 558,0 m de fita grossa, lotação **2.105** — está em
+`mapa/ring3_montagem.html` (folha revista em 24/09, gerada por
 `scripts/ring3_montagem.py` no repositório de origem) e no `Mapa-Ring3` de
-`mapa/sinalizacao/`.
+`mapa/sinalizacao/`. **O `Mapa-Ring3` ainda diz 228: peça de sinalização a refazer.**
+
+**Revisão de 24/09 do Ring 3 — CCB só onde a fita amarra.** A lateral deixou de ser
+parede contínua e o fechamento contra o trecho de fundo deixou de ser corrida fechada:
+nos dois, o painel vai só nos pontos em que a ponta fixa da divisória amarra, e fita
+cobre o vão. A conta está na alternância que o desenho já tinha — a ponta fixa fica do
+lado oposto ao vão de meia-volta, e o vão troca de lado a cada raia, então numa linha
+de lateral amarram as divisórias **ímpares** da zona vizinha e na outra as **pares**:
+**11 pontos por linha, a 2,78 m**, e um painel de 2,00 m não pega dois. São **11 CCBs
+por linha em vez de 16** (44 no total, eram 64) e **3 painéis por zona no fundo em vez
+de 5** (9, eram 15), com o último encostado na **porta da boca**. Total **202**, **2 a
+contratar** (~EUR 26,04), fita grossa de 506,0 para **558,0 m**. O **portão a cada 8 m
+sai**: a passagem é o próprio vão de fita, 11 por face, sendo um de 1,78 m por linha,
+junto ao trecho de fundo, que passa maca. **O custo, registrado de propósito:** vão de
+0,78 m coberto por fita reabre o corte lateral que 23/09 havia fechado — quem está na
+zona A pode entrar no corredor de serviço, subir e voltar à A mais adiante. Os 26
+painéis economizados são exatamente o que o fecha de novo, se o Posto quiser. A
+**parede entre a zona C e o corredor de chegada não entrou na economia**: a mesma regra
+ali daria 197 no total e compra zero, mas ela dá para o corredor por onde passam os
+16,8 mil que entram, e um vão ali vale ~150 m de percurso. Está no script como
+`PAREDE_C = 'amarracao'`, para o Posto decidir.
 
 **Revisão de 23/09 do Ring 3 — as laterais A|B e B|C fecham inteiras.** Até 22/09
 o vão de 1,20 m entre zonas era só espaço vazio: não havia barreira onde afixar a
@@ -48,12 +68,11 @@ fita que separa uma zona da outra, e a divisória existia no desenho mas não no
 chão. Agora cada zona tem a sua **própria linha de CCBs** ao longo dos 32,0 m —
 duas linhas por vão, uma em cada face —, e entre elas fica um **corredor de
 serviço de 1,20 m**, largura que o desenho já exigia para passar maca e fiscal
-contra o fluxo. São **64 CCBs a mais**, e é o que leva o total de 180 para 228:
-**28 acima do estoque de 200, a contratar**. Cada linha tem **6 portões** de uma
-CCB a cada 8 m (12 ao todo), para o corredor de serviço se alcançar de qualquer
-ponto. *A alternativa registrada na folha* — uma só linha de CCBs no eixo do vão,
-196 CCBs, cabe no estoque — foi descartada: ela deixa 0,60 m de cada lado e mata
-a passagem de maca, que é decisão anterior.
+contra o fluxo. Naquela revisão eram **64 CCBs a mais** e o total ia de 180 a 228 —
+28 acima do estoque —, com 12 portões de uma CCB. **A conta foi superada em 24/09**,
+acima; o corredor de serviço e o vão de 1,20 m continuam valendo. *A alternativa
+registrada na folha* — uma só linha de CCBs no eixo do vão, 196 CCBs — continua
+descartada: deixa 0,60 m de cada lado e mata a passagem de maca.
 
 **Revisão de 22/09 do Ring 3.** A boca de entrada da **zona A fica no extremo oeste**
 (as de B e C seguem a leste): com 23 raias, ímpar, a raia de cima anda no sentido
@@ -64,7 +83,8 @@ canto nordeste, por onde a corrente entra: corredor de chegada 0–3,00 m · sa�
 vão da própria porta; a saída da A termina a 2,91 m do eixo da S4, no batente oeste do
 vão, e atravessa o apron em diagonal. A B sai pelo meio: a metade oeste da raia de cima
 (5,43 m) fica fechada por 1 CCB atravessada, e custa 13 lugares. Essa conta fechava
-em 180 CCBs dentro do estoque; o fechamento das laterais em 23/09 a levou a 228.
+em 180 CCBs dentro do estoque; o fechamento das laterais em 23/09 a levou a 228, e a
+amarração de 24/09 a trouxe de volta a 202.
 
 O percurso tem três trechos físicos distintos. **Ring 3 é o pátio de fila ao ar
 livre; Hall 2 é o salão de votação.**
@@ -169,8 +189,19 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   isso as três mesas de alta carga saem em **roxo** (`classes.cores.alta` de
   `decisoes.json`), as portas de emergência em verde-água e os avisos em cinza —
   vermelho só significa "zona C". A avenida A termina em y = 40,0 m, para servir o
-  ramal da mesa em 37,62 m. Fita da Definitiva: **777 m, 11 rolos a comprar**;
-  barreira em **98 unifilas em 133 m**, reserva móvel 2.
+  ramal da mesa em 37,62 m. Fita da Definitiva: **802 m, 11 rolos a comprar**;
+  barreira em **96 unifilas em 129 m**, reserva móvel 4.
+- **A pequena avenida da parede norte (24/09).** A avenida B deixou de encostar no T:
+  o **último par de unifilas** saiu, a barreira dela para em **y = 33,60 m** e esse
+  1,80 m virou uma faixa transversal de **1,80 × 25,50 m** (x de 11,00 a 36,50),
+  entre a boca da avenida e o distribuidor em y = 35,40. **As duas bordas são fita,
+  nenhuma é barreira** — é isso que faz a escolha de lado acontecer andando, e não
+  parada no metro quadrado do T. Ela para nas bordas das bandas oeste e leste de
+  propósito: adiante cortaria o ramal do A5 (y = 33,72) e o do C6 (y = 35,55), e
+  `confere_avenida_norte()` reprova o desenho se isso mudar. Devolve 2 unifilas e
+  custa 24,7 m de amarelo, sem mudar os 11 rolos. As constantes são
+  `AVENIDA_NORTE`, `Y_AVENIDA_NORTE` e `X_AVENIDA_NORTE`; o y final da avenida B
+  **não é digitado**, um assert exige que ele seja o da boca.
 - **O recuo das avenidas foi desenhado em 23/09 e recusado.** O pedido era
   alargar a banda de fila de cada parede empurrando a avenida daquela parede para
   o centro (bandas de 13,00 / 14,00 / 13,00 m). Não entrou: com a banda norte em
@@ -266,9 +297,9 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
   cada painel diz onde fica a **ponta** de cada corredor: o primeiro grupo leva
   "LOGO NA ENTRADA DO CORREDOR" e o último, "NO FIM DO CORREDOR, O MAIS DISTANTE".
   Na porta A isso é A1 e A5; na C, C1 e C6.
-- **`P4-FimAvenidaB`** — fence banner de 1040 × 410 no **T da avenida B**, o
-  único ponto do salão em que todo o fluxo de uma entrada tem de escolher um
-  lado. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na da
+- **`P4-FimAvenidaB`** — fence banner de 1040 × 410 na **boca da pequena avenida da
+  parede norte** (o fim dos 33,6 m da avenida B; era o T, até 24/09), o ponto em que
+  todo o fluxo de uma entrada tem de escolher um lado. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na da
   porta C, B4 e B5. O corte é **por mesa**, não por grupo: o par B3 fica
   escarranchado no vão da avenida, com uma mesa de cada lado do eixo, então sai à
   esquerda com a ressalva no rodapé de que está bem em frente. A primeira versão

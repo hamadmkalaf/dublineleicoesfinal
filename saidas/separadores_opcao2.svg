@@ -3,7 +3,7 @@
 <defs><pattern id="prot" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="7" stroke="#333A42" stroke-width="1.1" stroke-opacity=".28"/></pattern><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
 <text x="52" y="34" font-size="21" font-weight="700" fill="#16202b">Opção 2 · As cabeças de fila</text>
 <text x="52" y="56" font-size="12.5" fill="#5b6470">111 unifilas em barreira (137 m de cinta esticada) de 100 orçadas · <tspan fill="#333A42">não cabe: faltam 11 unidades</tspan></text>
-<text x="52" y="78" font-size="12.5" fill="#5b6470">Todo o resto em fita no chão: <tspan font-weight="700">772 m</tspan> — 850 m com o retoque do meio-dia, 19 rolos de 50 m repartidos em 6 cores</text>
+<text x="52" y="78" font-size="12.5" fill="#5b6470">Todo o resto em fita no chão: <tspan font-weight="700">793 m</tspan> — 873 m com o retoque do meio-dia, 19 rolos de 50 m repartidos em 6 cores</text>
 <polygon points="169.0,758.0 806.5,758.0 806.5,92.0 52.0,92.0 52.0,653.0 169.0,653.0" fill="#ffffff" stroke="#16202b" stroke-width="2"/>
 <rect x="761.5" y="92.0" width="45.0" height="666.0" fill="url(#prot)" stroke="#333A42" stroke-opacity=".35" stroke-dasharray="3 3"/>
 <rect x="361.9" y="92.0" width="53.4" height="45.0" fill="url(#prot)" stroke="#333A42" stroke-opacity=".35" stroke-dasharray="3 3"/>
@@ -17,13 +17,18 @@
 <polyline points="379.4,758.0 379.4,707.0 217.0,707.0 217.0,158.0" fill="none" stroke="#33507E" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
 <polyline points="427.5,758.0 427.5,662.0 262.0,662.0 262.0,158.0" fill="none" stroke="#33507E" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
 <line x1="239.5" y1="432.5" x2="239.5" y2="357.5" stroke="#33507E" stroke-width="3" marker-end="url(#seta)" opacity=".9"/>
-<polyline points="454.0,758.0 454.0,227.0" fill="none" stroke="#E8C63A" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
-<polyline points="499.0,758.0 499.0,227.0" fill="none" stroke="#E8C63A" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
-<line x1="476.5" y1="492.5" x2="476.5" y2="417.5" stroke="#E8C63A" stroke-width="3" marker-end="url(#seta)" opacity=".9"/>
+<polyline points="454.0,758.0 454.0,254.0" fill="none" stroke="#E8C63A" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
+<polyline points="499.0,758.0 499.0,254.0" fill="none" stroke="#E8C63A" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
+<line x1="476.5" y1="506.0" x2="476.5" y2="431.0" stroke="#E8C63A" stroke-width="3" marker-end="url(#seta)" opacity=".9"/>
 <polyline points="532.0,758.0 532.0,710.0 554.5,680.0 554.5,165.5" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
 <polyline points="577.0,758.0 577.0,710.0 599.5,680.0 599.5,165.5" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85" stroke-linejoin="round"/>
 <line x1="577.0" y1="422.7" x2="577.0" y2="347.7" stroke="#C8102E" stroke-width="3" marker-end="url(#seta)" opacity=".9"/>
+<rect x="217.0" y="227.0" width="382.5" height="27.0" fill="#E8C63A" fill-opacity=".10"/>
 <polyline points="205.0,227.0 686.5,227.0" fill="none" stroke="#e08a00" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85"/>
+<polyline points="217.0,254.0 599.5,254.0" fill="none" stroke="#e08a00" stroke-width="2.4" stroke-dasharray="9 6" stroke-opacity=".85"/>
+<line x1="439.0" y1="240.5" x2="277.0" y2="240.5" stroke="#E8C63A" stroke-width="2.6" marker-end="url(#seta)" opacity=".95"/>
+<line x1="514.0" y1="240.5" x2="569.5" y2="240.5" stroke="#E8C63A" stroke-width="2.6" marker-end="url(#seta)" opacity=".95"/>
+<text x="476.5" y="244.0" font-size="9.4" font-weight="800" fill="#8a6a00" text-anchor="middle">PEQUENA AVENIDA · 1,80 m</text>
 <line x1="142.0" y1="623.0" x2="259.8" y2="728.0" stroke="#8a94a6" stroke-width="1.6" stroke-dasharray="2 5" marker-end="url(#seta)" opacity=".75"/>
 <line x1="352.0" y1="308.0" x2="259.8" y2="728.0" stroke="#8a94a6" stroke-width="1.6" stroke-dasharray="2 5" marker-end="url(#seta)" opacity=".75"/>
 <line x1="592.0" y1="308.0" x2="692.5" y2="728.0" stroke="#8a94a6" stroke-width="1.6" stroke-dasharray="2 5" marker-end="url(#seta)" opacity=".75"/>
@@ -426,29 +431,31 @@
 <text x="832.5" y="276" font-size="12" font-weight="700" fill="#16202b" letter-spacing=".08em">O QUE VAI NA FITA</text>
 <line x1="832.5" y1="290" x2="852.5" y2="290" stroke="#8a94a6" stroke-width="2" stroke-dasharray="6 4"/>
 <text x="860.5" y="294" font-size="10.6" fill="#31404f">avenidas não barreiradas — 2 linhas a 3,00 m</text>
-<line x1="832.5" y1="309" x2="852.5" y2="309" stroke="#8a94a6" stroke-width="2" stroke-dasharray="6 4"/>
-<text x="860.5" y="313" font-size="10.6" fill="#31404f">28 ramais de mesa — canal de 1,10 m</text>
-<line x1="832.5" y1="328" x2="852.5" y2="328" stroke="#16202b" stroke-width="3"/>
-<text x="860.5" y="332" font-size="10.6" fill="#31404f">linha de espera a 1,50 m — zebrado, nunca amarelo</text>
-<line x1="832.5" y1="347" x2="852.5" y2="347" stroke="#8a94a6" stroke-width="2" stroke-dasharray="6 4"/>
-<text x="860.5" y="351" font-size="10.6" fill="#31404f">papel da seção, colado fora da linha de pisada</text>
-<line x1="832.5" y1="366" x2="852.5" y2="366" stroke="#8a94a6" stroke-width="3"/>
-<text x="860.5" y="370" font-size="10.6" fill="#31404f">saída: campo livre, só sinalizado</text>
-<line x1="832.5" y1="389" x2="1042.5" y2="389" stroke="#dcdde1"/>
-<rect x="832.5" y="394" width="13" height="11" fill="#6A1B9A"/>
-<text x="852.5" y="403" font-size="10.6" fill="#31404f">alto comparecimento (3)</text>
-<rect x="832.5" y="412" width="13" height="11" fill="#d4a017"/>
-<text x="852.5" y="421" font-size="10.6" fill="#31404f">médio comparecimento (8)</text>
-<rect x="832.5" y="430" width="13" height="11" fill="#1e8449"/>
-<text x="852.5" y="439" font-size="10.6" fill="#31404f">baixo comparecimento (17)</text>
-<text x="832.5" y="467" font-size="10.2" fill="#8a94a6">A aposta</text>
-<text x="832.5" y="481" font-size="10.4" fill="#31404f">Pressão de multidão só existe onde a fila</text>
-<text x="832.5" y="494" font-size="10.4" fill="#31404f">é estática. Corredor é fluxo andando, e</text>
-<text x="832.5" y="507" font-size="10.4" fill="#31404f">fluxo andando obedece a linha pintada.</text>
-<text x="832.5" y="528" font-size="10.2" fill="#8a94a6">O risco</text>
-<text x="832.5" y="542" font-size="10.4" fill="#333A42">A boca é o gargalo não paralelizável já</text>
-<text x="832.5" y="555" font-size="10.4" fill="#333A42">identificado: 11,5 mil pessoas por 18,4 m</text>
-<text x="832.5" y="568" font-size="10.4" fill="#333A42">de porta, com as três correntes separadas</text>
-<text x="832.5" y="581" font-size="10.4" fill="#333A42">apenas por fita.</text>
+<line x1="832.5" y1="309" x2="852.5" y2="309" stroke="#e08a00" stroke-width="3"/>
+<text x="860.5" y="313" font-size="10.6" fill="#31404f">pequena avenida da parede norte — 1,80 m, 2 bordas</text>
+<line x1="832.5" y1="328" x2="852.5" y2="328" stroke="#8a94a6" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="860.5" y="332" font-size="10.6" fill="#31404f">28 ramais de mesa — canal de 1,10 m</text>
+<line x1="832.5" y1="347" x2="852.5" y2="347" stroke="#16202b" stroke-width="3"/>
+<text x="860.5" y="351" font-size="10.6" fill="#31404f">linha de espera a 1,50 m — zebrado, nunca amarelo</text>
+<line x1="832.5" y1="366" x2="852.5" y2="366" stroke="#8a94a6" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="860.5" y="370" font-size="10.6" fill="#31404f">papel da seção, colado fora da linha de pisada</text>
+<line x1="832.5" y1="385" x2="852.5" y2="385" stroke="#8a94a6" stroke-width="3"/>
+<text x="860.5" y="389" font-size="10.6" fill="#31404f">saída: campo livre, só sinalizado</text>
+<line x1="832.5" y1="408" x2="1042.5" y2="408" stroke="#dcdde1"/>
+<rect x="832.5" y="413" width="13" height="11" fill="#6A1B9A"/>
+<text x="852.5" y="422" font-size="10.6" fill="#31404f">alto comparecimento (3)</text>
+<rect x="832.5" y="431" width="13" height="11" fill="#d4a017"/>
+<text x="852.5" y="440" font-size="10.6" fill="#31404f">médio comparecimento (8)</text>
+<rect x="832.5" y="449" width="13" height="11" fill="#1e8449"/>
+<text x="852.5" y="458" font-size="10.6" fill="#31404f">baixo comparecimento (17)</text>
+<text x="832.5" y="486" font-size="10.2" fill="#8a94a6">A aposta</text>
+<text x="832.5" y="500" font-size="10.4" fill="#31404f">Pressão de multidão só existe onde a fila</text>
+<text x="832.5" y="513" font-size="10.4" fill="#31404f">é estática. Corredor é fluxo andando, e</text>
+<text x="832.5" y="526" font-size="10.4" fill="#31404f">fluxo andando obedece a linha pintada.</text>
+<text x="832.5" y="547" font-size="10.2" fill="#8a94a6">O risco</text>
+<text x="832.5" y="561" font-size="10.4" fill="#333A42">A boca é o gargalo não paralelizável já</text>
+<text x="832.5" y="574" font-size="10.4" fill="#333A42">identificado: 11,5 mil pessoas por 18,4 m</text>
+<text x="832.5" y="587" font-size="10.4" fill="#333A42">de porta, com as três correntes separadas</text>
+<text x="832.5" y="600" font-size="10.4" fill="#333A42">apenas por fita.</text>
 <text x="52" y="790" font-size="10" fill="#8a94a6">Hall 2 · RDS Ballsbridge · cenário Paredes_ABC · escala 1 m = 15 px · poste a 1.80 m (cinta de 2.00 m esticada a 90%)</text>
 </svg>

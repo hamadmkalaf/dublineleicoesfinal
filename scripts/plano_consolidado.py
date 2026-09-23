@@ -254,8 +254,8 @@ CORPO_AQUI
   <div class="fc-local">
     <h3><span class="pt">P4</span>Fim da avenida B</h3>
     <div class="ondemapa">MAPA_AQUI</div>
-    <p class="onde"><strong>Onde:</strong> No T da avenida B, no fim dos 35,4 m que sobem da porta S5, virada para quem chega — a 3 m da banda da parede norte.</p>
-    <p class="texto">Peça nova em 23/09. A avenida B é a única que não corre rente à sua parede: ela sobe perpendicular e termina em <strong>T</strong>, e nesse metro quadrado todo o comparecimento da porta B — 3.832 esperados — tem de escolher um lado. A peça existe para que a escolha se faça <em>andando</em>, e não parado no T, que é o ponto mais frágil do traçado inteiro. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na direção da porta C, B4 e B5. O corte é por mesa, não por grupo: o par <strong>B3 fica escarranchado no vão da avenida</strong>, com uma mesa de cada lado do eixo, então ele sai à esquerda com a ressalva escrita no rodapé de que está bem em frente. Os subtítulos dizem "na direção da porta A" e "na direção da porta C" porque é o que não muda com a direção para onde o eleitor está virado.</p>
+    <p class="onde"><strong>Onde:</strong> Na boca da pequena avenida da parede norte, onde a barreira da avenida B termina — no fim dos 33,6 m que sobem da porta S5, virada para quem chega, a 1,80 m do distribuidor.</p>
+    <p class="texto">Peça nova em 23/09. A avenida B é a única que não corre rente à sua parede: ela sobe perpendicular e termina em <strong>T</strong>, e nesse metro quadrado todo o comparecimento da porta B — 3.832 esperados — tem de escolher um lado. A peça existe para que a escolha se faça <em>andando</em>, e não parado no T, que era o ponto mais frágil do traçado inteiro. Em <strong>24/09</strong> o último par de unifilas da avenida B saiu e esse 1,80 m virou a <strong>pequena avenida</strong> da parede norte: a peça passa a ser lida na boca dela, e a escolha de lado acontece de fato em movimento, dentro de uma faixa transversal, e não num metro quadrado. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na direção da porta C, B4 e B5. O corte é por mesa, não por grupo: o par <strong>B3 fica escarranchado no vão da avenida</strong>, com uma mesa de cada lado do eixo, então ele sai à esquerda com a ressalva escrita no rodapé de que está bem em frente. Os subtítulos dizem "na direção da porta A" e "na direção da porta C" porque é o que não muda com a direção para onde o eleitor está virado.</p>
     <dl class="specs"><div class="sp"><dt>Medida</dt><dd>2080 × 820 mm</dd></div><div class="sp"><dt>Quantidade</dt><dd>1 peça</dd></div><div class="sp"><dt>Modelo</dt><dd>Fence banner 2080 × 820 mm</dd></div><div class="sp"><dt>Corpo</dt><dd>seções 58 mm · lido a 10 m</dd></div><div class="sp"><dt>Fixação</dt><dd>amarrada na última unifila da avenida B com tie wraps</dd></div></dl>
   </div>
 </section>
@@ -263,10 +263,13 @@ CORPO_AQUI
 
 MARCADOR_S6 = ('<rect x="225.9" y="276.2" width="16" height="16" fill="#C8102E" stroke="#3F3F3F" stroke-width="1.4"/>\n'
                '<text x="233.9" y="287.2" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P6</text>')
-# O T da avenida B em coordenada da planta do plano: o eixo da avenida (x = 28,30 m)
-# e o fim dela (y = 35,40 m), pela escala do mapa — 6,20 px/m, origem em (20, 297).
-MARCADOR_T = ('<rect x="187.6" y="69.7" width="16" height="16" fill="#E8C63A" stroke="#3F3F3F" stroke-width="1.4"/>\n'
-              '<text x="195.6" y="80.7" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P4</text>')
+# A boca da pequena avenida em coordenada da planta do plano: o eixo da avenida B
+# (x = 28,30 m) e o fim da barreira dela (y = 33,60 m desde 24/09, era 35,40 m),
+# pela escala do mapa — 6,20 px/m, origem em (20, 297).
+MARCADOR_T_2309 = ('<rect x="187.6" y="69.7" width="16" height="16" fill="#E8C63A" stroke="#3F3F3F" stroke-width="1.4"/>\n'
+                   '<text x="195.6" y="80.7" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P4</text>')
+MARCADOR_T = ('<rect x="187.6" y="80.9" width="16" height="16" fill="#E8C63A" stroke="#3F3F3F" stroke-width="1.4"/>\n'
+              '<text x="195.6" y="91.9" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#3F3F3F">P4</text>')
 
 
 # O que a versão descartada da peça (fim do corredor C) deixou escrito no plano.
@@ -350,6 +353,41 @@ ITENS_TOTAL = 41
 SEM_IVA, IVA, COM_IVA = 1234.37, 283.90, 1518.27
 
 
+# ---------------------------------------------------------------- revisão de 24/09
+# As duas frases da ficha do P4 antes e depois da pequena avenida. A versão nova
+# é a que FICHA_FIM_B já traz, para quem remontar o plano do zero; estas ficam
+# aqui para corrigir o HTML que foi gravado em 23/09.
+ONDE_23_09 = ('<p class="onde"><strong>Onde:</strong> No T da avenida B, no fim dos 35,4 m '
+              'que sobem da porta S5, virada para quem chega — a 3 m da banda da parede norte.</p>')
+ONDE_24_09 = ('<p class="onde"><strong>Onde:</strong> Na boca da pequena avenida da parede '
+              'norte, onde a barreira da avenida B termina — no fim dos 33,6 m que sobem da '
+              'porta S5, virada para quem chega, a 1,80 m do distribuidor.</p>')
+TEXTO_23_09 = ('A peça existe para que a escolha se faça <em>andando</em>, e não parado no T, '
+               'que é o ponto mais frágil do traçado inteiro.')
+TEXTO_24_09 = ('A peça existe para que a escolha se faça <em>andando</em>, e não parado no T, '
+               'que era o ponto mais frágil do traçado inteiro. Em <strong>24/09</strong> o '
+               'último par de unifilas da avenida B saiu e esse 1,80 m virou a '
+               '<strong>pequena avenida</strong> da parede norte: a peça passa a ser lida na '
+               'boca dela, e a escolha de lado acontece de fato em movimento, dentro de uma '
+               'faixa transversal, e não num metro quadrado.')
+
+
+def revisao_24_09(h):
+    """A pequena avenida da parede norte muda onde a P4-FimAvenidaB é lida.
+
+    O último par de unifilas da avenida B saiu, a barreira passa a terminar em
+    y = 33,60 m e esse 1,80 m vira uma faixa transversal. A peça continua
+    amarrada na última unifila — que é a mesma peça de hardware —, mas ela
+    deixa de ficar em cima do T e passa a ficar na boca da avenida pequena.
+    """
+    if "arquivo <code>P4-fim-avenida-B</code>" not in h:
+        return h                      # o plano ainda está no estado de 22/09
+    a, f = secao(h, "arquivo <code>P4-fim-avenida-B</code>")
+    h = revisa(h, [(ONDE_23_09, ONDE_24_09), (TEXTO_23_09, TEXTO_24_09),
+                   (MARCADOR_T_2309, MARCADOR_T)], (a, f))
+    return h
+
+
 def numeros(h):
     h = re.sub(r'(<div class="fact"><dt>Peças externas</dt><dd>)\d+(</dd>)',
                rf'\g<1>{PECAS_EXTERNAS}\g<2>', h)
@@ -372,6 +410,7 @@ def monta():
     h = PAGINA.read_text(encoding="utf-8")
     h = revisao_22_09(h)
     h = revisao_23_09(h)
+    h = revisao_24_09(h)
     h = troca_artes(h)
     h = troca_galeria(h)
     return numeros(h)

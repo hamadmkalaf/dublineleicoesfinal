@@ -148,7 +148,8 @@ problema que ele resolvia.
 
 **O que custava, se voltasse à mesa.** Cada um dos 28 ramais atravessa a banda
 inteira, então todos cresciam junto — o da norte dobrava, de 4,90 para 9,90 m — e
-a fita ia de 777 para **960 m**, com os rolos a comprar subindo de 11 para **18**
+a fita ia de 777 para **960 m** (base de 23/09; a vigente é 802), com os rolos a
+comprar subindo de 11 para **18**
 (o amarelo, hoje com saldo positivo, passaria a pedir 3). Em troca, a avenida B
 encurtava 5,00 m em cada trilho e devolvia 6 unifilas, que iriam para as bocas de
 A e C e para a reserva móvel. **Barreira e fita andavam em sentidos opostos, e a
@@ -174,10 +175,10 @@ banda larga — o mais barato dos disponíveis.
 |---|---:|---:|
 | Boca da avenida A (S4), dois trilhos, 6 m cada | 12,0 | 10 |
 | Boca da avenida C (S6), dois trilhos, 6 m cada | 12,0 | 10 |
-| Avenida B, os dois trilhos inteiros | 70,8 | 42 |
+| Avenida B, os dois trilhos até a pequena avenida | 67,2 | 40 |
 | Serpenteados dos grupos A3, B2 e C5 | 37,8 | 36 |
-| **Total** | **133 m** | **98** |
-| Reserva móvel | | **2** |
+| **Total** | **129 m** | **96** |
+| Reserva móvel | | **4** |
 
 A avenida B entra inteira e por isso não tem item de boca separado — contar as
 duas coisas seria contar os primeiros 6 m duas vezes.
@@ -185,22 +186,32 @@ duas coisas seria contar os primeiros 6 m duas vezes.
 **Por que aqui.** A barreira paga os três pontos onde a fita não faz o serviço:
 (a) a **boca**, porque as três portas são contíguas — 0,29 m de alvenaria entre
 elas, 18,4 m de porta no total — e quem entra pela errada não se perde, é
-*conduzido até a parede errada*; (b) a **avenida B**, porque atravessa 35 m de
+*conduzido até a parede errada*; (b) a **avenida B**, porque atravessa 34 m de
 piso aberto com a reserva de fila encostada nos dois flancos; (c) as **três
 de alta carga**, os únicos lugares com multidão parada declarada.
+
+**A pequena avenida da parede norte (24/09).** A avenida B deixa de encostar no
+T: o **último par de unifilas** sai, a barreira para em y = 33,60 e esse 1,80 m
+vira uma faixa transversal de 1,80 × 25,50 m entre as bandas oeste e leste. As
+duas bordas são fita, nenhuma é barreira, e é ela que resolve o ponto mais
+frágil do traçado — a escolha de lado passa a ser feita **andando**, e não
+parada num metro quadrado. A faixa **não** acompanha o distribuidor até
+x = 42,30: fora das bandas ela cortaria o ramal do A5 (y = 33,72) e o do C6
+(y = 35,55), e `confere_avenida_norte()` reprova o desenho se isso mudar.
+Devolve 2 unifilas e custa 24,7 m de fita amarela.
 
 ### A fita, por cor
 
 | Cor | Necessário | Em estoque | Saldo |
 |---|---:|---:|---:|
 | Azul (zona A) | 253,1 m | 165 m | **−88,1 m** |
-| Amarelo (zona B) | 149,8 m | 165 m | +15,2 m |
+| Amarelo (zona B) | 174,5 m | 165 m | **−9,5 m** |
 | Vermelho (zona C) | 241,2 m | — (era laranja) | **−241,2 m** |
 | Zebrado preto-e-branco (linha de espera) | 30,8 m | — | comprar |
 | Verde (preferencial S7) | 20,0 m | — | comprar |
 | Branco (rota de saída) | 82,0 m | — | comprar |
-| **Total** | **777 m** | | |
-| **Com 10% de retoque** | **855 m** | | |
+| **Total** | **802 m** | | |
+| **Com 10% de retoque** | **882 m** | | |
 
 **Faltam 11 rolos de 50 m**: 2 azul, 5 vermelho, 1 zebrado, 1 verde, 2 branco.
 Ordem de EUR 140–220 (*estimativa, a cotar*). Até 22/09 eram 8 rolos (2 azul,
@@ -208,13 +219,17 @@ Ordem de EUR 140–220 (*estimativa, a cotar*). Até 22/09 eram 8 rolos (2 azul,
 o rolo laranja em estoque (165 m) deixa de servir ao desenho. Os 8 m a mais de
 azul são a avenida A, que passou a terminar em y = 40,0 para servir o ramal da
 mesa 3179·0530, deslocada para 37,62 m na mesma revisão. O recuo das avenidas de
-23/09 levaria a conta a 18 rolos, e não entrou.
+23/09 levaria a conta a 18 rolos, e não entrou. Em **24/09** a pequena avenida
+acrescentou 24,7 m de amarelo e virou o saldo dessa cor de +15,2 para −9,5 m —
+**sem mudar os 11 rolos**, porque os 4 rolos que o amarelo já pedia cobrem a
+diferença.
 
 Azul e vermelho passam tanto do amarelo porque as bandas oeste e leste são bem
 mais fundas que a norte, então os seus ramais são mais compridos. **A parede
 norte é barata em fita justamente porque a avenida B chega perpendicular:** o T
-que é a fragilidade do traçado é também o que encurta os seus ramais — e é, desde
-23/09, o ponto que a peça `P4-FimAvenidaB` resolve.
+que era a fragilidade do traçado é também o que encurta os seus ramais — e é,
+desde 23/09, o ponto que a peça `P4-FimAvenidaB` resolve, agora lida na boca da
+pequena avenida de 24/09.
 
 ## 6. Achados
 
@@ -247,11 +262,12 @@ vira farrapo antes do meio-dia. Duas correções que não custam nada: papel
 altura dos olhos, no x-banner — já orçado no item (c), EUR 1.961,00. O chão diz
 *por onde andar*; o banner diz *para onde ir*.
 
-**A reserva de 2 unifilas é insuficiente.** Fita colada às 7h não se move às
+**A reserva de 4 unifilas é insuficiente.** Fita colada às 7h não se move às
 13h. A barreira é a única parte do desenho que responde a uma surpresa — e as
 surpresas deste projeto têm nome: MRV 24 e MRV 11 ainda sem mesário confirmado.
-**Pedido: mais 15 unidades, EUR 195,45**, para levar a reserva a 17. É 1,2% do
-orçamento do 1º turno.
+A pequena avenida de 24/09 devolveu 2 unidades e a reserva foi de 2 para 4, o que
+não muda a ordem de grandeza. **Pedido: mais 15 unidades, EUR 195,45**, para
+levar a reserva a 19. É 1,2% do orçamento do 1º turno.
 
 ## 8. Efeitos de segunda e terceira ordem
 
@@ -298,7 +314,7 @@ sozinhas um trabalho de 395.
 6. O **T da parede norte**. Se houver folga, vale estudar uma segunda perna para
    a avenida B — mas isso mexe na atribuição mesa → entrada, fechada desde
    15/09.
-7. Quem cola os 777 m de fita, e quando. É trabalho de véspera com o salão
+7. Quem cola os 802 m de fita, e quando. É trabalho de véspera com o salão
    vazio.
 
 ## 10. Fontes

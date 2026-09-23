@@ -172,10 +172,13 @@ AVENIDAS = {
           "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (14.00, 6.40),
                              (14.00, 40.00)]},
     # B sobe reta de S5 ate a banda norte. Nao distribui em pente: termina em T.
+    # **Revisao de 24/09:** a barreira para um par de unifilas antes do T, em
+    # y = 33,60, e esse 1,80 m vira a PEQUENA AVENIDA da parede norte -- ver
+    # AVENIDA_NORTE, abaixo. O y final sai da conta, nao e digitado.
     "B": {"parede": "norte", "porta": "S5", "hex": CORES_ZONA["B"],
           "lado_parede": None,
-          "trilho_interno": [(26.80, 0.00), (26.80, 35.40)],
-          "trilho_externo": [(29.80, 0.00), (29.80, 35.40)]},
+          "trilho_interno": [(26.80, 0.00), (26.80, 33.60)],
+          "trilho_externo": [(29.80, 0.00), (29.80, 33.60)]},
     # C sai pelos 3 m oeste de S6 -- a leste de x = 35,09 esta o recuo da
     # preferencial S7 -- e abre para a banda leste.
     "C": {"parede": "leste", "porta": "S6", "hex": CORES_ZONA["C"],
@@ -192,8 +195,34 @@ BANDA_PAREDE = {"oeste": 11.00, "norte": 9.00, "leste": 10.80}
 # os dois lados. E o unico ponto do salao onde todo o fluxo de uma entrada passa
 # por um so metro quadrado -- e, desde 23/09, o ponto que a peca P4-FimAvenidaB
 # resolve, dizendo quais secoes ficam a esquerda e quais a direita.
-DISTRIBUIDOR_NORTE = [(10.20, 44.40 - BANDA_PAREDE["norte"]),
-                      (42.30, 44.40 - BANDA_PAREDE["norte"])]
+Y_BANDA_NORTE = 44.40 - BANDA_PAREDE["norte"]        # 35,40 m
+DISTRIBUIDOR_NORTE = [(10.20, Y_BANDA_NORTE), (42.30, Y_BANDA_NORTE)]
+# A PEQUENA AVENIDA da parede norte (pedido do Posto, 24/09). Ate 23/09 a
+# avenida B encostava no T, e o T era o unico ponto do salao em que todo o
+# comparecimento de uma entrada -- 3.832 esperados -- escolhia um lado PARADO,
+# num metro quadrado. Tirando **o ultimo par de unifilas** da avenida B a
+# barreira para 1,80 m antes, e esses 1,80 m viram uma avenida transversal: a
+# corrente se abre andando, antes das filas da parede norte, e a peca
+# P4-FimAvenidaB deixa de ser lida em cima do gargalo.
+#
+# 1,80 m e exatamente o vao de um par de unifilas -- uma em cada trilho --, e e
+# por isso que a economia e de 2 unidades e nao de uma fracao. A avenida corre
+# pelo mesmo vao em x do distribuidor: os dois lados dela sao as unicas duas
+# linhas transversais do salao, e nenhuma das duas e barreira.
+#
+# Ela **para nas bordas das bandas oeste e leste**, e nao acompanha o
+# distribuidor ate 42,30 m: fora delas a faixa cortaria o ramal do A5 (y =
+# 33,72) a oeste e o do C6 (y = 35,55) a leste, que correm em y constante na
+# mesma altura. Quem anda pela avenida nao cruza fila parada -- e a regra de
+# 17/09 --, e confere_avenida_norte() reprova o desenho se isso mudar.
+AVENIDA_NORTE = VAO_POSTE                            # 1,80 m
+Y_AVENIDA_NORTE = round(Y_BANDA_NORTE - AVENIDA_NORTE, 2)    # 33,60 m
+X_AVENIDA_NORTE = (BANDA_PAREDE["oeste"], round(47.3 - BANDA_PAREDE["leste"], 2))
+AVENIDA_NORTE_SUL = [(X_AVENIDA_NORTE[0], Y_AVENIDA_NORTE),
+                     (X_AVENIDA_NORTE[1], Y_AVENIDA_NORTE)]
+assert AVENIDAS["B"]["trilho_interno"][-1][1] == Y_AVENIDA_NORTE, \
+    "a avenida B tem de terminar na boca da pequena avenida"
+assert AVENIDAS["B"]["trilho_externo"][-1][1] == Y_AVENIDA_NORTE
 BOCA_PROF = {"A": 6.00, "B": 6.00, "C": 6.00}   # trecho barreirado junto a porta
 BOCA_SAIDA = {"S2": 8.00, "S8": 8.00}           # trilho que protege cada saida
 CANAL_PREF = 10.00    # canal da entrada preferencial S7
@@ -266,8 +295,15 @@ def catalogo(planta, dec, mesas):
             }
     itens["distribuidor_norte"] = {
         "grupo": "cruzamento", "entrada": "B", "hex": "#e08a00",
-        "rotulo": "distribuidor da parede norte — o T em que a avenida B desemboca",
+        "rotulo": "distribuidor da parede norte — borda norte da pequena avenida",
         "trilhos": [DISTRIBUIDOR_NORTE],
+    }
+    itens["avenida_norte_sul"] = {
+        "grupo": "cruzamento", "entrada": "B", "hex": "#e08a00",
+        "rotulo": "pequena avenida da parede norte — borda sul, "
+                  + f"{AVENIDA_NORTE:.2f}".replace(".", ",")
+                  + " m à frente do distribuidor",
+        "trilhos": [AVENIDA_NORTE_SUL],
     }
 
     itens["trilho_sul_A"] = {
@@ -462,6 +498,36 @@ def fita(op, itens, mesas, planta):
 # --------------------------------------------------------------------------
 # Conferencia: a regra de 17/09
 # --------------------------------------------------------------------------
+def confere_avenida_norte(dec, mesas, planta):
+    """A pequena avenida nao pode cair sobre um ramal ou um serpenteado.
+
+    Ela e uma faixa transversal, e as paredes oeste e leste tem ramais que
+    correm em y constante dentro da mesma faixa de x. Se uma borda dela cair
+    sobre um deles, quem anda pela avenida cruza uma fila parada -- que e
+    exatamente o que a regra de 17/09 proibe. Em 23/09 o recuo das avenidas foi
+    recusado por este motivo, com a conta feita a mao; aqui ela e automatica.
+    """
+    faltas = []
+    xa, xb = X_AVENIDA_NORTE
+    folga, MIN = LARG_CANAL / 2, 0.10
+    cruza = lambda a, b: min(b, xb) - max(a, xa) > MIN
+    for m in mesas:
+        if m["parede"] == "norte":
+            continue                          # o ramal da norte corre em x, nao em y
+        fx, _ = frente(m, planta)
+        bx, _ = boca_avenida(m, planta)
+        if abs(m["y"] - Y_AVENIDA_NORTE) < folga + MIN and cruza(min(fx, bx), max(fx, bx)):
+            faltas.append(f"pequena avenida cai no ramal do grupo {m['grupo']} "
+                          f"em y = {m['y']:.2f} m")
+    for sp in dec["serpenteados"]:
+        x1, y1, x2, y2 = sp["rect"]
+        if cruza(x1, x2) and y1 - folga < Y_AVENIDA_NORTE < y2 + folga:
+            m = next(q for q in mesas if q["mrv"] == sp["mrv"])
+            faltas.append(f"pequena avenida entra no serpenteado do grupo "
+                          f"{m['grupo']} (y {y1:.2f}–{y2:.2f} m)")
+    return sorted(set(faltas))
+
+
 def confere(dec):
     """As avenidas nao se cruzam, e nenhuma invade zona protegida.
 
@@ -587,11 +653,33 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         add(f'<line x1="{a1:.1f}" y1="{b1:.1f}" x2="{a2:.1f}" y2="{b2:.1f}" '
             f'stroke="{av["hex"]}" stroke-width="3" marker-end="url(#seta)" opacity=".9"/>')
 
-    # distribuidor da parede norte (fita, quando nao esta na barreira)
-    if "distribuidor_norte" not in ativos:
-        pts = " ".join(f"{px(*p)[0]:.1f},{px(*p)[1]:.1f}" for p in DISTRIBUIDOR_NORTE)
+    # a pequena avenida da parede norte: a faixa entre a boca da avenida B e o
+    # distribuidor. Nenhuma das duas bordas e barreira -- e por isso que ela
+    # distribui andando, e nao parado.
+    axa, aya = px(X_AVENIDA_NORTE[0], Y_BANDA_NORTE)
+    add(f'<rect x="{axa:.1f}" y="{aya:.1f}" '
+        f'width="{(X_AVENIDA_NORTE[1]-X_AVENIDA_NORTE[0])*S:.1f}" '
+        f'height="{AVENIDA_NORTE*S:.1f}" fill="{CORES_ZONA["B"]}" fill-opacity=".10"/>')
+    for pontos in (DISTRIBUIDOR_NORTE, AVENIDA_NORTE_SUL):
+        if pontos is DISTRIBUIDOR_NORTE and "distribuidor_norte" in ativos:
+            continue
+        if pontos is AVENIDA_NORTE_SUL and "avenida_norte_sul" in ativos:
+            continue
+        pts = " ".join(f"{px(*p)[0]:.1f},{px(*p)[1]:.1f}" for p in pontos)
         add(f'<polyline points="{pts}" fill="none" stroke="#e08a00" stroke-width="2.4" '
             f'stroke-dasharray="9 6" stroke-opacity=".85"/>')
+    # as duas setas de quem sai da avenida B e escolhe o lado, ainda andando
+    ymeio = Y_BANDA_NORTE - AVENIDA_NORTE / 2
+    for x_de, x_para in ((25.80, 15.00), (30.80, 34.50)):
+        s1, s2 = px(x_de, ymeio), px(x_para, ymeio)
+        add(f'<line x1="{s1[0]:.1f}" y1="{s1[1]:.1f}" x2="{s2[0]:.1f}" y2="{s2[1]:.1f}" '
+            f'stroke="{CORES_ZONA["B"]}" stroke-width="2.6" marker-end="url(#seta)" '
+            f'opacity=".95"/>')
+    ta, tb = px(28.30, ymeio)
+    add(f'<text x="{ta:.1f}" y="{tb+3.5:.1f}" font-size="9.4" font-weight="800" '
+        f'fill="#8a6a00" text-anchor="middle">PEQUENA AVENIDA · '
+        f'{AVENIDA_NORTE:.2f} m</text>'.replace(f'{AVENIDA_NORTE:.2f}',
+                                                f'{AVENIDA_NORTE:.2f}'.replace(".", ",")))
 
     # saidas: campo livre, so sinalizado. Setas cinza convergindo em S2 e S8.
     for (x0, y0), (x1, y1) in (((6.0, 9.0), (13.85, 2.0)), ((20.0, 30.0), (13.85, 2.0)),
@@ -770,6 +858,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         f'letter-spacing=".08em">O QUE VAI NA FITA</text>')
     ly += 18
     for cor, txt in ((None, "avenidas não barreiradas — 2 linhas a 3,00 m"),
+                     ("#e08a00", "pequena avenida da parede norte — 1,80 m, 2 bordas"),
                      (None, "28 ramais de mesa — canal de 1,10 m"),
                      ("#16202b", "linha de espera a 1,50 m — zebrado, nunca amarelo"),
                      (None, "papel da seção, colado fora da linha de pisada"),
@@ -994,6 +1083,7 @@ def main():
         op["fita"] = fita(op, itens, mesas, planta)
 
     faixas, faltas = confere(dec)
+    faltas += confere_avenida_norte(dec, mesas, planta)
     print("\nAs avenidas não se cruzam — faixas de x, disjuntas:")
     for aid, (a, b) in faixas.items():
         print(f"    {aid}: {a:6.2f} .. {b:6.2f} m")
@@ -1002,7 +1092,10 @@ def main():
         for f in faltas:
             print("   ", f)
         sys.exit(1)
-    print("    nenhuma avenida invade zona protegida\n")
+    print("    nenhuma avenida invade zona protegida")
+    print(f"    pequena avenida da parede norte livre: {AVENIDA_NORTE:.2f} m entre "
+          f"y = {Y_AVENIDA_NORTE:.2f} e y = {Y_BANDA_NORTE:.2f} m, "
+          f"x de {X_AVENIDA_NORTE[0]:.2f} a {X_AVENIDA_NORTE[1]:.2f} m\n")
 
     total_desejado = sum(i["postes"] for i in itens.values())
     print(f"\nCatálogo completo do desenho: {total_desejado} unifilas "
