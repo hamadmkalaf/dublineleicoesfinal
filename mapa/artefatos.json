@@ -105,13 +105,12 @@
    "chave": "plano_consolidado",
    "titulo": "Plano de sinalização, peça por peça",
    "url": "https://claude.ai/artifact/EUNZhAFtSfUtRrLvqkvFVZ",
-   "versao": "1790200000-b8f1",
+   "versao": "v9, 23/09 (v2)",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
-   "estado": "cópia de 23/09 (rodada 23926v2) **à frente da publicação**: a ficha da P4-FimAvenidaB passa a situar a peça na boca da pequena avenida da parede norte (fim dos 33,6 m da avenida B), e o marcador P4 no mapa desce de y = 35,40 para 33,60 m. Republicar na URL do manifesto.",
-   "sha256": "3e7d6083b9f2654b43d3e2bca90ae66eb54e881ca64ce269b4b0b136fed383fe",
-   "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1.",
-   "publicacao": "pendente — a cópia deste repositório é a versão vigente"
+   "estado": "republicada na mesma URL em 23/09 (rodada 23926v2), versão 9: a ficha da P4-FimAvenidaB passa a situar a peça na boca da pequena avenida da parede norte (fim dos 33,6 m da avenida B), o marcador P4 no mapa desce de y = 35,40 para 33,60 m, e o rodapé deixa de dizer que a geometria continua a de 22/09 — a pequena avenida é a única mudança desde então.",
+   "sha256": "ea6f6c2d4a5db6730a4213dfb9d906379c71562d833f99cd635a7dadcecac6d0",
+   "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1."
   },
   {
    "chave": "mapa_publico",
