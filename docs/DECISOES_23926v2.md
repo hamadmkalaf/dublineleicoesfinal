@@ -1,13 +1,17 @@
-# Decisões de 24/09/2026 — consolidado
+# Decisões 23926v2 — consolidado
 
-Rodada curta e de três frentes: **economia de CCB no Ring 3**, **a pequena avenida
-da parede norte no Hall 2** e **o mapa simplificado de apresentação**, a primeira
-peça do projeto feita para sair dele.
+**Segunda rodada de 23/09/2026**, e é isso que o nome quer dizer: `23926` é a data,
+`v2` é a rodada. A primeira do mesmo dia está em
+[`DECISOES_2026-09-23.md`](DECISOES_2026-09-23.md).
 
-Duas coisas desta rodada desfazem trabalho de 23/09, e estão escritas aqui de
-propósito: a parede contínua da lateral do Ring e o T da avenida B.
+Três frentes: **economia de CCB no Ring 3**, **a pequena avenida da parede norte no
+Hall 2** e **o mapa simplificado de apresentação**, a primeira peça do projeto feita
+para sair dele.
 
-**Estado no fim da rodada:** branch `v2392026` nos dois repositórios. Os
+Duas coisas desta rodada desfazem trabalho da v1, e estão escritas aqui de propósito:
+a parede contínua da lateral do Ring e o T da avenida B.
+
+**Estado no fim da rodada:** branch `23926v2` nos dois repositórios. Os
 geradores passam em modo conferência (sem `--grava`, código 0), à exceção de
 `qr_tse.py`, que pede o módulo `segno` e já falhava antes desta rodada. Duas
 cópias de artefato estão **à frente da publicação** — ver §4.
@@ -39,7 +43,7 @@ pontas: o de fora encosta na lateral da zona e o de dentro é a **porta da boca*
 como o pedido exige. Três painéis por zona em vez de cinco, com vãos de fita de
 2,00 m — abaixo dos 3,84 m que o desenho já aceita na divisória da zona B.
 
-| | 23/09 | **24/09** |
+| | 23/09 | **23/09 (v2)** |
 |---|---:|---:|
 | CCBs, total | 228 | **202** |
 | das quais laterais | 64 | **44** |
@@ -96,7 +100,7 @@ de 17/09 é que ninguém cruze fila parada. Isso não foi conferido à mão:
 `confere_avenida_norte()` reprova o desenho, e foi ela que apontou os dois
 ramais.
 
-| | 23/09 | **24/09** |
+| | 23/09 | **23/09 (v2)** |
 |---|---:|---:|
 | Unifilas em barreira | 98 em 133 m | **96 em 129 m** |
 | Reserva móvel | 2 | **4** |
@@ -110,7 +114,7 @@ diferença.
 **Efeito na sinalização.** A `P4-FimAvenidaB` continua amarrada na última unifila
 da avenida B — a mesma peça de hardware —, mas ela deixa de ficar em cima do T e
 passa a ficar na boca da avenida pequena. A ficha do plano e o marcador P4 no mapa
-acompanham, por `revisao_24_09()` em `plano_consolidado.py`, de forma idempotente.
+acompanham, por `revisao_23_09_v2()` em `plano_consolidado.py`, de forma idempotente.
 **A arte impressa não muda**: o que muda é onde ela é amarrada.
 
 ## 3. O mapa simplificado de apresentação
@@ -122,7 +126,13 @@ as mesas numeradas pelas seções, as portas A/B/C, as saídas, a entrada
 preferencial e as avenidas de cada entrada e de cada zona até a seção.
 
 `scripts/mapa_publico.py` → `mapa/mapa_publico.html`, publicado em
-<https://claude.ai/artifact/FuDcD3rNme5wznroJV435t>.
+<https://claude.ai/artifact/FuDcD3rNme5wznroJV435t>. E, para a sala,
+`scripts/mapa_publico_pptx.py` → `saidas/onde_voce_vota.pptx`: os mesmos dados em
+quatro slides, **tudo em forma nativa** — retângulo, linha e caixa de texto —, de modo
+que quem receber o arquivo mova uma mesa ou corrija um número sem voltar ao gerador.
+Nenhuma imagem colada, porque imagem colada não é editável, é só um desenho dentro de
+um arquivo editável. A fonte pedida é a Montserrat, da campanha; quem não a tiver
+instalada vê a substituta do sistema.
 
 **É a única peça do projeto feita para sair dele**, e é isso que decide o que ela
 *não* mostra: barreira, fita, grupos de mesa, serpenteados, zonas protegidas,
@@ -151,12 +161,12 @@ Três coisas a registrar:
 
 | Artefato | Estado |
 |---|---|
-| Montagem do Ring 3 | cópia **à frente da publicação**: 202 CCBs. Republicar na URL do manifesto. |
+| Montagem do Ring 3 | **republicada** na mesma URL, versão 4: 202 CCBs, 2 a contratar. |
 | Plano de sinalização | cópia **à frente da publicação**: a P4 na boca da pequena avenida. Republicar. |
-| Onde você vota no RDS | **novo**, publicado em 24/09. Privado até que o compartilhamento seja aberto. |
+| Onde você vota no RDS | **novo**, publicado nesta rodada. Privado até que o compartilhamento seja aberto. |
 | Prancheta, Rota, Escala de voluntários, Sinalização | sem mudança nesta rodada. |
 
-`mapa/artefatos.json` marca as duas primeiras com `"publicacao": "pendente"` e
+`mapa/artefatos.json` marca o plano de sinalização com `"publicacao": "pendente"` e
 traz os sha256 das cópias deste repositório; a conferência de sha256 dá `ok` nas
 sete.
 
@@ -172,7 +182,9 @@ de referência interna, mantida à mão — não tem gerador.
 3. **Os 11 rolos de fita**, e se os 165 m em estoque são por cor ou no total.
 4. **O RDS permite abrir os quatro painéis do gradil da face norte do Ring 3?**
 5. **O RDS permite fita adesiva no piso do Hall 2?** Continua bloqueante.
-6. **Republicar os dois artefatos** e **abrir o compartilhamento do mapa público**.
+6. **Republicar `plano_sinalizacao.html`** na URL do manifesto, e **abrir o
+   compartilhamento do mapa público**, que nasceu privado. A folha do Ring 3 já foi
+   republicada nesta rodada, na mesma URL (versão 4).
 7. **A posição do portão B na Merrion Road**, a medir em campo antes de o mapa
    público ser divulgado como orientação de chegada.
 8. **O prazo de entrega da gráfica**, que a própria cotação marca como a decisão

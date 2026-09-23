@@ -172,7 +172,7 @@ AVENIDAS = {
           "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (14.00, 6.40),
                              (14.00, 40.00)]},
     # B sobe reta de S5 ate a banda norte. Nao distribui em pente: termina em T.
-    # **Revisao de 24/09:** a barreira para um par de unifilas antes do T, em
+    # **Revisao de 23/09 (v2):** a barreira para um par de unifilas antes do T, em
     # y = 33,60, e esse 1,80 m vira a PEQUENA AVENIDA da parede norte -- ver
     # AVENIDA_NORTE, abaixo. O y final sai da conta, nao e digitado.
     "B": {"parede": "norte", "porta": "S5", "hex": CORES_ZONA["B"],
@@ -197,7 +197,7 @@ BANDA_PAREDE = {"oeste": 11.00, "norte": 9.00, "leste": 10.80}
 # resolve, dizendo quais secoes ficam a esquerda e quais a direita.
 Y_BANDA_NORTE = 44.40 - BANDA_PAREDE["norte"]        # 35,40 m
 DISTRIBUIDOR_NORTE = [(10.20, Y_BANDA_NORTE), (42.30, Y_BANDA_NORTE)]
-# A PEQUENA AVENIDA da parede norte (pedido do Posto, 24/09). Ate 23/09 a
+# A PEQUENA AVENIDA da parede norte (pedido do Posto, 23/09 (v2)). Ate 23/09 a
 # avenida B encostava no T, e o T era o unico ponto do salao em que todo o
 # comparecimento de uma entrada -- 3.832 esperados -- escolhia um lado PARADO,
 # num metro quadrado. Tirando **o ultimo par de unifilas** da avenida B a

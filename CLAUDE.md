@@ -10,18 +10,19 @@ necessário para chegar a elas.
 | Tema | Onde vive | Estado |
 |---|---|---|
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
-| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, revisto em 22/09 (zona C vermelha, avenida A até 40 m) e em 24/09 (pequena avenida da parede norte); 96 unifilas, 802 m de fita |
+| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, revisto em 22/09 (zona C vermelha, avenida A até 40 m) e em 23/09 (v2) (pequena avenida da parede norte); 96 unifilas, 802 m de fita |
 | **Arranjo do Hall 2** — cenário, `decisoes.json`, prancheta | `scripts/arranjo_paredes.py` · `confere_arranjo.py` · `gera_prancheta_por_secao.py` | trazidos em 22/09; a prancheta sai deles |
 | **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
-| **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` | o percurso e o salão em versão de divulgação (24/09) |
+| **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` · `scripts/mapa_publico_pptx.py` · `saidas/onde_voce_vota.pptx` | o percurso e o salão em versão de divulgação, em página e em deck editável (rodada `23926v2`) |
 
 **O consolidado da última rodada está em
-[`docs/DECISOES_2026-09-24.md`](docs/DECISOES_2026-09-24.md)**: a economia de CCB do
+[`docs/DECISOES_23926v2.md`](docs/DECISOES_23926v2.md)**: a economia de CCB do
 Ring 3, a pequena avenida da parede norte e o mapa público. O da rodada anterior, em
 [`docs/DECISOES_2026-09-23.md`](docs/DECISOES_2026-09-23.md), guarda o que foi
 desenhado e recusado no mesmo dia — o recuo das avenidas — com a conta do que
-custaria; as suas contas de CCB e de unifila foram superadas em 24/09.
+custaria; as suas contas de CCB e de unifila foram superadas pela `23926v2`. As duas
+rodadas são do mesmo dia: `23926v2` é a segunda, e é o nome do branch em que ela vive.
 
 ---
 
@@ -41,11 +42,11 @@ custaria; as suas contas de CCB e de unifila foram superadas em 24/09.
 O Ring 3 como pátio de fila está **confirmado** (18/09), com as **três zonas iguais**.
 A montagem — 23 raias por zona, vão de 1,20 m, **202 CCBs** (200 em estoque + **2 a
 contratar**, ~EUR 26,04), 558,0 m de fita grossa, lotação **2.105** — está em
-`mapa/ring3_montagem.html` (folha revista em 24/09, gerada por
+`mapa/ring3_montagem.html` (folha revista em 23/09 (v2), gerada por
 `scripts/ring3_montagem.py` no repositório de origem) e no `Mapa-Ring3` de
 `mapa/sinalizacao/`. **O `Mapa-Ring3` ainda diz 228: peça de sinalização a refazer.**
 
-**Revisão de 24/09 do Ring 3 — CCB só onde a fita amarra.** A lateral deixou de ser
+**Revisão de 23/09 (v2) do Ring 3 — CCB só onde a fita amarra.** A lateral deixou de ser
 parede contínua e o fechamento contra o trecho de fundo deixou de ser corrida fechada:
 nos dois, o painel vai só nos pontos em que a ponta fixa da divisória amarra, e fita
 cobre o vão. A conta está na alternância que o desenho já tinha — a ponta fixa fica do
@@ -72,7 +73,7 @@ chão. Agora cada zona tem a sua **própria linha de CCBs** ao longo dos 32,0 m 
 duas linhas por vão, uma em cada face —, e entre elas fica um **corredor de
 serviço de 1,20 m**, largura que o desenho já exigia para passar maca e fiscal
 contra o fluxo. Naquela revisão eram **64 CCBs a mais** e o total ia de 180 a 228 —
-28 acima do estoque —, com 12 portões de uma CCB. **A conta foi superada em 24/09**,
+28 acima do estoque —, com 12 portões de uma CCB. **A conta foi superada em 23/09 (v2)**,
 acima; o corredor de serviço e o vão de 1,20 m continuam valendo. *A alternativa
 registrada na folha* — uma só linha de CCBs no eixo do vão, 196 CCBs — continua
 descartada: deixa 0,60 m de cada lado e mata a passagem de maca.
@@ -87,7 +88,7 @@ vão da própria porta; a saída da A termina a 2,91 m do eixo da S4, no batente
 vão, e atravessa o apron em diagonal. A B sai pelo meio: a metade oeste da raia de cima
 (5,43 m) fica fechada por 1 CCB atravessada, e custa 13 lugares. Essa conta fechava
 em 180 CCBs dentro do estoque; o fechamento das laterais em 23/09 a levou a 228, e a
-amarração de 24/09 a trouxe de volta a 202.
+amarração de 23/09 (v2) a trouxe de volta a 202.
 
 O percurso tem três trechos físicos distintos. **Ring 3 é o pátio de fila ao ar
 livre; Hall 2 é o salão de votação.**
@@ -194,7 +195,7 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   vermelho só significa "zona C". A avenida A termina em y = 40,0 m, para servir o
   ramal da mesa em 37,62 m. Fita da Definitiva: **802 m, 11 rolos a comprar**;
   barreira em **96 unifilas em 129 m**, reserva móvel 4.
-- **A pequena avenida da parede norte (24/09).** A avenida B deixou de encostar no T:
+- **A pequena avenida da parede norte (23/09 (v2)).** A avenida B deixou de encostar no T:
   o **último par de unifilas** saiu, a barreira dela para em **y = 33,60 m** e esse
   1,80 m virou uma faixa transversal de **1,80 × 25,50 m** (x de 11,00 a 36,50),
   entre a boca da avenida e o distribuidor em y = 35,40. **As duas bordas são fita,
@@ -301,7 +302,7 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
   "LOGO NA ENTRADA DO CORREDOR" e o último, "NO FIM DO CORREDOR, O MAIS DISTANTE".
   Na porta A isso é A1 e A5; na C, C1 e C6.
 - **`P4-FimAvenidaB`** — fence banner de 1040 × 410 na **boca da pequena avenida da
-  parede norte** (o fim dos 33,6 m da avenida B; era o T, até 24/09), o ponto em que
+  parede norte** (o fim dos 33,6 m da avenida B; era o T, até 23/09 (v2)), o ponto em que
   todo o fluxo de uma entrada tem de escolher um lado. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na da
   porta C, B4 e B5. O corte é **por mesa**, não por grupo: o par B3 fica
   escarranchado no vão da avenida, com uma mesa de cada lado do eixo, então sai à
