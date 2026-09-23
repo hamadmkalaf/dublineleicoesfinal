@@ -67,6 +67,11 @@ python3 scripts/separadores_fila.py --grava
 
 # Tema voluntários — confere a composição das três zonas
 python3 scripts/zonas_balanceadas.py
+
+# Artes para o eleitor — 4 peças 1080 × 1080 em saidas/artes/
+python3 scripts/artes_eleitor.py
+python3 scripts/artes_eleitor.py --confere   # só confere; código 1 se quebrar
+python3 scripts/artes_png.py                 # PNG, se houver Chromium no ambiente
 ```
 
 ### O que a conferência tem de imprimir
@@ -110,7 +115,9 @@ mapa/                         fonte versionada dos artefatos + artefatos.json (m
   sinalizacao/                as 21 peças P0–P7, os dois mapas e o canvas
 plantas/                      imagens das plantas do Ring 3 e do Hall 2  (a preencher)
 saidas/                       dados.json e as saídas geradas do tema dos separadores
-scripts/                      separadores_fila.py, zonas_balanceadas.py
+  artes/                      as 4 artes para o eleitor (SVG + PNG + index de conferência)
+scripts/                      separadores_fila.py, zonas_balanceadas.py,
+                              artes_eleitor.py, artes_png.py
 Identidadevisual/             identidade visual e banner
 Orçamentos/                   orçamentos, incl. sinalização
 ```
