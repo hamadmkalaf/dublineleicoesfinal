@@ -12,6 +12,7 @@ necessário para chegar a elas.
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Artes para o eleitor** (feed, 1080 × 1080) | `docs/artes_eleitor.md` · `scripts/artes_eleitor.py` → `saidas/artes/` | 4 peças; o logotipo ainda é marcação de lugar |
 
 ---
 
@@ -129,6 +130,24 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - Três armadilhas conhecidas: mudar uma banda e esquecer a fita; contar a boca da
   avenida B duas vezes (ela entra inteira, não leva item de boca); e rotular por
   número de mesa. As três estão descritas em `docs/separadores/contexto.md`.
+
+## Regras das artes para o eleitor
+
+- **Nada de conteúdo novo.** Cada número, data e frase das artes sai de fonte já
+  versionada aqui — `CLAUDE.md`, o briefing de 23/09, `P1-Portao.dc.html` e
+  `data/prancheta_hall2.json`. A procedência está tabelada em `docs/artes_eleitor.md`.
+- **A conferência sai com código 1** quando a tabela mestra deixa de ter 51 seções
+  ou discorda das bocas de zona. Rode `python3 scripts/artes_eleitor.py --confere`
+  antes de qualquer commit que toque em `mapa/sinalizacao/`.
+- **A letra identifica a fila; a cor é apoio** — a regra de `Main.dc.html` vale
+  também para a peça pública. A cor da porta é a cor da fita comprada:
+  A `#33507E`, B `#E8C63A`, C `#DE7343`.
+- **O logotipo das artes é marcação de lugar.** A arte oficial em vetor tem de vir
+  do TSE, com a fonte da campanha e a autorização de uso da marca por posto no
+  exterior. Não publicar sem trocar.
+- **Divergência aberta sobre a porta preferencial:** as artes e o briefing de
+  23/09 dizem "a porta à direita da C" (S7); a peça `P5-Preferencial`, de 17/09,
+  diz "qualquer porta". As duas não podem ir para a rua juntas.
 
 ## Convenções
 
