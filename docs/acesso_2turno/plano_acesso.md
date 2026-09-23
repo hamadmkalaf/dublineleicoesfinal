@@ -76,7 +76,12 @@ Links prontos do Google Maps em `saidas/acesso_2turno_links.md`.
 
 Distâncias e tempos são estimativas de mapa, não medidas.
 
-### 3.4 O dia, hora a hora
+### 3.4 Rotas por região da cidade
+
+Sul, leste, oeste e norte, com a melhor rota, a segunda opção e o que evitar em cada
+uma: [`rotas_por_regiao.md`](rotas_por_regiao.md).
+
+### 3.5 O dia, hora a hora
 
 | Janela | Regime | O que vale |
 |---|---|---|
@@ -91,7 +96,7 @@ Horas dos corredores: **estimativa** a partir das ondas e da posição do RDS
 perto do km 40 (a organização coloca a marca de 25 milhas no RDS). A Garda não
 informou hora de reabertura.
 
-### 3.5 Sete diferenças operacionais em relação ao 1º turno
+### 3.6 Sete diferenças operacionais em relação ao 1º turno
 
 1. **Veículos só pelo Anglesea Gate**, saída sempre por Donnybrook.
 2. **Posto novo G1 no Anglesea Gate**, 2 pessoas: recebe quem chega de carro,
