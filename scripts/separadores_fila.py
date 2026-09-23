@@ -11,6 +11,9 @@ Decisoes de 17/09
 1. As cores sao as das fitas ja em estoque: A azul, B amarelo, C laranja -- as
    mesmas do artefato de sinalizacao. Amarelo virou cor de zona, entao a linha
    de espera deixou de ser amarela e passou a zebrado preto-e-branco.
+   **Revisao de 22/09:** C passou a vermelho (rolo a comprar), e por isso as
+   mesas de alta carga, as portas de emergencia e os avisos deixaram o vermelho
+   semantico -- ver ``CORES_ZONA`` e as constantes logo abaixo dela.
 2. Os rotulos sao por GRUPO de mesas e por SECAO -- nunca por numero de mesa.
    Os 16 grupos (A1..A5, B1..B5, C1..C6) vem de ``data/grupos_mesas.json``.
 3. **As avenidas nunca se cruzam.** ``confere()`` prova isso pela faixa de x de
@@ -125,11 +128,17 @@ def boca_avenida(m, planta):
 # --------------------------------------------------------------------------
 # Cada avenida e um par de trilhos. A geometria evita as zonas protegidas de
 # 16/09 (recuos de S3, S7, R1, N2, O2 e a faixa de emergencia da fachada leste).
-# Cores das fitas que o Posto ja tem em estoque (a foto de 17/09) e que o
-# artefato de sinalizacao Ek3FfeYnwvQLZEs4ZJ5Zzr ja usa nos paineis de porta:
-# A azul, B amarelo, C laranja. Amarelo passa a ser da zona B, entao a linha de
-# espera **nao pode mais ser amarela** -- vira zebrado preto-e-branco.
-CORES_ZONA = {"A": "#33507E", "B": "#E8C63A", "C": "#DE7343"}
+# Cores das fitas: A azul e B amarelo sao rolos que o Posto ja tem em estoque
+# (a foto de 17/09); C passou de laranja a **vermelho em 22/09** (decisao do
+# Posto, a mesma da sinalizacao -- data/paleta.json) e o rolo vermelho e a
+# comprar. Amarelo e da zona B, entao a linha de espera **nao pode ser
+# amarela** -- vira zebrado preto-e-branco. E vermelho passou a ser cor de
+# zona, entao deixou de ser a cor semantica do desenho: as tres mesas de alta
+# carga sao roxas (decisoes.classes.cores), a emergencia e verde-agua e os
+# avisos sao cinza-escuro.
+CORES_ZONA = {"A": "#33507E", "B": "#E8C63A", "C": "#C8102E"}
+COR_EMERGENCIA = "#0E8A74"
+COR_AVISO = "#333A42"
 ESTOQUE_FITA = 165.0   # metros por cor ja em estoque (a confirmar: cada ou total)
 
 # Regra de 17/09: **as avenidas nunca se cruzam.** Cada uma sai da sua porta e
@@ -140,6 +149,15 @@ ESTOQUE_FITA = 165.0   # metros por cor ja em estoque (a confirmar: cada ou tota
 # bandas trazem para fora.** Quem votou sai andando pela propria banda da sua
 # parede ate S2 (banda oeste) ou S8 (banda leste). Assim nenhum fluxo de saida
 # atravessa avenida nenhuma, e o campo central fica so como reserva de fila.
+# **Revisao de 23/09/2026, e o retorno a 22/09 no mesmo dia.** O Posto pediu
+# alargar a banda de fila de cada parede empurrando a avenida daquela parede
+# para dentro do salao: 2 a 3 m para A e C, 5 a 10 m para B. O desenho foi
+# feito (bandas de 13,00 / 14,00 / 13,00 m) e **rejeitado a vista da planta**:
+# com a B recuada 5 m, as avenidas B e C ficavam a 1,50 m uma da outra no meio
+# do salao, e o campo central de reserva de fila era espremido entre elas. A
+# geometria volta a de 22/09, abaixo. O que o recuo custava, para quem quiser
+# retomar a ideia: a fita ia de 777 para 960 m e os rolos a comprar de 11 para
+# 18, porque os 28 ramais atravessam a banda inteira e cresciam junto.
 AVENIDAS = {
     # A sai pelos 3,20 m LESTE de S4 -- a metade oeste da porta esta sobre o
     # recuo de emergencia S3, que vai ate x = 21,47 -- sobe 3,40 m, vira a oeste
@@ -148,17 +166,23 @@ AVENIDAS = {
     # x = 11,00 fica a leste do recuo R1 (ate 10,80) e deixa a rota de saida para
     # S2 passar por fora da avenida.
     "A": {"parede": "oeste", "porta": "S4", "hex": CORES_ZONA["A"],
+          "lado_parede": "interno",
           "trilho_interno": [(21.83, 0.00), (21.83, 3.40), (11.00, 3.40),
-                             (11.00, 36.30)],
+                             (11.00, 40.00)],
           "trilho_externo": [(25.03, 0.00), (25.03, 6.40), (14.00, 6.40),
-                             (14.00, 36.30)]},
+                             (14.00, 40.00)]},
     # B sobe reta de S5 ate a banda norte. Nao distribui em pente: termina em T.
+    # **Revisao de 23/09 (v2):** a barreira para um par de unifilas antes do T, em
+    # y = 33,60, e esse 1,80 m vira a PEQUENA AVENIDA da parede norte -- ver
+    # AVENIDA_NORTE, abaixo. O y final sai da conta, nao e digitado.
     "B": {"parede": "norte", "porta": "S5", "hex": CORES_ZONA["B"],
-          "trilho_interno": [(26.80, 0.00), (26.80, 35.40)],
-          "trilho_externo": [(29.80, 0.00), (29.80, 35.40)]},
+          "lado_parede": None,
+          "trilho_interno": [(26.80, 0.00), (26.80, 33.60)],
+          "trilho_externo": [(29.80, 0.00), (29.80, 33.60)]},
     # C sai pelos 3 m oeste de S6 -- a leste de x = 35,09 esta o recuo da
     # preferencial S7 -- e abre para a banda leste.
     "C": {"parede": "leste", "porta": "S6", "hex": CORES_ZONA["C"],
+          "lado_parede": "externo",
           "trilho_interno": [(32.00, 0.00), (32.00, 3.20), (33.50, 5.20),
                              (33.50, 39.50)],
           "trilho_externo": [(35.00, 0.00), (35.00, 3.20), (36.50, 5.20),
@@ -169,15 +193,43 @@ AVENIDAS = {
 BANDA_PAREDE = {"oeste": 11.00, "norte": 9.00, "leste": 10.80}
 # O T da parede norte: a avenida B chega perpendicular e tem de distribuir para
 # os dois lados. E o unico ponto do salao onde todo o fluxo de uma entrada passa
-# por um so metro quadrado.
-DISTRIBUIDOR_NORTE = [(10.20, 35.40), (42.30, 35.40)]
-BOCA_PROF = 6.00      # trecho de cada trilho de avenida barreirado junto a porta
-BOCA_SAIDA = 8.00     # trilho que protege a boca de cada saida (S2, S8)
+# por um so metro quadrado -- e, desde 23/09, o ponto que a peca P4-FimAvenidaB
+# resolve, dizendo quais secoes ficam a esquerda e quais a direita.
+Y_BANDA_NORTE = 44.40 - BANDA_PAREDE["norte"]        # 35,40 m
+DISTRIBUIDOR_NORTE = [(10.20, Y_BANDA_NORTE), (42.30, Y_BANDA_NORTE)]
+# A PEQUENA AVENIDA da parede norte (pedido do Posto, 23/09 (v2)). Ate 23/09 a
+# avenida B encostava no T, e o T era o unico ponto do salao em que todo o
+# comparecimento de uma entrada -- 3.832 esperados -- escolhia um lado PARADO,
+# num metro quadrado. Tirando **o ultimo par de unifilas** da avenida B a
+# barreira para 1,80 m antes, e esses 1,80 m viram uma avenida transversal: a
+# corrente se abre andando, antes das filas da parede norte, e a peca
+# P4-FimAvenidaB deixa de ser lida em cima do gargalo.
+#
+# 1,80 m e exatamente o vao de um par de unifilas -- uma em cada trilho --, e e
+# por isso que a economia e de 2 unidades e nao de uma fracao. A avenida corre
+# pelo mesmo vao em x do distribuidor: os dois lados dela sao as unicas duas
+# linhas transversais do salao, e nenhuma das duas e barreira.
+#
+# Ela **para nas bordas das bandas oeste e leste**, e nao acompanha o
+# distribuidor ate 42,30 m: fora delas a faixa cortaria o ramal do A5 (y =
+# 33,72) a oeste e o do C6 (y = 35,55) a leste, que correm em y constante na
+# mesma altura. Quem anda pela avenida nao cruza fila parada -- e a regra de
+# 17/09 --, e confere_avenida_norte() reprova o desenho se isso mudar.
+AVENIDA_NORTE = VAO_POSTE                            # 1,80 m
+Y_AVENIDA_NORTE = round(Y_BANDA_NORTE - AVENIDA_NORTE, 2)    # 33,60 m
+X_AVENIDA_NORTE = (BANDA_PAREDE["oeste"], round(47.3 - BANDA_PAREDE["leste"], 2))
+AVENIDA_NORTE_SUL = [(X_AVENIDA_NORTE[0], Y_AVENIDA_NORTE),
+                     (X_AVENIDA_NORTE[1], Y_AVENIDA_NORTE)]
+assert AVENIDAS["B"]["trilho_interno"][-1][1] == Y_AVENIDA_NORTE, \
+    "a avenida B tem de terminar na boca da pequena avenida"
+assert AVENIDAS["B"]["trilho_externo"][-1][1] == Y_AVENIDA_NORTE
+BOCA_PROF = {"A": 6.00, "B": 6.00, "C": 6.00}   # trecho barreirado junto a porta
+BOCA_SAIDA = {"S2": 8.00, "S8": 8.00}           # trilho que protege cada saida
 CANAL_PREF = 10.00    # canal da entrada preferencial S7
 
 
 def serpenteado_trilhos(s):
-    """Os 3 trilhos de um serpenteado de 2 raias na frente de uma vermelha."""
+    """Os 3 trilhos de um serpenteado de 2 raias na frente de uma mesa de alta carga."""
     x1, y1, x2, y2 = s["rect"]
     prof = s["profundidade"]
     if s["parede"] == "oeste":      # cresce em +x, raias ao longo de y
@@ -204,6 +256,20 @@ def _recorta(pts, L):
     return saida
 
 
+def _lado_rotulo(av, lado):
+    """Qual dos dois trilhos da avenida encosta na banda da parede.
+
+    So faz sentido nas avenidas que correm paralelas a sua parede: na A e o
+    trilho interno, na C e o EXTERNO (a avenida C leva o desvio para o lado da
+    parede leste, e ate 23/09 a legenda dizia o contrario). A avenida B chega
+    perpendicular a sua parede, entao os dois trilhos sao laterais do corredor.
+    """
+    if av["lado_parede"] is None:
+        return f"trilho {'oeste' if lado == 'interno' else 'leste'} do corredor"
+    return ("trilho do lado da parede" if lado == av["lado_parede"]
+            else "trilho do lado do campo de retorno")
+
+
 def catalogo(planta, dec, mesas):
     """Todo trecho de barreira que o desenho gostaria de ter, com o seu preco."""
     itens = {}
@@ -216,38 +282,43 @@ def catalogo(planta, dec, mesas):
         for lado in ("interno", "externo"):
             itens[f"boca_{aid}_{lado[:3]}"] = {
                 "grupo": "boca", "entrada": aid, "hex": av["hex"],
-                "rotulo": f"boca da avenida {aid} ({av['porta']}) · trilho {lado}",
-                "trilhos": [_recorta(av[f"trilho_{lado}"], BOCA_PROF)],
+                "rotulo": f"boca da avenida {aid} ({av['porta']}) · {_lado_rotulo(av, lado)}",
+                "trilhos": [_recorta(av[f"trilho_{lado}"], BOCA_PROF[aid])],
             }
 
     for aid, av in AVENIDAS.items():
-        itens[f"avenida_{aid}_int"] = {
-            "grupo": "avenida", "entrada": aid, "hex": av["hex"],
-            "rotulo": f"avenida {aid} · trilho do lado da parede",
-            "trilhos": [av["trilho_interno"]],
-        }
-        itens[f"avenida_{aid}_ext"] = {
-            "grupo": "avenida", "entrada": aid, "hex": av["hex"],
-            "rotulo": f"avenida {aid} · trilho do lado do campo de retorno",
-            "trilhos": [av["trilho_externo"]],
-        }
+        for lado in ("interno", "externo"):
+            itens[f"avenida_{aid}_{lado[:3]}"] = {
+                "grupo": "avenida", "entrada": aid, "hex": av["hex"],
+                "rotulo": f"avenida {aid} · {_lado_rotulo(av, lado)}",
+                "trilhos": [av[f"trilho_{lado}"]],
+            }
     itens["distribuidor_norte"] = {
         "grupo": "cruzamento", "entrada": "B", "hex": "#e08a00",
-        "rotulo": "distribuidor da parede norte — o T em que a avenida B desemboca",
+        "rotulo": "distribuidor da parede norte — borda norte da pequena avenida",
         "trilhos": [DISTRIBUIDOR_NORTE],
+    }
+    itens["avenida_norte_sul"] = {
+        "grupo": "cruzamento", "entrada": "B", "hex": "#e08a00",
+        "rotulo": "pequena avenida da parede norte — borda sul, "
+                  + f"{AVENIDA_NORTE:.2f}".replace(".", ",")
+                  + " m à frente do distribuidor",
+        "trilhos": [AVENIDA_NORTE_SUL],
     }
 
     itens["trilho_sul_A"] = {
         "grupo": "cruzamento", "entrada": "A", "hex": "#2a78d6",
         "rotulo": "trilho sul da perna A — separa a entrada da saída S2 e do recuo S3",
-        "trilhos": [[(11.00, 3.40), (25.03, 3.40)]],
+        "trilhos": [[(AVENIDAS["A"]["trilho_interno"][2][0], 3.40), (25.03, 3.40)]],
     }
     for pid, x1, x2 in (("S2", 13.25, 14.45), ("S8", 42.12, 43.32)):
+        alt = BOCA_SAIDA[pid]
         itens[f"boca_saida_{pid}"] = {
             "grupo": "cruzamento", "entrada": None, "hex": "#5b6470",
-            "rotulo": f"boca da saída {pid} — protege quem sai de quem entra",
-            "trilhos": [[(x1 - 0.6, 0.0), (x1 - 0.6, BOCA_SAIDA)],
-                        [(x2 + 0.6, 0.0), (x2 + 0.6, BOCA_SAIDA)]],
+            "rotulo": f"boca da saída {pid} — protege quem sai de quem entra "
+                      f"({alt:.2f} m)".replace(".", ","),
+            "trilhos": [[(x1 - 0.6, 0.0), (x1 - 0.6, alt)],
+                        [(x2 + 0.6, 0.0), (x2 + 0.6, alt)]],
         }
     itens["canal_S7"] = {
         "grupo": "cruzamento", "entrada": None, "hex": "#1e8449",
@@ -259,7 +330,7 @@ def catalogo(planta, dec, mesas):
     for s in dec["serpenteados"]:
         m = next(x for x in mesas if x["mrv"] == s["mrv"])
         itens[f"serp_{s['mrv']}"] = {
-            "grupo": "vermelha", "entrada": m["entrada"], "hex": "#c0392b",
+            "grupo": "alta", "entrada": m["entrada"], "hex": dec["classes"]["cores"]["alta"]["hex"],
             "rotulo": f"serpenteado do grupo {m['grupo']} · seções "
                       f"{' · '.join(str(x) for x in m['grupo_secoes'])} "
                       f"({s['pessoas']:.0f} pessoas)",
@@ -321,26 +392,27 @@ def opcoes(itens, mesas):
               op1,
               "Um eleitor mal encaminhado custa mais do que um eleitor mal enfileirado: "
               "quem chega à parede errada volta atravessando o salão, contra o fluxo.",
-              "Nada segura as três vermelhas. Os 20 em pé à frente de cada uma ficam "
+              "Nada segura as três de alta carga. Os 20 em pé à frente de cada uma ficam "
               "contidos só por fita, que é justamente onde a fita não segura."),
         monta("Opção 2", "As cabeças de fila",
               "A barreira paga a contenção: vai onde as pessoas param de andar — as três "
-              "vermelhas e as mesas de maior carga — e o trajeto inteiro fica na fita.",
+              "de alta carga e as mesas de maior carga — e o trajeto inteiro fica na fita.",
               op2,
               "Pressão de multidão só existe onde a fila é estática. Corredor é fluxo "
               "andando, e fluxo andando obedece a linha pintada.",
               "A boca é o gargalo não paralelizável já identificado: 11,5 mil pessoas por "
               "18,4 m de porta, com as três correntes separadas apenas por fita."),
-        monta("Definitiva", "Bocas, avenida B e as três vermelhas",
+        monta("Definitiva", "Bocas, avenida B e as três de alta carga",
               "A barreira paga só o que a fita comprovadamente não faz: separar correntes "
               "que se cruzam e conter multidão parada.",
               op3,
               "Fita é uma fronteira que se vê; barreira é uma fronteira que custa "
               "atravessar. Gasta-se barreira onde atravessar compensa — na boca, no "
               "cruzamento e na cabeça da fila cheia.",
-              "Depois dos 6 m de boca, as avenidas A e C ficam na fita, e sobram 2 "
-              "unifilas de reserva. Se o corte de caminho aparecer, 2 postes não "
-              "respondem: é por isso que as 15 adicionais deixam de ser folga."),
+              f"Depois dos {BOCA_PROF['A']:.0f} m de boca, as avenidas A e C ficam na "
+              "fita, e a reserva móvel é de duas unidades: se o corte de caminho "
+              "aparecer, não há com que responder. É por isso que as 15 adicionais "
+              "deixam de ser folga."),
     ]
 
 
@@ -353,7 +425,7 @@ def opcoes(itens, mesas):
 CORES_FITA = {
     "A": {"rotulo": "azul · zona A / parede oeste (em estoque)", "hex": CORES_ZONA["A"]},
     "B": {"rotulo": "amarelo · zona B / parede norte (em estoque)", "hex": CORES_ZONA["B"]},
-    "C": {"rotulo": "laranja · zona C / parede leste (em estoque)", "hex": CORES_ZONA["C"]},
+    "C": {"rotulo": "vermelho · zona C / parede leste (a comprar — era laranja até 22/09)", "hex": CORES_ZONA["C"]},
     # Amarelo virou cor de zona: a linha de espera NAO pode mais ser amarela.
     "espera": {"rotulo": "zebrado preto-e-branco · linha de espera", "hex": "#16202b"},
     "pref": {"rotulo": "verde · preferencial S7", "hex": "#1e8449"},
@@ -426,6 +498,36 @@ def fita(op, itens, mesas, planta):
 # --------------------------------------------------------------------------
 # Conferencia: a regra de 17/09
 # --------------------------------------------------------------------------
+def confere_avenida_norte(dec, mesas, planta):
+    """A pequena avenida nao pode cair sobre um ramal ou um serpenteado.
+
+    Ela e uma faixa transversal, e as paredes oeste e leste tem ramais que
+    correm em y constante dentro da mesma faixa de x. Se uma borda dela cair
+    sobre um deles, quem anda pela avenida cruza uma fila parada -- que e
+    exatamente o que a regra de 17/09 proibe. Em 23/09 o recuo das avenidas foi
+    recusado por este motivo, com a conta feita a mao; aqui ela e automatica.
+    """
+    faltas = []
+    xa, xb = X_AVENIDA_NORTE
+    folga, MIN = LARG_CANAL / 2, 0.10
+    cruza = lambda a, b: min(b, xb) - max(a, xa) > MIN
+    for m in mesas:
+        if m["parede"] == "norte":
+            continue                          # o ramal da norte corre em x, nao em y
+        fx, _ = frente(m, planta)
+        bx, _ = boca_avenida(m, planta)
+        if abs(m["y"] - Y_AVENIDA_NORTE) < folga + MIN and cruza(min(fx, bx), max(fx, bx)):
+            faltas.append(f"pequena avenida cai no ramal do grupo {m['grupo']} "
+                          f"em y = {m['y']:.2f} m")
+    for sp in dec["serpenteados"]:
+        x1, y1, x2, y2 = sp["rect"]
+        if cruza(x1, x2) and y1 - folga < Y_AVENIDA_NORTE < y2 + folga:
+            m = next(q for q in mesas if q["mrv"] == sp["mrv"])
+            faltas.append(f"pequena avenida entra no serpenteado do grupo "
+                          f"{m['grupo']} (y {y1:.2f}–{y2:.2f} m)")
+    return sorted(set(faltas))
+
+
 def confere(dec):
     """As avenidas nao se cruzam, e nenhuma invade zona protegida.
 
@@ -462,7 +564,16 @@ def confere(dec):
 # --------------------------------------------------------------------------
 S = 15.0          # px por metro
 MARG_E, MARG_T = 52, 92
-LEGENDA = 278
+# Coluna da legenda. Em 23/09 passou de 278 para 400 px: os rotulos de trilho
+# deixaram de ser "interno/externo" e viraram "do lado da parede / do lado do
+# campo de retorno", que dizem o que o montador precisa e sao mais longos. A
+# 278 px eles saiam cortados no meio da frase, e a 330 px cabiam so quebrando
+# em duas linhas -- oito quebras, que estouravam a altura do canvas.
+LEGENDA = 400
+# Quantos caracteres cabem numa linha da legenda, no corpo de 10,6 px. A conta
+# e conservadora (0,55 px por caractere por ponto de corpo) porque a fonte real
+# do impresso e Montserrat, mais larga que a Inter do preview.
+LEG_COLS = int((LEGENDA - 54) / (10.6 * 0.55))
 
 
 def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
@@ -479,7 +590,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     add('<defs>'
         '<pattern id="prot" width="7" height="7" patternTransform="rotate(45)" '
         'patternUnits="userSpaceOnUse">'
-        '<line x1="0" y1="0" x2="0" y2="7" stroke="#c0392b" stroke-width="1.1" '
+        f'<line x1="0" y1="0" x2="0" y2="7" stroke="{COR_AVISO}" stroke-width="1.1" '
         'stroke-opacity=".28"/></pattern>'
         '<marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" '
         'markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>'
@@ -488,7 +599,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     add(f'<text x="{MARG_E}" y="34" font-size="21" font-weight="700" fill="#16202b">'
         f'{op["nome"]} · {op["subtitulo"]}</text>')
     saldo = (f'{op["reserva"]} em reserva móvel' if op["reserva"] >= 0
-             else f'<tspan fill="#c0392b">não cabe: faltam {-op["reserva"]} unidades</tspan>')
+             else f'<tspan fill="{COR_AVISO}">não cabe: faltam {-op["reserva"]} unidades</tspan>')
     add(f'<text x="{MARG_E}" y="56" font-size="12.5" fill="#5b6470">'
         f'{op["postes"]} unifilas em barreira ({op["metros"]:.0f} m de cinta esticada) '
         f'de {UNIFILAS} orçadas · {saldo}{titulo_extra}</text>')
@@ -503,14 +614,13 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     cont = " ".join(f"{px(x, y)[0]:.1f},{px(x, y)[1]:.1f}" for x, y in planta["salao"]["contorno"])
     add(f'<polygon points="{cont}" fill="#ffffff" stroke="#16202b" stroke-width="2"/>')
 
-    # zonas protegidas e sala de apoio
+    # zonas protegidas (a "sala de apoio" saiu em 22/09: e um recuo na parede
+    # oeste, fora do piso do salao, e nao uma zona do arranjo)
     for z in dec["zonas_protegidas"]:
         x1, y1, x2, y2 = z["rect"]
         a, b = px(x1, y2)
-        cor = "#8a94a6" if z["tipo"] == "sala_apoio" else "url(#prot)"
         add(f'<rect x="{a:.1f}" y="{b:.1f}" width="{(x2-x1)*S:.1f}" height="{(y2-y1)*S:.1f}" '
-            f'fill="{cor}" fill-opacity="{0.22 if z["tipo"]=="sala_apoio" else 1}" '
-            f'stroke="#c0392b" stroke-opacity=".35" stroke-dasharray="3 3"/>')
+            f'fill="url(#prot)" stroke="{COR_AVISO}" stroke-opacity=".35" stroke-dasharray="3 3"/>')
 
     # bandas de secao (a faixa de 9 m de cada parede usada)
     bandas = [(0, 0, BANDA_PAREDE["oeste"], ALT),
@@ -543,11 +653,33 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         add(f'<line x1="{a1:.1f}" y1="{b1:.1f}" x2="{a2:.1f}" y2="{b2:.1f}" '
             f'stroke="{av["hex"]}" stroke-width="3" marker-end="url(#seta)" opacity=".9"/>')
 
-    # distribuidor da parede norte (fita, quando nao esta na barreira)
-    if "distribuidor_norte" not in ativos:
-        pts = " ".join(f"{px(*p)[0]:.1f},{px(*p)[1]:.1f}" for p in DISTRIBUIDOR_NORTE)
+    # a pequena avenida da parede norte: a faixa entre a boca da avenida B e o
+    # distribuidor. Nenhuma das duas bordas e barreira -- e por isso que ela
+    # distribui andando, e nao parado.
+    axa, aya = px(X_AVENIDA_NORTE[0], Y_BANDA_NORTE)
+    add(f'<rect x="{axa:.1f}" y="{aya:.1f}" '
+        f'width="{(X_AVENIDA_NORTE[1]-X_AVENIDA_NORTE[0])*S:.1f}" '
+        f'height="{AVENIDA_NORTE*S:.1f}" fill="{CORES_ZONA["B"]}" fill-opacity=".10"/>')
+    for pontos in (DISTRIBUIDOR_NORTE, AVENIDA_NORTE_SUL):
+        if pontos is DISTRIBUIDOR_NORTE and "distribuidor_norte" in ativos:
+            continue
+        if pontos is AVENIDA_NORTE_SUL and "avenida_norte_sul" in ativos:
+            continue
+        pts = " ".join(f"{px(*p)[0]:.1f},{px(*p)[1]:.1f}" for p in pontos)
         add(f'<polyline points="{pts}" fill="none" stroke="#e08a00" stroke-width="2.4" '
             f'stroke-dasharray="9 6" stroke-opacity=".85"/>')
+    # as duas setas de quem sai da avenida B e escolhe o lado, ainda andando
+    ymeio = Y_BANDA_NORTE - AVENIDA_NORTE / 2
+    for x_de, x_para in ((25.80, 15.00), (30.80, 34.50)):
+        s1, s2 = px(x_de, ymeio), px(x_para, ymeio)
+        add(f'<line x1="{s1[0]:.1f}" y1="{s1[1]:.1f}" x2="{s2[0]:.1f}" y2="{s2[1]:.1f}" '
+            f'stroke="{CORES_ZONA["B"]}" stroke-width="2.6" marker-end="url(#seta)" '
+            f'opacity=".95"/>')
+    ta, tb = px(28.30, ymeio)
+    add(f'<text x="{ta:.1f}" y="{tb+3.5:.1f}" font-size="9.4" font-weight="800" '
+        f'fill="#8a6a00" text-anchor="middle">PEQUENA AVENIDA · '
+        f'{AVENIDA_NORTE:.2f} m</text>'.replace(f'{AVENIDA_NORTE:.2f}',
+                                                f'{AVENIDA_NORTE:.2f}'.replace(".", ",")))
 
     # saidas: campo livre, so sinalizado. Setas cinza convergindo em S2 e S8.
     for (x0, y0), (x1, y1) in (((6.0, 9.0), (13.85, 2.0)), ((20.0, 30.0), (13.85, 2.0)),
@@ -602,7 +734,7 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     # isso joga o x-banner dentro da faixa de emergencia. Aqui fica 42,70.
     for g in grupos:
         eixo = sum(g["coord"]) / len(g["coord"])
-        # Achado: nos tres grupos vermelhos os 4,60 m caem DENTRO do serpenteado
+        # Achado: nos tres grupos de alta carga os 4,60 m caem DENTRO do serpenteado
         # (4,10 a 8,30 da parede). Nesses, o x-banner recua para 8,60 m.
         rec = 8.60 if g["classe"] == "alta" else 4.60
         if g["parede"] == "oeste":
@@ -614,7 +746,15 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         a, b = px(bx, by)
         cor = CORES_ZONA[g["entrada"]]
         escuro = g["entrada"] != "B"
-        larg, alt = 68, 26
+        # A caixa acompanha a lista de seções. Ela era fixa em 68 px, o que bastava
+        # enquanto os grupos de quatro seções da parede oeste tinham números de
+        # três dígitos; depois da troca de pares de 23/09 o A4 ficou com
+        # "1278 1314 3142 3309" e o último dígito saía por cima da borda. Larguras
+        # medidas no render: dígito 0,55 em, espaço 0,28 em, mais 6 px de folga
+        # de cada lado.
+        sec_txt = " ".join(str(x) for x in g["secoes"])
+        w_txt = 6.6 * sum(0.28 if c == " " else 0.55 for c in sec_txt)
+        larg, alt = max(68, math.ceil(w_txt) + 12), 26
         rx = a if anc == "start" else (a - larg if anc == "end" else a - larg / 2)
         add(f'<rect x="{rx:.1f}" y="{b-alt/2:.1f}" width="{larg}" height="{alt}" rx="4" '
             f'fill="{cor}" stroke="#16202b" stroke-width=".8"/>')
@@ -622,15 +762,14 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         add(f'<text x="{rx+6:.1f}" y="{b-1:.1f}" font-size="12" font-weight="800" '
             f'fill="{tc}">{g["id"]}</text>')
         add(f'<text x="{rx+6:.1f}" y="{b+9:.1f}" font-size="6.6" font-weight="600" '
-            f'fill="{tc}" fill-opacity=".9">'
-            f'{" ".join(str(x) for x in g["secoes"])}</text>')
+            f'fill="{tc}" fill-opacity=".9">{sec_txt}</text>')
 
     # ---- portas ----
     for p in planta["portas"]:
         sin = dec["sinalizacao_portas"].get(p["id"], {})
         papel = sin.get("papel", "livre")
         cor = {"entrada": CORES_ZONA.get(sin.get("entrada"), "#8a94a6"),
-               "saida": "#5b6470", "emergencia": "#c0392b", "preferencial": "#1e8449",
+               "saida": "#5b6470", "emergencia": COR_EMERGENCIA, "preferencial": "#1e8449",
                "fechada": "#b9bfc9", "livre": "#b9bfc9"}[papel]
         a1, b1 = px(p["x1"], p["y1"])
         a2, b2 = px(p["x2"], p["y2"])
@@ -704,16 +843,22 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
             f'stroke-width="5"/>')
         add(f'<line x1="{lx}" y1="{ly-4:.0f}" x2="{lx+20}" y2="{ly-4:.0f}" '
             f'stroke="{hexe}" stroke-width="2.4"/>')
-        add(f'<text x="{lx+28}" y="{ly}" font-size="10.6" fill="#31404f">{rot[:58]}</text>')
-        add(f'<text x="{lx+28}" y="{ly+12}" font-size="10" fill="#8a94a6">'
+        # O rotulo quebra em vez de ser cortado: ate 23/09 ele saia truncado em
+        # 58 caracteres e o fim da frase ficava fora do canvas.
+        linhas = quebra(rot, LEG_COLS)[:2]
+        for i, linha in enumerate(linhas):
+            add(f'<text x="{lx+28}" y="{ly + i*12:.0f}" font-size="10.6" '
+                f'fill="#31404f">{linha}</text>')
+        add(f'<text x="{lx+28}" y="{ly + len(linhas)*12:.0f}" font-size="10" fill="#8a94a6">'
             f'{metros:.1f} m · {pst} unifilas</text>')
-        ly += 30
+        ly += 18 + len(linhas) * 12
     ly += 8
     add(f'<line x1="{lx}" y1="{ly-14:.0f}" x2="{lx+210}" y2="{ly-14:.0f}" stroke="#dcdde1"/>')
     add(f'<text x="{lx}" y="{ly}" font-size="12" font-weight="700" fill="#16202b" '
         f'letter-spacing=".08em">O QUE VAI NA FITA</text>')
     ly += 18
     for cor, txt in ((None, "avenidas não barreiradas — 2 linhas a 3,00 m"),
+                     ("#e08a00", "pequena avenida da parede norte — 1,80 m, 2 bordas"),
                      (None, "28 ramais de mesa — canal de 1,10 m"),
                      ("#16202b", "linha de espera a 1,50 m — zebrado, nunca amarelo"),
                      (None, "papel da seção, colado fora da linha de pisada"),
@@ -721,8 +866,11 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         traco = "" if cor else ' stroke-dasharray="6 4"'
         add(f'<line x1="{lx}" y1="{ly-4:.0f}" x2="{lx+20}" y2="{ly-4:.0f}" '
             f'stroke="{cor or "#8a94a6"}" stroke-width="{3 if cor else 2}"{traco}/>')
-        add(f'<text x="{lx+28}" y="{ly}" font-size="10.6" fill="#31404f">{txt}</text>')
-        ly += 19
+        linhas = quebra(txt, LEG_COLS)[:2]
+        for i, linha in enumerate(linhas):
+            add(f'<text x="{lx+28}" y="{ly + i*12:.0f}" font-size="10.6" '
+                f'fill="#31404f">{linha}</text>')
+        ly += 19 + (len(linhas) - 1) * 12
     ly += 14
     add(f'<line x1="{lx}" y1="{ly-14:.0f}" x2="{lx+210}" y2="{ly-14:.0f}" stroke="#dcdde1"/>')
     for i, cl in enumerate(("alta", "media", "baixa")):
@@ -741,9 +889,18 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
     add(f'<text x="{lx}" y="{ly}" font-size="10.2" fill="#8a94a6">O risco</text>')
     ly += 14
     for linha in quebra(op["risco"], 42):
-        add(f'<text x="{lx}" y="{ly}" font-size="10.4" fill="#c0392b">{linha}</text>')
+        add(f'<text x="{lx}" y="{ly}" font-size="10.4" fill="{COR_AVISO}">{linha}</text>')
         ly += 13
 
+    # A legenda cresce com o numero de itens e com o tamanho dos rotulos. Se ela
+    # passar do rodape, o desenho sai com texto cortado e ninguem percebe na
+    # folha impressa -- entao aqui e erro, nao aviso.
+    # ly ja esta um passo alem da ultima linha escrita, entao o limite e a
+    # propria linha de base do rodape: uma linha a mais na legenda (12 a 13 px)
+    # derruba a conferencia.
+    if ly > H - 14:
+        raise SystemExit(f"legenda estourou o canvas: termina em y = {ly:.0f}, "
+                         f"limite {H - 14:.0f}. Aumente LEGENDA ou encurte os rótulos.")
     add(f'<text x="{MARG_E}" y="{H-14:.0f}" font-size="10" fill="#8a94a6">'
         f'Hall 2 · RDS Ballsbridge · cenário Paredes_ABC · escala 1 m = {S:.0f} px · '
         f'poste a {VAO_POSTE:.2f} m (cinta de {CINTA:.2f} m esticada a 90%)</text>')
@@ -874,14 +1031,18 @@ def svg_detalhe(mesas, dec):
     add(f'<text x="{p[0]:.0f}" y="{p[1]+31:.0f}" font-size="11" fill="#5b6470" '
         f'text-anchor="middle">só passa quem o mesário chamar</text>')
 
-    # o papel da secao, fora da linha de pisada
-    a, b = px(banda - 2.05, y2 + 0.16)
-    add(f'<rect x="{a:.0f}" y="{b:.0f}" width="{1.45*E:.0f}" height="{0.72*E:.0f}" '
+    # o papel da secao, fora da linha de pisada. O exemplo e a primeira mesa que o
+    # eleitor da zona A encontra: o codigo do grupo sai do arranjo, nao do texto,
+    # porque a parede oeste ja foi reordenada duas vezes (22/09 e 23/09).
+    exemplo = next(m for m in mesas if m["parede"] == "oeste")
+    a, b = px(banda - 3.80, y2 + 0.16)
+    larg = 3.50 * E
+    add(f'<rect x="{a:.0f}" y="{b:.0f}" width="{larg:.0f}" height="{0.95*E:.0f}" '
         f'fill="#fff" stroke="#16202b" stroke-width="1.6"/>')
-    add(f'<text x="{a+48:.0f}" y="{b+22:.0f}" font-size="15" font-weight="700" '
-        f'fill="#16202b" text-anchor="middle">GRUPO A4</text>')
-    add(f'<text x="{a+48:.0f}" y="{b+40:.0f}" font-size="11" fill="#5b6470" '
-        f'text-anchor="middle">seções 513 · 1105</text>')
+    add(f'<text x="{a+larg/2:.0f}" y="{b+24:.0f}" font-size="15" font-weight="700" '
+        f'fill="#16202b" text-anchor="middle">GRUPO {exemplo["grupo"]}</text>')
+    add(f'<text x="{a+larg/2:.0f}" y="{b+43:.0f}" font-size="11" fill="#5b6470" '
+        f'text-anchor="middle">seções {" · ".join(str(s) for s in exemplo["secoes"])}</text>')
     nota = ("Papel plastificado, colado FORA da linha de pisada. No meio do canal ele "
             "some sob os pés e sob o corpo de quem está na frente: serve para confirmar, "
             "nunca para decidir.")
@@ -922,6 +1083,7 @@ def main():
         op["fita"] = fita(op, itens, mesas, planta)
 
     faixas, faltas = confere(dec)
+    faltas += confere_avenida_norte(dec, mesas, planta)
     print("\nAs avenidas não se cruzam — faixas de x, disjuntas:")
     for aid, (a, b) in faixas.items():
         print(f"    {aid}: {a:6.2f} .. {b:6.2f} m")
@@ -930,7 +1092,10 @@ def main():
         for f in faltas:
             print("   ", f)
         sys.exit(1)
-    print("    nenhuma avenida invade zona protegida\n")
+    print("    nenhuma avenida invade zona protegida")
+    print(f"    pequena avenida da parede norte livre: {AVENIDA_NORTE:.2f} m entre "
+          f"y = {Y_AVENIDA_NORTE:.2f} e y = {Y_BANDA_NORTE:.2f} m, "
+          f"x de {X_AVENIDA_NORTE[0]:.2f} a {X_AVENIDA_NORTE[1]:.2f} m\n")
 
     total_desejado = sum(i["postes"] for i in itens.values())
     print(f"\nCatálogo completo do desenho: {total_desejado} unifilas "
