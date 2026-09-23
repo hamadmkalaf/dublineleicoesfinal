@@ -16,9 +16,10 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`voluntarios_postos.html`](voluntarios_postos.html) | Escala de Voluntários | Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários. |
 | [`rota_do_eleitor.html`](rota_do_eleitor.html) | Rota do Eleitor RDS | Os pontos **P0–P7**, a tabela mestra seção → porta e o plano de sinalização. É a origem dos códigos de posto. |
 | [`prancheta_hall2.html`](prancheta_hall2.html) | Prancheta pelas Seções | Coordenadas reais das portas e das 28 mesas. A planta do salão em `voluntarios_postos.html` foi gerada delas. |
-| [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado: 23 raias por zona, vão de 1,20 m, **180 CCBs** dos 200 em estoque, 506 m de fita grossa, lotação 2.118. |
+| [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado, revisto em 23/09: 23 raias por zona, três zonas iguais, vão de 1,20 m, **228 CCBs** (200 em estoque + 28 a contratar), 506 m de fita grossa, lotação 2.105, boca da A a oeste, as quatro aberturas da face norte cotadas e as laterais A\|B e B\|C fechadas nas duas faces, com corredor de serviço de 1,20 m e 12 portões. |
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
-| [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **21 peças** P0–P7, os dois mapas de posição e o `canvas.json`. Fonte das seis cores de rolo e da convenção de rotular por grupo e seção. |
+| [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **37 peças** P0–P7, os dois mapas de posição e o `canvas.json`, na revisão de 23/09. Fonte das cores de rolo e da convenção de rotular por grupo e seção. |
+| [`plano_sinalizacao.html`](plano_sinalizacao.html) | Plano de sinalização, peça por peça | O plano consolidado (v7, 23/09), montado por `scripts/plano_consolidado.py` a partir das peças. |
 
 As cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
 incluído — não foram editadas. A única exceção é `voluntarios_postos.html`, que já
@@ -43,29 +44,41 @@ por peça, mais `canvas.json` com o título e a posição de cada prancha.
 | **P1** · portão | `P1-Portao` |
 | **P2** · lateral leste | `P2-ParedeLeste` (PVC 2000 × 1000, ×3) |
 | **P3** · entrada do Ring | `P3-EntradaRing` |
-| **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` |
-| **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) |
-| **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · `P6-BlocoA3` · `P6-BlocoC4` |
+| **P4** · bocas das zonas | `P4-ZonaA` · `P4-ZonaB` · `P4-ZonaC` · `P4-FimAvenidaB` (o T da avenida B, 23/09) |
+| **P5** · portas e preferencial | `P5-Preferencial` · `P5-VinilA/B/C` (letra de 300 mm no vidro) · `P5-VinilPref` (porta S7) |
+| **P6** · painéis e grupos | `P6-PainelA/B/C` (pull-up 1000 × 2000) · **`P6-BlocoA1` a `P6-BlocoC6`** — as dezesseis placas de grupo (pull-up 850 × 2000) |
 | **P7** · saída | `P7-Saida` (correx A2, ×2) |
 | Mapas | `Mapa-Ring3` · `Mapa-Hall2` · `Main` (o sistema visual) |
 
 ## Divergências entre artefatos
 
 **Resolvida — a largura das três zonas.** As zonas do Ring 3 são **iguais, 12,87 m
-cada** (decisão do Posto, 18/09), como desenha o `Mapa-Ring3` do artefato de
-sinalização (17/09). `ring3_montagem.html` (16/09) desenha **12,23 / 14,14 / 12,23 m**
-e, nesse ponto, **está superado** — é uma cópia fiel do artefato publicado e por isso
-não foi editada. `CLAUDE.md` já registra as três iguais.
+cada** (decisão do Posto, 18/09). A folha `ring3_montagem.html` foi regenerada e
+republicada em 22/09 com as três iguais; a divergência com o `Mapa-Ring3` acabou.
 
 A soma das três não muda (38,60 contra 38,61 m), então **nenhuma conta que dependa do
 total se altera**: os 888 m de fila e os ~926 m de barreira da §5 de
 `docs/voluntarios/contexto.md` continuam valendo como estavam.
 
-**Em aberto — o número de CCBs.** 180 em `ring3_montagem.html`, **179** no
-`Mapa-Ring3`. Os dois dentro dos 200 em estoque, então não muda a compra; muda a lista
-de montagem. A diferença é pequena o bastante para ser o arredondamento dos postes
-terminais quando as zonas passam de desiguais para iguais — **hipótese, não
-verificação**: quem montar a lista confere contra o pátio.
+**Superada — "preferencial em qualquer porta".** A tabela de `rota_do_eleitor.html`
+diz, na linha do P5, que a entrada preferencial vale em *"qualquer porta"*. **Não vale:**
+decisão do Posto de 21/09, o preferencial entra **pela S7, a porta à direita da C**. A peça
+`P5-Preferencial` já diz isso; `rota_do_eleitor.html` não foi editada porque é cópia fiel do
+artefato publicado, como o `ring3_montagem.html`. Quem republicar a Rota do Eleitor corrige lá.
+
+**Resolvida — o número de CCBs.** Com as três zonas iguais o fechamento do fundo cai
+de 16 para 15 CCBs (179), e a CCB atravessada que fecha a meia raia morta da B (saída
+pelo meio, 22/09) devolve o total a **180**. Em 23/09 o fechamento das laterais A|B e
+B|C acrescenta 64 CCBs e leva o total a **228**, das quais 28 a contratar. A folha e o
+`Mapa-Ring3` dizem o mesmo.
+
+**Revisão de 23/09.** Prancheta (v6), Ring 3 (v3), plano de sinalização (v8) e escala
+de voluntários (v5) foram republicados e as cópias refeitas; o manifesto tem as
+versões e os sha256 novos. O que mudou está em `CLAUDE.md` e nos commits de 23/09:
+a parede oeste trocou dois pares de posição, as laterais do Ring 3 fecharam e a
+sinalização ganhou a `P4-FimAvenidaB` e as marcas de ponta de corredor nos painéis A
+e C. **O recuo das avenidas foi desenhado e recusado no mesmo dia** — a geometria dos
+separadores continua a de 22/09.
 
 ## Dois achados a levar ao plano de sinalização
 
