@@ -14,11 +14,14 @@ necessário para chegar a elas.
 | **Arranjo do Hall 2** — cenário, `decisoes.json`, prancheta | `scripts/arranjo_paredes.py` · `confere_arranjo.py` · `gera_prancheta_por_secao.py` | trazidos em 22/09; a prancheta sai deles |
 | **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` | o percurso e o salão em versão de divulgação (24/09) |
 
 **O consolidado da última rodada está em
-[`docs/DECISOES_2026-09-23.md`](docs/DECISOES_2026-09-23.md)**: o que foi decidido
-em 23/09, o que foi desenhado e recusado no mesmo dia (o recuo das avenidas) com a
-conta do que custaria, e o que a rodada deixou em aberto.
+[`docs/DECISOES_2026-09-24.md`](docs/DECISOES_2026-09-24.md)**: a economia de CCB do
+Ring 3, a pequena avenida da parede norte e o mapa público. O da rodada anterior, em
+[`docs/DECISOES_2026-09-23.md`](docs/DECISOES_2026-09-23.md), guarda o que foi
+desenhado e recusado no mesmo dia — o recuo das avenidas — com a conta do que
+custaria; as suas contas de CCB e de unifila foram superadas em 24/09.
 
 ---
 

@@ -113,6 +113,17 @@
    "sha256": "5900d8372ec28d371897eb7aaceeca685a55c6641917a23926baf2b3793a471b",
    "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1.",
    "publicacao": "pendente — a cópia deste repositório é a versão vigente"
+  },
+  {
+   "chave": "mapa_publico",
+   "titulo": "Onde você vota no RDS",
+   "url": "https://claude.ai/artifact/FuDcD3rNme5wznroJV435t",
+   "versao": "v1, 24/09",
+   "caminho": "mapa/mapa_publico.html",
+   "o_que_e": "O mapa simplificado de apresentação: o percurso do portão B da Merrion Road até a mesa, a planta do Hall 2 com as 28 mesas rotuladas só pelas seções, e as 51 seções repartidas pelas três portas. É a única peça do projeto feita para sair dele — internet e briefing das equipes.",
+   "estado": "publicada em 24/09 a partir de mapa/mapa_publico.html, que scripts/mapa_publico.py gera. **O artefato nasce privado**: divulgar exige abrir o compartilhamento na página.",
+   "gerador": "scripts/mapa_publico.py",
+   "sha256": "93cc5eb0ef1266cad728ddea534fba3646579984caceec40c3bf01f88052df41"
   }
  ]
 }
