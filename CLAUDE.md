@@ -14,6 +14,7 @@ necessário para chegar a elas.
 | **Arranjo do Hall 2** — cenário, `decisoes.json`, prancheta | `scripts/arranjo_paredes.py` · `confere_arranjo.py` · `gera_prancheta_por_secao.py` | trazidos em 22/09; a prancheta sai deles |
 | **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Artes para a gráfica** — os 34 PDFs | `saidas/artes_sinalizacao/` · `scripts/exporta_artes.mjs` · `scripts/compacta_artes.py` | exportadas em 23/09: PDF vetorial no tamanho final, nome `posição_modelo_LxAmm`; o `.mjs` renderiza com o Chromium do Playwright e a Montserrat instalada (2 mm/px), o `.py` funde os subconjuntos de fonte e compacta; sem `--confere` regrava. Vinil sai sem o fundo do vidro |
 | **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` · `scripts/mapa_publico_pptx.py` · `saidas/onde_voce_vota.pptx` | o percurso e o salão em versão de divulgação, em página e em deck editável (rodada `23926v2`) |
 
 **O consolidado da última rodada está em
