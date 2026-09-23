@@ -20,8 +20,15 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
 | [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **37 peças** P0–P7, os dois mapas de posição e o `canvas.json`, na revisão de 23/09. Fonte das cores de rolo e da convenção de rotular por grupo e seção. |
 | [`plano_sinalizacao.html`](plano_sinalizacao.html) | Plano de sinalização, peça por peça | O plano consolidado (v7, 23/09), montado por `scripts/plano_consolidado.py` a partir das peças. |
+| [`mapa_publico.html`](mapa_publico.html) | Onde você vota no RDS | **O mapa simplificado de apresentação** (24/09), gerado por `scripts/mapa_publico.py`: o percurso do portão B da Merrion Road até a mesa, a planta do Hall 2 com as 28 mesas rotuladas só pelas seções, e as 51 seções repartidas pelas três portas. É a única peça feita para **sair** do projeto. |
 
-As cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
+`mapa_publico.html` é a exceção da tabela: ele não é cópia de nada, é **a fonte** —
+`scripts/mapa_publico.py` o gera, e o artefato publicado é que é a cópia. Rode o script
+sem `--grava` antes de qualquer commit; ele sai com código 1 se a folha divergir do
+gerador. **O artefato nasce privado**, então divulgar exige abrir o compartilhamento na
+própria página.
+
+As demais cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
 incluído — não foram editadas. A única exceção é `voluntarios_postos.html`, que já
 estava no repositório antes: é byte a byte igual ao artefato publicado a menos desse
 invólucro, e por isso foi mantida como está.
