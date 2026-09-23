@@ -16,11 +16,11 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`voluntarios_postos.html`](voluntarios_postos.html) | Escala de Voluntários | Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários. |
 | [`rota_do_eleitor.html`](rota_do_eleitor.html) | Rota do Eleitor RDS | Os pontos **P0–P7**, a tabela mestra seção → porta e o plano de sinalização. É a origem dos códigos de posto. |
 | [`prancheta_hall2.html`](prancheta_hall2.html) | Prancheta pelas Seções | Coordenadas reais das portas e das 28 mesas. A planta do salão em `voluntarios_postos.html` foi gerada delas. |
-| [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado, revisto em 24/09: 23 raias por zona, três zonas iguais, vão de 1,20 m, **202 CCBs** (200 em estoque + 2 a contratar), 558,0 m de fita grossa, lotação 2.105, boca da A a oeste, as quatro aberturas da face norte cotadas e as laterais A\|B e B\|C fechadas com CCB só nos pontos de amarração da fita — 11 por face — e fita nos 11 vãos entre eles. |
+| [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado, revisto em 23/09 (v2): 23 raias por zona, três zonas iguais, vão de 1,20 m, **202 CCBs** (200 em estoque + 2 a contratar), 558,0 m de fita grossa, lotação 2.105, boca da A a oeste, as quatro aberturas da face norte cotadas e as laterais A\|B e B\|C fechadas com CCB só nos pontos de amarração da fita — 11 por face — e fita nos 11 vãos entre eles. |
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
 | [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **37 peças** P0–P7, os dois mapas de posição e o `canvas.json`, na revisão de 23/09. Fonte das cores de rolo e da convenção de rotular por grupo e seção. |
 | [`plano_sinalizacao.html`](plano_sinalizacao.html) | Plano de sinalização, peça por peça | O plano consolidado (v7, 23/09), montado por `scripts/plano_consolidado.py` a partir das peças. |
-| [`mapa_publico.html`](mapa_publico.html) | Onde você vota no RDS | **O mapa simplificado de apresentação** (24/09), gerado por `scripts/mapa_publico.py`: o percurso do portão B da Merrion Road até a mesa, a planta do Hall 2 com as 28 mesas rotuladas só pelas seções, e as 51 seções repartidas pelas três portas. É a única peça feita para **sair** do projeto. |
+| [`mapa_publico.html`](mapa_publico.html) | Onde você vota no RDS | **O mapa simplificado de apresentação** (23/09 (v2)), gerado por `scripts/mapa_publico.py`: o percurso do portão B da Merrion Road até a mesa, a planta do Hall 2 com as 28 mesas rotuladas só pelas seções, e as 51 seções repartidas pelas três portas. É a única peça feita para **sair** do projeto. |
 
 `mapa_publico.html` é a exceção da tabela: ele não é cópia de nada, é **a fonte** —
 `scripts/mapa_publico.py` o gera, e o artefato publicado é que é a cópia. Rode o script
@@ -76,20 +76,20 @@ artefato publicado, como o `ring3_montagem.html`. Quem republicar a Rota do Elei
 **Resolvida — o número de CCBs.** Com as três zonas iguais o fechamento do fundo cai
 de 16 para 15 CCBs (179), e a CCB atravessada que fecha a meia raia morta da B (saída
 pelo meio, 22/09) devolve o total a **180**. Em 23/09 o fechamento das laterais A|B e
-B|C acrescentou 64 CCBs e levou o total a **228**, das quais 28 a contratar. Em 24/09 a
+B|C acrescentou 64 CCBs e levou o total a **228**, das quais 28 a contratar. Em 23/09 (v2) a
 lateral passou a levar painel só nos 11 pontos de amarração de cada face e o fechamento
 do fundo passou a alternar CCB e fita: a lateral cai de 64 para **44**, o fundo de 15
 para **9**, e o total a **202**, dos quais **2 a contratar**. A folha e o `Mapa-Ring3`
 dizem o mesmo.
 
-**Revisão de 24/09.** Duas cópias estão **à frente da publicação** e precisam ser
-republicadas nas URLs do manifesto: `ring3_montagem.html` (amarração da lateral e do
-fechamento do fundo, 202 CCBs) e `plano_sinalizacao.html` (a `P4-FimAvenidaB` passa a
-ficar na boca da pequena avenida da parede norte). O manifesto marca as duas com
-`"publicacao": "pendente"`, e os sha256 são os das cópias deste repositório — a
-conferência abaixo dá `ok` nas seis.
+**Rodada 23926v2** (a segunda de 23/09). `ring3_montagem.html` **já foi republicada**
+na URL do manifesto, versão 4: amarração da lateral e do fechamento do fundo, 202 CCBs.
+`plano_sinalizacao.html` continua **à frente da publicação** — a ficha da
+`P4-FimAvenidaB` passa a situar a peça na boca da pequena avenida da parede norte — e o
+manifesto a marca com `"publicacao": "pendente"`. Entra também `mapa_publico.html`, que
+é fonte e não cópia. A conferência abaixo dá `ok` nas sete.
 
-**Revisão de 23/09.** Prancheta (v6), Ring 3 (v3), plano de sinalização (v8) e escala
+**Revisão de 23/09, v1.** Prancheta (v6), Ring 3 (v3), plano de sinalização (v8) e escala
 de voluntários (v5) foram republicados e as cópias refeitas; o manifesto tem as
 versões e os sha256 novos. O que mudou está em `CLAUDE.md` e nos commits de 23/09:
 a parede oeste trocou dois pares de posição, as laterais do Ring 3 fecharam e a

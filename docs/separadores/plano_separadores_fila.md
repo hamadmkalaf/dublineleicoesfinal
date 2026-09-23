@@ -100,11 +100,11 @@ nenhum no campo central.
 vira a oeste por baixo das mesas da parede oeste e sobe rente à banda.
 Distribui em **pente**: 5 aberturas, uma por grupo.
 
-**Avenida B (amarela, S5 → norte).** Sobe reta e, **desde 24/09, a barreira dela
+**Avenida B (amarela, S5 → norte).** Sobe reta e, **desde 23/09 (v2), a barreira dela
 para em 33,6 m** — um par de unifilas antes da banda norte. Não distribui em
 pente: chega perpendicular e termina numa **pequena avenida transversal**.
 
-**A pequena avenida da parede norte (24/09).** Até 23/09 a avenida B encostava no
+**A pequena avenida da parede norte (23/09 (v2)).** Até 23/09 a avenida B encostava no
 T, e o T era o único ponto do salão em que todo o fluxo de uma entrada (3.832
 esperados) escolhia um lado **parado**, num metro quadrado. Tirando o último par
 de unifilas — uma em cada trilho — a barreira para 1,80 m antes, e esse 1,80 m
@@ -180,7 +180,7 @@ canal preferencial — pediria da ordem de 390 unifilas. As 100 orçadas são
 **Falta bastante fita azul, e toda a vermelha.** Assumindo 165 m **por cor** em
 estoque (a confirmar — se for 165 m no total, a falta triplica), faltam **88 m de
 azul e 241 m de vermelho**, mais as três cores que ainda não existem. O amarelo
-passou a faltar em 24/09: a pequena avenida acrescentou 24,7 m e virou o saldo de
+passou a faltar em 23/09 (v2): a pequena avenida acrescentou 24,7 m e virou o saldo de
 +15,2 para **−9,5 m**. Em rolos de 50 m a conta **não muda**, porque os 4 rolos de
 amarelo já cobriam os 165 m de estoque mais a diferença: **2 azul + 5 vermelho +
 1 zebrado + 1 verde + 2 branco = 11 rolos a comprar**, ordem de **EUR 140–220**
@@ -200,7 +200,7 @@ eles cresciam junto — o da norte dobrava, de 4,90 para 9,90 m — e a fita ia 
 subindo de 11 para **18** (o amarelo, que então fechava com saldo positivo,
 passaria a pedir 3). Em troca, a avenida B encurtava 5,00 m em cada trilho e
 devolvia 6 unifilas. **A geometria vigente continua a de 22/09, com a única
-mudança de 24/09: o par de unifilas que virou a pequena avenida da parede
+mudança de 23/09 (v2): o par de unifilas que virou a pequena avenida da parede
 norte.**
 
 *Adendo de 22/09.* Até essa revisão a zona C era laranja e a conta fechava em 8

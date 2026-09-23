@@ -23,7 +23,8 @@ comporta com o efetivo que o Posto realmente tem.
 | [`docs/voluntarios/contexto.md`](docs/voluntarios/contexto.md) | Contexto consolidado: o princípio de projeto, os achados com a conta, as correções feitas no caminho, as premissas. **Leitura obrigatória antes de mexer em número.** |
 | [`docs/voluntarios/dimensionamento.md`](docs/voluntarios/dimensionamento.md) | O raciocínio: taxas de chegada, dimensionamento, achados das plantas, riscos de segunda e terceira ordem. Carrega um aviso de que seus códigos de posto são da revisão anterior (RE1–T2, e não P0–T2). |
 | [`mapa/voluntarios_postos.html`](mapa/voluntarios_postos.html) | Os postos marcados sobre a rota e sobre a planta do salão, com seletor dos quatro cenários. Não depende de nenhum arquivo do repositório; busca as fontes tipográficas no Google Fonts, então **sem internet ele abre e funciona, com outra tipografia**. |
-| [`mapa/mapa_publico.html`](mapa/mapa_publico.html) | **Onde você vota no RDS** — o mapa simplificado de apresentação, para a internet e para o briefing das equipes. Gerado por `scripts/mapa_publico.py`. |
+| [`mapa/mapa_publico.html`](mapa/mapa_publico.html) | **Onde você vota no RDS** — o mapa simplificado de apresentação, para a internet. Gerado por `scripts/mapa_publico.py`. |
+| `saidas/onde_voce_vota.pptx` | O mesmo conteúdo em **quatro slides editáveis**, para a sala: capa, o caminho, o Hall 2 e as 51 seções. Tudo é forma nativa — retângulo, linha, caixa de texto —, não imagem colada. Gerado por `scripts/mapa_publico_pptx.py`. |
 | `scripts/zonas_balanceadas.py` | Confere a composição das três zonas contra os dados. |
 
 **O que não pode se perder:** a sinalização atende o caso padrão e o voluntário
@@ -72,6 +73,9 @@ python3 scripts/zonas_balanceadas.py
 # Mapa público — confere; sai com código 1 se a folha divergir do gerador
 python3 scripts/mapa_publico.py
 python3 scripts/mapa_publico.py --grava   # regrava mapa/mapa_publico.html
+
+# A mesma coisa em PPTX editável (pede python-pptx)
+python3 scripts/mapa_publico_pptx.py --grava
 ```
 
 ### O que a conferência tem de imprimir

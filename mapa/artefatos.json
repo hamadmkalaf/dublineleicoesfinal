@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-09-24",
+ "gerado_em": "2026-09-23",
  "nota": "Fonte versionada dos artefatos publicados. Cada arquivo é a página tal como o serviço a entregou, invólucro da plataforma incluído. O sha256 é do arquivo neste repositório: se o artefato for republicado, ele muda, e é assim que se percebe que a cópia envelheceu.",
  "artefatos": [
   {
@@ -26,12 +26,11 @@
    "chave": "ring3_montagem",
    "titulo": "Montagem do Ring 3",
    "url": "https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV",
-   "versao": "1790114877-be85",
+   "versao": "v4, 23/09 (v2)",
    "caminho": "mapa/ring3_montagem.html",
    "o_que_e": "O cenário 3 adaptado: 23 raias por zona, três zonas iguais de 12,87 m, vão de 1,20 m, 558,0 m de fita grossa, lotação 2.105, saídas na face norte junto às portas.",
-   "estado": "cópia de 24/09 **à frente da publicação**: CCB só nos pontos de amarração da fita, na lateral e no fechamento do fundo — 202 CCBs, 2 a contratar (eram 228 e 28), com a última CCB de cada zona encostada na porta da boca. Republicar na URL do manifesto antes de usar a versão publicada.",
-   "sha256": "e93fad69478dd9ae4d004f1e1224fc1dc89fc81a0602b6e25248d64fb61b88e3",
-   "publicacao": "pendente — a cópia deste repositório é a versão vigente"
+   "estado": "republicada na mesma URL em 23/09 (rodada 23926v2), versão 4: CCB só nos pontos de amarração da fita, na lateral e no fechamento do fundo — 202 CCBs, 2 a contratar (eram 228 e 28), com a última CCB de cada zona encostada na porta da boca. 558,0 m de fita grossa.",
+   "sha256": "770c5d28723896c2020a359f0bcae442d6ee833136b21124401d971ae3c2dde6"
   },
   {
    "chave": "sinalizacao_interna",
@@ -109,8 +108,8 @@
    "versao": "1790200000-b8f1",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
-   "estado": "cópia de 24/09 **à frente da publicação**: a ficha da P4-FimAvenidaB passa a situar a peça na boca da pequena avenida da parede norte (fim dos 33,6 m da avenida B), e o marcador P4 no mapa desce de y = 35,40 para 33,60 m. Republicar na URL do manifesto.",
-   "sha256": "5900d8372ec28d371897eb7aaceeca685a55c6641917a23926baf2b3793a471b",
+   "estado": "cópia de 23/09 (rodada 23926v2) **à frente da publicação**: a ficha da P4-FimAvenidaB passa a situar a peça na boca da pequena avenida da parede norte (fim dos 33,6 m da avenida B), e o marcador P4 no mapa desce de y = 35,40 para 33,60 m. Republicar na URL do manifesto.",
+   "sha256": "3e7d6083b9f2654b43d3e2bca90ae66eb54e881ca64ce269b4b0b136fed383fe",
    "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1.",
    "publicacao": "pendente — a cópia deste repositório é a versão vigente"
   },
@@ -118,10 +117,10 @@
    "chave": "mapa_publico",
    "titulo": "Onde você vota no RDS",
    "url": "https://claude.ai/artifact/FuDcD3rNme5wznroJV435t",
-   "versao": "v1, 24/09",
+   "versao": "v1, 23/09 (v2)",
    "caminho": "mapa/mapa_publico.html",
    "o_que_e": "O mapa simplificado de apresentação: o percurso do portão B da Merrion Road até a mesa, a planta do Hall 2 com as 28 mesas rotuladas só pelas seções, e as 51 seções repartidas pelas três portas. É a única peça do projeto feita para sair dele — internet e briefing das equipes.",
-   "estado": "publicada em 24/09 a partir de mapa/mapa_publico.html, que scripts/mapa_publico.py gera. **O artefato nasce privado**: divulgar exige abrir o compartilhamento na página.",
+   "estado": "publicada em 23/09 (v2) a partir de mapa/mapa_publico.html, que scripts/mapa_publico.py gera. **O artefato nasce privado**: divulgar exige abrir o compartilhamento na página.",
    "gerador": "scripts/mapa_publico.py",
    "sha256": "93cc5eb0ef1266cad728ddea534fba3646579984caceec40c3bf01f88052df41"
   }

@@ -190,7 +190,7 @@ elas, 18,4 m de porta no total — e quem entra pela errada não se perde, é
 piso aberto com a reserva de fila encostada nos dois flancos; (c) as **três
 de alta carga**, os únicos lugares com multidão parada declarada.
 
-**A pequena avenida da parede norte (24/09).** A avenida B deixa de encostar no
+**A pequena avenida da parede norte (23/09 (v2)).** A avenida B deixa de encostar no
 T: o **último par de unifilas** sai, a barreira para em y = 33,60 e esse 1,80 m
 vira uma faixa transversal de 1,80 × 25,50 m entre as bandas oeste e leste. As
 duas bordas são fita, nenhuma é barreira, e é ela que resolve o ponto mais
@@ -219,7 +219,7 @@ Ordem de EUR 140–220 (*estimativa, a cotar*). Até 22/09 eram 8 rolos (2 azul,
 o rolo laranja em estoque (165 m) deixa de servir ao desenho. Os 8 m a mais de
 azul são a avenida A, que passou a terminar em y = 40,0 para servir o ramal da
 mesa 3179·0530, deslocada para 37,62 m na mesma revisão. O recuo das avenidas de
-23/09 levaria a conta a 18 rolos, e não entrou. Em **24/09** a pequena avenida
+23/09 levaria a conta a 18 rolos, e não entrou. Em **23/09 (v2)** a pequena avenida
 acrescentou 24,7 m de amarelo e virou o saldo dessa cor de +15,2 para −9,5 m —
 **sem mudar os 11 rolos**, porque os 4 rolos que o amarelo já pedia cobrem a
 diferença.
@@ -229,7 +229,7 @@ mais fundas que a norte, então os seus ramais são mais compridos. **A parede
 norte é barata em fita justamente porque a avenida B chega perpendicular:** o T
 que era a fragilidade do traçado é também o que encurta os seus ramais — e é,
 desde 23/09, o ponto que a peça `P4-FimAvenidaB` resolve, agora lida na boca da
-pequena avenida de 24/09.
+pequena avenida de 23/09 (v2).
 
 ## 6. Achados
 
@@ -265,7 +265,7 @@ altura dos olhos, no x-banner — já orçado no item (c), EUR 1.961,00. O chão
 **A reserva de 4 unifilas é insuficiente.** Fita colada às 7h não se move às
 13h. A barreira é a única parte do desenho que responde a uma surpresa — e as
 surpresas deste projeto têm nome: MRV 24 e MRV 11 ainda sem mesário confirmado.
-A pequena avenida de 24/09 devolveu 2 unidades e a reserva foi de 2 para 4, o que
+A pequena avenida de 23/09 (v2) devolveu 2 unidades e a reserva foi de 2 para 4, o que
 não muda a ordem de grandeza. **Pedido: mais 15 unidades, EUR 195,45**, para
 levar a reserva a 19. É 1,2% do orçamento do 1º turno.
 
