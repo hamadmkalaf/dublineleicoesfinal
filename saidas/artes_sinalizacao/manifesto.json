@@ -1,0 +1,349 @@
+{
+ "gerado_em": "2026-09-23",
+ "nota": "PDF vetorial no tamanho final de impressão (sem sangria), Montserrat embutida. Nome = posição no plano _ modelo _ largura x altura mm. Quantidade é quantas cópias a gráfica imprime daquele arquivo.",
+ "escala": "2 mm por px de canvas",
+ "total_arquivos": 34,
+ "total_pecas": 39,
+ "artes": [
+  {
+   "arquivo": "P0-Consulta_construction-fence_2080x820mm.pdf",
+   "peca": "P0-Consulta",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 2,
+   "onde": "P0 · descubra sua seção (QR do TSE) · calçada da Merrion Road, uma de cada lado do portão",
+   "bytes": 14879
+  },
+  {
+   "arquivo": "P0-Mestra_construction-fence_2080x820mm.pdf",
+   "peca": "P0-Mestra",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 2,
+   "onde": "P0 · tabela mestra seção → porta · calçada, ao lado de cada P0-Consulta",
+   "bytes": 13716
+  },
+  {
+   "arquivo": "P1-Portao_construction-fence_2080x820mm.pdf",
+   "peca": "P1-Portao",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "P1 · portão de eleitores",
+   "bytes": 13555
+  },
+  {
+   "arquivo": "P2-ParedeLeste_pvc-banner_2000x1000mm.pdf",
+   "peca": "P2-ParedeLeste",
+   "modelo": "pvc-banner",
+   "largura_mm": 2000,
+   "altura_mm": 1000,
+   "quantidade": 3,
+   "onde": "P2 · lateral leste do Hall 2, nas portas de serviço",
+   "bytes": 11890
+  },
+  {
+   "arquivo": "P3-EntradaRing_construction-fence_2080x820mm.pdf",
+   "peca": "P3-EntradaRing",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "P3 · entrada do Ring 3, na CCB",
+   "bytes": 12791
+  },
+  {
+   "arquivo": "P4-ZonaC_construction-fence_2080x820mm.pdf",
+   "peca": "P4-ZonaC",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "P4 · boca da zona C do Ring 3",
+   "bytes": 12314
+  },
+  {
+   "arquivo": "P4-ZonaB_construction-fence_2080x820mm.pdf",
+   "peca": "P4-ZonaB",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "P4 · boca da zona B do Ring 3",
+   "bytes": 11926
+  },
+  {
+   "arquivo": "P4-ZonaA_construction-fence_2080x820mm.pdf",
+   "peca": "P4-ZonaA",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "P4 · boca da zona A do Ring 3",
+   "bytes": 12320
+  },
+  {
+   "arquivo": "P5-VinilA_cut-vinyl_1200x700mm.pdf",
+   "peca": "P5-VinilA",
+   "modelo": "cut-vinyl",
+   "largura_mm": 1200,
+   "altura_mm": 700,
+   "quantidade": 1,
+   "onde": "P5 · letra A no vidro da porta S4",
+   "bytes": 3275
+  },
+  {
+   "arquivo": "P5-VinilB_cut-vinyl_1200x700mm.pdf",
+   "peca": "P5-VinilB",
+   "modelo": "cut-vinyl",
+   "largura_mm": 1200,
+   "altura_mm": 700,
+   "quantidade": 1,
+   "onde": "P5 · letra B no vidro da porta S5",
+   "bytes": 3023
+  },
+  {
+   "arquivo": "P5-VinilC_cut-vinyl_1200x700mm.pdf",
+   "peca": "P5-VinilC",
+   "modelo": "cut-vinyl",
+   "largura_mm": 1200,
+   "altura_mm": 700,
+   "quantidade": 1,
+   "onde": "P5 · letra C no vidro da porta S6",
+   "bytes": 3391
+  },
+  {
+   "arquivo": "P5-Preferencial_construction-fence_2080x820mm.pdf",
+   "peca": "P5-Preferencial",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "P5 · entrada preferencial, no gradil do apron",
+   "bytes": 60008
+  },
+  {
+   "arquivo": "P5-VinilPref_cut-vinyl_1200x700mm.pdf",
+   "peca": "P5-VinilPref",
+   "modelo": "cut-vinyl",
+   "largura_mm": 1200,
+   "altura_mm": 700,
+   "quantidade": 1,
+   "onde": "P5 · preferencial no vidro da porta S7",
+   "bytes": 44932
+  },
+  {
+   "arquivo": "P6-PainelA_roll-up_1000x2000mm.pdf",
+   "peca": "P6-PainelA",
+   "modelo": "roll-up",
+   "largura_mm": 1000,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · painel da porta A, atrás da S4",
+   "bytes": 14415
+  },
+  {
+   "arquivo": "P6-PainelB_roll-up_1000x2000mm.pdf",
+   "peca": "P6-PainelB",
+   "modelo": "roll-up",
+   "largura_mm": 1000,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · painel da porta B, atrás da S5",
+   "bytes": 13136
+  },
+  {
+   "arquivo": "P6-PainelC_roll-up_1000x2000mm.pdf",
+   "peca": "P6-PainelC",
+   "modelo": "roll-up",
+   "largura_mm": 1000,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · painel da porta C, atrás da S6",
+   "bytes": 14395
+  },
+  {
+   "arquivo": "P4-FimAvenidaB_construction-fence_2080x820mm.pdf",
+   "peca": "P4-FimAvenidaB",
+   "modelo": "construction-fence",
+   "largura_mm": 2080,
+   "altura_mm": 820,
+   "quantidade": 1,
+   "onde": "P4 · fim da avenida B, na boca da pequena avenida da parede norte",
+   "bytes": 13387
+  },
+  {
+   "arquivo": "P6-BlocoA1_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoA1",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo A1, na boca do corredor do par",
+   "bytes": 10344
+  },
+  {
+   "arquivo": "P6-BlocoA2_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoA2",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo A2, na boca do corredor do par",
+   "bytes": 10724
+  },
+  {
+   "arquivo": "P6-BlocoA3_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoA3",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo A3, na boca do corredor do par",
+   "bytes": 10211
+  },
+  {
+   "arquivo": "P6-BlocoA4_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoA4",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo A4, na boca do corredor do par",
+   "bytes": 10640
+  },
+  {
+   "arquivo": "P6-BlocoA5_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoA5",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo A5, na boca do corredor do par",
+   "bytes": 10494
+  },
+  {
+   "arquivo": "P6-BlocoB1_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoB1",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo B1, na boca do corredor do par",
+   "bytes": 10396
+  },
+  {
+   "arquivo": "P6-BlocoB2_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoB2",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo B2, na boca do corredor do par",
+   "bytes": 9914
+  },
+  {
+   "arquivo": "P6-BlocoB3_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoB3",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo B3, na boca do corredor do par",
+   "bytes": 10201
+  },
+  {
+   "arquivo": "P6-BlocoB4_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoB4",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo B4, na boca do corredor do par",
+   "bytes": 10347
+  },
+  {
+   "arquivo": "P6-BlocoB5_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoB5",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo B5, na boca do corredor do par",
+   "bytes": 10049
+  },
+  {
+   "arquivo": "P6-BlocoC1_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoC1",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo C1, na boca do corredor do par",
+   "bytes": 9912
+  },
+  {
+   "arquivo": "P6-BlocoC2_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoC2",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo C2, na boca do corredor do par",
+   "bytes": 10409
+  },
+  {
+   "arquivo": "P6-BlocoC3_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoC3",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo C3, na boca do corredor do par",
+   "bytes": 10702
+  },
+  {
+   "arquivo": "P6-BlocoC4_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoC4",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo C4, na boca do corredor do par",
+   "bytes": 10635
+  },
+  {
+   "arquivo": "P6-BlocoC5_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoC5",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo C5, na boca do corredor do par",
+   "bytes": 10074
+  },
+  {
+   "arquivo": "P6-BlocoC6_roll-up_850x2000mm.pdf",
+   "peca": "P6-BlocoC6",
+   "modelo": "roll-up",
+   "largura_mm": 850,
+   "altura_mm": 2000,
+   "quantidade": 1,
+   "onde": "P6 · placa do grupo C6, na boca do corredor do par",
+   "bytes": 10357
+  },
+  {
+   "arquivo": "P7-Saida_correx-sign-A2_594x420mm.pdf",
+   "peca": "P7-Saida",
+   "modelo": "correx-sign-A2",
+   "largura_mm": 594,
+   "altura_mm": 420,
+   "quantidade": 2,
+   "onde": "P7 · saídas S2 e S8",
+   "bytes": 5369
+  }
+ ]
+}
