@@ -10,8 +10,18 @@ necessário para chegar a elas.
 | Tema | Onde vive | Estado |
 |---|---|---|
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
-| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
+| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, revisto em 22/09 (zona C vermelha, avenida A até 40 m) e em 24/09 (pequena avenida da parede norte); 96 unifilas, 802 m de fita |
+| **Arranjo do Hall 2** — cenário, `decisoes.json`, prancheta | `scripts/arranjo_paredes.py` · `confere_arranjo.py` · `gera_prancheta_por_secao.py` | trazidos em 22/09; a prancheta sai deles |
+| **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` | o percurso e o salão em versão de divulgação (24/09) |
+
+**O consolidado da última rodada está em
+[`docs/DECISOES_2026-09-24.md`](docs/DECISOES_2026-09-24.md)**: a economia de CCB do
+Ring 3, a pequena avenida da parede norte e o mapa público. O da rodada anterior, em
+[`docs/DECISOES_2026-09-23.md`](docs/DECISOES_2026-09-23.md), guarda o que foi
+desenhado e recusado no mesmo dia — o recuo das avenidas — com a conta do que
+custaria; as suas contas de CCB e de unifila foram superadas em 24/09.
 
 ---
 
@@ -29,11 +39,55 @@ necessário para chegar a elas.
 ## Geometria do local (planta de 16/09/2026)
 
 O Ring 3 como pátio de fila está **confirmado** (18/09), com as **três zonas iguais**.
-A montagem — 23 raias por zona, vão de 1,20 m, ~180 CCBs dos 200 em estoque, 506 m de
-fita grossa, lotação 2.118 (706 por zona) — está em `mapa/ring3_montagem.html` e no
-`Mapa-Ring3` de `mapa/sinalizacao/`. **A folha de montagem desenha as zonas desiguais
-(12,23 / 14,14 / 12,23 m): nesse ponto ela está superada.** A soma das três não muda —
-38,6 m —, então nenhuma conta que dependa do total se altera.
+A montagem — 23 raias por zona, vão de 1,20 m, **202 CCBs** (200 em estoque + **2 a
+contratar**, ~EUR 26,04), 558,0 m de fita grossa, lotação **2.105** — está em
+`mapa/ring3_montagem.html` (folha revista em 24/09, gerada por
+`scripts/ring3_montagem.py` no repositório de origem) e no `Mapa-Ring3` de
+`mapa/sinalizacao/`. **O `Mapa-Ring3` ainda diz 228: peça de sinalização a refazer.**
+
+**Revisão de 24/09 do Ring 3 — CCB só onde a fita amarra.** A lateral deixou de ser
+parede contínua e o fechamento contra o trecho de fundo deixou de ser corrida fechada:
+nos dois, o painel vai só nos pontos em que a ponta fixa da divisória amarra, e fita
+cobre o vão. A conta está na alternância que o desenho já tinha — a ponta fixa fica do
+lado oposto ao vão de meia-volta, e o vão troca de lado a cada raia, então numa linha
+de lateral amarram as divisórias **ímpares** da zona vizinha e na outra as **pares**:
+**11 pontos por linha, a 2,78 m**, e um painel de 2,00 m não pega dois. São **11 CCBs
+por linha em vez de 16** (44 no total, eram 64) e **3 painéis por zona no fundo em vez
+de 5** (9, eram 15), com o último encostado na **porta da boca**. Total **202**, **2 a
+contratar** (~EUR 26,04), fita grossa de 506,0 para **558,0 m**. O **portão a cada 8 m
+sai**: a passagem é o próprio vão de fita, 11 por face, sendo um de 1,78 m por linha,
+junto ao trecho de fundo, que passa maca. **O custo, registrado de propósito:** vão de
+0,78 m coberto por fita reabre o corte lateral que 23/09 havia fechado — quem está na
+zona A pode entrar no corredor de serviço, subir e voltar à A mais adiante. Os 26
+painéis economizados são exatamente o que o fecha de novo, se o Posto quiser. A
+**parede entre a zona C e o corredor de chegada não entrou na economia**: a mesma regra
+ali daria 197 no total e compra zero, mas ela dá para o corredor por onde passam os
+16,8 mil que entram, e um vão ali vale ~150 m de percurso. Está no script como
+`PAREDE_C = 'amarracao'`, para o Posto decidir.
+
+**Revisão de 23/09 do Ring 3 — as laterais A|B e B|C fecham inteiras.** Até 22/09
+o vão de 1,20 m entre zonas era só espaço vazio: não havia barreira onde afixar a
+fita que separa uma zona da outra, e a divisória existia no desenho mas não no
+chão. Agora cada zona tem a sua **própria linha de CCBs** ao longo dos 32,0 m —
+duas linhas por vão, uma em cada face —, e entre elas fica um **corredor de
+serviço de 1,20 m**, largura que o desenho já exigia para passar maca e fiscal
+contra o fluxo. Naquela revisão eram **64 CCBs a mais** e o total ia de 180 a 228 —
+28 acima do estoque —, com 12 portões de uma CCB. **A conta foi superada em 24/09**,
+acima; o corredor de serviço e o vão de 1,20 m continuam valendo. *A alternativa
+registrada na folha* — uma só linha de CCBs no eixo do vão, 196 CCBs — continua
+descartada: deixa 0,60 m de cada lado e mata a passagem de maca.
+
+**Revisão de 22/09 do Ring 3.** A boca de entrada da **zona A fica no extremo oeste**
+(as de B e C seguem a leste): com 23 raias, ímpar, a raia de cima anda no sentido
+contrário ao da boca, e só assim a A descarrega junto à S4. **Cada zona sai por uma
+abertura de 2,0 m na face norte do gradil, a mais próxima da sua porta**, cotada do
+canto nordeste, por onde a corrente entra: corredor de chegada 0–3,00 m · saída C
+13,87–15,87 m · saída B 22,50–24,50 m · saída A 31,13–33,13 m. C e B saem dentro do
+vão da própria porta; a saída da A termina a 2,91 m do eixo da S4, no batente oeste do
+vão, e atravessa o apron em diagonal. A B sai pelo meio: a metade oeste da raia de cima
+(5,43 m) fica fechada por 1 CCB atravessada, e custa 13 lugares. Essa conta fechava
+em 180 CCBs dentro do estoque; o fechamento das laterais em 23/09 a levou a 228, e a
+amarração de 24/09 a trouxe de volta a 202.
 
 O percurso tem três trechos físicos distintos. **Ring 3 é o pátio de fila ao ar
 livre; Hall 2 é o salão de votação.**
@@ -54,8 +108,20 @@ do Hall 2. Espaço de travessia, sem raias.
 **Hall 2 — salão de votação.** Portas na fachada sul: **S4 = entrada A, S5 = entrada
 B, S6 = entrada C, S7 = preferencial**; **S2 e S8 são saídas**; S1, S3 e S9 ficam
 livres. As 28 mesas ficam encostadas nas paredes: **parede oeste = zona A (9 urnas),
-parede norte = zona B (9 urnas), parede leste = zona C (10 urnas)**. Sala de apoio no
-canto noroeste. Faixa livre de 3 m junto à parede leste para as saídas de emergência
+parede norte = zona B (9 urnas), parede leste = zona C (10 urnas)**. A **sala de apoio é
+um recuo para dentro da parede oeste**, entre a O1 e a parede norte, **fora do piso do
+salão** (22/09): não é zona protegida, e o que fica livre é o acesso a ela a partir de
+y = 38,50. Na mesma revisão as mesas a norte da O2 (A3, A4, A5) andaram **1,50 m para o
+norte**, para afastar a 3313·3889 do recuo da O2 (0,24 → 1,74 m); a parede oeste tem
+27,63 m úteis. **Em 23/09 a parede oeste trocou dois pares de posição**: os dois
+pares de maior carga (3309·1314 + 3142·1278 e 3161·3307 + 3311·3913) foram para o
+norte da parede, e os dois de menor carga (513·1105 + 1352·522 e 3078·2847 +
+3179·530) para o sul, junto à boca da avenida A — quem tem fila maior fica longe
+da avenida de trânsito. **O código de grupo é posicional**: A1 é sempre o par mais
+ao sul da parede oeste, então os códigos acompanharam a troca e hoje A1 = 513·1105
+e 1352·522, A4 = 3309·1314 e 3142·1278, A5 = 3161·3307 e 3311·3913. Quem impõe a
+ordem é `ORDEM_FIXA` em `arranjo_paredes.py`; quem reetiqueta é
+`scripts/grupos_mesas.py`. Faixa livre de 3 m junto à parede leste para as saídas de emergência
 L1–L4. Portas O1 e N1 fechadas; O2, N2 e H1 livres. Serpentinas internas de 20
 pessoas nas três mesas maiores (3313, 3315, 3322).
 
@@ -95,7 +161,7 @@ mesário e **não voltam** — mesário é função nomeada, com treinamento pr�
 de reserva em curso.
 
 **C1 (9):** 3 no P0 da calçada, 1 no trecho de fundo do Ring (R3), 1 na porta
-preferencial S7 (A3), 3 nas mesas vermelhas (H3) e 1 na coordenação (T1).
+preferencial S7 (A3), 3 nas mesas de alta carga (H3) e 1 na coordenação (T1).
 
 **C2 (15)** acrescenta o quarto operador do P0, as três cabeças de fila (R5, uma por
 zona) e duas bocas do trecho de fundo (R2, zonas C e A).
@@ -117,6 +183,38 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - **Nunca edite `data/decisoes.json`, `data/prancheta_hall2.json` nem
   `cenarios/paredes-abc-20260915.json` a partir deste tema.** Eles são **lidos**, não
   escritos. Pertencem ao arranjo do Hall 2, e editá-los à mão quebra as conferências.
+  Quem os escreve é `scripts/arranjo_paredes.py --grava` (desde 22/09 neste
+  repositório): os trechos livres de cada parede estão em `PAREDES`, a ordem das
+  unidades da oeste em `ORDEM_FIXA`, e `confere_arranjo.py` confere os sete itens.
+  Depois dele, `scripts/grupos_mesas.py --grava` realinha `data/grupos_mesas.json`
+  (`coord`, `por_mesa`) e `gera_prancheta_por_secao.py` refaz a prancheta.
+- **Cores do layout final (22/09):** zona C vermelha `#C8102E` (rolo a comprar), e por
+  isso as três mesas de alta carga saem em **roxo** (`classes.cores.alta` de
+  `decisoes.json`), as portas de emergência em verde-água e os avisos em cinza —
+  vermelho só significa "zona C". A avenida A termina em y = 40,0 m, para servir o
+  ramal da mesa em 37,62 m. Fita da Definitiva: **802 m, 11 rolos a comprar**;
+  barreira em **96 unifilas em 129 m**, reserva móvel 4.
+- **A pequena avenida da parede norte (24/09).** A avenida B deixou de encostar no T:
+  o **último par de unifilas** saiu, a barreira dela para em **y = 33,60 m** e esse
+  1,80 m virou uma faixa transversal de **1,80 × 25,50 m** (x de 11,00 a 36,50),
+  entre a boca da avenida e o distribuidor em y = 35,40. **As duas bordas são fita,
+  nenhuma é barreira** — é isso que faz a escolha de lado acontecer andando, e não
+  parada no metro quadrado do T. Ela para nas bordas das bandas oeste e leste de
+  propósito: adiante cortaria o ramal do A5 (y = 33,72) e o do C6 (y = 35,55), e
+  `confere_avenida_norte()` reprova o desenho se isso mudar. Devolve 2 unifilas e
+  custa 24,7 m de amarelo, sem mudar os 11 rolos. As constantes são
+  `AVENIDA_NORTE`, `Y_AVENIDA_NORTE` e `X_AVENIDA_NORTE`; o y final da avenida B
+  **não é digitado**, um assert exige que ele seja o da boca.
+- **O recuo das avenidas foi desenhado em 23/09 e recusado.** O pedido era
+  alargar a banda de fila de cada parede empurrando a avenida daquela parede para
+  o centro (bandas de 13,00 / 14,00 / 13,00 m). Não entrou: com a banda norte em
+  14,00 m — o máximo que a geometria dá, porque acima disso o T da avenida B cai
+  em cima do serpenteado da C5, em y = 30,25 — as avenidas B e C ficavam a 1,50 m
+  uma da outra e espremiam o campo central, que é a reserva de fila. A conta do
+  que custaria está em `docs/separadores/contexto.md` §5: 960 m de fita e 18
+  rolos, contra 6 unifilas devolvidas. **`BANDA_PAREDE` continua oeste 11,00 ·
+  norte 9,00 · leste 10,80 m**, e as faixas de avenida disjuntas em A
+  11,00–25,03 · B 26,80–29,80 · C 32,00–36,50.
 - **A conferência das avenidas sai com código 1** quando a geometria quebra. Rode
   `python3 scripts/separadores_fila.py` (sem `--grava`) antes de qualquer commit que
   toque em `AVENIDAS`, `BANDA_PAREDE` ou nas zonas protegidas. Sem `--grava` ele não
@@ -129,6 +227,145 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - Três armadilhas conhecidas: mudar uma banda e esquecer a fita; contar a boca da
   avenida B duas vezes (ela entra inteira, não leva item de boca); e rotular por
   número de mesa. As três estão descritas em `docs/separadores/contexto.md`.
+
+## Regra da tabela mestra seção → porta
+
+A tabela "SUA SEÇÃO → SUA PORTA" das quatro peças de triagem — **P0-Mestra,
+P1-Portao, P2-ParedeLeste e P3-EntradaRing** — é **agrupada por porta** desde
+21/09/2026: bloco A, bloco B, bloco C, lado a lado, e dentro de cada bloco as
+seções em ordem crescente, lidas de cima para baixo em três colunas. A letra sai
+uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
+
+- **Não edite essas quatro peças à mão.** Rode `python3 scripts/tabela_mestra.py
+  --grava`. Sem `--grava` o script confere e sai com código 1 se as peças
+  divergirem do que ele geraria, e já serve de teste em integração contínua.
+- A correspondência seção → porta vem de `data/grupos_mesas.json`, que é **lido,
+  nunca escrito** por esse script.
+- As escalas tipográficas de cada peça estão no dicionário `ESCALAS`, no topo do
+  script. Elas foram dimensionadas para caber no canvas de cada peça (P2 é
+  1000 × 500; as outras três, 1040 × 410) com zero estouro. Mexeu em `num`,
+  `alt` ou `cab`: rerrenderize e confira que nada transborda.
+- O custo conhecido do agrupamento: quem não sabe a sua porta varre até três
+  blocos em vez de uma lista ordenada. A compensação é o dígito, que subiu de
+  17 px para 26 px (34 mm → 52 mm no impresso) porque a pastilha por linha saiu.
+- **Cada seção sai com o fundo na cor da sua porta**, a mesma da tarja do bloco:
+  A em `#33507E` com dígito branco (8,1:1), B em `#E8C63A` com dígito **marinho
+  `#042B5A`** (8,4:1) e, desde 22/09, C em **vermelho `#C8102E` com dígito branco**
+  (5,9:1 — marinho sobre o vermelho dá 2,4:1 e reprova). Os três blocos viram três
+  campos de cor. As razões de A e B são as da prancha do sistema, reconferidas.
+- **Ressalva de 21/09, em aberto.** A prancha do sistema diz: *"a letra
+  identifica a fila; a cor é apoio. Em nenhuma peça a cor aparece sozinha"* —
+  porque para um deuteranope o amarelo da B e a abóbora da C viram dois
+  amarelo-esverdeados com 1,9:1 entre si. Nas pastilhas agrupadas a letra saiu
+  da linha e ficou só na tarja do bloco. O bloco está logo acima e é grande,
+  mas a pastilha, sozinha, é cor sem letra. Se isso incomodar, a correção é pôr
+  a letra de volta em cada pastilha — ao custo do dígito, que encolhe.
+
+## Regra das artes que saem de dados
+
+`scripts/artes_sinalizacao.py` gera, de `data/grupos_mesas.json`:
+
+- **`P6-BlocoA1` a `P6-BlocoC6`** — as **dezesseis** placas de grupo, uma por par
+  de mesas, não só as dos grupos grandes. **O código do grupo é o título da
+  placa:** quem está no par C3 lê `C3` em 104 px no alto do banner, o mesmo
+  código que o painel da porta C usa na sua lista. Isso fecha a cadeia
+  porta → grupo → seção com o mesmo rótulo nos dois pontos. **Desde 22/09 as
+  seções saem agrupadas por mesa** (`por_mesa`, principal antes da agregada),
+  com uma **seta para o lado da mesa**: a placa fica entre as duas mesas do par,
+  de frente para o salão. A regra de lado está em `lados()`: na parede oeste a
+  mesa de menor y fica à esquerda (sul), na norte a de menor x (oeste), na
+  leste a de maior y (norte). Grupos de uma mesa só (A3, B2, C5, C1) não levam
+  seta.
+- **`P0-Consulta`** — "não sabe sua seção?" com o **QR estático para a consulta
+  por nome no site do TSE**, gerado por `scripts/qr_tse.py` (nível H) em
+  `data/qr_tse.svg`. São **duas peças, uma de cada lado do portão**, cada uma ao
+  lado de uma `P0-Mestra`. O SVG recebido em 22/09 leva a um encurtador de
+  terceiro e fica só como referência em `Identidadevisual/`, com nota.
+- **`P4-ZonaA/B/C`** — corpo branco, a cor da porta só no bloco da letra, sem a
+  linha "parede · Sx", seções em células com borda de 3 px e dígito de 40 px
+  (80 mm). O bloco da letra tem 240 px para as seis células caberem.
+- **`P5-Preferencial` e `P5-VinilPref`** — os cinco pictogramas brasileiros de
+  atendimento preferencial, em `scripts/_pictogramas.py`, na ordem da
+  referência de 21/09: **idoso com bengala · gestante · adulto com criança de
+  colo · pessoa com muleta · laço do espectro autista**. A primeira versão
+  trazia cadeira de rodas no lugar da muleta; foi corrigida. **Desde 22/09 a
+  P5-Preferencial é empilhada como a placa de referência do Posto**: fundo azul
+  `#1E3674` (medido na referência), moldura branca arredondada, título numa
+  caixa branca, pictogramas brancos, em Montserrat e **sem a faixa
+  institucional** — decisão do Posto. Canvas 1040 × 410 (2080 × 820 mm).
+- **`P6-PainelA`, `P6-PainelB` e `P6-PainelC`** — os três painéis de porta,
+  pull-up de 500 × 1000 px (1000 × 2000 mm), também **gerados de
+  `grupos_mesas.json`** desde 23/09: a lista de grupos de cada porta sai na ordem
+  em que o eleitor os encontra ao longo do corredor daquela parede. Desde 23/09
+  cada painel diz onde fica a **ponta** de cada corredor: o primeiro grupo leva
+  "LOGO NA ENTRADA DO CORREDOR" e o último, "NO FIM DO CORREDOR, O MAIS DISTANTE".
+  Na porta A isso é A1 e A5; na C, C1 e C6.
+- **`P4-FimAvenidaB`** — fence banner de 1040 × 410 na **boca da pequena avenida da
+  parede norte** (o fim dos 33,6 m da avenida B; era o T, até 24/09), o ponto em que
+  todo o fluxo de uma entrada tem de escolher um lado. À esquerda, na direção da porta A, ficam B1, B2 e B3; à direita, na da
+  porta C, B4 e B5. O corte é **por mesa**, não por grupo: o par B3 fica
+  escarranchado no vão da avenida, com uma mesa de cada lado do eixo, então sai à
+  esquerda com a ressalva no rodapé de que está bem em frente. A primeira versão
+  desta peça foi feita para o fim do corredor C e **descartada** — o pedido era a
+  avenida B.
+- **`mapa/plano_sinalizacao.html`** é montado por `scripts/plano_consolidado.py`,
+  que embute o corpo atual de cada `.dc.html` e aplica as revisões de texto de
+  cada rodada de forma idempotente. Mesmo contrato: sem `--grava` confere.
+- São **vetor redesenhado**, não a imagem de referência. As duas referências
+  guardadas em `Identidadevisual/` são raster: a de 17/09 tem 575 px e a de
+  21/09, 950 px **com marca d'água de banco de imagens** — ela anuncia
+  "EPS/CDR" mas o que chegou é o JPEG de vitrine. Esticada para os 2080 mm do
+  fence banner qualquer das duas sai borrada, e a arte do banco não pode ser
+  reproduzida sem a licença. Os cinco símbolos em si são de uso corrente e não
+  têm dono; o que se redesenha é eles, não o layout vendido.
+- Mesmo contrato dos outros geradores: sem `--grava` confere e sai com código 1.
+- O dígito das placas escala com quantas seções o grupo tem (`DIGITO`, no topo do
+  script): 130 px para uma seção, 80 px para quatro. Mexeu ali, rerrenderize.
+
+## Regra da paleta
+
+`data/paleta.json` é a fonte única, e `scripts/paleta.py` confere. Sem
+`--grava` ele sai com código 1 se alguma peça usar cor de fora.
+
+- **Identidade**, medida pixel a pixel no logotipo vetorizado que o Posto
+  entregou em 21/09 — não estimada: grafite `#404041`, ouro `#E5AE0F`, azul
+  `#3487AA`, verde `#5F882E`. Até 21/09 as quatro estavam erradas em **todas**
+  as 36 peças: `#F2CE3A` no lugar do ouro, `#4888A8` e `#5A8CAA` no do azul,
+  `#588018` e `#648232` no do verde.
+- **O logotipo é corpo estranho e guarda as cores dele.** Fora do lockup o ouro
+  não aparece: é o que a prancha do sistema quer dizer com *"só no logotipo"*.
+  O ouro sobre a faixa clara dá 1,8:1, e isso é aceito porque a WCAG isenta
+  marca registrada.
+- **Faixa institucional: off-white `#F0F0E8` com régua marinha `#042B5A`.** Essa
+  decisão é de 17/09 e está escrita na prancha do sistema — *"a faixa virou
+  off-white com régua marinha; o amarelo agora só significa porta B"* —, mas as
+  peças seguiram até 21/09 com uma tarja escura `#5A6E6E` que não existe na
+  marca. Motivo da decisão: uma faixa amarela no topo diria "porta B" a 30 m em
+  toda peça, inclusive nas de A e de C.
+- **Tipografia do plano: marinho `#042B5A`**, não o grafite do logotipo. O
+  grafite só é legítimo acima do fim da faixa; `scripts/paleta.py` reprova
+  grafite no corpo da peça.
+- **Fonte: Montserrat** (`data/paleta.json`, campo `fonte`). É a fonte da
+  campanha, informada pelo Posto em 21/09. Archivo e Nunito Sans eram marcação
+  de lugar. Montserrat é **mais larga no mesmo corpo**, então a troca mexe em
+  medida e não só em estilo: as 36 peças foram remedidas no DOM com a fonte
+  real instalada, não com substituta. `scripts/paleta.py` reprova Archivo e
+  Nunito Sans.
+- **A autorização de uso da marca para posto no exterior foi concedida**
+  (21/09). O que ainda é reprodução, e não arquivo oficial, é o desenho do
+  lockup nas peças.
+- **As cores de zona não se ajustam à identidade.** `#33507E` e `#E8C63A` são
+  **cor de rolo de fita já comprado** (`CORES_ZONA` em
+  `scripts/separadores_fila.py`): a peça impressa persegue a fita. Por isso o
+  amarelo da B e o ouro da marca convivem sendo dois amarelos — e por isso a
+  tarja da B nunca encosta no logotipo. **Em 22/09 o Posto trocou o laranja da
+  C por vermelho `#C8102E`**: o rolo vermelho ainda não existe, então o hex é
+  proposta até a compra — quando o rolo chegar, o hex se ajusta a ele, em
+  `CORES_ZONA`, em `data/paleta.json` (`substituicoes_22_09`) e nas 37 peças
+  via `paleta.py --grava`. A tinta sobre a C é branca. O azul `#1E3674` da
+  P5-Preferencial é cor própria dessa peça (`preferencial` em `paleta.json`).
+- As quatro cores do laço do espectro autista são do símbolo, não do plano, e
+  ficam de fora da conferência.
 
 ## Convenções
 
@@ -155,6 +392,36 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 3. Confirmação da expectativa de comparecimento.
 4. Orçamento final, incluindo o apoio ao voluntariado (~EUR 1.700–1.900), as 15
    unifilas adicionais (EUR 195,45) e os 8 rolos de fita.
+5. **O vinil da porta S7 (21/09) não está orçado.** A cotação de 18/09 já previa
+   **16 pull-ups 850 × 2000 a EUR 24,87 (EUR 398)** — ou seja, as dezesseis placas
+   de grupo sempre estiveram no orçamento; o que faltava eram as artes, e é isso
+   que a revisão de 21/09 fecha. O que entra de novo é só o quarto vinil de porta,
+   da S7 preferencial: a linha passa de 3 para 4 unidades, +EUR 30, e o total sem
+   IVA vai de EUR 1.139,57 para EUR 1.169,57 (EUR 1.438,57 com IVA). Ressalva: o
+   preço do vinil é uma das quatro linhas que a própria cotação marca como
+   **premissa não precificada**, então o quarto vinil herda essa incerteza.
+
+6. **A compra de fita foi parcialmente refeita em 22/09: a zona C passa a vermelho.**
+   `#C8102E` é proposta até o rolo ser comprado; o hex final é o do rolo. Faltam
+   **11 rolos de 50 m** (2 azul, 5 vermelho, 1 zebrado, 1 verde, 2 branco) e o rolo
+   laranja em estoque (165 m) fica sem uso neste desenho. O amarelo da B continua
+   brigando com o ouro da marca, e a ressalva de deuteranopia da prancha do
+   sistema continua valendo para B; o par B/C deixou de ser dois amarelo-esverdeados.
+   O que a decisão arrasta está feito: `CORES_ZONA`, `data/paleta.json`, as 36
+   peças e os metros por cor (`docs/separadores/`).
+7. **O RDS permite abrir os quatro painéis do gradil da face norte do Ring 3?**
+   O corredor de chegada e as três saídas (C, B, A) são aberturas de 2,0 m no
+   gradil permanente. Sem isso o desenho das saídas junto às portas não existe.
+8. **A URL do QR da P0-Consulta.** A peça aponta para a consulta de seção por
+   nome no site do TSE (`URL` em `scripts/qr_tse.py`). Se o Posto preferir outra
+   página do TSE, muda a constante e regrava; conferir antes de imprimir.
+
+9. **As 28 CCBs acima do estoque, para fechar as laterais do Ring 3 (23/09).**
+   Locação de véspera, ~EUR 364,56 pelo unitário da cotação (EUR 13,02). A
+   alternativa sem contratar está desenhada na folha — uma só linha de CCBs no
+   eixo do vão, 196 no total —, mas ela reduz a passagem entre zonas a 0,60 m de
+   cada lado e mata o corredor de maca. **É decisão de orçamento contra
+   segurança, e é do Posto.**
 
 A lista completa e por tema está em `PENDENCIAS.md` e nas seções finais dos dois
 contextos.

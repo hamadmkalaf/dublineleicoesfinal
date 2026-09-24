@@ -1,0 +1,126 @@
+{
+ "nota": "Fonte única das cores do plano. As da identidade foram medidas pixel a pixel no logotipo vetorizado entregue pelo Posto em 21/09/2026 (Identidadevisual/logo_eleicoes2026.webp), não estimadas de memória. As de zona são cor de rolo de fita já em estoque: mudar uma delas é mudar uma compra.",
+ "identidade": {
+  "origem": "logotipo oficial Eleições 2026 · TSE",
+  "grafite": {
+   "hex": "#404041",
+   "onde": "tinta do texto, tarja de identidade, palavra ELEIÇÕES"
+  },
+  "ouro": {
+   "hex": "#E5AE0F",
+   "onde": "o 2026 e a onda de cima da bandeira"
+  },
+  "azul": {
+   "hex": "#3487AA",
+   "onde": "a onda do meio e o NA de #VOTONADEMOCRACIA"
+  },
+  "verde": {
+   "hex": "#5F882E",
+   "onde": "a onda de baixo, o # da hashtag e o acento de ação"
+  },
+  "nota_lockup": "O logotipo é corpo estranho e guarda as cores dele: ELEIÇÕES em grafite #404041, 2026 em ouro #E5AE0F, as três ondas em ouro/azul/verde. O ouro sobre a faixa off-white dá 1,8:1, e isso é aceito porque logotipo é logotipo — a WCAG isenta marca. Fora do lockup o ouro não aparece: é o que a prancha do sistema quer dizer com 'só no logotipo'.",
+  "autorizacao": "o uso da marca Eleições 2026 por posto no exterior foi autorizado; o Posto informou em 21/09/2026. O que ainda é reprodução, e não arquivo oficial, é o desenho do lockup nas peças."
+ },
+ "zona": {
+  "origem": "cor de rolo de fita de marcação de piso, já em estoque (scripts/separadores_fila.py, CORES_ZONA)",
+  "trava": "as três cores saem de rolo de fita, então a peça impressa persegue a fita. Em 22/09 o Posto decidiu que a zona C passa de laranja a VERMELHO: o rolo vermelho ainda não foi comprado, e #C8102E é a proposta até o rolo existir — quando chegar, o hex se ajusta ao rolo, e mudam juntas CORES_ZONA em scripts/separadores_fila.py, este arquivo e as 36 peças. A e B seguem sendo o rolo já em estoque.",
+  "A": {
+   "hex": "#33507E",
+   "rolo": "azul",
+   "parede": "oeste",
+   "porta": "S4",
+   "tinta": "#FFFFFF"
+  },
+  "B": {
+   "hex": "#E8C63A",
+   "rolo": "amarelo",
+   "parede": "norte",
+   "porta": "S5",
+   "tinta": "#042B5A"
+  },
+  "C": {
+   "hex": "#C8102E",
+   "rolo": "vermelho (a comprar; era o rolo laranja #DE7343 até 22/09)",
+   "parede": "leste",
+   "porta": "S6",
+   "tinta": "#FFFFFF"
+  },
+  "contraste": {
+   "A": "branco sobre #33507E, 8,1:1",
+   "B": "marinho sobre #E8C63A, 8,4:1",
+   "C": "branco sobre #C8102E, 5,9:1 — marinho sobre o vermelho dá 2,4:1 e reprova, por isso a tinta da C virou branca em 22/09",
+   "nota": "as razões de A e B saem da prancha Main de 17/09 e foram reconferidas; a da C foi calculada em 22/09 pela fórmula da WCAG"
+  }
+ },
+ "neutros": {
+  "creme": {
+   "hex": "#F2EFE2",
+   "onde": "fundo das peças impressas"
+  },
+  "regua": {
+   "hex": "#E4DFCC",
+   "onde": "filetes e divisórias sobre o creme"
+  },
+  "cinza": {
+   "hex": "#6B6B6B",
+   "onde": "texto secundário"
+  },
+  "branco": {
+   "hex": "#FFFFFF",
+   "onde": "tinta sobre grafite e sobre a zona A"
+  },
+  "offwhite": {
+   "hex": "#F0F0E8",
+   "onde": "faixa institucional do topo de toda peça e fundo de lista"
+  },
+  "marinho": {
+   "hex": "#042B5A",
+   "onde": "toda a tipografia do plano e a régua da faixa"
+  }
+ },
+ "laco_tea": {
+  "nota": "Não é paleta do plano: são as cores do próprio símbolo do espectro autista, e por isso ficam de fora da conferência.",
+  "hexes": [
+   "#3B7DC4",
+   "#6FB9E8",
+   "#E03C3C",
+   "#F2C230"
+  ]
+ },
+ "substituicoes_21_09": {
+  "nota": "O que estava em uso antes da conferência de 21/09 e para onde foi. Toda linha aqui é um quase-acerto: nenhuma das quatro cores da identidade estava no valor oficial. A tarja escura que as peças traziam no topo nunca foi decisão: a prancha do sistema, de 17/09, já dizia que 'a faixa virou off-white com régua marinha'. As peças só não tinham recebido. O grafite #404041 não entra nesta lista porque ele continua válido dentro do lockup: a troca dele por marinho é feita só no corpo da peça, do fim da faixa para baixo.",
+  "#F2CE3A": "#E5AE0F",
+  "#E8B800": "#E5AE0F",
+  "#E6B00F": "#E5AE0F",
+  "#F8C030": "#E5AE0F",
+  "#4888A8": "#3487AA",
+  "#5A8CAA": "#3487AA",
+  "#398CB0": "#3487AA",
+  "#588018": "#5F882E",
+  "#648232": "#5F882E",
+  "#5F8722": "#5F882E",
+  "#3F3F3F": "#404041",
+  "#5A6E6E": "#404041",
+  "#DC963C": "#5F882E"
+ },
+ "fonte": {
+  "familia": "Montserrat",
+  "origem": "fonte da campanha Eleições 2026, informada pelo Posto em 21/09/2026",
+  "import": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap",
+  "css": "'Montserrat', system-ui, sans-serif",
+  "superadas": [
+   "Archivo",
+   "Nunito Sans"
+  ],
+  "nota": "Archivo e Nunito Sans eram marcação de lugar, escolhidas antes de a fonte da campanha ser conhecida. Montserrat é mais larga que Archivo no mesmo corpo, então a troca não é só estética: as 36 peças foram remedidas no DOM com a Montserrat real instalada, não com fonte substituta."
+ },
+ "preferencial": {
+  "hex": "#1E3674",
+  "onde": "fundo da peça P5-Preferencial, desde 22/09: azul medido na placa de referência que o Posto entregou nesse dia; a peça é empilhada como a referência e não leva a faixa institucional",
+  "tinta": "#FFFFFF"
+ },
+ "substituicoes_22_09": {
+  "nota": "A zona C deixou de ser laranja: decisão do Posto de 22/09, junto com o vermelho no layout final dos separadores. A tinta sobre a C passa a branco — scripts/paleta.py não troca tinta, só cor; as peças da C que não saem de gerador (P5-VinilC, P6-PainelC, Main) foram ajustadas à mão no mesmo commit.",
+  "#DE7343": "#C8102E"
+ }
+}
