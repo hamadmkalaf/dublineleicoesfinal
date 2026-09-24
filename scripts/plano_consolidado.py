@@ -348,9 +348,13 @@ def revisao_23_09(h):
 # duas rodadas seguidas mexeram nos mesmos números, e um par datado quebra
 # assim que a rodada seguinte passa por cima dele.
 PECAS_EXTERNAS = 19
-FENCE_N, FENCE_UNIT = 12, 32.40
+# Em 24/09 a P4-FimAvenidaB deixou de ser fence banner e virou o quarto
+# pull-up de 1000 x 2000 mm: FENCE_N cai de 12 para 11, e o unitário do
+# pull-up 1000 é o da cotação na faixa de 4 unidades (€ 122,99 / 4).
+FENCE_N, FENCE_UNIT = 11, 32.40
+PULLUP1000_N, PULLUP1000_UNIT = 4, 122.99 / 4
 ITENS_TOTAL = 41
-SEM_IVA, IVA, COM_IVA = 1234.37, 283.90, 1518.27
+SEM_IVA, IVA, COM_IVA = 1232.72, 283.53, 1516.25
 
 
 # ---------------------------------------------------------------- revisão de 24/09
@@ -388,6 +392,81 @@ def revisao_24_09(h):
     return h
 
 
+# ------------------------------------------------------- revisão de 24/09 (roll-up)
+# A boca da pequena avenida fica em pleno salão: não há gradil nem barreira
+# rígida para amarrar um fence banner ali, só a unifila, que não aguenta o
+# peso. A peça vira roll-up autoportante de 1000 x 2000 mm — o mesmo modelo
+# dos três painéis de porta — e o corpo gira de paisagem para retrato, com os
+# dois lados empilhados (esquerda em cima, direita embaixo) em vez de lado a
+# lado; as setas continuam apontando para o lado real, só o enquadramento gira.
+WRAPPER_FIM_B_FENCE = ('<div class="arte" style="width:430px;height:170px">'
+                       '<div style="width:1040px;height:410px;transform:scale(0.4135);transform-origin:top left">')
+WRAPPER_FIM_B_ROLLUP = ('<div class="arte" style="width:250px;height:500px">'
+                        '<div style="width:500px;height:1000px;transform:scale(0.5000);transform-origin:top left">')
+
+CAP_FIM_B_FENCE = '<p class="cap">2080 × 820 mm · arquivo <code>P4-fim-avenida-B</code></p>'
+CAP_FIM_B_ROLLUP = '<p class="cap">1000 × 2000 mm · arquivo <code>P4-fim-avenida-B</code></p>'
+
+SPECS_FIM_B_FENCE = ('<dl class="specs"><div class="sp"><dt>Medida</dt><dd>2080 × 820 mm</dd></div>'
+                     '<div class="sp"><dt>Quantidade</dt><dd>1 peça</dd></div>'
+                     '<div class="sp"><dt>Modelo</dt><dd>Fence banner 2080 × 820 mm</dd></div>'
+                     '<div class="sp"><dt>Corpo</dt><dd>seções 58 mm · lido a 10 m</dd></div>'
+                     '<div class="sp"><dt>Fixação</dt><dd>amarrada na última unifila da avenida B com tie wraps</dd></div></dl>')
+SPECS_FIM_B_ROLLUP = ('<dl class="specs"><div class="sp"><dt>Medida</dt><dd>1000 × 2000 mm</dd></div>'
+                      '<div class="sp"><dt>Quantidade</dt><dd>1 peça</dd></div>'
+                      '<div class="sp"><dt>Modelo</dt><dd>Pull-up 1000 × 2000 mm</dd></div>'
+                      '<div class="sp"><dt>Corpo</dt><dd>seções 76 mm · lido a 5 m</dd></div>'
+                      '<div class="sp"><dt>Fixação</dt><dd>autoportante (cassete) — a boca da avenida não tem gradil para amarrar</dd></div></dl>')
+
+TEXTO_FIM_B_FENCE_INICIO = '<p class="texto">Peça nova em 23/09.'
+TEXTO_FIM_B_ROLLUP_INICIO = (
+    '<p class="texto"><strong>Desde 24/09</strong> é um roll-up autoportante de 1000 × 2000 mm, não mais um '
+    'fence banner: a boca da pequena avenida fica em pleno salão, sem gradil ou barreira rígida para amarrar a '
+    'peça — só a unifila, que não aguenta o peso do banner. O corpo virou retrato, com os dois lados empilhados '
+    'um sobre o outro em vez de lado a lado; as setas continuam apontando para o lado real de quem lê, só o '
+    'enquadramento da peça girou. Peça nova em 23/09.')
+
+ORCAMENTO_FIM_B_FENCE = ('O segundo P0-Consulta entrou em 22/09 e o fim da avenida B em 23/09: são o 11º e o '
+                         '12º fence banner. a € 32.40 pelo unitário da cotação.')
+ORCAMENTO_FIM_B_ROLLUP = (
+    'O segundo P0-Consulta entrou em 22/09: é o 11º fence banner, a € 32.40 pelo unitário da cotação. Em 24/09 '
+    'a peça do fim da avenida B deixou de ser fence banner e virou o quarto pull-up de 1000 × 2000 mm — mesmo '
+    'modelo dos três painéis de porta —, a € 30.75 pelo unitário da cotação na faixa de 4 unidades.')
+
+
+def revisao_24_09_rollup(h):
+    """A P4-FimAvenidaB deixa de ser fence banner: não há gradil na boca da
+    pequena avenida para amarrar a peça, só a unifila, que não aguenta o
+    peso. Vira roll-up autoportante de 1000 x 2000 mm, como os três painéis
+    de porta, e o corpo gira de paisagem para retrato."""
+    if "arquivo <code>P4-fim-avenida-B</code>" not in h:
+        return h                      # o plano ainda está no estado de 22/09
+    a, f = secao(h, "arquivo <code>P4-fim-avenida-B</code>")
+    h = revisa(h, [
+        (WRAPPER_FIM_B_FENCE, WRAPPER_FIM_B_ROLLUP),
+        (CAP_FIM_B_FENCE, CAP_FIM_B_ROLLUP),
+        (SPECS_FIM_B_FENCE, SPECS_FIM_B_ROLLUP),
+        (TEXTO_FIM_B_FENCE_INICIO, TEXTO_FIM_B_ROLLUP_INICIO),
+    ], (a, f))
+    h = revisa(h, [(ORCAMENTO_FIM_B_FENCE, ORCAMENTO_FIM_B_ROLLUP)])
+
+    # A frase de 22/09 (ou a de 23/09, que a envolve) é reinserida pelas
+    # revisões daquelas rodadas a cada montagem, porque o marcador delas deixa
+    # de bater assim que esta rodada reescreve o rabo da frase — o mesmo
+    # problema que a limpeza de 23/09 já resolve uma rodada atrás. Aqui a
+    # reinserção sai: a frase desta rodada já diz o que as duas diziam.
+    h = h.replace(
+        "O segundo P0-Consulta entrou em 22/09: é o 11º fence banner. a € 32.40 pelo unitário da cotação. "
+        "O segundo P0-Consulta entrou em 22/09: é o 11º fence banner, a € 32.40",
+        "O segundo P0-Consulta entrou em 22/09: é o 11º fence banner, a € 32.40")
+    h = h.replace(
+        "O segundo P0-Consulta entrou em 22/09 e o fim da avenida B em 23/09: são o 11º e o 12º fence banner. "
+        "a € 32.40 pelo unitário da cotação. "
+        "O segundo P0-Consulta entrou em 22/09: é o 11º fence banner, a € 32.40",
+        "O segundo P0-Consulta entrou em 22/09: é o 11º fence banner, a € 32.40")
+    return h
+
+
 def numeros(h):
     h = re.sub(r'(<div class="fact"><dt>Peças externas</dt><dd>)\d+(</dd>)',
                rf'\g<1>{PECAS_EXTERNAS}\g<2>', h)
@@ -398,6 +477,9 @@ def numeros(h):
     h = re.sub(r'(<tr><td>Fence banner 2080 × 820 mm</td><td class="n">)\d+'
                r'(</td><td class="n">€ )[\d.]+(</td><td class="n">€ )[\d.]+(</td></tr>)',
                rf'\g<1>{FENCE_N}\g<2>{FENCE_UNIT:.0f}\g<3>{FENCE_N * FENCE_UNIT:.0f}\g<4>', h)
+    h = re.sub(r'(<tr><td>Pull-up 1000 × 2000 mm</td><td class="n">)\d+'
+               r'(</td><td class="n">€ )[\d.]+(</td><td class="n">€ )[\d.]+(</td></tr>)',
+               rf'\g<1>{PULLUP1000_N}\g<2>{PULLUP1000_UNIT:.0f}\g<3>{PULLUP1000_N * PULLUP1000_UNIT:.0f}\g<4>', h)
     h = re.sub(r'(<tfoot><tr><td>Total sem IVA</td><td class="n">)\d+(</td><td></td>\n'
                r'<td class="n">€ )[\d.]+(</td></tr>\n<tr><td>IVA 23%</td><td></td><td></td>'
                r'<td class="n">€ )[\d.]+(</td></tr>\n<tr><td>Total a pagar</td><td></td><td></td>'
@@ -411,6 +493,7 @@ def monta():
     h = revisao_22_09(h)
     h = revisao_23_09(h)
     h = revisao_24_09(h)
+    h = revisao_24_09_rollup(h)
     h = troca_artes(h)
     h = troca_galeria(h)
     return numeros(h)
