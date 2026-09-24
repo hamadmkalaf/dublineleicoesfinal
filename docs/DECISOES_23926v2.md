@@ -179,8 +179,11 @@ de referência interna, mantida à mão — não tem gerador.
 2. **O corte lateral pelos vãos de 0,78 m.** Precisa entrar no briefing de R3, R4
    e R5: o corredor de serviço passa a ter 44 entradas, não 12 portões.
 3. **Os 11 rolos de fita**, e se os 165 m em estoque são por cor ou no total.
-4. **O RDS permite abrir os quatro painéis do gradil da face norte do Ring 3?**
-5. **O RDS permite fita adesiva no piso do Hall 2?** Continua bloqueante.
+4. <s>O RDS permite abrir os quatro painéis do gradil da face norte do Ring 3?</s>
+   **Decisão de 24/09:** o Posto segue sem aguardar essa confirmação.
+5. <s>O RDS permite fita adesiva no piso do Hall 2?</s> **Decisão de 24/09:** o
+   Posto segue sem aguardar essa confirmação — ver `docs/separadores/contexto.md`
+   §9.
 6. **Abrir o compartilhamento do mapa público**, que nasceu privado. As duas folhas
    tocadas nesta rodada — Ring 3 (versão 4) e plano de sinalização (versão 9) — já
    foram republicadas nas mesmas URLs.
