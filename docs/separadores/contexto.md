@@ -292,12 +292,14 @@ e é o que se perde primeiro quando a fita cede.
 
 ## 9. O que não está resolvido
 
-**Bloqueante.** Ninguém confirmou que o **RDS permite fita adesiva no piso do
-Hall 2**. O manual do expositor do RDS não é público, e os manuais de outros
-eventos no mesmo recinto tratam de adesivo em painéis, não em piso. Vários
-recintos proíbem ou exigem resíduo zero com remoção integral. **Se a resposta
-for não, este desenho inteiro cai** — e as 100 unifilas passariam a ter de fazer
-sozinhas um trabalho de 395.
+**Decisão de 24/09.** O Posto decidiu seguir sem aguardar confirmação do RDS de
+que **a fita adesiva no piso do Hall 2** é permitida — o RDS demora a responder
+e cria dificuldade recorrente nesse tipo de pedido, e esperar travaria o
+desenho inteiro. O manual do expositor do RDS não é público, e os manuais de
+outros eventos no mesmo recinto tratam de adesivo em painéis, não em piso;
+vários recintos proíbem ou exigem resíduo zero com remoção integral, então o
+risco (ter de remover a fita sem aviso, e as 100 unifilas passarem a fazer
+sozinhas um trabalho de 395) é assumido conscientemente, não eliminado.
 
 **Também em aberto:**
 
