@@ -384,9 +384,11 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
 
 ## Pendências que movem números
 
-1. **O RDS permite fita adesiva no piso do Hall 2?** Bloqueante: se não, o desenho
-   dos separadores cai inteiro, e as 100 unifilas passariam a ter de fazer sozinhas
-   um trabalho de 395.
+1. **Decisão de 24/09: o Posto segue sem aguardar aprovação do RDS para a fita
+   adesiva no piso do Hall 2.** O RDS demora a responder e cria dificuldade
+   recorrente nesse tipo de pedido; esperar travaria o desenho inteiro. O desenho
+   dos separadores segue como está, com o risco assumido de ter de remover a fita
+   sem aviso se o RDS objetar no local.
 2. Método de identificação do eleitor — eletrônico/biométrico ou caderno físico
    (`PENDENCIAS.md` item 5). Decide tempo por eleitor e criticidade do balcão de
    consulta.
@@ -410,9 +412,10 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
    sistema continua valendo para B; o par B/C deixou de ser dois amarelo-esverdeados.
    O que a decisão arrasta está feito: `CORES_ZONA`, `data/paleta.json`, as 36
    peças e os metros por cor (`docs/separadores/`).
-7. **O RDS permite abrir os quatro painéis do gradil da face norte do Ring 3?**
-   O corredor de chegada e as três saídas (C, B, A) são aberturas de 2,0 m no
-   gradil permanente. Sem isso o desenho das saídas junto às portas não existe.
+7. **Decisão de 24/09: o Posto segue sem aguardar aprovação do RDS para abrir os
+   quatro painéis do gradil da face norte do Ring 3.** Mesma razão do item 1 — o
+   corredor de chegada e as três saídas (C, B, A), aberturas de 2,0 m no gradil
+   permanente, ficam como desenhadas em 22/09.
 8. **A URL do QR da P0-Consulta.** A peça aponta para a consulta de seção por
    nome no site do TSE (`URL` em `scripts/qr_tse.py`). Se o Posto preferir outra
    página do TSE, muda a constante e regrava; conferir antes de imprimir.

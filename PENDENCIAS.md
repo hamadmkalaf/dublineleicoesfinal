@@ -37,10 +37,11 @@ Pendencia por ponto.
 - é melhor dividir o caderno por letras ou dividir por seção?
 - como vem organizado o caderno?
 
-6. Confirmar com o RDS que os quatro painéis do gradil da face norte do Ring 3
-   podem ser abertos no dia: corredor de chegada (0–3,00 m do canto nordeste) e
-   as saídas C (13,87–15,87), B (22,50–24,50) e A (31,13–33,13 m). Sem isso o
-   desenho de 22/09 das saídas junto às portas não existe.
+6. <s>Confirmar com o RDS que os quatro painéis do gradil da face norte do Ring 3
+   podem ser abertos no dia.</s> <strong>Decisão de 24/09:</strong> o Posto segue
+   sem aguardar essa confirmação, dado o histórico de demora do RDS. Corredor de
+   chegada (0–3,00 m do canto nordeste) e as saídas C (13,87–15,87), B
+   (22,50–24,50) e A (31,13–33,13 m) ficam como desenhadas.
 7. Comprar 11 rolos de fita de 50 m: 2 azul, 5 vermelho, 1 zebrado, 1 verde,
    2 branco. Confirmar o hex #C8102E contra o rolo vermelho quando ele chegar; o
    rolo laranja em estoque fica sem uso. Confirmar também se os 165 m em estoque
