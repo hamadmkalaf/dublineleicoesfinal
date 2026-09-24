@@ -355,6 +355,13 @@ def fim_avenida_b(grupos):
     B3 sai à esquerda com a ressalva de que está bem em frente. Os subtítulos
     dizem "na direção da porta A" e "na direção da porta C", que é o que não
     depende de para onde o eleitor está virado.
+
+    Desde 24/09 é um **roll-up autoportante de 1000 × 2000 mm** (cassete), não
+    mais um fence banner: não há gradil na boca da pequena avenida para
+    amarrar a peça. Por isso o corpo é retrato, com os dois lados empilhados
+    — esquerda em cima, direita embaixo — em vez de lado a lado; a seta de
+    cada bloco continua apontando para o lado real (esquerda/direita de quem
+    lê), só o enquadramento da peça girou.
     """
     fundo, tinta = CORES["B"]
     gs = em_ordem(grupos, "B")
@@ -367,45 +374,42 @@ def fim_avenida_b(grupos):
     a, b = AVENIDA_B_VAO
     em_frente = [g["id"] for g in gs if any(a <= c <= b for c in g["coord"])]
 
-    def coluna(lista, direcao, titulo, sub):
-        alinha = "flex-start" if direcao == "esq" else "flex-end"
+    def bloco(lista, direcao, titulo, sub):
         numeros = "".join(
-            f'<span style="font-family: {ARCHIVO}; font-weight: 700; font-size: 29px;'
-            f' color: {TINTA}; font-variant-numeric: tabular-nums;">{s:04d}</span>'
+            f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 38px;'
+            f' line-height: 1.25; color: {TINTA}; font-variant-numeric: tabular-nums;">{s:04d}</div>'
             for g in lista for s in sorted(g["secoes"]))
         codigos = " · ".join(g["id"] for g in lista)
-        titulo_html = (f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 26px;'
+        titulo_html = (f'<div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 28px;'
                        f' letter-spacing: 0.03em; color: {TINTA};">{titulo}</div>')
-        cabeca = (f'{seta(64, TINTA, direcao)}{titulo_html}' if direcao == "esq"
-                  else f'{titulo_html}{seta(64, TINTA, direcao)}')
-        return (f'<div style="display: flex; flex-direction: column; align-items: {alinha}; gap: 6px; min-width: 0;">'
+        cabeca = (f'{seta(46, TINTA, direcao)}{titulo_html}' if direcao == "esq"
+                  else f'{titulo_html}{seta(46, TINTA, direcao)}')
+        return (f'<div style="display: flex; flex-direction: column; gap: 8px;">'
                 f'<div style="display: flex; align-items: center; gap: 12px;">{cabeca}</div>'
                 f'<div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 15px;'
                 f' letter-spacing: 0.05em; color: {CINZA};">{sub} · {codigos}</div>'
-                f'<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; justify-content: {alinha};">{numeros}</div>'
+                f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 16px;">{numeros}</div>'
                 f'</div>')
 
     rodape = ("Todos os grupos da porta B estão nesta parede."
               if not em_frente else
               f"O grupo {' e '.join(em_frente)} fica bem em frente, logo à esquerda.")
-    corpo = f"""<div style="width: 1040.0px; height: 410.0px; box-sizing: border-box; background: {BRANCO}; display: flex; flex-direction: column; overflow: hidden;">
-{CAB_BANNER}
-
-  <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 14px 30px 14px; gap: 8px;">
-    <div style="display: flex; align-items: center; gap: 14px;">
-      <div style="background: {fundo}; color: {tinta}; font-family: {ARCHIVO}; font-weight: 800; font-size: 44px; line-height: 1; padding: 8px 16px 10px;">B</div>
-      <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 31px; letter-spacing: 0.02em; color: {TINTA};">FIM DA AVENIDA · PARA QUE LADO?</div>
-    </div>
-    <div style="display: flex; align-items: center; gap: 20px; flex-grow: 1;">
-      <div style="flex-grow: 1; min-width: 0;">{coluna(esq, "esq", "À ESQUERDA", "na direção da porta A")}</div>
-      <div style="width: 3px; align-self: stretch; background: {TINTA};"></div>
-      <div style="flex-grow: 1; min-width: 0;">{coluna(dire, "dir", "À DIREITA", "na direção da porta C")}</div>
-    </div>
-    <div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 17px; color: {CINZA}; border-top: 3px solid {fundo}; padding-top: 8px;">{rodape}</div>
+    corpo = f"""<div style="width: 500.0px; height: 1000.0px; box-sizing: border-box; background: {CREME}; display: flex; flex-direction: column; overflow: hidden;">
+{CAB_ALTO}
+  <div style="background: {fundo}; color: {tinta}; padding: 16px 26px 18px; display: flex; align-items: center; gap: 16px;">
+    <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 64px; line-height: 0.85; letter-spacing: -0.03em;">B</div>
+    <div style="font-family: {ARCHIVO}; font-weight: 800; font-size: 24px; letter-spacing: 0.02em; line-height: 1.2;">FIM DA AVENIDA<br><span style="font-weight: 600; font-size: 17px; opacity: 0.88;">PARA QUE LADO?</span></div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 22px 26px 20px; gap: 16px;">
+    {bloco(esq, "esq", "À ESQUERDA", "na direção da porta A")}
+    <div style="height: 3px; background: {TINTA};"></div>
+    {bloco(dire, "dir", "À DIREITA", "na direção da porta C")}
+    <div style="flex-grow: 1;"></div>
+    <div style="font-family: {ARCHIVO}; font-weight: 700; font-size: 16px; color: {CINZA}; border-top: 3px solid {fundo}; padding-top: 10px;">{rodape}</div>
   </div>
 
 </div>"""
-    return _molde(corpo=corpo, larg=1040, alt=410)
+    return _molde(corpo=corpo, larg=500, alt=1000)
 
 
 def pecas():
