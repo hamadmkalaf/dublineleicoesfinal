@@ -23,6 +23,7 @@ comporta com o efetivo que o Posto realmente tem.
 | [`docs/voluntarios/contexto.md`](docs/voluntarios/contexto.md) | Contexto consolidado: o princípio de projeto, os achados com a conta, as correções feitas no caminho, as premissas. **Leitura obrigatória antes de mexer em número.** |
 | [`docs/voluntarios/dimensionamento.md`](docs/voluntarios/dimensionamento.md) | O raciocínio: taxas de chegada, dimensionamento, achados das plantas, riscos de segunda e terceira ordem. Carrega um aviso de que seus códigos de posto são da revisão anterior (RE1–T2, e não P0–T2). |
 | [`mapa/voluntarios_postos.html`](mapa/voluntarios_postos.html) | Os postos marcados sobre a rota e sobre a planta do salão, com seletor dos quatro cenários. Não depende de nenhum arquivo do repositório; busca as fontes tipográficas no Google Fonts, então **sem internet ele abre e funciona, com outra tipografia**. |
+| [`mapa/mapa_publico.html`](mapa/mapa_publico.html) | **Onde você vota no RDS** — o mapa simplificado de apresentação, para a internet e para o briefing das equipes. Gerado por `scripts/mapa_publico.py`. |
 | `scripts/zonas_balanceadas.py` | Confere a composição das três zonas contra os dados. |
 
 **O que não pode se perder:** a sinalização atende o caso padrão e o voluntário
@@ -38,7 +39,7 @@ conduzir 11,5 mil eleitores da porta até a mesa. **Desenho definitivo, fechado 
 
 | Arquivo | O que é |
 |---|---|
-| [`docs/separadores/plano_separadores_fila.md`](docs/separadores/plano_separadores_fila.md) | O desenho definitivo: decisões, geometria, as 98 unifilas, a fita por cor, os achados e as pendências. |
+| [`docs/separadores/plano_separadores_fila.md`](docs/separadores/plano_separadores_fila.md) | O desenho definitivo: decisões, geometria, as 96 unifilas, a pequena avenida da parede norte, a fita por cor, os achados e as pendências. |
 | [`docs/separadores/contexto.md`](docs/separadores/contexto.md) | O contexto consolidado. **Leia antes de mexer em qualquer número.** |
 | [`docs/separadores/CONFERENCIA_PRANCHETA_2026-09-15.md`](docs/separadores/CONFERENCIA_PRANCHETA_2026-09-15.md) | Registro histórico de 15/09 — o porquê de cada decisão de arranjo, e onde o abandono do Ring 3 está registrado. |
 | `scripts/separadores_fila.py` | Monta o catálogo de barreira, precifica em postes, calcula a fita por cor, **confere a regra das avenidas** e desenha tudo. |
@@ -47,9 +48,9 @@ conduzir 11,5 mil eleitores da porta até a mesa. **Desenho definitivo, fechado 
 | `saidas/separadores_opcao1.svg` · `opcao2.svg` | As duas alternativas descartadas, mantidas como registro. |
 | `saidas/separadores_fila.json` | Premissas, catálogo e as três alocações. |
 
-**Números do desenho:** 98 unifilas em 133 m, reserva móvel de 2 · 769 m de fita
-(846 m com 10% de retoque), em 20 rolos de 50 m, seis cores · faltam **8 rolos**
-(2 azul, 2 laranja, 1 zebrado, 1 verde, 2 branco) e, por pedido, **15 unifilas**.
+**Números do desenho:** 96 unifilas em 129 m, reserva móvel de 4 · 802 m de fita
+(882 m com 10% de retoque), em 20 rolos de 50 m, seis cores · faltam **11 rolos**
+(2 azul, 5 vermelho, 1 zebrado, 1 verde, 2 branco) e, por pedido, **15 unifilas**.
 
 ---
 
@@ -67,6 +68,10 @@ python3 scripts/separadores_fila.py --grava
 
 # Tema voluntários — confere a composição das três zonas
 python3 scripts/zonas_balanceadas.py
+
+# Mapa público — confere; sai com código 1 se a folha divergir do gerador
+python3 scripts/mapa_publico.py
+python3 scripts/mapa_publico.py --grava   # regrava mapa/mapa_publico.html
 ```
 
 ### O que a conferência tem de imprimir
@@ -82,8 +87,10 @@ As avenidas não se cruzam — faixas de x, disjuntas:
     nenhuma avenida invade zona protegida
 ```
 
-e, na alocação definitiva, `98 unifilas em 133 m · reserva móvel 2` e
-`fita: 769 m (846 m com retoque) · 20 rolos de 50 m`.
+e, na alocação definitiva, `96 unifilas em 129 m · reserva móvel 4` e
+`fita: 802 m (882 m com retoque) · 20 rolos de 50 m`.
+A linha seguinte confirma que a **pequena avenida da parede norte** está livre:
+`1.80 m entre y = 33.60 e y = 35.40 m, x de 11.00 a 36.50 m`.
 
 `scripts/zonas_balanceadas.py` imprime **3.860 / 3.755 / 3.802**, total de
 **11.417**, spread de **2,8%**, e *"Cada zona tem exatamente uma das três urnas
@@ -100,7 +107,8 @@ CLAUDE.md                     memória do projeto: fatos fixos, geometria, cená
 PENDENCIAS.md                 pendências gerais do Posto
 README.md                     este arquivo
 cenarios/                     paredes-abc-20260915.json — posição e rotação das 28 mesas
-data/                         prancheta_hall2.json, decisoes.json, grupos_mesas.json
+data/                         prancheta_hall2.json, decisoes.json, grupos_mesas.json,
+                              paleta.json — fonte única das cores
 docs/
   TRANSFERENCIA_REALIZADA.md  o que veio de onde, e o que ficou para trás
   contexto_geral.md           orçamento, layout, histórico e taxas de 2022
@@ -110,7 +118,11 @@ mapa/                         fonte versionada dos artefatos + artefatos.json (m
   sinalizacao/                as 21 peças P0–P7, os dois mapas e o canvas
 plantas/                      imagens das plantas do Ring 3 e do Hall 2  (a preencher)
 saidas/                       dados.json e as saídas geradas do tema dos separadores
-scripts/                      separadores_fila.py, zonas_balanceadas.py
+scripts/                      separadores_fila.py, zonas_balanceadas.py,
+                              tabela_mestra.py (tabela seção → porta das peças P0–P3),
+                              artes_sinalizacao.py + _pictogramas.py (preferencial
+                              e as 16 placas de grupo), paleta.py (conferência
+                              da paleta, lê data/paleta.json)
 Identidadevisual/             identidade visual e banner
 Orçamentos/                   orçamentos, incl. sinalização
 ```
