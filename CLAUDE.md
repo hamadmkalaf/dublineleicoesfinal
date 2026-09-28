@@ -142,6 +142,8 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - A normalização de nomes existe duas vezes, em `scripts/app_normaliza.py` e em
   `app/public/comum.js`. `python3 -m pytest app/testes` confere que são iguais. Mudou
   uma, mude a outra.
+- Paleta do app = identidade TSE 2026 (`app/public/estilo.css`, `:root`). As cores das
+  portas A/B/C em `comum.js` são as v2 das peças de sinalização: não mudar. Sem inglês.
 - Testar sempre com `app/testes/amostra_eleitores.csv` (sintética). Nunca com a lista de
   Berlim nem com qualquer lista real.
 

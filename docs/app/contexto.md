@@ -52,6 +52,16 @@ só em memória: busca por qualquer parte do nome, mostra homônimos com nascime
 **título** e seção, e a mesma rota. "Fechar a lista" descarrega. O service worker guarda
 tudo no aparelho na primeira visita; depois funciona sem rede.
 
+**Data de nascimento.** Campo de texto `DD/MM/AAAA` com máscara, nas duas páginas:
+obrigatório no eleitor; opcional na equipe, onde filtra a lista e separa homônimos
+sem olhar a data de cada candidato. Aceita colar `23101967` ou `23.10.1967`.
+
+**Paleta.** Identidade Eleições 2026 do TSE (`Identidadevisual/`): fundo amarelo
+`#FCC537`, texto e botão em navy `#042B5A`, azul `#478BAD`/`#6486A7` em rótulos,
+laranja `#EF9A3E` em erros, verde `#98BD31`/`#557372` em notas e na faixa da equipe.
+As cores das portas A/B/C são as v2 das peças (`comum.js`, `COR_LETRA`) e não mudam.
+Sem versão em inglês (decisão de 28/09).
+
 **Rótulos.** Por grupo de mesas (A1…C6) e por seção, nunca por número de mesa: regra do
 plano de sinalização. As letras A/B/C e as cores são as v2 das peças (A `#33507E`,
 B `#E8C63A`, C `#DE7343`).

@@ -47,6 +47,20 @@ const OEV = (() => {
     return `${a}-${String(me).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
   }
 
+  /* Máscara DD/MM/AAAA num <input type="text">: só dígitos, barras inseridas ao digitar; aceita colar 23101967 ou 23.10.1967. */
+  function mascaraData(el) {
+    const aplica = () => {
+      const d = el.value.replace(/\D/g, "").slice(0, 8);
+      let v = d;
+      if (d.length > 4) v = `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}`;
+      else if (d.length > 2) v = `${d.slice(0, 2)}/${d.slice(2)}`;
+      if (v !== el.value) el.value = v;
+    };
+    el.addEventListener("input", aplica);
+    el.addEventListener("blur", aplica);
+    return el;
+  }
+
   function b64url(bytes) {
     let s = "";
     for (const b of new Uint8Array(bytes)) s += String.fromCharCode(b);
@@ -94,11 +108,12 @@ const OEV = (() => {
   }
 
   /* Busca da equipe: cada palavra digitada tem de aparecer como prefixo de alguma palavra do nome. */
-  function buscaEquipe(eleitores, texto, limite = 30) {
+  function buscaEquipe(eleitores, texto, limite = 30, dataISO = "") {
     const termos = normalizaNome(texto).split(" ").filter(Boolean);
-    if (!termos.length) return [];
+    if (!termos.length && !dataISO) return [];
     const achados = [];
     for (const e of eleitores) {
+      if (dataISO && e.d !== dataISO) continue;
       const palavras = e.n.split(" ");
       if (termos.every((t) => palavras.some((p) => p.startsWith(t)))) {
         achados.push(e);
@@ -137,12 +152,12 @@ const OEV = (() => {
     const X = (m) => M + m * s;
     const YH = (y) => M + (HALL_D - y) * s; // y do salão cresce para o norte
     const ringTop = M + (HALL_D + APRON) * s;
-    const cor = COR_LETRA[rota.letra], fraco = "#D9D4C4", texto = "#3F3F3F";
+    const cor = COR_LETRA[rota.letra], fraco = "#C9D6E3", texto = "#042B5A", suave = "#6486A7";
     const p = [];
     p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até a seção ${rota.secao}">`);
     // Hall 2
     p.push(`<rect x="${X(0)}" y="${YH(HALL_D)}" width="${HALL_W * s}" height="${HALL_D * s}" fill="#FFFFFF" stroke="${texto}" stroke-width="1.5"/>`);
-    p.push(`<text x="${X(HALL_W / 2)}" y="${YH(HALL_D / 2)}" text-anchor="middle" font-size="11" fill="#9A9483">HALL 2</text>`);
+    p.push(`<text x="${X(HALL_W / 2)}" y="${YH(HALL_D / 2)}" text-anchor="middle" font-size="11" fill="${suave}">HALL 2</text>`);
     // paredes com mesas
     const paredes = {
       oeste: [X(0), YH(HALL_D), 6, HALL_D * s],
@@ -167,7 +182,7 @@ const OEV = (() => {
     const portas = { S2: [7.6, "saída", null], S4: [15.8, "A", "A"], S5: [22.0, "B", "B"], S6: [28.2, "C", "C"], S7: [33.0, "pref.", null], S8: [40.0, "saída", null] };
     for (const [id, [x, rot, letra]] of Object.entries(portas)) {
       const ativa = id === rota.porta;
-      const fill = ativa ? cor : letra ? "#F2EFE2" : fraco;
+      const fill = ativa ? cor : letra ? "#F4F7FA" : fraco;
       p.push(`<rect x="${X(x) - 6}" y="${YH(0) - 4}" width="12" height="8" fill="${fill}" stroke="${texto}" stroke-width="${ativa ? 1.5 : 0.5}"/>`);
       p.push(`<text x="${X(x)}" y="${YH(0) + 16}" text-anchor="middle" font-size="${ativa ? 11 : 8}" font-weight="${ativa ? 800 : 400}" fill="${texto}">${id} ${esc(rot)}</text>`);
     }
@@ -182,16 +197,16 @@ const OEV = (() => {
     p.push(`<rect x="${X(RING_X)}" y="${ringTop}" width="${RING_W * s}" height="${RING_D * s}" fill="#FFFFFF" stroke="${texto}" stroke-width="1.5" stroke-dasharray="4 3"/>`);
     for (const [letra, x] of Object.entries(zonaX)) {
       const ativa = letra === rota.letra;
-      p.push(`<rect x="${X(x)}" y="${ringTop}" width="${zonaLarg * s}" height="${(RING_D - 3) * s}" fill="${ativa ? cor : "#F2EFE2"}" fill-opacity="${ativa ? 0.9 : 1}" stroke="${fraco}"/>`);
+      p.push(`<rect x="${X(x)}" y="${ringTop}" width="${zonaLarg * s}" height="${(RING_D - 3) * s}" fill="${ativa ? cor : "#F4F7FA"}" fill-opacity="${ativa ? 0.9 : 1}" stroke="${fraco}"/>`);
       for (let i = 1; i < 6; i++) p.push(`<line x1="${X(x)}" x2="${X(x + zonaLarg)}" y1="${ringTop + i * ((RING_D - 3) * s) / 6}" y2="${ringTop + i * ((RING_D - 3) * s) / 6}" stroke="${ativa ? "#FFFFFF" : fraco}" stroke-opacity="0.6"/>`);
-      p.push(`<text x="${X(x + zonaLarg / 2)}" y="${ringTop + (RING_D - 3) * s / 2}" text-anchor="middle" dominant-baseline="middle" font-size="26" font-weight="800" fill="${ativa ? COR_TEXTO_LETRA[letra] : "#B8B29E"}">${letra}</text>`);
+      p.push(`<text x="${X(x + zonaLarg / 2)}" y="${ringTop + (RING_D - 3) * s / 2}" text-anchor="middle" dominant-baseline="middle" font-size="26" font-weight="800" fill="${ativa ? COR_TEXTO_LETRA[letra] : "#9DB0C4"}">${letra}</text>`);
     }
     // corredor de chegada (leste) e trecho de fundo
-    p.push(`<rect x="${X(RING_X + RING_W - 3)}" y="${ringTop}" width="${3 * s}" height="${RING_D * s}" fill="#F7F5EC"/>`);
-    p.push(`<rect x="${X(RING_X)}" y="${ringTop + (RING_D - 3) * s}" width="${RING_W * s}" height="${3 * s}" fill="#F7F5EC"/>`);
+    p.push(`<rect x="${X(RING_X + RING_W - 3)}" y="${ringTop}" width="${3 * s}" height="${RING_D * s}" fill="#EEF3F8"/>`);
+    p.push(`<rect x="${X(RING_X)}" y="${ringTop + (RING_D - 3) * s}" width="${RING_W * s}" height="${3 * s}" fill="#EEF3F8"/>`);
     p.push(`<path d="M ${X(RING_X + RING_W - 1.5)} ${ringTop + 4} L ${X(RING_X + RING_W - 1.5)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 3) * s - 2}" stroke="${texto}" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>`);
     p.push(`<text x="${X(RING_X + RING_W - 1.5)}" y="${ringTop - 4}" text-anchor="middle" font-size="9" fill="${texto}">entrada ▼</text>`);
-    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#9A9483">Ring 3 (pátio de fila) · esquema sem escala · norte para cima</text>`);
+    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="${suave}">Ring 3 (pátio de fila) · esquema sem escala · norte para cima</text>`);
     p.push(`</svg>`);
     return p.join("");
   }
@@ -238,7 +253,7 @@ const OEV = (() => {
     }
   }
 
-  return { normalizaNome, chavesNome, normalizaData, hashPublico, consultaPublica, decifraEquipe, buscaEquipe,
+  return { normalizaNome, chavesNome, normalizaData, mascaraData, hashPublico, consultaPublica, decifraEquipe, buscaEquipe,
            carregaJSON, esc, formataData, formataTitulo, desenhaMapa, renderRota, rotaDaSecao, registraSW, COR_LETRA };
 })();
 

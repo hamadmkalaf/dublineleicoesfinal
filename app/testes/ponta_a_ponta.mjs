@@ -34,7 +34,7 @@ try {
   await pagina.goto(BASE);
   await pagina.waitForSelector("#botao:not([disabled])");
   // (a) eleitor fixo da amostra: seção 3889 -> letra A, porta S4, grupo A3
-  let r = await consulta("Tizzani Viana D'Andrea Nery", "1975-03-16");
+  let r = await consulta("Tizzani Viana D'Andrea Nery", "16/03/1975");
   assert.equal(await r.locator(".letra").textContent(), "A");
   assert.match(await r.textContent(), /Porta S4 · parede oeste/);
   assert.match(await r.textContent(), /3889/);
@@ -42,15 +42,18 @@ try {
   passo("eleitor: nome completo com apóstrofo → seção 3889, fila A, porta S4, grupo A3");
   await pagina.screenshot({ path: path.join(capturas, "eleitor_resultado.png"), fullPage: true });
   // nome sem os nomes do meio
-  r = await consulta("tizzani nery", "16/03/1975".split("/").reverse().join("-"));
+  r = await consulta("tizzani nery", "16031975");
   assert.equal(await r.locator(".letra").textContent(), "A");
   passo("eleitor: primeiro + último sobrenome também encontra");
   // (b) não encontrado
-  r = await consulta("Fulano Inexistente", "1975-03-16");
+  r = await consulta("Fulano Inexistente", "16/03/1975");
   assert.match(await r.textContent(), /Não encontramos/);
   passo("eleitor: nome errado → não encontrado, com caminho para o e-Título e o P0");
+  r = await consulta("Tizzani Viana D'Andrea Nery", "31/02/1990");
+  assert.match(await r.textContent(), /não existe/);
+  passo("eleitor: data inválida 31/02 → mensagem de erro");
   // homônimo com mesma data
-  r = await consulta("Joao Carlos Souza", "1988-08-08");
+  r = await consulta("Joao Carlos Souza", "08/08/1988");
   assert.match(await r.textContent(), /mais de um eleitor/);
   passo("eleitor: homônimo com a mesma data → manda ao P0");
   // (c) equipe
@@ -66,6 +69,11 @@ try {
   await pagina.fill("#busca", "maria aparecida silva");
   await pagina.waitForFunction(() => document.querySelectorAll("#lista li").length === 3);
   passo("equipe: três homônimas listadas com data e título");
+  await pagina.fill("#busca-data", "30111981");
+  await pagina.waitForFunction(() => document.querySelectorAll("#lista li").length === 1);
+  assert.match(await pagina.locator("#lista").textContent(), /30\/11\/1981/);
+  passo("equipe: data de nascimento filtra as homônimas para uma");
+  await pagina.fill("#busca-data", "");
   await pagina.fill("#busca", "tizzani");
   await pagina.waitForFunction(() => document.querySelector("#resultado .cartao-eleitor"));
   assert.match(await pagina.locator("#resultado").textContent(), /1234 5678 9012/);
@@ -80,7 +88,7 @@ try {
   await ctx.setOffline(true);
   await pagina.reload();
   await pagina.waitForSelector("#botao:not([disabled])");
-  r = await consulta("Tizzani Viana D'Andrea Nery", "1975-03-16");
+  r = await consulta("Tizzani Viana D'Andrea Nery", "16/03/1975");
   assert.equal(await r.locator(".letra").textContent(), "A");
   passo("offline: página do eleitor responde do cache");
   await pagina.goto(BASE + "equipe/");
