@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Onde eu voto? · Eleições 2026 · Dublin</title>
 <meta name="description" content="Descubra sua seção, sua fila e sua porta no RDS Hall 2 antes de sair de casa.">
-<meta name="theme-color" content="#F2CE3A">
+<meta name="theme-color" content="#FCC537">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icones/icone.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./icones/icone-192.png">
@@ -28,7 +28,7 @@
     <input type="text" id="nome" name="nome" autocapitalize="characters" autocorrect="off" spellcheck="false" required inputmode="text" placeholder="como está no título de eleitor">
     <p class="dica" id="dica-nome"></p>
     <label for="fator" id="rotulo-fator">Data de nascimento</label>
-    <input type="date" id="fator" name="fator" required min="1900-01-01" max="2010-12-31">
+    <input type="text" id="fator" name="fator" required inputmode="numeric" placeholder="DD/MM/AAAA" maxlength="10" autocomplete="bday">
     <button class="principal" id="botao" type="submit" disabled>Consultar</button>
   </form>
 
@@ -62,9 +62,9 @@
     $("link-etitulo").href = config.link_etitulo;
     $("rotulo-fator").textContent = config.rotulo_fator[indice.fator];
     if (indice.fator === "mae") {
-      const novo = document.createElement("input");
-      novo.type = "text"; novo.id = "fator"; novo.name = "fator"; novo.required = true; novo.autocapitalize = "characters";
-      $("fator").replaceWith(novo);
+      $("fator").placeholder = "nome completo da mãe"; $("fator").inputMode = "text"; $("fator").maxLength = 120; $("fator").autocapitalize = "characters";
+    } else {
+      OEV.mascaraData($("fator"));
     }
     if (versao) {
       $("versao").textContent = `Lista com ${versao.eleitores.toLocaleString("pt-BR")} eleitores · dados de ${new Date(versao.construido_em).toLocaleString("pt-BR")}`;
@@ -83,7 +83,8 @@
     try {
       const r = await OEV.consultaPublica(estado.indice, nome, fator);
       if (r.estado === "incompleto") {
-        mostra(`<div class="aviso erro">Preencha o nome completo e ${estado.config.rotulo_fator[estado.indice.fator].toLowerCase()}.</div>`);
+        const dataRuim = estado.indice.fator === "nascimento" && fator.trim() && !OEV.normalizaData(fator);
+        mostra(`<div class="aviso erro">${dataRuim ? `A data <b>${OEV.esc(fator)}</b> não existe. Escreva dia, mês e ano: DD/MM/AAAA.` : `Preencha o nome completo e ${estado.config.rotulo_fator[estado.indice.fator].toLowerCase()}.`}</div>`);
       } else if (r.estado === "nao_encontrado") {
         mostra(`<div class="aviso erro"><b>Não encontramos esse nome com essa ${estado.indice.fator === "nascimento" ? "data" : "informação"}.</b><br>
           Confira se digitou o nome completo como está no título (nome de casada, sobrenomes do meio) e a data certa.
