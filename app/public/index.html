@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onde eu voto? · Eleições 2026 · Dublin</title>
+<meta name="description" content="Descubra sua seção, sua fila e sua porta no RDS Hall 2 antes de sair de casa.">
+<meta name="theme-color" content="#F2CE3A">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icones/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icones/icone-192.png">
+<link rel="stylesheet" href="./estilo.css">
+</head>
+<body>
+<header class="topo">
+  <div class="marca">ELEIÇÕES 2026<small>#VOTONADEMOCRACIA</small></div>
+  <div class="onde" id="onde">Dublin · RDS Hall 2</div>
+</header>
+<main>
+  <h1>Onde eu voto?</h1>
+  <p class="sub" id="sub">Descubra sua seção, sua fila e sua porta antes de sair de casa.</p>
+
+  <div class="aviso info" id="aviso-versao" hidden>Há uma versão nova desta página. <a href="#" onclick="location.reload();return false;">Recarregar</a>.</div>
+  <div class="aviso" id="aviso-amostra" hidden><b>Dados de teste.</b> Esta versão usa uma lista sintética; os nomes reais ainda não foram carregados.</div>
+
+  <form class="consulta" id="form" autocomplete="off">
+    <label for="nome">Nome completo</label>
+    <input type="text" id="nome" name="nome" autocapitalize="characters" autocorrect="off" spellcheck="false" required inputmode="text" placeholder="como está no título de eleitor">
+    <p class="dica" id="dica-nome"></p>
+    <label for="fator" id="rotulo-fator">Data de nascimento</label>
+    <input type="date" id="fator" name="fator" required min="1900-01-01" max="2010-12-31">
+    <button class="principal" id="botao" type="submit" disabled>Consultar</button>
+  </form>
+
+  <div id="resultado" aria-live="polite"></div>
+</main>
+<footer>
+  <p id="rodape"></p>
+  <p>Não encontrou? Confira o nome e a data no <a id="link-etitulo" href="#" target="_blank" rel="noopener">e-Título / consulta do TSE</a>, ou procure a mesa <b>“Descubra sua seção”</b> na calçada da Merrion Road, antes do portão.</p>
+  <p id="versao"></p>
+  <p><a href="./equipe/">Acesso da equipe</a></p>
+</footer>
+<script src="./comum.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id);
+  const estado = { indice: null, rotas: null, config: null };
+  OEV.registraSW("./sw.js");
+
+  function mostra(html) { $("resultado").innerHTML = html; $("resultado").scrollIntoView({ behavior: "smooth", block: "start" }); }
+
+  try {
+    const [config, rotas, indice, versao] = await Promise.all([
+      OEV.carregaJSON("./dados/config.json"), OEV.carregaJSON("./dados/rotas.json"),
+      OEV.carregaJSON("./dados/indice_publico.json"), OEV.carregaJSON("./dados/versao.json").catch(() => null),
+    ]);
+    Object.assign(estado, { config, rotas, indice });
+    $("onde").textContent = `${config.local} · ${config.turno}`;
+    $("sub").textContent = `${config.data}, ${config.horario}. ${config.local}, ${config.endereco}.`;
+    $("dica-nome").textContent = config.dica_nome;
+    $("rodape").textContent = config.rodape;
+    $("link-etitulo").href = config.link_etitulo;
+    $("rotulo-fator").textContent = config.rotulo_fator[indice.fator];
+    if (indice.fator === "mae") {
+      const novo = document.createElement("input");
+      novo.type = "text"; novo.id = "fator"; novo.name = "fator"; novo.required = true; novo.autocapitalize = "characters";
+      $("fator").replaceWith(novo);
+    }
+    if (versao) {
+      $("versao").textContent = `Lista com ${versao.eleitores.toLocaleString("pt-BR")} eleitores · dados de ${new Date(versao.construido_em).toLocaleString("pt-BR")}`;
+      $("aviso-amostra").hidden = !versao.amostra_sintetica;
+    }
+    $("botao").disabled = false;
+  } catch (e) {
+    mostra(`<div class="aviso erro">Não foi possível carregar os dados (${OEV.esc(e.message)}). Tente de novo com internet.</div>`);
+    return;
+  }
+
+  $("form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const nome = $("nome").value, fator = $("fator").value;
+    $("botao").disabled = true; $("botao").textContent = "Procurando…";
+    try {
+      const r = await OEV.consultaPublica(estado.indice, nome, fator);
+      if (r.estado === "incompleto") {
+        mostra(`<div class="aviso erro">Preencha o nome completo e ${estado.config.rotulo_fator[estado.indice.fator].toLowerCase()}.</div>`);
+      } else if (r.estado === "nao_encontrado") {
+        mostra(`<div class="aviso erro"><b>Não encontramos esse nome com essa ${estado.indice.fator === "nascimento" ? "data" : "informação"}.</b><br>
+          Confira se digitou o nome completo como está no título (nome de casada, sobrenomes do meio) e a data certa.
+          Se continuar sem resultado, confira no <a href="${OEV.esc(estado.config.link_etitulo)}" target="_blank" rel="noopener">e-Título</a> ou procure a mesa “Descubra sua seção” na calçada, antes do portão.</div>`);
+      } else if (r.estado === "ambiguo") {
+        mostra(`<div class="aviso"><b>Há mais de um eleitor com esse nome e essa data</b> (seções ${r.secoes.map(OEV.esc).join(" e ")}).
+          Tente o nome completo, com todos os sobrenomes. Se já digitou o nome completo, procure a mesa “Descubra sua seção” na calçada: lá a equipe confere pelo título.</div>`);
+      } else {
+        const rota = estado.rotas.secoes[r.secoes[0]];
+        mostra(OEV.renderRota(rota) + `<p class="dica">Tire uma foto desta tela ou anote: <b>seção ${OEV.esc(rota.secao)} · letra ${rota.letra} · porta ${rota.porta}</b>.</p>`);
+      }
+    } catch (e) {
+      mostra(`<div class="aviso erro">Erro na consulta: ${OEV.esc(e.message)}</div>`);
+    } finally {
+      $("botao").disabled = false; $("botao").textContent = "Consultar";
+    }
+  });
+})();
+</script>
+</body>
+</html>
