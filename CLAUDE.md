@@ -12,6 +12,7 @@ necessário para chegar a elas.
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído e testado com amostra sintética; aguarda a lista nominal |
 
 ---
 
@@ -129,6 +130,20 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - Três armadilhas conhecidas: mudar uma banda e esquecer a fita; contar a boca da
   avenida B duas vezes (ela entra inteira, não leva item de boca); e rotular por
   número de mesa. As três estão descritas em `docs/separadores/contexto.md`.
+
+## Regras do app "Onde eu voto?"
+
+- **A lista nominal de eleitores nunca entra no git.** `data/eleitores/` e `app/dist/`
+  estão no `.gitignore`. O que se publica são hashes (eleitor) e um pacote cifrado
+  (equipe); o CSV fica só na máquina de quem constrói.
+- O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
+  distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
+  confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.
+- A normalização de nomes existe duas vezes, em `scripts/app_normaliza.py` e em
+  `app/public/comum.js`. `python3 -m pytest app/testes` confere que são iguais. Mudou
+  uma, mude a outra.
+- Testar sempre com `app/testes/amostra_eleitores.csv` (sintética). Nunca com a lista de
+  Berlim nem com qualquer lista real.
 
 ## Convenções
 

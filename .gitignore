@@ -1,2 +1,9 @@
 __pycache__/
 *.pyc
+
+# App "Onde eu voto?": dado pessoal e saída construída de lista real nunca entram no git.
+data/eleitores/
+app/dist/
+app/testes/capturas/
+app/testes/__pycache__/
+.pytest_cache/

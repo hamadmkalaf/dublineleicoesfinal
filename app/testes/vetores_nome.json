@@ -1,0 +1,214 @@
+{
+ "nomes": [
+  {
+   "entrada": "Ana Cristina Evaristo",
+   "normalizado": "ANA CRISTINA EVARISTO",
+   "chaves": [
+    "ANA CRISTINA EVARISTO",
+    "ANA EVARISTO"
+   ]
+  },
+  {
+   "entrada": "LETÍCIA GONÇALVES DE LIMA",
+   "normalizado": "LETICIA GONCALVES LIMA",
+   "chaves": [
+    "LETICIA GONCALVES LIMA",
+    "LETICIA LIMA"
+   ]
+  },
+  {
+   "entrada": "Tizzani Viana D'Andrea Nery",
+   "normalizado": "TIZZANI VIANA DANDREA NERY",
+   "chaves": [
+    "TIZZANI VIANA DANDREA NERY",
+    "TIZZANI NERY"
+   ]
+  },
+  {
+   "entrada": "josé  da   silva",
+   "normalizado": "JOSE SILVA",
+   "chaves": [
+    "JOSE SILVA"
+   ]
+  },
+  {
+   "entrada": "Maria das Dores e Souza",
+   "normalizado": "MARIA DORES SOUZA",
+   "chaves": [
+    "MARIA DORES SOUZA",
+    "MARIA SOUZA"
+   ]
+  },
+  {
+   "entrada": "João Müller-Schmidt",
+   "normalizado": "JOAO MULLER SCHMIDT",
+   "chaves": [
+    "JOAO MULLER SCHMIDT",
+    "JOAO SCHMIDT"
+   ]
+  },
+  {
+   "entrada": "Ângela Ção",
+   "normalizado": "ANGELA CAO",
+   "chaves": [
+    "ANGELA CAO"
+   ]
+  },
+  {
+   "entrada": "O'Brien, Séamus",
+   "normalizado": "OBRIEN SEAMUS",
+   "chaves": [
+    "OBRIEN SEAMUS"
+   ]
+  },
+  {
+   "entrada": "MARIA APARECIDA SILVA",
+   "normalizado": "MARIA APARECIDA SILVA",
+   "chaves": [
+    "MARIA APARECIDA SILVA",
+    "MARIA SILVA"
+   ]
+  },
+  {
+   "entrada": "Thomas Mailleux Sant Ana",
+   "normalizado": "THOMAS MAILLEUX SANT ANA",
+   "chaves": [
+    "THOMAS MAILLEUX SANT ANA",
+    "THOMAS ANA"
+   ]
+  },
+  {
+   "entrada": "  Pedro   ",
+   "normalizado": "PEDRO",
+   "chaves": [
+    "PEDRO"
+   ]
+  },
+  {
+   "entrada": "de la Cruz",
+   "normalizado": "LA CRUZ",
+   "chaves": [
+    "LA CRUZ"
+   ]
+  },
+  {
+   "entrada": "Zoë Dâmaso",
+   "normalizado": "ZOE DAMASO",
+   "chaves": [
+    "ZOE DAMASO"
+   ]
+  },
+  {
+   "entrada": "Luís Inácio",
+   "normalizado": "LUIS INACIO",
+   "chaves": [
+    "LUIS INACIO"
+   ]
+  },
+  {
+   "entrada": "X Æ A-12",
+   "normalizado": "X A 12",
+   "chaves": [
+    "X A 12",
+    "X 12"
+   ]
+  },
+  {
+   "entrada": "Katia Cirlene Pereira de Brito Falcao",
+   "normalizado": "KATIA CIRLENE PEREIRA BRITO FALCAO",
+   "chaves": [
+    "KATIA CIRLENE PEREIRA BRITO FALCAO",
+    "KATIA FALCAO"
+   ]
+  },
+  {
+   "entrada": "Ñandu Peña",
+   "normalizado": "NANDU PENA",
+   "chaves": [
+    "NANDU PENA"
+   ]
+  },
+  {
+   "entrada": "François D’Alembert",
+   "normalizado": "FRANCOIS DALEMBERT",
+   "chaves": [
+    "FRANCOIS DALEMBERT"
+   ]
+  },
+  {
+   "entrada": "",
+   "normalizado": "",
+   "chaves": []
+  },
+  {
+   "entrada": "E",
+   "normalizado": "",
+   "chaves": []
+  }
+ ],
+ "datas": [
+  {
+   "entrada": "1967-10-23",
+   "normalizada": "1967-10-23"
+  },
+  {
+   "entrada": "23/10/1967",
+   "normalizada": "1967-10-23"
+  },
+  {
+   "entrada": "1967-10-23T00:00:00",
+   "normalizada": "1967-10-23"
+  },
+  {
+   "entrada": "23.10.1967",
+   "normalizada": "1967-10-23"
+  },
+  {
+   "entrada": "23101967",
+   "normalizada": "1967-10-23"
+  },
+  {
+   "entrada": "1967-13-01",
+   "normalizada": ""
+  },
+  {
+   "entrada": "31/02/1990",
+   "normalizada": ""
+  },
+  {
+   "entrada": "",
+   "normalizada": ""
+  },
+  {
+   "entrada": "abc",
+   "normalizada": ""
+  }
+ ],
+ "hashes": [
+  {
+   "chave": "ANA CRISTINA EVARISTO",
+   "fator": "1975-03-16",
+   "hash": "BXiQscNKj2bOV2yQ"
+  },
+  {
+   "chave": "LETICIA GONCALVES LIMA",
+   "fator": "1975-03-16",
+   "hash": "3NYA1-isk83Vghfx"
+  },
+  {
+   "chave": "TIZZANI VIANA DANDREA NERY",
+   "fator": "1975-03-16",
+   "hash": "kchEoq-aYNNhBjKg"
+  },
+  {
+   "chave": "JOSE SILVA",
+   "fator": "1975-03-16",
+   "hash": "KbJTzukcQ5BTQm0c"
+  },
+  {
+   "chave": "MARIA DORES SOUZA",
+   "fator": "1975-03-16",
+   "hash": "HOV8-IXt--Fl-tW7"
+  }
+ ]
+}
