@@ -11,12 +11,13 @@ Le a geometria de ``separadores_fila.py`` (a mesma das avenidas e dos banners
 ja aprovados) e nao altera nenhum dado. Sem ``--grava`` so confere.
 
     python3 scripts/planta_hall2_detalhada.py           # confere
-    python3 scripts/planta_hall2_detalhada.py --grava         # SVG
+    python3 scripts/planta_hall2_detalhada.py --grava         # SVG, em portugues e em ingles
     python3 scripts/planta_hall2_detalhada.py --grava --png   # SVG + PNG a 2x (node + Chromium)
 """
 import json
 import math
 import os
+import re
 import subprocess
 import sys
 
@@ -37,6 +38,7 @@ GAP = 40
 U_MESA, U_URNA, U_ELEI, U_PASS = 1.70, 0.90, 0.90, 0.60
 V_MESA = 0.80
 LARG_MOD = 0.90
+INFO_X, INFO_Y = (11.55, 13.25), (1.70, 2.50)   # ponto de informacao (m)
 N_MESARIOS = 4                # premissa: 109 nomeados / 28 MRVs = 3,9
 ASSENTO = 0.75
 
@@ -74,10 +76,11 @@ def modulo_svg(k, mostra_fundo=True):
     R(0, V_MESA / 2, U_MESA, V_MESA / 2 + ASSENTO, fill="none", stroke=LEVE,
       stroke_width=1, stroke_dasharray="2 3")
     # passagem (hachurada)
-    R(U_MESA + U_URNA + U_ELEI, -LARG_MOD / 2, P, LARG_MOD / 2,
+    R(U_MESA + U_ELEI + U_URNA, -LARG_MOD / 2, P, LARG_MOD / 2,
       fill="url(#hach)", stroke="none")
-    # vaga do eleitor
-    u0 = U_MESA + U_URNA
+    # vaga do eleitor: fica entre a mesa-cavalete e a mesa redonda, de costas para a
+    # parede e de frente para a urna (decisao de 30/09)
+    u0 = U_MESA
     R(u0, -LARG_MOD / 2, u0 + U_ELEI, LARG_MOD / 2, fill="#eef3f8", fill_opacity=".8",
       stroke="#9fb1c4", stroke_width=1, stroke_dasharray="3 3")
 
@@ -87,8 +90,7 @@ def modulo_svg(k, mostra_fundo=True):
           fill=MADEIRA_ESC, rx=1)
     R(0, -V_MESA / 2, U_MESA, V_MESA / 2, fill=MADEIRA, stroke=MADEIRA_ESC,
       stroke_width=1.6, rx=2)
-    # veio da madeira
-    for i in (1, 2, 3):
+    for i in (1, 2, 3):                      # veio da madeira
         yv = -V_MESA / 2 + i * V_MESA / 4
         add(f'<line x1="{0.06*k:.2f}" y1="{yv*k:.2f}" x2="{(U_MESA-0.06)*k:.2f}" '
             f'y2="{yv*k:.2f}" stroke="{MADEIRA_ESC}" stroke-opacity=".22" stroke-width="1"/>')
@@ -102,21 +104,21 @@ def modulo_svg(k, mostra_fundo=True):
         add(f'<circle cx="{uc*k:.2f}" cy="{(V_MESA/2+0.25)*k:.2f}" r="{0.145*k:.2f}" '
             f'fill="#2c3e50" stroke="#fff" stroke-width="1.2"/>')        # mesario
 
-    # mesa redonda de 0,90 m do eleitor, com a urna em cima
-    cu, r = U_MESA + U_URNA / 2, 0.45
+    # mesa redonda de 0,90 m, com a urna em cima: a mais proxima da abertura do modulo
+    cu, r = U_MESA + U_ELEI + U_URNA / 2, 0.45
     add(f'<circle cx="{cu*k:.2f}" cy="0" r="{r*k:.2f}" fill="#f4f1ea" stroke="{TINTA}" '
         f'stroke-width="2"/>')
     add(f'<circle cx="{cu*k:.2f}" cy="0" r="{(r-0.06)*k:.2f}" fill="none" stroke="{LEVE}" '
         f'stroke-width=".8"/>')
     R(cu - 0.17, -0.13, cu + 0.17, 0.13, fill="#1d2733", rx=2)           # urna
-    R(cu - 0.12, -0.085, cu + 0.04, 0.085, fill="#8fd9bf", rx=1)          # visor
+    R(cu - 0.12, -0.085, cu + 0.04, 0.085, fill="#8fd9bf", rx=1)          # visor, voltado ao eleitor
     R(cu + 0.06, -0.085, cu + 0.13, 0.085, fill="#3b4a5a", rx=1)          # teclado
 
-    # eleitor em pe, de frente para a urna
+    # eleitor em pe: de costas para a parede, de frente para a urna (sentido +u)
     ue = u0 + U_ELEI / 2
     add(f'<ellipse cx="{ue*k:.2f}" cy="0" rx="{0.12*k:.2f}" ry="{0.25*k:.2f}" '
         f'fill="#4a6fa5" stroke="#fff" stroke-width="1.2"/>')
-    add(f'<circle cx="{(ue-0.03)*k:.2f}" cy="0" r="{0.105*k:.2f}" fill="#e9c9a5" '
+    add(f'<circle cx="{(ue+0.04)*k:.2f}" cy="0" r="{0.105*k:.2f}" fill="#e9c9a5" '
         f'stroke="{TINTA}" stroke-width=".8"/>')
     return "\n".join(o)
 
@@ -215,11 +217,11 @@ def svg_planta(planta, dec, mesas, grupos, itens, op):
     add(f'<text x="{ME}" y="62" font-size="44" font-weight="800" fill="{TINTA}">'
         f'Hall 2 · planta de votação com as 28 MRVs</text>')
     add(f'<text x="{ME}" y="96" font-size="21" fill="{CINZA}">RDS Ballsbridge, Dublin · '
-        f'1º turno, 04/10/2026 · cenário Paredes_ABC · arranjo e avenidas de 23/09 (v2) · '
+        f'1º turno, 04/10/2026 · cenário Paredes_ABC · arranjo e avenidas de 23/09 (v2) · módulo revisto em 30/09 · '
         f'escala 1 m = {S:.0f} px</text>')
     add(f'<text x="{ME}" y="124" font-size="21" fill="{CINZA}">Módulo da MRV: mesa-cavalete '
-        f'dos mesários 1,70 × 0,80 m · mesa redonda do eleitor ⌀ 0,90 m com a urna · vaga do '
-        f'eleitor 0,90 m · passagem 0,60 m = 4,10 m</text>')
+        f'dos mesários 1,70 × 0,80 m · vaga do eleitor 0,90 m, de costas para a parede · '
+        f'mesa redonda ⌀ 0,90 m com a urna · passagem 0,60 m = 4,10 m</text>')
 
     # ---- piso e paredes ----
     cont = pts(planta["salao"]["contorno"])
@@ -269,30 +271,6 @@ def svg_planta(planta, dec, mesas, grupos, itens, op):
         add(f'<polyline points="{pts(ponto)}" fill="none" stroke="#d98600" stroke-width="3.4" '
             f'stroke-dasharray="14 8"/>')
 
-    # chevrons de sentido ao longo do eixo de cada avenida
-    def chevrons(eixo, cor, contorno, passo=2.6):
-        L = sf.comp(eixo)
-        d = passo / 2
-        while d < L - 0.6:
-            rest, j = d, 0
-            while rest > math.dist(eixo[j], eixo[j + 1]):
-                rest -= math.dist(eixo[j], eixo[j + 1])
-                j += 1
-            (x0, y0), (x1, y1) = eixo[j], eixo[j + 1]
-            sgm = math.dist(eixo[j], eixo[j + 1])
-            ux, uy = (x1 - x0) / sgm, (y1 - y0) / sgm
-            cx, cy = x0 + ux * rest, y0 + uy * rest
-            # vertice na frente; asas para tras, abertas em +-0,55 m
-            fx, fy = cx + ux * .45, cy + uy * .45
-            ax, ay = cx - ux * .35 - uy * .62, cy - uy * .35 + ux * .62
-            bx, by = cx - ux * .35 + uy * .62, cy - uy * .35 - ux * .62
-            mx, my = cx - ux * .05, cy - uy * .05
-            add(f'<polygon points="{pts([(fx,fy),(ax,ay),(mx,my),(bx,by)])}" fill="{cor}" '
-                f'stroke="{contorno}" stroke-width="1.1" stroke-linejoin="round"/>')
-            d += passo
-
-    for aid, av in sf.AVENIDAS.items():
-        chevrons(eixo_avenida(aid), av["hex"], "#16202b" if aid == "B" else "#fff")
     # pequena avenida: duas setas, cada uma para o seu lado
     ym = sf.Y_BANDA_NORTE - sf.AVENIDA_NORTE / 2
     for xd, xp in ((27.5, 13.0), (29.1, 35.6)):
@@ -302,8 +280,8 @@ def svg_planta(planta, dec, mesas, grupos, itens, op):
             f'stroke-width="4" marker-end="url(#seta)"/>')
 
     # saida: campo livre, setas convergindo em S2 e S8
-    for (x0, y0), (x1, y1) in (((6.0, 9.0), (13.85, 1.7)), ((20.0, 30.0), (13.85, 1.7)),
-                               ((36.0, 30.0), (42.7, 1.7)), ((44.0, 9.0), (42.7, 1.7))):
+    for (x0, y0), (x1, y1) in (((6.0, 9.0), (13.85, 0.6)), ((20.0, 30.0), (13.85, 0.6)),
+                               ((36.0, 30.0), (42.7, 0.6)), ((44.0, 9.0), (42.7, 0.6))):
         a, b = px(x0, y0)
         c, d = px(x1, y1)
         add(f'<line x1="{a:.1f}" y1="{b:.1f}" x2="{c:.1f}" y2="{d:.1f}" stroke="#8a94a6" '
@@ -352,6 +330,35 @@ def svg_planta(planta, dec, mesas, grupos, itens, op):
                 a, b = px(*p)
                 add(f'<circle cx="{a:.1f}" cy="{b:.1f}" r="4.6" fill="{TINTA}"/>'
                     f'<circle cx="{a:.1f}" cy="{b:.1f}" r="1.7" fill="#fff"/>')
+
+    # ---- ponto de informacao: mesa-cavalete junto ao R1 ----
+    # Fora do recuo de emergencia do R1 (x 7,80-10,80 m, y 0-7,00 m, sem mesa e sem fila)
+    # e fora do vao da S1 (ate x = 11,45 m); termina na ombreira oeste da S2 (13,25 m).
+    # Mesarios/atendentes do lado da parede, eleitor do lado do salao.
+    ix0, ix1, iy0, iy1 = INFO_X[0], INFO_X[1], INFO_Y[0], INFO_Y[1]
+    a, b = px(ix0, iy1)
+    for xl in (ix0 + 0.20, ix1 - 0.20):
+        c, d = px(xl, iy1 + 0.07)
+        add(f'<rect x="{c-0.035*S:.1f}" y="{d:.1f}" width="{0.07*S:.1f}" '
+            f'height="{(iy1-iy0+0.14)*S:.1f}" fill="{MADEIRA_ESC}" rx="1"/>')
+    add(f'<rect x="{a:.1f}" y="{b:.1f}" width="{(ix1-ix0)*S:.1f}" height="{(iy1-iy0)*S:.1f}" '
+        f'fill="{MADEIRA}" stroke="{MADEIRA_ESC}" stroke-width="1.6" rx="2"/>')
+    for xc in (ix0 + 0.45, ix1 - 0.45):
+        c, d = px(xc, iy0 - 0.25)
+        add(f'<rect x="{c-0.17*S:.1f}" y="{d-0.18*S:.1f}" width="{0.34*S:.1f}" '
+            f'height="{0.36*S:.1f}" rx="3" fill="#6d7a89" stroke="{TINTA}" stroke-width="1"/>'
+            f'<circle cx="{c:.1f}" cy="{d:.1f}" r="{0.145*S:.1f}" fill="#2c3e50" '
+            f'stroke="#fff" stroke-width="1.2"/>')
+    c, d = px((ix0 + ix1) / 2, (iy0 + iy1) / 2)
+    add(f'<circle cx="{c:.1f}" cy="{d:.1f}" r="15" fill="#0B5C8A" stroke="#fff" '
+        f'stroke-width="2.4"/><text x="{c:.1f}" y="{d+6:.1f}" font-size="19" '
+        f'font-weight="800" fill="#fff" text-anchor="middle" font-style="italic">i</text>')
+    c, d = px(ix1 + 0.25, (iy0 + iy1) / 2)
+    halo = 'stroke="#fff" stroke-width="5" paint-order="stroke" stroke-linejoin="round"'
+    add(f'<text x="{c:.1f}" y="{d-2:.1f}" font-size="14" font-weight="800" fill="#0B5C8A" '
+        f'{halo}>PONTO DE INFORMAÇÃO</text>'
+        f'<text x="{c:.1f}" y="{d+13:.1f}" font-size="11" fill="{CINZA}" {halo}>mesa-cavalete '
+        f'1,70 × 0,80 m · junto ao R1</text>')
 
     # ---- as 28 MRVs ----
     etiquetas = []
@@ -541,9 +548,9 @@ def painel(add, x0, y0, mesas, grupos):
             f'text-anchor="middle">{txt}</text>')
     yc = oy + 0.45 * K + 30
     cota_u(0, U_MESA, yc, "1,70")
-    cota_u(U_MESA, U_MESA + U_URNA, yc, "0,90")
-    cota_u(U_MESA + U_URNA, U_MESA + U_URNA + U_ELEI, yc, "0,90")
-    cota_u(U_MESA + U_URNA + U_ELEI, 4.10, yc, "0,60")
+    cota_u(U_MESA, U_MESA + U_ELEI, yc, "0,90")
+    cota_u(U_MESA + U_ELEI, U_MESA + U_ELEI + U_URNA, yc, "0,90")
+    cota_u(U_MESA + U_ELEI + U_URNA, 4.10, yc, "0,60")
     cota_u(0, 4.10, yc + 36, "4,10 m de profundidade")
     xv = ox + 4.10 * K + 30
     add(f'<line x1="{xv:.0f}" y1="{oy-0.45*K:.0f}" x2="{xv:.0f}" y2="{oy+0.45*K:.0f}" '
@@ -563,9 +570,10 @@ def painel(add, x0, y0, mesas, grupos):
     chama(passo_m(0), 0.68, r1, f"{N_MESARIOS} mesários sentados",
           "assento 0,75 m · premissa: 109 ÷ 28 ≈ 3,9")
     chama(0.85, 0.40, r2, "mesa-cavalete (trestle)", "1,70 × 0,80 m · dos mesários")
-    chama(U_MESA + U_URNA / 2, 0.45, r1, "mesa redonda ⌀ 0,90 m", "do eleitor, com a urna")
-    chama(U_MESA + U_URNA + U_ELEI / 2, 0.40, r2, "vaga do eleitor",
-          "0,90 m · em pé, de frente para a urna")
+    chama(U_MESA + U_ELEI / 2, 0.40, r1, "vaga do eleitor",
+          "0,90 m · em pé, de costas para a parede")
+    chama(U_MESA + U_ELEI + U_URNA / 2, 0.45, r2, "mesa redonda ⌀ 0,90 m",
+          "da urna · a mais próxima da abertura")
     add(f'<text x="{ox+4.10*K:.0f}" y="{yc+96:.0f}" font-size="12.5" fill="{CINZA}" '
         f'text-anchor="end">hachurado: passagem de 0,60 m, por onde o eleitor entra no módulo</text>')
     y = yc + 140
@@ -609,9 +617,8 @@ def painel(add, x0, y0, mesas, grupos):
                       ("C", "vermelha · S6 → parede leste")):
         hx = sf.AVENIDAS[aid]["hex"]
         linha(f'<rect x="{x0}" y="@Y" width="48" height="16" fill="{hx}" fill-opacity=".30" '
-              f'transform="translate(0 -8)"/>'
-              f'<path d="M{x0+20},@Y m0,-7 l12,7 l-12,7 l3,-7 z" fill="{hx}" stroke="{TINTA if aid=="B" else "#fff"}" stroke-width="1"/>',
-              f"avenida {aid} — {nome}", "corredor de 3,00 m, sentido único, setas no eixo", h=26)
+              f'stroke="{hx}" stroke-width="1.6" transform="translate(0 -8)"/>',
+              f"avenida {aid} — {nome}", "corredor de 3,00 m, sentido único: da porta à parede", h=26)
     linha(f'<rect x="{x0}" y="@Y" width="48" height="10" fill="{sf.CORES_ZONA["B"]}" '
           f'fill-opacity=".45" transform="translate(0 -5)"/>'
           f'<line x1="{x0}" y1="@Y" x2="{x0+48}" y2="@Y" stroke="#d98600" stroke-width="3" '
@@ -627,7 +634,7 @@ def painel(add, x0, y0, mesas, grupos):
           f'stroke-dasharray="5 5"/>', "linha de espera · zebrado",
           "1,50 m à frente do módulo: só passa quem o mesário chamar")
 
-    titulo("BANNERS E PEÇAS (PONTOS)")
+    titulo("BANNERS, PEÇAS E PONTOS")
     linha(f'<circle cx="{x0+22}" cy="@Y" r="16" fill="#fff" stroke="{TINTA}" stroke-width="1.6"/>'
           f'<circle cx="{x0+22}" cy="@Y" r="11" fill="{sf.CORES_ZONA["C"]}"/>',
           "x-banner do grupo de mesas (16: 5 oeste, 5 norte, 6 leste)",
@@ -639,6 +646,14 @@ def painel(add, x0, y0, mesas, grupos):
           f'fill="{sf.CORES_ZONA["B"]}" stroke="{TINTA}" stroke-width="1.4"/>',
           "P4-FimAvenidaB · fence banner 2080 × 820 mm",
           "na boca da pequena avenida: B1–B3 à esquerda, B4–B5 à direita")
+
+    linha(f'<rect x="{x0+4}" y="@Y" width="40" height="16" fill="{MADEIRA}" stroke="{MADEIRA_ESC}" '
+          f'stroke-width="1.4" rx="2" transform="translate(0 -8)"/>'
+          f'<circle cx="{x0+24}" cy="@Y" r="10" fill="#0B5C8A" stroke="#fff" stroke-width="2"/>'
+          f'<text x="{x0+24}" y="@Y" dy="4.5" font-size="13" font-weight="800" fill="#fff" '
+          f'text-anchor="middle" font-style="italic">i</text>',
+          "ponto de informação · mesa-cavalete 1,70 × 0,80 m",
+          "junto ao R1, fora do recuo de emergência (7,8–10,8 m) e do vão da S1")
 
     titulo("MESAS, POR CLASSE DE COMPARECIMENTO")
     for cl, rot, n in (("alta", "alto comparecimento", 3), ("media", "médio", 8),
@@ -652,6 +667,124 @@ def painel(add, x0, y0, mesas, grupos):
     add(f'<text x="{x0}" y="{y+6}" font-size="12.5" fill="{CINZA}">A sinalização para o '
         f'eleitor usa só grupo e seção — nunca o número da mesa.</text>')
     return y
+
+
+# --------------------------------------------------------------------------
+# Versao em ingles: o desenho e um so; o texto e traduzido na saida. Toda
+# mensagem da planta precisa estar aqui -- localiza() para com erro se sobrar
+# texto em portugues sem traducao, em vez de entregar uma planta meio traduzida.
+# --------------------------------------------------------------------------
+EN = {
+    "0,90 m · em pé, de costas para a parede": "0.90 m · standing, back to the wall",
+    "1,20 m · quem vota sai pela banda da sua parede": "1.20 m · voters leave along the band of their own wall",
+    "1,27 m · sem fila": "1.27 m · no queue",
+    "1,50 m à frente do módulo: só passa quem o mesário chamar": "1.50 m in front of the module: only those called by the poll worker cross",
+    "1,70 × 0,80 m · dos mesários": "1.70 × 0.80 m · poll workers'",
+    "1,80 m, duas bordas de fita: a escolha de lado é andando": "1.80 m, two tape edges: voters pick a side while walking",
+    "4 mesários sentados": "4 poll workers seated",
+    "4,10 m de profundidade": "4.10 m deep",
+    "A sinalização para o eleitor usa só grupo e seção — nunca o número da mesa.": "Voter signage uses only group and section — never the table number.",
+    "AVENIDA A · AZUL": "AVENUE A · BLUE",
+    "AVENIDA B · AMARELA": "AVENUE B · YELLOW",
+    "AVENIDA C · VERMELHA": "AVENUE C · RED",
+    "AVENIDAS E FITA": "AVENUES AND TAPE",
+    "BANNERS, PEÇAS E PONTOS": "BANNERS, SIGNS AND POINTS",
+    "FACHADA SUL ↓ APRON (14 m) E RING 3": "SOUTH FAÇADE ↓ APRON (14 m) AND RING 3",
+    "Hall 2 · planta de votação com as 28 MRVs": "Hall 2 · voting floor plan with the 28 MRVs (polling tables)",
+    "L1–L4 · saídas de emergência": "L1–L4 · emergency exits",
+    "MESAS, POR CLASSE DE COMPARECIMENTO": "TABLES, BY EXPECTED-TURNOUT CLASS",
+    "Módulo da MRV: mesa-cavalete dos mesários 1,70 × 0,80 m · vaga do eleitor 0,90 m, de costas para a parede · mesa redonda ⌀ 0,90 m com a urna · passagem 0,60 m = 4,10 m":
+        "MRV module: poll workers' trestle table 1.70 × 0.80 m · voter spot 0.90 m, back to the wall · round table ⌀ 0.90 m with the voting machine · passage 0.60 m = 4.10 m",
+    "O MÓDULO DA MRV · 4,10 × 0,90 m": "THE MRV MODULE · 4.10 × 0.90 m",
+    "O número no selo é a MRV (numeração oficial, uso interno); ao lado, o grupo e as seções.":
+        "The number in the badge is the MRV (official numbering, internal use); beside it, the group and the sections.",
+    "P6 · painel de porta (pull-up 1000 × 2000 mm)": "P6 · door panel (pull-up 1000 × 2000 mm)",
+    "P4-FimAvenidaB · fence banner 2080 × 820 mm": "P4-FimAvenidaB · fence banner 2080 × 820 mm",
+    "PAREDE": "WALL",
+    "PONTO DE INFORMAÇÃO": "INFORMATION POINT",
+    "PORTAS": "DOORS",
+    "S4 → parede oeste · 3,00 m": "S4 → west wall · 3,00 m",
+    "S5 → parede norte · 3,00 m": "S5 → north wall · 3,00 m",
+    "S6 → parede leste · 3,00 m": "S6 → east wall · 3,00 m",
+    "S7 · entrada preferencial": "S7 · priority entrance",
+    "a 4,60 m da parede, na boca do corredor do grupo · 8,60 m nos 3 de alta carga":
+        "at 4,60 m from the wall, at the mouth of the group's corridor · 8,60 m for the 3 high-turnout groups",
+    "alto comparecimento (3 MRVs)": "high turnout (3 MRVs)",
+    "médio (8 MRVs)": "medium (8 MRVs)",
+    "baixo (17 MRVs)": "low (17 MRVs)",
+    "as livres ficam desobstruídas, sem mesa e sem fila": "the clear ones stay unobstructed: no tables, no queues",
+    "as três contíguas, 0,29 m de alvenaria entre elas · 5,93 m cada": "the three are contiguous, 0,29 m of masonry between them · 5,93 m each",
+    "assento 0,75 m · premissa: 109 ÷ 28 ≈ 3,9": "seat 0,75 m · assumption: 109 ÷ 28 ≈ 3,9",
+    "avenida A — azul · S4 → parede oeste": "avenue A — blue · S4 → west wall",
+    "avenida B — amarela · S5 → parede norte": "avenue B — yellow · S5 → north wall",
+    "avenida C — vermelha · S6 → parede leste": "avenue C — red · S6 → east wall",
+    "bocas de A e C, avenida B e os 3 serpenteados": "mouths of A and C, avenue B and the 3 serpentine queues",
+    "corredor de 3,00 m, sentido único: da porta à parede": "3,00 m corridor, one-way: from the door to the wall",
+    "da urna · a mais próxima da abertura": "voting machine · closest to the module opening",
+    "entradas S4 (A), S5 (B), S6 (C)": "entrances S4 (A), S5 (B), S6 (C)",
+    "fechadas no dia (N1, O1) · livres (N2, O2, R1, S1, S3, S9)": "closed on the day (N1, O1) · kept clear (N2, O2, R1, S1, S3, S9)",
+    "fita no chão": "floor tape",
+    "hachurado: passagem de 0,60 m, por onde o eleitor entra no módulo": "hatched: 0,60 m passage, where the voter enters the module",
+    "junto ao R1, fora do recuo de emergência (7,8–10,8 m) e do vão da S1": "next to R1, outside the emergency setback (7,8–10,8 m) and the S1 opening",
+    "leste, faixa protegida de 3 m": "east side, 3 m protected strip",
+    "linha de espera · zebrado": "waiting line · zebra stripes",
+    "mesa redonda ⌀ 0,90 m": "round table ⌀ 0,90 m",
+    "mesa-cavalete (trestle)": "trestle table",
+    "mesa-cavalete 1,70 × 0,80 m · junto ao R1": "trestle table 1,70 × 0,80 m · next to R1",
+    "na boca da pequena avenida: B1–B3 à esquerda, B4–B5 à direita": "at the mouth of the small avenue: B1–B3 to the left, B4–B5 to the right",
+    "no eixo da avenida, logo depois da porta": "on the avenue axis, right after the door",
+    "pequena avenida": "small avenue",
+    "pequena avenida da parede norte": "small avenue of the north wall",
+    "pequena avenida · 1,80 m": "small avenue · 1,80 m",
+    "ponto de informação · mesa-cavalete 1,70 × 0,80 m": "information point · trestle table 1,70 × 0,80 m",
+    "resto das avenidas e 28 ramais de 1,10 m, na cor da entrada": "rest of the avenues and the 28 table lanes of 1,10 m, in the entrance colour",
+    "saídas S2 e S8": "exits S2 and S8",
+    "unifilas (barreira) · 96 de 100": "queue barriers (stanchions) · 96 of 100",
+    "vaga do eleitor": "voter spot",
+    "x-banner do grupo de mesas (16: 5 oeste, 5 norte, 6 leste)": "x-banner of each table group (16: 5 west, 5 north, 6 east)",
+    "RDS Ballsbridge, Dublin · 1º turno, 04/10/2026 · cenário Paredes_ABC · arranjo e avenidas de 23/09 (v2) · módulo revisto em 30/09 · escala 1 m = 52 px":
+        "RDS Ballsbridge, Dublin · 1st round, 4 Oct 2026 · Paredes_ABC scenario · layout and avenues of 23 Sep (v2) · module revised 30 Sep · scale 1 m = 52 px",
+    "Hall 2 · 50,3 × 44,4 m": "Hall 2 · 50,3 × 44,4 m",
+}
+EN_PADROES = [
+    (r"^entrada ([ABC]) · (.+)$", r"entrance \1 · \2"),
+    (r"^saída · (.+)$", r"exit · \1"),
+    (r"^preferencial · (.+)$", r"priority · \1"),
+    (r"^emergência · (.+)$", r"emergency · \1"),
+    (r"^fechada no dia · (.+)$", r"closed on the day · \1"),
+    (r"^livre \(desobstruída\) · (.+)$", r"kept clear · \1"),
+]
+# texto que nao se traduz: codigos de porta, de grupo, de peca, unidades, letras soltas
+SEM_TRADUCAO = re.compile(r"^([A-Z]\d|[A-Z]|P\d|i|\d+ m|L1|N[12]|O[12]|S\d|R1)$")
+
+
+def localiza(svg, lang):
+    """Traduz os nos de texto do SVG e acerta a virgula decimal; 'pt' devolve o SVG como esta."""
+    if lang == "pt":
+        return svg.replace("<svg xmlns=", '<svg lang="pt-BR" xmlns=', 1)
+    sobra = set()
+
+    def no(m):
+        txt = m.group(1)
+        if not re.search(r"[A-Za-zÀ-ú]", txt):
+            return f">{txt}<"
+        novo = EN.get(txt)
+        if novo is None:
+            for pad, sub in EN_PADROES:
+                if re.match(pad, txt):
+                    novo = re.sub(pad, sub, txt)
+                    break
+        if novo is None:
+            if not SEM_TRADUCAO.match(txt) and not re.fullmatch(r"[\d\s·–\-.,A-Za-z⌀×≈÷→]*", txt):
+                sobra.add(txt)
+            novo = txt
+        novo = re.sub(r"(\d),(\d)", r"\1.\2", novo)
+        return f">{novo}<"
+
+    saida = re.sub(r">([^<>]+)<", no, svg)
+    if sobra:
+        raise SystemExit("texto sem tradução:\n  " + "\n  ".join(sorted(sobra)))
+    return saida.replace("<svg xmlns=", '<svg lang="en" xmlns=', 1)
 
 
 # --------------------------------------------------------------------------
@@ -689,17 +822,18 @@ def main():
         print("(sem --grava: nada foi escrito)")
         return
     os.makedirs(SAIDAS, exist_ok=True)
-    caminho = os.path.join(SAIDAS, "planta_hall2_detalhada.svg")
-    with open(caminho, "w", encoding="utf-8") as f:
-        f.write(svg_planta(planta, dec, mesas, grupos, itens, op))
-    print("escrito", os.path.relpath(caminho, RAIZ))
-    if "--png" in sys.argv:
-        png = caminho[:-4] + ".png"
-        r = subprocess.run(["node", os.path.join(RAIZ, "scripts", "svg_para_png.js"),
-                            caminho, png, "2"])
-        print("escrito", os.path.relpath(png, RAIZ) if r.returncode == 0
-              else "PNG não gerado (precisa de node + playwright + Chromium)")
-
+    base = svg_planta(planta, dec, mesas, grupos, itens, op)
+    for lang in ("pt", "en"):
+        caminho = os.path.join(SAIDAS, f"planta_hall2_detalhada_{lang}.svg")
+        with open(caminho, "w", encoding="utf-8") as f:
+            f.write(localiza(base, lang))
+        print("escrito", os.path.relpath(caminho, RAIZ))
+        if "--png" in sys.argv:
+            png = caminho[:-4] + ".png"
+            r = subprocess.run(["node", os.path.join(RAIZ, "scripts", "svg_para_png.js"),
+                                caminho, png, "2"])
+            print("escrito", os.path.relpath(png, RAIZ) if r.returncode == 0
+                  else "PNG não gerado (precisa de node + playwright + Chromium)")
 
 if __name__ == "__main__":
     main()
