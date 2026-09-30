@@ -59,10 +59,18 @@ def virg(v, n=2):
 # v = do eixo para o lado em que sentam os mesarios. Tudo em metros; a escala
 # entra aqui, uma vez, para o mesmo codigo servir a planta e ao modulo ampliado.
 # --------------------------------------------------------------------------
+# Ordem do modulo, da parede para dentro (decisao de 30/09): mesa redonda da urna
+# encostada na parede, vaga do eleitor, mesa-cavalete dos mesarios, passagem.
+# O eleitor fica de costas para a parede e para a mesa redonda, de frente para os mesarios.
+U_ELEI0 = U_URNA                  # a vaga do eleitor comeca depois da mesa redonda
+U_TREST0 = U_URNA + U_ELEI        # a mesa-cavalete comeca depois da vaga
+U_PASS0 = U_TREST0 + U_MESA       # e a passagem depois da mesa-cavalete
+
+
 def modulo_svg(k, mostra_fundo=True):
     o = []
     add = o.append
-    P = U_MESA + U_URNA + U_ELEI + U_PASS
+    P = U_URNA + U_ELEI + U_MESA + U_PASS
 
     def R(u0, v0, u1, v1, **kw):
         a = " ".join(f'{n.replace("_", "-")}="{v}"' for n, v in kw.items())
@@ -73,49 +81,48 @@ def modulo_svg(k, mostra_fundo=True):
         R(0, -LARG_MOD / 2, P, LARG_MOD / 2, fill="#fff", fill_opacity=".55",
           stroke=LEVE, stroke_width=1, stroke_dasharray="5 4")
     # zona do assento dos mesarios (0,75 m)
-    R(0, V_MESA / 2, U_MESA, V_MESA / 2 + ASSENTO, fill="none", stroke=LEVE,
+    R(U_TREST0, V_MESA / 2, U_TREST0 + U_MESA, V_MESA / 2 + ASSENTO, fill="none", stroke=LEVE,
       stroke_width=1, stroke_dasharray="2 3")
     # passagem (hachurada)
-    R(U_MESA + U_ELEI + U_URNA, -LARG_MOD / 2, P, LARG_MOD / 2,
-      fill="url(#hach)", stroke="none")
-    # vaga do eleitor: fica entre a mesa-cavalete e a mesa redonda, de costas para a
-    # parede e de frente para a urna (decisao de 30/09)
-    u0 = U_MESA
-    R(u0, -LARG_MOD / 2, u0 + U_ELEI, LARG_MOD / 2, fill="#eef3f8", fill_opacity=".8",
+    R(U_PASS0, -LARG_MOD / 2, P, LARG_MOD / 2, fill="url(#hach)", stroke="none")
+    # vaga do eleitor
+    R(U_ELEI0, -LARG_MOD / 2, U_ELEI0 + U_ELEI, LARG_MOD / 2, fill="#eef3f8", fill_opacity=".8",
       stroke="#9fb1c4", stroke_width=1, stroke_dasharray="3 3")
 
     # mesa-cavalete: tampo + dois cavaletes em A (as pernas saem do tampo)
-    for uc in (0.20, U_MESA - 0.20):
+    for uc in (U_TREST0 + 0.20, U_TREST0 + U_MESA - 0.20):
         R(uc - 0.035, -V_MESA / 2 - 0.07, uc + 0.035, V_MESA / 2 + 0.07,
           fill=MADEIRA_ESC, rx=1)
-    R(0, -V_MESA / 2, U_MESA, V_MESA / 2, fill=MADEIRA, stroke=MADEIRA_ESC,
-      stroke_width=1.6, rx=2)
+    R(U_TREST0, -V_MESA / 2, U_TREST0 + U_MESA, V_MESA / 2, fill=MADEIRA,
+      stroke=MADEIRA_ESC, stroke_width=1.6, rx=2)
     for i in (1, 2, 3):                      # veio da madeira
         yv = -V_MESA / 2 + i * V_MESA / 4
-        add(f'<line x1="{0.06*k:.2f}" y1="{yv*k:.2f}" x2="{(U_MESA-0.06)*k:.2f}" '
-            f'y2="{yv*k:.2f}" stroke="{MADEIRA_ESC}" stroke-opacity=".22" stroke-width="1"/>')
+        add(f'<line x1="{(U_TREST0+0.06)*k:.2f}" y1="{yv*k:.2f}" '
+            f'x2="{(U_TREST0+U_MESA-0.06)*k:.2f}" y2="{yv*k:.2f}" stroke="{MADEIRA_ESC}" '
+            f'stroke-opacity=".22" stroke-width="1"/>')
 
     # mesarios sentados, do lado v > 0
     passo = U_MESA / N_MESARIOS
     for i in range(N_MESARIOS):
-        uc = passo * (i + .5)
+        uc = U_TREST0 + passo * (i + .5)
         R(uc - 0.17, V_MESA / 2 + 0.07, uc + 0.17, V_MESA / 2 + 0.43,
           fill="#6d7a89", stroke=TINTA, stroke_width=1, rx=3)          # cadeira
         add(f'<circle cx="{uc*k:.2f}" cy="{(V_MESA/2+0.25)*k:.2f}" r="{0.145*k:.2f}" '
             f'fill="#2c3e50" stroke="#fff" stroke-width="1.2"/>')        # mesario
 
-    # mesa redonda de 0,90 m, com a urna em cima: a mais proxima da abertura do modulo
-    cu, r = U_MESA + U_ELEI + U_URNA / 2, 0.45
+    # mesa redonda de 0,90 m, com a urna em cima, encostada na parede
+    cu, r = U_URNA / 2, 0.45
     add(f'<circle cx="{cu*k:.2f}" cy="0" r="{r*k:.2f}" fill="#f4f1ea" stroke="{TINTA}" '
         f'stroke-width="2"/>')
     add(f'<circle cx="{cu*k:.2f}" cy="0" r="{(r-0.06)*k:.2f}" fill="none" stroke="{LEVE}" '
         f'stroke-width=".8"/>')
     R(cu - 0.17, -0.13, cu + 0.17, 0.13, fill="#1d2733", rx=2)           # urna
-    R(cu - 0.12, -0.085, cu + 0.04, 0.085, fill="#8fd9bf", rx=1)          # visor, voltado ao eleitor
-    R(cu + 0.06, -0.085, cu + 0.13, 0.085, fill="#3b4a5a", rx=1)          # teclado
+    R(cu - 0.04, -0.085, cu + 0.12, 0.085, fill="#8fd9bf", rx=1)          # visor, para o lado do eleitor
+    R(cu - 0.13, -0.085, cu - 0.06, 0.085, fill="#3b4a5a", rx=1)          # teclado
 
-    # eleitor em pe: de costas para a parede, de frente para a urna (sentido +u)
-    ue = u0 + U_ELEI / 2
+    # eleitor em pe: de costas para a parede (e para a mesa redonda), de frente para
+    # os mesarios (sentido +u)
+    ue = U_ELEI0 + U_ELEI / 2
     add(f'<ellipse cx="{ue*k:.2f}" cy="0" rx="{0.12*k:.2f}" ry="{0.25*k:.2f}" '
         f'fill="#4a6fa5" stroke="#fff" stroke-width="1.2"/>')
     add(f'<circle cx="{(ue+0.04)*k:.2f}" cy="0" r="{0.105*k:.2f}" fill="#e9c9a5" '
@@ -124,7 +131,7 @@ def modulo_svg(k, mostra_fundo=True):
 
 
 def passo_m(i):
-    return U_MESA / N_MESARIOS * (i + .5)
+    return U_TREST0 + U_MESA / N_MESARIOS * (i + .5)
 
 
 def grupo_modulo(x, y, ang, lado, k, corpo):
@@ -219,9 +226,9 @@ def svg_planta(planta, dec, mesas, grupos, itens, op):
     add(f'<text x="{ME}" y="96" font-size="21" fill="{CINZA}">RDS Ballsbridge, Dublin · '
         f'1º turno, 04/10/2026 · cenário Paredes_ABC · arranjo e avenidas de 23/09 (v2) · módulo revisto em 30/09 · '
         f'escala 1 m = {S:.0f} px</text>')
-    add(f'<text x="{ME}" y="124" font-size="21" fill="{CINZA}">Módulo da MRV: mesa-cavalete '
-        f'dos mesários 1,70 × 0,80 m · vaga do eleitor 0,90 m, de costas para a parede · '
-        f'mesa redonda ⌀ 0,90 m com a urna · passagem 0,60 m = 4,10 m</text>')
+    add(f'<text x="{ME}" y="124" font-size="21" fill="{CINZA}">Módulo da MRV, da parede para dentro: mesa redonda ⌀ 0,90 m com a urna · '
+        f'vaga do eleitor 0,90 m, de costas para a parede · mesa-cavalete dos mesários 1,70 × 0,80 m · '
+        f'passagem 0,60 m = 4,10 m</text>')
 
     # ---- piso e paredes ----
     cont = pts(planta["salao"]["contorno"])
@@ -367,7 +374,7 @@ def svg_planta(planta, dec, mesas, grupos, itens, op):
         x, y = px(m["x"], m["y"])
         add(grupo_modulo(x, y, ang, m["lado"], S, modulo_svg(S)))
         # selo da MRV sobre a mesa-cavalete, na cor da classe de comparecimento
-        bx, by = px(m["x"] + m["dx"] * U_MESA / 2, m["y"] + m["dy"] * U_MESA / 2)
+        bx, by = px(m["x"] + m["dx"] * (U_TREST0 + U_MESA / 2), m["y"] + m["dy"] * (U_TREST0 + U_MESA / 2))
         claro = m["cor"] in ("#d4a017",)
         add(f'<circle cx="{bx:.1f}" cy="{by:.1f}" r="15" fill="{m["cor"]}" stroke="#fff" '
             f'stroke-width="2.4"/>'
@@ -547,10 +554,10 @@ def painel(add, x0, y0, mesas, grupos):
             f'<text x="{(a+b)/2:.0f}" y="{yy+20}" font-size="13" fill="{CINZA}" '
             f'text-anchor="middle">{txt}</text>')
     yc = oy + 0.45 * K + 30
-    cota_u(0, U_MESA, yc, "1,70")
-    cota_u(U_MESA, U_MESA + U_ELEI, yc, "0,90")
-    cota_u(U_MESA + U_ELEI, U_MESA + U_ELEI + U_URNA, yc, "0,90")
-    cota_u(U_MESA + U_ELEI + U_URNA, 4.10, yc, "0,60")
+    cota_u(0, U_URNA, yc, "0,90")
+    cota_u(U_ELEI0, U_TREST0, yc, "0,90")
+    cota_u(U_TREST0, U_PASS0, yc, "1,70")
+    cota_u(U_PASS0, 4.10, yc, "0,60")
     cota_u(0, 4.10, yc + 36, "4,10 m de profundidade")
     xv = ox + 4.10 * K + 30
     add(f'<line x1="{xv:.0f}" y1="{oy-0.45*K:.0f}" x2="{xv:.0f}" y2="{oy+0.45*K:.0f}" '
@@ -567,13 +574,11 @@ def painel(add, x0, y0, mesas, grupos):
             f'fill="{TINTA}">{t1}</text>'
             f'<text x="{ax+dx_txt:.0f}" y="{yt+16:.0f}" font-size="12" fill="{CINZA}">{t2}</text>')
     r1, r2 = y + 58, y + 118
+    chama(U_URNA / 2, 0.45, r1, "mesa redonda ⌀ 0,90 m", "da urna · encostada na parede")
     chama(passo_m(0), 0.68, r1, f"{N_MESARIOS} mesários sentados",
           "assento 0,75 m · premissa: 109 ÷ 28 ≈ 3,9")
-    chama(0.85, 0.40, r2, "mesa-cavalete (trestle)", "1,70 × 0,80 m · dos mesários")
-    chama(U_MESA + U_ELEI / 2, 0.40, r1, "vaga do eleitor",
-          "0,90 m · em pé, de costas para a parede")
-    chama(U_MESA + U_ELEI + U_URNA / 2, 0.45, r2, "mesa redonda ⌀ 0,90 m",
-          "da urna · a mais próxima da abertura")
+    chama(U_ELEI0 + U_ELEI / 2, 0.40, r2, "vaga do eleitor", "0,90 m · de costas para a parede")
+    chama(U_TREST0 + 1.27, 0.40, r2, "mesa-cavalete (trestle)", "1,70 × 0,80 m · dos mesários")
     add(f'<text x="{ox+4.10*K:.0f}" y="{yc+96:.0f}" font-size="12.5" fill="{CINZA}" '
         f'text-anchor="end">hachurado: passagem de 0,60 m, por onde o eleitor entra no módulo</text>')
     y = yc + 140
@@ -675,7 +680,7 @@ def painel(add, x0, y0, mesas, grupos):
 # texto em portugues sem traducao, em vez de entregar uma planta meio traduzida.
 # --------------------------------------------------------------------------
 EN = {
-    "0,90 m · em pé, de costas para a parede": "0.90 m · standing, back to the wall",
+    "0,90 m · de costas para a parede": "0.90 m · back to the wall",
     "1,20 m · quem vota sai pela banda da sua parede": "1.20 m · voters leave along the band of their own wall",
     "1,27 m · sem fila": "1.27 m · no queue",
     "1,50 m à frente do módulo: só passa quem o mesário chamar": "1.50 m in front of the module: only those called by the poll worker cross",
@@ -693,8 +698,8 @@ EN = {
     "Hall 2 · planta de votação com as 28 MRVs": "Hall 2 · voting floor plan with the 28 MRVs (polling tables)",
     "L1–L4 · saídas de emergência": "L1–L4 · emergency exits",
     "MESAS, POR CLASSE DE COMPARECIMENTO": "TABLES, BY EXPECTED-TURNOUT CLASS",
-    "Módulo da MRV: mesa-cavalete dos mesários 1,70 × 0,80 m · vaga do eleitor 0,90 m, de costas para a parede · mesa redonda ⌀ 0,90 m com a urna · passagem 0,60 m = 4,10 m":
-        "MRV module: poll workers' trestle table 1.70 × 0.80 m · voter spot 0.90 m, back to the wall · round table ⌀ 0.90 m with the voting machine · passage 0.60 m = 4.10 m",
+    "Módulo da MRV, da parede para dentro: mesa redonda ⌀ 0,90 m com a urna · vaga do eleitor 0,90 m, de costas para a parede · mesa-cavalete dos mesários 1,70 × 0,80 m · passagem 0,60 m = 4,10 m":
+        "MRV module, from the wall inwards: round table ⌀ 0.90 m with the voting machine · voter spot 0.90 m, back to the wall · poll workers' trestle table 1.70 × 0.80 m · passage 0.60 m = 4.10 m",
     "O MÓDULO DA MRV · 4,10 × 0,90 m": "THE MRV MODULE · 4.10 × 0.90 m",
     "O número no selo é a MRV (numeração oficial, uso interno); ao lado, o grupo e as seções.":
         "The number in the badge is the MRV (official numbering, internal use); beside it, the group and the sections.",
@@ -720,7 +725,7 @@ EN = {
     "avenida C — vermelha · S6 → parede leste": "avenue C — red · S6 → east wall",
     "bocas de A e C, avenida B e os 3 serpenteados": "mouths of A and C, avenue B and the 3 serpentine queues",
     "corredor de 3,00 m, sentido único: da porta à parede": "3,00 m corridor, one-way: from the door to the wall",
-    "da urna · a mais próxima da abertura": "voting machine · closest to the module opening",
+    "da urna · encostada na parede": "voting machine · against the wall",
     "entradas S4 (A), S5 (B), S6 (C)": "entrances S4 (A), S5 (B), S6 (C)",
     "fechadas no dia (N1, O1) · livres (N2, O2, R1, S1, S3, S9)": "closed on the day (N1, O1) · kept clear (N2, O2, R1, S1, S3, S9)",
     "fita no chão": "floor tape",
