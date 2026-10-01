@@ -1,0 +1,16 @@
+{
+  "name": "Onde eu voto? · Eleições 2026 · Dublin",
+  "short_name": "Onde eu voto?",
+  "description": "Sua seção, sua fila e sua porta no RDS Hall 2.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FCC537",
+  "theme_color": "#FCC537",
+  "icons": [
+    { "src": "icones/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

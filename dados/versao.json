@@ -1,0 +1,10 @@
+{
+ "construido_em": "2026-10-01T16:15:03+00:00",
+ "eleitores": 16794,
+ "fator": "nome",
+ "turno": 1,
+ "homonimos": 1278,
+ "lista": "eleitores.csv",
+ "amostra_sintetica": false,
+ "indice_sha256": "71b9ad6d721b8630"
+}

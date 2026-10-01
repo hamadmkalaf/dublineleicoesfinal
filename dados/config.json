@@ -1,0 +1,14 @@
+{
+  "turno": "1º turno",
+  "turno_n": 1,
+  "data": "domingo, 4 de outubro de 2026",
+  "horario": "8h às 17h",
+  "local": "RDS · Hall 2",
+  "endereco": "Merrion Road, Ballsbridge, Dublin 4 (D04 AK83)",
+  "link_etitulo": "https://www.tse.jus.br/servicos-eleitorais/titulo-e-local-de-votacao/consulta-por-nome",
+  "dica_nome": "Digite o nome completo, como está no título de eleitor. Não precisa de acento.",
+  "aviso_homonimo": "Há mais de um eleitor com esse nome. Confirme o número do seu título de eleitor para saber a sua seção.",
+  "aviso_titulo_errado": "Esse número de título não corresponde a esse nome. Confira os 12 dígitos no título ou no e-Título, ou procure a mesa “Descubra sua seção” na calçada, antes do portão.",
+  "aviso_marca": "A lista do TRE marca a sua situação neste turno como “{marca}”, e não como “OK”. Confira no e-Título antes de ir ao RDS; na dúvida, procure a mesa “Descubra sua seção” na calçada.",
+  "rodape": "Consulta oficial do Posto de Dublin para as Eleições 2026. A identificação na mesa é feita pelo mesário com documento oficial com foto."
+}
