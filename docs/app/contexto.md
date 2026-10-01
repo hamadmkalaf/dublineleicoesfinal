@@ -28,6 +28,7 @@ marcas de 1º e 2º turno**, e nada mais. O desenho de 28/09 (nome + nascimento)
 | Seção na lista | a lista vem **por mesa**: 28 seções principais, agregadas já somadas | a rota é a da mesa; o cartão mostra as seções da mesa e do grupo |
 | Marcas de turno | guardadas (`TURNO1`, `TURNO2`); eleitor marcado diferente de "OK" no turno em construção recebe aviso e a equipe vê a marca em destaque | 74 eleitores não são "OK" no 1º turno (60 VT/VT + 14 VT/OK). **Premissa:** VT = voto em trânsito; confirmar com o Cartório |
 | Leitura do PDF | `pdftotext -layout` (poppler-utils) + leitor de blocos; nomes longos quebram em duas linhas | `pdfplumber` não estava disponível; o layout do TRE é estável |
+| Textos ao eleitor | na direção em que ele caminha: esquerda/direita do eleitor, sem leste/oeste, sem "apron", "boca" e "cabeça" ("pátio", "entrada da zona", "frente da fila"); parede da esquerda / do fundo / da direita | pedido do usuário, 01/10; os dados (`parede: oeste`) e as peças de sinalização mantêm o vocabulário técnico |
 
 Medido na lista real: 16.794 eleitores, 0 inscrições repetidas, 24 nomes completos repetidos
 (49 pessoas, nunca na mesma seção), contagem por mesa idêntica a `decisoes.json` nas 28 mesas.
@@ -71,7 +72,9 @@ sobrenome", para tolerar quem omite nomes do meio; o app tenta a chave completa 
 curta. Se o hash aponta `"H"`, há homônimos: a página avisa, abre o campo do **título** (12
 dígitos, com máscara) e consulta `hash(NOME|TITULO)`. Título errado → mensagem com caminho
 para o e-Título e o P0. Resultado: cartão com letra, porta e parede; seção e grupo de mesas;
-os seis passos no vocabulário das peças P1–P7; mini-mapa esquemático; nota da preferencial
+os seis passos do caminho, escritos na direção em que o eleitor caminha (o Hall à direita
+de quem desce do portão; as zonas à direita de quem desce o corredor do Ring; no salão,
+parede da esquerda, do fundo ou da direita); mini-mapa esquemático; nota da preferencial
 S7. Se a lista marca o eleitor diferente de "OK" no turno em construção (ex.: VT), um aviso
 laranja aparece acima do cartão, e o cartão aparece mesmo assim.
 

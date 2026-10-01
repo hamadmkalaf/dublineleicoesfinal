@@ -105,6 +105,21 @@ def test_rotas_batem_com_decisoes():
             r = rotas[f"{s:04d}"]
             assert (r["letra"], r["porta"], r["parede"], r["mrv"]) == (m["entrada"], m["porta"], m["parede"], m["mrv"])
     assert rotas["3313"]["grupo"] == "A3" and rotas["3315"]["grupo"] == "B2" and rotas["3322"]["grupo"] == "C5"
+    assert {r["parede_rotulo"] for r in rotas.values()} == {"da esquerda", "do fundo", "da direita"}
+    assert rotas["3313"]["parede_rotulo"] == "da esquerda" and rotas["3322"]["parede_rotulo"] == "da direita"
+
+
+def test_passos_na_perspectiva_do_eleitor():
+    """Textos ao eleitor: sem pontos cardeais leste/oeste, sem 'apron', 'boca' nem 'cabeça' (decisão de 01/10)."""
+    import re
+    if not (RAIZ / "app/dist/dados/rotas.json").exists():
+        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))["secoes"]
+    proibido = re.compile(r"\b(leste|oeste|nordeste|sudeste|noroeste|sudoeste|apron|boca|bocas|cabe[cç]a)\b", re.I)
+    for r in rotas.values():
+        for p in r["passos"]:
+            texto = f"{p['onde']} {p['texto']}"
+            assert not proibido.search(texto), texto
 
 
 def test_indice_v2_da_amostra():
