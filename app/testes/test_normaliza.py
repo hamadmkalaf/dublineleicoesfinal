@@ -8,6 +8,13 @@ from app_normaliza import chaves_nome, hash_publico, normaliza_data, normaliza_i
 from app_importar_eleitores import parse_texto_tre  # noqa: E402
 
 
+def garante_dist_amostra():
+    """app/dist/ construído com a AMOSTRA e a senha de teste (reconstrói se faltar ou se for um build real)."""
+    versao = RAIZ / "app/dist/dados/versao.json"
+    if not versao.exists() or not json.loads(versao.read_text(encoding="utf-8")).get("amostra_sintetica"):
+        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+
+
 def test_nome_sem_acento_apostrofo_particulas():
     assert normaliza_nome("Letícia Gonçalves de Lima") == "LETICIA GONCALVES LIMA"
     assert normaliza_nome("Tizzani Viana D'Andrea Nery") == "TIZZANI VIANA DANDREA NERY"
@@ -104,8 +111,7 @@ def test_build_rejeita_secao_estranha(tmp_path):
 
 
 def test_rotas_batem_com_decisoes():
-    if not (RAIZ / "app/dist/dados/rotas.json").exists():
-        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    garante_dist_amostra()
     rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))["secoes"]
     dec = json.loads((RAIZ / "data/decisoes.json").read_text(encoding="utf-8"))
     for m in dec["mesas"]:
@@ -120,8 +126,7 @@ def test_rotas_batem_com_decisoes():
 def test_passos_na_perspectiva_do_eleitor():
     """Textos ao eleitor: sem pontos cardeais leste/oeste, sem 'apron', 'boca' nem 'cabeça' (decisão de 01/10)."""
     import re
-    if not (RAIZ / "app/dist/dados/rotas.json").exists():
-        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    garante_dist_amostra()
     rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))["secoes"]
     proibido = re.compile(r"\b(leste|oeste|nordeste|sudeste|noroeste|sudoeste|apron|boca|bocas|cabe[cç]a|S[0-9])\b", re.I)
     for r in rotas.values():
@@ -133,8 +138,7 @@ def test_passos_na_perspectiva_do_eleitor():
 
 def test_indice_v2_da_amostra():
     """Índice da amostra: nome único -> [seção]; homônimo -> "H" + entradas nome|título; marca VT."""
-    if not (RAIZ / "app/dist/dados/indice_publico.json").exists():
-        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    garante_dist_amostra()
     idx = json.loads((RAIZ / "app/dist/dados/indice_publico.json").read_text(encoding="utf-8"))
     assert idx["v"] == 2 and idx["fator"] == "nome" and idx["turno"] == 1
     itens = idx["itens"]
@@ -152,8 +156,7 @@ def test_pacote_da_equipe_so_tem_titulo_parcial():
     """Decifra o pacote da amostra (senha de teste) e confere que nenhum título tem mais de 4 dígitos."""
     import base64, hashlib, zlib
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
-    if not (RAIZ / "app/dist/dados/equipe.enc").exists():
-        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    garante_dist_amostra()
     pac = json.loads((RAIZ / "app/dist/dados/equipe.enc").read_text(encoding="utf-8"))
     chave = hashlib.pbkdf2_hmac("sha256", b"teste amostra", base64.b64decode(pac["sal"]), pac["iteracoes"], 32)
     claro = zlib.decompress(AESGCM(chave).decrypt(base64.b64decode(pac["iv"]), base64.b64decode(pac["dados"]), None))
@@ -175,3 +178,20 @@ def test_colisao_de_titulo_parcial_vira_P(tmp_path):
     assert resumo["colisoes"] == 1
     assert idx["itens"][hash_publico("FULANO TAL", "1234")] == "P"
     assert idx["itens"][hash_publico("FULANO TAL", "5678")] == ["3862"]
+
+
+def test_lista_cifrada_ida_e_volta(tmp_path):
+    """CSV cifrado com app_cifra_lista: volta idêntico com a senha, falha com senha errada, sem nome em claro."""
+    from app_cifra_lista import cifra_bytes, decifra_bytes, le_csv_cifrado
+    csv_claro = (RAIZ / "app/testes/amostra_eleitores.csv").read_bytes()
+    pacote = cifra_bytes(csv_claro, "teste amostra")
+    assert decifra_bytes(pacote, "teste amostra") == csv_claro
+    assert b"TIZZANI" not in json.dumps(pacote).encode()
+    enc = tmp_path / "amostra.csv.enc"
+    enc.write_text(json.dumps(pacote), encoding="utf-8")
+    assert "TIZZANI VIANA D'ANDREA NERY" in le_csv_cifrado(enc, "teste amostra")
+    import pytest
+    with pytest.raises(SystemExit):
+        le_csv_cifrado(enc, "senha errada")
+    r = subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--lista", str(enc), "--senha-equipe", "teste amostra"], capture_output=True, text=True)
+    assert r.returncode == 0 and "1007 eleitores" in r.stdout, r.stdout + r.stderr

@@ -133,10 +133,15 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 
 ## Regras do app "Onde eu voto?"
 
-- **A lista nominal de eleitores nunca entra no git.** `data/eleitores/` e `app/dist/`
+- **A lista nominal de eleitores nunca entra no git em claro.** `data/eleitores/` e `app/dist/`
   estão no `.gitignore`. O que se publica são hashes (eleitor) e um pacote cifrado
-  (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. O PDF chegou
-  commitado em 29/09 e foi removido do HEAD em 01/10; não recommitar.
+  (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. Dois PDFs chegaram
+  commitados (29/09 em `appeleicoes`, e `DUBLIN.pdf` em `main`) e foram **purgados do
+  histórico em 01/10**, com force-push; não recommitar.
+- **Única exceção: `data/eleitores/eleitores_v2.csv.enc`**, o CSV v2 (nome, seção, marcas e
+  dígitos 5–8 do título) cifrado com AES-256-GCM pela senha da equipe
+  (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê direto.
+  Trocou a senha da equipe = recifrar a lista.
 - **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
   já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
   `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.

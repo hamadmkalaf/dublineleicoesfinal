@@ -60,6 +60,14 @@ Decisão: **dígitos 5 a 8** (`TITULO_JANELA` em `app_normaliza.py`, `tituloParc
   mesmos 4 dígitos, a entrada vira `"P"` e o app manda ao P0 (0 casos na lista real).
 - O eleitor digita os 4 dígitos do meio **ou** o número completo; o app extrai os 4 no aparelho.
 - A equipe vê `···· 5678 ····`; a lista cifrada não tem como reconstruir o título.
+- O CSV v2 fica no git **cifrado**: `data/eleitores/eleitores_v2.csv.enc`, AES-256-GCM com
+  chave PBKDF2 (600 mil iterações) da senha da equipe (`scripts/app_cifra_lista.py`). É o único
+  arquivo de `data/eleitores/` que o `.gitignore` deixa entrar. Quem tem a senha reconstrói o
+  app em qualquer máquina com `app_construir.py --lista …csv.enc --senha-equipe`. Decisão de
+  01/10: o usuário pediu o CSV no repositório; em claro violaria a regra da lista nominal.
+- Os PDFs que haviam sido commitados (`appeleicoes`, 29–30/09; `DUBLIN.pdf` em `main`) foram
+  purgados do histórico em 01/10 com force-push; o pedido de limpeza de cache ao suporte do
+  GitHub ficou com o usuário.
 - Publicação em `gh-pages/v2/` (`app_publicar.sh --subpasta v2`); a v1 fica na raiz até ser
   removida. **Pendência:** remover a v1 depois de validar a v2, porque o pacote cifrado da v1 ainda
   tem os títulos completos.
