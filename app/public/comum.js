@@ -252,7 +252,7 @@ const OEV = (() => {
     p.push(`<rect x="${X(RING_X)}" y="${ringTop + (RING_D - 3) * s}" width="${RING_W * s}" height="${3 * s}" fill="#EEF3F8"/>`);
     p.push(`<path d="M ${X(RING_X + RING_W - 1.5)} ${ringTop + 4} L ${X(RING_X + RING_W - 1.5)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 3) * s - 2}" stroke="${texto}" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>`);
     p.push(`<text x="${X(RING_X + RING_W - 1.5)}" y="${ringTop - 4}" text-anchor="end" font-size="9" fill="${texto}">você entra aqui ▼</text>`);
-    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="${suave}">Ring 3 (pátio de fila) · esquema sem escala · o Hall 2 fica à sua frente</text>`);
+    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="${suave}">Esquema sem escala · o Hall 2 fica à sua frente</text>`);
     p.push(`</svg>`);
     return p.join("");
   }
