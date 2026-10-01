@@ -29,9 +29,9 @@
     <p class="dica" id="dica-nome"></p>
     <div id="bloco-titulo" hidden>
       <div class="aviso" id="aviso-homonimo"></div>
-      <label for="titulo">Número do título de eleitor (12 dígitos)</label>
-      <input type="text" id="titulo" name="titulo" inputmode="numeric" placeholder="0000 0000 0000" maxlength="14" autocomplete="off">
-      <p class="dica">Está no título impresso, no e-Título ou na consulta do TSE. Só serve para separar homônimos; não fica guardado.</p>
+      <label for="titulo" id="rotulo-titulo">Título de eleitor: os 4 dígitos do meio (ou o número completo)</label>
+      <input type="text" id="titulo" name="titulo" inputmode="numeric" placeholder="0000" maxlength="14" autocomplete="off">
+      <p class="dica" id="dica-titulo"></p>
     </div>
     <button class="principal" id="botao" type="submit" disabled>Consultar</button>
   </form>
@@ -71,6 +71,8 @@
     $("sub").textContent = `${config.data}, ${config.horario}. ${config.local}, ${config.endereco}.`;
     $("dica-nome").textContent = config.dica_nome;
     $("aviso-homonimo").innerHTML = `<b>${OEV.esc(config.aviso_homonimo)}</b>`;
+    if (config.rotulo_titulo) $("rotulo-titulo").textContent = config.rotulo_titulo;
+    $("dica-titulo").textContent = config.dica_titulo || "";
     $("rodape").textContent = config.rodape;
     $("link-etitulo").href = config.link_etitulo;
     OEV.mascaraTitulo($("titulo"));
@@ -106,7 +108,10 @@
         pedeTitulo(true);
         mostra("");
       } else if (r.estado === "titulo_invalido") {
-        mostra(`<div class="aviso erro">O número do título tem <b>12 dígitos</b>. Digite todos, como está no título ou no e-Título.</div>`);
+        mostra(`<div class="aviso erro">Digite os <b>4 dígitos do meio</b> do título (no número 0000 <b>XXXX</b> 0000) ou o número completo de 12 dígitos.</div>`);
+      } else if (r.estado === "sem_desempate") {
+        pedeTitulo(false);
+        mostra(`<div class="aviso erro"><b>${OEV.esc(estado.config.aviso_sem_desempate)}</b></div>`);
       } else if (r.estado === "titulo_errado") {
         mostra(`<div class="aviso erro"><b>${OEV.esc(estado.config.aviso_titulo_errado)}</b></div>`);
       } else {

@@ -11,13 +11,13 @@ pip install -r app/requirements.txt          # e poppler-utils (pdftotext) no si
 
 # 1. a lista do TRE (PDF) fica em data/eleitores/, fora do git:
 python3 scripts/app_importar_eleitores.py "data/eleitores/Lista de eleitores_Dublin.pdf"          # confere
-python3 scripts/app_importar_eleitores.py "data/eleitores/Lista de eleitores_Dublin.pdf" --grava  # data/eleitores/eleitores.csv
+python3 scripts/app_importar_eleitores.py "data/eleitores/Lista de eleitores_Dublin.pdf" --grava  # data/eleitores/eleitores_v2.csv (só os dígitos 5-8 do título)
 
 # 2. construir o site (sem --grava só confere; sem lista usa a amostra sintética):
-python3 scripts/app_construir.py --lista data/eleitores/eleitores.csv --grava --senha-equipe "seis palavras da senha do dia"
+python3 scripts/app_construir.py --lista data/eleitores/eleitores_v2.csv --grava --senha-equipe "seis palavras da senha do dia"
 
 # 3. publicar app/dist/ no branch gh-pages deste repositório (GitHub Pages; ver contexto.md §5):
-bash scripts/app_publicar.sh
+bash scripts/app_publicar.sh --subpasta v2      # …/dublineleicoesfinal/v2/ ; sem --subpasta publica na raiz
 
 # testes
 python3 -m pytest -q app/testes

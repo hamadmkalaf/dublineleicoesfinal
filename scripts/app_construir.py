@@ -39,9 +39,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from app_normaliza import (  # noqa: E402
-    ITERACOES_PUBLICO, SAL_PUBLICO, TAMANHO_HASH, chaves_nome, hash_publico,
-    normaliza_inscricao, normaliza_nome, normaliza_secao,
+    ITERACOES_PUBLICO, SAL_PUBLICO, TAMANHO_HASH, TITULO_JANELA, chaves_nome, hash_publico,
+    normaliza_inscricao, normaliza_nome, normaliza_secao, titulo_parcial,
 )
+
+TITULO = {"digitos": f"{TITULO_JANELA[0]}-{TITULO_JANELA[1]}", "tamanho": 4}
+COLUNA_PARCIAL = f"TITULO_{TITULO_JANELA[0]}_{TITULO_JANELA[1]}"
 
 RAIZ = Path(__file__).resolve().parent.parent
 DECISOES = RAIZ / "data" / "decisoes.json"
@@ -147,16 +150,21 @@ def le_lista(caminho):
 
 
 def prepara_eleitores(linhas):
-    """Normaliza cada linha. A consulta é só por nome; o título desempata homônimos."""
+    """Normaliza cada linha. A consulta é só por nome; o título PARCIAL (dígitos 5-8) desempata homônimos.
+
+    Aceita o CSV v2 (coluna TITULO_5_8) e o v1 (NUM_INSCRICAO com 12 dígitos, reduzido aqui).
+    O título completo nunca é guardado em memória além desta função.
+    """
     eleitores = []
     for r in linhas:
         nome = normaliza_nome(r.get("NOM_ELEITOR"))
         if not nome:
             continue
+        bruto = r.get(COLUNA_PARCIAL) if r.get(COLUNA_PARCIAL) else normaliza_inscricao(r.get("NUM_INSCRICAO"))
         eleitores.append({
             "n": nome,
             "nome_original": (r.get("NOM_ELEITOR") or "").strip(),
-            "t": normaliza_inscricao(r.get("NUM_INSCRICAO")),
+            "t": titulo_parcial(bruto),
             "s": normaliza_secao(r.get("NUM_SECAO")),
             "t1": (r.get("TURNO1") or "").strip().upper(),
             "t2": (r.get("TURNO2") or "").strip().upper(),
@@ -175,7 +183,9 @@ def monta_indice(eleitores, turno):
 
     Cada eleitor entra pelas chaves de `chaves_nome` (nome completo e, se houver, primeiro +
     último). Chave de uma pessoa só: hash(chave) -> [seção] (+ marca de turno se não for OK).
-    Chave de mais de uma: hash(chave) -> "H", e hash(chave|título) -> [seção] para cada pessoa.
+    Chave de mais de uma: hash(chave) -> "H", e hash(chave|título parcial) -> [seção] para cada pessoa.
+    Se duas pessoas da mesma chave têm o mesmo título parcial (colisão), a entrada vira "P":
+    o app não consegue separá-las e manda ao P0.
     """
     por_chave = defaultdict(list)
     for e in eleitores:
@@ -184,15 +194,24 @@ def monta_indice(eleitores, turno):
     pedidos = []  # (chave, fator, valor) — o hash é calculado em paralelo, é a parte lenta do build
     homonimos = 0
     sem_titulo = 0
+    colisoes = 0
     for chave, pessoas in por_chave.items():
         if len(pessoas) == 1:
             pedidos.append((chave, "", valor_indice(pessoas[0], turno)))
             continue
         homonimos += 1
         pedidos.append((chave, "", "H"))
+        repetidos = {t for t, n in Counter(e["t"] for e in pessoas).items() if n > 1}
+        vistos = set()
         for e in pessoas:
             if not e["t"]:
                 sem_titulo += 1
+                continue
+            if e["t"] in repetidos:
+                if e["t"] not in vistos:
+                    pedidos.append((chave, e["t"], "P"))
+                    vistos.add(e["t"])
+                    colisoes += 1
                 continue
             pedidos.append((chave, e["t"], valor_indice(e, turno)))
     if sem_titulo:
@@ -211,10 +230,11 @@ def monta_indice(eleitores, turno):
         "bytes": TAMANHO_HASH,
         "fator": "nome",
         "desempate": "titulo",
+        "titulo": TITULO,
         "turno": turno,
         "n": len(eleitores),
         "itens": dict(sorted(itens.items())),
-    }, {"chaves": len(por_chave), "ambiguas": homonimos, "nomes_completos_repetidos": nomes_repetidos}
+    }, {"chaves": len(por_chave), "ambiguas": homonimos, "nomes_completos_repetidos": nomes_repetidos, "colisoes": colisoes}
 
 
 def _hash_par(par):
@@ -230,7 +250,7 @@ def cifra_equipe(eleitores, turno, senha):
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
     registros = [{"n": e["n"], "o": e["nome_original"], "t": e["t"], "s": e["s"], "t1": e["t1"], "t2": e["t2"]} for e in eleitores]
-    claro = zlib.compress(json.dumps({"fator": "nome", "turno": turno, "eleitores": registros}, ensure_ascii=False).encode("utf-8"), 9)
+    claro = zlib.compress(json.dumps({"fator": "nome", "titulo": TITULO, "turno": turno, "eleitores": registros}, ensure_ascii=False).encode("utf-8"), 9)
     sal = secrets.token_bytes(16)
     iv = secrets.token_bytes(12)
     chave = hashlib.pbkdf2_hmac("sha256", senha.encode("utf-8"), sal, ITERACOES_EQUIPE, 32)
@@ -256,9 +276,9 @@ def confere(rotas, eleitores, dec):
     desconhecidas = Counter(e["s"] for e in eleitores if e["s"] not in rotas)
     if desconhecidas:
         erros.append(f"eleitores em seções que não são de Dublin: {dict(desconhecidas)}")
-    sem_titulo = sum(1 for e in eleitores if not e["t"])
+    sem_titulo = sum(1 for e in eleitores if len(e["t"]) != 4)
     if sem_titulo:
-        erros.append(f"{sem_titulo} eleitores sem número de inscrição")
+        erros.append(f"{sem_titulo} eleitores sem título parcial de 4 dígitos")
     return erros
 
 
@@ -302,7 +322,8 @@ def main():
 
     indice, resumo = monta_indice(eleitores, turno)
     print(f"índice público: {resumo['chaves']} chaves de nome, {resumo['ambiguas']} com homônimos (pedem o título), "
-          f"{resumo['nomes_completos_repetidos']} nomes completos repetidos · {len(indice['itens'])} entradas")
+          f"{resumo['nomes_completos_repetidos']} nomes completos repetidos · {len(indice['itens'])} entradas · "
+          f"título parcial (dígitos {TITULO['digitos']}): {resumo['colisoes']} colisões (mandam ao P0)")
     if not args.grava:
         print("conferência ok; nada gravado (use --grava)")
         return
@@ -325,8 +346,10 @@ def main():
         "construido_em": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "eleitores": len(eleitores),
         "fator": "nome",
+        "titulo": TITULO,
         "turno": turno,
         "homonimos": resumo["ambiguas"],
+        "colisoes_titulo": resumo["colisoes"],
         "lista": args.lista.name,
         "amostra_sintetica": args.lista.resolve() == AMOSTRA.resolve(),
         "indice_sha256": hashlib.sha256((dados / "indice_publico.json").read_bytes()).hexdigest()[:16],

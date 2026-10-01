@@ -102,6 +102,25 @@ def normaliza_inscricao(valor):
     return digitos.zfill(12) if digitos else ""
 
 
+# Título parcial (v2, 01/10/2026): o app só guarda os dígitos 5 a 8 do título de 12 dígitos.
+# Medido na lista real: 8.151 valores distintos e zero colisões entre homônimos. Os 4 últimos
+# (UF + verificadores) têm só 271 valores distintos e foram descartados.
+TITULO_JANELA = (5, 8)
+
+
+def titulo_parcial(valor):
+    """Título de 12 dígitos (ou já parcial, com 4) -> os 4 dígitos da janela; '' se não houver."""
+    if valor is None or valor == "":
+        return ""
+    digitos = re.sub(r"\D", "", re.sub(r"\.0+$", "", str(valor).strip()))
+    if len(digitos) == 4:
+        return digitos
+    if 8 <= len(digitos) <= 12:  # a planilha do TSE perde zeros à esquerda
+        digitos = digitos.zfill(12)
+        return digitos[TITULO_JANELA[0] - 1:TITULO_JANELA[1]]
+    return ""
+
+
 def hash_publico(chave_nome, segundo_fator=""):
     """Hash indexado no arquivo público: PBKDF2-SHA256 truncado.
 

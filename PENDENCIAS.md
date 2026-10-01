@@ -42,7 +42,8 @@ Pendencia por ponto.
 
 - lista recebida em 29/09 (PDF do TRE, só nome/inscrição/seção/turnos) e importada em 01/10; consulta só por nome, título desempata;
 - confirmar com o Cartório o que é a marca "VT" (74 eleitores no 1º turno) e ajustar o texto de `aviso_marca` em config.json;
-- publicação em `gh-pages` deste repositório: conferir se a conta serve Pages em repositório privado; senão, repositório público só com app/dist/;
+- publicação em `gh-pages` deste repositório (público): ativar o Pages em Settings → Pages → gh-pages; a v2 (só 4 dígitos do título) está em /v2/;
+- remover a v1 da raiz do gh-pages depois de validar a v2: o pacote cifrado da v1 ainda tem os títulos completos;
 - definir quem constrói e publica no dia anterior, e quem guarda a senha da equipe;
 - pôr o QR/link do app na peça P0-Consulta e na campanha "descubra sua seção antes de sair de casa";
 - testar a página da equipe sem sinal na calçada do P0 na véspera.
