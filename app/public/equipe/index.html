@@ -35,8 +35,7 @@
     <form class="consulta" id="form-busca" autocomplete="off" onsubmit="return false">
       <label for="busca">Nome do eleitor (qualquer parte)</label>
       <input type="search" id="busca" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="ex.: maria silva">
-      <label for="busca-data">Data de nascimento (opcional, separa homônimos)</label>
-      <input type="text" id="busca-data" inputmode="numeric" placeholder="DD/MM/AAAA" maxlength="10">
+      <p class="dica">Homônimos aparecem lado a lado: o <b>título</b> de cada um é o que os separa. Peça o título ao eleitor e toque no nome certo.</p>
       <p class="dica" id="contagem"></p>
     </form>
     <ul class="lista-equipe" id="lista"></ul>
@@ -92,8 +91,9 @@
 
   function mostraEleitor(e) {
     const rota = rotas.secoes[e.s];
+    const marcas = OEV.marcasTurno(e);
     const cab = `<div class="cartao-eleitor"><b>${OEV.esc(e.o || e.n)}</b><br>
-      nascimento ${OEV.esc(OEV.formataData(e.d))} · título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b>${e.m ? `<br>mãe: ${OEV.esc(e.m)}` : ""}</div>`;
+      título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${marcas ? `<br><span class="marca-turno">${OEV.esc(marcas)}</span> — confira no e-Título; a decisão é do mesário` : ""}</div>`;
     $("resultado").innerHTML = rota
       ? OEV.renderRota(rota, { cabecalhoExtra: cab })
       : `<div class="aviso erro">Seção ${OEV.esc(e.s)} não está no mapa de Dublin. Encaminhe ao mesário.</div>`;
@@ -101,23 +101,21 @@
   }
 
   let ultimo = null;
-  OEV.mascaraData($("busca-data"));
   function busca() {
     const texto = $("busca").value;
-    const dataISO = OEV.normalizaData($("busca-data").value);
-    const achados = OEV.buscaEquipe(eleitores, texto, 30, dataISO);
+    const achados = OEV.buscaEquipe(eleitores, texto, 30);
     $("lista").innerHTML = achados.map((e, i) => {
       const cor = OEV.COR_LETRA[(rotas.secoes[e.s] || {}).letra] || "#D9D4C4";
+      const marcas = OEV.marcasTurno(e);
       return `<li data-i="${i}" style="border-left-color:${cor}"><span class="nome">${OEV.esc(e.o || e.n)}</span>
         <span class="letra-mini" style="background:${cor};color:${cor === "#33507E" ? "#FFF" : "#3F3F3F"}">${OEV.esc((rotas.secoes[e.s] || {}).letra || "?")}</span>
-        <span class="meta">nasc. ${OEV.esc(OEV.formataData(e.d))} · seção ${OEV.esc(e.s)} · título ${OEV.esc(OEV.formataTitulo(e.t))}</span></li>`;
+        <span class="meta">título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${marcas ? ` · <span class="marca-turno">${OEV.esc(marcas)}</span>` : ""}</span></li>`;
     }).join("");
     ultimo = achados;
-    $("contagem").textContent = (texto.trim() || dataISO) ? (achados.length ? `${achados.length} resultado(s)${achados.length >= 30 ? " (mostrando os 30 primeiros; digite mais)" : ""}` : "Nenhum eleitor com esse nome. Confira a grafia ou use o e-Título.") : `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;
+    $("contagem").textContent = texto.trim() ? (achados.length ? `${achados.length} resultado(s)${achados.length >= 30 ? " (mostrando os 30 primeiros; digite mais)" : ""}` : "Nenhum eleitor com esse nome. Confira a grafia ou use o e-Título.") : `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;
     if (achados.length === 1) mostraEleitor(achados[0]); else $("resultado").innerHTML = "";
   }
   $("busca").addEventListener("input", busca);
-  $("busca-data").addEventListener("input", busca);
   $("lista").addEventListener("click", (ev) => {
     const li = ev.target.closest("li[data-i]");
     if (li && ultimo) mostraEleitor(ultimo[+li.dataset.i]);

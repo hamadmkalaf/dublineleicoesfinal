@@ -74,3 +74,7 @@ footer a { color: var(--navy); font-weight: 700; }
   .cartao-linha > :last-child { grid-column: span 2; }
 }
 @media print { header.topo, form, footer, button { display: none; } body { background: #FFF; } }
+
+/* Marca de turno da lista do TRE diferente de "OK" (ex.: VT), na página da equipe */
+.marca-turno { background: var(--laranja); color: var(--branco); font-weight: 700; padding: 1px 7px; border-radius: 6px; font-size: 13px; white-space: nowrap; }
+#bloco-titulo { margin-top: 6px; }

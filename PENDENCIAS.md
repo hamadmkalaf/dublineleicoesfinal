@@ -6,7 +6,7 @@ LISTA DE TAREFAS PARA AINDA FAZER
 3. PLANO DE COMUNICAÇÃO COM ELEITORES - COM POSTAGENS E DIVULGAÇÀO;
 4. PLANO DE COMUNICAÇÃO E ORGANIZAÇÃO COM MESÁRIOS;
 5. PENSAR NO FUNCIONAMENTO DA MRV - QUEM IDENTIFICARÁ, COMO SERÃO DIVIDIDOS OS CADERNOS;
-6. APP "ONDE EU VOTO?" - RECEBER A LISTA NOMINAL, CONSTRUIR, PUBLICAR NO GITHUB PAGES, DISTRIBUIR A SENHA DA EQUIPE;
+6. APP "ONDE EU VOTO?" - CONSTRUÍDO COM A LISTA REAL (01/10); CONFIRMAR O PAGES, DISTRIBUIR A SENHA DA EQUIPE, CONFIRMAR A MARCA "VT";
 
 
 Pendencia por ponto.
@@ -40,8 +40,9 @@ Pendencia por ponto.
 
 6. App "Onde eu voto?" (docs/app/contexto.md).
 
-- pedir ao Cartório a lista em .xlsx ou .csv com inscrição, nome, data de nascimento e seção (um PDF com texto também serve; escaneado, não);
-- a conta do GitHub permite Pages em repositório privado? senão, criar repositório público só com app/dist/;
+- lista recebida em 29/09 (PDF do TRE, só nome/inscrição/seção/turnos) e importada em 01/10; consulta só por nome, título desempata;
+- confirmar com o Cartório o que é a marca "VT" (74 eleitores no 1º turno) e ajustar o texto de `aviso_marca` em config.json;
+- publicação em `gh-pages` deste repositório: conferir se a conta serve Pages em repositório privado; senão, repositório público só com app/dist/;
 - definir quem constrói e publica no dia anterior, e quem guarda a senha da equipe;
 - pôr o QR/link do app na peça P0-Consulta e na campanha "descubra sua seção antes de sair de casa";
 - testar a página da equipe sem sinal na calçada do P0 na véspera.
