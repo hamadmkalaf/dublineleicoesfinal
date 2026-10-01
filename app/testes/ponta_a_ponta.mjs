@@ -40,9 +40,11 @@ try {
   // (a) eleitor fixo da amostra: seção 3889 -> letra A, porta S4, grupo A3
   let r = await consulta("Tizzani Viana D'Andrea Nery");
   assert.equal(await r.locator(".letra").textContent(), "A");
-  assert.match(await r.textContent(), /Porta S4 · parede da esquerda/);
+  assert.match(await r.textContent(), /Porta A · parede da esquerda/);
   assert.match(await r.textContent(), /3889/);
   assert.match(await r.textContent(), /grupo A3/i);
+  assert.doesNotMatch(await r.textContent(), /\bS[0-9]\b/, "nenhum número de porta da prancheta no que o eleitor lê");
+  assert.equal(await r.locator(".mapa [data-passo]").count(), 6, "os seis passos marcados no mapa");
   passo("eleitor: nome completo com apóstrofo → seção 3889, fila A, porta S4, grupo A3");
   await pagina.screenshot({ path: path.join(capturas, "eleitor_resultado.png"), fullPage: true });
   // nome sem os nomes do meio

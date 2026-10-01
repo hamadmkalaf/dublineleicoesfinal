@@ -116,7 +116,7 @@
         const avisoMarca = r.marca
           ? `<div class="aviso erro" id="aviso-marca"><b>Atenção.</b> ${OEV.esc(estado.config.aviso_marca.replace("{marca}", r.marca))}</div>`
           : "";
-        mostra(avisoMarca + OEV.renderRota(rota) + `<p class="dica">Tire uma foto desta tela ou anote: <b>seção ${OEV.esc(rota.secao)} · letra ${rota.letra} · porta ${rota.porta}</b>.</p>`);
+        mostra(avisoMarca + OEV.renderRota(rota) + `<p class="dica">Tire uma foto desta tela ou anote: <b>seção ${OEV.esc(rota.secao)} · porta ${rota.letra}</b>.</p>`);
       }
     } catch (e) {
       mostra(`<div class="aviso erro">Erro na consulta: ${OEV.esc(e.message)}</div>`);
