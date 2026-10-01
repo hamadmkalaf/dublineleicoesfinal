@@ -3,7 +3,7 @@ que o teste em JavaScript (normaliza.test.mjs) tem de reproduzir byte a byte."""
 import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "scripts"))
-from app_normaliza import chaves_nome, hash_publico, normaliza_data, normaliza_inscricao, normaliza_nome
+from app_normaliza import chaves_nome, hash_publico, normaliza_data, normaliza_inscricao, normaliza_nome, titulo_parcial
 
 NOMES = [
     "Ana Cristina Evaristo", "LETÍCIA GONÇALVES DE LIMA", "Tizzani Viana D'Andrea Nery", "josé  da   silva",
@@ -17,10 +17,10 @@ TITULOS = ["123456789012", "1234 5678 9012", "1234.5678.9012", "5301982801", 530
 vetores = {
     "nomes": [{"entrada": n, "normalizado": normaliza_nome(n), "chaves": chaves_nome(n)} for n in NOMES],
     "datas": [{"entrada": d, "normalizada": normaliza_data(d)} for d in DATAS],
-    "titulos": [{"entrada": t, "normalizado": normaliza_inscricao(t)} for t in TITULOS],
+    "titulos": [{"entrada": t, "normalizado": normaliza_inscricao(t), "parcial": titulo_parcial(t)} for t in TITULOS],
     # hash só do nome (consulta normal) e nome|título (desempate de homônimos)
     "hashes": [{"chave": normaliza_nome(n), "fator": "", "hash": hash_publico(normaliza_nome(n))} for n in NOMES[:4]]
-            + [{"chave": normaliza_nome(n), "fator": "123456789012", "hash": hash_publico(normaliza_nome(n), "123456789012")} for n in NOMES[:3]],
+            + [{"chave": normaliza_nome(n), "fator": "5678", "hash": hash_publico(normaliza_nome(n), "5678")} for n in NOMES[:3]],
 }
 Path(__file__).with_name("vetores_nome.json").write_text(json.dumps(vetores, ensure_ascii=False, indent=1), encoding="utf-8")
 print(f"{len(NOMES)} nomes, {len(DATAS)} datas, {len(TITULOS)} títulos, {len(vetores['hashes'])} hashes")

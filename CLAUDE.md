@@ -141,8 +141,12 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
   `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.
 - **Consulta só por nome** (decisão de 01/10): índice público v2, `hash(nome) → seção`;
-  homônimo → `"H"` e `hash(nome|título)`. O título nunca sai em claro. Marcas de turno
-  (OK/VT) viajam com a seção e geram aviso quando não são OK no turno de `config.json`.
+  homônimo → `"H"` e `hash(nome|título parcial)`; colisão → `"P"` (manda ao P0). Marcas de
+  turno (OK/VT) viajam com a seção e geram aviso quando não são OK no turno de `config.json`.
+- **Título parcial** (branch `appeleicoes2`, 01/10): só os **dígitos 5 a 8** do título entram no
+  CSV (`TITULO_5_8`), no índice e no pacote da equipe. Os 4 últimos não servem (UF +
+  verificadores: 271 valores distintos). A v2 é publicada em `gh-pages/v2/`; a v1 (título
+  completo) fica na raiz até ser removida.
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.

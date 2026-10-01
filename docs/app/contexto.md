@@ -40,6 +40,30 @@ da mãe, que são dados mais fáceis de achar do que parece). O custo de PBKDF2 
 iterações, ~30 ms por tentativa) continua tornando a enumeração em massa impraticável; o
 **título nunca aparece em claro** no índice público, só dentro do hash de desempate.
 
+### 2c. v2 — título parcial (01/10/2026, branch `appeleicoes2`, página `/v2/`)
+
+Pedido do usuário: blindar o app contra preocupações de segurança da informação. A tabela
+importada e tudo o que se publica guardam **só 4 dígitos do título**; nome, seção e marcas de
+turno continuam. Medição na lista real para escolher a janela:
+
+| Janela do título | Valores distintos (de 16.794) | Colisões nome+4 dígitos entre homônimos (de 1.278 chaves) |
+|---|---|---|
+| 4 últimos (UF + verificadores) | 271 | 131 |
+| 4 primeiros | 3.986 | 11 |
+| **dígitos 5 a 8** | **8.151** | **0** |
+
+Decisão: **dígitos 5 a 8** (`TITULO_JANELA` em `app_normaliza.py`, `tituloParcial` em `comum.js`).
+- O importador grava `TITULO_5_8` em `data/eleitores/eleitores_v2.csv` (padrão); `--titulo-completo`
+  volta ao formato v1. O PDF do TRE não é editado nem volta ao git.
+- O build aceita os dois CSVs e reduz o título na leitura; o título completo não existe no índice,
+  no pacote da equipe nem em `versao.json`. Se duas pessoas da mesma chave de nome tiverem os
+  mesmos 4 dígitos, a entrada vira `"P"` e o app manda ao P0 (0 casos na lista real).
+- O eleitor digita os 4 dígitos do meio **ou** o número completo; o app extrai os 4 no aparelho.
+- A equipe vê `···· 5678 ····`; a lista cifrada não tem como reconstruir o título.
+- Publicação em `gh-pages/v2/` (`app_publicar.sh --subpasta v2`); a v1 fica na raiz até ser
+  removida. **Pendência:** remover a v1 depois de validar a v2, porque o pacote cifrado da v1 ainda
+  tem os títulos completos.
+
 ### 2b. Decisões de 28/09/2026 (mantidas, exceto a identificação)
 
 | Decisão | Escolha | Por quê |
@@ -136,9 +160,9 @@ rodapé de página repetem a cada ~36 registros.
 | Quem | Consegue | Não consegue |
 |---|---|---|
 | Qualquer pessoa com o link | saber se um nome completo que conhece vota em Dublin, e em que seção; em homônimo, só com o título | listar eleitores; obter títulos |
-| Quem baixa `indice_publico.json` | tentar nomes contra os hashes, a ~30 ms por tentativa (PBKDF2 50k) | recuperar nomes em massa (30 mil chaves × espaço de nomes); recuperar títulos (10¹² por nome) |
+| Quem baixa `indice_publico.json` | tentar nomes contra os hashes, a ~30 ms por tentativa (PBKDF2 50k) | recuperar nomes em massa (30 mil chaves × espaço de nomes); recuperar títulos (o índice só conhece 4 dígitos do meio) |
 | Quem baixa `equipe.enc` sem a senha | nada útil | decifrar (AES-256-GCM, chave de PBKDF2 600k sobre frase de seis palavras) |
-| Quem tem a senha | tudo que a equipe vê: nome, título, seção, marcas de turno | — (por isso a senha é do dia e se troca reconstruindo) |
+| Quem tem a senha | tudo que a equipe vê: nome, 4 dígitos do meio do título, seção, marcas de turno | reconstruir o título completo (faltam 8 dígitos) |
 | Quem acha um celular da equipe | o pacote cifrado no cache | a lista, sem a senha; a página descarrega a lista ao fechar |
 
 Limites conhecidos: nome de casada, abreviações e apelidos não encontram (o app sempre
