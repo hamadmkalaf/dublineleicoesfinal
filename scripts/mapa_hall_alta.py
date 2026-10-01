@@ -14,7 +14,7 @@ não sobrepõe nenhuma; ``confere()`` reprova se um dia sobrepuser. A folha diz 
 no rodapé.
 
     python3 scripts/mapa_hall_alta.py            confere (sem gravar)
-    python3 scripts/mapa_hall_alta.py --grava    grava o SVG e o PNG em saidas/
+    python3 scripts/mapa_hall_alta.py --grava    grava as duas versões (SVG e PNG) em saidas/
 
 O PNG usa o Chromium do Playwright (``PLAYWRIGHT_BROWSERS_PATH``); sem ele só o
 SVG é gravado.
@@ -31,14 +31,17 @@ import mapa_publico as MP
 import separadores_fila as SF
 
 RAIZ = MP.RAIZ
-SVG = RAIZ / "saidas" / "hall2_alta_resolucao.svg"
-PNG = RAIZ / "saidas" / "hall2_alta_resolucao.png"
+# variante -> (largura desenhada da mesa em m, corpo com 2 seções, corpo com 1 seção)
+#   padrão  : mesas mais largas, números maiores, 0,2 m de folga entre vizinhas
+#   pares   : mesas mais estreitas, 0,6 m de folga entre vizinhas (4 vezes a do padrão)
+VARIANTES = {"": (2.2, 17.5, 22), "_pares": (1.8, 14.5, 20)}
+SAIDAS = RAIZ / "saidas"
+caminho = lambda var, ext: SAIDAS / f"hall2_alta_resolucao{var}.{ext}"
 FONTES = RAIZ / "data" / "fontes"
 
 W, H = 1500, 1030
 S = 17.8                     # unidades de SVG por metro
 MX, MY = 50, 125             # canto noroeste do salão
-LARG_DESENHO = 2.2           # m — largura desenhada da mesa (real: 0,9 m)
 ESCALA_PX = 5                # 1500 x 1030 -> 7500 x 5150
 TXT_B = "#9A7C00"            # amarelo do rolo não se lê em texto (igual ao deck)
 
@@ -57,7 +60,7 @@ def fonte_css():
     return "".join(faces)
 
 
-def confere(mesas):
+def confere(mesas, LARG_DESENHO):
     """Nenhuma mesa ampliada encosta na vizinha da mesma parede."""
     for par in ("oeste", "norte", "leste"):
         eixo = "x" if par == "norte" else "y"
@@ -66,10 +69,11 @@ def confere(mesas):
             assert b - a >= LARG_DESENHO + 0.1, f"mesas ampliadas se tocam na parede {par}: {a}/{b}"
 
 
-def monta():
+def monta(var=""):
+    LARG_DESENHO, FS2, FS1 = VARIANTES[var]
     planta, dec, cen = SF.carrega()
     mesas = SF.monta_mesas(planta, dec, cen)
-    confere(mesas)
+    confere(mesas, LARG_DESENHO)
     LARG, ALT = planta["salao"]["largura"], planta["salao"]["altura"]
     PROFM = planta["modulo"]["prof"]
     X = lambda x: MX + x * S
@@ -141,7 +145,7 @@ def monta():
           f'rx="2" fill="{ZONA[k]}" stroke="{MP.MARINHO}" stroke-width="1.2"/>')
         cx, cy = X((x1 + x2) / 2), Y((y1 + y2) / 2)
         linhas = [MP.sec(s) for s in m["secoes"]]
-        fs = 17.5 if len(linhas) > 1 else 22
+        fs = FS2 if len(linhas) > 1 else FS1
         ld = fs * 1.06
         giro = f' transform="rotate(-90 {cx:.1f} {cy:.1f})"' if m["parede"] == "norte" else ""
         a(f'<g{giro} font-size="{fs}" font-weight="900" fill="{TINTA_Z[k]}" text-anchor="middle" '
@@ -218,33 +222,37 @@ def acha_chromium():
     return None
 
 
-def rasteriza():
+def rasteriza(svg, png):
     exe = acha_chromium()
     if not exe:
         print("Chromium não encontrado; só o SVG foi gravado", file=sys.stderr)
         return False
     subprocess.run([exe, "--headless", "--no-sandbox", "--disable-gpu", "--hide-scrollbars",
                     f"--force-device-scale-factor={ESCALA_PX}", f"--window-size={W},{H}",
-                    f"--screenshot={PNG}", SVG.as_uri()],
+                    f"--screenshot={png}", svg.as_uri()],
                    check=True, capture_output=True, timeout=180)
     return True
 
 
 def main():
     grava = "--grava" in sys.argv[1:]
-    novo = monta()
-    atual = SVG.read_text(encoding="utf-8") if SVG.exists() else ""
-    if novo == atual:
-        print("saidas/hall2_alta_resolucao.svg em dia")
-        return 0
-    if not grava:
-        print("saidas/hall2_alta_resolucao.svg difere do gerador; rode com --grava", file=sys.stderr)
-        return 1
-    SVG.write_text(novo, encoding="utf-8")
-    print(f"gravado {SVG.name} ({len(novo)} bytes)")
-    if rasteriza():
-        print(f"gravado {PNG.name}")
-    return 0
+    rc = 0
+    for var in VARIANTES:
+        svg, png = caminho(var, "svg"), caminho(var, "png")
+        novo = monta(var)
+        atual = svg.read_text(encoding="utf-8") if svg.exists() else ""
+        if novo == atual:
+            print(f"saidas/{svg.name} em dia")
+            continue
+        if not grava:
+            print(f"saidas/{svg.name} difere do gerador; rode com --grava", file=sys.stderr)
+            rc = 1
+            continue
+        svg.write_text(novo, encoding="utf-8")
+        print(f"gravado {svg.name} ({len(novo)} bytes)")
+        if rasteriza(svg, png):
+            print(f"gravado {png.name}")
+    return rc
 
 
 if __name__ == "__main__":
