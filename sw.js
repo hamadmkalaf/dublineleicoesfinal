@@ -1,7 +1,7 @@
 /* Service worker do "Onde eu voto?": guarda o site inteiro e os dados no aparelho.
  * A VERSAO é trocada pelo build (scripts/app_construir.py); um build novo = cache novo.
  * Estratégia: cache primeiro, rede como reserva. Funciona sem internet depois da 1ª visita. */
-const VERSAO = "2026-10-01T17:23:37+00:00";
+const VERSAO = "2026-10-01T17:57:31+00:00";
 const CACHE = `onde-eu-voto-${VERSAO}`;
 const ARQUIVOS = [
   "./", "./index.html", "./equipe/", "./equipe/index.html", "./comum.js", "./estilo.css",

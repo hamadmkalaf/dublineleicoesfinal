@@ -193,14 +193,21 @@ const OEV = (() => {
   function desenhaMapa(rota) {
     const s = 5; // px por metro
     const M = 14; // margem
+    const TOPO = 9; // m de faixa acima do Hall, para o portão e a chegada
     const HALL_W = 50.3, HALL_D = 44.4, PATIO = 14, RING_W = 44, RING_D = 35, RING_X = (HALL_W - RING_W) / 2;
-    const W = HALL_W * s + 2 * M, H = (HALL_D + PATIO + RING_D) * s + 2 * M + 22;
+    const W = HALL_W * s + 2 * M, H = (TOPO + HALL_D + PATIO + RING_D) * s + 2 * M + 22;
     const X = (m) => M + m * s;
-    const YH = (y) => M + (HALL_D - y) * s; // y do salão cresce para o norte
-    const ringTop = M + (HALL_D + PATIO) * s;
-    const cor = COR_LETRA[rota.letra], fraco = "#C9D6E3", texto = "#042B5A", suave = "#6486A7";
+    const YH = (y) => M + TOPO * s + (HALL_D - y) * s; // y do salão cresce para o fundo (para cima no desenho)
+    const ringTop = M + (TOPO + HALL_D + PATIO) * s;
+    const cor = COR_LETRA[rota.letra], fraco = "#C9D6E3", texto = "#042B5A", suave = "#6486A7", amarelo = "#FCC537";
     const p = [];
-    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até a seção ${rota.secao}">`);
+    const marcador = (x, y, n) => p.push(`<g data-passo="${n}"><circle cx="${x}" cy="${y}" r="8.5" fill="${texto}" stroke="${amarelo}" stroke-width="1.5"/><text x="${x}" y="${y + 0.5}" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="800" fill="${amarelo}">${n}</text></g>`);
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até a seção ${rota.secao}, com os seis passos marcados">`);
+    p.push(`<defs><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${cor}"/></marker></defs>`);
+    // portão na Merrion Road e caminho de chegada: desce ao lado do Hall 2 (o Hall fica à direita de quem desce)
+    const xChegada = X(HALL_W) + 7;
+    p.push(`<text x="${xChegada}" y="${M + 8}" text-anchor="end" font-size="9" font-weight="700" fill="${texto}">portão · Merrion Road ▼</text>`);
+    p.push(`<path d="M ${xChegada} ${M + 14} L ${xChegada} ${ringTop - 6} L ${X(RING_X + RING_W - 1.5)} ${ringTop - 6} L ${X(RING_X + RING_W - 1.5)} ${ringTop}" stroke="${cor}" stroke-width="2" fill="none" stroke-dasharray="5 4"/>`);
     // Hall 2
     p.push(`<rect x="${X(0)}" y="${YH(HALL_D)}" width="${HALL_W * s}" height="${HALL_D * s}" fill="#FFFFFF" stroke="${texto}" stroke-width="1.5"/>`);
     p.push(`<text x="${X(HALL_W / 2)}" y="${YH(HALL_D / 2)}" text-anchor="middle" font-size="11" fill="${suave}">HALL 2</text>`);
@@ -213,8 +220,9 @@ const OEV = (() => {
     for (const [nome, [x, y, w, h]] of Object.entries(paredes)) {
       p.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${nome === rota.parede ? cor : fraco}"/>`);
     }
-    // grupo em destaque
+    // grupo em destaque (passos 4 e 5)
     const c = rota.coord_grupo;
+    let p4 = null, p5 = null;
     if (c) {
       const ext = 4 * s;
       if (rota.parede === "oeste") p.push(`<rect x="${X(0)}" y="${YH(c + 2)}" width="10" height="${ext}" fill="${texto}"/>`);
@@ -223,22 +231,25 @@ const OEV = (() => {
       const lx = rota.parede === "oeste" ? X(0) + 16 : rota.parede === "leste" ? X(HALL_W) - 16 : X(c);
       const ly = rota.parede === "norte" ? YH(HALL_D) + 22 : YH(c);
       p.push(`<text x="${lx}" y="${ly}" font-size="12" font-weight="700" fill="${texto}" text-anchor="${rota.parede === "leste" ? "end" : rota.parede === "norte" ? "middle" : "start"}" dominant-baseline="middle">${esc(rota.grupo)}</text>`);
+      if (rota.parede === "oeste") { p4 = [X(0) + 42, ly]; p5 = [X(0) + 62, ly]; }
+      else if (rota.parede === "leste") { p4 = [X(HALL_W) - 42, ly]; p5 = [X(HALL_W) - 62, ly]; }
+      else { p4 = [X(c), ly + 20]; p5 = [X(c), ly + 40]; }
     }
-    // portas na fachada sul: S2 saída, S4 A, S5 B, S6 C, S7 preferencial, S8 saída
+    // portas na fachada de entrada: só a letra, nunca o número da prancheta
     const portas = { S2: [7.6, "saída", null], S4: [15.8, "A", "A"], S5: [22.0, "B", "B"], S6: [28.2, "C", "C"], S7: [33.0, "pref.", null], S8: [40.0, "saída", null] };
     for (const [id, [x, rot, letra]] of Object.entries(portas)) {
       const ativa = id === rota.porta;
       const fill = ativa ? cor : letra ? "#F4F7FA" : fraco;
       p.push(`<rect x="${X(x) - 6}" y="${YH(0) - 4}" width="12" height="8" fill="${fill}" stroke="${texto}" stroke-width="${ativa ? 1.5 : 0.5}"/>`);
-      p.push(`<text x="${X(x)}" y="${YH(0) + 16}" text-anchor="middle" font-size="${ativa ? 11 : 8}" font-weight="${ativa ? 800 : 400}" fill="${texto}">${id} ${esc(rot)}</text>`);
+      p.push(`<text x="${X(x)}" y="${YH(0) + 16}" text-anchor="middle" font-size="${ativa ? 12 : 8}" font-weight="${ativa ? 800 : 400}" fill="${texto}">${esc(rot)}</text>`);
     }
-    // pátio de travessia: seta da frente da fila até a porta
+    // pátio de travessia: seta da frente da fila até a porta (passo 3)
     const zonaLarg = (RING_W - 3 - 2 * 1.2) / 3;
-    const zonaX = { A: RING_X, B: RING_X + zonaLarg + 1.2, C: RING_X + 2 * (zonaLarg + 1.2) }; // A a oeste, C a leste
+    const zonaX = { A: RING_X, B: RING_X + zonaLarg + 1.2, C: RING_X + 2 * (zonaLarg + 1.2) }; // A à esquerda, C à direita, no desenho
     const zx = zonaX[rota.letra];
     const portaX = portas[rota.porta][0];
-    p.push(`<path d="M ${X(zx + zonaLarg / 2)} ${ringTop} L ${X(portaX)} ${YH(0) + 24}" stroke="${cor}" stroke-width="2.5" fill="none" marker-end="url(#seta)"/>`);
-    p.push(`<defs><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${cor}"/></marker></defs>`);
+    const x3a = X(zx + zonaLarg / 2), y3a = ringTop, x3b = X(portaX), y3b = YH(0) + 24;
+    p.push(`<path d="M ${x3a} ${y3a} L ${x3b} ${y3b}" stroke="${cor}" stroke-width="2.5" fill="none" marker-end="url(#seta)"/>`);
     // Ring 3
     p.push(`<rect x="${X(RING_X)}" y="${ringTop}" width="${RING_W * s}" height="${RING_D * s}" fill="#FFFFFF" stroke="${texto}" stroke-width="1.5" stroke-dasharray="4 3"/>`);
     for (const [letra, x] of Object.entries(zonaX)) {
@@ -247,12 +258,21 @@ const OEV = (() => {
       for (let i = 1; i < 6; i++) p.push(`<line x1="${X(x)}" x2="${X(x + zonaLarg)}" y1="${ringTop + i * ((RING_D - 3) * s) / 6}" y2="${ringTop + i * ((RING_D - 3) * s) / 6}" stroke="${ativa ? "#FFFFFF" : fraco}" stroke-opacity="0.6"/>`);
       p.push(`<text x="${X(x + zonaLarg / 2)}" y="${ringTop + (RING_D - 3) * s / 2}" text-anchor="middle" dominant-baseline="middle" font-size="26" font-weight="800" fill="${ativa ? COR_TEXTO_LETRA[letra] : "#9DB0C4"}">${letra}</text>`);
     }
-    // corredor de chegada (leste) e trecho de fundo
+    // corredor de chegada e trecho de fundo (passo 2)
+    const xCorredor = X(RING_X + RING_W - 1.5), yFundo = ringTop + (RING_D - 1.5) * s;
     p.push(`<rect x="${X(RING_X + RING_W - 3)}" y="${ringTop}" width="${3 * s}" height="${RING_D * s}" fill="#EEF3F8"/>`);
     p.push(`<rect x="${X(RING_X)}" y="${ringTop + (RING_D - 3) * s}" width="${RING_W * s}" height="${3 * s}" fill="#EEF3F8"/>`);
-    p.push(`<path d="M ${X(RING_X + RING_W - 1.5)} ${ringTop + 4} L ${X(RING_X + RING_W - 1.5)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 3) * s - 2}" stroke="${texto}" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>`);
-    p.push(`<text x="${X(RING_X + RING_W - 1.5)}" y="${ringTop - 4}" text-anchor="end" font-size="9" fill="${texto}">você entra aqui ▼</text>`);
-    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="${suave}">Esquema sem escala · o Hall 2 fica à sua frente</text>`);
+    p.push(`<path d="M ${xCorredor} ${ringTop + 4} L ${xCorredor} ${yFundo} L ${x3a} ${yFundo} L ${x3a} ${ringTop + (RING_D - 3) * s - 2}" stroke="${texto}" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>`);
+    p.push(`<text x="${xCorredor - 12}" y="${ringTop - 10}" text-anchor="end" font-size="9" fill="${texto}">Ring 3: você entra aqui ▶</text>`);
+    // marcadores dos seis passos
+    marcador(xChegada, YH(HALL_D / 2), 1);
+    marcador(x3a, yFundo, 2);
+    marcador((x3a + x3b) / 2, (y3a + y3b) / 2, 3);
+    if (p4) marcador(p4[0], p4[1], 4);
+    if (p5) marcador(p5[0], p5[1], 5);
+    const saidaX = rota.letra === "C" ? portas.S8[0] : portas.S2[0];
+    marcador(X(saidaX), YH(0) - 16, 6);
+    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="${suave}">Esquema sem escala · os números são os passos acima</text>`);
     p.push(`</svg>`);
     return p.join("");
   }
@@ -266,14 +286,14 @@ const OEV = (() => {
       <div class="cartao" style="--cor:${cor};--cor-texto:${corTexto}">
         ${extra}
         <div class="cartao-letra"><span class="letra">${rota.letra}</span>
-          <div><div class="rotulo">sua fila e sua porta</div><div class="grande">Porta ${esc(rota.porta)} · parede ${esc(rota.parede_rotulo || ROTULO_PAREDE[rota.parede] || rota.parede)}</div></div></div>
+          <div><div class="rotulo">sua fila e sua porta</div><div class="grande">Porta ${esc(rota.letra)} · parede ${esc(rota.parede_rotulo || ROTULO_PAREDE[rota.parede] || rota.parede)}</div></div></div>
         <div class="cartao-linha"><div><div class="rotulo">seção</div><div class="grande">${esc(rota.secao)}</div></div>
           <div><div class="rotulo">grupo de mesas</div><div class="grande">${esc(rota.grupo)}</div></div>
           <div><div class="rotulo">seções do grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div></div>
       </div>
       <ol class="passos">${passos}</ol>
       <div class="mapa">${desenhaMapa(rota)}</div>
-      <p class="nota">Idoso, gestante, pessoa com deficiência ou com acompanhante: <b>entrada preferencial S7</b>, sem fila, por qualquer porta.</p>`;
+      <p class="nota">Idoso, gestante, pessoa com deficiência ou com acompanhante: <b>entrada PREFERENCIAL</b>, a porta logo à direita da porta C, sem fila.</p>`;
   }
 
   function rotaDaSecao(rotas, secao) {

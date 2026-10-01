@@ -28,15 +28,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -44,11 +44,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -79,15 +79,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -95,11 +95,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -130,15 +130,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -146,11 +146,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -181,15 +181,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -197,11 +197,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -232,15 +232,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -248,11 +248,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -282,15 +282,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -298,11 +298,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -333,15 +333,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -349,11 +349,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -384,15 +384,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -400,11 +400,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -435,15 +435,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -451,11 +451,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -486,15 +486,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -502,11 +502,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -537,15 +537,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -553,11 +553,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -588,15 +588,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -604,11 +604,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -639,15 +639,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -655,11 +655,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -690,15 +690,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -706,11 +706,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -741,15 +741,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -757,11 +757,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -792,15 +792,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -808,11 +808,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -843,15 +843,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -859,11 +859,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -894,15 +894,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -910,11 +910,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -945,15 +945,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -961,11 +961,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -996,15 +996,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1012,11 +1012,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1047,15 +1047,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -1063,11 +1063,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1098,15 +1098,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1114,11 +1114,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1149,15 +1149,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1165,11 +1165,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1200,15 +1200,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1216,11 +1216,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1251,15 +1251,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1267,11 +1267,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1302,15 +1302,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1318,11 +1318,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1353,15 +1353,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1369,11 +1369,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1404,15 +1404,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -1420,11 +1420,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1454,15 +1454,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -1470,11 +1470,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1504,15 +1504,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -1520,11 +1520,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1555,15 +1555,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1571,11 +1571,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1606,15 +1606,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1622,11 +1622,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1657,15 +1657,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1673,11 +1673,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1708,15 +1708,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1724,11 +1724,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1756,15 +1756,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1772,11 +1772,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1807,15 +1807,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1823,11 +1823,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1858,15 +1858,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1874,11 +1874,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1907,15 +1907,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -1923,11 +1923,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -1956,15 +1956,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -1972,11 +1972,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2005,15 +2005,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -2021,11 +2021,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2056,15 +2056,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -2072,11 +2072,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2103,15 +2103,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -2119,11 +2119,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2152,15 +2152,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -2168,11 +2168,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2201,15 +2201,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -2217,11 +2217,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2250,15 +2250,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -2266,11 +2266,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2300,15 +2300,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -2316,11 +2316,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2348,15 +2348,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -2364,11 +2364,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2399,15 +2399,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é B. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona B, atravesse os 14 m de pátio até a porta S5, com a letra B no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede do fundo",
@@ -2415,11 +2415,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2448,15 +2448,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é C. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. A entrada da zona C é a PRIMEIRA que você alcança. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona C, atravesse os 14 m de pátio até a porta S6, com a letra C no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da direita",
@@ -2464,11 +2464,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2497,15 +2497,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -2513,11 +2513,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   },
@@ -2548,15 +2548,15 @@
    "passos": [
     {
      "onde": "Portão · Merrion Road",
-     "texto": "Sua letra é A. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
-     "texto": "Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA. Confira a placa da entrada: sua seção está listada nela."
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
     },
     {
      "onde": "Frente da fila · pátio",
-     "texto": "Da frente da fila da zona A, atravesse os 14 m de pátio até a porta S4, com a letra A no vidro."
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
     },
     {
      "onde": "Hall 2 · parede da esquerda",
@@ -2564,11 +2564,11 @@
     },
     {
      "onde": "Mesa",
-     "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
     }
    ]
   }
