@@ -155,6 +155,9 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   de quem desce o corredor; no salão, parede oeste = da esquerda, norte = do fundo, leste
   = da direita (`ROTULO_PAREDE` em `app_construir.py` e `comum.js`). Os campos de dados
   (`parede`) e as peças de sinalização em `mapa/` mantêm o vocabulário técnico.
+- **Sem números de porta da prancheta (S2…S8) nos textos ao eleitor**: só "porta A/B/C";
+  o campo `porta` fica nos dados. Os seis passos têm texto ditado em 01/10 (`passos()` em
+  `app_construir.py`) e aparecem numerados no mini-mapa (`data-passo` em `comum.js`).
 - Paleta do app = identidade TSE 2026 (`app/public/estilo.css`, `:root`). As cores das
   portas A/B/C em `comum.js` são as v2 das peças de sinalização: não mudar. Sem inglês.
 - Testar sempre com `app/testes/amostra_eleitores.csv` (sintética). Nunca com a lista de

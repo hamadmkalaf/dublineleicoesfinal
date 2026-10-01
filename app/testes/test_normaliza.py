@@ -115,8 +115,9 @@ def test_passos_na_perspectiva_do_eleitor():
     if not (RAIZ / "app/dist/dados/rotas.json").exists():
         subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
     rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))["secoes"]
-    proibido = re.compile(r"\b(leste|oeste|nordeste|sudeste|noroeste|sudoeste|apron|boca|bocas|cabe[cç]a)\b", re.I)
+    proibido = re.compile(r"\b(leste|oeste|nordeste|sudeste|noroeste|sudoeste|apron|boca|bocas|cabe[cç]a|S[0-9])\b", re.I)
     for r in rotas.values():
+        assert r["passos"][0]["texto"].startswith(f"Lembre-se disso: sua porta de entrada é {r['letra']}")
         for p in r["passos"]:
             texto = f"{p['onde']} {p['texto']}"
             assert not proibido.search(texto), texto

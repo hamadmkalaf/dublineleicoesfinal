@@ -121,24 +121,20 @@ def monta_rotas(dec, grupos):
 
 
 def passos(letra, porta, parede, grupo, n_grupo, secoes_grupo):
-    """Texto do caminho, na perspectiva de quem caminha: esquerda e direita são as do eleitor."""
-    if letra == "C":
-        ring = ("Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. "
-                "A entrada da zona C é a PRIMEIRA que você alcança.")
-    elif letra == "B":
-        ring = ("Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. "
-                "Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro.")
-    else:
-        ring = ("Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. "
-                "Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA.")
+    """Texto do caminho, na perspectiva de quem caminha (textos ditados em 01/10/2026).
+
+    Sem números de porta da prancheta (S4, S7…): o eleitor só lê "porta A/B/C". O parâmetro
+    `porta` fica na assinatura para os dados da rota, mas não entra em nenhuma frase.
+    """
+    ordem = {"C": "a primeira que você encontra", "B": "a segunda", "A": "a última, no fim do trecho de fundo"}[letra]
     rotulo = ROTULO_PAREDE[parede]
     return [
-        {"onde": "Portão · Merrion Road", "texto": f"Sua letra é {letra}. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."},
-        {"onde": "Ring 3 · pátio de fila", "texto": f"{ring} Confira a placa da entrada: sua seção está listada nela."},
-        {"onde": "Frente da fila · pátio", "texto": f"Da frente da fila da zona {letra}, atravesse os 14 m de pátio até a porta {porta}, com a letra {letra} no vidro."},
+        {"onde": "Portão · Merrion Road", "texto": f"Lembre-se disso: sua porta de entrada é {letra}. Pegue a fila {letra} em frente ao Hall 2."},
+        {"onde": "Ring 3 · pátio de fila", "texto": f"As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila {letra} será {ordem}."},
+        {"onde": "Frente da fila · pátio", "texto": f"Quando liberado, atravesse o pátio até a porta de entrada {letra} (identificada com um adesivo no vidro)."},
         {"onde": f"Hall 2 · parede {rotulo}", "texto": f"Sua mesa fica na parede {rotulo}{', em frente a você' if parede == 'norte' else ''}. Procure o painel {letra} e siga até o grupo {grupo}, o {ORDINAL[n_grupo]} corredor a partir da porta. Na placa alta: “grupo {grupo} · seções {' '.join(secoes_grupo)}”."},
-        {"onde": "Mesa", "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."},
-        {"onde": "Saída", "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."},
+        {"onde": "Mesa", "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."},
+        {"onde": "Saída", "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."},
     ]
 
 
