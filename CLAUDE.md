@@ -12,7 +12,7 @@ necessário para chegar a elas.
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
-| **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído e testado com amostra sintética; aguarda a lista nominal |
+| **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído com a lista real do TRE (29/09); consulta **só por nome**, título desempata homônimos; publicação em `gh-pages` |
 
 ---
 
@@ -135,7 +135,14 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 
 - **A lista nominal de eleitores nunca entra no git.** `data/eleitores/` e `app/dist/`
   estão no `.gitignore`. O que se publica são hashes (eleitor) e um pacote cifrado
-  (equipe); o CSV fica só na máquina de quem constrói.
+  (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. O PDF chegou
+  commitado em 29/09 e foi removido do HEAD em 01/10; não recommitar.
+- **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
+  já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
+  `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.
+- **Consulta só por nome** (decisão de 01/10): índice público v2, `hash(nome) → seção`;
+  homônimo → `"H"` e `hash(nome|título)`. O título nunca sai em claro. Marcas de turno
+  (OK/VT) viajam com a seção e geram aviso quando não são OK no turno de `config.json`.
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.

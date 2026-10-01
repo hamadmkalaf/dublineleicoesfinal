@@ -12,7 +12,31 @@ const indice = { sal: "dublin-2026-onde-eu-voto", iteracoes: 50000, bytes: 12 };
 let n = 0;
 for (const c of v.nomes) { assert.equal(OEV.normalizaNome(c.entrada), c.normalizado, `nome: ${c.entrada}`); assert.deepEqual(OEV.chavesNome(c.entrada), c.chaves, `chaves: ${c.entrada}`); n++; }
 for (const c of v.datas) { assert.equal(OEV.normalizaData(c.entrada), c.normalizada, `data: ${c.entrada}`); n++; }
-for (const c of v.hashes) { assert.equal(await OEV.hashPublico(c.chave, c.fator, indice), c.hash, `hash: ${c.chave}`); n++; }
+for (const c of v.titulos) { assert.equal(OEV.normalizaInscricao(c.entrada), c.normalizado, `título: ${c.entrada}`); n++; }
+for (const c of v.hashes) { assert.equal(await OEV.hashPublico(c.chave, c.fator, indice), c.hash, `hash: ${c.chave}|${c.fator}`); n++; }
+
+// consultaPublica sobre um índice v2 montado à mão: nome único, homônimo com título, chave curta
+const h = (c, f = "") => OEV.hashPublico(c, f, indice);
+const itens = {};
+itens[await h("ANA CRISTINA EVARISTO")] = ["3313"];
+itens[await h("ANA EVARISTO")] = ["3313"];
+itens[await h("MARIA APARECIDA SILVA")] = "H";
+itens[await h("MARIA APARECIDA SILVA", "111111111111")] = ["0511"];
+itens[await h("MARIA APARECIDA SILVA", "222222222222")] = ["3862", "VT"];
+const idx = { ...indice, v: 2, fator: "nome", itens };
+assert.deepEqual((await OEV.consultaPublica(idx, "Ana Cristina Evaristo")).estado, "ok");
+assert.equal((await OEV.consultaPublica(idx, "ana evaristo")).secao, "3313");
+assert.equal((await OEV.consultaPublica(idx, "Ana Cristina de Evaristo")).estado, "ok", "chave curta quando a completa não existe");
+assert.equal((await OEV.consultaPublica(idx, "Maria Aparecida Silva")).estado, "homonimo");
+assert.equal((await OEV.consultaPublica(idx, "Maria Aparecida Silva", "1111 1111 1111")).secao, "0511");
+const r = await OEV.consultaPublica(idx, "Maria Aparecida Silva", "222222222222");
+assert.deepEqual([r.estado, r.secao, r.marca], ["ok", "3862", "VT"]);
+assert.equal((await OEV.consultaPublica(idx, "Maria Aparecida Silva", "999999999999")).estado, "titulo_errado");
+assert.equal((await OEV.consultaPublica(idx, "Maria Aparecida Silva", "1234")).estado, "titulo_invalido");
+assert.equal((await OEV.consultaPublica(idx, "Fulano Inexistente")).estado, "nao_encontrado");
+assert.equal((await OEV.consultaPublica(idx, "   ")).estado, "incompleto");
+n += 10;
+
 const t0 = performance.now();
-for (let i = 0; i < 5; i++) await OEV.hashPublico("MARIA APARECIDA SILVA", "1970-05-05", indice);
+for (let i = 0; i < 5; i++) await OEV.hashPublico("MARIA APARECIDA SILVA", "", indice);
 console.log(`${n} vetores iguais em Python e JavaScript · hash público: ${((performance.now() - t0) / 5).toFixed(0)} ms cada`);

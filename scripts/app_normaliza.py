@@ -102,9 +102,14 @@ def normaliza_inscricao(valor):
     return digitos.zfill(12) if digitos else ""
 
 
-def hash_publico(chave_nome, segundo_fator):
-    """Hash indexado no arquivo público: PBKDF2-SHA256 de 'CHAVE|FATOR', truncado."""
-    material = f"{chave_nome}|{segundo_fator}".encode("utf-8")
+def hash_publico(chave_nome, segundo_fator=""):
+    """Hash indexado no arquivo público: PBKDF2-SHA256 truncado.
+
+    Material: só a chave do nome (consulta por nome, desenho de 01/10/2026) ou
+    'CHAVE|FATOR' quando há um fator de desempate — o título de 12 dígitos, no caso de
+    homônimos. O título nunca aparece em claro no índice: só dentro do hash.
+    """
+    material = (f"{chave_nome}|{segundo_fator}" if segundo_fator else chave_nome).encode("utf-8")
     dk = hashlib.pbkdf2_hmac("sha256", material, SAL_PUBLICO, ITERACOES_PUBLICO, TAMANHO_HASH)
     return base64.urlsafe_b64encode(dk).decode("ascii").rstrip("=")
 

@@ -5,9 +5,11 @@
 
 Nomes inventados por combinação aleatória com semente fixa (o arquivo é reproduzível).
 As seções são as 51 reais de Dublin (`data/decisoes.json`), com peso proporcional aos
-aptos, para que o build exercite todas as portas e grupos. Inclui homônimos propositais:
-  - "MARIA APARECIDA SILVA" ×3 com datas diferentes (resolvido pela data);
-  - "JOAO CARLOS SOUZA" ×2 com a MESMA data e seções diferentes (caso que manda ao P0).
+aptos, para que o build exercite todas as portas e grupos. Inclui homônimos propositais, resolvidos pelo título (a lista real não tem nascimento):
+  - "MARIA APARECIDA SILVA" ×3, seções diferentes, títulos 1111..., 2222..., 3333...;
+  - "JOAO CARLOS SOUZA" ×2, seções 3313 e 0511, títulos 4444... e 5555....
+Marcas de turno como na relação do TRE: a maioria OK/OK; alguns VT (voto em trânsito, premissa)
+num turno ou nos dois. O eleitor fixo "ANA VT TESTE" é VT no 1º turno.
 """
 
 import argparse
@@ -78,25 +80,33 @@ def gera(n, semente=2026):
     lista = [s for s, _ in secoes]
     pesos = [p for _, p in secoes]
     linhas = []
+    def marcas():
+        r = rnd.random()
+        if r < 0.004:
+            return "VT", "VT"
+        if r < 0.006:
+            return "VT", "OK"
+        if r < 0.008:
+            return "OK", "VT"
+        return "OK", "OK"
+
+    def linha(secao, insc, nome, mae=None, t1="OK", t2="OK", nasc=None):
+        return {"NUM_LOCAL": "1015", "NUM_SECAO": secao, "NUM_INSCRICAO": insc,
+                "DAT_NASC": nasc or data_aleatoria(rnd).isoformat(), "NOM_ELEITOR": nome,
+                "NOM_MAE": mae or nome_aleatorio(rnd), "TURNO1": t1, "TURNO2": t2}
+
     for _ in range(n):
-        linhas.append({
-            "NUM_LOCAL": "1015",
-            "NUM_SECAO": rnd.choices(lista, pesos)[0],
-            "NUM_INSCRICAO": inscricao(rnd),
-            "DAT_NASC": data_aleatoria(rnd).isoformat(),
-            "NOM_ELEITOR": nome_aleatorio(rnd),
-            "NOM_MAE": nome_aleatorio(rnd),
-        })
-    # homônimos propositais
-    for d in ("1970-05-05", "1981-11-30", "1995-02-14"):
-        linhas.append({"NUM_LOCAL": "1015", "NUM_SECAO": rnd.choice(lista), "NUM_INSCRICAO": inscricao(rnd),
-                       "DAT_NASC": d, "NOM_ELEITOR": "MARIA APARECIDA SILVA", "NOM_MAE": nome_aleatorio(rnd)})
-    for s in ("3313", "0511"):
-        linhas.append({"NUM_LOCAL": "1015", "NUM_SECAO": s, "NUM_INSCRICAO": inscricao(rnd),
-                       "DAT_NASC": "1988-08-08", "NOM_ELEITOR": "JOAO CARLOS SOUZA", "NOM_MAE": nome_aleatorio(rnd)})
-    # um eleitor fixo, usado pelos testes de ponta a ponta
-    linhas.append({"NUM_LOCAL": "1015", "NUM_SECAO": "3889", "NUM_INSCRICAO": "123456789012",
-                   "DAT_NASC": "1975-03-16", "NOM_ELEITOR": "TIZZANI VIANA D'ANDREA NERY", "NOM_MAE": "NEUZA VIANA D'ANDREA"})
+        t1, t2 = marcas()
+        linhas.append(linha(rnd.choices(lista, pesos)[0], inscricao(rnd), nome_aleatorio(rnd), t1=t1, t2=t2))
+    # homônimos propositais, desempatados pelo título
+    secoes_maria = ["0511", "3313", "3862"]
+    for i, sec in enumerate(secoes_maria, start=1):
+        linhas.append(linha(sec, str(i) * 12, "MARIA APARECIDA SILVA"))
+    linhas.append(linha("3313", "4" * 12, "JOAO CARLOS SOUZA"))
+    linhas.append(linha("0511", "5" * 12, "JOAO CARLOS SOUZA"))
+    # eleitores fixos, usados pelos testes de ponta a ponta
+    linhas.append(linha("3889", "123456789012", "TIZZANI VIANA D'ANDREA NERY", mae="NEUZA VIANA D'ANDREA", nasc="1975-03-16"))
+    linhas.append(linha("3315", "987654321098", "ANA VT TESTE", t1="VT", t2="OK"))
     linhas.sort(key=lambda r: (r["NUM_SECAO"], r["NOM_ELEITOR"]))
     return linhas
 
@@ -109,7 +119,7 @@ def main():
     linhas = gera(args.n)
     args.destino.parent.mkdir(parents=True, exist_ok=True)
     with open(args.destino, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["NUM_INSCRICAO", "NOM_ELEITOR", "DAT_NASC", "NUM_SECAO", "NOM_MAE", "NUM_LOCAL"],
+        w = csv.DictWriter(f, fieldnames=["NUM_INSCRICAO", "NOM_ELEITOR", "DAT_NASC", "NUM_SECAO", "NOM_MAE", "NUM_LOCAL", "TURNO1", "TURNO2"],
                            delimiter=";")
         w.writeheader()
         w.writerows(linhas)

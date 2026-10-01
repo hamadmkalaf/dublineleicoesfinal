@@ -47,6 +47,25 @@ const OEV = (() => {
     return `${a}-${String(me).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
   }
 
+  /* Título de eleitor -> 12 dígitos com zeros à esquerda (reimplementa normaliza_inscricao). */
+  function normalizaInscricao(valor) {
+    if (valor == null) return "";
+    const d = String(valor).trim().replace(/\.0+$/, "").replace(/\D/g, "");
+    return d ? d.padStart(12, "0") : "";
+  }
+
+  /* Máscara 0000 0000 0000 num <input type="text">: só dígitos, espaços inseridos ao digitar; aceita colar com pontos. */
+  function mascaraTitulo(el) {
+    const aplica = () => {
+      const d = el.value.replace(/\D/g, "").slice(0, 12);
+      const v = d.replace(/(\d{4})(?=\d)/g, "$1 ");
+      if (v !== el.value) el.value = v;
+    };
+    el.addEventListener("input", aplica);
+    el.addEventListener("blur", aplica);
+    return el;
+  }
+
   /* Máscara DD/MM/AAAA num <input type="text">: só dígitos, barras inseridas ao digitar; aceita colar 23101967 ou 23.10.1967. */
   function mascaraData(el) {
     const aplica = () => {
@@ -79,21 +98,38 @@ const OEV = (() => {
     return crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: sal, iterations: iteracoes }, chave, bytes * 8);
   }
 
+  /* Hash do índice público: só a chave do nome, ou "CHAVE|FATOR" quando há fator (o título, em homônimos).
+     Tem de dar o mesmo resultado que hash_publico em app_normaliza.py. */
   async function hashPublico(chave, segundoFator, indice) {
-    const bits = await pbkdf2(enc.encode(`${chave}|${segundoFator}`), enc.encode(indice.sal), indice.iteracoes, indice.bytes);
+    const material = segundoFator ? `${chave}|${segundoFator}` : chave;
+    const bits = await pbkdf2(enc.encode(material), enc.encode(indice.sal), indice.iteracoes, indice.bytes);
     return b64url(bits);
   }
 
-  /* Consulta pública: nome digitado + 2º fator -> {estado, secoes}.
-     estado: "ok" (uma seção), "ambiguo" (mais de uma), "nao_encontrado". */
-  async function consultaPublica(indice, nomeDigitado, segundoFator) {
-    const chave = normalizaNome(nomeDigitado);
-    const fator = indice.fator === "nascimento" ? normalizaData(segundoFator) : normalizaNome(segundoFator);
-    if (!chave || !fator) return { estado: "incompleto" };
-    const h = await hashPublico(chave, fator, indice);
-    const secoes = indice.itens[h];
-    if (!secoes) return { estado: "nao_encontrado", hash: h };
-    return { estado: secoes.length === 1 ? "ok" : "ambiguo", secoes, hash: h };
+  /* Consulta pública (índice v2, só por nome): nome digitado [+ título] -> {estado, secao, marca}.
+     estado: "incompleto"      nome vazio;
+             "ok"              uma pessoa: secao (e marca de turno, se a lista não diz "OK");
+             "homonimo"        mais de uma pessoa com esse nome: peça o título;
+             "titulo_invalido" título digitado não tem 12 dígitos;
+             "titulo_errado"   há homônimos, mas o título não casa com nenhum deles;
+             "nao_encontrado"  nenhuma chave do nome (completa ou primeiro+último) está no índice.
+     Tenta primeiro o nome completo; se não há nada, tenta "primeiro + último", como o build indexa. */
+  async function consultaPublica(indice, nomeDigitado, tituloDigitado = "") {
+    const chaves = chavesNome(nomeDigitado);
+    if (!chaves.length) return { estado: "incompleto" };
+    const digitos = String(tituloDigitado || "").replace(/\D/g, "");
+    if (String(tituloDigitado || "").trim() && digitos.length !== 12) return { estado: "titulo_invalido" };
+    const titulo = digitos ? normalizaInscricao(digitos) : "";
+    for (const chave of chaves) {
+      const v = indice.itens[await hashPublico(chave, "", indice)];
+      if (!v) continue;
+      if (v !== "H") return { estado: "ok", secao: v[0], marca: v[1] || "", chave };
+      if (!titulo) return { estado: "homonimo", chave };
+      const vt = indice.itens[await hashPublico(chave, titulo, indice)];
+      if (vt && vt !== "H") return { estado: "ok", secao: vt[0], marca: vt[1] || "", chave };
+      return { estado: "titulo_errado", chave };
+    }
+    return { estado: "nao_encontrado" };
   }
 
   /* Pacote da equipe: senha -> lista de eleitores em memória. Lança em senha errada. */
@@ -107,21 +143,29 @@ const OEV = (() => {
     return JSON.parse(texto);
   }
 
-  /* Busca da equipe: cada palavra digitada tem de aparecer como prefixo de alguma palavra do nome. */
-  function buscaEquipe(eleitores, texto, limite = 30, dataISO = "") {
+  /* Busca da equipe: cada palavra digitada tem de aparecer como prefixo de alguma palavra do nome.
+     Homônimos saem lado a lado, ordenados por nome e título; o título de cada um é o que os distingue. */
+  function buscaEquipe(eleitores, texto, limite = 30) {
     const termos = normalizaNome(texto).split(" ").filter(Boolean);
-    if (!termos.length && !dataISO) return [];
+    if (!termos.length) return [];
     const achados = [];
     for (const e of eleitores) {
-      if (dataISO && e.d !== dataISO) continue;
       const palavras = e.n.split(" ");
       if (termos.every((t) => palavras.some((p) => p.startsWith(t)))) {
         achados.push(e);
         if (achados.length >= limite * 4) break;
       }
     }
-    achados.sort((a, b) => (a.n === b.n ? a.d.localeCompare(b.d) : a.n.localeCompare(b.n)));
+    achados.sort((a, b) => (a.n === b.n ? a.t.localeCompare(b.t) : a.n.localeCompare(b.n)));
     return achados.slice(0, limite);
+  }
+
+  /* Marcas de turno da lista do TRE ("OK", "VT", ...) para a equipe: vazio quando os dois turnos são OK. */
+  function marcasTurno(e) {
+    const m = [];
+    if (e.t1 && e.t1 !== "OK") m.push(`1º turno: ${e.t1}`);
+    if (e.t2 && e.t2 !== "OK") m.push(`2º turno: ${e.t2}`);
+    return m.join(" · ");
   }
 
   async function carregaJSON(url) {
@@ -253,8 +297,9 @@ const OEV = (() => {
     }
   }
 
-  return { normalizaNome, chavesNome, normalizaData, mascaraData, hashPublico, consultaPublica, decifraEquipe, buscaEquipe,
-           carregaJSON, esc, formataData, formataTitulo, desenhaMapa, renderRota, rotaDaSecao, registraSW, COR_LETRA };
+  return { normalizaNome, chavesNome, normalizaData, normalizaInscricao, mascaraData, mascaraTitulo, hashPublico, consultaPublica,
+           decifraEquipe, buscaEquipe, marcasTurno, carregaJSON, esc, formataData, formataTitulo, desenhaMapa, renderRota,
+           rotaDaSecao, registraSW, COR_LETRA };
 })();
 
 if (typeof module !== "undefined") module.exports = OEV;
