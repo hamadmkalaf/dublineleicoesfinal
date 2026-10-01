@@ -1,0 +1,15 @@
+{
+ "construido_em": "2026-10-01T19:45:42+00:00",
+ "eleitores": 16794,
+ "fator": "nome",
+ "titulo": {
+  "digitos": "5-8",
+  "tamanho": 4
+ },
+ "turno": 1,
+ "homonimos": 1278,
+ "colisoes_titulo": 0,
+ "lista": "eleitores_v2.csv",
+ "amostra_sintetica": false,
+ "indice_sha256": "fd7a80481d614112"
+}

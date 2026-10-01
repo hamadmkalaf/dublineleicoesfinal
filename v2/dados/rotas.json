@@ -1,0 +1,2576 @@
+{
+ "atualizado": "2026-09-16",
+ "secoes": {
+  "0511": {
+   "secao": "0511",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "0511",
+    "1100"
+   ],
+   "mrv": 1,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C6",
+   "secoes_do_grupo": [
+    "0511",
+    "0517",
+    "1100",
+    "1292"
+   ],
+   "ordem_grupo": 6,
+   "coord_grupo": 35.55,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C6, o 6º corredor a partir da porta. Na placa alta: “grupo C6 · seções 0511 0517 1100 1292”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0512": {
+   "secao": "0512",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "0512",
+    "2855"
+   ],
+   "mrv": 2,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B1",
+   "secoes_do_grupo": [
+    "0512",
+    "1160",
+    "2855",
+    "3845"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 11.86,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B1, o 1º corredor a partir da porta. Na placa alta: “grupo B1 · seções 0512 1160 2855 3845”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0513": {
+   "secao": "0513",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "0513",
+    "1105"
+   ],
+   "mrv": 3,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A4",
+   "secoes_do_grupo": [
+    "0513",
+    "0522",
+    "1105",
+    "1352"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 25.92,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0517": {
+   "secao": "0517",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "0517",
+    "1292"
+   ],
+   "mrv": 4,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C6",
+   "secoes_do_grupo": [
+    "0511",
+    "0517",
+    "1100",
+    "1292"
+   ],
+   "ordem_grupo": 6,
+   "coord_grupo": 31.65,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C6, o 6º corredor a partir da porta. Na placa alta: “grupo C6 · seções 0511 0517 1100 1292”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0518": {
+   "secao": "0518",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3306",
+    "0518"
+   ],
+   "mrv": 18,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B4",
+   "secoes_do_grupo": [
+    "0518",
+    "0521",
+    "3305",
+    "3306"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 35.43,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B4, o 4º corredor a partir da porta. Na placa alta: “grupo B4 · seções 0518 0521 3305 3306”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0519": {
+   "secao": "0519",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3245",
+    "0519"
+   ],
+   "mrv": 15,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C3",
+   "secoes_do_grupo": [
+    "0519",
+    "3245",
+    "3862"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 15.85,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C3, o 3º corredor a partir da porta. Na placa alta: “grupo C3 · seções 0519 3245 3862”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0521": {
+   "secao": "0521",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3305",
+    "0521"
+   ],
+   "mrv": 17,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B4",
+   "secoes_do_grupo": [
+    "0518",
+    "0521",
+    "3305",
+    "3306"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 31.53,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B4, o 4º corredor a partir da porta. Na placa alta: “grupo B4 · seções 0518 0521 3305 3306”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0522": {
+   "secao": "0522",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "1352",
+    "0522"
+   ],
+   "mrv": 6,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A4",
+   "secoes_do_grupo": [
+    "0513",
+    "0522",
+    "1105",
+    "1352"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 29.82,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0527": {
+   "secao": "0527",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3216",
+    "0527"
+   ],
+   "mrv": 13,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C4",
+   "secoes_do_grupo": [
+    "0527",
+    "1099",
+    "3054",
+    "3216"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 22.15,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C4, o 4º corredor a partir da porta. Na placa alta: “grupo C4 · seções 0527 1099 3054 3216”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "0530": {
+   "secao": "0530",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3179",
+    "0530"
+   ],
+   "mrv": 12,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A5",
+   "secoes_do_grupo": [
+    "0530",
+    "2847",
+    "3078",
+    "3179"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 36.12,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1099": {
+   "secao": "1099",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3054",
+    "1099"
+   ],
+   "mrv": 7,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C4",
+   "secoes_do_grupo": [
+    "0527",
+    "1099",
+    "3054",
+    "3216"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 26.05,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C4, o 4º corredor a partir da porta. Na placa alta: “grupo C4 · seções 0527 1099 3054 3216”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1100": {
+   "secao": "1100",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "0511",
+    "1100"
+   ],
+   "mrv": 1,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C6",
+   "secoes_do_grupo": [
+    "0511",
+    "0517",
+    "1100",
+    "1292"
+   ],
+   "ordem_grupo": 6,
+   "coord_grupo": 35.55,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C6, o 6º corredor a partir da porta. Na placa alta: “grupo C6 · seções 0511 0517 1100 1292”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1105": {
+   "secao": "1105",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "0513",
+    "1105"
+   ],
+   "mrv": 3,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A4",
+   "secoes_do_grupo": [
+    "0513",
+    "0522",
+    "1105",
+    "1352"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 25.92,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1160": {
+   "secao": "1160",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "1160",
+    "3845"
+   ],
+   "mrv": 5,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B1",
+   "secoes_do_grupo": [
+    "0512",
+    "1160",
+    "2855",
+    "3845"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 15.76,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B1, o 1º corredor a partir da porta. Na placa alta: “grupo B1 · seções 0512 1160 2855 3845”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1278": {
+   "secao": "1278",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3142",
+    "1278"
+   ],
+   "mrv": 10,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A1",
+   "secoes_do_grupo": [
+    "1278",
+    "1314",
+    "3142",
+    "3309"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 11.93,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1292": {
+   "secao": "1292",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "0517",
+    "1292"
+   ],
+   "mrv": 4,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C6",
+   "secoes_do_grupo": [
+    "0511",
+    "0517",
+    "1100",
+    "1292"
+   ],
+   "ordem_grupo": 6,
+   "coord_grupo": 31.65,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C6, o 6º corredor a partir da porta. Na placa alta: “grupo C6 · seções 0511 0517 1100 1292”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1314": {
+   "secao": "1314",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3309",
+    "1314"
+   ],
+   "mrv": 20,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A1",
+   "secoes_do_grupo": [
+    "1278",
+    "1314",
+    "3142",
+    "3309"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 8.03,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "1352": {
+   "secao": "1352",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "1352",
+    "0522"
+   ],
+   "mrv": 6,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A4",
+   "secoes_do_grupo": [
+    "0513",
+    "0522",
+    "1105",
+    "1352"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 29.82,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "2847": {
+   "secao": "2847",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3078",
+    "2847"
+   ],
+   "mrv": 8,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A5",
+   "secoes_do_grupo": [
+    "0530",
+    "2847",
+    "3078",
+    "3179"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 32.22,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "2855": {
+   "secao": "2855",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "0512",
+    "2855"
+   ],
+   "mrv": 2,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B1",
+   "secoes_do_grupo": [
+    "0512",
+    "1160",
+    "2855",
+    "3845"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 11.86,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B1, o 1º corredor a partir da porta. Na placa alta: “grupo B1 · seções 0512 1160 2855 3845”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3054": {
+   "secao": "3054",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3054",
+    "1099"
+   ],
+   "mrv": 7,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C4",
+   "secoes_do_grupo": [
+    "0527",
+    "1099",
+    "3054",
+    "3216"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 26.05,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C4, o 4º corredor a partir da porta. Na placa alta: “grupo C4 · seções 0527 1099 3054 3216”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3078": {
+   "secao": "3078",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3078",
+    "2847"
+   ],
+   "mrv": 8,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A5",
+   "secoes_do_grupo": [
+    "0530",
+    "2847",
+    "3078",
+    "3179"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 32.22,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3108": {
+   "secao": "3108",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3108",
+    "3422"
+   ],
+   "mrv": 9,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B3",
+   "secoes_do_grupo": [
+    "3108",
+    "3181",
+    "3302",
+    "3422"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 25.23,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B3, o 3º corredor a partir da porta. Na placa alta: “grupo B3 · seções 3108 3181 3302 3422”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3142": {
+   "secao": "3142",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3142",
+    "1278"
+   ],
+   "mrv": 10,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A1",
+   "secoes_do_grupo": [
+    "1278",
+    "1314",
+    "3142",
+    "3309"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 11.93,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3161": {
+   "secao": "3161",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3161",
+    "3307"
+   ],
+   "mrv": 11,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A2",
+   "secoes_do_grupo": [
+    "3161",
+    "3307",
+    "3311",
+    "3913"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 14.33,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3179": {
+   "secao": "3179",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3179",
+    "0530"
+   ],
+   "mrv": 12,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A5",
+   "secoes_do_grupo": [
+    "0530",
+    "2847",
+    "3078",
+    "3179"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 36.12,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3181": {
+   "secao": "3181",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3302",
+    "3181"
+   ],
+   "mrv": 16,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B3",
+   "secoes_do_grupo": [
+    "3108",
+    "3181",
+    "3302",
+    "3422"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 29.13,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B3, o 3º corredor a partir da porta. Na placa alta: “grupo B3 · seções 3108 3181 3302 3422”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3216": {
+   "secao": "3216",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3216",
+    "0527"
+   ],
+   "mrv": 13,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C4",
+   "secoes_do_grupo": [
+    "0527",
+    "1099",
+    "3054",
+    "3216"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 22.15,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C4, o 4º corredor a partir da porta. Na placa alta: “grupo C4 · seções 0527 1099 3054 3216”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3229": {
+   "secao": "3229",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3229",
+    "3821"
+   ],
+   "mrv": 14,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C2",
+   "secoes_do_grupo": [
+    "3229",
+    "3688",
+    "3821"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 13.45,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C2, o 2º corredor a partir da porta. Na placa alta: “grupo C2 · seções 3229 3688 3821”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3245": {
+   "secao": "3245",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3245",
+    "0519"
+   ],
+   "mrv": 15,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C3",
+   "secoes_do_grupo": [
+    "0519",
+    "3245",
+    "3862"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 15.85,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C3, o 3º corredor a partir da porta. Na placa alta: “grupo C3 · seções 0519 3245 3862”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3302": {
+   "secao": "3302",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3302",
+    "3181"
+   ],
+   "mrv": 16,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B3",
+   "secoes_do_grupo": [
+    "3108",
+    "3181",
+    "3302",
+    "3422"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 29.13,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B3, o 3º corredor a partir da porta. Na placa alta: “grupo B3 · seções 3108 3181 3302 3422”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3305": {
+   "secao": "3305",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3305",
+    "0521"
+   ],
+   "mrv": 17,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B4",
+   "secoes_do_grupo": [
+    "0518",
+    "0521",
+    "3305",
+    "3306"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 31.53,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B4, o 4º corredor a partir da porta. Na placa alta: “grupo B4 · seções 0518 0521 3305 3306”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3306": {
+   "secao": "3306",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3306",
+    "0518"
+   ],
+   "mrv": 18,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B4",
+   "secoes_do_grupo": [
+    "0518",
+    "0521",
+    "3305",
+    "3306"
+   ],
+   "ordem_grupo": 4,
+   "coord_grupo": 35.43,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B4, o 4º corredor a partir da porta. Na placa alta: “grupo B4 · seções 0518 0521 3305 3306”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3307": {
+   "secao": "3307",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3161",
+    "3307"
+   ],
+   "mrv": 11,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A2",
+   "secoes_do_grupo": [
+    "3161",
+    "3307",
+    "3311",
+    "3913"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 14.33,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3308": {
+   "secao": "3308",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3308"
+   ],
+   "mrv": 19,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B5",
+   "secoes_do_grupo": [
+    "3308",
+    "3832"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 37.83,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B5, o 5º corredor a partir da porta. Na placa alta: “grupo B5 · seções 3308 3832”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3309": {
+   "secao": "3309",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3309",
+    "1314"
+   ],
+   "mrv": 20,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A1",
+   "secoes_do_grupo": [
+    "1278",
+    "1314",
+    "3142",
+    "3309"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 8.03,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3311": {
+   "secao": "3311",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3311",
+    "3913"
+   ],
+   "mrv": 21,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A2",
+   "secoes_do_grupo": [
+    "3161",
+    "3307",
+    "3311",
+    "3913"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 18.23,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3313": {
+   "secao": "3313",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3313",
+    "3889"
+   ],
+   "mrv": 22,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A3",
+   "secoes_do_grupo": [
+    "3313",
+    "3889"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 23.12,
+   "grupos_na_parede": 5,
+   "serpenteado": true,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A3, o 3º corredor a partir da porta. Na placa alta: “grupo A3 · seções 3313 3889”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3315": {
+   "secao": "3315",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3315",
+    "3778"
+   ],
+   "mrv": 23,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B2",
+   "secoes_do_grupo": [
+    "3315",
+    "3778"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 18.56,
+   "grupos_na_parede": 5,
+   "serpenteado": true,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B2, o 2º corredor a partir da porta. Na placa alta: “grupo B2 · seções 3315 3778”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3322": {
+   "secao": "3322",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3322",
+    "3752"
+   ],
+   "mrv": 24,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C5",
+   "secoes_do_grupo": [
+    "3322",
+    "3752"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 28.85,
+   "grupos_na_parede": 6,
+   "serpenteado": true,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C5, o 5º corredor a partir da porta. Na placa alta: “grupo C5 · seções 3322 3752”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3422": {
+   "secao": "3422",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3108",
+    "3422"
+   ],
+   "mrv": 9,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B3",
+   "secoes_do_grupo": [
+    "3108",
+    "3181",
+    "3302",
+    "3422"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 25.23,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B3, o 3º corredor a partir da porta. Na placa alta: “grupo B3 · seções 3108 3181 3302 3422”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3442": {
+   "secao": "3442",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3442"
+   ],
+   "mrv": 25,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C1",
+   "secoes_do_grupo": [
+    "3442"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 7.15,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C1, o 1º corredor a partir da porta. Na placa alta: “grupo C1 · seções 3442”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3688": {
+   "secao": "3688",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3688"
+   ],
+   "mrv": 26,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C2",
+   "secoes_do_grupo": [
+    "3229",
+    "3688",
+    "3821"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 9.55,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C2, o 2º corredor a partir da porta. Na placa alta: “grupo C2 · seções 3229 3688 3821”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3752": {
+   "secao": "3752",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3322",
+    "3752"
+   ],
+   "mrv": 24,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C5",
+   "secoes_do_grupo": [
+    "3322",
+    "3752"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 28.85,
+   "grupos_na_parede": 6,
+   "serpenteado": true,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C5, o 5º corredor a partir da porta. Na placa alta: “grupo C5 · seções 3322 3752”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3778": {
+   "secao": "3778",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3315",
+    "3778"
+   ],
+   "mrv": 23,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B2",
+   "secoes_do_grupo": [
+    "3315",
+    "3778"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 18.56,
+   "grupos_na_parede": 5,
+   "serpenteado": true,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B2, o 2º corredor a partir da porta. Na placa alta: “grupo B2 · seções 3315 3778”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3821": {
+   "secao": "3821",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3229",
+    "3821"
+   ],
+   "mrv": 14,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C2",
+   "secoes_do_grupo": [
+    "3229",
+    "3688",
+    "3821"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 13.45,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C2, o 2º corredor a partir da porta. Na placa alta: “grupo C2 · seções 3229 3688 3821”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3832": {
+   "secao": "3832",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3832"
+   ],
+   "mrv": 27,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B5",
+   "secoes_do_grupo": [
+    "3308",
+    "3832"
+   ],
+   "ordem_grupo": 5,
+   "coord_grupo": 41.73,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B5, o 5º corredor a partir da porta. Na placa alta: “grupo B5 · seções 3308 3832”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3845": {
+   "secao": "3845",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "1160",
+    "3845"
+   ],
+   "mrv": 5,
+   "letra": "B",
+   "porta": "S5",
+   "parede": "norte",
+   "parede_rotulo": "do fundo",
+   "cor": "âmbar",
+   "grupo": "B1",
+   "secoes_do_grupo": [
+    "0512",
+    "1160",
+    "2855",
+    "3845"
+   ],
+   "ordem_grupo": 1,
+   "coord_grupo": 15.76,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila B será a segunda."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada B (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede do fundo",
+     "texto": "Sua mesa fica na parede do fundo, em frente a você. Procure o painel B e siga até o grupo B1, o 1º corredor a partir da porta. Na placa alta: “grupo B1 · seções 0512 1160 2855 3845”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3862": {
+   "secao": "3862",
+   "papel": "principal",
+   "secoes_da_mesa": [
+    "3862"
+   ],
+   "mrv": 28,
+   "letra": "C",
+   "porta": "S6",
+   "parede": "leste",
+   "parede_rotulo": "da direita",
+   "cor": "magenta",
+   "grupo": "C3",
+   "secoes_do_grupo": [
+    "0519",
+    "3245",
+    "3862"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 19.75,
+   "grupos_na_parede": 6,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila C será a primeira que você encontra."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada C (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da direita",
+     "texto": "Sua mesa fica na parede da direita. Procure o painel C e siga até o grupo C3, o 3º corredor a partir da porta. Na placa alta: “grupo C3 · seções 0519 3245 3862”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3889": {
+   "secao": "3889",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3313",
+    "3889"
+   ],
+   "mrv": 22,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A3",
+   "secoes_do_grupo": [
+    "3313",
+    "3889"
+   ],
+   "ordem_grupo": 3,
+   "coord_grupo": 23.12,
+   "grupos_na_parede": 5,
+   "serpenteado": true,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A3, o 3º corredor a partir da porta. Na placa alta: “grupo A3 · seções 3313 3889”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  },
+  "3913": {
+   "secao": "3913",
+   "papel": "agregada",
+   "secoes_da_mesa": [
+    "3311",
+    "3913"
+   ],
+   "mrv": 21,
+   "letra": "A",
+   "porta": "S4",
+   "parede": "oeste",
+   "parede_rotulo": "da esquerda",
+   "cor": "azul",
+   "grupo": "A2",
+   "secoes_do_grupo": [
+    "3161",
+    "3307",
+    "3311",
+    "3913"
+   ],
+   "ordem_grupo": 2,
+   "coord_grupo": 18.23,
+   "grupos_na_parede": 5,
+   "serpenteado": false,
+   "passos": [
+    {
+     "onde": "Portão · Merrion Road",
+     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+    },
+    {
+     "onde": "Ring 3 · pátio de fila",
+     "texto": "As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila A será a última, no fim do trecho de fundo."
+    },
+    {
+     "onde": "Frente da fila · pátio",
+     "texto": "Quando liberado, atravesse o pátio até a porta de entrada A (identificada com um adesivo no vidro)."
+    },
+    {
+     "onde": "Hall 2 · parede da esquerda",
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+    },
+    {
+     "onde": "Mesa",
+     "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."
+    },
+    {
+     "onde": "Saída",
+     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+    }
+   ]
+  }
+ }
+}

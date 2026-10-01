@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onde eu voto? · Eleições 2026 · Dublin</title>
+<meta name="description" content="Descubra sua seção, sua fila e sua porta no RDS Hall 2 antes de sair de casa.">
+<meta name="theme-color" content="#FCC537">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icones/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icones/icone-192.png">
+<link rel="stylesheet" href="./estilo.css">
+</head>
+<body>
+<header class="topo">
+  <div class="marca">ELEIÇÕES 2026<small>#VOTONADEMOCRACIA</small></div>
+  <div class="onde" id="onde">Dublin · RDS Hall 2</div>
+</header>
+<main>
+  <h1>Onde eu voto?</h1>
+  <p class="sub" id="sub">Descubra sua seção, sua fila e sua porta antes de sair de casa.</p>
+
+  <div class="aviso info" id="aviso-versao" hidden>Há uma versão nova desta página. <a href="#" onclick="location.reload();return false;">Recarregar</a>.</div>
+  <div class="aviso" id="aviso-amostra" hidden><b>Dados de teste.</b> Esta versão usa uma lista sintética; os nomes reais ainda não foram carregados.</div>
+
+  <form class="consulta" id="form" autocomplete="off">
+    <label for="nome">Nome completo</label>
+    <input type="text" id="nome" name="nome" autocapitalize="characters" autocorrect="off" spellcheck="false" required inputmode="text" placeholder="como está no título de eleitor">
+    <p class="dica" id="dica-nome"></p>
+    <div id="bloco-titulo" hidden>
+      <div class="aviso" id="aviso-homonimo"></div>
+      <label for="titulo" id="rotulo-titulo">Título de eleitor: os 4 dígitos do meio (ou o número completo)</label>
+      <input type="text" id="titulo" name="titulo" inputmode="numeric" placeholder="0000" maxlength="14" autocomplete="off">
+      <p class="dica" id="dica-titulo"></p>
+    </div>
+    <button class="principal" id="botao" type="submit" disabled>Consultar</button>
+  </form>
+
+  <div id="resultado" aria-live="polite"></div>
+</main>
+<footer>
+  <p id="rodape"></p>
+  <p>Não encontrou? Confira o nome como está no <a id="link-etitulo" href="#" target="_blank" rel="noopener">e-Título / consulta do TSE</a>, ou procure a mesa <b>“Descubra sua seção”</b> na calçada da Merrion Road, antes do portão.</p>
+  <p id="versao"></p>
+  <p><a href="./equipe/">Acesso da equipe</a></p>
+</footer>
+<script src="./comum.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id);
+  const estado = { indice: null, rotas: null, config: null };
+  OEV.registraSW("./sw.js");
+
+  function mostra(html) { $("resultado").innerHTML = html; $("resultado").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  function pedeTitulo(mostrar) {
+    $("bloco-titulo").hidden = !mostrar;
+    $("titulo").required = mostrar;
+    $("botao").textContent = mostrar ? "Confirmar" : "Consultar";
+    if (mostrar) $("titulo").focus();
+    else $("titulo").value = "";
+  }
+
+  try {
+    const [config, rotas, indice, versao] = await Promise.all([
+      OEV.carregaJSON("./dados/config.json"), OEV.carregaJSON("./dados/rotas.json"),
+      OEV.carregaJSON("./dados/indice_publico.json"), OEV.carregaJSON("./dados/versao.json").catch(() => null),
+    ]);
+    Object.assign(estado, { config, rotas, indice });
+    if (indice.v !== 2 || indice.fator !== "nome") throw new Error("índice em formato antigo: reconstrua o app");
+    $("onde").textContent = `${config.local} · ${config.turno}`;
+    $("sub").textContent = `${config.data}, ${config.horario}. ${config.local}, ${config.endereco}.`;
+    $("dica-nome").textContent = config.dica_nome;
+    $("aviso-homonimo").innerHTML = `<b>${OEV.esc(config.aviso_homonimo)}</b>`;
+    if (config.rotulo_titulo) $("rotulo-titulo").textContent = config.rotulo_titulo;
+    $("dica-titulo").textContent = config.dica_titulo || "";
+    $("rodape").textContent = config.rodape;
+    $("link-etitulo").href = config.link_etitulo;
+    OEV.mascaraTitulo($("titulo"));
+    if (versao) {
+      $("versao").textContent = `Lista com ${versao.eleitores.toLocaleString("pt-BR")} eleitores · dados de ${new Date(versao.construido_em).toLocaleString("pt-BR")}`;
+      $("aviso-amostra").hidden = !versao.amostra_sintetica;
+    }
+    $("botao").disabled = false;
+  } catch (e) {
+    mostra(`<div class="aviso erro">Não foi possível carregar os dados (${OEV.esc(e.message)}). Tente de novo com internet.</div>`);
+    return;
+  }
+
+  // Mudou o nome depois de pedirmos o título? Volta ao início.
+  $("nome").addEventListener("input", () => { if (!$("bloco-titulo").hidden) pedeTitulo(false); });
+
+  $("form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const nome = $("nome").value, titulo = $("bloco-titulo").hidden ? "" : $("titulo").value;
+    const rotuloBotao = $("botao").textContent;
+    $("botao").disabled = true; $("botao").textContent = "Procurando…";
+    try {
+      const r = await OEV.consultaPublica(estado.indice, nome, titulo);
+      const etitulo = `<a href="${OEV.esc(estado.config.link_etitulo)}" target="_blank" rel="noopener">e-Título</a>`;
+      if (r.estado === "incompleto") {
+        mostra(`<div class="aviso erro">Preencha o nome completo.</div>`);
+      } else if (r.estado === "nao_encontrado") {
+        pedeTitulo(false);
+        mostra(`<div class="aviso erro"><b>Não encontramos esse nome na lista de Dublin.</b><br>
+          Confira se digitou o nome completo como está no título (nome de casada, sobrenomes do meio).
+          Se continuar sem resultado, confira no ${etitulo} ou procure a mesa “Descubra sua seção” na calçada, antes do portão.</div>`);
+      } else if (r.estado === "homonimo") {
+        pedeTitulo(true);
+        mostra("");
+      } else if (r.estado === "titulo_invalido") {
+        mostra(`<div class="aviso erro">Digite os <b>4 dígitos do meio</b> do título (no número 0000 <b>XXXX</b> 0000) ou o número completo de 12 dígitos.</div>`);
+      } else if (r.estado === "sem_desempate") {
+        pedeTitulo(false);
+        mostra(`<div class="aviso erro"><b>${OEV.esc(estado.config.aviso_sem_desempate)}</b></div>`);
+      } else if (r.estado === "titulo_errado") {
+        mostra(`<div class="aviso erro"><b>${OEV.esc(estado.config.aviso_titulo_errado)}</b></div>`);
+      } else {
+        const rota = estado.rotas.secoes[r.secao];
+        if (!rota) throw new Error(`seção ${r.secao} não está no mapa`);
+        pedeTitulo(false);
+        const avisoMarca = r.marca
+          ? `<div class="aviso erro" id="aviso-marca"><b>Atenção.</b> ${OEV.esc(estado.config.aviso_marca.replace("{marca}", r.marca))}</div>`
+          : "";
+        mostra(avisoMarca + OEV.renderRota(rota) + `<p class="dica">Tire uma foto desta tela ou anote: <b>seção ${OEV.esc(rota.secao)} · porta ${rota.letra}</b>.</p>`);
+      }
+    } catch (e) {
+      mostra(`<div class="aviso erro">Erro na consulta: ${OEV.esc(e.message)}</div>`);
+    } finally {
+      $("botao").disabled = false;
+      $("botao").textContent = $("bloco-titulo").hidden ? "Consultar" : "Confirmar";
+    }
+  });
+})();
+</script>
+</body>
+</html>
