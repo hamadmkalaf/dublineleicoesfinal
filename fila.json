@@ -1,0 +1,10 @@
+{
+ "v": 1,
+ "ativo": false,
+ "zonas": {
+  "A": {"pct": null, "em": null},
+  "B": {"pct": null, "em": null},
+  "C": {"pct": null, "em": null}
+ },
+ "atualizado": null
+}
