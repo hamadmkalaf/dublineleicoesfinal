@@ -54,10 +54,13 @@ AMOSTRA = RAIZ / "app" / "testes" / "amostra_eleitores.csv"
 
 ITERACOES_EQUIPE = 600_000
 
-PAREDE_LADO = {"oeste": "à esquerda", "norte": "em frente, do outro lado do salão", "leste": "à direita"}
+# Orientação sempre na direção em que o eleitor caminha: ele entra no Hall pelas portas da
+# fachada sul, olhando para o fundo do salão. Oeste = esquerda, norte = fundo, leste = direita.
+# Nos textos ao eleitor não se usam pontos cardeais, "apron", "boca" nem "cabeça" (decisão de 01/10).
+ROTULO_PAREDE = {"oeste": "da esquerda", "norte": "do fundo", "leste": "da direita"}
 ORDINAL = ["1º", "2º", "3º", "4º", "5º", "6º"]
 PALAVRAS_SENHA = (
-    "urna cabine fila porta parede zona letra placa apron portao corredor raia cartorio "
+    "urna cabine fila porta parede zona letra placa patio portao corredor raia cartorio "
     "mesario secao titulo ring hall calcada painel grupo lista senha dublin merrion ballsbridge "
     "outubro turno voto democracia eleitor apto passo fita ccb vinil banner mapa rota"
 ).split()
@@ -104,6 +107,7 @@ def monta_rotas(dec, grupos):
                 "letra": letra,
                 "porta": m["porta"],
                 "parede": m["parede"],
+                "parede_rotulo": ROTULO_PAREDE[m["parede"]],
                 "cor": ent["cor"],
                 "grupo": g["id"],
                 "secoes_do_grupo": [normaliza_secao(x) for x in g["secoes"]],
@@ -117,18 +121,22 @@ def monta_rotas(dec, grupos):
 
 
 def passos(letra, porta, parede, grupo, n_grupo, secoes_grupo):
-    """Texto do caminho, no vocabulário das peças de sinalização P1–P7."""
+    """Texto do caminho, na perspectiva de quem caminha: esquerda e direita são as do eleitor."""
     if letra == "C":
-        ring = "Entre no Ring 3 pelo canto nordeste e desça o corredor. A boca da zona C é a PRIMEIRA que você alcança."
+        ring = ("Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. "
+                "A entrada da zona C é a PRIMEIRA que você alcança.")
     elif letra == "B":
-        ring = "Entre no Ring 3 pelo canto nordeste e desça o corredor. Passe a boca C; a zona B é a SEGUNDA, no centro."
+        ring = ("Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. "
+                "Passe a entrada da zona C; a entrada da zona B é a SEGUNDA, no centro.")
     else:
-        ring = "Entre no Ring 3 pelo canto nordeste e desça o corredor. Passe as bocas C e B; a zona A é a ÚLTIMA, no fim do trecho de fundo."
+        ring = ("Entre no Ring 3 pelo canto da entrada e desça o corredor: as zonas ficam à sua direita. "
+                "Passe as entradas das zonas C e B e vire à direita no fim do corredor; a entrada da zona A é a ÚLTIMA.")
+    rotulo = ROTULO_PAREDE[parede]
     return [
-        {"onde": "Portão · Merrion Road", "texto": f"Sua letra é {letra}. Anote: você vai procurá-la três vezes no caminho. Siga a fila pela lateral leste do Hall 2."},
-        {"onde": "Ring 3 · pátio de fila", "texto": f"{ring} Confira a placa da boca: sua seção está listada nela."},
-        {"onde": "Cabeça da fila · apron", "texto": f"Da cabeça da zona {letra}, atravesse os 14 m do apron até a porta {porta}, com a letra {letra} no vidro."},
-        {"onde": f"Hall 2 · parede {parede}", "texto": f"Sua mesa fica na parede {parede}, {PAREDE_LADO[parede]}. Procure o painel {letra} e siga até o grupo {grupo}, o {ORDINAL[n_grupo]} corredor a partir da porta. Na placa alta: “grupo {grupo} · seções {' '.join(secoes_grupo)}”."},
+        {"onde": "Portão · Merrion Road", "texto": f"Sua letra é {letra}. Anote: você vai procurá-la três vezes no caminho. Siga a fila ao longo do Hall 2, que fica à sua direita, até o pátio de fila (Ring 3)."},
+        {"onde": "Ring 3 · pátio de fila", "texto": f"{ring} Confira a placa da entrada: sua seção está listada nela."},
+        {"onde": "Frente da fila · pátio", "texto": f"Da frente da fila da zona {letra}, atravesse os 14 m de pátio até a porta {porta}, com a letra {letra} no vidro."},
+        {"onde": f"Hall 2 · parede {rotulo}", "texto": f"Sua mesa fica na parede {rotulo}{', em frente a você' if parede == 'norte' else ''}. Procure o painel {letra} e siga até o grupo {grupo}, o {ORDINAL[n_grupo]} corredor a partir da porta. Na placa alta: “grupo {grupo} · seções {' '.join(secoes_grupo)}”."},
         {"onde": "Mesa", "texto": "Apresente o documento com foto ao mesário. Não encontrou a sua seção? Procure um mesário: sua seção está em outra porta."},
         {"onde": "Saída", "texto": "Saia pelas portas S2 ou S8 (placa SAÍDA → Merrion Road)."},
     ]

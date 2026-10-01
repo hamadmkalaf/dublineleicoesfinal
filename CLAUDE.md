@@ -149,6 +149,12 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - A normalização de nomes existe duas vezes, em `scripts/app_normaliza.py` e em
   `app/public/comum.js`. `python3 -m pytest app/testes` confere que são iguais. Mudou
   uma, mude a outra.
+- **Textos ao eleitor na direção em que ele caminha** (decisão de 01/10): sem pontos
+  cardeais leste/oeste, sem "apron", "boca" nem "cabeça". Esquerda e direita são as do
+  eleitor: o Hall fica à direita de quem desce do portão; as zonas do Ring ficam à direita
+  de quem desce o corredor; no salão, parede oeste = da esquerda, norte = do fundo, leste
+  = da direita (`ROTULO_PAREDE` em `app_construir.py` e `comum.js`). Os campos de dados
+  (`parede`) e as peças de sinalização em `mapa/` mantêm o vocabulário técnico.
 - Paleta do app = identidade TSE 2026 (`app/public/estilo.css`, `:root`). As cores das
   portas A/B/C em `comum.js` são as v2 das peças de sinalização: não mudar. Sem inglês.
 - Testar sempre com `app/testes/amostra_eleitores.csv` (sintética). Nunca com a lista de

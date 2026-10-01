@@ -40,7 +40,7 @@ try {
   // (a) eleitor fixo da amostra: seção 3889 -> letra A, porta S4, grupo A3
   let r = await consulta("Tizzani Viana D'Andrea Nery");
   assert.equal(await r.locator(".letra").textContent(), "A");
-  assert.match(await r.textContent(), /Porta S4 · parede oeste/);
+  assert.match(await r.textContent(), /Porta S4 · parede da esquerda/);
   assert.match(await r.textContent(), /3889/);
   assert.match(await r.textContent(), /grupo A3/i);
   passo("eleitor: nome completo com apóstrofo → seção 3889, fila A, porta S4, grupo A3");
