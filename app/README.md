@@ -16,7 +16,8 @@ python3 scripts/app_importar_eleitores.py "data/eleitores/Lista de eleitores_Dub
 # 2. construir o site (sem --grava só confere; sem lista usa a amostra sintética):
 python3 scripts/app_construir.py --lista data/eleitores/eleitores.csv --grava --senha-equipe "seis palavras da senha do dia"
 
-# 3. publicar app/dist/ no GitHub Pages (ver contexto.md §5)
+# 3. publicar app/dist/ no branch gh-pages deste repositório (GitHub Pages; ver contexto.md §5):
+bash scripts/app_publicar.sh
 
 # testes
 python3 -m pytest -q app/testes
