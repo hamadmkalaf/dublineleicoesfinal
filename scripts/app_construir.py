@@ -2,7 +2,8 @@
 
     python3 scripts/app_construir.py                       # só confere, não escreve nada (código 1 se quebrar)
     python3 scripts/app_construir.py --grava               # escreve app/dist/ com a amostra sintética
-    python3 scripts/app_construir.py --grava --lista data/eleitores/eleitores.csv --senha-equipe "seis palavras ..."
+    python3 scripts/app_construir.py --grava --lista data/eleitores/eleitores_v2.csv --senha-equipe "seis palavras ..."
+    python3 scripts/app_construir.py --grava --lista data/eleitores/eleitores_v2.csv.enc --senha-equipe "..."   # lista cifrada do git
 
 Lê (nunca escreve): data/decisoes.json, data/grupos_mesas.json, mapa/sinalizacao/P0-Mestra.dc.html,
 app/public/dados/config.json (turno_n).
@@ -141,12 +142,18 @@ def passos(letra, porta, parede, grupo, n_grupo, secoes_grupo):
     ]
 
 
-def le_lista(caminho):
-    with open(caminho, encoding="utf-8", newline="") as f:
-        amostra = f.read(4096)
-        f.seek(0)
-        sep = ";" if amostra.count(";") >= amostra.count(",") else ","
-        return list(csv.DictReader(f, delimiter=sep))
+def le_lista(caminho, senha=None):
+    """CSV canônico em claro, ou cifrado (.enc, ver app_cifra_lista.py) com a senha da equipe."""
+    import io
+
+    if str(caminho).endswith(".enc"):
+        from app_cifra_lista import le_csv_cifrado
+
+        texto = le_csv_cifrado(caminho, senha)
+    else:
+        texto = Path(caminho).read_text(encoding="utf-8")
+    sep = ";" if texto[:4096].count(";") >= texto[:4096].count(",") else ","
+    return list(csv.DictReader(io.StringIO(texto, newline=""), delimiter=sep))
 
 
 def prepara_eleitores(linhas):
@@ -298,7 +305,7 @@ def main():
     turno = args.turno or int(config.get("turno_n", 1))
     dec, grupos = carrega(DECISOES), carrega(GRUPOS)
     rotas = monta_rotas(dec, grupos)
-    linhas = le_lista(args.lista)
+    linhas = le_lista(args.lista, args.senha_equipe)
     eleitores = prepara_eleitores(linhas)
     erros = confere(rotas, eleitores, dec)
 
