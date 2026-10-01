@@ -9,6 +9,8 @@ const OEV = (() => {
   const PARTICULAS = new Set(["DE", "DA", "DO", "DOS", "DAS", "E"]);
   const COR_LETRA = { A: "#33507E", B: "#E8C63A", C: "#DE7343" };
   const COR_TEXTO_LETRA = { A: "#FFFFFF", B: "#3F3F3F", C: "#3F3F3F" };
+  /* Parede do salão na perspectiva de quem entra pelas portas S4/S5/S6 (reserva para rotas sem parede_rotulo). */
+  const ROTULO_PAREDE = { oeste: "da esquerda", norte: "do fundo", leste: "da direita" };
   const enc = new TextEncoder();
 
   function normalizaNome(texto) {
@@ -187,15 +189,15 @@ const OEV = (() => {
     return t ? t.replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3") : "";
   }
 
-  /* ---- Mini-mapa: Ring 3 + apron + Hall 2, esquemático, com zona, porta e grupo em destaque ---- */
+  /* ---- Mini-mapa: Ring 3 + pátio de travessia + Hall 2, esquemático, com zona, porta e grupo em destaque ---- */
   function desenhaMapa(rota) {
     const s = 5; // px por metro
     const M = 14; // margem
-    const HALL_W = 50.3, HALL_D = 44.4, APRON = 14, RING_W = 44, RING_D = 35, RING_X = (HALL_W - RING_W) / 2;
-    const W = HALL_W * s + 2 * M, H = (HALL_D + APRON + RING_D) * s + 2 * M + 22;
+    const HALL_W = 50.3, HALL_D = 44.4, PATIO = 14, RING_W = 44, RING_D = 35, RING_X = (HALL_W - RING_W) / 2;
+    const W = HALL_W * s + 2 * M, H = (HALL_D + PATIO + RING_D) * s + 2 * M + 22;
     const X = (m) => M + m * s;
     const YH = (y) => M + (HALL_D - y) * s; // y do salão cresce para o norte
-    const ringTop = M + (HALL_D + APRON) * s;
+    const ringTop = M + (HALL_D + PATIO) * s;
     const cor = COR_LETRA[rota.letra], fraco = "#C9D6E3", texto = "#042B5A", suave = "#6486A7";
     const p = [];
     p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até a seção ${rota.secao}">`);
@@ -230,7 +232,7 @@ const OEV = (() => {
       p.push(`<rect x="${X(x) - 6}" y="${YH(0) - 4}" width="12" height="8" fill="${fill}" stroke="${texto}" stroke-width="${ativa ? 1.5 : 0.5}"/>`);
       p.push(`<text x="${X(x)}" y="${YH(0) + 16}" text-anchor="middle" font-size="${ativa ? 11 : 8}" font-weight="${ativa ? 800 : 400}" fill="${texto}">${id} ${esc(rot)}</text>`);
     }
-    // apron: seta da cabeça da zona até a porta
+    // pátio de travessia: seta da frente da fila até a porta
     const zonaLarg = (RING_W - 3 - 2 * 1.2) / 3;
     const zonaX = { A: RING_X, B: RING_X + zonaLarg + 1.2, C: RING_X + 2 * (zonaLarg + 1.2) }; // A a oeste, C a leste
     const zx = zonaX[rota.letra];
@@ -249,8 +251,8 @@ const OEV = (() => {
     p.push(`<rect x="${X(RING_X + RING_W - 3)}" y="${ringTop}" width="${3 * s}" height="${RING_D * s}" fill="#EEF3F8"/>`);
     p.push(`<rect x="${X(RING_X)}" y="${ringTop + (RING_D - 3) * s}" width="${RING_W * s}" height="${3 * s}" fill="#EEF3F8"/>`);
     p.push(`<path d="M ${X(RING_X + RING_W - 1.5)} ${ringTop + 4} L ${X(RING_X + RING_W - 1.5)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 1.5) * s} L ${X(zx + zonaLarg / 2)} ${ringTop + (RING_D - 3) * s - 2}" stroke="${texto}" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>`);
-    p.push(`<text x="${X(RING_X + RING_W - 1.5)}" y="${ringTop - 4}" text-anchor="middle" font-size="9" fill="${texto}">entrada ▼</text>`);
-    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="${suave}">Ring 3 (pátio de fila) · esquema sem escala · norte para cima</text>`);
+    p.push(`<text x="${X(RING_X + RING_W - 1.5)}" y="${ringTop - 4}" text-anchor="end" font-size="9" fill="${texto}">você entra aqui ▼</text>`);
+    p.push(`<text x="${X(HALL_W / 2)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="${suave}">Esquema sem escala · o Hall 2 fica à sua frente</text>`);
     p.push(`</svg>`);
     return p.join("");
   }
@@ -264,7 +266,7 @@ const OEV = (() => {
       <div class="cartao" style="--cor:${cor};--cor-texto:${corTexto}">
         ${extra}
         <div class="cartao-letra"><span class="letra">${rota.letra}</span>
-          <div><div class="rotulo">sua fila e sua porta</div><div class="grande">Porta ${esc(rota.porta)} · parede ${esc(rota.parede)}</div></div></div>
+          <div><div class="rotulo">sua fila e sua porta</div><div class="grande">Porta ${esc(rota.porta)} · parede ${esc(rota.parede_rotulo || ROTULO_PAREDE[rota.parede] || rota.parede)}</div></div></div>
         <div class="cartao-linha"><div><div class="rotulo">seção</div><div class="grande">${esc(rota.secao)}</div></div>
           <div><div class="rotulo">grupo de mesas</div><div class="grande">${esc(rota.grupo)}</div></div>
           <div><div class="rotulo">seções do grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div></div>
