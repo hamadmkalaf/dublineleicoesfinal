@@ -4,7 +4,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
-from app_normaliza import chaves_nome, hash_publico, normaliza_data, normaliza_inscricao, normaliza_nome, normaliza_secao, titulo_parcial  # noqa: E402
+from app_normaliza import chave_caderno, chaves_nome, hash_publico, normaliza_data, normaliza_inscricao, normaliza_nome, normaliza_secao, numero_caderno, titulo_parcial  # noqa: E402
 from app_importar_eleitores import parse_texto_tre  # noqa: E402
 
 
@@ -195,3 +195,77 @@ def test_lista_cifrada_ida_e_volta(tmp_path):
         le_csv_cifrado(enc, "senha errada")
     r = subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--lista", str(enc), "--senha-equipe", "teste amostra"], capture_output=True, text=True)
     assert r.returncode == 0 and "1007 eleitores" in r.stdout, r.stdout + r.stderr
+
+
+# ---- v3 (01/10/2026): número no caderno e zonas para a estimativa de espera ----
+
+def test_numero_caderno_regra_dos_200():
+    """Posição até 200 -> ela mesma; acima de 200 -> menos 200 (exemplo do usuário: 256º -> 56)."""
+    assert numero_caderno(1) == 1 and numero_caderno(199) == 199 and numero_caderno(200) == 200
+    assert numero_caderno(201) == 1 and numero_caderno(256) == 56
+    assert numero_caderno(0) is None and numero_caderno(None) is None
+
+
+def test_chave_caderno_mantem_particulas():
+    """Ordem alfabética do nome impresso: sem acento, maiúsculas, partículas contam (ao contrário de normaliza_nome)."""
+    assert chave_caderno("Maria da Silva") == "MARIA DA SILVA"
+    assert chave_caderno("  josé  gonçalves ") == "JOSE GONCALVES"
+    assert chave_caderno("MARIA DA SILVA") < chave_caderno("MARIA DANTAS")
+
+
+def test_numera_caderno_por_secao():
+    """256 eleitores na 0513 e 3 na 3313: posição alfabética por seção; o 256º da 0513 vira nº 56."""
+    from app_construir import numera_caderno, prepara_eleitores
+    linhas = [{"NOM_ELEITOR": f"ELEITOR {i:03d} TESTE", "NUM_INSCRICAO": f"{i:012d}", "NUM_SECAO": "0513", "TURNO1": "OK", "TURNO2": "OK"} for i in range(1, 256)]
+    linhas.append({"NOM_ELEITOR": "MARIVALDO CLEITON", "NUM_INSCRICAO": "999999999999", "NUM_SECAO": "0513", "TURNO1": "OK", "TURNO2": "OK"})
+    linhas += [{"NOM_ELEITOR": n, "NUM_INSCRICAO": f"{i:012d}", "NUM_SECAO": "3313", "TURNO1": "OK", "TURNO2": "OK"}
+               for i, n in enumerate(["ZELIA ALVES", "ANA DA COSTA", "ANA COSTA"], start=1)]
+    eleitores = numera_caderno(prepara_eleitores(linhas))
+    por_nome = {e["n"]: e for e in eleitores}
+    m = por_nome["MARIVALDO CLEITON"]
+    assert (m["p"], m["c"]) == (256, 56)
+    assert (por_nome["ELEITOR 001 TESTE"]["p"], por_nome["ELEITOR 001 TESTE"]["c"]) == (1, 1)
+    assert (por_nome["ELEITOR 200 TESTE"]["p"], por_nome["ELEITOR 200 TESTE"]["c"]) == (200, 200)
+    assert (por_nome["ELEITOR 201 TESTE"]["p"], por_nome["ELEITOR 201 TESTE"]["c"]) == (201, 1)
+    # na 3313: "ANA COSTA" < "ANA DA COSTA" < "ZELIA ALVES" (a partícula DA conta na ordem do caderno)
+    assert [e["n"] for e in sorted((e for e in eleitores if e["s"] == "3313"), key=lambda e: e["p"])] == ["ANA COSTA", "ANA COSTA", "ZELIA ALVES"]
+    assert por_nome["ZELIA ALVES"]["c"] == 3
+
+
+def test_pacote_da_equipe_tem_numero_do_caderno():
+    import base64, hashlib, zlib
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    garante_dist_amostra()
+    pac = json.loads((RAIZ / "app/dist/dados/equipe.enc").read_text(encoding="utf-8"))
+    chave = hashlib.pbkdf2_hmac("sha256", b"teste amostra", base64.b64decode(pac["sal"]), pac["iteracoes"], 32)
+    dados = json.loads(zlib.decompress(AESGCM(chave).decrypt(base64.b64decode(pac["iv"]), base64.b64decode(pac["dados"]), None)))
+    assert dados["caderno"] == {"bloco": 200}
+    assert all(isinstance(e["p"], int) and isinstance(e["c"], int) and 1 <= e["c"] <= e["p"] for e in dados["eleitores"])
+    por_secao = {}
+    for e in dados["eleitores"]:
+        por_secao.setdefault(e["s"], []).append(e)
+    for secao, pessoas in por_secao.items():
+        pessoas.sort(key=lambda e: e["p"])
+        assert [e["p"] for e in pessoas] == list(range(1, len(pessoas) + 1)), secao
+        chaves = [chave_caderno(e["o"]) for e in pessoas]
+        assert chaves == sorted(chaves), secao
+
+
+def test_rotas_tem_zonas_e_config_tem_fila_e_admin():
+    garante_dist_amostra()
+    rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))
+    assert {l: z["urnas"] for l, z in rotas["zonas"].items()} == {"A": 9, "B": 9, "C": 10}
+    assert sum(z["esperado"] for z in rotas["zonas"].values()) == 11499
+    cfg = json.loads((RAIZ / "app/public/dados/config.json").read_text(encoding="utf-8"))
+    assert cfg["versao_app"] == "v3"
+    f = cfg["fila"]
+    assert f["url_leitura"].startswith("https://raw.githubusercontent.com/") and f["url_leitura"].endswith(f"/{f['branch']}/{f['arquivo']}")
+    assert f["repo"] in f["url_leitura"]
+    assert f["lotacao_zona"] == 706 and f["segundos_por_eleitor"] > 0
+    import base64, hashlib
+    adm = cfg["admin"]
+    assert "br1sk3t2026" not in json.dumps(cfg), "a senha do administrador nunca fica em claro no config"
+    dk = hashlib.pbkdf2_hmac("sha256", b"br1sk3t2026", adm["sal"].encode(), adm["iteracoes"], 32)
+    assert base64.urlsafe_b64encode(dk).decode().rstrip("=") == adm["hash"]
+    versao = json.loads((RAIZ / "app/dist/dados/versao.json").read_text(encoding="utf-8"))
+    assert versao["app"] == "v3" and versao["caderno"] == {"bloco": 200}

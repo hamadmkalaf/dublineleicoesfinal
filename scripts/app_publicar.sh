@@ -4,6 +4,8 @@
 #   python3 scripts/app_construir.py --lista data/eleitores/eleitores.csv --grava --senha-equipe "..."
 #   bash scripts/app_publicar.sh                 # raiz do site
 #   bash scripts/app_publicar.sh --subpasta v2   # em …/dublineleicoesfinal/v2/, sem tocar na raiz
+#   bash scripts/app_publicar.sh --subpasta v3   # v3 (nº no caderno, fila, admin) em …/v3/
+# O estado vivo da fila (v3) NÃO é publicado por aqui: mora em fila.json no branch órfão `fila`.
 #
 # O branch gh-pages é ÓRFÃO e contém só o conteúdo de app/dist/ (+ .nojekyll): nenhum dado
 # pessoal legível (hashes + pacote cifrado) e nenhum histórico do repositório. Cada publicação

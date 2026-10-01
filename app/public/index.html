@@ -48,7 +48,7 @@
 <script>
 (async () => {
   const $ = (id) => document.getElementById(id);
-  const estado = { indice: null, rotas: null, config: null };
+  const estado = { indice: null, rotas: null, config: null, fila: null, filaEm: 0 };
   OEV.registraSW("./sw.js");
 
   function mostra(html) { $("resultado").innerHTML = html; $("resultado").scrollIntoView({ behavior: "smooth", block: "start" }); }
@@ -67,6 +67,8 @@
     ]);
     Object.assign(estado, { config, rotas, indice });
     if (indice.v !== 2 || indice.fator !== "nome") throw new Error("índice em formato antigo: reconstrua o app");
+    // v3: estado vivo da fila (publicado pela equipe); sem rede fica null e o bloco não aparece
+    atualizaFila();
     $("onde").textContent = `${config.local} · ${config.turno}`;
     $("sub").textContent = `${config.data}, ${config.horario}. ${config.local}, ${config.endereco}.`;
     $("dica-nome").textContent = config.dica_nome;
@@ -84,6 +86,13 @@
   } catch (e) {
     mostra(`<div class="aviso erro">Não foi possível carregar os dados (${OEV.esc(e.message)}). Tente de novo com internet.</div>`);
     return;
+  }
+
+  async function atualizaFila(limiteMs) {
+    if (!estado.config || !estado.config.fila) return null;
+    const f = await OEV.leFilaPublica(estado.config.fila, limiteMs);
+    if (f) { estado.fila = f; estado.filaEm = Date.now(); }
+    return estado.fila;
   }
 
   // Mudou o nome depois de pedirmos o título? Volta ao início.
@@ -121,7 +130,10 @@
         const avisoMarca = r.marca
           ? `<div class="aviso erro" id="aviso-marca"><b>Atenção.</b> ${OEV.esc(estado.config.aviso_marca.replace("{marca}", r.marca))}</div>`
           : "";
-        mostra(avisoMarca + OEV.renderRota(rota) + `<p class="dica">Tire uma foto desta tela ou anote: <b>seção ${OEV.esc(rota.secao)} · porta ${rota.letra}</b>.</p>`);
+        // v3: estimativa de espera logo abaixo da nota da preferencial (só se o admin ativou o status da fila)
+        if (Date.now() - estado.filaEm > 60000) await atualizaFila(4000);
+        const espera = OEV.renderEspera(estado.fila, rota, estado.rotas, estado.config.fila || {});
+        mostra(avisoMarca + OEV.renderRota(rota) + espera + `<p class="dica">Tire uma foto desta tela ou anote: <b>seção ${OEV.esc(rota.secao)} · porta ${rota.letra}</b>.</p>`);
       }
     } catch (e) {
       mostra(`<div class="aviso erro">Erro na consulta: ${OEV.esc(e.message)}</div>`);
