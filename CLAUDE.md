@@ -14,6 +14,7 @@ necessário para chegar a elas.
 | **Arranjo do Hall 2** — cenário, `decisoes.json`, prancheta | `scripts/arranjo_paredes.py` · `confere_arranjo.py` · `gera_prancheta_por_secao.py` | trazidos em 22/09; a prancheta sai deles |
 | **Sinalização** — 37 peças e o plano consolidado | `mapa/sinalizacao/` · `scripts/paleta.py`, `tabela_mestra.py`, `artes_sinalizacao.py`, `plano_consolidado.py` | revisão de 23/09 |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Planta detalhada do Hall 2** — as 28 MRVs desenhadas por inteiro, portas, avenidas, pontos de banner e o ponto de informação junto ao R1 | `scripts/planta_hall2_detalhada.py` · `saidas/planta_hall2_detalhada_pt.svg`/`.png` e `_en.svg`/`.png` (8092 × 5618) | revisão de 30/09: no módulo, da parede para dentro: mesa redonda da urna, vaga do eleitor (de costas para a parede), mesa-cavalete, passagem; lê a geometria de `separadores_fila.py` e não escreve dado nenhum |
 | **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` · `scripts/mapa_publico_pptx.py` · `saidas/onde_voce_vota.pptx` | o percurso e o salão em versão de divulgação, em página e em deck editável (rodada `23926v2`) |
 
 **O consolidado da última rodada está em
