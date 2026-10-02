@@ -4,8 +4,15 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
-from app_normaliza import chaves_nome, hash_publico, normaliza_data, normaliza_inscricao, normaliza_nome, normaliza_secao  # noqa: E402
+from app_normaliza import chaves_nome, hash_publico, normaliza_data, normaliza_inscricao, normaliza_nome, normaliza_secao, titulo_parcial  # noqa: E402
 from app_importar_eleitores import parse_texto_tre  # noqa: E402
+
+
+def garante_dist_amostra():
+    """app/dist/ construído com a AMOSTRA e a senha de teste (reconstrói se faltar ou se for um build real)."""
+    versao = RAIZ / "app/dist/dados/versao.json"
+    if not versao.exists() or not json.loads(versao.read_text(encoding="utf-8")).get("amostra_sintetica"):
+        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
 
 
 def test_nome_sem_acento_apostrofo_particulas():
@@ -28,6 +35,14 @@ def test_data_secao_inscricao():
     assert normaliza_secao(511) == "0511" and normaliza_secao("3313.0") == "3313"
     assert normaliza_inscricao(5301982801) == "005301982801"
     assert normaliza_inscricao("1234 5678 9012") == "123456789012"
+
+
+def test_titulo_parcial_digitos_5_a_8():
+    assert titulo_parcial("123456789012") == "5678"
+    assert titulo_parcial("1234 5678 9012") == "5678"
+    assert titulo_parcial(5301982801) == "0198"       # planilha do TSE sem zeros à esquerda
+    assert titulo_parcial("5678") == "5678"            # já parcial
+    assert titulo_parcial("12") == "" and titulo_parcial("") == "" and titulo_parcial(None) == ""
 
 
 def test_hash_so_nome_e_nome_titulo():
@@ -96,8 +111,7 @@ def test_build_rejeita_secao_estranha(tmp_path):
 
 
 def test_rotas_batem_com_decisoes():
-    if not (RAIZ / "app/dist/dados/rotas.json").exists():
-        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    garante_dist_amostra()
     rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))["secoes"]
     dec = json.loads((RAIZ / "data/decisoes.json").read_text(encoding="utf-8"))
     for m in dec["mesas"]:
@@ -112,8 +126,7 @@ def test_rotas_batem_com_decisoes():
 def test_passos_na_perspectiva_do_eleitor():
     """Textos ao eleitor: sem pontos cardeais leste/oeste, sem 'apron', 'boca' nem 'cabeça' (decisão de 01/10)."""
     import re
-    if not (RAIZ / "app/dist/dados/rotas.json").exists():
-        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    garante_dist_amostra()
     rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))["secoes"]
     proibido = re.compile(r"\b(leste|oeste|nordeste|sudeste|noroeste|sudoeste|apron|boca|bocas|cabe[cç]a|S[0-9])\b", re.I)
     for r in rotas.values():
@@ -125,14 +138,60 @@ def test_passos_na_perspectiva_do_eleitor():
 
 def test_indice_v2_da_amostra():
     """Índice da amostra: nome único -> [seção]; homônimo -> "H" + entradas nome|título; marca VT."""
-    if not (RAIZ / "app/dist/dados/indice_publico.json").exists():
-        subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--grava", "--senha-equipe", "teste amostra"], check=True, capture_output=True)
+    garante_dist_amostra()
     idx = json.loads((RAIZ / "app/dist/dados/indice_publico.json").read_text(encoding="utf-8"))
     assert idx["v"] == 2 and idx["fator"] == "nome" and idx["turno"] == 1
     itens = idx["itens"]
+    assert idx["titulo"] == {"digitos": "5-8", "tamanho": 4}
     assert itens[hash_publico("TIZZANI VIANA DANDREA NERY")] == ["3889"]
     assert itens[hash_publico("MARIA APARECIDA SILVA")] == "H"
-    assert itens[hash_publico("MARIA APARECIDA SILVA", "111111111111")] == ["0511"]
-    assert itens[hash_publico("MARIA APARECIDA SILVA", "333333333333")] == ["3862"]
+    assert itens[hash_publico("MARIA APARECIDA SILVA", "1111")] == ["0511"]
+    assert itens[hash_publico("MARIA APARECIDA SILVA", "3333")] == ["3862"]
+    assert hash_publico("MARIA APARECIDA SILVA", "111111111111") not in itens, "o título completo não é chave do índice"
     assert itens[hash_publico("ANA VT TESTE")] == ["3315", "VT"]
     assert "111111111111" not in json.dumps(itens)
+
+
+def test_pacote_da_equipe_so_tem_titulo_parcial():
+    """Decifra o pacote da amostra (senha de teste) e confere que nenhum título tem mais de 4 dígitos."""
+    import base64, hashlib, zlib
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    garante_dist_amostra()
+    pac = json.loads((RAIZ / "app/dist/dados/equipe.enc").read_text(encoding="utf-8"))
+    chave = hashlib.pbkdf2_hmac("sha256", b"teste amostra", base64.b64decode(pac["sal"]), pac["iteracoes"], 32)
+    claro = zlib.decompress(AESGCM(chave).decrypt(base64.b64decode(pac["iv"]), base64.b64decode(pac["dados"]), None))
+    dados = json.loads(claro)
+    assert dados["titulo"] == {"digitos": "5-8", "tamanho": 4}
+    assert all(len(e["t"]) == 4 and e["t"].isdigit() for e in dados["eleitores"])
+    assert "123456789012" not in claro.decode("utf-8")
+
+
+def test_colisao_de_titulo_parcial_vira_P(tmp_path):
+    """Duas pessoas com o mesmo nome e os mesmos dígitos 5-8 não se separam: entrada "P" (manda ao P0)."""
+    from app_construir import monta_indice, prepara_eleitores
+    linhas = [
+        {"NOM_ELEITOR": "FULANO DE TAL", "NUM_INSCRICAO": "000012340001", "NUM_SECAO": "0511", "TURNO1": "OK", "TURNO2": "OK"},
+        {"NOM_ELEITOR": "FULANO DE TAL", "NUM_INSCRICAO": "999912349999", "NUM_SECAO": "3313", "TURNO1": "OK", "TURNO2": "OK"},
+        {"NOM_ELEITOR": "FULANO DE TAL", "NUM_INSCRICAO": "000056780001", "NUM_SECAO": "3862", "TURNO1": "OK", "TURNO2": "OK"},
+    ]
+    idx, resumo = monta_indice(prepara_eleitores(linhas), 1)
+    assert resumo["colisoes"] == 1
+    assert idx["itens"][hash_publico("FULANO TAL", "1234")] == "P"
+    assert idx["itens"][hash_publico("FULANO TAL", "5678")] == ["3862"]
+
+
+def test_lista_cifrada_ida_e_volta(tmp_path):
+    """CSV cifrado com app_cifra_lista: volta idêntico com a senha, falha com senha errada, sem nome em claro."""
+    from app_cifra_lista import cifra_bytes, decifra_bytes, le_csv_cifrado
+    csv_claro = (RAIZ / "app/testes/amostra_eleitores.csv").read_bytes()
+    pacote = cifra_bytes(csv_claro, "teste amostra")
+    assert decifra_bytes(pacote, "teste amostra") == csv_claro
+    assert b"TIZZANI" not in json.dumps(pacote).encode()
+    enc = tmp_path / "amostra.csv.enc"
+    enc.write_text(json.dumps(pacote), encoding="utf-8")
+    assert "TIZZANI VIANA D'ANDREA NERY" in le_csv_cifrado(enc, "teste amostra")
+    import pytest
+    with pytest.raises(SystemExit):
+        le_csv_cifrado(enc, "senha errada")
+    r = subprocess.run([sys.executable, str(RAIZ / "scripts/app_construir.py"), "--lista", str(enc), "--senha-equipe", "teste amostra"], capture_output=True, text=True)
+    assert r.returncode == 0 and "1007 eleitores" in r.stdout, r.stdout + r.stderr

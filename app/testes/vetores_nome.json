@@ -203,35 +203,43 @@
  "titulos": [
   {
    "entrada": "123456789012",
-   "normalizado": "123456789012"
+   "normalizado": "123456789012",
+   "parcial": "5678"
   },
   {
    "entrada": "1234 5678 9012",
-   "normalizado": "123456789012"
+   "normalizado": "123456789012",
+   "parcial": "5678"
   },
   {
    "entrada": "1234.5678.9012",
-   "normalizado": "123456789012"
+   "normalizado": "123456789012",
+   "parcial": "5678"
   },
   {
    "entrada": "5301982801",
-   "normalizado": "005301982801"
+   "normalizado": "005301982801",
+   "parcial": "0198"
   },
   {
    "entrada": 5301982801,
-   "normalizado": "005301982801"
+   "normalizado": "005301982801",
+   "parcial": "0198"
   },
   {
    "entrada": "0000 0000 0001",
-   "normalizado": "000000000001"
+   "normalizado": "000000000001",
+   "parcial": "0000"
   },
   {
    "entrada": "",
-   "normalizado": ""
+   "normalizado": "",
+   "parcial": ""
   },
   {
    "entrada": null,
-   "normalizado": ""
+   "normalizado": "",
+   "parcial": ""
   }
  ],
  "hashes": [
@@ -257,18 +265,18 @@
   },
   {
    "chave": "ANA CRISTINA EVARISTO",
-   "fator": "123456789012",
-   "hash": "ybvML5vm6LtcvcRN"
+   "fator": "5678",
+   "hash": "B0iQVSUrYOxIr4dr"
   },
   {
    "chave": "LETICIA GONCALVES LIMA",
-   "fator": "123456789012",
-   "hash": "ZS4JA19FudOr-iGg"
+   "fator": "5678",
+   "hash": "QRKre6N7broTaWnw"
   },
   {
    "chave": "TIZZANI VIANA DANDREA NERY",
-   "fator": "123456789012",
-   "hash": "GXDUxSIkkWsvkixx"
+   "fator": "5678",
+   "hash": "vb2srSKpAVBPambV"
   }
  ]
 }

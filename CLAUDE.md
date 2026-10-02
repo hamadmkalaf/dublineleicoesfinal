@@ -133,16 +133,25 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 
 ## Regras do app "Onde eu voto?"
 
-- **A lista nominal de eleitores nunca entra no git.** `data/eleitores/` e `app/dist/`
+- **A lista nominal de eleitores nunca entra no git em claro.** `data/eleitores/` e `app/dist/`
   estão no `.gitignore`. O que se publica são hashes (eleitor) e um pacote cifrado
-  (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. O PDF chegou
-  commitado em 29/09 e foi removido do HEAD em 01/10; não recommitar.
+  (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. Dois PDFs chegaram
+  commitados (29/09 em `appeleicoes`, e `DUBLIN.pdf` em `main`) e foram **purgados do
+  histórico em 01/10**, com force-push; não recommitar.
+- **Única exceção: `data/eleitores/eleitores_v2.csv.enc`**, o CSV v2 (nome, seção, marcas e
+  dígitos 5–8 do título) cifrado com AES-256-GCM pela senha da equipe
+  (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê direto.
+  Trocou a senha da equipe = recifrar a lista.
 - **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
   já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
   `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.
 - **Consulta só por nome** (decisão de 01/10): índice público v2, `hash(nome) → seção`;
-  homônimo → `"H"` e `hash(nome|título)`. O título nunca sai em claro. Marcas de turno
-  (OK/VT) viajam com a seção e geram aviso quando não são OK no turno de `config.json`.
+  homônimo → `"H"` e `hash(nome|título parcial)`; colisão → `"P"` (manda ao P0). Marcas de
+  turno (OK/VT) viajam com a seção e geram aviso quando não são OK no turno de `config.json`.
+- **Título parcial** (branch `appeleicoes2`, 01/10): só os **dígitos 5 a 8** do título entram no
+  CSV (`TITULO_5_8`), no índice e no pacote da equipe. Os 4 últimos não servem (UF +
+  verificadores: 271 valores distintos). A v2 é publicada em `gh-pages/v2/`; a v1 (título
+  completo) fica na raiz até ser removida.
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.
