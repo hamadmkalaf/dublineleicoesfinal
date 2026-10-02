@@ -16,20 +16,20 @@
    "chave": "prancheta_hall2",
    "titulo": "Prancheta pelas Seções",
    "url": "https://claude.ai/artifact/Szv5egKpHy3umh4udAybvr",
-   "versao": "21026_final, 02/10 (não republicada)",
+   "versao": "1790902663-13ad (versão 7, 02/10)",
    "caminho": "mapa/prancheta_hall2.html",
    "o_que_e": "Coordenadas reais das portas e das 28 mesas. A planta do salão em voluntarios_postos.html foi gerada delas.",
-   "estado": "versão nova de 02/10 no branch 21026_final, gerada por scripts/gera_prancheta_por_secao.py: módulo da MRV na ordem de 30/09 (urna na mesa redonda junto à parede, eleitor, mesa-cavalete, passagem), ponto de informação ao lado do R1, alta carga em roxo e entradas nas cores de rolo (22/09). A URL ainda serve a versão 6 de 23/09: republicar com este arquivo.",
+   "estado": "versão nova de 02/10 no branch 21026_final, gerada por scripts/gera_prancheta_por_secao.py: módulo da MRV na ordem de 30/09 (urna na mesa redonda junto à parede, eleitor, mesa-cavalete, passagem), ponto de informação ao lado do R1, alta carga em roxo e entradas nas cores de rolo (22/09). Republicada na mesma URL em 02/10 (versão 7).",
    "sha256": "2769bc1e0ae4cee4187d05d2bd197c7ce25017aa83cfea4aa9ae477f920d8063"
   },
   {
    "chave": "ring3_montagem",
    "titulo": "Montagem do Ring 3",
    "url": "https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV",
-   "versao": "v5, 02/10 (não republicada)",
+   "versao": "1790902665-f94d (versão 5, 02/10)",
    "caminho": "mapa/ring3_montagem.html",
    "o_que_e": "O cenário 3 adaptado: 23 raias por zona, três zonas iguais de 12,87 m, vão de 1,20 m, 558,0 m de fita grossa, lotação 2.105, saídas na face norte junto às portas.",
-   "estado": "versão nova de 02/10 no branch 21026_final, gerada por scripts/ring3_montagem.py + gera_pagina_ring3.py em hamadmkalaf/eleicoes2026 (branch 21026_final): as aberturas da face norte passam de premissa a decisão de 24/09, com risco assumido. Nenhuma cota, painel (202) ou metro de fita (558,0) muda. A URL ainda serve a versão 4 de 23/09.",
+   "estado": "versão nova de 02/10 no branch 21026_final, gerada por scripts/ring3_montagem.py + gera_pagina_ring3.py em hamadmkalaf/eleicoes2026 (branch 21026_final): as aberturas da face norte passam de premissa a decisão de 24/09, com risco assumido. Nenhuma cota, painel (202) ou metro de fita (558,0) muda. Republicada na mesma URL em 02/10 (versão 5). A versão 4 publicada ainda trazia as datas antigas \"24/09\" no lugar de \"23/09 (v2)\".",
    "sha256": "6bfbf6a8b489c062fe6006563d59c32c1993a2a9eec1f858876ed0bf69b3525b"
   },
   {
@@ -105,12 +105,16 @@
    "chave": "plano_consolidado",
    "titulo": "Plano de sinalização, peça por peça",
    "url": "https://claude.ai/artifact/EUNZhAFtSfUtRrLvqkvFVZ",
-   "versao": "v10, 02/10 (não republicada)",
+   "versao": "1790902666-84e7 (versão 17, 02/10)",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
-   "estado": "versão nova de 02/10 no branch 21026_final: P4-FimAvenidaB em roll-up 1000 × 2000 mm (24/09) com o arquivo de impressão de 29/09, orçamento 11 fence banners + 4 pull-ups largos, pendências do RDS como decisões de 24/09, cotações de 24–25/09 e prazo da gráfica. A URL ainda serve a versão 9 de 23/09.",
-   "sha256": "ab4aae1457a3e00b805825d6880893c1709af7712f83b658e8db08317dc32e2d",
-   "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1."
+   "estado": "Republicado na mesma URL em 02/10 (versão 17), montado SOBRE a versão publicada em 25/09 (1790325876-6caa), que tinha sido revista à mão fora do repositório e trazia decisões de 24 e 25/09 que o repositório não tinha: P1-Portão fora do plano, os quatro vinis de porta como window stickers 900 × 900 mm, o fence banner P5-Preferencial fora (o adesivo da S7, com a foto real do arquivo, é a única peça preferencial), a pendência da foto de 24/09 na P7, a exportação que falta de P2 e P3, e o orçamento de 38 itens a € 1.138,20* sem IVA. Esta versão acrescenta a arte do roll-up na ficha da P6-Painel_FimAvenidaB, o arquivo de impressão de 29/09, as decisões de 24/09 sobre o RDS, as cotações de 24 e 25/09 e o prazo da gráfica. A cópia aqui é a página com o invólucro da plataforma, como as demais; publica-se sem a primeira linha e sem o </body></html> final.",
+   "sha256": "160ff553b0303d9d7d856ca4daf05063190af9cbf808ca4c077ad0b8ecb0278a",
+   "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1.",
+   "arquivos": {
+    "index.html": "160ff553b0303d9d7d856ca4daf05063190af9cbf808ca4c077ad0b8ecb0278a",
+    "assets/p5-preferencial.jpg": "9b11e9362588e74561f7d1aeff83e47672243a757613056b44965dd314d32e5d"
+   }
   },
   {
    "chave": "mapa_publico",

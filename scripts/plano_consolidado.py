@@ -29,16 +29,23 @@ PECAS = RAIZ / "mapa" / "sinalizacao"
 GRUPOS = RAIZ / "data" / "grupos_mesas.json"
 
 # a legenda "arquivo <code>…</code>" de cada ficha → a peça
+# Desde a versão publicada em 25/09 (v10): P1-Portão e o fence banner P5-Preferencial
+# saíram do plano, os vinis viraram window stickers e a peça do fim da avenida B foi
+# renomeada ao virar roll-up. O adesivo preferencial é a foto real do arquivo
+# (mapa/assets/p5-preferencial.jpg), não um .dc.html, e por isso não está aqui.
 ARQUIVO = {
-    "P0-consulta": "P0-Consulta", "P0-tabela-mestra": "P0-Mestra", "P1-portao": "P1-Portao",
+    "P0-consulta": "P0-Consulta", "P0-tabela-mestra": "P0-Mestra",
     "P2-parede-leste": "P2-ParedeLeste", "P3-entrada-ring3": "P3-EntradaRing",
     "P4-boca-zona-A": "P4-ZonaA", "P4-boca-zona-B": "P4-ZonaB", "P4-boca-zona-C": "P4-ZonaC",
-    "P5-vinil-porta-A": "P5-VinilA", "P5-vinil-porta-B": "P5-VinilB", "P5-vinil-porta-C": "P5-VinilC",
-    "P5-preferencial": "P5-Preferencial", "P5-vinil-preferencial": "P5-VinilPref",
+    "P5-WindowSticker_A": "P5-VinilA", "P5-WindowSticker_B": "P5-VinilB",
+    "P5-WindowSticker_C": "P5-VinilC",
     "P6-painel-porta-A": "P6-PainelA", "P6-painel-porta-B": "P6-PainelB", "P6-painel-porta-C": "P6-PainelC",
-    "P4-fim-avenida-B": "P4-FimAvenidaB",
+    "P6-Painel_FimAvenidaB": "P4-FimAvenidaB",
     "P7-saida": "P7-Saida",
 }
+# a página publicada a partir de 25/09 tem orçamento e contagem de peças escritos à mão
+# (window sticker sem preço, P1 e P5-Preferencial fora); numeros() não passa por cima
+MARCA_25_09 = "Revisão de <strong>25/09/2026</strong>"
 
 ABRE = '<div style="width: '
 
@@ -352,14 +359,14 @@ def revisao_23_09(h):
 # Quantidade de peças e orçamento saem por regex e não por par (velho, novo):
 # duas rodadas seguidas mexeram nos mesmos números, e um par datado quebra
 # assim que a rodada seguinte passa por cima dele.
-PECAS_EXTERNAS = 19
+PECAS_EXTERNAS = 17
 # Em 24/09 a P4-FimAvenidaB deixou de ser fence banner e virou o quarto
 # pull-up de 1000 x 2000 mm: FENCE_N cai de 12 para 11, e o unitário do
 # pull-up 1000 é o da cotação na faixa de 4 unidades (€ 122,99 / 4).
-FENCE_N, FENCE_UNIT = 11, 32.40
+FENCE_N, FENCE_UNIT = 8, 32.40
 PULLUP1000_N, PULLUP1000_UNIT = 4, 122.99 / 4
-ITENS_TOTAL = 41
-SEM_IVA, IVA, COM_IVA = 1232.72, 283.53, 1516.25
+ITENS_TOTAL = 38
+SEM_IVA, IVA, COM_IVA = 1138.20, 261.79, 1399.99   # com o window sticker a preço de vinil
 
 
 # ---------------------------------------------------------------- revisão de 23/09 (v2)
@@ -494,16 +501,18 @@ RDS_GRADIL_V2 = ('<strong>Decisão de 24/09:</strong> o Posto abre os quatro pai
                  '<strong>sem aguardar a confirmação do RDS</strong>, dado o histórico de demora do local. O risco '
                  'fica assumido, não eliminado. Vale o mesmo para a fita adesiva no piso do Hall 2.')
 COTAR_V1 = ('<li>Cotar as quatro linhas que continuam premissa: os 3 banners PVC da parede leste, os '
-            '<strong>4</strong> vinis das portas — a S7 entrou em 21/09 —, as 2 placas correx de saída e a '
-            'fixação.</li>')
+            '<strong>4</strong> window stickers das portas (vinis até 24/09) — a S7 entrou em 21/09 —, as 2 '
+            'placas correx de saída e a fixação.</li>')
 COTAR_V2 = ('<li><strong>Cotações de 24 e 25/09</strong>, lado a lado em '
             '<code>Orçamentos/Sinalização/comparativo_cotacoes_2026-09-24.xlsx</code>: o carrinho Helloprint de '
             '24/09 (€ 2.694,68 sem IVA, € 3.314,46 com IVA, cada arte uma linha de 1) <strong>substitui a '
             'referência de 18/09</strong> que a tabela de orçamento acima ainda usa; a proposta Snap Leeson '
             '1554129 revista em 25/09 dá € 4.145,00 sem IVA na opção Basic — já com o quarto pull-up largo, '
-            'que é a P4-FimAvenidaB —, mas perdeu os 3 banners PVC da parede leste. Falta no carrinho '
-            'Helloprint os 4 vinis das portas e a fixação. <strong>Nenhum fornecedor foi escolhido no '
-            'repositório</strong> até 02/10.</li>')
+            'que é a P6-Painel_FimAvenidaB, e com <strong>4 adesivos laminados 900 × 900 mm a € 280</strong> '
+            '(€ 70 cada), o primeiro preço real do window sticker —, mas perdeu os 3 banners PVC da parede '
+            'leste e ainda pede 11 fence banners, contra os 8 do plano desde 25/09. O carrinho Helloprint '
+            'também foi montado antes de 25/09 (12 fence banners) e não tem os window stickers 900 × 900 nem '
+            'a fixação. <strong>Nenhum fornecedor foi escolhido no repositório</strong> até 02/10.</li>')
 PRAZO_V1 = ('<li>Decidir o prazo de entrega. Pela cotação de 18/09, a entrega Saver é grátis e chega em 28/09 — seis '
             'dias antes da eleição —, mas o arquivo tem de subir até 18/09 às 13:30. Standard (+ € 35) chega 23/09 e '
             'Express (+ € 38) chega 22/09. É a decisão mais urgente da lista.</li>')
@@ -512,31 +521,41 @@ PRAZO_V2 = ('<li><s>Decidir o prazo de entrega pela cotação de 18/09.</s> As d
             'entrega: <strong>confirmar com a gráfica escolhida que as peças chegam até a véspera</strong>. É a '
             'decisão mais urgente da lista.</li>')
 FIM_B_ARQ_MARCA = 'Arquivo de impressão (29/09)'
+FIM_B_LEGENDA = "arquivo <code>P6-Painel_FimAvenidaB</code>"
+FIM_B_TEXTO_FIM = "reformatado para o formato vertical.</p>"
 FIM_B_ARQ = ('<p class="texto"><strong>Arquivo de impressão (29/09):</strong> '
              '<code>Artes/impressao/P6-Painel_FimAvenidaB.pdf</code>, vetorial na medida de 1000 × 2000 mm, com a '
              'Montserrat embutida como TrueType (o Chromium a imprimia como Type3, que alguns RIPs recusam), e o '
              'JPG de 8000 × 16000 px sem margem, 203 dpi na medida final. Saem de '
-             '<code>scripts/render_arte.py</code> sobre a mesma fonte <code>.dc.html</code> desta peça.</p>')
+             '<code>scripts/render_arte.py</code> sobre a mesma fonte <code>.dc.html</code> desta peça. '
+             'A arte desta ficha passou a ser a do roll-up, em retrato: até 02/10 a página mostrava '
+             'ainda o desenho do fence banner.</p>')
 RODAPE_0210_MARCA = 'Versão <strong>21026_final</strong>'
-RODAPE_0210 = ('\n  <br><br>Versão <strong>21026_final</strong>, de <strong>02/10/2026</strong>: a P4-FimAvenidaB '
-               'em roll-up de 1000 × 2000 mm (24/09) com o arquivo de impressão de 29/09, as aberturas do '
-               'gradil e a fita no piso como decisões de 24/09 com risco assumido, e as cotações de 24 e '
-               '25/09 registradas nas pendências. Nenhuma outra arte mudou.\n</footer>')
+RODAPE_0210 = ('\n  <br><br>Versão <strong>21026_final</strong>, de <strong>02/10/2026</strong>, sobre a publicada em '
+               '25/09: a ficha da P6-Painel_FimAvenidaB passa a mostrar a arte do roll-up em retrato, com o '
+               'arquivo de impressão de 29/09; as aberturas do gradil do Ring 3 e a fita no piso do Hall 2 '
+               'entram como decisões de 24/09, com risco assumido; e as cotações de 24 e 25/09 e o prazo da '
+               'gráfica entram nas pendências. As decisões de 24 e 25/09 desta página — P1 fora do plano, '
+               'window stickers, adesivo preferencial como única peça da S7 — ficam como estavam.\n</footer>')
 
 
 def revisao_02_10(h):
     """Decisões posteriores a 24/09 que tocam o plano, sem mexer em arte."""
     h = revisa(h, [(RDS_GRADIL_V1, RDS_GRADIL_V2), (COTAR_V1, COTAR_V2), (PRAZO_V1, PRAZO_V2),
                    ('\n</footer>', RODAPE_0210, RODAPE_0210_MARCA)])
+    a, f = secao(h, FIM_B_LEGENDA)
+    # a arte do roll-up no invólucro de retrato (o corpo vem do .dc.html em troca_artes)
+    h = revisa(h, [(WRAPPER_FIM_B_FENCE, WRAPPER_FIM_B_ROLLUP)], (a, f))
     if FIM_B_ARQ_MARCA not in h:
-        a, f = secao(h, "arquivo <code>P4-fim-avenida-B</code>")
-        j = h.index(TEXTO_FIM_B_ROLLUP_INICIO, a, f)
-        j = h.index("</p>", j) + len("</p>")
+        a, f = secao(h, FIM_B_LEGENDA)
+        j = h.index(FIM_B_TEXTO_FIM, a, f) + len(FIM_B_TEXTO_FIM)
         h = h[:j] + FIM_B_ARQ + h[j:]
     return h
 
 
 def numeros(h):
+    if MARCA_25_09 in h:
+        return h
     h = re.sub(r'(<div class="fact"><dt>Peças externas</dt><dd>)\d+(</dd>)',
                rf'\g<1>{PECAS_EXTERNAS}\g<2>', h)
     h = re.sub(r'(<div class="fact"><dt>Orçamento</dt><dd>€ )\d+(</dd>)',
@@ -559,10 +578,13 @@ def numeros(h):
 
 def monta():
     h = PAGINA.read_text(encoding="utf-8")
-    h = revisao_22_09(h)
-    h = revisao_23_09(h)
-    h = revisao_23_09_v2(h)
-    h = revisao_24_09_rollup(h)
+    # A página publicada em 25/09 foi revista à mão sobre a de 23/09 (v2) e já traz o
+    # que as revisões de 22/09 a 24/09 faziam, com textos próprios que elas não reconhecem.
+    if MARCA_25_09 not in h:
+        h = revisao_22_09(h)
+        h = revisao_23_09(h)
+        h = revisao_23_09_v2(h)
+        h = revisao_24_09_rollup(h)
     h = revisao_02_10(h)
     h = troca_artes(h)
     h = troca_galeria(h)

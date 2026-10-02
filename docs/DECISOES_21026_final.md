@@ -37,6 +37,33 @@ As regras do app de 01/10 dizem expressamente que **as peças de sinalização e
 mantêm o vocabulário técnico** — por isso "sem pontos cardeais" e "sem S4/S5/S6" não
 foram levados às quatro peças.
 
+## 2a. Decisões de 24 e 25/09 que só existiam no artefato publicado
+
+Achado na republicação de 02/10: o **plano de sinalização** publicado
+(versão 1790325876-6caa, 25/09 08:44 UTC) tinha sido revisto **fora do repositório**,
+e o repositório ficou na versão de 23/09 (v2). Republicar a cópia do repositório
+apagaria estas decisões; elas foram trazidas para cá e a versão nova foi montada
+sobre a de 25/09:
+
+| Data | Decisão (texto da própria página) |
+|---|---|
+| 24/09 | **P1-Portão sai do plano** — sem ponto de fixação nas grades do portão. A tabela seção → porta passa a ter três pontos e seis cópias (P0 ×2, P2 ×3, P3 ×1). |
+| 24/09 | **Os quatro vinis de porta (A, B, C, preferencial) viram window stickers 900 × 900 mm** — mudança do Posto. Preço ainda não cotado no Helloprint; a proposta Snap de 25/09 dá € 70 por adesivo laminado 900 × 900. |
+| 24/09 | A peça do fim da avenida B vira roll-up e é **renomeada P6-Painel_FimAvenidaB** (a mesma decisão do branch `claude/sleepy-volta-4glyc7`). |
+| 24/09 | P7-Saída: **medir o vão livre acima do batente** antes de fixar (foto de 24/09). |
+| 25/09 | **O fence banner P5-Preferencial do apron sai do plano**: o adesivo de vidro da S7 passa a ser a única peça preferencial, com a **foto real do arquivo** entregue (2000 × 2000 px), em `mapa/assets/p5-preferencial.jpg`. |
+| 25/09 | Fence banners de 12 para **8**; plano com **17 peças externas**, **38 itens**, **€ 1.138,20 sem IVA** (com o window sticker a preço de vinil, marcado com *). |
+| 25/09 | Pendência nova: **exportar as artes que faltam**, P2-ParedeLeste (3 cópias) e P3-EntradaRing3 (1 cópia). |
+
+`scripts/plano_consolidado.py` passou a reconhecer a página de 25/09 (`MARCA_25_09`):
+as legendas das fichas seguem os nomes novos, as revisões de 22 a 24/09 não rodam sobre ela
+(a página já as traz, com texto próprio) e `numeros()` não sobrescreve o orçamento escrito à
+mão. As peças `P1-Portao.dc.html`, `P5-Preferencial.dc.html` e `P5-VinilPref.dc.html` continuam
+em `mapa/sinalizacao/`, mas não estão mais no plano.
+
+A prancheta e o Ring 3 publicados batiam com o repositório (o Ring 3 publicado só trazia
+"24/09" onde o repositório já dizia "23/09 (v2)").
+
 ## 3. Os quatro artefatos
 
 | Artefato | Arquivo | Gerador | O que mudou |
@@ -49,9 +76,9 @@ foram levados às quatro peças.
 Fonte única das constantes de 30/09: `U_URNA` e `PONTO_INFO` em
 `scripts/separadores_fila.py`; `planta_hall2_detalhada.py` e a prancheta leem dali.
 
-**Nenhum dos três artefatos publicados foi republicado.** As URLs de
-`mapa/artefatos.json` ainda servem as versões de 23/09; o manifesto marca cada um
-como "não republicada" e traz o sha256 das cópias novas.
+**Republicados em 02/10, nas mesmas URLs:** prancheta (versão 7), Ring 3 (versão 5)
+e plano de sinalização (versão 17, sobre a de 25/09 — ver §2a). O layout final não tem
+artefato publicado. `mapa/artefatos.json` traz as versões e o sha256 das cópias.
 
 ## 4. O que não foi aplicado, e por quê
 
