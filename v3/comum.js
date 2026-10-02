@@ -202,7 +202,12 @@ const OEV = (() => {
   function formataTitulo(t) {
     if (!t) return "";
     if (String(t).length === 4) return `···· ${t} ····`;
-    return t.replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3");
+    return String(t).replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3");
+  }
+
+  /* Título a mostrar à equipe: o completo (campo "tc", 12 dígitos, desde 02/10) quando o pacote o traz; senão o parcial. */
+  function tituloEquipe(e) {
+    return (e && (e.tc || e.t)) || "";
   }
 
   /* ---- Mini-mapa: Ring 3 + pátio de travessia + Hall 2, esquemático, com zona, porta e grupo em destaque ---- */
@@ -218,7 +223,7 @@ const OEV = (() => {
     const cor = COR_LETRA[rota.letra], fraco = "#C9D6E3", texto = "#042B5A", suave = "#6486A7", amarelo = "#FCC537";
     const p = [];
     const marcador = (x, y, n) => p.push(`<g data-passo="${n}"><circle cx="${x}" cy="${y}" r="8.5" fill="${texto}" stroke="${amarelo}" stroke-width="1.5"/><text x="${x}" y="${y + 0.5}" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="800" fill="${amarelo}">${n}</text></g>`);
-    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até a seção ${rota.secao}, com os seis passos marcados">`);
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até o grupo de mesas ${rota.grupo}, pela porta ${rota.letra}, com os seis passos marcados">`);
     p.push(`<defs><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${cor}"/></marker></defs>`);
     // portão na Merrion Road e caminho de chegada: desce ao lado do Hall 2 (o Hall fica à direita de quem desce)
     const xChegada = X(HALL_W) + 7;
@@ -293,19 +298,27 @@ const OEV = (() => {
     return p.join("");
   }
 
-  /* ---- Cartão de resultado + passos, comum às duas páginas ---- */
+  /* ---- Cartão de resultado + passos, comum às duas páginas ----
+     Ênfase em PORTA e GRUPO DE MESAS (decisão de 02/10/2026). A seção específica do eleitor não aparece:
+     a lista do TRE vem por mesa, com as seções agregadas somadas na principal, então a seção que o build
+     conhece pode não ser a que está no título dele. Logo abaixo do grupo, uma nota manda conferir a seção
+     no e-Título / site do TSE (texto em opcoes.notaSecao; link em opcoes.linkTSE). */
   function renderRota(rota, opcoes = {}) {
     const cor = COR_LETRA[rota.letra], corTexto = COR_TEXTO_LETRA[rota.letra];
     const extra = opcoes.cabecalhoExtra || "";
     const passos = rota.passos.map((p) => `<li><b>${esc(p.onde)}</b><span>${esc(p.texto)}</span></li>`).join("");
+    const nota = opcoes.notaSecao == null
+      ? "Confira a sua seção no e-Título ou no site do TSE antes de ir votar: ela está entre as seções deste grupo, mas é a do seu título que vale na mesa."
+      : opcoes.notaSecao;
+    const link = opcoes.linkTSE ? ` <a href="${esc(opcoes.linkTSE)}" target="_blank" rel="noopener">Consultar no TSE</a>` : "";
     return `
       <div class="cartao" style="--cor:${cor};--cor-texto:${corTexto}">
         ${extra}
         <div class="cartao-letra"><span class="letra">${rota.letra}</span>
-          <div><div class="rotulo">sua fila e sua porta</div><div class="grande">Porta ${esc(rota.letra)} · parede ${esc(rota.parede_rotulo || ROTULO_PAREDE[rota.parede] || rota.parede)}</div></div></div>
-        <div class="cartao-linha"><div><div class="rotulo">seção</div><div class="grande">${esc(rota.secao)}</div></div>
-          <div><div class="rotulo">grupo de mesas</div><div class="grande">${esc(rota.grupo)}</div></div>
-          <div><div class="rotulo">seções do grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div></div>
+          <div><div class="rotulo">sua fila e sua porta de entrada</div><div class="grande">Porta ${esc(rota.letra)}</div><div class="medio">parede ${esc(rota.parede_rotulo || ROTULO_PAREDE[rota.parede] || rota.parede)}</div></div></div>
+        <div class="cartao-grupo"><div class="rotulo">seu grupo de mesas</div><div class="enorme">${esc(rota.grupo)}</div>
+          <div class="rotulo">seções deste grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div>
+        ${nota ? `<p class="nota-secao" id="nota-secao">${esc(nota)}${link}</p>` : ""}
       </div>
       <ol class="passos">${passos}</ol>
       <div class="mapa">${desenhaMapa(rota)}</div>
@@ -502,7 +515,7 @@ const OEV = (() => {
   }
 
   return { normalizaNome, chavesNome, normalizaData, normalizaInscricao, tituloParcial, mascaraData, mascaraTitulo, hashPublico, consultaPublica,
-           decifraEquipe, buscaEquipe, marcasTurno, carregaJSON, esc, formataData, formataTitulo, desenhaMapa, renderRota,
+           decifraEquipe, buscaEquipe, marcasTurno, carregaJSON, esc, formataData, formataTitulo, tituloEquipe, desenhaMapa, renderRota,
            rotaDaSecao, registraSW, COR_LETRA,
            textoCaderno, estimaEspera, renderEspera, horaLocal, preenche, leFilaPublica, filaVazia, leFilaAPI, publicaFila,
            guardaSegredo, leSegredo, apagaSegredo, confereAdmin };

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Onde eu voto? · Eleições 2026 · Dublin</title>
-<meta name="description" content="Descubra sua seção, sua fila e sua porta no RDS Hall 2 antes de sair de casa.">
+<meta name="description" content="Descubra sua porta de entrada e seu grupo de mesas no RDS Hall 2 antes de sair de casa.">
 <meta name="theme-color" content="#FCC537">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icones/icone.svg" type="image/svg+xml">
@@ -18,7 +18,7 @@
 </header>
 <main>
   <h1>Onde eu voto?</h1>
-  <p class="sub" id="sub">Descubra sua seção, sua fila e sua porta antes de sair de casa.</p>
+  <p class="sub" id="sub">Descubra sua porta de entrada e seu grupo de mesas antes de sair de casa.</p>
 
   <div class="aviso info" id="aviso-versao" hidden>Há uma versão nova desta página. <a href="#" onclick="location.reload();return false;">Recarregar</a>.</div>
   <div class="aviso" id="aviso-amostra" hidden><b>Dados de teste.</b> Esta versão usa uma lista sintética; os nomes reais ainda não foram carregados.</div>
@@ -133,7 +133,9 @@
         // v3: estimativa de espera logo abaixo da nota da preferencial (só se o admin ativou o status da fila)
         if (Date.now() - estado.filaEm > 60000) await atualizaFila(4000);
         const espera = OEV.renderEspera(estado.fila, rota, estado.rotas, estado.config.fila || {});
-        mostra(avisoMarca + OEV.renderRota(rota) + espera + `<p class="dica">Tire uma foto desta tela ou anote: <b>seção ${OEV.esc(rota.secao)} · porta ${rota.letra}</b>.</p>`);
+        // 02/10: sem a seção específica do eleitor (a lista do TRE é por mesa, agregadas somadas); ênfase em porta e grupo
+        const opcoes = { notaSecao: estado.config.nota_secao, linkTSE: estado.config.link_etitulo };
+        mostra(avisoMarca + OEV.renderRota(rota, opcoes) + espera + `<p class="dica">Tire uma foto desta tela ou anote: <b>porta ${rota.letra} · grupo ${OEV.esc(rota.grupo)}</b>.</p>`);
       }
     } catch (e) {
       mostra(`<div class="aviso erro">Erro na consulta: ${OEV.esc(e.message)}</div>`);
