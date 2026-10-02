@@ -46,6 +46,14 @@ button.secundario { font: inherit; font-size: 14px; font-weight: 800; padding: 8
 .cartao-letra .letra { font-size: 72px; font-weight: 900; line-height: 1; width: 84px; text-align: center; }
 .cartao-letra .rotulo { opacity: .85; }
 .cartao-linha { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 12px; padding: 14px 16px; }
+/* 02/10: ênfase em porta e grupo de mesas; a seção específica do eleitor não aparece */
+.cartao-grupo { padding: 14px 16px 4px; }
+.cartao-grupo .rotulo { color: var(--azul); margin-top: 8px; }
+.cartao-grupo .rotulo:first-child { margin-top: 0; }
+.enorme { font-size: 44px; font-weight: 900; line-height: 1; color: var(--navy); }
+.cartao-letra .medio { opacity: .9; font-weight: 700; }
+.nota-secao { margin: 10px 16px 14px; padding: 10px 12px; background: var(--amarelo-claro); border-left: 5px solid var(--amarelo-escuro); border-radius: 8px; font-size: 15px; color: var(--navy); font-weight: 600; }
+.nota-secao a { color: var(--navy); font-weight: 800; white-space: nowrap; }
 .rotulo { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 .cartao-linha .rotulo { color: var(--azul); }
 .grande { font-size: 26px; font-weight: 900; line-height: 1.1; }

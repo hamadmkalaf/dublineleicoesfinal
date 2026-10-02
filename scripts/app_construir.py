@@ -159,7 +159,7 @@ def passos(letra, porta, parede, grupo, n_grupo, secoes_grupo):
         {"onde": "Ring 3 · pátio de fila", "texto": f"As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila {letra} será {ordem}."},
         {"onde": "Frente da fila · pátio", "texto": f"Quando liberado, atravesse o pátio até a porta de entrada {letra} (identificada com um adesivo no vidro)."},
         {"onde": f"Hall 2 · parede {rotulo}", "texto": f"Sua mesa fica na parede {rotulo}{', em frente a você' if parede == 'norte' else ''}. Procure o painel {letra} e siga até o grupo {grupo}, o {ORDINAL[n_grupo]} corredor a partir da porta. Na placa alta: “grupo {grupo} · seções {' '.join(secoes_grupo)}”."},
-        {"onde": "Mesa", "texto": "Apresente o documento com foto ao mesário. Diga a sua seção a ele. Não encontrou sua seção? Pergunte ao mesário."},
+        {"onde": "Mesa", "texto": "Apresente o documento com foto ao mesário e diga a ele a sua seção, a que aparece no e-Título. Não encontrou sua seção no grupo? Pergunte ao mesário."},
         {"onde": "Saída", "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."},
     ]
 
@@ -181,19 +181,22 @@ def le_lista(caminho, senha=None):
 def prepara_eleitores(linhas):
     """Normaliza cada linha. A consulta é só por nome; o título PARCIAL (dígitos 5-8) desempata homônimos.
 
-    Aceita o CSV v2 (coluna TITULO_5_8) e o v1 (NUM_INSCRICAO com 12 dígitos, reduzido aqui).
-    O título completo nunca é guardado em memória além desta função.
+    Aceita o CSV com NUM_INSCRICAO de 12 dígitos (título completo) e o v2 (coluna TITULO_5_8).
+    O índice público só conhece o parcial ("t"). O completo ("tc", quando existe) vai apenas ao
+    pacote cifrado da equipe (decisão de 02/10/2026: a equipe volta a ver o título inteiro).
     """
     eleitores = []
     for r in linhas:
         nome = normaliza_nome(r.get("NOM_ELEITOR"))
         if not nome:
             continue
-        bruto = r.get(COLUNA_PARCIAL) if r.get(COLUNA_PARCIAL) else normaliza_inscricao(r.get("NUM_INSCRICAO"))
+        completo = normaliza_inscricao(r.get("NUM_INSCRICAO")) if not r.get(COLUNA_PARCIAL) else ""
+        bruto = r.get(COLUNA_PARCIAL) if r.get(COLUNA_PARCIAL) else completo
         eleitores.append({
             "n": nome,
             "nome_original": (r.get("NOM_ELEITOR") or "").strip(),
             "t": titulo_parcial(bruto),
+            "tc": completo if len(completo) == 12 else "",
             "s": normaliza_secao(r.get("NUM_SECAO")),
             "t1": (r.get("TURNO1") or "").strip().upper(),
             "t2": (r.get("TURNO2") or "").strip().upper(),
@@ -292,13 +295,18 @@ def valor_indice(e, turno):
     return [e["s"], m] if m else [e["s"]]
 
 
+def titulo_equipe(eleitores):
+    """"completo" se todos os eleitores têm o título de 12 dígitos; senão "parcial" (só os dígitos 5-8)."""
+    return "completo" if eleitores and all(e.get("tc") for e in eleitores) else "parcial"
+
+
 def cifra_equipe(eleitores, turno, senha):
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-    registros = [{"n": e["n"], "o": e["nome_original"], "t": e["t"], "s": e["s"], "t1": e["t1"], "t2": e["t2"],
+    registros = [{"n": e["n"], "o": e["nome_original"], "t": e["t"], "tc": e.get("tc", ""), "s": e["s"], "t1": e["t1"], "t2": e["t2"],
                   "p": e.get("p"), "c": e.get("c")} for e in eleitores]
-    claro = zlib.compress(json.dumps({"fator": "nome", "titulo": TITULO, "turno": turno, "caderno": {"bloco": CADERNO_BLOCO},
-                                      "eleitores": registros}, ensure_ascii=False).encode("utf-8"), 9)
+    claro = zlib.compress(json.dumps({"fator": "nome", "titulo": TITULO, "titulo_equipe": titulo_equipe(eleitores), "turno": turno,
+                                      "caderno": {"bloco": CADERNO_BLOCO}, "eleitores": registros}, ensure_ascii=False).encode("utf-8"), 9)
     sal = secrets.token_bytes(16)
     iv = secrets.token_bytes(12)
     chave = hashlib.pbkdf2_hmac("sha256", senha.encode("utf-8"), sal, ITERACOES_EQUIPE, 32)
@@ -375,6 +383,11 @@ def main():
     maior = max(e["p"] for e in eleitores) if eleitores else 0
     print(f"caderno: posição alfabética por seção; maior seção com {maior} eleitores · número = posição, ou posição − {CADERNO_BLOCO} acima de {CADERNO_BLOCO}")
     print(f"zonas do Ring 3: " + " · ".join(f"{l} {z['urnas']} urnas / {z['esperado']} esperados" for l, z in zonas.items()))
+    if titulo_equipe(eleitores) == "completo":
+        print("pacote da equipe: título COMPLETO (12 dígitos); o índice público segue só com os dígitos 5-8")
+    else:
+        print(f"AVISO: a lista só tem o título parcial ({sum(1 for e in eleitores if not e.get('tc'))} eleitores sem os 12 dígitos): "
+              "a equipe verá só os dígitos 5-8. Reimporte o PDF do TRE com app_importar_eleitores.py (padrão: título completo).")
     print(f"índice público: {resumo['chaves']} chaves de nome, {resumo['ambiguas']} com homônimos (pedem o título), "
           f"{resumo['nomes_completos_repetidos']} nomes completos repetidos · {len(indice['itens'])} entradas · "
           f"título parcial (dígitos {TITULO['digitos']}): {resumo['colisoes']} colisões (mandam ao P0)")
@@ -401,6 +414,7 @@ def main():
         "eleitores": len(eleitores),
         "fator": "nome",
         "titulo": TITULO,
+        "titulo_equipe": titulo_equipe(eleitores),
         "turno": turno,
         "app": config.get("versao_app", ""),
         "caderno": {"bloco": CADERNO_BLOCO},

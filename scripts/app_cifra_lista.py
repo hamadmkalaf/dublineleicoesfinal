@@ -1,7 +1,8 @@
-"""Cifra e decifra o CSV canônico da lista (v2, título parcial) para guardá-lo no repositório.
+"""Cifra e decifra o CSV canônico da lista para guardá-lo no repositório.
 
-    python3 scripts/app_cifra_lista.py cifrar  data/eleitores/eleitores_v2.csv  --senha "..."   # -> eleitores_v2.csv.enc
-    python3 scripts/app_cifra_lista.py decifrar data/eleitores/eleitores_v2.csv.enc --senha "..."  # -> eleitores_v2.csv
+    python3 scripts/app_cifra_lista.py cifrar  data/eleitores/eleitores.csv  --senha "..."   # -> eleitores.csv.enc (título completo, 02/10)
+    python3 scripts/app_cifra_lista.py decifrar data/eleitores/eleitores.csv.enc --senha "..."  # -> eleitores.csv
+    (eleitores_v2.csv.enc é o formato anterior, só com os dígitos 5-8 do título)
 
 AES-256-GCM com chave de PBKDF2-SHA256 (600.000 iterações) sobre a senha — o mesmo esquema do
 pacote da equipe (app_construir.cifra_equipe). A senha vem de --senha ou de APP_SENHA_EQUIPE.

@@ -51,9 +51,14 @@ try {
   // (a) eleitor fixo da amostra: seção 3889 -> letra A, porta S4, grupo A3
   let r = await consulta("Tizzani Viana D'Andrea Nery");
   assert.equal(await r.locator(".letra").textContent(), "A");
-  assert.match(await r.textContent(), /Porta A · parede da esquerda/);
-  assert.match(await r.textContent(), /3889/);
+  assert.match(await r.textContent(), /Porta A\s*parede da esquerda/);
+  assert.match(await r.textContent(), /3889/, "a seção 3889 aparece só entre as seções do grupo");
   assert.match(await r.textContent(), /grupo A3/i);
+  assert.equal(await r.locator(".cartao-grupo .enorme").textContent(), "A3", "o grupo de mesas em destaque");
+  assert.equal(await r.locator(".cartao .rotulo", { hasText: /^seção$/ }).count(), 0, "02/10: nenhuma caixa 'seção' no cartão do eleitor");
+  assert.match(await r.locator("#nota-secao").textContent(), /e-Título|TSE/, "nota mandando conferir a seção no e-Título / TSE, logo abaixo do grupo");
+  assert.ok(await pagina.evaluate(() => { const g = document.querySelector(".cartao-grupo"), n = document.querySelector("#nota-secao"); return !!(g && n && (g.compareDocumentPosition(n) & Node.DOCUMENT_POSITION_FOLLOWING)); }), "a nota vem depois do grupo");
+  assert.match(await r.textContent(), /porta A · grupo A3/, "a dica da foto fala de porta e grupo, não de seção");
   assert.doesNotMatch(await r.textContent(), /\bS[0-9]\b/, "nenhum número de porta da prancheta no que o eleitor lê");
   assert.equal(await r.locator(".mapa [data-passo]").count(), 6, "os seis passos marcados no mapa");
   passo("eleitor: nome completo com apóstrofo → seção 3889, fila A, porta S4, grupo A3");
@@ -126,21 +131,23 @@ try {
   await pagina.fill("#busca", "maria aparecida silva");
   await pagina.waitForFunction(() => document.querySelectorAll("#lista li").length === 3);
   const lista = await pagina.locator("#lista").textContent();
-  assert.match(lista, /···· 1111 ····/); assert.match(lista, /···· 2222 ····/); assert.match(lista, /···· 3333 ····/);
-  assert.doesNotMatch(lista, /1111 1111 1111|nasc/);
-  passo("equipe: três homônimas listadas, cada uma só com os 4 dígitos do meio do título e a sua seção");
+  assert.match(lista, /1111 1111 1111/); assert.match(lista, /2222 2222 2222/); assert.match(lista, /3333 3333 3333/);
+  assert.doesNotMatch(lista, /····|nasc/);
+  assert.match(lista, /seção da lista/);
+  passo("equipe (02/10): três homônimas listadas, cada uma com o título COMPLETO e a seção da lista");
   await pagina.click("#lista li:nth-child(2)");
   await pagina.waitForFunction(() => document.querySelector("#resultado .cartao-eleitor"));
-  assert.match(await pagina.locator("#resultado").textContent(), /···· 2222 ····/);
-  passo("equipe: tocar numa homônima abre a rota dela");
+  assert.match(await pagina.locator("#resultado").textContent(), /2222 2222 2222/);
+  assert.match(await pagina.locator("#resultado #nota-secao").textContent(), /e-Título/);
+  passo("equipe: tocar numa homônima abre a rota dela, com a nota para conferir a seção no e-Título");
   await pagina.fill("#busca", "ana vt");
   await pagina.waitForFunction(() => document.querySelector("#resultado .cartao-eleitor"));
   assert.match(await pagina.locator("#resultado .marca-turno").textContent(), /1º turno: VT/);
   passo("equipe: marca VT aparece em destaque no cartão");
   await pagina.fill("#busca", "tizzani");
-  await pagina.waitForFunction(() => document.querySelector("#resultado .cartao-eleitor") && document.querySelector("#resultado").textContent.includes("···· 5678 ····"));
+  await pagina.waitForFunction(() => document.querySelector("#resultado .cartao-eleitor") && /\d{4} 5678 \d{4}/.test(document.querySelector("#resultado").textContent));
   assert.match(await pagina.locator("#resultado").textContent(), /3889/);
-  passo("equipe: busca por parte do nome → título ···· 5678 ···· e a rota");
+  passo("equipe: busca por parte do nome → título completo (…5678…) e a rota");
   // v3: o nº no caderno existe no pacote (p/c) mas NÃO aparece na página (decisão de 02/10: a lista é por mesa)
   assert.equal(await pagina.locator("#resultado .badge-caderno").count(), 0);
   assert.doesNotMatch(await pagina.locator("#resultado").textContent(), /caderno/i);

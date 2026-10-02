@@ -148,10 +148,20 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - **Consulta só por nome** (decisão de 01/10): índice público v2, `hash(nome) → seção`;
   homônimo → `"H"` e `hash(nome|título parcial)`; colisão → `"P"` (manda ao P0). Marcas de
   turno (OK/VT) viajam com a seção e geram aviso quando não são OK no turno de `config.json`.
-- **Título parcial** (branch `appeleicoes2`, 01/10): só os **dígitos 5 a 8** do título entram no
-  CSV (`TITULO_5_8`), no índice e no pacote da equipe. Os 4 últimos não servem (UF +
-  verificadores: 271 valores distintos). A v2 é publicada em `gh-pages/v2/`; a v1 (título
-  completo) fica na raiz até ser removida.
+- **Título parcial no índice público** (branch `appeleicoes2`, 01/10): só os **dígitos 5 a 8** do título
+  entram no índice do eleitor. Os 4 últimos não servem (UF + verificadores: 271 valores distintos).
+  **Revisão de 02/10: o pacote da equipe volta a levar o título completo** (campo `tc`, 12 dígitos);
+  o importador grava `NUM_INSCRICAO` completo por padrão (`--titulo-parcial` dá o formato v2). O
+  `eleitores_v2.csv.enc` do git só tem os 4 dígitos: para a equipe ver o título inteiro é preciso
+  **reimportar o PDF da relação do TRE** e cifrar como `eleitores.csv.enc`. A v2 é publicada em
+  `gh-pages/v2/`; a v1 fica na raiz até ser removida.
+- **A lista do TRE não traz as seções agregadas** (constatado em 02/10): a seção de cada eleitor é a
+  da mesa (principal), e o caderno identifica pela seção agregada. Por isso **o eleitor não vê "sua
+  seção"** na página: o cartão dá ênfase a **porta e grupo de mesas**, lista as seções do grupo e, logo
+  abaixo, manda **conferir a seção no e-Título ou no site do TSE** (`nota_secao` em `config.json`). A
+  equipe vê a seção rotulada "seção da lista". Não reexibir a seção ao eleitor sem uma lista por seção.
+- **Arquivo certo**: o "Relatório de Mesários por Situação" (Elo/Convoca+, 4 páginas, 111 mesários) **não**
+  é a relação de eleitores; o importador o rejeita. Nenhum PDF do TRE entra no git (ver purga de 01/10).
 - **v3** (branch `appeleicoesv3`, 01/10, publicada em `gh-pages/v3/`): a equipe
   informa **quão cheia está cada zona** do Ring 3; o **administrador** (`admin/`, senha só como hash
   PBKDF2 em `config.json`) liga o "status de fila", e aí o eleitor vê o **tempo estimado de espera**
