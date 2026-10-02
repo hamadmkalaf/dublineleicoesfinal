@@ -156,6 +156,21 @@ rodapé de página repetem a cada ~36 registros.
 2. Publicar **só `app/dist/`** no GitHub Pages: branch `gh-pages` deste repositório, ou
    um repositório público só com essa pasta se o plano da conta não permitir Pages em
    repositório privado. `app/dist/` não contém dado pessoal legível.
+   **Domínio próprio (02/10): `dublineleicoes2026.com.br`**, registrado no Registro.br.
+   `app_publicar.sh` grava o arquivo `CNAME` na raiz do `gh-pages` a cada publicação
+   (`--dominio ""` desliga). Para o domínio funcionar faltam, fora do git:
+   - DNS no Registro.br (painel do domínio → DNS → *editar zona*): quatro registros **A**
+     no apex (`@`) para `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e
+     `185.199.111.153`; opcionalmente quatro **AAAA** para `2606:50c0:8000::153`,
+     `2606:50c0:8001::153`, `2606:50c0:8002::153` e `2606:50c0:8003::153`; e um
+     **CNAME** em `www` para `hamadmkalaf.github.io`. Sem registro MX nem outro A no apex.
+   - Settings → Pages → *Custom domain* = `dublineleicoes2026.com.br` → Save; esperar o
+     *DNS check successful*; marcar *Enforce HTTPS* quando o certificado aparecer (até ~1 h
+     depois do DNS propagar; o Registro.br costuma levar de minutos a algumas horas).
+   - Conferir `https://dublineleicoes2026.com.br/v2/` e o acesso da equipe; o
+     `github.io` passa a redirecionar para o domínio.
+   O IP do GitHub Pages pode mudar: confira a lista atual em
+   https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 3. Distribuir a senha da equipe no briefing, fora de e-mail em massa. Trocar a senha =
    reconstruir e republicar; o service worker baixa o pacote novo pela mudança em
    `versao.json` (o build grava o carimbo em `sw.js`).

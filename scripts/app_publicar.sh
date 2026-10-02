@@ -3,7 +3,12 @@
 #
 #   python3 scripts/app_construir.py --lista data/eleitores/eleitores.csv --grava --senha-equipe "..."
 #   bash scripts/app_publicar.sh                 # raiz do site
-#   bash scripts/app_publicar.sh --subpasta v2   # em …/dublineleicoesfinal/v2/, sem tocar na raiz
+#   bash scripts/app_publicar.sh --subpasta v2   # em …/v2/, sem tocar na raiz
+#   bash scripts/app_publicar.sh --dominio ""     # publica sem domínio próprio (volta a github.io)
+#
+# Domínio próprio: o Pages lê o arquivo CNAME na raiz do gh-pages. A publicação na raiz apaga
+# tudo, então o script regrava o CNAME a cada publicação (DOMINIO abaixo); sem isso o domínio
+# some do Settings → Pages na primeira republicação. O DNS fica no Registro.br (ver docs/app).
 #
 # O branch gh-pages é ÓRFÃO e contém só o conteúdo de app/dist/ (+ .nojekyll): nenhum dado
 # pessoal legível (hashes + pacote cifrado) e nenhum histórico do repositório. Cada publicação
@@ -11,9 +16,11 @@
 # Settings → Pages → "Deploy from a branch" → gh-pages / (root).
 set -euo pipefail
 SUBPASTA=""
+DOMINIO="dublineleicoes2026.com.br"
 while [ $# -gt 0 ]; do
   case "$1" in
     --subpasta) SUBPASTA="${2:?nome da subpasta}"; shift 2 ;;
+    --dominio) DOMINIO="${2-}"; shift 2 ;;
     *) echo "argumento desconhecido: $1"; exit 2 ;;
   esac
 done
@@ -44,6 +51,7 @@ else
   cp -r "$DIST"/. .
 fi
 touch .nojekyll
+if [ -n "$DOMINIO" ]; then printf '%s\n' "$DOMINIO" > CNAME; else rm -f CNAME; fi
 git add -A
 git -c user.name="${GIT_AUTHOR_NAME:-$(git -C "$RAIZ" config user.name || echo publicador)}" \
     -c user.email="${GIT_AUTHOR_EMAIL:-$(git -C "$RAIZ" config user.email || echo publicador@localhost)}" \
