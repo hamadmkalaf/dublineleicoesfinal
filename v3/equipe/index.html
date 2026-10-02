@@ -21,21 +21,21 @@
   <div class="aviso" id="aviso-amostra" hidden><b>Dados de teste.</b> Lista sintética; os nomes reais ainda não foram carregados.</div>
 
   <section id="bloqueado">
-    <h1>Acesso da equipe</h1>
-    <p class="sub">A lista fica cifrada neste aparelho e só abre com a senha do dia. Funciona sem internet depois da primeira abertura.</p>
+    <h1>Consulta da equipe</h1>
+    <p class="sub">Digite o nome do eleitor, completo ou parte dele, e veja só os que batem com a busca: nome, <b>título de eleitor completo</b>, porta e grupo de mesas. A consulta é feita neste aparelho, com a senha da equipe; funciona sem internet depois da primeira abertura.</p>
     <form class="consulta" id="form-senha">
       <label for="senha">Senha do dia</label>
       <input type="password" id="senha" required autocomplete="current-password">
-      <button class="principal" id="botao-senha" type="submit" disabled>Abrir lista</button>
-      <p class="dica" id="estado-lista">Carregando a lista…</p>
+      <button class="principal" id="botao-senha" type="submit" disabled>Entrar</button>
+      <p class="dica" id="estado-lista">Carregando…</p>
     </form>
   </section>
 
   <section id="aberto" hidden>
     <form class="consulta" id="form-busca" autocomplete="off" onsubmit="return false">
-      <label for="busca">Nome do eleitor (qualquer parte)</label>
+      <label for="busca">Nome do eleitor (completo ou parte)</label>
       <input type="search" id="busca" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="ex.: maria silva">
-      <p class="dica" id="dica-titulo">Homônimos aparecem lado a lado, cada um com o <b>título de eleitor</b>. Peça o título ao eleitor e toque no nome certo. A seção mostrada é a <b>da lista do TRE</b> (a da mesa; as agregadas vêm somadas): a seção que vale é a do título do eleitor.</p>
+      <p class="dica" id="dica-titulo">Aparecem só os eleitores que batem com o que você digitou, cada um com o <b>título de eleitor completo</b>. Se houver mais de um, peça o título ao eleitor e toque no nome certo. A seção mostrada é a <b>da lista do TRE</b> (a da mesa; as agregadas vêm somadas): a seção que vale é a do título do eleitor.</p>
       <p class="dica" id="contagem"></p>
     </form>
     <ul class="lista-equipe" id="lista"></ul>
@@ -54,7 +54,7 @@
       <p class="dica" id="estado-fila"></p>
     </section>
 
-    <p><button class="secundario" id="sair" type="button">Fechar a lista</button></p>
+    <p><button class="secundario" id="sair" type="button">Sair</button></p>
   </section>
 </main>
 <footer>
@@ -77,14 +77,14 @@
     ]);
     config = c; rotas = r; pacote = p;
     $("onde").textContent = `${config.local} · ${config.turno}`;
-    $("estado-lista").textContent = `Lista cifrada carregada (${pacote.n.toLocaleString("pt-BR")} eleitores).`;
+    $("estado-lista").textContent = "Pronto. Digite a senha da equipe.";
     if (versao) {
       $("versao").textContent = `Dados de ${new Date(versao.construido_em).toLocaleString("pt-BR")}`;
       $("aviso-amostra").hidden = !versao.amostra_sintetica;
     }
     $("botao-senha").disabled = false;
   } catch (e) {
-    $("estado-lista").textContent = `Não foi possível carregar a lista (${e.message}). Abra esta página uma vez com internet.`;
+    $("estado-lista").textContent = `Não foi possível carregar os dados (${e.message}). Abra esta página uma vez com internet.`;
     return;
   }
 
@@ -100,13 +100,13 @@
       senhaDia = $("senha").value;
       $("senha").value = "";
       $("bloqueado").hidden = true; $("aberto").hidden = false;
-      $("contagem").textContent = `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;
+      $("contagem").textContent = "Digite pelo menos 3 letras do nome.";
       $("busca").focus();
       iniciaFila();
     } catch (e) {
       $("estado-lista").textContent = "Senha incorreta.";
     } finally {
-      $("botao-senha").disabled = false; $("botao-senha").textContent = "Abrir lista";
+      $("botao-senha").disabled = false; $("botao-senha").textContent = "Entrar";
     }
   });
 
@@ -126,7 +126,10 @@
   let ultimo = null;
   function busca() {
     const texto = $("busca").value;
-    const achados = OEV.buscaEquipe(eleitores, texto, 30);
+    // só pesquisa: nada aparece sem pelo menos 3 letras, e no máximo 20 resultados por vez (não é uma lista para folhear)
+    const MIN = 3, LIMITE = 20;
+    const curto = OEV.normalizaNome(texto).replace(/ /g, "").length < MIN;
+    const achados = curto ? [] : OEV.buscaEquipe(eleitores, texto, LIMITE);
     $("lista").innerHTML = achados.map((e, i) => {
       const cor = OEV.COR_LETRA[(rotas.secoes[e.s] || {}).letra] || "#D9D4C4";
       const marcas = OEV.marcasTurno(e);
@@ -135,7 +138,7 @@
         <span class="meta">título <b>${OEV.esc(OEV.formataTitulo(OEV.tituloEquipe(e)))}</b> · seção da lista ${OEV.esc(e.s)}${marcas ? ` · <span class="marca-turno">${OEV.esc(marcas)}</span>` : ""}</span></li>`;
     }).join("");
     ultimo = achados;
-    $("contagem").textContent = texto.trim() ? (achados.length ? `${achados.length} resultado(s)${achados.length >= 30 ? " (mostrando os 30 primeiros; digite mais)" : ""}` : "Nenhum eleitor com esse nome. Confira a grafia ou use o e-Título.") : `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;
+    $("contagem").textContent = curto ? "Digite pelo menos 3 letras do nome." : (achados.length ? `${achados.length} resultado(s)${achados.length >= LIMITE ? ` (só os ${LIMITE} primeiros; digite mais do nome)` : ""}` : "Nenhum eleitor com esse nome. Confira a grafia ou use o e-Título.");
     if (achados.length === 1) mostraEleitor(achados[0]); else $("resultado").innerHTML = "";
   }
   $("busca").addEventListener("input", busca);
