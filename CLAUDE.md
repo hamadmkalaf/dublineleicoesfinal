@@ -141,7 +141,9 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - **Única exceção: os CSVs cifrados** `data/eleitores/eleitores.csv.enc` (02/10: título completo,
   é o que a v3 usa) e `eleitores_v2.csv.enc` (01/10: só dígitos 5–8), ambos AES-256-GCM pela senha
   da equipe (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê
-  direto. Trocou a senha da equipe = recifrar as listas.
+  direto. Trocou a senha da equipe = recifrar as listas. **Senhas diferentes por versão desde 02/10:**
+  `eleitores.csv.enc` e `/v3/` usam a senha nova (passada no chat em 02/10 à tarde);
+  `eleitores_v2.csv.enc` e `/v2/` usam a de 01/10. Nenhuma está no git.
 - **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
   já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
   `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.
