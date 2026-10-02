@@ -90,6 +90,32 @@ Pedido do usuário em 01/10; mudanças concentradas na área da equipe, mais uma
 Trocar a senha do admin: `python3 -c "import hashlib,base64;print(base64.urlsafe_b64encode(hashlib.pbkdf2_hmac('sha256',b'NOVA',b'dublin-2026-onde-eu-voto-admin',200000,32)).decode().rstrip('='))"`
 e colar em `config.json → admin.hash`; reconstruir e republicar.
 
+### 2e. 02/10/2026 — sem a seção do eleitor na página; título completo de volta à equipe
+
+Constatação do usuário: a relação do TRE **não contém as seções agregadas**. Cada eleitor vem com
+a seção da **mesa** (a principal), e o caderno de votação identifica pela **seção agregada**. A
+seção que o build conhece pode, portanto, não ser a que está no título do eleitor; dizer "sua seção
+é 3313" a quem vota na 3752 seria errado. Pedido do usuário, atendido nesta data:
+
+| Decisão | Escolha | Por quê |
+|---|---|---|
+| **Seção ao eleitor** | **retirada do cartão**. Ênfase em **porta** (`Porta A`, parede) e **grupo de mesas** (`A3`, em corpo grande), com a lista das seções do grupo em corpo menor | porta, parede e grupo são certos para qualquer seção da mesa, principal ou agregada; a seção específica não é |
+| **Nota de conferência** | logo abaixo do grupo: "Confira a sua seção no e-Título ou no site do TSE…", com link "Consultar no TSE" (`nota_secao` e `link_etitulo` em `config.json`; a equipe tem `nota_secao_equipe`) | pedido do usuário; o e-Título é a única fonte da seção do título |
+| Passo 5 (mesa) | "diga a ele a sua seção, a que aparece no e-Título" | idem |
+| Dica da foto | "porta A · grupo A3" (antes: "seção 3889 · porta A") | coerência |
+| **Título na equipe** | pacote da equipe volta a trazer o **título completo** (campo `tc`, 12 dígitos; `titulo_equipe: "completo"` no pacote e em `versao.json`). A página mostra `tc` e cai no parcial `t` se o pacote for antigo. O **índice público segue só com os dígitos 5–8** | pedido do usuário; a equipe pede o título e confere o número inteiro. A proteção do título na equipe passa a ser só a cifra do pacote (senha da equipe) |
+| Importador | padrão volta a `NUM_INSCRICAO` completo (`data/eleitores/eleitores.csv`); `--titulo-parcial` dá o formato v2; rejeita o "Relatório de Mesários por Situação" | o `eleitores_v2.csv.enc` do git não tem como reconstruir o título |
+
+**Pendência aberta nesta data:** o arquivo recebido em 02/10 como "a lista de novo" era o
+*Relatório de Mesários por Situação* (Elo/Convoca+, 111 mesários), não a relação de eleitores.
+O pacote com título completo **ainda não foi construído**: exige reimportar o PDF da relação
+(`app_importar_eleitores.py … --grava` → `eleitores.csv`), cifrar (`app_cifra_lista.py cifrar
+data/eleitores/eleitores.csv`) e reconstruir. Até lá, a página da equipe publicada mostra os 4
+dígitos e avisa que o pacote não tem o título completo.
+
+**Modelo de ameaça, o que muda:** quem tem a senha da equipe vê os títulos completos (como na v1);
+o índice público não muda. A seção 6 abaixo foi ajustada.
+
 ### 2b. Decisões de 28/09/2026 (mantidas, exceto a identificação)
 
 | Decisão | Escolha | Por quê |
@@ -193,7 +219,7 @@ rodapé de página repetem a cada ~36 registros.
 | Qualquer pessoa com o link | saber se um nome completo que conhece vota em Dublin, e em que seção; em homônimo, só com o título | listar eleitores; obter títulos |
 | Quem baixa `indice_publico.json` | tentar nomes contra os hashes, a ~30 ms por tentativa (PBKDF2 50k) | recuperar nomes em massa (30 mil chaves × espaço de nomes); recuperar títulos (o índice só conhece 4 dígitos do meio) |
 | Quem baixa `equipe.enc` sem a senha | nada útil | decifrar (AES-256-GCM, chave de PBKDF2 600k sobre frase de seis palavras) |
-| Quem tem a senha | tudo que a equipe vê: nome, 4 dígitos do meio do título, seção, marcas de turno | reconstruir o título completo (faltam 8 dígitos) |
+| Quem tem a senha | tudo que a equipe vê: nome, **título completo** (desde 02/10; 4 dígitos em pacotes construídos do CSV v2), seção da lista, marcas de turno | nada além do que a equipe vê; a lista descarrega ao fechar a página |
 | Quem acha um celular da equipe | o pacote cifrado no cache; a chave de publicação cifrada no `localStorage` | a lista, sem a senha; a chave, sem a senha; a página descarrega a lista ao fechar |
 | Quem obtém a chave de publicação (v3) | alterar `fila.json` (lotações falsas, ligar/desligar o status) e, em tese, qualquer branch do repositório | nada sobre eleitores (o repositório só tem a lista cifrada). Remédio: revogar o PAT no GitHub |
 | Quem baixa `config.json` (v3) | tentar senhas do admin offline contra o hash PBKDF2 (200 mil iterações) | gravar a fila: a senha do admin só abre a interface; gravar exige a chave de publicação |

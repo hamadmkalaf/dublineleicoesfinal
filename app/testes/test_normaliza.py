@@ -5,7 +5,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
 from app_normaliza import chave_caderno, chaves_nome, hash_publico, normaliza_data, normaliza_inscricao, normaliza_nome, normaliza_secao, numero_caderno, titulo_parcial  # noqa: E402
-from app_importar_eleitores import parse_texto_tre  # noqa: E402
+from app_importar_eleitores import e_relatorio_de_mesarios, parse_texto_tre  # noqa: E402
 
 
 def garante_dist_amostra():
@@ -152,18 +152,56 @@ def test_indice_v2_da_amostra():
     assert "111111111111" not in json.dumps(itens)
 
 
-def test_pacote_da_equipe_so_tem_titulo_parcial():
-    """Decifra o pacote da amostra (senha de teste) e confere que nenhum título tem mais de 4 dígitos."""
+def decifra_pacote_amostra():
     import base64, hashlib, zlib
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
     garante_dist_amostra()
     pac = json.loads((RAIZ / "app/dist/dados/equipe.enc").read_text(encoding="utf-8"))
     chave = hashlib.pbkdf2_hmac("sha256", b"teste amostra", base64.b64decode(pac["sal"]), pac["iteracoes"], 32)
     claro = zlib.decompress(AESGCM(chave).decrypt(base64.b64decode(pac["iv"]), base64.b64decode(pac["dados"]), None))
-    dados = json.loads(claro)
+    return json.loads(claro), claro.decode("utf-8")
+
+
+def test_pacote_da_equipe_tem_titulo_completo_e_parcial():
+    """02/10: a equipe volta a ver o título inteiro ("tc", 12 dígitos); o parcial ("t") continua, e só ele vai ao índice público."""
+    dados, claro = decifra_pacote_amostra()
     assert dados["titulo"] == {"digitos": "5-8", "tamanho": 4}
+    assert dados["titulo_equipe"] == "completo"
     assert all(len(e["t"]) == 4 and e["t"].isdigit() for e in dados["eleitores"])
-    assert "123456789012" not in claro.decode("utf-8")
+    assert all(len(e["tc"]) == 12 and e["tc"].isdigit() and e["tc"][4:8] == e["t"] for e in dados["eleitores"])
+    tizzani = next(e for e in dados["eleitores"] if e["n"] == "TIZZANI VIANA DANDREA NERY")
+    assert tizzani["t"] == "5678" and tizzani["tc"].endswith("5678" + tizzani["tc"][8:]) and tizzani["s"] == "3889"
+    publico = (RAIZ / "app/dist/dados/indice_publico.json").read_text(encoding="utf-8")
+    assert "111111111111" in claro and "111111111111" not in publico, "o título completo só existe no pacote cifrado"
+    versao = json.loads((RAIZ / "app/dist/dados/versao.json").read_text(encoding="utf-8"))
+    assert versao["titulo_equipe"] == "completo"
+
+
+def test_lista_so_parcial_marca_pacote_como_parcial():
+    from app_construir import prepara_eleitores, titulo_equipe
+    parcial = prepara_eleitores([{"NOM_ELEITOR": "FULANO DE TAL", "TITULO_5_8": "1234", "NUM_SECAO": "0511"}])
+    completo = prepara_eleitores([{"NOM_ELEITOR": "FULANO DE TAL", "NUM_INSCRICAO": "000012340001", "NUM_SECAO": "0511"}])
+    assert parcial[0]["t"] == "1234" and parcial[0]["tc"] == "" and titulo_equipe(parcial) == "parcial"
+    assert completo[0]["t"] == "1234" and completo[0]["tc"] == "000012340001" and titulo_equipe(completo) == "completo"
+
+
+def test_importador_rejeita_relatorio_de_mesarios():
+    """O PDF "Relatório de Mesários por Situação" (Elo/Convoca+) não é a relação de eleitores (enviado por engano em 02/10)."""
+    assert e_relatorio_de_mesarios("   Justiça Eleitoral\n   Elo - Cadastro Eleitoral | Convoca+\n   Relatório de Mesários por Situação\n")
+    assert not e_relatorio_de_mesarios(TEXTO_TRE)
+
+
+def test_textos_ao_eleitor_sem_secao_especifica():
+    """02/10: o eleitor não vê 'sua seção'; vê porta e grupo, e a nota manda conferir no e-Título / TSE."""
+    garante_dist_amostra()
+    cfg = json.loads((RAIZ / "app/public/dados/config.json").read_text(encoding="utf-8"))
+    assert "e-Título" in cfg["nota_secao"] and "TSE" in cfg["nota_secao"]
+    rotas = json.loads((RAIZ / "app/dist/dados/rotas.json").read_text(encoding="utf-8"))["secoes"]
+    assert "e-Título" in rotas["3889"]["passos"][4]["texto"]
+    html = (RAIZ / "app/public/index.html").read_text(encoding="utf-8")
+    assert "seção ${OEV.esc(rota.secao)}" not in html and "grupo ${OEV.esc(rota.grupo)}" in html
+    js = (RAIZ / "app/public/comum.js").read_text(encoding="utf-8")
+    assert '<div class="rotulo">seção</div>' not in js and "seu grupo de mesas" in js and "nota-secao" in js
 
 
 def test_colisao_de_titulo_parcial_vira_P(tmp_path):

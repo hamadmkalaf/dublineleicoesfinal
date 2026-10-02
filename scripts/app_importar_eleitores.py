@@ -4,11 +4,16 @@
     python3 scripts/app_importar_eleitores.py "data/eleitores/Lista de eleitores_Dublin.pdf" --grava  # escreve data/eleitores/eleitores.csv
     python3 scripts/app_importar_eleitores.py lista.xlsx --local 1015                                 # planilha, filtrando um posto
 
-Saída canônica (UTF-8, separador ';'), por padrão com o TÍTULO PARCIAL (v2, 01/10/2026):
-    TITULO_5_8;NOM_ELEITOR;DAT_NASC;NUM_SECAO;NOM_MAE;NUM_LOCAL;TURNO1;TURNO2
-Só os dígitos 5 a 8 do título sobrevivem; o número completo não fica em lugar nenhum. Com
---titulo-completo a coluna volta a ser NUM_INSCRICAO com os 12 dígitos (v1).
-Esse CSV contém dados pessoais: fica em data/eleitores/, que está no .gitignore. Nunca commitar.
+Saída canônica (UTF-8, separador ';'), por padrão com o TÍTULO COMPLETO (decisão de 02/10/2026:
+a equipe volta a ver o título inteiro; o índice público do eleitor segue só com os dígitos 5-8):
+    NUM_INSCRICAO;NOM_ELEITOR;DAT_NASC;NUM_SECAO;NOM_MAE;NUM_LOCAL;TURNO1;TURNO2
+Com --titulo-parcial a coluna vira TITULO_5_8 e só os dígitos 5 a 8 sobrevivem (formato v2).
+Esse CSV contém dados pessoais: fica em data/eleitores/, que está no .gitignore. Nunca commitar
+em claro: para guardá-lo no git, cifre com scripts/app_cifra_lista.py (eleitores.csv.enc).
+
+ATENÇÃO ao arquivo certo: o "Relatório de Mesários por Situação" (Elo/Convoca+, 4 páginas, ~111
+mesários) NÃO é a relação de eleitores e é rejeitado aqui. A relação certa é a "Relação de eleitores
+por local de votação" do TRE-DF (~470 páginas, 16.794 eleitores).
 
 A lista real (TRE-DF, "Relação de eleitores por local de votação", 29/09/2026) é um PDF com
 texto: SEÇÃO · INSCRIÇÃO · NOME DO ELEITOR · 1º TURNO · 2º TURNO, sem data de nascimento nem
@@ -38,8 +43,8 @@ from app_normaliza import TITULO_JANELA, normaliza_data, normaliza_inscricao, no
 RAIZ = Path(__file__).resolve().parent.parent
 DADOS = RAIZ / "saidas" / "dados.json"
 DECISOES = RAIZ / "data" / "decisoes.json"
-DESTINO = RAIZ / "data" / "eleitores" / "eleitores_v2.csv"
-DESTINO_COMPLETO = RAIZ / "data" / "eleitores" / "eleitores.csv"
+DESTINO_PARCIAL = RAIZ / "data" / "eleitores" / "eleitores_v2.csv"
+DESTINO = RAIZ / "data" / "eleitores" / "eleitores.csv"
 COLUNA_PARCIAL = f"TITULO_{TITULO_JANELA[0]}_{TITULO_JANELA[1]}"
 
 # nome canônico -> nomes aceitos no cabeçalho (comparados já normalizados: maiúsculas, sem acento, sem pontuação)
@@ -172,8 +177,18 @@ def parse_texto_tre(texto):
     return registros
 
 
+def e_relatorio_de_mesarios(texto):
+    """True se o texto é o "Relatório de Mesários por Situação" (Elo/Convoca+), que não é a relação de eleitores."""
+    u = texto[:4000].upper()
+    return "RELATÓRIO DE MESÁRIOS" in u or "RELATORIO DE MESARIOS" in u or "CONVOCA+" in u
+
+
 def le_pdf(caminho):
-    registros = parse_texto_tre(texto_do_pdf(caminho))
+    texto = texto_do_pdf(caminho)
+    if e_relatorio_de_mesarios(texto):
+        raise SystemExit("este PDF é o Relatório de Mesários por Situação (Elo/Convoca+), não a relação de eleitores: "
+                         "peça ao Cartório a \"Relação de eleitores por local de votação\" (~470 páginas)")
+    registros = parse_texto_tre(texto)
     if not registros:
         raise SystemExit("nenhum registro SEÇÃO/INSCRIÇÃO/NOME reconhecido no PDF: o layout não é o da relação do TRE")
     sem_nome = sum(1 for r in registros if not r[2])
@@ -301,13 +316,14 @@ def main():
     ap.add_argument("--planilha", help="nome da aba, no .xlsx (padrão: a primeira com as colunas)")
     ap.add_argument("--local", help="manter só este NUM_LOCAL (ex.: 1015)")
     ap.add_argument("--grava", action="store_true", help="escrever o CSV canônico em data/eleitores/")
-    ap.add_argument("--destino", type=Path, help=f"padrão: {DESTINO.relative_to(RAIZ)} (parcial) ou {DESTINO_COMPLETO.relative_to(RAIZ)} (completo)")
-    ap.add_argument("--titulo-completo", action="store_true", help="guardar os 12 dígitos do título (v1); o padrão guarda só os dígitos 5-8")
+    ap.add_argument("--destino", type=Path, help=f"padrão: {DESTINO.relative_to(RAIZ)} (completo) ou {DESTINO_PARCIAL.relative_to(RAIZ)} (parcial)")
+    ap.add_argument("--titulo-parcial", action="store_true", help="guardar só os dígitos 5-8 do título (formato v2); o padrão guarda os 12 dígitos")
+    ap.add_argument("--titulo-completo", action="store_true", help=argparse.SUPPRESS)  # compatibilidade: já é o padrão
     ap.add_argument("--sem-conferencia", action="store_true", help="não comparar com saidas/dados.json (listas de outro posto)")
     args = ap.parse_args()
 
-    parcial = not args.titulo_completo
-    destino = args.destino or (DESTINO if parcial else DESTINO_COMPLETO)
+    parcial = args.titulo_parcial and not args.titulo_completo
+    destino = args.destino or (DESTINO_PARCIAL if parcial else DESTINO)
     linhas = le(args.arquivo, args.planilha)
     saida = converte(linhas, args.local, parcial)
     erros = [] if args.sem_conferencia else confere(saida, parcial)
