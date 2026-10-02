@@ -40,6 +40,20 @@
     </form>
     <ul class="lista-equipe" id="lista"></ul>
     <div id="resultado" aria-live="polite"></div>
+
+    <section class="painel" id="painel-fila">
+      <h2>Fila no Ring 3</h2>
+      <p class="dica" style="margin-top:0">Diga quão cheia está cada zona (0% = vazia, 100% = lotada, 706 pessoas). O app converte em tempo estimado para o eleitor, se o administrador tiver ativado o status de fila. Precisa de internet.</p>
+      <div id="zonas-fila"></div>
+      <p class="dica" id="estado-publicado"></p>
+      <div id="cofre-equipe" class="cofre" hidden>
+        <label for="chave-equipe">Chave de publicação (recebida no briefing; fica cifrada neste aparelho com a senha do dia)</label>
+        <input type="password" id="chave-equipe" autocomplete="off" placeholder="github_pat_…">
+      </div>
+      <button class="principal" id="publicar-fila" type="button">Publicar lotação</button>
+      <p class="dica" id="estado-fila"></p>
+    </section>
+
     <p><button class="secundario" id="sair" type="button">Fechar a lista</button></p>
   </section>
 </main>
@@ -52,6 +66,8 @@
 (async () => {
   const $ = (id) => document.getElementById(id);
   let pacote = null, rotas = null, config = null, eleitores = null;
+  let senhaDia = "", chavePublicacao = "", filaAtual = null;
+  const COFRE = "oev.chave_publicacao.equipe";
   OEV.registraSW("../sw.js");
 
   try {
@@ -78,10 +94,12 @@
     try {
       const dados = await OEV.decifraEquipe(pacote, $("senha").value);
       eleitores = dados.eleitores;
+      senhaDia = $("senha").value;
       $("senha").value = "";
       $("bloqueado").hidden = true; $("aberto").hidden = false;
       $("contagem").textContent = `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;
       $("busca").focus();
+      iniciaFila();
     } catch (e) {
       $("estado-lista").textContent = "Senha incorreta.";
     } finally {
@@ -92,6 +110,8 @@
   function mostraEleitor(e) {
     const rota = rotas.secoes[e.s];
     const marcas = OEV.marcasTurno(e);
+    // nº no caderno (campos p/c do pacote) NÃO é exibido: a lista do TRE vem por mesa, e o caderno físico é por
+    // seção (principal e agregada separadas), então a posição não bate. Decisão de 02/10; ver contexto.md §2d.
     const cab = `<div class="cartao-eleitor"><b>${OEV.esc(e.o || e.n)}</b><br>
       título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${marcas ? `<br><span class="marca-turno">${OEV.esc(marcas)}</span> — confira no e-Título; a decisão é do mesário` : ""}</div>`;
     $("resultado").innerHTML = rota
@@ -120,7 +140,75 @@
     const li = ev.target.closest("li[data-i]");
     if (li && ultimo) mostraEleitor(ultimo[+li.dataset.i]);
   });
-  $("sair").addEventListener("click", () => { eleitores = null; ultimo = null; location.reload(); });
+  $("sair").addEventListener("click", () => { eleitores = null; ultimo = null; senhaDia = ""; chavePublicacao = ""; location.reload(); });
+
+  /* ---- v3: lotação das zonas do Ring 3 → fila.json (ver docs/app/contexto.md §2d) ---- */
+  const cfgFila = () => config.fila || {};
+  function desenhaZonas(fila) {
+    const zonas = (rotas && rotas.zonas) || {};
+    $("zonas-fila").innerHTML = ["A", "B", "C"].map((l) => {
+      const z = (fila && fila.zonas && fila.zonas[l]) || {};
+      const pct = z.pct == null ? 0 : z.pct;
+      const cor = OEV.COR_LETRA[l], corTexto = l === "A" ? "#FFF" : "#3F3F3F";
+      const est = OEV.estimaEspera(pct, zonas[l], cfgFila());
+      const quando = z.em ? `informado às ${OEV.horaLocal(z.em)}` : "ainda sem informação";
+      return `<div class="zona-fila" data-letra="${l}">
+        <span class="letra-mini" style="background:${cor};color:${corTexto}">${l}</span>
+        <input type="range" min="0" max="100" step="5" value="${pct}" id="pct-${l}" aria-label="Zona ${l}: quão cheia, em porcento">
+        <span class="pct" id="pct-${l}-v">${pct}%</span>
+        <span class="meta" id="pct-${l}-m">≈ <b>${est.minutos} min</b> de espera (${est.pessoas} pessoas, ${zonas[l] ? zonas[l].urnas : "?"} urnas) · ${quando}</span>
+      </div>`;
+    }).join("");
+    for (const l of ["A", "B", "C"]) {
+      $(`pct-${l}`).addEventListener("input", () => {
+        const v = +$(`pct-${l}`).value;
+        const est = OEV.estimaEspera(v, zonas[l], cfgFila());
+        $(`pct-${l}-v`).textContent = `${v}%`;
+        $(`pct-${l}-m`).innerHTML = `≈ <b>${est.minutos} min</b> de espera (${est.pessoas} pessoas, ${zonas[l] ? zonas[l].urnas : "?"} urnas) · ao publicar`;
+      });
+    }
+  }
+  function mostraPublicado(fila) {
+    if (!fila) { $("estado-publicado").textContent = ""; return; }
+    const quando = fila.atualizado ? `Última publicação às ${OEV.horaLocal(fila.atualizado)}.` : "Nada publicado ainda.";
+    $("estado-publicado").innerHTML = `${quando} Status de fila para o eleitor: <b>${fila.ativo ? "ATIVADO" : "desligado"}</b> (quem liga é o administrador).`;
+  }
+  async function iniciaFila() {
+    if (!config.fila || !config.fila.repo) { $("painel-fila").hidden = true; return; }
+    desenhaZonas(null);
+    try {
+      chavePublicacao = await OEV.leSegredo(COFRE, senhaDia);
+    } catch (e) {
+      OEV.apagaSegredo(COFRE); chavePublicacao = ""; // guardada com outra senha do dia: pede de novo
+    }
+    $("cofre-equipe").hidden = !!chavePublicacao;
+    filaAtual = await OEV.leFilaPublica(cfgFila(), 6000);
+    if (filaAtual) { desenhaZonas(filaAtual); mostraPublicado(filaAtual); }
+    else $("estado-publicado").textContent = "Sem internet agora: não deu para ler a lotação publicada. A busca de eleitores continua funcionando.";
+  }
+  $("publicar-fila").addEventListener("click", async () => {
+    $("estado-fila").className = "dica";
+    const nova = $("chave-equipe").value.trim();
+    if (!chavePublicacao && !nova) { $("estado-fila").textContent = "Cole a chave de publicação recebida no briefing."; $("cofre-equipe").hidden = false; return; }
+    const chave = chavePublicacao || nova;
+    const valores = Object.fromEntries(["A", "B", "C"].map((l) => [l, +$(`pct-${l}`).value]));
+    $("publicar-fila").disabled = true; $("publicar-fila").textContent = "Publicando…";
+    try {
+      const agora = new Date().toISOString();
+      filaAtual = await OEV.publicaFila(cfgFila(), chave, (f) => {
+        for (const l of ["A", "B", "C"]) f.zonas[l] = { pct: valores[l], em: agora };
+        return f;
+      }, `fila: zonas A ${valores.A}% · B ${valores.B}% · C ${valores.C}%`);
+      if (!chavePublicacao) { chavePublicacao = chave; await OEV.guardaSegredo(COFRE, chave, senhaDia); $("chave-equipe").value = ""; $("cofre-equipe").hidden = true; }
+      desenhaZonas(filaAtual); mostraPublicado(filaAtual);
+      $("estado-fila").className = "dica estado-ok"; $("estado-fila").textContent = `Publicado às ${OEV.horaLocal(filaAtual.atualizado)}. O eleitor vê em até uns 5 minutos.`;
+    } catch (e) {
+      $("estado-fila").className = "dica estado-erro"; $("estado-fila").textContent = `Não publicou: ${e.message}`;
+      if (/401|403/.test(e.message)) { OEV.apagaSegredo(COFRE); chavePublicacao = ""; $("cofre-equipe").hidden = false; }
+    } finally {
+      $("publicar-fila").disabled = false; $("publicar-fila").textContent = "Publicar lotação";
+    }
+  });
 })();
 </script>
 </body>

@@ -1,4 +1,4 @@
-/* Onde eu voto? — código comum às páginas do eleitor e da equipe.
+/* Onde eu voto? — código comum às páginas do eleitor, da equipe e do administrador (v3).
  *
  * A normalização de nomes reimplementa scripts/app_normaliza.py. Os dois têm de dar o
  * mesmo resultado: app/testes confere isso sobre vetores compartilhados. Mudou aqui, mude lá.
@@ -335,9 +335,177 @@ const OEV = (() => {
     }
   }
 
+  /* ---- v3: número no caderno (vem do build, campo "c"; "p" é a posição alfabética na seção) ---- */
+  function textoCaderno(e) {
+    if (!e || e.c == null) return "";
+    return e.p != null && e.p !== e.c ? `nº ${e.c} no caderno (${e.p}º da seção)` : `nº ${e.c} no caderno`;
+  }
+
+  /* ---- v3: estimativa de espera na fila do Ring 3 ----
+     pct = quanto a zona está cheia (0–100), informado pela equipe. Modelo simples e declarado:
+       pessoas na fila  = pct/100 × lotação da zona (706, montagem do Ring 3)
+       vazão da zona    = urnas da zona × 60 / segundos por eleitor (premissa de config.json)
+       espera           = pessoas / vazão + minutos de travessia do pátio
+     Devolve {minutos (arredondado), minutosExatos, pessoas, vazaoPorMin}. */
+  function estimaEspera(pct, zona, cfgFila) {
+    const p = Math.max(0, Math.min(100, Number(pct) || 0));
+    const lotacao = Number(cfgFila.lotacao_zona) || 706;
+    const seg = Number(cfgFila.segundos_por_eleitor) || 60;
+    const travessia = Number(cfgFila.minutos_travessia) || 0;
+    const passo = Number(cfgFila.arredonda_min) || 5;
+    const urnas = Number(zona && zona.urnas) || 9;
+    const pessoas = Math.round((p / 100) * lotacao);
+    const vazao = (urnas * 60) / seg; // pessoas por minuto
+    const exatos = pessoas / vazao + travessia;
+    const minutos = Math.max(passo, Math.round(exatos / passo) * passo);
+    return { minutos, minutosExatos: exatos, pessoas, vazaoPorMin: vazao, pct: p };
+  }
+
+  function horaLocal(iso) {
+    const d = new Date(iso);
+    return isNaN(d) ? "" : d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  }
+
+  function preenche(modelo, valores) {
+    return String(modelo || "").replace(/\{(\w+)\}/g, (_, k) => (valores[k] == null ? "" : String(valores[k])));
+  }
+
+  /* Bloco que aparece ao eleitor abaixo da nota da preferencial, quando o admin ativou o status da fila.
+     fila = conteúdo de fila.json; rota = rota da seção; rotas.zonas = urnas por zona (do build). */
+  function renderEspera(fila, rota, rotas, cfgFila, agora = Date.now()) {
+    if (!fila || !fila.ativo || !rota) return "";
+    const z = fila.zonas && fila.zonas[rota.letra];
+    if (!z || z.pct == null || !z.em) return "";
+    const hora = horaLocal(z.em);
+    const idade = (agora - new Date(z.em).getTime()) / 60000;
+    const validade = Number(cfgFila.validade_min) || 60;
+    const est = estimaEspera(z.pct, rotas.zonas && rotas.zonas[rota.letra], cfgFila);
+    const velho = idade > validade;
+    const cor = COR_LETRA[rota.letra];
+    const corpo = est.pct <= 0
+      ? `<div class="espera-grande">poucos minutos</div><p>${esc(preenche(cfgFila.sem_fila, { letra: rota.letra, hora }))}</p>`
+      : `<div class="espera-grande">cerca de ${est.minutos} min</div>
+         <div class="espera-barra" aria-hidden="true"><span style="width:${est.pct}%;background:${cor}"></span></div>
+         <p>${esc(preenche(cfgFila.explicacao, { letra: rota.letra, pct: est.pct, hora, seg: cfgFila.segundos_por_eleitor || 60 }))}</p>`;
+    return `<div class="espera${velho ? " velha" : ""}" id="espera" data-minutos="${est.minutos}" data-pct="${est.pct}">
+      <div class="rotulo">${esc(cfgFila.rotulo || "Tempo estimado de espera")} · fila ${esc(rota.letra)}</div>
+      ${corpo}
+      ${velho ? `<p class="espera-aviso">${esc(preenche(cfgFila.desatualizado, { hora, validade }))}</p>` : ""}
+    </div>`;
+  }
+
+  /* Lê o estado vivo da fila publicado (raw.githubusercontent.com). Cache do CDN quebrado por minuto;
+     devolve null se não há rede, se a resposta não é JSON ou se demora mais que `limiteMs`. */
+  async function leFilaPublica(cfgFila, limiteMs = 5000) {
+    if (!cfgFila || !cfgFila.url_leitura) return null;
+    const sep = cfgFila.url_leitura.includes("?") ? "&" : "?";
+    const url = `${cfgFila.url_leitura}${sep}t=${Math.floor(Date.now() / 60000)}`;
+    const ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = ctl && setTimeout(() => ctl.abort(), limiteMs);
+    try {
+      const r = await fetch(url, { cache: "no-store", signal: ctl ? ctl.signal : undefined });
+      if (!r.ok) return null;
+      return await r.json();
+    } catch (e) {
+      return null;
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+
+  /* ---- v3: escrita de fila.json pela API do GitHub (branch próprio; ver docs/app/contexto.md §2d) ----
+     O token é um fine-grained PAT com "Contents: read and write" SÓ neste repositório. */
+  function filaVazia() {
+    return { v: 1, ativo: false, zonas: { A: { pct: null, em: null }, B: { pct: null, em: null }, C: { pct: null, em: null } }, atualizado: null };
+  }
+
+  function urlConteudo(cfgFila) {
+    return `https://api.github.com/repos/${cfgFila.repo}/contents/${cfgFila.arquivo}`;
+  }
+
+  function cabecalhosGitHub(token) {
+    return { Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, "X-GitHub-Api-Version": "2022-11-28" };
+  }
+
+  function utf8ParaB64(texto) {
+    return btoa(String.fromCharCode(...enc.encode(texto)));
+  }
+
+  function b64ParaUtf8(b64) {
+    return new TextDecoder().decode(b64bytes(String(b64).replace(/\s/g, "")));
+  }
+
+  /* Lê fila.json com o sha (necessário para gravar). 404 -> {fila: vazia, sha: null}. */
+  async function leFilaAPI(cfgFila, token) {
+    const r = await fetch(`${urlConteudo(cfgFila)}?ref=${encodeURIComponent(cfgFila.branch)}&t=${Date.now()}`, { headers: cabecalhosGitHub(token), cache: "no-store" });
+    if (r.status === 404) return { fila: filaVazia(), sha: null };
+    if (r.status === 401) throw new Error("chave de publicação inválida ou vencida (401)");
+    if (!r.ok) throw new Error(`GitHub respondeu HTTP ${r.status} ao ler ${cfgFila.arquivo}`);
+    const j = await r.json();
+    let fila;
+    try { fila = JSON.parse(b64ParaUtf8(j.content)); } catch (e) { fila = filaVazia(); }
+    return { fila: { ...filaVazia(), ...fila, zonas: { ...filaVazia().zonas, ...(fila.zonas || {}) } }, sha: j.sha };
+  }
+
+  /* Lê, aplica `mutador(fila)` e grava; repete até 3 vezes se outra pessoa gravou no meio (409/422). */
+  async function publicaFila(cfgFila, token, mutador, mensagem = "fila: atualização pela equipe") {
+    let erro = null;
+    for (let tentativa = 0; tentativa < 3; tentativa++) {
+      const { fila, sha } = await leFilaAPI(cfgFila, token);
+      const nova = mutador(JSON.parse(JSON.stringify(fila))) || fila;
+      nova.atualizado = new Date().toISOString();
+      const corpo = { message: mensagem, content: utf8ParaB64(JSON.stringify(nova, null, 1) + "\n"), branch: cfgFila.branch };
+      if (sha) corpo.sha = sha;
+      const r = await fetch(urlConteudo(cfgFila), { method: "PUT", headers: { ...cabecalhosGitHub(token), "Content-Type": "application/json" }, body: JSON.stringify(corpo) });
+      if (r.ok) return nova;
+      if (r.status === 409 || r.status === 422) { erro = new Error(`conflito ao gravar (HTTP ${r.status}); tentando de novo`); continue; }
+      if (r.status === 401) throw new Error("chave de publicação inválida ou vencida (401)");
+      if (r.status === 403) throw new Error("a chave de publicação não tem permissão de escrita neste repositório (403)");
+      if (r.status === 404) throw new Error(`repositório ou branch não encontrado (404): confira ${cfgFila.repo} / ${cfgFila.branch}`);
+      throw new Error(`GitHub respondeu HTTP ${r.status} ao gravar`);
+    }
+    throw erro || new Error("não foi possível gravar a fila");
+  }
+
+  /* ---- v3: cofre local — guarda um segredo (a chave de publicação) cifrado com uma senha, no localStorage ---- */
+  const ITERACOES_COFRE = 100000;
+  async function chaveCofre(senha, sal) {
+    const bits = await pbkdf2(enc.encode(senha), sal, ITERACOES_COFRE, 32);
+    return crypto.subtle.importKey("raw", bits, "AES-GCM", false, ["encrypt", "decrypt"]);
+  }
+
+  async function guardaSegredo(nome, texto, senha) {
+    const sal = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+    const k = await chaveCofre(senha, sal);
+    const cifrado = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, k, enc.encode(texto));
+    const b64 = (b) => btoa(String.fromCharCode(...new Uint8Array(b)));
+    localStorage.setItem(nome, JSON.stringify({ v: 1, sal: b64(sal), iv: b64(iv), dados: b64(cifrado) }));
+  }
+
+  /* Devolve o segredo, "" se não há nada guardado, e lança se a senha não abre. */
+  async function leSegredo(nome, senha) {
+    const bruto = localStorage.getItem(nome);
+    if (!bruto) return "";
+    const c = JSON.parse(bruto);
+    const k = await chaveCofre(senha, b64bytes(c.sal));
+    const claro = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64bytes(c.iv) }, k, b64bytes(c.dados));
+    return new TextDecoder().decode(claro);
+  }
+
+  function apagaSegredo(nome) { localStorage.removeItem(nome); }
+
+  /* ---- v3: senha do administrador — conferida contra o hash PBKDF2 de config.json ("admin") ---- */
+  async function confereAdmin(cfgAdmin, senha) {
+    if (!cfgAdmin || !cfgAdmin.hash) return false;
+    const bits = await pbkdf2(enc.encode(senha), enc.encode(cfgAdmin.sal), cfgAdmin.iteracoes, 32);
+    return b64url(bits) === cfgAdmin.hash;
+  }
+
   return { normalizaNome, chavesNome, normalizaData, normalizaInscricao, tituloParcial, mascaraData, mascaraTitulo, hashPublico, consultaPublica,
            decifraEquipe, buscaEquipe, marcasTurno, carregaJSON, esc, formataData, formataTitulo, desenhaMapa, renderRota,
-           rotaDaSecao, registraSW, COR_LETRA };
+           rotaDaSecao, registraSW, COR_LETRA,
+           textoCaderno, estimaEspera, renderEspera, horaLocal, preenche, leFilaPublica, filaVazia, leFilaAPI, publicaFila,
+           guardaSegredo, leSegredo, apagaSegredo, confereAdmin };
 })();
 
 if (typeof module !== "undefined") module.exports = OEV;

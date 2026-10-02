@@ -133,6 +133,30 @@ def hash_publico(chave_nome, segundo_fator=""):
     return base64.urlsafe_b64encode(dk).decode("ascii").rstrip("=")
 
 
+# Número do eleitor no caderno de votação (v3, 01/10/2026). Posição do nome na ordem alfabética
+# dos eleitores da MESMA seção (como a lista do TRE a traz: por mesa, agregadas somadas).
+# Regra ditada pelo usuário: posição até 200 -> o próprio número; acima de 200 -> posição - 200
+# (ex.: 256º da seção 0513 -> 56). Premissa: a ordem alfabética é a do nome impresso, sem acento,
+# em ordem simples de caracteres (partículas DE/DA contam, como no caderno).
+CADERNO_BLOCO = 200
+
+
+def chave_caderno(nome_original):
+    """Nome como impresso -> chave de ordenação alfabética (maiúsculas, sem acento, espaços simples)."""
+    if nome_original is None:
+        return ""
+    s = unicodedata.normalize("NFKD", str(nome_original))
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return " ".join(s.upper().split())
+
+
+def numero_caderno(posicao):
+    """Posição (1-based) na ordem alfabética da seção -> número sequencial no caderno."""
+    if posicao is None or posicao < 1:
+        return None
+    return posicao if posicao <= CADERNO_BLOCO else posicao - CADERNO_BLOCO
+
+
 if __name__ == "__main__":
     import sys
 

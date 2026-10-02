@@ -72,6 +72,24 @@ Decisão: **dígitos 5 a 8** (`TITULO_JANELA` em `app_normaliza.py`, `tituloParc
   removida. **Pendência:** remover a v1 depois de validar a v2, porque o pacote cifrado da v1 ainda
   tem os títulos completos.
 
+### 2d. v3 — número no caderno, tempo de espera e área do administrador (01/10/2026, branch `appeleicoesv3`, página `/v3/`)
+
+Pedido do usuário em 01/10; mudanças concentradas na área da equipe, mais uma área nova.
+
+| Decisão | Escolha | Por quê |
+|---|---|---|
+| **Número no caderno** (equipe) — **RETIRADO DA PÁGINA em 02/10** | calculado no **build** (`numera_caderno` em `app_construir.py`): posição do nome na ordem alfabética dos eleitores da **mesma seção**; até 200 → a posição; acima de 200 → **posição − 200** (256º → 56). Vai no pacote da equipe como `c` (número) e `p` (posição); a página mostra "nº 56 no caderno (256º da seção)" | regra ditada pelo usuário. Calcular uma vez, em Python, deixa a regra testável e o JS só exibe |
+| Ordem alfabética do caderno | `chave_caderno`: nome **impresso**, maiúsculas, sem acento, espaços simples, **partículas contam** (≠ `normaliza_nome`); empate → título parcial | é a ordem de uma lista impressa; **premissa**, conferir com um caderno real |
+| Seção da ordenação | a da lista do TRE (por mesa, agregadas somadas) | é a única seção que a lista traz. **Por isso a função foi retirada da página em 02/10:** o usuário conferiu cadernos reais e eles são **um por seção, principal e agregada separados**; a lista do TRE não diz a que seção (principal ou agregada) cada eleitor pertence, então a posição calculada não encontra o eleitor no caderno. Os campos `p`/`c` continuam no pacote, sem uso na interface, até haver uma lista por seção ou outra solução |
+| **Tempo de espera** | a equipe informa **só uma porcentagem** de quão cheia está cada zona A/B/C do Ring 3; o app converte: `pessoas = pct × 706`, `vazão = urnas da zona × 60 / 60 s`, `espera = pessoas / vazão + 3 min`, arredondado a 5 min (`estimaEspera` em `comum.js`; parâmetros em `config.json → fila`; urnas por zona em `rotas.json → zonas`) | pedido do usuário: "simplesmente colocar uma porcentagem". 706 é a lotação por zona da montagem do Ring 3. **Premissas:** 60 s por eleitor (`docs/contexto_geral.md`), 3 min de travessia |
+| **Onde mora o estado vivo** | `fila.json` num **branch órfão `fila`** deste repositório: `{ativo, zonas: {A: {pct, em}, …}, atualizado}`. Equipe e admin **escrevem pela API do GitHub** (Contents API, com `sha` e 3 tentativas em conflito); o eleitor **lê** por `raw.githubusercontent.com` (cache quebrado por minuto; CDN pode atrasar até ~5 min) | decisão de 28/09 "só GitHub Pages, sem servidor" mantida: nenhuma infraestrutura nova. Não usa `gh-pages` porque cada gravação dispararia um build do Pages (limite brando de 10/hora) |
+| **Chave de publicação** | fine-grained PAT com *Contents: read and write* **só neste repositório**, distribuída no briefing como a senha do dia. Fica no aparelho **cifrada** (AES-GCM, chave PBKDF2 de 100 mil iterações) com a senha do dia (equipe) ou a do admin (`guardaSegredo`/`leSegredo` em `comum.js`) | um site estático não tem como autenticar escrita sem um segredo no cliente. Vazamento → revogar no GitHub. **Risco aceito:** o PAT alcança todos os branches do repositório, inclusive `gh-pages`; para reduzir, mover `fila.json` para um repositório só dele (trocar `repo`, `branch`, `url_leitura` em `config.json` e reconstruir) |
+| **Área do administrador** (`admin/`) | senha conferida contra **hash PBKDF2** em `config.json → admin` (sal e 200 mil iterações; a senha nunca fica em claro no git). Função **"Ativar status de fila"** grava `ativo` em `fila.json`; mostra a lotação publicada, zera lotações, guarda/apaga a chave de publicação e exibe os parâmetros da estimativa | pedido do usuário. O hash num site estático é só um portão de interface: quem baixa o `config.json` pode tentar senhas offline; o que protege a gravação é a chave de publicação, não a senha |
+| **Eleitor** | quando `ativo` e a zona dele tem informação: bloco **"Tempo estimado de espera · fila X"** logo **abaixo da nota da preferencial**, com "cerca de N min", barra de lotação, hora da informação e a premissa. Informação com mais de 60 min ganha aviso laranja; `ativo: false`, zona sem dado ou sem rede → **nada aparece** | pedido do usuário (posição do bloco). Sem rede o app continua inteiro: a fila é o único dado que não fica no cache |
+
+Trocar a senha do admin: `python3 -c "import hashlib,base64;print(base64.urlsafe_b64encode(hashlib.pbkdf2_hmac('sha256',b'NOVA',b'dublin-2026-onde-eu-voto-admin',200000,32)).decode().rstrip('='))"`
+e colar em `config.json → admin.hash`; reconstruir e republicar.
+
 ### 2b. Decisões de 28/09/2026 (mantidas, exceto a identificação)
 
 | Decisão | Escolha | Por quê |
@@ -117,6 +135,11 @@ só em memória: busca por qualquer parte do nome; homônimos saem lado a lado, 
 **título**, seção e marca de turno (badge laranja quando não é OK); tocar num nome abre a
 rota dele. "Fechar a lista" descarrega. O service worker guarda tudo no aparelho na primeira
 visita; depois funciona sem rede.
+
+**Fila (v3).** `equipe/` tem o painel "Fila no Ring 3": três controles de 0 a 100% (A, B, C), cada um
+já mostrando a espera estimada; "Publicar lotação" grava em `fila.json` (branch `fila`) com a chave de
+publicação. `admin/` liga/desliga `ativo`. O eleitor lê `fila.json` ao abrir e de novo a cada consulta
+(se a leitura anterior tem mais de 1 min), com limite de 4 s para não atrasar o resultado.
 
 **Título de eleitor.** Só aparece no eleitor quando há homônimo; nunca é guardado nem enviado
 (a consulta é local, no aparelho). Na equipe é o dado que separa homônimos, no lugar da data.
@@ -171,7 +194,9 @@ rodapé de página repetem a cada ~36 registros.
 | Quem baixa `indice_publico.json` | tentar nomes contra os hashes, a ~30 ms por tentativa (PBKDF2 50k) | recuperar nomes em massa (30 mil chaves × espaço de nomes); recuperar títulos (o índice só conhece 4 dígitos do meio) |
 | Quem baixa `equipe.enc` sem a senha | nada útil | decifrar (AES-256-GCM, chave de PBKDF2 600k sobre frase de seis palavras) |
 | Quem tem a senha | tudo que a equipe vê: nome, 4 dígitos do meio do título, seção, marcas de turno | reconstruir o título completo (faltam 8 dígitos) |
-| Quem acha um celular da equipe | o pacote cifrado no cache | a lista, sem a senha; a página descarrega a lista ao fechar |
+| Quem acha um celular da equipe | o pacote cifrado no cache; a chave de publicação cifrada no `localStorage` | a lista, sem a senha; a chave, sem a senha; a página descarrega a lista ao fechar |
+| Quem obtém a chave de publicação (v3) | alterar `fila.json` (lotações falsas, ligar/desligar o status) e, em tese, qualquer branch do repositório | nada sobre eleitores (o repositório só tem a lista cifrada). Remédio: revogar o PAT no GitHub |
+| Quem baixa `config.json` (v3) | tentar senhas do admin offline contra o hash PBKDF2 (200 mil iterações) | gravar a fila: a senha do admin só abre a interface; gravar exige a chave de publicação |
 
 Limites conhecidos: nome de casada, abreviações e apelidos não encontram (o app sempre
 mostra o caminho de volta ao e-Título e ao P0); homônimo sem o título em mãos vai ao
@@ -180,6 +205,12 @@ a lista não traz outro dado (§2a).
 
 ## 7. Testes
 
+- v3 acrescenta: `numero_caderno` (regra dos 200), `chave_caderno`, `numera_caderno` com 256 eleitores
+  (256º → 56), pacote da equipe com `p`/`c` ordenados por seção, `rotas.json → zonas`, `config.json`
+  com `fila` e `admin` (hash confere, senha não está em claro); em JS, `estimaEspera`, `renderEspera`
+  (desligado/zona sem dado/offline → vazio; informação velha), `textoCaderno`; ponta a ponta: bloco de
+  espera abaixo da preferencial e sumindo com `ativo: false`, nº no caderno, painel da fila, admin
+  (senha errada/certa, cofre da chave) e offline (24 verificações).
 - `python3 -m pytest -q app/testes` (10): normalização, hash só nome × nome|título, leitor
   do PDF do TRE (nome quebrado, marcas VT, cabeçalho no meio), vetores Python × JS iguais
   (inclui `consultaPublica` sobre um índice v2 montado à mão), build confere a amostra e
@@ -191,6 +222,15 @@ a lista não traz outro dado (§2a).
   juntados, 28 mesas com contagem idêntica a `decisoes.json`.
 
 ## 8. Pendências
+
+- **v3 / caderno:** a lista do TRE por mesa não separa principal de agregada; o caderno físico separa. Para
+  voltar com o nº no caderno é preciso (a) uma relação por seção do Cartório, ou (b) cruzar o título/zona de
+  origem com `data/decisoes.json` (origem_agregada) — a inscrição não traz a seção. Pensar depois.
+- **v3:** criar o fine-grained PAT (só `dublineleicoesfinal`, *Contents: read and write*), guardar
+  no aparelho do admin e distribuir à equipe no briefing; decidir se `fila.json` vai para um
+  repositório só dele. Conferir a **regra dos 200** com um caderno real (o que acontece acima de
+  400? a regra literal dá posição − 200; se o caderno reinicia a cada 200, trocar `numero_caderno`).
+  Validar na véspera o ciclo equipe → `fila.json` → eleitor (latência do raw ~1–5 min).
 
 - Confirmar com o Cartório o significado da marca **VT** (premissa: voto em trânsito) e se
   os 74 eleitores marcados no 1º turno votam em Dublin ou não. O texto do aviso está em

@@ -15,8 +15,15 @@ Escreve em app/dist/:
                                 hash(chave do nome) -> "H" quando há homônimos, e então
                                 hash(chave do nome | título de 12 dígitos) -> [seção] para cada um deles.
                               A seção vem acompanhada da marca de turno quando ela não é "OK" (ex.: VT).
-  - dados/equipe.enc          lista completa (nome, título, seção, marcas 1º/2º turno) cifrada com AES-256-GCM;
+  - dados/equipe.enc          lista completa (nome, título, seção, marcas 1º/2º turno) cifrada com AES-256-GCM; leva
+                              também posição alfabética na seção da lista e "número no caderno" (p/c, v3), que a
+                              página NÃO exibe (02/10: a lista é por mesa; o caderno físico é por seção);
   - dados/versao.json         carimbo da construção, para o service worker perceber a atualização.
+Em dados/rotas.json vai também um bloco "zonas" (urnas, aptos e esperado por zona A/B/C), que a
+estimativa de espera da fila (v3) usa junto com os parâmetros de config.json ("fila").
+O estado vivo da fila (lotação por zona, status ligado/desligado) NÃO sai do build: mora em
+fila.json num branch próprio do repositório, escrito pela equipe/admin pela API do GitHub
+(ver docs/app/contexto.md §2d).
 
 A senha da equipe vem de --senha-equipe ou da variável APP_SENHA_EQUIPE. Sem nenhuma das
 duas, o script sorteia uma frase de seis palavras e a imprime UMA vez: anote-a.
@@ -40,8 +47,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from app_normaliza import (  # noqa: E402
-    ITERACOES_PUBLICO, SAL_PUBLICO, TAMANHO_HASH, TITULO_JANELA, chaves_nome, hash_publico,
-    normaliza_inscricao, normaliza_nome, normaliza_secao, titulo_parcial,
+    CADERNO_BLOCO, ITERACOES_PUBLICO, SAL_PUBLICO, TAMANHO_HASH, TITULO_JANELA, chave_caderno, chaves_nome,
+    hash_publico, normaliza_inscricao, normaliza_nome, normaliza_secao, numero_caderno, titulo_parcial,
 )
 
 TITULO = {"digitos": f"{TITULO_JANELA[0]}-{TITULO_JANELA[1]}", "tamanho": 4}
@@ -124,6 +131,21 @@ def monta_rotas(dec, grupos):
     return dict(sorted(rotas.items()))
 
 
+def monta_zonas(dec):
+    """Resumo por zona do Ring 3 (A/B/C): urnas, aptos e comparecimento esperado, para a estimativa de espera."""
+    zonas = {}
+    for ent in dec["entradas"]:
+        mesas = [m for m in dec["mesas"] if m["entrada"] == ent["id"]]
+        zonas[ent["id"]] = {
+            "urnas": len(mesas),
+            "aptos": sum(m["aptos"] for m in mesas),
+            "esperado": ent["esperado"],
+            "porta": ent["porta"],
+            "parede": ent["parede"],
+        }
+    return zonas
+
+
 def passos(letra, porta, parede, grupo, n_grupo, secoes_grupo):
     """Texto do caminho, na perspectiva de quem caminha (textos ditados em 01/10/2026).
 
@@ -176,6 +198,23 @@ def prepara_eleitores(linhas):
             "t1": (r.get("TURNO1") or "").strip().upper(),
             "t2": (r.get("TURNO2") or "").strip().upper(),
         })
+    return eleitores
+
+
+def numera_caderno(eleitores):
+    """Atribui a cada eleitor a posição alfabética na sua seção ("p") e o número no caderno ("c").
+
+    Ordena por chave_caderno(nome impresso) e, em empate, pelo título parcial. A seção é a da
+    lista (por mesa, agregadas somadas). Regra em app_normaliza.numero_caderno (v3, 01/10/2026).
+    """
+    por_secao = defaultdict(list)
+    for e in eleitores:
+        por_secao[e["s"]].append(e)
+    for secao, pessoas in por_secao.items():
+        pessoas.sort(key=lambda e: (chave_caderno(e["nome_original"] or e["n"]), e["t"]))
+        for i, e in enumerate(pessoas, start=1):
+            e["p"] = i
+            e["c"] = numero_caderno(i)
     return eleitores
 
 
@@ -256,8 +295,10 @@ def valor_indice(e, turno):
 def cifra_equipe(eleitores, turno, senha):
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-    registros = [{"n": e["n"], "o": e["nome_original"], "t": e["t"], "s": e["s"], "t1": e["t1"], "t2": e["t2"]} for e in eleitores]
-    claro = zlib.compress(json.dumps({"fator": "nome", "titulo": TITULO, "turno": turno, "eleitores": registros}, ensure_ascii=False).encode("utf-8"), 9)
+    registros = [{"n": e["n"], "o": e["nome_original"], "t": e["t"], "s": e["s"], "t1": e["t1"], "t2": e["t2"],
+                  "p": e.get("p"), "c": e.get("c")} for e in eleitores]
+    claro = zlib.compress(json.dumps({"fator": "nome", "titulo": TITULO, "turno": turno, "caderno": {"bloco": CADERNO_BLOCO},
+                                      "eleitores": registros}, ensure_ascii=False).encode("utf-8"), 9)
     sal = secrets.token_bytes(16)
     iv = secrets.token_bytes(12)
     chave = hashlib.pbkdf2_hmac("sha256", senha.encode("utf-8"), sal, ITERACOES_EQUIPE, 32)
@@ -306,8 +347,11 @@ def main():
     dec, grupos = carrega(DECISOES), carrega(GRUPOS)
     rotas = monta_rotas(dec, grupos)
     linhas = le_lista(args.lista, args.senha_equipe)
-    eleitores = prepara_eleitores(linhas)
+    eleitores = numera_caderno(prepara_eleitores(linhas))
+    zonas = monta_zonas(dec)
     erros = confere(rotas, eleitores, dec)
+    if sorted(zonas) != ["A", "B", "C"] or sum(z["urnas"] for z in zonas.values()) != 28:
+        erros.append(f"zonas do Ring 3: {zonas}")
 
     print(f"lista: {args.lista.relative_to(RAIZ) if args.lista.is_relative_to(RAIZ) else args.lista} · {len(eleitores)} eleitores · consulta por nome, título desempata · turno {turno}")
     print(f"rotas: {len(rotas)} seções · " + " · ".join(f"{l} {n}" for l, n in sorted(Counter(r['letra'] for r in rotas.values()).items())))
@@ -328,6 +372,9 @@ def main():
         sys.exit(1)
 
     indice, resumo = monta_indice(eleitores, turno)
+    maior = max(e["p"] for e in eleitores) if eleitores else 0
+    print(f"caderno: posição alfabética por seção; maior seção com {maior} eleitores · número = posição, ou posição − {CADERNO_BLOCO} acima de {CADERNO_BLOCO}")
+    print(f"zonas do Ring 3: " + " · ".join(f"{l} {z['urnas']} urnas / {z['esperado']} esperados" for l, z in zonas.items()))
     print(f"índice público: {resumo['chaves']} chaves de nome, {resumo['ambiguas']} com homônimos (pedem o título), "
           f"{resumo['nomes_completos_repetidos']} nomes completos repetidos · {len(indice['itens'])} entradas · "
           f"título parcial (dígitos {TITULO['digitos']}): {resumo['colisoes']} colisões (mandam ao P0)")
@@ -346,7 +393,7 @@ def main():
     shutil.copytree(PUBLICO, DIST)
     dados = DIST / "dados"
     dados.mkdir(exist_ok=True)
-    (dados / "rotas.json").write_text(json.dumps({"atualizado": dec["atualizadoEm"], "secoes": rotas}, ensure_ascii=False, indent=1), encoding="utf-8")
+    (dados / "rotas.json").write_text(json.dumps({"atualizado": dec["atualizadoEm"], "zonas": zonas, "secoes": rotas}, ensure_ascii=False, indent=1), encoding="utf-8")
     (dados / "indice_publico.json").write_text(json.dumps(indice, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (dados / "equipe.enc").write_text(json.dumps(pacote, separators=(",", ":")), encoding="utf-8")
     versao = {
@@ -355,6 +402,8 @@ def main():
         "fator": "nome",
         "titulo": TITULO,
         "turno": turno,
+        "app": config.get("versao_app", ""),
+        "caderno": {"bloco": CADERNO_BLOCO},
         "homonimos": resumo["ambiguas"],
         "colisoes_titulo": resumo["colisoes"],
         "lista": args.lista.name,
