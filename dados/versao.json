@@ -1,0 +1,20 @@
+{
+ "construido_em": "2026-10-02T15:57:40+00:00",
+ "eleitores": 16794,
+ "fator": "nome",
+ "titulo": {
+  "digitos": "5-8",
+  "tamanho": 4
+ },
+ "titulo_equipe": "completo",
+ "turno": 1,
+ "app": "v3",
+ "caderno": {
+  "bloco": 200
+ },
+ "homonimos": 1278,
+ "colisoes_titulo": 0,
+ "lista": "eleitores.csv.enc",
+ "amostra_sintetica": false,
+ "indice_sha256": "fd7a80481d614112"
+}
