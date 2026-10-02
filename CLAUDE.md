@@ -174,6 +174,17 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   travessia) são **premissas** em `config.json → fila`. O **nº no caderno** (campos `p`/`c` do pacote) foi **retirado da página em 02/10**: a lista do TRE é por
   mesa e o caderno físico é por seção (principal e agregada separadas), então a posição não bate; não
   reexibir sem uma lista por seção. Detalhes em `docs/app/contexto.md` §2d.
+- **A página tem de funcionar por `http://`** (02/10): o navegador só expõe `crypto.subtle` em
+  contexto seguro, e o domínio aberto por `http://dublineleicoes2026.com.br` quebrava a consulta
+  ("Cannot read properties of undefined (reading 'importKey')"). `comum.js` traz SHA-256, PBKDF2 e
+  AES-GCM em JavaScript puro e os usa quando não há `crypto.subtle`; `sobeParaHTTPS()` tenta passar
+  para `https://` só se ele responder. **Nunca chamar `crypto.subtle` direto**: usar `pbkdf2`,
+  `aesGcmCifra`, `aesGcmDecifra` de `comum.js`. `app/testes/cripto.test.mjs` confere os dois
+  caminhos byte a byte e `app/testes/insegura.mjs` roda as três páginas num `http://IP` de verdade.
+  No GitHub, marcar **Settings → Pages → Enforce HTTPS** assim que o certificado do domínio sair.
+- **Branch `gh-pages2`** (02/10): só a v3 na raiz (+ `CNAME`), sem `v2/` nem `v3/`. O Pages serve
+  **um** branch por repositório: para o domínio passar a servir o `gh-pages2`, trocar em
+  Settings → Pages → Branch. Publicar nele com `bash scripts/app_publicar.sh --branch gh-pages2`.
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.

@@ -126,6 +126,38 @@ o índice público não muda. A seção 6 abaixo foi ajustada.
 | Versão da equipe | **obrigatoriamente offline** | cobertura de dados na calçada não testada |
 | Formato mobile | PWA instalável (site), não app de loja | prazo de 6 dias; funciona em Android e iPhone sem publicação em loja |
 
+### 2e. A página em `http://` — criptografia em JavaScript puro (02/10/2026, tarde)
+
+**Sintoma.** Em `http://dublineleicoes2026.com.br/` (triângulo "não seguro" na barra), toda consulta
+terminava em *"Erro na consulta: Cannot read properties of undefined (reading 'importKey')"*.
+Reproduzido no Chromium servindo o `comum.js` publicado por `http://` num IP que não é localhost.
+
+**Causa.** O navegador só expõe `crypto.subtle` (WebCrypto) em **contexto seguro**: `https://`,
+`localhost` ou arquivo local. Em `http://` num domínio de verdade `crypto.subtle` é `undefined`, e o
+PBKDF2 do índice, o AES-GCM do pacote da equipe e o cofre caíam na primeira chamada. O GitHub Pages
+só redireciona `http://` → `https://` com **"Enforce HTTPS"** marcado, e só depois de emitir o
+certificado do domínio próprio; nenhum dos dois estava valendo em 02/10. (O service worker também
+não registra em `http://`, por isso nem o cache escondia o problema.)
+
+**Decisão.** A página passa a funcionar nos dois casos:
+
+| | |
+|---|---|
+| **JavaScript puro quando não há `crypto.subtle`** | `comum.js` implementa SHA-256, HMAC, PBKDF2-HMAC-SHA256 e AES-GCM (IV de 12 bytes, tag de 16, sem dados associados — exatamente o que o app usa) e os expõe por `pbkdf2`, `aesGcmCifra`, `aesGcmDecifra`. Com `crypto.subtle` presente, continua no nativo. `app/testes/cripto.test.mjs` confere os dois caminhos byte a byte contra o WebCrypto do Node (SHA-256, PBKDF2 em 1–3 blocos, AES-128/192/256-GCM, cofre, senha do admin, pacote da equipe). |
+| **Custo** | PBKDF2 de 50 mil iterações: ~40 ms no Node, ~1 s numa consulta no Chromium sem aceleração; pacote da equipe (600 mil + AES-GCM de ~700 kB): ~0,6 s. Aceitável; o botão já mostra "Procurando…". |
+| **`sobeParaHTTPS()`** | em `http://` fora de localhost, sonda `https://<mesmo host>/dados/versao.json`; se responder, `location.replace` para o mesmo endereço em `https://`; se não (certificado ainda não emitido), fica em `http://` sem erro. Chamada no início das três páginas. |
+| **Teste em contexto inseguro** | `app/testes/insegura.mjs` serve `app/dist/` num IP da máquina e percorre eleitor, equipe e administrador com `window.isSecureContext === false`. |
+| **Regra** | nunca chamar `crypto.subtle` direto em `comum.js` nem nas páginas; passar pelas três funções. |
+
+**Fica para o usuário**: marcar *Settings → Pages → Enforce HTTPS* quando o certificado do domínio
+estiver emitido (o GitHub mostra o estado nessa mesma tela). Até lá o site funciona por `http://`,
+sem service worker (sem modo offline) e com a consulta mais lenta.
+
+**Branch `gh-pages2`** (pedido de 02/10): só a v3 na raiz (os mesmos `dados/` do build de 15:57 UTC,
+páginas com a correção acima, `CNAME`, `.nojekyll`), sem `v2/` nem `v3/`. O Pages serve um branch
+por repositório: para o domínio passar a servir o `gh-pages2`, trocar em *Settings → Pages → Branch*.
+`app_publicar.sh --branch gh-pages2` publica nele a partir de `app/dist/`.
+
 ## 3. Como funciona
 
 ```
@@ -205,6 +237,9 @@ rodapé de página repetem a cada ~36 registros.
 2. Publicar **só `app/dist/`** no GitHub Pages: branch `gh-pages` deste repositório, ou
    um repositório público só com essa pasta se o plano da conta não permitir Pages em
    repositório privado. `app/dist/` não contém dado pessoal legível.
+   Desde 02/10 há também o branch `gh-pages2` (só a v3 na raiz; `--branch gh-pages2`). O Pages serve
+   um branch por vez (Settings → Pages → Branch) e **"Enforce HTTPS"** deve ficar marcado: sem ele o
+   site abre por `http://` e cai na criptografia em JavaScript puro, mais lenta e sem modo offline (§2e).
 3. Distribuir a senha da equipe no briefing, fora de e-mail em massa. Trocar a senha =
    reconstruir e republicar; o service worker baixa o pacote novo pela mudança em
    `versao.json` (o build grava o carimbo em `sw.js`).
@@ -263,6 +298,9 @@ a lista não traz outro dado (§2a).
   `config.json` (`aviso_marca`) e muda sem reconstruir o índice.
 - GitHub Pages: branch `gh-pages` deste repositório (decisão de 01/10); conferir se o plano
   da conta serve Pages em repositório privado. Se não, repositório público só com `app/dist/`.
+- **Enforce HTTPS** no Pages (02/10): o domínio abriu por `http://` e a consulta quebrou; corrigido no
+  código (§2e), mas o `https://` continua sendo o modo certo (offline, consulta rápida). Conferir o
+  certificado do domínio em Settings → Pages e marcar a opção.
 - Quem constrói e publica na véspera; quem guarda a senha da equipe. Trocar a senha =
   reconstruir e republicar.
 - Teste da página da equipe sem sinal, na calçada, na véspera.

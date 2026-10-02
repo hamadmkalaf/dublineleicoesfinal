@@ -1,5 +1,5 @@
 """pytest: regras de normalização, leitor do PDF do TRE e conferência do build (python3 -m pytest app/testes)."""
-import json, subprocess, sys
+import json, os, subprocess, sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent.parent
@@ -90,9 +90,32 @@ def test_leitor_pdf_tre():
     ]
 
 
+def test_nome_com_e_sem_acento_mesma_chave():
+    """02/10: til, cedilha, agudo, circunflexo, grave, trema e ordinal nunca mudam a chave (com ou sem, maiúsculo ou não, NFC ou NFD)."""
+    pares = [
+        ("Conceição Gonçalves Assunção", "CONCEICAO GONCALVES ASSUNCAO"),
+        ("José Antônio Araújo Côrtes", "jose antonio araujo cortes"),
+        ("Luís Ângelo Müller Peña", "LUIS ANGELO MULLER PENA"),
+        ("Thaís Raíssa Jaçanã", "THAIS RAISSA JACANA"),
+        ("Sebastião Façanha D’Ávila", "SEBASTIAO FACANHA DAVILA"),
+        ("Mª da Conceição Sant'Ana", "ma conceicao santana"),
+        ("João Gonçalves", "JOAO GONCALVES"),  # NFD
+        ("À Côrte Èdith Ïris Òscar Ùrsula Ÿves", "A CORTE EDITH IRIS OSCAR URSULA YVES"),
+    ]
+    for com, sem in pares:
+        assert normaliza_nome(com) == normaliza_nome(sem) == sem.upper(), com
+        assert chaves_nome(com) == chaves_nome(sem), com
+
+
 def test_vetores_js_iguais():
     subprocess.run([sys.executable, str(RAIZ / "app/testes/gera_vetores.py")], check=True)
     subprocess.run(["node", str(RAIZ / "app/testes/normaliza.test.mjs")], check=True)
+
+
+def test_cripto_js_puro_igual_webcrypto():
+    """A criptografia em JavaScript puro (página em http://, sem crypto.subtle) dá o mesmo resultado que o WebCrypto."""
+    garante_dist_amostra()
+    subprocess.run(["node", str(RAIZ / "app/testes/cripto.test.mjs")], check=True, env={**os.environ, "APP_SENHA_EQUIPE": "teste amostra"})
 
 
 def test_build_confere_amostra():

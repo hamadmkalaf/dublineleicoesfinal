@@ -11,6 +11,14 @@ NOMES = [
     "Thomas Mailleux Sant Ana", "  Pedro   ", "de la Cruz", "Zoë Dâmaso", "Luís Inácio", "X Æ A-12",
     "Katia Cirlene Pereira de Brito Falcao", "Ñandu Peña", "François D’Alembert", "", "E",
     "ALYSSON HENRIQUE DE CAMPOS FORNERO ABREU DE LIMA", "ERIKA MARIA PIRAGIBE DE ALMEIDA E CAMPOS MAIA",
+    # 02/10: sinais do português, com e sem acento, têm de cair na MESMA chave (til, cedilha, agudo, circunflexo,
+    # grave, trema, ordinal, apóstrofo curvo), em maiúsculas e minúsculas, e também já decompostos (NFD)
+    "Conceição Gonçalves Assunção", "CONCEICAO GONCALVES ASSUNCAO", "conceição gonçalves assunção",
+    "José Antônio Araújo Côrtes", "JOSE ANTONIO ARAUJO CORTES", "Luís Ângelo Müller Peña", "LUIS ANGELO MULLER PENA",
+    "Thaís Raíssa Jaçanã", "THAIS RAISSA JACANA", "Sebastião Façanha D’Ávila", "SEBASTIAO FACANHA DAVILA",
+    "Mª da Conceição Sant'Ana", "ma conceicao santana", "Ágata Übel-Çek", "AGATA UBEL CEK",
+    "João Gonçalves",  # "João Gonçalves" em NFD (como alguns teclados mandam)
+    "JOAO GONCALVES",
 ]
 DATAS = ["1967-10-23", "23/10/1967", "1967-10-23T00:00:00", "23.10.1967", "23101967", "1967-13-01", "31/02/1990", "", "abc"]
 TITULOS = ["123456789012", "1234 5678 9012", "1234.5678.9012", "5301982801", 5301982801, "0000 0000 0001", "", None]

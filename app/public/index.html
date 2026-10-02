@@ -49,6 +49,8 @@
 (async () => {
   const $ = (id) => document.getElementById(id);
   const estado = { indice: null, rotas: null, config: null, fila: null, filaEm: 0 };
+  // Aberta por http://, a página passa a https:// se ele responder; se não, a consulta segue em JavaScript puro.
+  OEV.sobeParaHTTPS("./dados/versao.json");
   OEV.registraSW("./sw.js");
 
   function mostra(html) { $("resultado").innerHTML = html; $("resultado").scrollIntoView({ behavior: "smooth", block: "start" }); }

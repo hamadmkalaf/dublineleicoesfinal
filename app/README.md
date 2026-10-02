@@ -23,6 +23,7 @@ python3 scripts/app_construir.py --lista data/eleitores/eleitores.csv.enc --grav
 
 # 3. publicar app/dist/ no branch gh-pages deste repositório (GitHub Pages; ver contexto.md §5):
 bash scripts/app_publicar.sh --subpasta v3      # …/dublineleicoesfinal/v3/ ; sem --subpasta publica na raiz
+bash scripts/app_publicar.sh --branch gh-pages2 # branch gh-pages2 = só a v3 (02/10); o Pages serve UM branch: apontar em Settings → Pages
 
 # 3b. (v3) estado vivo da fila: fila.json no branch órfão `fila` deste repositório. Já existe; a equipe e o
 #     admin gravam nele pela API do GitHub com um fine-grained PAT (só este repositório, Contents: read/write),
@@ -32,6 +33,8 @@ bash scripts/app_publicar.sh --subpasta v3      # …/dublineleicoesfinal/v3/ ; 
 python3 -m pytest -q app/testes
 APP_SENHA_EQUIPE="teste amostra" python3 scripts/app_construir.py --grava
 APP_SENHA_EQUIPE="teste amostra" NODE_PATH=/opt/node22/lib/node_modules node app/testes/ponta_a_ponta.mjs
+node app/testes/cripto.test.mjs                 # criptografia em JavaScript puro (página em http://) × WebCrypto
+APP_SENHA_EQUIPE="teste amostra" NODE_PATH=/opt/node22/lib/node_modules node app/testes/insegura.mjs   # as 3 páginas num http://IP, sem crypto.subtle
 ```
 
 | Pasta | O que é |
