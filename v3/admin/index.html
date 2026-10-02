@@ -72,6 +72,7 @@
   const COFRE = "oev.chave_publicacao.admin";
   let config = null, rotas = null, senha = "", chave = "", fila = null;
   const cfgFila = () => config.fila || {};
+  OEV.sobeParaHTTPS("../dados/versao.json");
 
   try {
     const [c, r, versao] = await Promise.all([

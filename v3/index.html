@@ -42,13 +42,15 @@
   <p id="rodape"></p>
   <p>Não encontrou? Confira o nome como está no <a id="link-etitulo" href="#" target="_blank" rel="noopener">e-Título / consulta do TSE</a>, ou procure a mesa <b>“Descubra sua seção”</b> na calçada da Merrion Road, antes do portão.</p>
   <p id="versao"></p>
-  <p><a href="./equipe/">Acesso da equipe</a></p>
+  <p><a href="./equipe/">Acesso da equipe</a> · <a href="./admin/">Administrador</a></p>
 </footer>
 <script src="./comum.js"></script>
 <script>
 (async () => {
   const $ = (id) => document.getElementById(id);
   const estado = { indice: null, rotas: null, config: null, fila: null, filaEm: 0 };
+  // Aberta por http://, a página passa a https:// se ele responder; se não, a consulta segue em JavaScript puro.
+  OEV.sobeParaHTTPS("./dados/versao.json");
   OEV.registraSW("./sw.js");
 
   function mostra(html) { $("resultado").innerHTML = html; $("resultado").scrollIntoView({ behavior: "smooth", block: "start" }); }
