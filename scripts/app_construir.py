@@ -84,6 +84,13 @@ def carrega(caminho):
 def tabela_mestra():
     """Pares (seção, letra) da peça P0-Mestra, para conferir contra decisoes.json."""
     html = MESTRA.read_text(encoding="utf-8")
+    # Desde 21/09 a tabela é agrupada por porta: a letra sai uma vez, na tarja
+    # "PORTA X" do bloco, e as seções do bloco vêm depois dela, até a próxima tarja.
+    blocos = re.split(r">PORTA ([ABC])</span>", html)
+    if len(blocos) > 1:
+        return {sec: letra for letra, corpo in zip(blocos[1::2], blocos[2::2])
+                for sec in re.findall(r">(\d{4})</span>", corpo)}
+    # formato anterior a 21/09: uma pastilha de letra por linha
     pares = re.findall(r">(\d{4})</span>.*?>([ABC])</span>", html, flags=re.S)
     return {s: l for s, l in pares}
 

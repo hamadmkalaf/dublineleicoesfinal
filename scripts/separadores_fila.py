@@ -57,6 +57,12 @@ LARG_AVENIDA = 3.00   # largura livre de cada avenida de entrada
 LARG_CANAL = 1.10     # canal de micro-fila na frente da mesa
 PASSO_FILA = 0.65     # metro de canal por pessoa, projeto (plano de filas)
 RECUO_MESA = 1.50     # linha de espera: sigilo do voto
+# Decisao de 30/09 (planta detalhada): no modulo, da parede para dentro, mesa
+# redonda com a urna (0,90), vaga do eleitor de costas para a parede (0,90),
+# mesa-cavalete dos mesarios (1,70) e passagem (0,60). E o ponto de informacao,
+# outra mesa-cavalete de 1,70 x 0,80 m, na fachada sul ao lado do recuo do R1.
+U_URNA = 0.90
+PONTO_INFO = ((11.55, 13.25), (1.70, 2.50))   # (x0, x1), (y0, y1) em m
 
 
 def postes(L):
@@ -720,6 +726,11 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         pts = " ".join(f"{px(*c)[0]:.1f},{px(*c)[1]:.1f}" for c in cantos)
         add(f'<polygon points="{pts}" fill="{m["cor"]}" fill-opacity=".92" '
             f'stroke="#16202b" stroke-width=".7"/>')
+        # a urna, na mesa redonda encostada na parede (30/09)
+        ux, uy = px(m["x"] + dxp * U_URNA / 2, m["y"] + dyp * U_URNA / 2)
+        add(f'<circle cx="{ux:.1f}" cy="{uy:.1f}" r="{U_URNA / 2 * S - .8:.1f}" fill="#fff" '
+            f'stroke="#16202b" stroke-width=".8"/>'
+            f'<rect x="{ux-2.4:.1f}" y="{uy-1.8:.1f}" width="4.8" height="3.6" rx=".6" fill="#16202b"/>')
         # Rotulo por GRUPO e por SECAO -- nunca por numero de mesa. E a convencao
         # do artefato de sinalizacao: "Nenhum traz numero de mesa: so as secoes".
         gx, gy = px(m["x"] + dxp * P / 2, m["y"] + dyp * P / 2)
@@ -727,6 +738,14 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
         trg = f' transform="rotate({giro} {gx:.1f} {gy+4:.1f})"' if giro else ""
         add(f'<text x="{gx:.1f}" y="{gy+4:.1f}" font-size="11.5" font-weight="800" '
             f'fill="#fff" text-anchor="middle"{trg}>{m["grupo"]}</text>')
+
+    # ---- ponto de informacao (30/09): mesa-cavalete ao lado do recuo do R1 ----
+    (ix0, ix1), (iy0, iy1) = PONTO_INFO
+    a, b = px(ix0, iy1)
+    add(f'<rect x="{a:.1f}" y="{b:.1f}" width="{(ix1-ix0)*S:.1f}" height="{(iy1-iy0)*S:.1f}" '
+        f'rx="1.5" fill="#0b6e8a" stroke="#16202b" stroke-width=".8"/>')
+    add(f'<text x="{a + (ix1-ix0)*S/2:.1f}" y="{b-4:.1f}" font-size="9" font-weight="800" '
+        f'fill="#0b6e8a" text-anchor="middle">INFO</text>')
 
     # ---- marcador de grupo: onde vai o x-banner, com as secoes do grupo ----
     # 4,60 m da LINHA DAS MESAS (parede oeste x=0, norte y=44,4, leste x=47,3).
@@ -903,7 +922,8 @@ def svg_plano(planta, dec, mesas, itens, op, grupos, titulo_extra=""):
                          f"limite {H - 14:.0f}. Aumente LEGENDA ou encurte os rótulos.")
     add(f'<text x="{MARG_E}" y="{H-14:.0f}" font-size="10" fill="#8a94a6">'
         f'Hall 2 · RDS Ballsbridge · cenário Paredes_ABC · escala 1 m = {S:.0f} px · '
-        f'poste a {VAO_POSTE:.2f} m (cinta de {CINTA:.2f} m esticada a 90%)</text>')
+        f'poste a {VAO_POSTE:.2f} m (cinta de {CINTA:.2f} m esticada a 90%) · '
+        f'urna junto à parede e INFO ao lado do R1 (30/09) · versão 21026_final, 02/10/2026</text>')
     add('</svg>')
     return "\n".join(o)
 

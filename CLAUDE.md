@@ -18,7 +18,10 @@ necessário para chegar a elas.
 | **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` · `scripts/mapa_publico_pptx.py` · `saidas/onde_voce_vota.pptx` | o percurso e o salão em versão de divulgação, em página e em deck editável (rodada `23926v2`) |
 | **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído com a lista real do TRE (29/09); consulta **só por nome**, título desempata homônimos; v3 com tempo de espera e área do administrador; publicação em `gh-pages` |
 
-**O consolidado da última rodada está em
+**O consolidado mais recente é [`docs/DECISOES_21026_final.md`](docs/DECISOES_21026_final.md)**
+(02/10, branch `21026_final`): tudo o que foi registrado depois de 24/09 — P4 em roll-up,
+módulo da MRV e ponto de informação de 30/09, app — e as versões novas da prancheta, do
+Ring 3, do plano de sinalização e do layout final. **O consolidado da rodada anterior está em
 [`docs/DECISOES_23926v2.md`](docs/DECISOES_23926v2.md)**: a economia de CCB do
 Ring 3, a pequena avenida da parede norte e o mapa público. O da rodada anterior, em
 [`docs/DECISOES_2026-09-23.md`](docs/DECISOES_2026-09-23.md), guarda o que foi
@@ -46,7 +49,7 @@ A montagem — 23 raias por zona, vão de 1,20 m, **202 CCBs** (200 em estoque +
 contratar**, ~EUR 26,04), 558,0 m de fita grossa, lotação **2.105** — está em
 `mapa/ring3_montagem.html` (folha revista em 23/09 (v2), gerada por
 `scripts/ring3_montagem.py` no repositório de origem) e no `Mapa-Ring3` de
-`mapa/sinalizacao/`. **O `Mapa-Ring3` ainda diz 228: peça de sinalização a refazer.**
+`mapa/sinalizacao/`, que já diz 202 (conferido em 02/10).
 
 **Revisão de 23/09 (v2) do Ring 3 — CCB só onde a fita amarra.** A lateral deixou de ser
 parede contínua e o fechamento contra o trecho de fundo deixou de ser corrida fechada:

@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-09-23",
+ "gerado_em": "2026-10-02",
  "nota": "Fonte versionada dos artefatos publicados. Cada arquivo é a página tal como o serviço a entregou, invólucro da plataforma incluído. O sha256 é do arquivo neste repositório: se o artefato for republicado, ele muda, e é assim que se percebe que a cópia envelheceu.",
  "artefatos": [
   {
@@ -16,21 +16,21 @@
    "chave": "prancheta_hall2",
    "titulo": "Prancheta pelas Seções",
    "url": "https://claude.ai/artifact/Szv5egKpHy3umh4udAybvr",
-   "versao": "1790114840-ed5b",
+   "versao": "21026_final, 02/10 (não republicada)",
    "caminho": "mapa/prancheta_hall2.html",
    "o_que_e": "Coordenadas reais das portas e das 28 mesas. A planta do salão em voluntarios_postos.html foi gerada delas.",
-   "estado": "republicada em 23/09 (versão 6): parede oeste reordenada — as duplas de menor comparecimento na entrada do corredor; a cópia é a fonte, sem o invólucro",
-   "sha256": "8c1a2d7fffa6e6d78d655f33a331862c7b0810b2cc1a9e98261295fedf252588"
+   "estado": "versão nova de 02/10 no branch 21026_final, gerada por scripts/gera_prancheta_por_secao.py: módulo da MRV na ordem de 30/09 (urna na mesa redonda junto à parede, eleitor, mesa-cavalete, passagem), ponto de informação ao lado do R1, alta carga em roxo e entradas nas cores de rolo (22/09). A URL ainda serve a versão 6 de 23/09: republicar com este arquivo.",
+   "sha256": "2769bc1e0ae4cee4187d05d2bd197c7ce25017aa83cfea4aa9ae477f920d8063"
   },
   {
    "chave": "ring3_montagem",
    "titulo": "Montagem do Ring 3",
    "url": "https://claude.ai/artifact/FcQs4H7fM3RcBxmyFywazV",
-   "versao": "v4, 23/09 (v2)",
+   "versao": "v5, 02/10 (não republicada)",
    "caminho": "mapa/ring3_montagem.html",
    "o_que_e": "O cenário 3 adaptado: 23 raias por zona, três zonas iguais de 12,87 m, vão de 1,20 m, 558,0 m de fita grossa, lotação 2.105, saídas na face norte junto às portas.",
-   "estado": "republicada na mesma URL em 23/09 (rodada 23926v2), versão 4: CCB só nos pontos de amarração da fita, na lateral e no fechamento do fundo — 202 CCBs, 2 a contratar (eram 228 e 28), com a última CCB de cada zona encostada na porta da boca. 558,0 m de fita grossa.",
-   "sha256": "770c5d28723896c2020a359f0bcae442d6ee833136b21124401d971ae3c2dde6"
+   "estado": "versão nova de 02/10 no branch 21026_final, gerada por scripts/ring3_montagem.py + gera_pagina_ring3.py em hamadmkalaf/eleicoes2026 (branch 21026_final): as aberturas da face norte passam de premissa a decisão de 24/09, com risco assumido. Nenhuma cota, painel (202) ou metro de fita (558,0) muda. A URL ainda serve a versão 4 de 23/09.",
+   "sha256": "6bfbf6a8b489c062fe6006563d59c32c1993a2a9eec1f858876ed0bf69b3525b"
   },
   {
    "chave": "sinalizacao_interna",
@@ -105,11 +105,11 @@
    "chave": "plano_consolidado",
    "titulo": "Plano de sinalização, peça por peça",
    "url": "https://claude.ai/artifact/EUNZhAFtSfUtRrLvqkvFVZ",
-   "versao": "v9, 23/09 (v2)",
+   "versao": "v10, 02/10 (não republicada)",
    "caminho": "mapa/plano_sinalizacao.html",
    "o_que_e": "Consolida a proposta de arte, a Rota do Eleitor e o plano interno do Hall 2 numa página só: as 17 fichas de peça, a galeria das dezesseis placas de grupo, a tabela seção → porta, o orçamento e as pendências. Não estava no manifesto até 21/09.",
-   "estado": "republicada na mesma URL em 23/09 (rodada 23926v2), versão 9: a ficha da P4-FimAvenidaB passa a situar a peça na boca da pequena avenida da parede norte (fim dos 33,6 m da avenida B), o marcador P4 no mapa desce de y = 35,40 para 33,60 m, e o rodapé deixa de dizer que a geometria continua a de 22/09 — a pequena avenida é a única mudança desde então.",
-   "sha256": "ea6f6c2d4a5db6730a4213dfb9d906379c71562d833f99cd635a7dadcecac6d0",
+   "estado": "versão nova de 02/10 no branch 21026_final: P4-FimAvenidaB em roll-up 1000 × 2000 mm (24/09) com o arquivo de impressão de 29/09, orçamento 11 fence banners + 4 pull-ups largos, pendências do RDS como decisões de 24/09, cotações de 24–25/09 e prazo da gráfica. A URL ainda serve a versão 9 de 23/09.",
+   "sha256": "ab4aae1457a3e00b805825d6880893c1709af7712f83b658e8db08317dc32e2d",
    "nota": "Montado por scripts/plano_consolidado.py, que embute o corpo atual de cada .dc.html e aplica as revisões de texto de forma idempotente; sem --grava confere e sai com 1."
   },
   {
@@ -122,6 +122,20 @@
    "estado": "publicada em 23/09 (v2) a partir de mapa/mapa_publico.html, que scripts/mapa_publico.py gera. **O artefato nasce privado**: divulgar exige abrir o compartilhamento na página.",
    "gerador": "scripts/mapa_publico.py",
    "sha256": "93cc5eb0ef1266cad728ddea534fba3646579984caceec40c3bf01f88052df41"
+  },
+  {
+   "chave": "layout_final",
+   "titulo": "Layout final dos separadores (Definitiva)",
+   "url": null,
+   "versao": "21026_final, 02/10",
+   "caminho": "saidas/separadores_definitivo.png",
+   "o_que_e": "A imagem do layout final do Hall 2: barreira, fita, avenidas, pequena avenida da parede norte, módulos e grupos. Sai de scripts/separadores_fila.py --grava (SVG) e de scripts/svg_para_png.js (PNG, escala 3).",
+   "estado": "02/10: urna junto à parede em cada módulo e ponto de informação ao lado do R1 (30/09); PNG refeito por inteiro — o de 23/09 estava cortado embaixo.",
+   "gerador": "scripts/separadores_fila.py",
+   "arquivos": {
+    "separadores_definitivo.svg": "7d03bee9680cc0487851be286880cf0bd5e3ff2a63f8d39a5af0412260126cfa",
+    "separadores_definitivo.png": "4428122e28db250931da82c7517b4f1605aff1721ab14e74866ff50168730f58"
+   }
   }
  ]
 }

@@ -12,6 +12,8 @@ Le, sem recalcular nada:
   data/decisoes.json          secoes, aptos, esperado, classe, parede, entrada
                               e numeracao eleitor de cada mesa
   saidas/dados.json           a localidade de origem de cada uma das 51 secoes
+  scripts/planta_hall2_detalhada.py   a ordem do modulo da MRV e o ponto de
+                              informacao (decisao de 30/09), sem copiar numero
 
 Grava saidas/prancheta_por_secao.html, uma pagina so, pronta para publicar.
 
@@ -20,6 +22,9 @@ Grava saidas/prancheta_por_secao.html, uma pagina so, pronta para publicar.
 import json
 import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import planta_hall2_detalhada as PD  # noqa: E402  (ordem do modulo e ponto de informacao, 30/09)
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELO = os.path.join(RAIZ, "scripts", "prancheta_por_secao_template.html")
@@ -93,7 +98,26 @@ def monta(planta, decisoes, dados, cenario):
                     "limiar_media": decisoes["classes"]["limiar_media"]},
         "comparecimento": {k: decisoes["comparecimento"][k] for k in ("base", "rotulo", "total", "aptos")},
         "mesas": mesas, "secoes": secoes,
+        # Decisao de 30/09: no modulo, da parede para dentro, mesa redonda com a
+        # urna, vaga do eleitor (de costas para a parede), mesa-cavalete dos
+        # mesarios e passagem. A soma tem de ser a profundidade da prancheta.
+        "ordem_modulo": ordem_modulo(planta["modulo"]),
+        "ponto_info": {"rect": [PD.INFO_X[0], PD.INFO_Y[0], PD.INFO_X[1], PD.INFO_Y[1]],
+                       "rotulo": "ponto de informação · mesa-cavalete 1,70 × 0,80 m"},
     }
+
+
+def ordem_modulo(modulo):
+    ordem = [("urna", PD.U_URNA), ("eleitor", PD.U_ELEI), ("mesa", PD.U_MESA),
+             ("passagem", PD.U_PASS)]
+    if abs(sum(m for _, m in ordem) - modulo["prof"]) > 1e-6:
+        raise SystemExit(f"o módulo de 30/09 soma {sum(m for _, m in ordem):.2f} m "
+                         f"e a prancheta diz {modulo['prof']:.2f} m")
+    u, saida = 0.0, []
+    for nome, m in ordem:
+        saida.append({"parte": nome, "u0": round(u, 3), "u1": round(u + m, 3)})
+        u += m
+    return saida
 
 
 def main(argv):

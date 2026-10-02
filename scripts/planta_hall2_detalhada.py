@@ -35,10 +35,10 @@ GAP = 40
 
 # Modulo da prancheta (data/prancheta_hall2.json -> modulo): mesa 1,70 x 0,80,
 # urna 0,90, eleitor 0,90, passagem 0,60 = 4,10 m de profundidade.
-U_MESA, U_URNA, U_ELEI, U_PASS = 1.70, 0.90, 0.90, 0.60
+U_MESA, U_URNA, U_ELEI, U_PASS = 1.70, sf.U_URNA, 0.90, 0.60
 V_MESA = 0.80
 LARG_MOD = 0.90
-INFO_X, INFO_Y = (11.55, 13.25), (1.70, 2.50)   # ponto de informacao (m)
+INFO_X, INFO_Y = sf.PONTO_INFO          # ponto de informacao (m), fonte unica em separadores_fila
 N_MESARIOS = 4                # premissa: 109 nomeados / 28 MRVs = 3,9
 ASSENTO = 0.75
 

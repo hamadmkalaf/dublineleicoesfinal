@@ -230,7 +230,9 @@ def revisao_22_09(h):
         ('<li>Medir em campo: a profundidade da sala de apoio (7,80 m é suposição), o vão da S7 e o recorte do canto sudoeste, que tem duas leituras no repositório.</li>',
          '<li>Medir em campo: o vão da S7 e o recorte do canto sudoeste, que tem duas leituras no repositório. <s>A profundidade da sala de apoio</s> saiu da lista em 22/09: é um recuo para dentro da parede oeste, fora do piso do salão.</li>'),
         ('<li>Decidir o cruzamento da zona A: aceitar os 2,91 m de desvio até a porta, com orientador, ou deslocar o Ring 3 para leste.</li>',
-         '<li><s>Decidir o cruzamento da zona A.</s> <strong>Resolvido em 22/09:</strong> a boca da A passou para o extremo oeste e a saída fica no extremo leste, a 2,91 m do eixo da S4, no batente do vão; o cruzamento do apron fica com o orientador R5/A2. Falta <strong>confirmar com o RDS que os quatro painéis do gradil da face norte podem ser abertos</strong> — o corredor de chegada e as saídas C, B e A, cotadas do canto nordeste na folha de montagem.</li>'),
+         '<li><s>Decidir o cruzamento da zona A.</s> <strong>Resolvido em 22/09:</strong> a boca da A passou para o extremo oeste e a saída fica no extremo leste, a 2,91 m do eixo da S4, no batente do vão; o cruzamento do apron fica com o orientador R5/A2. Falta <strong>confirmar com o RDS que os quatro painéis do gradil da face norte podem ser abertos</strong> — o corredor de chegada e as saídas C, B e A, cotadas do canto nordeste na folha de montagem.</li>',
+         # a revisão de 02/10 reescreve o fim desta frase (decisão de 24/09)
+         '<li><s>Decidir o cruzamento da zona A.</s> <strong>Resolvido em 22/09:</strong>'),
     ])
 
     # rodapé
@@ -480,6 +482,60 @@ def revisao_24_09_rollup(h):
     return h
 
 
+# ------------------------------------------------------- revisão de 02/10 (21026_final)
+# O que mudou depois de 24/09 e toca o plano: as duas decisões de 24/09 de seguir
+# sem aguardar o RDS, as cotações de 24 e 25/09 que superam a referência de 18/09,
+# e o arquivo de impressão da P4-FimAvenidaB em roll-up (29/09). Nenhuma arte muda.
+RDS_GRADIL_V1 = ('Falta <strong>confirmar com o RDS que os quatro painéis do gradil da face norte podem ser '
+                 'abertos</strong> — o corredor de chegada e as saídas C, B e A, cotadas do canto nordeste na '
+                 'folha de montagem.')
+RDS_GRADIL_V2 = ('<strong>Decisão de 24/09:</strong> o Posto abre os quatro painéis do gradil da face norte — o '
+                 'corredor de chegada e as saídas C, B e A, cotadas do canto nordeste na folha de montagem — '
+                 '<strong>sem aguardar a confirmação do RDS</strong>, dado o histórico de demora do local. O risco '
+                 'fica assumido, não eliminado. Vale o mesmo para a fita adesiva no piso do Hall 2.')
+COTAR_V1 = ('<li>Cotar as quatro linhas que continuam premissa: os 3 banners PVC da parede leste, os '
+            '<strong>4</strong> vinis das portas — a S7 entrou em 21/09 —, as 2 placas correx de saída e a '
+            'fixação.</li>')
+COTAR_V2 = ('<li><strong>Cotações de 24 e 25/09</strong>, lado a lado em '
+            '<code>Orçamentos/Sinalização/comparativo_cotacoes_2026-09-24.xlsx</code>: o carrinho Helloprint de '
+            '24/09 (€ 2.694,68 sem IVA, € 3.314,46 com IVA, cada arte uma linha de 1) <strong>substitui a '
+            'referência de 18/09</strong> que a tabela de orçamento acima ainda usa; a proposta Snap Leeson '
+            '1554129 revista em 25/09 dá € 4.145,00 sem IVA na opção Basic — já com o quarto pull-up largo, '
+            'que é a P4-FimAvenidaB —, mas perdeu os 3 banners PVC da parede leste. Falta no carrinho '
+            'Helloprint os 4 vinis das portas e a fixação. <strong>Nenhum fornecedor foi escolhido no '
+            'repositório</strong> até 02/10.</li>')
+PRAZO_V1 = ('<li>Decidir o prazo de entrega. Pela cotação de 18/09, a entrega Saver é grátis e chega em 28/09 — seis '
+            'dias antes da eleição —, mas o arquivo tem de subir até 18/09 às 13:30. Standard (+ € 35) chega 23/09 e '
+            'Express (+ € 38) chega 22/09. É a decisão mais urgente da lista.</li>')
+PRAZO_V2 = ('<li><s>Decidir o prazo de entrega pela cotação de 18/09.</s> As datas daquela cotação passaram. Em '
+            '<strong>02/10</strong>, a dois dias da eleição, o repositório não registra pedido feito nem data de '
+            'entrega: <strong>confirmar com a gráfica escolhida que as peças chegam até a véspera</strong>. É a '
+            'decisão mais urgente da lista.</li>')
+FIM_B_ARQ_MARCA = 'Arquivo de impressão (29/09)'
+FIM_B_ARQ = ('<p class="texto"><strong>Arquivo de impressão (29/09):</strong> '
+             '<code>Artes/impressao/P6-Painel_FimAvenidaB.pdf</code>, vetorial na medida de 1000 × 2000 mm, com a '
+             'Montserrat embutida como TrueType (o Chromium a imprimia como Type3, que alguns RIPs recusam), e o '
+             'JPG de 8000 × 16000 px sem margem, 203 dpi na medida final. Saem de '
+             '<code>scripts/render_arte.py</code> sobre a mesma fonte <code>.dc.html</code> desta peça.</p>')
+RODAPE_0210_MARCA = 'Versão <strong>21026_final</strong>'
+RODAPE_0210 = ('\n  <br><br>Versão <strong>21026_final</strong>, de <strong>02/10/2026</strong>: a P4-FimAvenidaB '
+               'em roll-up de 1000 × 2000 mm (24/09) com o arquivo de impressão de 29/09, as aberturas do '
+               'gradil e a fita no piso como decisões de 24/09 com risco assumido, e as cotações de 24 e '
+               '25/09 registradas nas pendências. Nenhuma outra arte mudou.\n</footer>')
+
+
+def revisao_02_10(h):
+    """Decisões posteriores a 24/09 que tocam o plano, sem mexer em arte."""
+    h = revisa(h, [(RDS_GRADIL_V1, RDS_GRADIL_V2), (COTAR_V1, COTAR_V2), (PRAZO_V1, PRAZO_V2),
+                   ('\n</footer>', RODAPE_0210, RODAPE_0210_MARCA)])
+    if FIM_B_ARQ_MARCA not in h:
+        a, f = secao(h, "arquivo <code>P4-fim-avenida-B</code>")
+        j = h.index(TEXTO_FIM_B_ROLLUP_INICIO, a, f)
+        j = h.index("</p>", j) + len("</p>")
+        h = h[:j] + FIM_B_ARQ + h[j:]
+    return h
+
+
 def numeros(h):
     h = re.sub(r'(<div class="fact"><dt>Peças externas</dt><dd>)\d+(</dd>)',
                rf'\g<1>{PECAS_EXTERNAS}\g<2>', h)
@@ -507,6 +563,7 @@ def monta():
     h = revisao_23_09(h)
     h = revisao_23_09_v2(h)
     h = revisao_24_09_rollup(h)
+    h = revisao_02_10(h)
     h = troca_artes(h)
     h = troca_galeria(h)
     return numeros(h)
