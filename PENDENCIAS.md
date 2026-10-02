@@ -6,6 +6,7 @@ LISTA DE TAREFAS PARA AINDA FAZER
 3. PLANO DE COMUNICAÇÃO COM ELEITORES - COM POSTAGENS E DIVULGAÇÀO;
 4. PLANO DE COMUNICAÇÃO E ORGANIZAÇÃO COM MESÁRIOS;
 5. PENSAR NO FUNCIONAMENTO DA MRV - QUEM IDENTIFICARÁ, COMO SERÃO DIVIDIDOS OS CADERNOS;
+6. APP "ONDE EU VOTO?" - CONSTRUÍDO COM A LISTA REAL (01/10); CONFIRMAR O PAGES, DISTRIBUIR A SENHA DA EQUIPE, CONFIRMAR A MARCA "VT";
 
 
 Pendencia por ponto.
@@ -58,3 +59,12 @@ Pendencia por ponto.
    pelo unitário de € 13,02. A alternativa sem contratar está desenhada na folha
    (uma só linha de CCBs no eixo do vão, 196 no total), mas ela deixa 0,60 m de
    cada lado e elimina o corredor de maca e fiscal. Orçamento contra segurança.
+11. App "Onde eu voto?" (docs/app/contexto.md).
+
+- lista recebida em 29/09 (PDF do TRE, só nome/inscrição/seção/turnos) e importada em 01/10; consulta só por nome, título desempata;
+- confirmar com o Cartório o que é a marca "VT" (74 eleitores no 1º turno) e ajustar o texto de `aviso_marca` em config.json;
+- publicação em `gh-pages` deste repositório (público): ativar o Pages em Settings → Pages → gh-pages; a v2 (só 4 dígitos do título) está em /v2/;
+- remover a v1 da raiz do gh-pages depois de validar a v2: o pacote cifrado da v1 ainda tem os títulos completos;
+- definir quem constrói e publica no dia anterior, e quem guarda a senha da equipe;
+- pôr o QR/link do app na peça P0-Consulta e na campanha "descubra sua seção antes de sair de casa";
+- testar a página da equipe sem sinal na calçada do P0 na véspera.

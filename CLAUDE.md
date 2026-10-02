@@ -16,6 +16,7 @@ necessário para chegar a elas.
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
 | **Planta detalhada do Hall 2** — as 28 MRVs desenhadas por inteiro, portas, avenidas, pontos de banner e o ponto de informação junto ao R1 | `scripts/planta_hall2_detalhada.py` · `saidas/planta_hall2_detalhada_pt.svg`/`.png` e `_en.svg`/`.png` (8092 × 5618) | revisão de 30/09: no módulo, da parede para dentro: mesa redonda da urna, vaga do eleitor (de costas para a parede), mesa-cavalete, passagem; lê a geometria de `separadores_fila.py` e não escreve dado nenhum |
 | **Mapa público** — o que sai do projeto | `scripts/mapa_publico.py` · `mapa/mapa_publico.html` · `scripts/mapa_publico_pptx.py` · `saidas/onde_voce_vota.pptx` | o percurso e o salão em versão de divulgação, em página e em deck editável (rodada `23926v2`) |
+| **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído com a lista real do TRE (29/09); consulta **só por nome**, título desempata homônimos; v3 com tempo de espera e área do administrador; publicação em `gh-pages` |
 
 **O consolidado da última rodada está em
 [`docs/DECISOES_23926v2.md`](docs/DECISOES_23926v2.md)**: a economia de CCB do
@@ -368,6 +369,57 @@ uma vez, na tarja colorida do bloco, e não mais em 51 pastilhas repetidas.
   P5-Preferencial é cor própria dessa peça (`preferencial` em `paleta.json`).
 - As quatro cores do laço do espectro autista são do símbolo, não do plano, e
   ficam de fora da conferência.
+
+## Regras do app "Onde eu voto?"
+
+- **A lista nominal de eleitores nunca entra no git em claro.** `data/eleitores/` e `app/dist/`
+  estão no `.gitignore`. O que se publica são hashes (eleitor) e um pacote cifrado
+  (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. Dois PDFs chegaram
+  commitados (29/09 em `appeleicoes`, e `DUBLIN.pdf` em `main`) e foram **purgados do
+  histórico em 01/10**, com force-push; não recommitar.
+- **Única exceção: `data/eleitores/eleitores_v2.csv.enc`**, o CSV v2 (nome, seção, marcas e
+  dígitos 5–8 do título) cifrado com AES-256-GCM pela senha da equipe
+  (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê direto.
+  Trocou a senha da equipe = recifrar a lista.
+- **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
+  já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
+  `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.
+- **Consulta só por nome** (decisão de 01/10): índice público v2, `hash(nome) → seção`;
+  homônimo → `"H"` e `hash(nome|título parcial)`; colisão → `"P"` (manda ao P0). Marcas de
+  turno (OK/VT) viajam com a seção e geram aviso quando não são OK no turno de `config.json`.
+- **Título parcial** (branch `appeleicoes2`, 01/10): só os **dígitos 5 a 8** do título entram no
+  CSV (`TITULO_5_8`), no índice e no pacote da equipe. Os 4 últimos não servem (UF +
+  verificadores: 271 valores distintos). A v2 é publicada em `gh-pages/v2/`; a v1 (título
+  completo) fica na raiz até ser removida.
+- **v3** (branch `appeleicoesv3`, 01/10, publicada em `gh-pages/v3/`): a equipe
+  informa **quão cheia está cada zona** do Ring 3; o **administrador** (`admin/`, senha só como hash
+  PBKDF2 em `config.json`) liga o "status de fila", e aí o eleitor vê o **tempo estimado de espera**
+  abaixo da nota da preferencial. O estado vivo mora em `fila.json` no **branch órfão `fila`**
+  (escrito pela API do GitHub com a chave de publicação; lido por raw.githubusercontent.com).
+  **Nunca editar `fila.json` à mão durante a votação**; nunca commitar a chave de publicação nem a
+  senha do admin em claro. Parâmetros da estimativa (706 por zona, 60 s por eleitor, 3 min de
+  travessia) são **premissas** em `config.json → fila`. O **nº no caderno** (campos `p`/`c` do pacote) foi **retirado da página em 02/10**: a lista do TRE é por
+  mesa e o caderno físico é por seção (principal e agregada separadas), então a posição não bate; não
+  reexibir sem uma lista por seção. Detalhes em `docs/app/contexto.md` §2d.
+- O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
+  distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
+  confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.
+- A normalização de nomes existe duas vezes, em `scripts/app_normaliza.py` e em
+  `app/public/comum.js`. `python3 -m pytest app/testes` confere que são iguais. Mudou
+  uma, mude a outra.
+- **Textos ao eleitor na direção em que ele caminha** (decisão de 01/10): sem pontos
+  cardeais leste/oeste, sem "apron", "boca" nem "cabeça". Esquerda e direita são as do
+  eleitor: o Hall fica à direita de quem desce do portão; as zonas do Ring ficam à direita
+  de quem desce o corredor; no salão, parede oeste = da esquerda, norte = do fundo, leste
+  = da direita (`ROTULO_PAREDE` em `app_construir.py` e `comum.js`). Os campos de dados
+  (`parede`) e as peças de sinalização em `mapa/` mantêm o vocabulário técnico.
+- **Sem números de porta da prancheta (S2…S8) nos textos ao eleitor**: só "porta A/B/C";
+  o campo `porta` fica nos dados. Os seis passos têm texto ditado em 01/10 (`passos()` em
+  `app_construir.py`) e aparecem numerados no mini-mapa (`data-passo` em `comum.js`).
+- Paleta do app = identidade TSE 2026 (`app/public/estilo.css`, `:root`). As cores das
+  portas A/B/C em `comum.js` são as v2 das peças de sinalização: não mudar. Sem inglês.
+- Testar sempre com `app/testes/amostra_eleitores.csv` (sintética). Nunca com a lista de
+  Berlim nem com qualquer lista real.
 
 ## Convenções
 

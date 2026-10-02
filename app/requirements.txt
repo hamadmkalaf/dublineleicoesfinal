@@ -1,0 +1,5 @@
+# Python
+openpyxl>=3.1        # listas em .xlsx
+cryptography>=42     # pacote cifrado da equipe
+pytest>=8
+# Sistema: poppler-utils (pdftotext), para ler o PDF da relação do TRE

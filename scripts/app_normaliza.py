@@ -1,0 +1,164 @@
+"""Normalização de nomes, datas e chaves de busca do app "Onde eu voto?".
+
+Este módulo é a referência: `app/public/comum.js` reimplementa as mesmas regras em
+JavaScript, e `app/testes/test_normaliza.py` confere que os dois produzem os mesmos
+resultados sobre `app/testes/vetores_nome.json`. Mudou aqui, mude lá.
+
+Regras do nome:
+  1. decompõe acentos (NFKD) e descarta as marcas combinantes;
+  2. maiúsculas; apóstrofos somem sem deixar espaço (D'ANDREA -> DANDREA);
+  3. qualquer outro caractere que não seja letra ou dígito vira espaço;
+  4. espaços múltiplos viram um só; remove as partículas DE DA DO DOS DAS E.
+
+Chaves indexadas por eleitor: o nome completo normalizado e, quando há três ou mais
+palavras, "primeiro último", para tolerar quem omite os nomes do meio.
+"""
+
+import base64
+import hashlib
+import re
+import unicodedata
+from datetime import date, datetime
+
+PARTICULAS = {"DE", "DA", "DO", "DOS", "DAS", "E"}
+APOSTROFOS = "'’`´"
+
+# Sal público e fixo do índice do eleitor. É público por desenho: a proteção vem do
+# custo do PBKDF2 (ITERACOES_PUBLICO por tentativa), não do segredo do sal.
+SAL_PUBLICO = b"dublin-2026-onde-eu-voto"
+ITERACOES_PUBLICO = 50_000
+TAMANHO_HASH = 12  # bytes (96 bits) — colisão desprezível para 17 mil chaves
+
+
+def normaliza_nome(texto):
+    """Nome como digitado -> forma canônica em maiúsculas, sem acento nem partículas."""
+    if texto is None:
+        return ""
+    s = unicodedata.normalize("NFKD", str(texto))
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = s.upper()
+    for a in APOSTROFOS:
+        s = s.replace(a, "")
+    s = re.sub(r"[^A-Z0-9]+", " ", s)
+    palavras = [p for p in s.split() if p not in PARTICULAS]
+    return " ".join(palavras)
+
+
+def chaves_nome(texto):
+    """Lista de chaves a indexar para um nome: completa e, se couber, primeiro+último."""
+    completo = normaliza_nome(texto)
+    if not completo:
+        return []
+    chaves = [completo]
+    partes = completo.split(" ")
+    if len(partes) >= 3:
+        curta = f"{partes[0]} {partes[-1]}"
+        if curta != completo:
+            chaves.append(curta)
+    return chaves
+
+
+def normaliza_data(valor):
+    """Data em qualquer forma usual -> 'AAAA-MM-DD'. Devolve '' se não reconhecer."""
+    if valor is None or valor == "":
+        return ""
+    if isinstance(valor, datetime):
+        return valor.date().isoformat()
+    if isinstance(valor, date):
+        return valor.isoformat()
+    s = str(valor).strip()
+    m = re.match(r"^(\d{4})-(\d{1,2})-(\d{1,2})", s)
+    if m:
+        a, me, d = m.groups()
+    else:
+        m = re.match(r"^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4})", s)
+        if not m:
+            m = re.match(r"^(\d{2})(\d{2})(\d{4})$", s)
+            if not m:
+                return ""
+        d, me, a = m.groups()
+    try:
+        return date(int(a), int(me), int(d)).isoformat()
+    except ValueError:
+        return ""
+
+
+def normaliza_secao(valor):
+    """Seção como vier (int, '511', '0511', '3313.0') -> 4 dígitos com zeros à esquerda."""
+    if valor is None or valor == "":
+        return ""
+    s = re.sub(r"\.0+$", "", str(valor).strip())
+    digitos = re.sub(r"\D", "", s)
+    if not digitos:
+        return ""
+    return digitos.zfill(4)
+
+
+def normaliza_inscricao(valor):
+    """Título de eleitor -> 12 dígitos (a planilha do TSE perde os zeros à esquerda)."""
+    if valor is None or valor == "":
+        return ""
+    digitos = re.sub(r"\D", "", re.sub(r"\.0+$", "", str(valor).strip()))
+    return digitos.zfill(12) if digitos else ""
+
+
+# Título parcial (v2, 01/10/2026): o app só guarda os dígitos 5 a 8 do título de 12 dígitos.
+# Medido na lista real: 8.151 valores distintos e zero colisões entre homônimos. Os 4 últimos
+# (UF + verificadores) têm só 271 valores distintos e foram descartados.
+TITULO_JANELA = (5, 8)
+
+
+def titulo_parcial(valor):
+    """Título de 12 dígitos (ou já parcial, com 4) -> os 4 dígitos da janela; '' se não houver."""
+    if valor is None or valor == "":
+        return ""
+    digitos = re.sub(r"\D", "", re.sub(r"\.0+$", "", str(valor).strip()))
+    if len(digitos) == 4:
+        return digitos
+    if 8 <= len(digitos) <= 12:  # a planilha do TSE perde zeros à esquerda
+        digitos = digitos.zfill(12)
+        return digitos[TITULO_JANELA[0] - 1:TITULO_JANELA[1]]
+    return ""
+
+
+def hash_publico(chave_nome, segundo_fator=""):
+    """Hash indexado no arquivo público: PBKDF2-SHA256 truncado.
+
+    Material: só a chave do nome (consulta por nome, desenho de 01/10/2026) ou
+    'CHAVE|FATOR' quando há um fator de desempate — o título de 12 dígitos, no caso de
+    homônimos. O título nunca aparece em claro no índice: só dentro do hash.
+    """
+    material = (f"{chave_nome}|{segundo_fator}" if segundo_fator else chave_nome).encode("utf-8")
+    dk = hashlib.pbkdf2_hmac("sha256", material, SAL_PUBLICO, ITERACOES_PUBLICO, TAMANHO_HASH)
+    return base64.urlsafe_b64encode(dk).decode("ascii").rstrip("=")
+
+
+# Número do eleitor no caderno de votação (v3, 01/10/2026). Posição do nome na ordem alfabética
+# dos eleitores da MESMA seção (como a lista do TRE a traz: por mesa, agregadas somadas).
+# Regra ditada pelo usuário: posição até 200 -> o próprio número; acima de 200 -> posição - 200
+# (ex.: 256º da seção 0513 -> 56). Premissa: a ordem alfabética é a do nome impresso, sem acento,
+# em ordem simples de caracteres (partículas DE/DA contam, como no caderno).
+CADERNO_BLOCO = 200
+
+
+def chave_caderno(nome_original):
+    """Nome como impresso -> chave de ordenação alfabética (maiúsculas, sem acento, espaços simples)."""
+    if nome_original is None:
+        return ""
+    s = unicodedata.normalize("NFKD", str(nome_original))
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return " ".join(s.upper().split())
+
+
+def numero_caderno(posicao):
+    """Posição (1-based) na ordem alfabética da seção -> número sequencial no caderno."""
+    if posicao is None or posicao < 1:
+        return None
+    return posicao if posicao <= CADERNO_BLOCO else posicao - CADERNO_BLOCO
+
+
+if __name__ == "__main__":
+    import sys
+
+    for arg in sys.argv[1:]:
+        print(repr(arg), "->", normaliza_nome(arg), chaves_nome(arg))
