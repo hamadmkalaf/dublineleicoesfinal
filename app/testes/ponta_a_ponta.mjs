@@ -1,5 +1,5 @@
-// Teste de ponta a ponta no Chromium: eleitor (só nome; título em homônimo), estimativa de espera (v3), equipe (nº no caderno,
-// painel da fila), administrador e modo offline, sobre app/dist/ com a amostra.
+// Teste de ponta a ponta no Chromium: eleitor (só nome; título em homônimo), estimativa de espera (v3), equipe (painel da
+// fila; nº no caderno fora da página), administrador e modo offline, sobre app/dist/ com a amostra.
 // O estado vivo da fila é simulado por dist/dados/fila_teste.json (config.json do dist é apontado para ele).
 //   APP_SENHA_EQUIPE="teste amostra" python3 scripts/app_construir.py --grava
 //   NODE_PATH=/opt/node22/lib/node_modules node app/testes/ponta_a_ponta.mjs
@@ -141,13 +141,10 @@ try {
   await pagina.waitForFunction(() => document.querySelector("#resultado .cartao-eleitor") && document.querySelector("#resultado").textContent.includes("···· 5678 ····"));
   assert.match(await pagina.locator("#resultado").textContent(), /3889/);
   passo("equipe: busca por parte do nome → título ···· 5678 ···· e a rota");
-  // v3: número no caderno no cartão e na lista
-  assert.match(await pagina.locator("#resultado .badge-caderno").textContent(), /nº \d+ no caderno/);
-  assert.match(await pagina.locator("#lista .badge-caderno").first().textContent(), /nº \d+/);
-  const caderno = await pagina.evaluate(async () => {
-    const t = document.querySelector("#resultado .badge-caderno").textContent; return t;
-  });
-  passo(`equipe v3: ${caderno} aparece no cartão do eleitor`);
+  // v3: o nº no caderno existe no pacote (p/c) mas NÃO aparece na página (decisão de 02/10: a lista é por mesa)
+  assert.equal(await pagina.locator("#resultado .badge-caderno").count(), 0);
+  assert.doesNotMatch(await pagina.locator("#resultado").textContent(), /caderno/i);
+  passo("equipe v3: nenhum nº de caderno na página (lista por mesa não bate com o caderno por seção)");
   // v3: painel da fila com as três zonas; a lotação publicada foi lida; sem chave de publicação pede a chave
   await pagina.waitForSelector("#zonas-fila .zona-fila[data-letra=C]");
   assert.equal(await pagina.locator("#zonas-fila input[type=range]").count(), 3);

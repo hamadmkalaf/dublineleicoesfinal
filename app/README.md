@@ -3,7 +3,7 @@
 Site estático (PWA) em três páginas: **eleitor** (nome → seção, fila, porta, parede, grupo e
 o caminho Ring 3 → Hall 2; em homônimo, pede o título; v3: tempo estimado de espera quando o
 status de fila está ativado), **equipe** (busca por nome, homônimos lado a lado com título, seção
-e, v3, **nº no caderno**; painel para informar quão cheia está cada zona do Ring 3; funciona sem
+; painel para informar quão cheia está cada zona do Ring 3; funciona sem
 internet) e **administrador** (v3: liga/desliga o status de fila; guarda a chave de publicação). Construído com a lista real do TRE de
 29/09/2026 (só nome, inscrição, seção e marcas de turno). Contexto, decisões e modelo de ameaça em
 [`../docs/app/contexto.md`](../docs/app/contexto.md).

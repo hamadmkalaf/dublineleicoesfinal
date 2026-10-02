@@ -78,9 +78,9 @@ Pedido do usuário em 01/10; mudanças concentradas na área da equipe, mais uma
 
 | Decisão | Escolha | Por quê |
 |---|---|---|
-| **Número no caderno** (equipe) | calculado no **build** (`numera_caderno` em `app_construir.py`): posição do nome na ordem alfabética dos eleitores da **mesma seção**; até 200 → a posição; acima de 200 → **posição − 200** (256º → 56). Vai no pacote da equipe como `c` (número) e `p` (posição); a página mostra "nº 56 no caderno (256º da seção)" | regra ditada pelo usuário. Calcular uma vez, em Python, deixa a regra testável e o JS só exibe |
+| **Número no caderno** (equipe) — **RETIRADO DA PÁGINA em 02/10** | calculado no **build** (`numera_caderno` em `app_construir.py`): posição do nome na ordem alfabética dos eleitores da **mesma seção**; até 200 → a posição; acima de 200 → **posição − 200** (256º → 56). Vai no pacote da equipe como `c` (número) e `p` (posição); a página mostra "nº 56 no caderno (256º da seção)" | regra ditada pelo usuário. Calcular uma vez, em Python, deixa a regra testável e o JS só exibe |
 | Ordem alfabética do caderno | `chave_caderno`: nome **impresso**, maiúsculas, sem acento, espaços simples, **partículas contam** (≠ `normaliza_nome`); empate → título parcial | é a ordem de uma lista impressa; **premissa**, conferir com um caderno real |
-| Seção da ordenação | a da lista do TRE (por mesa, agregadas somadas) | é a única seção que a lista traz |
+| Seção da ordenação | a da lista do TRE (por mesa, agregadas somadas) | é a única seção que a lista traz. **Por isso a função foi retirada da página em 02/10:** o usuário conferiu cadernos reais e eles são **um por seção, principal e agregada separados**; a lista do TRE não diz a que seção (principal ou agregada) cada eleitor pertence, então a posição calculada não encontra o eleitor no caderno. Os campos `p`/`c` continuam no pacote, sem uso na interface, até haver uma lista por seção ou outra solução |
 | **Tempo de espera** | a equipe informa **só uma porcentagem** de quão cheia está cada zona A/B/C do Ring 3; o app converte: `pessoas = pct × 706`, `vazão = urnas da zona × 60 / 60 s`, `espera = pessoas / vazão + 3 min`, arredondado a 5 min (`estimaEspera` em `comum.js`; parâmetros em `config.json → fila`; urnas por zona em `rotas.json → zonas`) | pedido do usuário: "simplesmente colocar uma porcentagem". 706 é a lotação por zona da montagem do Ring 3. **Premissas:** 60 s por eleitor (`docs/contexto_geral.md`), 3 min de travessia |
 | **Onde mora o estado vivo** | `fila.json` num **branch órfão `fila`** deste repositório: `{ativo, zonas: {A: {pct, em}, …}, atualizado}`. Equipe e admin **escrevem pela API do GitHub** (Contents API, com `sha` e 3 tentativas em conflito); o eleitor **lê** por `raw.githubusercontent.com` (cache quebrado por minuto; CDN pode atrasar até ~5 min) | decisão de 28/09 "só GitHub Pages, sem servidor" mantida: nenhuma infraestrutura nova. Não usa `gh-pages` porque cada gravação dispararia um build do Pages (limite brando de 10/hora) |
 | **Chave de publicação** | fine-grained PAT com *Contents: read and write* **só neste repositório**, distribuída no briefing como a senha do dia. Fica no aparelho **cifrada** (AES-GCM, chave PBKDF2 de 100 mil iterações) com a senha do dia (equipe) ou a do admin (`guardaSegredo`/`leSegredo` em `comum.js`) | um site estático não tem como autenticar escrita sem um segredo no cliente. Vazamento → revogar no GitHub. **Risco aceito:** o PAT alcança todos os branches do repositório, inclusive `gh-pages`; para reduzir, mover `fila.json` para um repositório só dele (trocar `repo`, `branch`, `url_leitura` em `config.json` e reconstruir) |
@@ -223,6 +223,9 @@ a lista não traz outro dado (§2a).
 
 ## 8. Pendências
 
+- **v3 / caderno:** a lista do TRE por mesa não separa principal de agregada; o caderno físico separa. Para
+  voltar com o nº no caderno é preciso (a) uma relação por seção do Cartório, ou (b) cruzar o título/zona de
+  origem com `data/decisoes.json` (origem_agregada) — a inscrição não traz a seção. Pensar depois.
 - **v3:** criar o fine-grained PAT (só `dublineleicoesfinal`, *Contents: read and write*), guardar
   no aparelho do admin e distribuir à equipe no briefing; decidir se `fila.json` vai para um
   repositório só dele. Conferir a **regra dos 200** com um caderno real (o que acontece acima de

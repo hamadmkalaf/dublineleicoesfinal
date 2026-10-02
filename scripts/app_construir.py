@@ -15,8 +15,9 @@ Escreve em app/dist/:
                                 hash(chave do nome) -> "H" quando há homônimos, e então
                                 hash(chave do nome | título de 12 dígitos) -> [seção] para cada um deles.
                               A seção vem acompanhada da marca de turno quando ela não é "OK" (ex.: VT).
-  - dados/equipe.enc          lista completa (nome, título, seção, marcas 1º/2º turno, posição e número no caderno
-                              — v3, 01/10/2026) cifrada com AES-256-GCM;
+  - dados/equipe.enc          lista completa (nome, título, seção, marcas 1º/2º turno) cifrada com AES-256-GCM; leva
+                              também posição alfabética na seção da lista e "número no caderno" (p/c, v3), que a
+                              página NÃO exibe (02/10: a lista é por mesa; o caderno físico é por seção);
   - dados/versao.json         carimbo da construção, para o service worker perceber a atualização.
 Em dados/rotas.json vai também um bloco "zonas" (urnas, aptos e esperado por zona A/B/C), que a
 estimativa de espera da fila (v3) usa junto com os parâmetros de config.json ("fila").

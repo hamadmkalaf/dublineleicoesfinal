@@ -35,7 +35,7 @@
     <form class="consulta" id="form-busca" autocomplete="off" onsubmit="return false">
       <label for="busca">Nome do eleitor (qualquer parte)</label>
       <input type="search" id="busca" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="ex.: maria silva">
-      <p class="dica">Homônimos aparecem lado a lado: o que os separa são os <b>4 dígitos do meio do título</b> (0000 <b>XXXX</b> 0000). Peça-os ao eleitor e toque no nome certo. A lista não tem o título completo. O <b>nº no caderno</b> é a posição alfabética do nome na seção (acima de 200, menos 200).</p>
+      <p class="dica">Homônimos aparecem lado a lado: o que os separa são os <b>4 dígitos do meio do título</b> (0000 <b>XXXX</b> 0000). Peça-os ao eleitor e toque no nome certo. A lista não tem o título completo.</p>
       <p class="dica" id="contagem"></p>
     </form>
     <ul class="lista-equipe" id="lista"></ul>
@@ -110,9 +110,10 @@
   function mostraEleitor(e) {
     const rota = rotas.secoes[e.s];
     const marcas = OEV.marcasTurno(e);
-    const caderno = OEV.textoCaderno(e);
+    // nº no caderno (campos p/c do pacote) NÃO é exibido: a lista do TRE vem por mesa, e o caderno físico é por
+    // seção (principal e agregada separadas), então a posição não bate. Decisão de 02/10; ver contexto.md §2d.
     const cab = `<div class="cartao-eleitor"><b>${OEV.esc(e.o || e.n)}</b><br>
-      título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${caderno ? ` · <span class="badge-caderno">${OEV.esc(caderno)}</span>` : ""}${marcas ? `<br><span class="marca-turno">${OEV.esc(marcas)}</span> — confira no e-Título; a decisão é do mesário` : ""}</div>`;
+      título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${marcas ? `<br><span class="marca-turno">${OEV.esc(marcas)}</span> — confira no e-Título; a decisão é do mesário` : ""}</div>`;
     $("resultado").innerHTML = rota
       ? OEV.renderRota(rota, { cabecalhoExtra: cab })
       : `<div class="aviso erro">Seção ${OEV.esc(e.s)} não está no mapa de Dublin. Encaminhe ao mesário.</div>`;
@@ -128,7 +129,7 @@
       const marcas = OEV.marcasTurno(e);
       return `<li data-i="${i}" style="border-left-color:${cor}"><span class="nome">${OEV.esc(e.o || e.n)}</span>
         <span class="letra-mini" style="background:${cor};color:${cor === "#33507E" ? "#FFF" : "#3F3F3F"}">${OEV.esc((rotas.secoes[e.s] || {}).letra || "?")}</span>
-        <span class="meta">título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${e.c != null ? ` · <span class="badge-caderno">nº ${OEV.esc(e.c)}</span>` : ""}${marcas ? ` · <span class="marca-turno">${OEV.esc(marcas)}</span>` : ""}</span></li>`;
+        <span class="meta">título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${marcas ? ` · <span class="marca-turno">${OEV.esc(marcas)}</span>` : ""}</span></li>`;
     }).join("");
     ultimo = achados;
     $("contagem").textContent = texto.trim() ? (achados.length ? `${achados.length} resultado(s)${achados.length >= 30 ? " (mostrando os 30 primeiros; digite mais)" : ""}` : "Nenhum eleitor com esse nome. Confira a grafia ou use o e-Título.") : `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;

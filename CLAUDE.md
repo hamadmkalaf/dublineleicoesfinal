@@ -12,7 +12,7 @@ necessário para chegar a elas.
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
-| **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído com a lista real do TRE (29/09); consulta **só por nome**, título desempata homônimos; v3 com nº no caderno, tempo de espera e área do administrador; publicação em `gh-pages` |
+| **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído com a lista real do TRE (29/09); consulta **só por nome**, título desempata homônimos; v3 com tempo de espera e área do administrador; publicação em `gh-pages` |
 
 ---
 
@@ -152,15 +152,16 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   CSV (`TITULO_5_8`), no índice e no pacote da equipe. Os 4 últimos não servem (UF +
   verificadores: 271 valores distintos). A v2 é publicada em `gh-pages/v2/`; a v1 (título
   completo) fica na raiz até ser removida.
-- **v3** (branch `appeleicoesv3`, 01/10, publicada em `gh-pages/v3/`): a equipe vê o **nº do eleitor no
-  caderno** (posição alfabética na seção; acima de 200, menos 200 — calculado no build, campo `c`) e
+- **v3** (branch `appeleicoesv3`, 01/10, publicada em `gh-pages/v3/`): a equipe
   informa **quão cheia está cada zona** do Ring 3; o **administrador** (`admin/`, senha só como hash
   PBKDF2 em `config.json`) liga o "status de fila", e aí o eleitor vê o **tempo estimado de espera**
   abaixo da nota da preferencial. O estado vivo mora em `fila.json` no **branch órfão `fila`**
   (escrito pela API do GitHub com a chave de publicação; lido por raw.githubusercontent.com).
   **Nunca editar `fila.json` à mão durante a votação**; nunca commitar a chave de publicação nem a
   senha do admin em claro. Parâmetros da estimativa (706 por zona, 60 s por eleitor, 3 min de
-  travessia) são **premissas** em `config.json → fila`. Detalhes em `docs/app/contexto.md` §2d.
+  travessia) são **premissas** em `config.json → fila`. O **nº no caderno** (campos `p`/`c` do pacote) foi **retirado da página em 02/10**: a lista do TRE é por
+  mesa e o caderno físico é por seção (principal e agregada separadas), então a posição não bate; não
+  reexibir sem uma lista por seção. Detalhes em `docs/app/contexto.md` §2d.
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.
