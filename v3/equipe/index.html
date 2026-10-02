@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equipe · Onde eu voto? · Dublin 2026</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#042B5A">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../icones/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<header class="topo equipe">
+  <div class="marca">ELEIÇÕES 2026<small>EQUIPE · P0 E MESA</small></div>
+  <div class="onde" id="onde">Dublin · RDS Hall 2</div>
+</header>
+<div class="faixa-equipe">Voluntário orienta, não decide: identificação é do mesário, com documento oficial com foto.</div>
+<main>
+  <div class="aviso info" id="aviso-versao" hidden>Há uma versão nova desta página. <a href="#" onclick="location.reload();return false;">Recarregar</a>.</div>
+  <div class="aviso" id="aviso-amostra" hidden><b>Dados de teste.</b> Lista sintética; os nomes reais ainda não foram carregados.</div>
+
+  <section id="bloqueado">
+    <h1>Acesso da equipe</h1>
+    <p class="sub">A lista fica cifrada neste aparelho e só abre com a senha do dia. Funciona sem internet depois da primeira abertura.</p>
+    <form class="consulta" id="form-senha">
+      <label for="senha">Senha do dia</label>
+      <input type="password" id="senha" required autocomplete="current-password">
+      <button class="principal" id="botao-senha" type="submit" disabled>Abrir lista</button>
+      <p class="dica" id="estado-lista">Carregando a lista…</p>
+    </form>
+  </section>
+
+  <section id="aberto" hidden>
+    <form class="consulta" id="form-busca" autocomplete="off" onsubmit="return false">
+      <label for="busca">Nome do eleitor (qualquer parte)</label>
+      <input type="search" id="busca" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="ex.: maria silva">
+      <p class="dica">Homônimos aparecem lado a lado: o que os separa são os <b>4 dígitos do meio do título</b> (0000 <b>XXXX</b> 0000). Peça-os ao eleitor e toque no nome certo. A lista não tem o título completo. O <b>nº no caderno</b> é a posição alfabética do nome na seção (acima de 200, menos 200).</p>
+      <p class="dica" id="contagem"></p>
+    </form>
+    <ul class="lista-equipe" id="lista"></ul>
+    <div id="resultado" aria-live="polite"></div>
+
+    <section class="painel" id="painel-fila">
+      <h2>Fila no Ring 3</h2>
+      <p class="dica" style="margin-top:0">Diga quão cheia está cada zona (0% = vazia, 100% = lotada, 706 pessoas). O app converte em tempo estimado para o eleitor, se o administrador tiver ativado o status de fila. Precisa de internet.</p>
+      <div id="zonas-fila"></div>
+      <p class="dica" id="estado-publicado"></p>
+      <div id="cofre-equipe" class="cofre" hidden>
+        <label for="chave-equipe">Chave de publicação (recebida no briefing; fica cifrada neste aparelho com a senha do dia)</label>
+        <input type="password" id="chave-equipe" autocomplete="off" placeholder="github_pat_…">
+      </div>
+      <button class="principal" id="publicar-fila" type="button">Publicar lotação</button>
+      <p class="dica" id="estado-fila"></p>
+    </section>
+
+    <p><button class="secundario" id="sair" type="button">Fechar a lista</button></p>
+  </section>
+</main>
+<footer>
+  <p id="versao"></p>
+  <p><a href="../">Página do eleitor</a></p>
+</footer>
+<script src="../comum.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id);
+  let pacote = null, rotas = null, config = null, eleitores = null;
+  let senhaDia = "", chavePublicacao = "", filaAtual = null;
+  const COFRE = "oev.chave_publicacao.equipe";
+  OEV.registraSW("../sw.js");
+
+  try {
+    const [c, r, p, versao] = await Promise.all([
+      OEV.carregaJSON("../dados/config.json"), OEV.carregaJSON("../dados/rotas.json"),
+      OEV.carregaJSON("../dados/equipe.enc"), OEV.carregaJSON("../dados/versao.json").catch(() => null),
+    ]);
+    config = c; rotas = r; pacote = p;
+    $("onde").textContent = `${config.local} · ${config.turno}`;
+    $("estado-lista").textContent = `Lista cifrada carregada (${pacote.n.toLocaleString("pt-BR")} eleitores).`;
+    if (versao) {
+      $("versao").textContent = `Dados de ${new Date(versao.construido_em).toLocaleString("pt-BR")}`;
+      $("aviso-amostra").hidden = !versao.amostra_sintetica;
+    }
+    $("botao-senha").disabled = false;
+  } catch (e) {
+    $("estado-lista").textContent = `Não foi possível carregar a lista (${e.message}). Abra esta página uma vez com internet.`;
+    return;
+  }
+
+  $("form-senha").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    $("botao-senha").disabled = true; $("botao-senha").textContent = "Abrindo…";
+    try {
+      const dados = await OEV.decifraEquipe(pacote, $("senha").value);
+      eleitores = dados.eleitores;
+      senhaDia = $("senha").value;
+      $("senha").value = "";
+      $("bloqueado").hidden = true; $("aberto").hidden = false;
+      $("contagem").textContent = `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;
+      $("busca").focus();
+      iniciaFila();
+    } catch (e) {
+      $("estado-lista").textContent = "Senha incorreta.";
+    } finally {
+      $("botao-senha").disabled = false; $("botao-senha").textContent = "Abrir lista";
+    }
+  });
+
+  function mostraEleitor(e) {
+    const rota = rotas.secoes[e.s];
+    const marcas = OEV.marcasTurno(e);
+    const caderno = OEV.textoCaderno(e);
+    const cab = `<div class="cartao-eleitor"><b>${OEV.esc(e.o || e.n)}</b><br>
+      título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${caderno ? ` · <span class="badge-caderno">${OEV.esc(caderno)}</span>` : ""}${marcas ? `<br><span class="marca-turno">${OEV.esc(marcas)}</span> — confira no e-Título; a decisão é do mesário` : ""}</div>`;
+    $("resultado").innerHTML = rota
+      ? OEV.renderRota(rota, { cabecalhoExtra: cab })
+      : `<div class="aviso erro">Seção ${OEV.esc(e.s)} não está no mapa de Dublin. Encaminhe ao mesário.</div>`;
+    $("resultado").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  let ultimo = null;
+  function busca() {
+    const texto = $("busca").value;
+    const achados = OEV.buscaEquipe(eleitores, texto, 30);
+    $("lista").innerHTML = achados.map((e, i) => {
+      const cor = OEV.COR_LETRA[(rotas.secoes[e.s] || {}).letra] || "#D9D4C4";
+      const marcas = OEV.marcasTurno(e);
+      return `<li data-i="${i}" style="border-left-color:${cor}"><span class="nome">${OEV.esc(e.o || e.n)}</span>
+        <span class="letra-mini" style="background:${cor};color:${cor === "#33507E" ? "#FFF" : "#3F3F3F"}">${OEV.esc((rotas.secoes[e.s] || {}).letra || "?")}</span>
+        <span class="meta">título <b>${OEV.esc(OEV.formataTitulo(e.t))}</b> · seção ${OEV.esc(e.s)}${e.c != null ? ` · <span class="badge-caderno">nº ${OEV.esc(e.c)}</span>` : ""}${marcas ? ` · <span class="marca-turno">${OEV.esc(marcas)}</span>` : ""}</span></li>`;
+    }).join("");
+    ultimo = achados;
+    $("contagem").textContent = texto.trim() ? (achados.length ? `${achados.length} resultado(s)${achados.length >= 30 ? " (mostrando os 30 primeiros; digite mais)" : ""}` : "Nenhum eleitor com esse nome. Confira a grafia ou use o e-Título.") : `${eleitores.length.toLocaleString("pt-BR")} eleitores na lista.`;
+    if (achados.length === 1) mostraEleitor(achados[0]); else $("resultado").innerHTML = "";
+  }
+  $("busca").addEventListener("input", busca);
+  $("lista").addEventListener("click", (ev) => {
+    const li = ev.target.closest("li[data-i]");
+    if (li && ultimo) mostraEleitor(ultimo[+li.dataset.i]);
+  });
+  $("sair").addEventListener("click", () => { eleitores = null; ultimo = null; senhaDia = ""; chavePublicacao = ""; location.reload(); });
+
+  /* ---- v3: lotação das zonas do Ring 3 → fila.json (ver docs/app/contexto.md §2d) ---- */
+  const cfgFila = () => config.fila || {};
+  function desenhaZonas(fila) {
+    const zonas = (rotas && rotas.zonas) || {};
+    $("zonas-fila").innerHTML = ["A", "B", "C"].map((l) => {
+      const z = (fila && fila.zonas && fila.zonas[l]) || {};
+      const pct = z.pct == null ? 0 : z.pct;
+      const cor = OEV.COR_LETRA[l], corTexto = l === "A" ? "#FFF" : "#3F3F3F";
+      const est = OEV.estimaEspera(pct, zonas[l], cfgFila());
+      const quando = z.em ? `informado às ${OEV.horaLocal(z.em)}` : "ainda sem informação";
+      return `<div class="zona-fila" data-letra="${l}">
+        <span class="letra-mini" style="background:${cor};color:${corTexto}">${l}</span>
+        <input type="range" min="0" max="100" step="5" value="${pct}" id="pct-${l}" aria-label="Zona ${l}: quão cheia, em porcento">
+        <span class="pct" id="pct-${l}-v">${pct}%</span>
+        <span class="meta" id="pct-${l}-m">≈ <b>${est.minutos} min</b> de espera (${est.pessoas} pessoas, ${zonas[l] ? zonas[l].urnas : "?"} urnas) · ${quando}</span>
+      </div>`;
+    }).join("");
+    for (const l of ["A", "B", "C"]) {
+      $(`pct-${l}`).addEventListener("input", () => {
+        const v = +$(`pct-${l}`).value;
+        const est = OEV.estimaEspera(v, zonas[l], cfgFila());
+        $(`pct-${l}-v`).textContent = `${v}%`;
+        $(`pct-${l}-m`).innerHTML = `≈ <b>${est.minutos} min</b> de espera (${est.pessoas} pessoas, ${zonas[l] ? zonas[l].urnas : "?"} urnas) · ao publicar`;
+      });
+    }
+  }
+  function mostraPublicado(fila) {
+    if (!fila) { $("estado-publicado").textContent = ""; return; }
+    const quando = fila.atualizado ? `Última publicação às ${OEV.horaLocal(fila.atualizado)}.` : "Nada publicado ainda.";
+    $("estado-publicado").innerHTML = `${quando} Status de fila para o eleitor: <b>${fila.ativo ? "ATIVADO" : "desligado"}</b> (quem liga é o administrador).`;
+  }
+  async function iniciaFila() {
+    if (!config.fila || !config.fila.repo) { $("painel-fila").hidden = true; return; }
+    desenhaZonas(null);
+    try {
+      chavePublicacao = await OEV.leSegredo(COFRE, senhaDia);
+    } catch (e) {
+      OEV.apagaSegredo(COFRE); chavePublicacao = ""; // guardada com outra senha do dia: pede de novo
+    }
+    $("cofre-equipe").hidden = !!chavePublicacao;
+    filaAtual = await OEV.leFilaPublica(cfgFila(), 6000);
+    if (filaAtual) { desenhaZonas(filaAtual); mostraPublicado(filaAtual); }
+    else $("estado-publicado").textContent = "Sem internet agora: não deu para ler a lotação publicada. A busca de eleitores continua funcionando.";
+  }
+  $("publicar-fila").addEventListener("click", async () => {
+    $("estado-fila").className = "dica";
+    const nova = $("chave-equipe").value.trim();
+    if (!chavePublicacao && !nova) { $("estado-fila").textContent = "Cole a chave de publicação recebida no briefing."; $("cofre-equipe").hidden = false; return; }
+    const chave = chavePublicacao || nova;
+    const valores = Object.fromEntries(["A", "B", "C"].map((l) => [l, +$(`pct-${l}`).value]));
+    $("publicar-fila").disabled = true; $("publicar-fila").textContent = "Publicando…";
+    try {
+      const agora = new Date().toISOString();
+      filaAtual = await OEV.publicaFila(cfgFila(), chave, (f) => {
+        for (const l of ["A", "B", "C"]) f.zonas[l] = { pct: valores[l], em: agora };
+        return f;
+      }, `fila: zonas A ${valores.A}% · B ${valores.B}% · C ${valores.C}%`);
+      if (!chavePublicacao) { chavePublicacao = chave; await OEV.guardaSegredo(COFRE, chave, senhaDia); $("chave-equipe").value = ""; $("cofre-equipe").hidden = true; }
+      desenhaZonas(filaAtual); mostraPublicado(filaAtual);
+      $("estado-fila").className = "dica estado-ok"; $("estado-fila").textContent = `Publicado às ${OEV.horaLocal(filaAtual.atualizado)}. O eleitor vê em até uns 5 minutos.`;
+    } catch (e) {
+      $("estado-fila").className = "dica estado-erro"; $("estado-fila").textContent = `Não publicou: ${e.message}`;
+      if (/401|403/.test(e.message)) { OEV.apagaSegredo(COFRE); chavePublicacao = ""; $("cofre-equipe").hidden = false; }
+    } finally {
+      $("publicar-fila").disabled = false; $("publicar-fila").textContent = "Publicar lotação";
+    }
+  });
+})();
+</script>
+</body>
+</html>
