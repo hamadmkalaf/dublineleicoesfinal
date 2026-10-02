@@ -87,7 +87,7 @@ n += 3;
 // ---- Senha do administrador: mesmo veredito nos dois caminhos ----
 const cfg = JSON.parse(readFileSync(path.join(aqui, "../public/dados/config.json"), "utf-8"));
 if (cfg.admin && cfg.admin.hash) {
-  for (const senha of ["senha errada", "br1sk3t2026"]) {
+  for (const senha of ["senha errada", "outra senha"]) {   // a senha real não está no git: só o veredito igual nos dois caminhos
     OEV.usaWebCrypto(true); const a = await OEV.confereAdmin(cfg.admin, senha);
     OEV.usaWebCrypto(false); const b = await OEV.confereAdmin(cfg.admin, senha);
     OEV.usaWebCrypto(true);

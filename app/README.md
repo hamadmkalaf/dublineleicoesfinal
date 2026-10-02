@@ -29,7 +29,7 @@ bash scripts/app_publicar.sh --branch gh-pages2 # branch gh-pages2 = só a v3 (0
 #     admin gravam nele pela API do GitHub com um fine-grained PAT (só este repositório, Contents: read/write),
 #     colado uma vez em cada aparelho (admin/ ou equipe/) e guardado cifrado com a senha. Ver docs/app/contexto.md §2d.
 
-# testes
+# testes (a senha real do administrador não está no git: os testes de navegador trocam o hash do dist por "teste admin")
 python3 -m pytest -q app/testes
 APP_SENHA_EQUIPE="teste amostra" python3 scripts/app_construir.py --grava
 APP_SENHA_EQUIPE="teste amostra" NODE_PATH=/opt/node22/lib/node_modules node app/testes/ponta_a_ponta.mjs

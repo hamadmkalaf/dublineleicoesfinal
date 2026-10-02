@@ -325,8 +325,10 @@ def test_rotas_tem_zonas_e_config_tem_fila_e_admin():
     assert f["lotacao_zona"] == 706 and f["segundos_por_eleitor"] > 0
     import base64, hashlib
     adm = cfg["admin"]
-    assert "br1sk3t2026" not in json.dumps(cfg), "a senha do administrador nunca fica em claro no config"
-    dk = hashlib.pbkdf2_hmac("sha256", b"br1sk3t2026", adm["sal"].encode(), adm["iteracoes"], 32)
-    assert base64.urlsafe_b64encode(dk).decode().rstrip("=") == adm["hash"]
+    # a senha real do administrador não aparece em lugar nenhum do git (nem aqui): só o hash PBKDF2, de 32 bytes
+    assert adm["kdf"] == "PBKDF2-SHA256" and adm["iteracoes"] >= 200000 and len(adm["sal"]) >= 16
+    assert len(base64.urlsafe_b64decode(adm["hash"] + "=" * (-len(adm["hash"]) % 4))) == 32
+    dk = hashlib.pbkdf2_hmac("sha256", b"senha errada", adm["sal"].encode(), adm["iteracoes"], 32)
+    assert base64.urlsafe_b64encode(dk).decode().rstrip("=") != adm["hash"]
     versao = json.loads((RAIZ / "app/dist/dados/versao.json").read_text(encoding="utf-8"))
     assert versao["app"] == "v3" and versao["caderno"] == {"bloco": 200}
