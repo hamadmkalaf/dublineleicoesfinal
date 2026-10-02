@@ -155,8 +155,8 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   **Revisão de 02/10: o pacote da equipe volta a levar o título completo** (campo `tc`, 12 dígitos);
   o importador grava `NUM_INSCRICAO` completo por padrão (`--titulo-parcial` dá o formato v2). O
   `eleitores_v2.csv.enc` do git só tem os 4 dígitos: para a equipe ver o título inteiro é preciso
-  **reimportar o PDF da relação do TRE** e cifrar como `eleitores.csv.enc`. A v2 é publicada em
-  `gh-pages/v2/`; a v1 fica na raiz até ser removida.
+  **reimportar o PDF da relação do TRE** e cifrar como `eleitores.csv.enc`. Desde 02/10 a **raiz do
+  `gh-pages` é a v3** (domínio dublineleicoes2026.com.br); `v2/` e `v3/` continuam como cópias.
 - **A lista do TRE não traz as seções agregadas** (constatado em 02/10): a seção de cada eleitor é a
   da mesa (principal), e o caderno identifica pela seção agregada. Por isso **o eleitor não vê "sua
   seção"** na página: o cartão dá ênfase a **porta e grupo de mesas**, lista as seções do grupo e, logo
