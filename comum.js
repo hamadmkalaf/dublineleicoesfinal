@@ -1,4 +1,4 @@
-/* Onde eu voto? — código comum às páginas do eleitor e da equipe.
+/* Onde eu voto? — código comum às páginas do eleitor, da equipe e do administrador (v3).
  *
  * A normalização de nomes reimplementa scripts/app_normaliza.py. Os dois têm de dar o
  * mesmo resultado: app/testes confere isso sobre vetores compartilhados. Mudou aqui, mude lá.
@@ -56,7 +56,19 @@ const OEV = (() => {
     return d ? d.padStart(12, "0") : "";
   }
 
-  /* Máscara 0000 0000 0000 num <input type="text">: só dígitos, espaços inseridos ao digitar; aceita colar com pontos. */
+  /* Título PARCIAL (v2): só os dígitos 5 a 8. Aceita os 4 dígitos ou o número completo de 8 a 12
+     dígitos (extrai os 4 aqui, no aparelho). Reimplementa titulo_parcial. */
+  const TITULO_JANELA = [5, 8];
+  function tituloParcial(valor) {
+    if (valor == null) return "";
+    const d = String(valor).trim().replace(/\.0+$/, "").replace(/\D/g, "");
+    if (d.length === 4) return d;
+    if (d.length >= 8 && d.length <= 12) return d.padStart(12, "0").slice(TITULO_JANELA[0] - 1, TITULO_JANELA[1]);
+    return "";
+  }
+
+  /* Máscara 0000 0000 0000 num <input type="text">: só dígitos, espaços inseridos ao digitar; aceita colar com pontos.
+     Com 4 dígitos (só a parte do meio) fica "0000". */
   function mascaraTitulo(el) {
     const aplica = () => {
       const d = el.value.replace(/\D/g, "").slice(0, 12);
@@ -112,22 +124,23 @@ const OEV = (() => {
      estado: "incompleto"      nome vazio;
              "ok"              uma pessoa: secao (e marca de turno, se a lista não diz "OK");
              "homonimo"        mais de uma pessoa com esse nome: peça o título;
-             "titulo_invalido" título digitado não tem 12 dígitos;
+             "titulo_invalido" título digitado não tem 4 dígitos (os do meio) nem 8 a 12 (completo);
              "titulo_errado"   há homônimos, mas o título não casa com nenhum deles;
+             "sem_desempate"   homônimos com o mesmo título parcial: o app não separa, manda ao P0;
              "nao_encontrado"  nenhuma chave do nome (completa ou primeiro+último) está no índice.
      Tenta primeiro o nome completo; se não há nada, tenta "primeiro + último", como o build indexa. */
   async function consultaPublica(indice, nomeDigitado, tituloDigitado = "") {
     const chaves = chavesNome(nomeDigitado);
     if (!chaves.length) return { estado: "incompleto" };
-    const digitos = String(tituloDigitado || "").replace(/\D/g, "");
-    if (String(tituloDigitado || "").trim() && digitos.length !== 12) return { estado: "titulo_invalido" };
-    const titulo = digitos ? normalizaInscricao(digitos) : "";
+    const titulo = tituloParcial(tituloDigitado);
+    if (String(tituloDigitado || "").trim() && !titulo) return { estado: "titulo_invalido" };
     for (const chave of chaves) {
       const v = indice.itens[await hashPublico(chave, "", indice)];
       if (!v) continue;
       if (v !== "H") return { estado: "ok", secao: v[0], marca: v[1] || "", chave };
       if (!titulo) return { estado: "homonimo", chave };
       const vt = indice.itens[await hashPublico(chave, titulo, indice)];
+      if (vt === "P") return { estado: "sem_desempate", chave };
       if (vt && vt !== "H") return { estado: "ok", secao: vt[0], marca: vt[1] || "", chave };
       return { estado: "titulo_errado", chave };
     }
@@ -185,8 +198,16 @@ const OEV = (() => {
     return m ? `${m[3]}/${m[2]}/${m[1]}` : iso || "";
   }
 
+  /* 4 dígitos (título parcial, v2) -> "···· 1234 ····"; 12 dígitos -> "0000 0000 0000". */
   function formataTitulo(t) {
-    return t ? t.replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3") : "";
+    if (!t) return "";
+    if (String(t).length === 4) return `···· ${t} ····`;
+    return String(t).replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3");
+  }
+
+  /* Título a mostrar à equipe: o completo (campo "tc", 12 dígitos, desde 02/10) quando o pacote o traz; senão o parcial. */
+  function tituloEquipe(e) {
+    return (e && (e.tc || e.t)) || "";
   }
 
   /* ---- Mini-mapa: Ring 3 + pátio de travessia + Hall 2, esquemático, com zona, porta e grupo em destaque ---- */
@@ -202,7 +223,7 @@ const OEV = (() => {
     const cor = COR_LETRA[rota.letra], fraco = "#C9D6E3", texto = "#042B5A", suave = "#6486A7", amarelo = "#FCC537";
     const p = [];
     const marcador = (x, y, n) => p.push(`<g data-passo="${n}"><circle cx="${x}" cy="${y}" r="8.5" fill="${texto}" stroke="${amarelo}" stroke-width="1.5"/><text x="${x}" y="${y + 0.5}" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="800" fill="${amarelo}">${n}</text></g>`);
-    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até a seção ${rota.secao}, com os seis passos marcados">`);
+    p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até o grupo de mesas ${rota.grupo}, pela porta ${rota.letra}, com os seis passos marcados">`);
     p.push(`<defs><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${cor}"/></marker></defs>`);
     // portão na Merrion Road e caminho de chegada: desce ao lado do Hall 2 (o Hall fica à direita de quem desce)
     const xChegada = X(HALL_W) + 7;
@@ -277,19 +298,27 @@ const OEV = (() => {
     return p.join("");
   }
 
-  /* ---- Cartão de resultado + passos, comum às duas páginas ---- */
+  /* ---- Cartão de resultado + passos, comum às duas páginas ----
+     Ênfase em PORTA e GRUPO DE MESAS (decisão de 02/10/2026). A seção específica do eleitor não aparece:
+     a lista do TRE vem por mesa, com as seções agregadas somadas na principal, então a seção que o build
+     conhece pode não ser a que está no título dele. Logo abaixo do grupo, uma nota manda conferir a seção
+     no e-Título / site do TSE (texto em opcoes.notaSecao; link em opcoes.linkTSE). */
   function renderRota(rota, opcoes = {}) {
     const cor = COR_LETRA[rota.letra], corTexto = COR_TEXTO_LETRA[rota.letra];
     const extra = opcoes.cabecalhoExtra || "";
     const passos = rota.passos.map((p) => `<li><b>${esc(p.onde)}</b><span>${esc(p.texto)}</span></li>`).join("");
+    const nota = opcoes.notaSecao == null
+      ? "Confira a sua seção no e-Título ou no site do TSE antes de ir votar: ela está entre as seções deste grupo, mas é a do seu título que vale na mesa."
+      : opcoes.notaSecao;
+    const link = opcoes.linkTSE ? ` <a href="${esc(opcoes.linkTSE)}" target="_blank" rel="noopener">Consultar no TSE</a>` : "";
     return `
       <div class="cartao" style="--cor:${cor};--cor-texto:${corTexto}">
         ${extra}
         <div class="cartao-letra"><span class="letra">${rota.letra}</span>
-          <div><div class="rotulo">sua fila e sua porta</div><div class="grande">Porta ${esc(rota.letra)} · parede ${esc(rota.parede_rotulo || ROTULO_PAREDE[rota.parede] || rota.parede)}</div></div></div>
-        <div class="cartao-linha"><div><div class="rotulo">seção</div><div class="grande">${esc(rota.secao)}</div></div>
-          <div><div class="rotulo">grupo de mesas</div><div class="grande">${esc(rota.grupo)}</div></div>
-          <div><div class="rotulo">seções do grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div></div>
+          <div><div class="rotulo">sua fila e sua porta de entrada</div><div class="grande">Porta ${esc(rota.letra)}</div><div class="medio">parede ${esc(rota.parede_rotulo || ROTULO_PAREDE[rota.parede] || rota.parede)}</div></div></div>
+        <div class="cartao-grupo"><div class="rotulo">seu grupo de mesas</div><div class="enorme">${esc(rota.grupo)}</div>
+          <div class="rotulo">seções deste grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div>
+        ${nota ? `<p class="nota-secao" id="nota-secao">${esc(nota)}${link}</p>` : ""}
       </div>
       <ol class="passos">${passos}</ol>
       <div class="mapa">${desenhaMapa(rota)}</div>
@@ -319,9 +348,177 @@ const OEV = (() => {
     }
   }
 
-  return { normalizaNome, chavesNome, normalizaData, normalizaInscricao, mascaraData, mascaraTitulo, hashPublico, consultaPublica,
-           decifraEquipe, buscaEquipe, marcasTurno, carregaJSON, esc, formataData, formataTitulo, desenhaMapa, renderRota,
-           rotaDaSecao, registraSW, COR_LETRA };
+  /* ---- v3: número no caderno (vem do build, campo "c"; "p" é a posição alfabética na seção) ---- */
+  function textoCaderno(e) {
+    if (!e || e.c == null) return "";
+    return e.p != null && e.p !== e.c ? `nº ${e.c} no caderno (${e.p}º da seção)` : `nº ${e.c} no caderno`;
+  }
+
+  /* ---- v3: estimativa de espera na fila do Ring 3 ----
+     pct = quanto a zona está cheia (0–100), informado pela equipe. Modelo simples e declarado:
+       pessoas na fila  = pct/100 × lotação da zona (706, montagem do Ring 3)
+       vazão da zona    = urnas da zona × 60 / segundos por eleitor (premissa de config.json)
+       espera           = pessoas / vazão + minutos de travessia do pátio
+     Devolve {minutos (arredondado), minutosExatos, pessoas, vazaoPorMin}. */
+  function estimaEspera(pct, zona, cfgFila) {
+    const p = Math.max(0, Math.min(100, Number(pct) || 0));
+    const lotacao = Number(cfgFila.lotacao_zona) || 706;
+    const seg = Number(cfgFila.segundos_por_eleitor) || 60;
+    const travessia = Number(cfgFila.minutos_travessia) || 0;
+    const passo = Number(cfgFila.arredonda_min) || 5;
+    const urnas = Number(zona && zona.urnas) || 9;
+    const pessoas = Math.round((p / 100) * lotacao);
+    const vazao = (urnas * 60) / seg; // pessoas por minuto
+    const exatos = pessoas / vazao + travessia;
+    const minutos = Math.max(passo, Math.round(exatos / passo) * passo);
+    return { minutos, minutosExatos: exatos, pessoas, vazaoPorMin: vazao, pct: p };
+  }
+
+  function horaLocal(iso) {
+    const d = new Date(iso);
+    return isNaN(d) ? "" : d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  }
+
+  function preenche(modelo, valores) {
+    return String(modelo || "").replace(/\{(\w+)\}/g, (_, k) => (valores[k] == null ? "" : String(valores[k])));
+  }
+
+  /* Bloco que aparece ao eleitor abaixo da nota da preferencial, quando o admin ativou o status da fila.
+     fila = conteúdo de fila.json; rota = rota da seção; rotas.zonas = urnas por zona (do build). */
+  function renderEspera(fila, rota, rotas, cfgFila, agora = Date.now()) {
+    if (!fila || !fila.ativo || !rota) return "";
+    const z = fila.zonas && fila.zonas[rota.letra];
+    if (!z || z.pct == null || !z.em) return "";
+    const hora = horaLocal(z.em);
+    const idade = (agora - new Date(z.em).getTime()) / 60000;
+    const validade = Number(cfgFila.validade_min) || 60;
+    const est = estimaEspera(z.pct, rotas.zonas && rotas.zonas[rota.letra], cfgFila);
+    const velho = idade > validade;
+    const cor = COR_LETRA[rota.letra];
+    const corpo = est.pct <= 0
+      ? `<div class="espera-grande">poucos minutos</div><p>${esc(preenche(cfgFila.sem_fila, { letra: rota.letra, hora }))}</p>`
+      : `<div class="espera-grande">cerca de ${est.minutos} min</div>
+         <div class="espera-barra" aria-hidden="true"><span style="width:${est.pct}%;background:${cor}"></span></div>
+         <p>${esc(preenche(cfgFila.explicacao, { letra: rota.letra, pct: est.pct, hora, seg: cfgFila.segundos_por_eleitor || 60 }))}</p>`;
+    return `<div class="espera${velho ? " velha" : ""}" id="espera" data-minutos="${est.minutos}" data-pct="${est.pct}">
+      <div class="rotulo">${esc(cfgFila.rotulo || "Tempo estimado de espera")} · fila ${esc(rota.letra)}</div>
+      ${corpo}
+      ${velho ? `<p class="espera-aviso">${esc(preenche(cfgFila.desatualizado, { hora, validade }))}</p>` : ""}
+    </div>`;
+  }
+
+  /* Lê o estado vivo da fila publicado (raw.githubusercontent.com). Cache do CDN quebrado por minuto;
+     devolve null se não há rede, se a resposta não é JSON ou se demora mais que `limiteMs`. */
+  async function leFilaPublica(cfgFila, limiteMs = 5000) {
+    if (!cfgFila || !cfgFila.url_leitura) return null;
+    const sep = cfgFila.url_leitura.includes("?") ? "&" : "?";
+    const url = `${cfgFila.url_leitura}${sep}t=${Math.floor(Date.now() / 60000)}`;
+    const ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = ctl && setTimeout(() => ctl.abort(), limiteMs);
+    try {
+      const r = await fetch(url, { cache: "no-store", signal: ctl ? ctl.signal : undefined });
+      if (!r.ok) return null;
+      return await r.json();
+    } catch (e) {
+      return null;
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+
+  /* ---- v3: escrita de fila.json pela API do GitHub (branch próprio; ver docs/app/contexto.md §2d) ----
+     O token é um fine-grained PAT com "Contents: read and write" SÓ neste repositório. */
+  function filaVazia() {
+    return { v: 1, ativo: false, zonas: { A: { pct: null, em: null }, B: { pct: null, em: null }, C: { pct: null, em: null } }, atualizado: null };
+  }
+
+  function urlConteudo(cfgFila) {
+    return `https://api.github.com/repos/${cfgFila.repo}/contents/${cfgFila.arquivo}`;
+  }
+
+  function cabecalhosGitHub(token) {
+    return { Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, "X-GitHub-Api-Version": "2022-11-28" };
+  }
+
+  function utf8ParaB64(texto) {
+    return btoa(String.fromCharCode(...enc.encode(texto)));
+  }
+
+  function b64ParaUtf8(b64) {
+    return new TextDecoder().decode(b64bytes(String(b64).replace(/\s/g, "")));
+  }
+
+  /* Lê fila.json com o sha (necessário para gravar). 404 -> {fila: vazia, sha: null}. */
+  async function leFilaAPI(cfgFila, token) {
+    const r = await fetch(`${urlConteudo(cfgFila)}?ref=${encodeURIComponent(cfgFila.branch)}&t=${Date.now()}`, { headers: cabecalhosGitHub(token), cache: "no-store" });
+    if (r.status === 404) return { fila: filaVazia(), sha: null };
+    if (r.status === 401) throw new Error("chave de publicação inválida ou vencida (401)");
+    if (!r.ok) throw new Error(`GitHub respondeu HTTP ${r.status} ao ler ${cfgFila.arquivo}`);
+    const j = await r.json();
+    let fila;
+    try { fila = JSON.parse(b64ParaUtf8(j.content)); } catch (e) { fila = filaVazia(); }
+    return { fila: { ...filaVazia(), ...fila, zonas: { ...filaVazia().zonas, ...(fila.zonas || {}) } }, sha: j.sha };
+  }
+
+  /* Lê, aplica `mutador(fila)` e grava; repete até 3 vezes se outra pessoa gravou no meio (409/422). */
+  async function publicaFila(cfgFila, token, mutador, mensagem = "fila: atualização pela equipe") {
+    let erro = null;
+    for (let tentativa = 0; tentativa < 3; tentativa++) {
+      const { fila, sha } = await leFilaAPI(cfgFila, token);
+      const nova = mutador(JSON.parse(JSON.stringify(fila))) || fila;
+      nova.atualizado = new Date().toISOString();
+      const corpo = { message: mensagem, content: utf8ParaB64(JSON.stringify(nova, null, 1) + "\n"), branch: cfgFila.branch };
+      if (sha) corpo.sha = sha;
+      const r = await fetch(urlConteudo(cfgFila), { method: "PUT", headers: { ...cabecalhosGitHub(token), "Content-Type": "application/json" }, body: JSON.stringify(corpo) });
+      if (r.ok) return nova;
+      if (r.status === 409 || r.status === 422) { erro = new Error(`conflito ao gravar (HTTP ${r.status}); tentando de novo`); continue; }
+      if (r.status === 401) throw new Error("chave de publicação inválida ou vencida (401)");
+      if (r.status === 403) throw new Error("a chave de publicação não tem permissão de escrita neste repositório (403)");
+      if (r.status === 404) throw new Error(`repositório ou branch não encontrado (404): confira ${cfgFila.repo} / ${cfgFila.branch}`);
+      throw new Error(`GitHub respondeu HTTP ${r.status} ao gravar`);
+    }
+    throw erro || new Error("não foi possível gravar a fila");
+  }
+
+  /* ---- v3: cofre local — guarda um segredo (a chave de publicação) cifrado com uma senha, no localStorage ---- */
+  const ITERACOES_COFRE = 100000;
+  async function chaveCofre(senha, sal) {
+    const bits = await pbkdf2(enc.encode(senha), sal, ITERACOES_COFRE, 32);
+    return crypto.subtle.importKey("raw", bits, "AES-GCM", false, ["encrypt", "decrypt"]);
+  }
+
+  async function guardaSegredo(nome, texto, senha) {
+    const sal = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+    const k = await chaveCofre(senha, sal);
+    const cifrado = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, k, enc.encode(texto));
+    const b64 = (b) => btoa(String.fromCharCode(...new Uint8Array(b)));
+    localStorage.setItem(nome, JSON.stringify({ v: 1, sal: b64(sal), iv: b64(iv), dados: b64(cifrado) }));
+  }
+
+  /* Devolve o segredo, "" se não há nada guardado, e lança se a senha não abre. */
+  async function leSegredo(nome, senha) {
+    const bruto = localStorage.getItem(nome);
+    if (!bruto) return "";
+    const c = JSON.parse(bruto);
+    const k = await chaveCofre(senha, b64bytes(c.sal));
+    const claro = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64bytes(c.iv) }, k, b64bytes(c.dados));
+    return new TextDecoder().decode(claro);
+  }
+
+  function apagaSegredo(nome) { localStorage.removeItem(nome); }
+
+  /* ---- v3: senha do administrador — conferida contra o hash PBKDF2 de config.json ("admin") ---- */
+  async function confereAdmin(cfgAdmin, senha) {
+    if (!cfgAdmin || !cfgAdmin.hash) return false;
+    const bits = await pbkdf2(enc.encode(senha), enc.encode(cfgAdmin.sal), cfgAdmin.iteracoes, 32);
+    return b64url(bits) === cfgAdmin.hash;
+  }
+
+  return { normalizaNome, chavesNome, normalizaData, normalizaInscricao, tituloParcial, mascaraData, mascaraTitulo, hashPublico, consultaPublica,
+           decifraEquipe, buscaEquipe, marcasTurno, carregaJSON, esc, formataData, formataTitulo, tituloEquipe, desenhaMapa, renderRota,
+           rotaDaSecao, registraSW, COR_LETRA,
+           textoCaderno, estimaEspera, renderEspera, horaLocal, preenche, leFilaPublica, filaVazia, leFilaAPI, publicaFila,
+           guardaSegredo, leSegredo, apagaSegredo, confereAdmin };
 })();
 
 if (typeof module !== "undefined") module.exports = OEV;
