@@ -138,10 +138,10 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. Dois PDFs chegaram
   commitados (29/09 em `appeleicoes`, e `DUBLIN.pdf` em `main`) e foram **purgados do
   histórico em 01/10**, com force-push; não recommitar.
-- **Única exceção: `data/eleitores/eleitores_v2.csv.enc`**, o CSV v2 (nome, seção, marcas e
-  dígitos 5–8 do título) cifrado com AES-256-GCM pela senha da equipe
-  (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê direto.
-  Trocou a senha da equipe = recifrar a lista.
+- **Única exceção: os CSVs cifrados** `data/eleitores/eleitores.csv.enc` (02/10: título completo,
+  é o que a v3 usa) e `eleitores_v2.csv.enc` (01/10: só dígitos 5–8), ambos AES-256-GCM pela senha
+  da equipe (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê
+  direto. Trocou a senha da equipe = recifrar as listas.
 - **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
   já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
   `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.

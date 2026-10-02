@@ -44,7 +44,7 @@ Pendencia por ponto.
 - confirmar com o Cartório o que é a marca "VT" (74 eleitores no 1º turno) e ajustar o texto de `aviso_marca` em config.json;
 - publicação em `gh-pages` deste repositório (público): ativar o Pages em Settings → Pages → gh-pages; a v2 (só 4 dígitos do título) está em /v2/;
 - remover a v1 da raiz do gh-pages depois de validar a v2: o pacote cifrado da v1 ainda tem os títulos completos;
-- **02/10**: reconstruir o pacote da equipe com a relação de eleitores do TRE (título completo de volta; o arquivo recebido em 02/10 era o Relatório de Mesários, não a relação); o eleitor não vê mais a seção específica, só porta e grupo de mesas, com nota para conferir no e-Título/TSE;
+- **02/10**: ~~reconstruir o pacote da equipe com a relação de eleitores do TRE~~ feito à tarde (`eleitores.csv.enc`, publicado em `/v3/`); **remover e purgar `DUBLIN 1 (1).pdf` do branch `main`** (lista nominal commitada em 02/10); o eleitor não vê mais a seção específica, só porta e grupo de mesas, com nota para conferir no e-Título/TSE;
 - definir quem constrói e publica no dia anterior, e quem guarda a senha da equipe;
 - pôr o QR/link do app na peça P0-Consulta e na campanha "descubra sua seção antes de sair de casa";
 - testar a página da equipe sem sinal na calçada do P0 na véspera.
