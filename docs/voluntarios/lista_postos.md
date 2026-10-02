@@ -64,10 +64,19 @@ Colunas: **C1** = 9 (hoje) · **C2** = 15 · **C3** = 24 · **C4** = 49 (pico).
 | Posto | Onde fica | O que faz | C1 | C2 | C3 | C4 |
 |---|---|---|---|---|---|---|
 | **R1** | Corredor de chegada, 3 m, lateral leste | Único ponto por onde passam 100% dos eleitores. A função é impedir que alguém pare ali. | 0 | 0 | 1 | 2 |
-| **R2** | Bocas das zonas C, B e A, uma pessoa cada | Confere a letra e entrega a raia. Último ponto em que errar custa pouco. | 0 | 2 | 3 | 3 |
+| **R2** | Bocas das zonas C, B e A, uma pessoa cada (a da A no extremo oeste do trecho de fundo, desde 22/09) | Confere a letra e entrega a raia. Último ponto em que errar custa pouco. | 0 | 2 | 3 | 3 |
 | **R3** | Trecho de fundo, entre as bocas B e A | Reencaminha quem passou da sua zona. O plano de sinalização já o prevê como indispensável. | 1 | 1 | 1 | 1 |
 | **R4** | Dentro das raias, uma por zona | Raia errada, quem não aguenta a serpentina em pé, mal-estar. | 0 | 0 | 0 | 3 |
-| **R5** | Cabeça de fila de cada zona, no topo | Dosagem para o apron: só libera quando a porta está andando. Às 17h00 marca o fim da fila. | 0 | 3 | 3 | 3 |
+| **R5** | Cabeça de fila de cada zona, na abertura de 2 m da face norte (desde 22/09) | Dosagem para o apron: só libera quando a porta está andando. Às 17h00 marca o fim da fila. | 0 | 3 | 3 | 3 |
+
+> **Como se anda dentro do Ring, desde 23/09.** As laterais A|B e B|C passaram a ser
+> fechadas nas duas faces, e o que ficou entre elas é um **corredor de serviço de
+> 1,20 m** que percorre os 32 m das zonas. É por ele que R3, R4 e R5 se deslocam entre
+> zonas sem entrar em raia nenhuma, e é por ele que passa maca ou fiscal contra o
+> fluxo. Cada linha tem **6 portões** de uma CCB, um a cada 8 m — então nenhum ponto da
+> zona fica a mais de 4 m de uma saída para o corredor. Antes de 23/09 esse corredor
+> não existia como barreira: o vão entre zonas era só chão livre, e quem precisasse
+> atravessar cortava a fila.
 
 ### Apron e portas
 
@@ -111,7 +120,7 @@ pessoas, preencha até a posição 13; com 17, até a 17.
 | Pos. | Posto | O que compra |
 |---|---|---|
 | 10 | **P0**, 4º operador | O gargalo que cascateia. Três operadores atendem cerca de 1.200 consultas no dia; quem chega sem a seção não é triável em nenhum outro ponto. Maior retorno por pessoa de todo o conjunto. |
-| 11 | **R5**, zona A | A parede oeste é a mais comprimida: 155,7 esperados por metro, contra 138,6 da norte e 105,6 da leste. |
+| 11 | **R5**, zona A | A parede oeste é a mais comprimida, por pouco: 138,8 esperados por metro (era 155,7 até 22/09), contra 138,6 da norte e 105,6 da leste. |
 | 12 | **R5**, zona B | 138,6 por metro. |
 | 13 | **R5**, zona C | Com as três, o Ring passa a liberar em lote e o apron deixa de ser depósito ao ar livre. É também quem marca o fim da fila às 17h00 — ato com consequência legal, hoje sem dono. |
 | 14 | **R2**, boca C | A primeira boca do trecho de fundo: todo eleitor passa por ela. |

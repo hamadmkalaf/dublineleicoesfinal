@@ -528,6 +528,16 @@ utilizáveis: é onde fica a sala de apoio.
 salão. O que o pedido fixa é o trecho de parede; a profundidade da sala precisa
 ser medida em campo antes de imprimir.
 
+**Adendo de 22/09.** A suposição caiu: a sala de apoio é um **recuo para dentro
+da parede oeste**, fora do piso do salão, e não uma zona sobre ele. A zona
+`sala_apoio` saiu de `decisoes.json`; o que fica livre é o acesso ao recuo, a
+partir da borda norte da O1 (y = 38,50). Com isso o trecho 2 da parede oeste
+passou a 22,98–39,25 m e as mesas A3, A4 e A5 andaram **1,50 m para o norte**
+(3313·3889 de 23,12 para 24,62 m, a 1,74 m do recuo da O2 em vez de 0,24), com a
+ordem das unidades fixada em `ORDEM_FIXA` de `scripts/arranjo_paredes.py` para não
+mudar códigos de grupo nem a numeração do eleitor. A parede oeste passa a 27,63 m
+úteis, 138,8 esperados por metro.
+
 ### 11.5 O aperto de 2,50 m não foi preciso
 
 A autorização para comprimir a dupla de 3,00 m para 2,50 m entrou no motor como
@@ -544,3 +554,45 @@ automaticamente se uma mudança futura exigir.
 | Amplitude | 114 → **2** |
 | Comprimento útil da parede oeste | 29,53 → 24,63 m |
 | Duplas apertadas | nenhuma |
+
+---
+
+## 12. Adendo de 23/09 — a parede oeste troca dois pares de posição
+
+**O pedido.** Pôr as filas menores no fim da parede oeste, *"pois dá na avenida de
+trânsito, para evitar que filas afetem a avenida"*. A boca da avenida A entra pelo
+**sul** da parede oeste: o que estiver no sul tem a sua fila encostada na avenida.
+
+**O que mudou.** Os dois pares de maior carga e os dois de menor trocaram de lugar.
+A mesa de alta carga 3313·3889 (grupo do meio) não se move.
+
+| Posição na parede (y) | Antes de 23/09 | Depois |
+|---|---|---|
+| 8,03 · 11,93 (sul, junto à boca) | 3309·1314 + 3142·1278 — 861 esperados | **513·1105 + 1352·522 — 679** |
+| 14,33 · 18,23 | 3161·3307 + 3311·3913 — 970 | **3078·2847 + 3179·530 — 734** |
+| 24,62 | 3313·3889 — 590 | 3313·3889 — 590 (não se move) |
+| 27,42 · 31,32 | 513·1105 + 1352·522 — 679 | **3309·1314 + 3142·1278 — 861** |
+| 33,72 · 37,62 (norte, o mais distante) | 3078·2847 + 3179·530 — 734 | **3161·3307 + 3311·3913 — 970** |
+
+**O que isso arrasta, e é o ponto delicado.** O código de grupo é **posicional** —
+A1 é, por definição, o par mais ao sul da parede oeste. Trocar os pares de posição
+troca os códigos junto: o grupo **A1 passa a ser 513·1105 + 1352·522** e o **A5, o
+de 3161·3307 + 3311·3913**. Quem viaja com o par é o resto do registro: as seções,
+o tipo, a classe e o `id_origem`. A alternativa — manter o código colado ao par e
+deixar A4 aparecer antes de A1 no corredor — foi descartada: o código só serve para
+o eleitor achar o seu grupo andando pelo corredor, e um corredor que conta A4, A5,
+A3, A1, A2 não serve para nada.
+
+**Como está implementado.** A ordem das unidades da parede oeste está em
+`ORDEM_FIXA` de `scripts/arranjo_paredes.py`; a reetiquetagem por posição está em
+`scripts/grupos_mesas.py`, que ordena os grupos de cada parede por `coord` e
+redistribui os códigos em ordem crescente. Antes de 23/09 esse script *exigia* que
+os códigos já estivessem em ordem e falhava se não estivessem — a exigência virou
+a própria regra de nomear.
+
+**Efeito de segunda ordem, registrado.** As 16 placas de grupo, os três painéis de
+porta e a tabela mestra saem todos de `data/grupos_mesas.json`, então todos mudaram
+junto, por gerador. **Nenhuma peça impressa antes de 23/09 continua válida para a
+parede oeste** — o que já valia para as peças de 22/09, mas aqui vale também para
+quem tiver decorado a ordem: quem trabalhou com a versão de 22/09 vai procurar a
+A1 no lugar errado. Vale dizê-lo no briefing dos mesários da parede oeste.

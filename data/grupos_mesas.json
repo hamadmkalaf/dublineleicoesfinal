@@ -4,6 +4,103 @@
  "grupos": [
   {
    "id": "A1",
+   "id_origem": "BA4",
+   "entrada": "A",
+   "parede": "oeste",
+   "porta": "S4",
+   "tipo": "par",
+   "mrvs": [
+    3,
+    6
+   ],
+   "coord": [
+    8.03,
+    11.93
+   ],
+   "secoes": [
+    513,
+    522,
+    1105,
+    1352
+   ],
+   "por_mesa": [
+    [
+     513,
+     1105
+    ],
+    [
+     1352,
+     522
+    ]
+   ],
+   "aptos": 964,
+   "esperado": 679,
+   "classe": "baixa"
+  },
+  {
+   "id": "A2",
+   "id_origem": "BA5",
+   "entrada": "A",
+   "parede": "oeste",
+   "porta": "S4",
+   "tipo": "par",
+   "mrvs": [
+    8,
+    12
+   ],
+   "coord": [
+    14.33,
+    18.23
+   ],
+   "secoes": [
+    530,
+    2847,
+    3078,
+    3179
+   ],
+   "por_mesa": [
+    [
+     3078,
+     2847
+    ],
+    [
+     3179,
+     530
+    ]
+   ],
+   "aptos": 1105,
+   "esperado": 734,
+   "classe": "baixa"
+  },
+  {
+   "id": "A3",
+   "id_origem": "BA3",
+   "entrada": "A",
+   "parede": "oeste",
+   "porta": "S4",
+   "tipo": "isolada",
+   "mrvs": [
+    22
+   ],
+   "coord": [
+    24.62
+   ],
+   "secoes": [
+    3313,
+    3889
+   ],
+   "por_mesa": [
+    [
+     3313,
+     3889
+    ]
+   ],
+   "aptos": 797,
+   "esperado": 590,
+   "classe": "alta"
+  },
+  {
+   "id": "A4",
    "id_origem": "BA1",
    "entrada": "A",
    "parede": "oeste",
@@ -14,8 +111,8 @@
     10
    ],
    "coord": [
-    8.03,
-    11.93
+    27.42,
+    31.32
    ],
    "secoes": [
     1278,
@@ -25,12 +122,12 @@
    ],
    "por_mesa": [
     [
-     1314,
-     3309
+     3309,
+     1314
     ],
     [
-     1278,
-     3142
+     3142,
+     1278
     ]
    ],
    "aptos": 1408,
@@ -38,7 +135,7 @@
    "classe": "media"
   },
   {
-   "id": "A2",
+   "id": "A5",
    "id_origem": "BA2",
    "entrada": "A",
    "parede": "oeste",
@@ -49,8 +146,8 @@
     21
    ],
    "coord": [
-    14.33,
-    18.23
+    33.72,
+    37.62
    ],
    "secoes": [
     3161,
@@ -71,103 +168,6 @@
    "aptos": 1421,
    "esperado": 970,
    "classe": "media"
-  },
-  {
-   "id": "A3",
-   "id_origem": "BA3",
-   "entrada": "A",
-   "parede": "oeste",
-   "porta": "S4",
-   "tipo": "isolada",
-   "mrvs": [
-    22
-   ],
-   "coord": [
-    23.12
-   ],
-   "secoes": [
-    3313,
-    3889
-   ],
-   "por_mesa": [
-    [
-     3313,
-     3889
-    ]
-   ],
-   "aptos": 797,
-   "esperado": 590,
-   "classe": "alta"
-  },
-  {
-   "id": "A4",
-   "id_origem": "BA4",
-   "entrada": "A",
-   "parede": "oeste",
-   "porta": "S4",
-   "tipo": "par",
-   "mrvs": [
-    3,
-    6
-   ],
-   "coord": [
-    25.92,
-    29.82
-   ],
-   "secoes": [
-    513,
-    522,
-    1105,
-    1352
-   ],
-   "por_mesa": [
-    [
-     513,
-     1105
-    ],
-    [
-     522,
-     1352
-    ]
-   ],
-   "aptos": 964,
-   "esperado": 679,
-   "classe": "baixa"
-  },
-  {
-   "id": "A5",
-   "id_origem": "BA5",
-   "entrada": "A",
-   "parede": "oeste",
-   "porta": "S4",
-   "tipo": "par",
-   "mrvs": [
-    8,
-    12
-   ],
-   "coord": [
-    32.22,
-    36.12
-   ],
-   "secoes": [
-    530,
-    2847,
-    3078,
-    3179
-   ],
-   "por_mesa": [
-    [
-     2847,
-     3078
-    ],
-    [
-     530,
-     3179
-    ]
-   ],
-   "aptos": 1105,
-   "esperado": 734,
-   "classe": "baixa"
   },
   {
    "id": "B1",
@@ -258,8 +258,8 @@
      3422
     ],
     [
-     3181,
-     3302
+     3302,
+     3181
     ]
    ],
    "aptos": 1527,
@@ -289,12 +289,12 @@
    ],
    "por_mesa": [
     [
-     521,
-     3305
+     3305,
+     521
     ],
     [
-     518,
-     3306
+     3306,
+     518
     ]
    ],
    "aptos": 1533,
@@ -412,8 +412,8 @@
    ],
    "por_mesa": [
     [
-     519,
-     3245
+     3245,
+     519
     ],
     [
      3862
@@ -446,12 +446,12 @@
    ],
    "por_mesa": [
     [
-     527,
-     3216
+     3216,
+     527
     ],
     [
-     1099,
-     3054
+     3054,
+     1099
     ]
    ],
    "aptos": 1025,
