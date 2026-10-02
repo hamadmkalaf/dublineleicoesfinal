@@ -7,6 +7,7 @@ import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { pbkdf2Sync } from "node:crypto";
 import path from "node:path";
 import assert from "node:assert/strict";
 const { chromium } = createRequire(import.meta.url)("playwright");
@@ -16,12 +17,13 @@ const capturas = path.join(aqui, "capturas");
 mkdirSync(capturas, { recursive: true });
 const PORTA = 8765, BASE = `http://127.0.0.1:${PORTA}/`;
 const SENHA = process.env.APP_SENHA_EQUIPE || "teste amostra";
-const SENHA_ADMIN = "br1sk3t2026";
+const SENHA_ADMIN = "teste admin";   // o hash da senha real fica em app/public; o teste troca o do dist por este
 
 // v3: aponta a leitura da fila para um arquivo local servido junto com o dist (sem tocar em app/public)
 const cfgPath = path.join(dist, "dados/config.json");
 const cfg = JSON.parse(readFileSync(cfgPath, "utf-8"));
 cfg.fila.url_leitura = `${BASE}dados/fila_teste.json`;
+cfg.admin.hash = pbkdf2Sync(SENHA_ADMIN, cfg.admin.sal, cfg.admin.iteracoes, 32, "sha256").toString("base64url");
 writeFileSync(cfgPath, JSON.stringify(cfg, null, 2));
 const escreveFila = (fila) => writeFileSync(path.join(dist, "dados/fila_teste.json"), JSON.stringify(fila));
 escreveFila({ v: 1, ativo: true, zonas: { A: { pct: 50, em: new Date().toISOString() }, B: { pct: null, em: null }, C: { pct: 0, em: new Date().toISOString() } }, atualizado: new Date().toISOString() });
@@ -62,6 +64,9 @@ try {
   assert.doesNotMatch(await r.textContent(), /\bS[0-9]\b/, "nenhum número de porta da prancheta no que o eleitor lê");
   assert.equal(await r.locator(".mapa [data-passo]").count(), 6, "os seis passos marcados no mapa");
   passo("eleitor: nome completo com apóstrofo → seção 3889, fila A, porta S4, grupo A3");
+  assert.equal(await pagina.locator('footer a[href="./admin/"]').count(), 1, "02/10 noite: link do administrador no rodapé do eleitor");
+  assert.equal(await pagina.locator('footer a[href="./equipe/"]').count(), 1);
+  passo("eleitor: rodapé com os links da equipe e do administrador");
   // v3: estimativa de espera abaixo da nota da preferencial (status ativado, zona A 50% cheia)
   await pagina.waitForSelector("#espera");
   assert.match(await pagina.locator("#espera").textContent(), /cerca de 40 min/);
@@ -186,7 +191,7 @@ try {
   const cofre = await pagina.evaluate(() => localStorage.getItem("oev.chave_publicacao.admin"));
   assert.ok(cofre && !cofre.includes("github_pat_TESTE"), "a chave não fica em claro no aparelho");
   assert.equal(await pagina.evaluate(() => OEV.leSegredo("oev.chave_publicacao.admin", "outra senha").then(() => "abriu", () => "fechado")), "fechado");
-  assert.equal(await pagina.evaluate(() => OEV.leSegredo("oev.chave_publicacao.admin", "br1sk3t2026")), "github_pat_TESTE_000000");
+  assert.equal(await pagina.evaluate((s) => OEV.leSegredo("oev.chave_publicacao.admin", s), SENHA_ADMIN), "github_pat_TESTE_000000");
   passo("admin: chave de publicação guardada cifrada (AES-GCM) com a senha do administrador");
   await pagina.screenshot({ path: path.join(capturas, "admin.png"), fullPage: true });
   await pagina.click("#apagar-chave");

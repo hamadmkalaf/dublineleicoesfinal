@@ -9,7 +9,8 @@ import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { networkInterfaces } from "node:os";
 import { fileURLToPath } from "node:url";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { pbkdf2Sync } from "node:crypto";
 import path from "node:path";
 import assert from "node:assert/strict";
 const { chromium } = createRequire(import.meta.url)("playwright");
@@ -18,8 +19,14 @@ const dist = process.env.APP_DIST || path.resolve(aqui, "../dist");
 const capturas = path.join(aqui, "capturas");
 mkdirSync(capturas, { recursive: true });
 const SENHA = process.env.APP_SENHA_EQUIPE || "teste amostra";
-const SENHA_ADMIN = "br1sk3t2026";
+const SENHA_ADMIN = "teste admin";   // o hash da senha real fica em app/public; o teste troca o do dist por este
 const PORTA = 8766;
+{
+  const cfgPath = path.join(dist, "dados/config.json");
+  const cfg = JSON.parse(readFileSync(cfgPath, "utf-8"));
+  cfg.admin.hash = pbkdf2Sync(SENHA_ADMIN, cfg.admin.sal, cfg.admin.iteracoes, 32, "sha256").toString("base64url");
+  writeFileSync(cfgPath, JSON.stringify(cfg, null, 2));
+}
 
 const ip = Object.values(networkInterfaces()).flat().find((i) => i && i.family === "IPv4" && !i.internal)?.address;
 if (!ip) { console.log("sem IP externo nesta máquina: não dá para simular um contexto inseguro"); process.exit(0); }
