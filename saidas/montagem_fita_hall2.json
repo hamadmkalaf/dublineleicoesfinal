@@ -1,0 +1,1803 @@
+{
+ "gerado_em": "2026-10-03",
+ "origem": "scripts/separadores_fila.py (desenho definitivo de 17/09, cenário Paredes_ABC)",
+ "sistema": "x da parede oeste, y da linha das portas da fachada sul; metros",
+ "premissas": {
+  "largura_avenida_m": 3.0,
+  "largura_canal_m": 1.1,
+  "linha_espera_m": 1.5,
+  "passo_fila_m": 0.65,
+  "boca_barreira_m": 6.0,
+  "banda_por_parede_m": {
+   "oeste": 11.0,
+   "norte": 9.0,
+   "leste": 10.8
+  },
+  "modulo_m": 4.1
+ },
+ "bocas": [
+  {
+   "avenida": "A",
+   "porta": "S4",
+   "batente_oeste": 19.1,
+   "batente_leste": 25.03,
+   "vao_porta": 5.93,
+   "trilho_interno_x": 21.83,
+   "trilho_externo_x": 25.03,
+   "interno_do_batente_oeste": 2.73,
+   "externo_do_batente_leste": 0.0,
+   "largura": 3.2
+  },
+  {
+   "avenida": "B",
+   "porta": "S5",
+   "batente_oeste": 25.32,
+   "batente_leste": 31.25,
+   "vao_porta": 5.93,
+   "trilho_interno_x": 26.8,
+   "trilho_externo_x": 29.8,
+   "interno_do_batente_oeste": 1.48,
+   "externo_do_batente_leste": 1.45,
+   "largura": 3.0
+  },
+  {
+   "avenida": "C",
+   "porta": "S6",
+   "batente_oeste": 31.54,
+   "batente_leste": 37.47,
+   "vao_porta": 5.93,
+   "trilho_interno_x": 32.0,
+   "trilho_externo_x": 35.0,
+   "interno_do_batente_oeste": 0.46,
+   "externo_do_batente_leste": 2.47,
+   "largura": 3.0
+  }
+ ],
+ "avenidas": {
+  "A": {
+   "porta": "S4",
+   "parede": "oeste",
+   "hex": "#33507E",
+   "cor": "azul",
+   "trilho_interno": {
+    "lado": "trilho_interno",
+    "segmentos": [
+     {
+      "n": 1,
+      "de": [
+       21.83,
+       0.0
+      ],
+      "ate": [
+       21.83,
+       3.4
+      ],
+      "m": 3.4,
+      "barreira_m": 3.4,
+      "fita_m": 0.0,
+      "vertical": true,
+      "horizontal": false
+     },
+     {
+      "n": 2,
+      "de": [
+       21.83,
+       3.4
+      ],
+      "ate": [
+       11.0,
+       3.4
+      ],
+      "m": 10.83,
+      "barreira_m": 2.6,
+      "fita_m": 8.23,
+      "vertical": false,
+      "horizontal": true,
+      "fim_barreira": [
+       19.23,
+       3.4
+      ]
+     },
+     {
+      "n": 3,
+      "de": [
+       11.0,
+       3.4
+      ],
+      "ate": [
+       11.0,
+       36.3
+      ],
+      "m": 32.9,
+      "barreira_m": 0.0,
+      "fita_m": 23.37,
+      "vertical": true,
+      "horizontal": false,
+      "pecas": [
+       {
+        "de": [
+         11.0,
+         3.4
+        ],
+        "ate": [
+         11.0,
+         7.48
+        ],
+        "m": 4.08
+       },
+       {
+        "de": [
+         11.0,
+         8.58
+        ],
+        "ate": [
+         11.0,
+         11.38
+        ],
+        "m": 2.8
+       },
+       {
+        "de": [
+         11.0,
+         12.48
+        ],
+        "ate": [
+         11.0,
+         13.78
+        ],
+        "m": 1.3
+       },
+       {
+        "de": [
+         11.0,
+         14.88
+        ],
+        "ate": [
+         11.0,
+         17.68
+        ],
+        "m": 2.8
+       },
+       {
+        "de": [
+         11.0,
+         18.78
+        ],
+        "ate": [
+         11.0,
+         22.57
+        ],
+        "m": 3.79
+       },
+       {
+        "de": [
+         11.0,
+         23.67
+        ],
+        "ate": [
+         11.0,
+         25.37
+        ],
+        "m": 1.7
+       },
+       {
+        "de": [
+         11.0,
+         26.47
+        ],
+        "ate": [
+         11.0,
+         29.27
+        ],
+        "m": 2.8
+       },
+       {
+        "de": [
+         11.0,
+         30.37
+        ],
+        "ate": [
+         11.0,
+         31.67
+        ],
+        "m": 1.3
+       },
+       {
+        "de": [
+         11.0,
+         32.77
+        ],
+        "ate": [
+         11.0,
+         35.57
+        ],
+        "m": 2.8
+       }
+      ],
+      "vaos": [
+       {
+        "de": 7.48,
+        "ate": 8.58
+       },
+       {
+        "de": 11.38,
+        "ate": 12.48
+       },
+       {
+        "de": 13.78,
+        "ate": 14.88
+       },
+       {
+        "de": 17.68,
+        "ate": 18.78
+       },
+       {
+        "de": 22.57,
+        "ate": 23.67
+       },
+       {
+        "de": 25.37,
+        "ate": 26.47
+       },
+       {
+        "de": 29.27,
+        "ate": 30.37
+       },
+       {
+        "de": 31.67,
+        "ate": 32.77
+       },
+       {
+        "de": 35.57,
+        "ate": 36.67
+       }
+      ]
+     }
+    ],
+    "m": 47.13,
+    "barreira_m": 6.0,
+    "fita_m": 31.6
+   },
+   "trilho_externo": {
+    "lado": "trilho_externo",
+    "segmentos": [
+     {
+      "n": 1,
+      "de": [
+       25.03,
+       0.0
+      ],
+      "ate": [
+       25.03,
+       6.4
+      ],
+      "m": 6.4,
+      "barreira_m": 6.0,
+      "fita_m": 0.4,
+      "vertical": true,
+      "horizontal": false,
+      "fim_barreira": [
+       25.03,
+       6.0
+      ]
+     },
+     {
+      "n": 2,
+      "de": [
+       25.03,
+       6.4
+      ],
+      "ate": [
+       14.0,
+       6.4
+      ],
+      "m": 11.03,
+      "barreira_m": 0.0,
+      "fita_m": 11.03,
+      "vertical": false,
+      "horizontal": true
+     },
+     {
+      "n": 3,
+      "de": [
+       14.0,
+       6.4
+      ],
+      "ate": [
+       14.0,
+       36.3
+      ],
+      "m": 29.9,
+      "barreira_m": 0.0,
+      "fita_m": 29.9,
+      "vertical": true,
+      "horizontal": false
+     }
+    ],
+    "m": 47.33,
+    "barreira_m": 6.0,
+    "fita_m": 41.33
+   }
+  },
+  "B": {
+   "porta": "S5",
+   "parede": "norte",
+   "hex": "#E8C63A",
+   "cor": "amarelo",
+   "trilho_interno": {
+    "lado": "trilho_interno",
+    "segmentos": [
+     {
+      "n": 1,
+      "de": [
+       26.8,
+       0.0
+      ],
+      "ate": [
+       26.8,
+       35.4
+      ],
+      "m": 35.4,
+      "barreira_m": 35.4,
+      "fita_m": 0.0,
+      "vertical": true,
+      "horizontal": false
+     }
+    ],
+    "m": 35.4,
+    "barreira_m": 35.4,
+    "fita_m": 0.0
+   },
+   "trilho_externo": {
+    "lado": "trilho_externo",
+    "segmentos": [
+     {
+      "n": 1,
+      "de": [
+       29.8,
+       0.0
+      ],
+      "ate": [
+       29.8,
+       35.4
+      ],
+      "m": 35.4,
+      "barreira_m": 35.4,
+      "fita_m": 0.0,
+      "vertical": true,
+      "horizontal": false
+     }
+    ],
+    "m": 35.4,
+    "barreira_m": 35.4,
+    "fita_m": 0.0
+   }
+  },
+  "C": {
+   "porta": "S6",
+   "parede": "leste",
+   "hex": "#DE7343",
+   "cor": "laranja",
+   "trilho_interno": {
+    "lado": "trilho_interno",
+    "segmentos": [
+     {
+      "n": 1,
+      "de": [
+       32.0,
+       0.0
+      ],
+      "ate": [
+       32.0,
+       3.2
+      ],
+      "m": 3.2,
+      "barreira_m": 3.2,
+      "fita_m": 0.0,
+      "vertical": true,
+      "horizontal": false
+     },
+     {
+      "n": 2,
+      "de": [
+       32.0,
+       3.2
+      ],
+      "ate": [
+       33.5,
+       5.2
+      ],
+      "m": 2.5,
+      "barreira_m": 2.5,
+      "fita_m": 0.0,
+      "vertical": false,
+      "horizontal": false
+     },
+     {
+      "n": 3,
+      "de": [
+       33.5,
+       5.2
+      ],
+      "ate": [
+       33.5,
+       39.5
+      ],
+      "m": 34.3,
+      "barreira_m": 0.3,
+      "fita_m": 34.0,
+      "vertical": true,
+      "horizontal": false,
+      "fim_barreira": [
+       33.5,
+       5.5
+      ]
+     }
+    ],
+    "m": 40.0,
+    "barreira_m": 6.0,
+    "fita_m": 34.0
+   },
+   "trilho_externo": {
+    "lado": "trilho_externo",
+    "segmentos": [
+     {
+      "n": 1,
+      "de": [
+       35.0,
+       0.0
+      ],
+      "ate": [
+       35.0,
+       3.2
+      ],
+      "m": 3.2,
+      "barreira_m": 3.2,
+      "fita_m": 0.0,
+      "vertical": true,
+      "horizontal": false
+     },
+     {
+      "n": 2,
+      "de": [
+       35.0,
+       3.2
+      ],
+      "ate": [
+       36.5,
+       5.2
+      ],
+      "m": 2.5,
+      "barreira_m": 2.5,
+      "fita_m": 0.0,
+      "vertical": false,
+      "horizontal": false
+     },
+     {
+      "n": 3,
+      "de": [
+       36.5,
+       5.2
+      ],
+      "ate": [
+       36.5,
+       39.5
+      ],
+      "m": 34.3,
+      "barreira_m": 0.3,
+      "fita_m": 23.0,
+      "vertical": true,
+      "horizontal": false,
+      "fim_barreira": [
+       36.5,
+       5.5
+      ],
+      "pecas": [
+       {
+        "de": [
+         36.5,
+         5.2
+        ],
+        "ate": [
+         36.5,
+         6.6
+        ],
+        "m": 1.4
+       },
+       {
+        "de": [
+         36.5,
+         7.7
+        ],
+        "ate": [
+         36.5,
+         9.0
+        ],
+        "m": 1.3
+       },
+       {
+        "de": [
+         36.5,
+         10.1
+        ],
+        "ate": [
+         36.5,
+         12.9
+        ],
+        "m": 2.8
+       },
+       {
+        "de": [
+         36.5,
+         14.0
+        ],
+        "ate": [
+         36.5,
+         15.3
+        ],
+        "m": 1.3
+       },
+       {
+        "de": [
+         36.5,
+         16.4
+        ],
+        "ate": [
+         36.5,
+         19.2
+        ],
+        "m": 2.8
+       },
+       {
+        "de": [
+         36.5,
+         20.3
+        ],
+        "ate": [
+         36.5,
+         21.6
+        ],
+        "m": 1.3
+       },
+       {
+        "de": [
+         36.5,
+         22.7
+        ],
+        "ate": [
+         36.5,
+         25.5
+        ],
+        "m": 2.8
+       },
+       {
+        "de": [
+         36.5,
+         26.6
+        ],
+        "ate": [
+         36.5,
+         28.3
+        ],
+        "m": 1.7
+       },
+       {
+        "de": [
+         36.5,
+         29.4
+        ],
+        "ate": [
+         36.5,
+         31.1
+        ],
+        "m": 1.7
+       },
+       {
+        "de": [
+         36.5,
+         32.2
+        ],
+        "ate": [
+         36.5,
+         35.0
+        ],
+        "m": 2.8
+       },
+       {
+        "de": [
+         36.5,
+         36.1
+        ],
+        "ate": [
+         36.5,
+         39.5
+        ],
+        "m": 3.4
+       }
+      ],
+      "vaos": [
+       {
+        "de": 6.6,
+        "ate": 7.7
+       },
+       {
+        "de": 9.0,
+        "ate": 10.1
+       },
+       {
+        "de": 12.9,
+        "ate": 14.0
+       },
+       {
+        "de": 15.3,
+        "ate": 16.4
+       },
+       {
+        "de": 19.2,
+        "ate": 20.3
+       },
+       {
+        "de": 21.6,
+        "ate": 22.7
+       },
+       {
+        "de": 25.5,
+        "ate": 26.6
+       },
+       {
+        "de": 28.3,
+        "ate": 29.4
+       },
+       {
+        "de": 31.1,
+        "ate": 32.2
+       },
+       {
+        "de": 35.0,
+        "ate": 36.1
+       }
+      ]
+     }
+    ],
+    "m": 40.0,
+    "barreira_m": 6.0,
+    "fita_m": 23.0
+   }
+  }
+ },
+ "distribuidor_norte": {
+  "y": 35.4,
+  "de": 10.2,
+  "ate": 42.3,
+  "boca_B": [
+   26.8,
+   29.8
+  ],
+  "pecas": [
+   {
+    "de": [
+     10.2,
+     35.4
+    ],
+    "ate": [
+     11.31,
+     35.4
+    ],
+    "m": 1.11
+   },
+   {
+    "de": [
+     12.41,
+     35.4
+    ],
+    "ate": [
+     15.21,
+     35.4
+    ],
+    "m": 2.8
+   },
+   {
+    "de": [
+     16.31,
+     35.4
+    ],
+    "ate": [
+     18.01,
+     35.4
+    ],
+    "m": 1.7
+   },
+   {
+    "de": [
+     19.11,
+     35.4
+    ],
+    "ate": [
+     24.68,
+     35.4
+    ],
+    "m": 5.57
+   },
+   {
+    "de": [
+     25.78,
+     35.4
+    ],
+    "ate": [
+     26.8,
+     35.4
+    ],
+    "m": 1.02
+   },
+   {
+    "de": [
+     29.8,
+     35.4
+    ],
+    "ate": [
+     30.98,
+     35.4
+    ],
+    "m": 1.18
+   },
+   {
+    "de": [
+     32.08,
+     35.4
+    ],
+    "ate": [
+     34.88,
+     35.4
+    ],
+    "m": 2.8
+   },
+   {
+    "de": [
+     35.98,
+     35.4
+    ],
+    "ate": [
+     37.28,
+     35.4
+    ],
+    "m": 1.3
+   },
+   {
+    "de": [
+     38.38,
+     35.4
+    ],
+    "ate": [
+     41.18,
+     35.4
+    ],
+    "m": 2.8
+   }
+  ],
+  "vaos": [
+   {
+    "de": 11.31,
+    "ate": 12.41
+   },
+   {
+    "de": 15.21,
+    "ate": 16.31
+   },
+   {
+    "de": 18.01,
+    "ate": 19.11
+   },
+   {
+    "de": 24.68,
+    "ate": 25.78
+   },
+   {
+    "de": 26.8,
+    "ate": 29.8
+   },
+   {
+    "de": 30.98,
+    "ate": 32.08
+   },
+   {
+    "de": 34.88,
+    "ate": 35.98
+   },
+   {
+    "de": 37.28,
+    "ate": 38.38
+   },
+   {
+    "de": 41.18,
+    "ate": 42.28
+   }
+  ],
+  "fita_m": 20.28
+ },
+ "ramais": [
+  {
+   "eleitor": 1,
+   "mrv": 20,
+   "grupo": "A1",
+   "secoes": [
+    3309,
+    1314
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "baixa",
+   "esperado": 395,
+   "eixo": 8.03,
+   "eixo_da_parede_norte": 36.37,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    8.03
+   ],
+   "boca": [
+    11.0,
+    8.03
+   ]
+  },
+  {
+   "eleitor": 2,
+   "mrv": 10,
+   "grupo": "A1",
+   "secoes": [
+    3142,
+    1278
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "media",
+   "esperado": 466,
+   "eixo": 11.93,
+   "eixo_da_parede_norte": 32.47,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.3
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    11.93
+   ],
+   "boca": [
+    11.0,
+    11.93
+   ]
+  },
+  {
+   "eleitor": 3,
+   "mrv": 11,
+   "grupo": "A2",
+   "secoes": [
+    3161,
+    3307
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "media",
+   "esperado": 504,
+   "eixo": 14.33,
+   "eixo_da_parede_norte": 30.07,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    14.33
+   ],
+   "boca": [
+    11.0,
+    14.33
+   ]
+  },
+  {
+   "eleitor": 4,
+   "mrv": 21,
+   "grupo": "A2",
+   "secoes": [
+    3311,
+    3913
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "media",
+   "esperado": 466,
+   "eixo": 18.23,
+   "eixo_da_parede_norte": 26.17,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    3.79
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    18.23
+   ],
+   "boca": [
+    11.0,
+    18.23
+   ]
+  },
+  {
+   "eleitor": 5,
+   "mrv": 22,
+   "grupo": "A3",
+   "secoes": [
+    3313,
+    3889
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "alta",
+   "esperado": 590,
+   "eixo": 23.12,
+   "eixo_da_parede_norte": 21.28,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    3.79,
+    1.7
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    23.12
+   ],
+   "boca": [
+    11.0,
+    23.12
+   ],
+   "serpenteado": {
+    "rect": [
+     4.1,
+     21.72,
+     8.3,
+     24.52
+    ],
+    "profundidade": 4.2,
+    "raias": 2,
+    "passo_raia": 1.4,
+    "pessoas": 20
+   },
+   "fita_ate_serpenteado": 2.7
+  },
+  {
+   "eleitor": 6,
+   "mrv": 3,
+   "grupo": "A4",
+   "secoes": [
+    513,
+    1105
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "baixa",
+   "esperado": 351,
+   "eixo": 25.92,
+   "eixo_da_parede_norte": 18.48,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.7,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    25.92
+   ],
+   "boca": [
+    11.0,
+    25.92
+   ]
+  },
+  {
+   "eleitor": 7,
+   "mrv": 6,
+   "grupo": "A4",
+   "secoes": [
+    1352,
+    522
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "baixa",
+   "esperado": 328,
+   "eixo": 29.82,
+   "eixo_da_parede_norte": 14.58,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.3
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    29.82
+   ],
+   "boca": [
+    11.0,
+    29.82
+   ]
+  },
+  {
+   "eleitor": 8,
+   "mrv": 8,
+   "grupo": "A5",
+   "secoes": [
+    3078,
+    2847
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "baixa",
+   "esperado": 311,
+   "eixo": 32.22,
+   "eixo_da_parede_norte": 12.18,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    32.22
+   ],
+   "boca": [
+    11.0,
+    32.22
+   ]
+  },
+  {
+   "eleitor": 9,
+   "mrv": 12,
+   "grupo": "A5",
+   "secoes": [
+    3179,
+    530
+   ],
+   "parede": "oeste",
+   "entrada": "A",
+   "classe": "baixa",
+   "esperado": 423,
+   "eixo": 36.12,
+   "eixo_da_parede_norte": 8.28,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.9,
+   "trilho_ate_linha_espera": 5.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    4.1,
+    36.12
+   ],
+   "boca": [
+    11.0,
+    36.12
+   ]
+  },
+  {
+   "eleitor": 10,
+   "mrv": 2,
+   "grupo": "B1",
+   "secoes": [
+    512,
+    2855
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "baixa",
+   "esperado": 355,
+   "eixo": 11.86,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 11.86,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    11.86,
+    40.3
+   ],
+   "boca": [
+    11.86,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 11,
+   "mrv": 5,
+   "grupo": "B1",
+   "secoes": [
+    1160,
+    3845
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "baixa",
+   "esperado": 328,
+   "eixo": 15.76,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 15.76,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.7
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    15.76,
+    40.3
+   ],
+   "boca": [
+    15.76,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 12,
+   "mrv": 23,
+   "grupo": "B2",
+   "secoes": [
+    3315,
+    3778
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "alta",
+   "esperado": 586,
+   "eixo": 18.56,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 18.56,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.7,
+    5.57
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    18.56,
+    40.3
+   ],
+   "boca": [
+    18.56,
+    35.4
+   ],
+   "serpenteado": {
+    "rect": [
+     17.16,
+     36.1,
+     19.96,
+     40.3
+    ],
+    "profundidade": 4.2,
+    "raias": 2,
+    "passo_raia": 1.4,
+    "pessoas": 20
+   },
+   "fita_ate_serpenteado": 0.7
+  },
+  {
+   "eleitor": 13,
+   "mrv": 9,
+   "grupo": "B3",
+   "secoes": [
+    3108,
+    3422
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "media",
+   "esperado": 467,
+   "eixo": 25.23,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 25.23,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    5.57,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    25.23,
+    40.3
+   ],
+   "boca": [
+    25.23,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 14,
+   "mrv": 16,
+   "grupo": "B3",
+   "secoes": [
+    3302,
+    3181
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "media",
+   "esperado": 518,
+   "eixo": 29.13,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 29.13,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.3
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    29.13,
+    40.3
+   ],
+   "boca": [
+    29.13,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 15,
+   "mrv": 17,
+   "grupo": "B4",
+   "secoes": [
+    3305,
+    521
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "media",
+   "esperado": 472,
+   "eixo": 31.53,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 31.53,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    31.53,
+    40.3
+   ],
+   "boca": [
+    31.53,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 16,
+   "mrv": 18,
+   "grupo": "B4",
+   "secoes": [
+    3306,
+    518
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "media",
+   "esperado": 515,
+   "eixo": 35.43,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 35.43,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.3
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    35.43,
+    40.3
+   ],
+   "boca": [
+    35.43,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 17,
+   "mrv": 19,
+   "grupo": "B5",
+   "secoes": [
+    3308
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "baixa",
+   "esperado": 295,
+   "eixo": 37.83,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 37.83,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    37.83,
+    40.3
+   ],
+   "boca": [
+    37.83,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 18,
+   "mrv": 27,
+   "grupo": "B5",
+   "secoes": [
+    3832
+   ],
+   "parede": "norte",
+   "entrada": "B",
+   "classe": "baixa",
+   "esperado": 296,
+   "eixo": 41.73,
+   "eixo_da_parede_norte": null,
+   "eixo_da_parede_oeste": 41.73,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 4.9,
+   "trilho_ate_linha_espera": 3.4,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 5,
+   "frente": [
+    41.73,
+    40.3
+   ],
+   "boca": [
+    41.73,
+    35.4
+   ]
+  },
+  {
+   "eleitor": 19,
+   "mrv": 1,
+   "grupo": "C6",
+   "secoes": [
+    511,
+    1100
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 375,
+   "eixo": 35.55,
+   "eixo_da_parede_norte": 8.85,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    35.55
+   ],
+   "boca": [
+    36.49999999999999,
+    35.55
+   ]
+  },
+  {
+   "eleitor": 20,
+   "mrv": 4,
+   "grupo": "C6",
+   "secoes": [
+    517,
+    1292
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 348,
+   "eixo": 31.65,
+   "eixo_da_parede_norte": 12.75,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.7,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    31.65
+   ],
+   "boca": [
+    36.49999999999999,
+    31.65
+   ]
+  },
+  {
+   "eleitor": 21,
+   "mrv": 24,
+   "grupo": "C5",
+   "secoes": [
+    3322,
+    3752
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "alta",
+   "esperado": 588,
+   "eixo": 28.85,
+   "eixo_da_parede_norte": 15.55,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.7,
+    1.7
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    28.85
+   ],
+   "boca": [
+    36.49999999999999,
+    28.85
+   ],
+   "serpenteado": {
+    "rect": [
+     39.0,
+     27.45,
+     43.2,
+     30.25
+    ],
+    "profundidade": 4.2,
+    "raias": 2,
+    "passo_raia": 1.4,
+    "pessoas": 20
+   },
+   "fita_ate_serpenteado": 2.5
+  },
+  {
+   "eleitor": 22,
+   "mrv": 7,
+   "grupo": "C4",
+   "secoes": [
+    3054,
+    1099
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 325,
+   "eixo": 26.05,
+   "eixo_da_parede_norte": 18.35,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.7
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    26.05
+   ],
+   "boca": [
+    36.49999999999999,
+    26.05
+   ]
+  },
+  {
+   "eleitor": 23,
+   "mrv": 13,
+   "grupo": "C4",
+   "secoes": [
+    3216,
+    527
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 407,
+   "eixo": 22.15,
+   "eixo_da_parede_norte": 22.25,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    22.15
+   ],
+   "boca": [
+    36.49999999999999,
+    22.15
+   ]
+  },
+  {
+   "eleitor": 24,
+   "mrv": 28,
+   "grupo": "C3",
+   "secoes": [
+    3862
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 296,
+   "eixo": 19.75,
+   "eixo_da_parede_norte": 24.65,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.3
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    19.75
+   ],
+   "boca": [
+    36.49999999999999,
+    19.75
+   ]
+  },
+  {
+   "eleitor": 25,
+   "mrv": 15,
+   "grupo": "C3",
+   "secoes": [
+    3245,
+    519
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "media",
+   "esperado": 498,
+   "eixo": 15.85,
+   "eixo_da_parede_norte": 28.55,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    15.85
+   ],
+   "boca": [
+    36.49999999999999,
+    15.85
+   ]
+  },
+  {
+   "eleitor": 26,
+   "mrv": 14,
+   "grupo": "C2",
+   "secoes": [
+    3229,
+    3821
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 405,
+   "eixo": 13.45,
+   "eixo_da_parede_norte": 30.95,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    2.8,
+    1.3
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    13.45
+   ],
+   "boca": [
+    36.49999999999999,
+    13.45
+   ]
+  },
+  {
+   "eleitor": 27,
+   "mrv": 26,
+   "grupo": "C2",
+   "secoes": [
+    3688
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 296,
+   "eixo": 9.55,
+   "eixo_da_parede_norte": 34.85,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3,
+    2.8
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    9.55
+   ],
+   "boca": [
+    36.49999999999999,
+    9.55
+   ]
+  },
+  {
+   "eleitor": 28,
+   "mrv": 25,
+   "grupo": "C1",
+   "secoes": [
+    3442
+   ],
+   "parede": "leste",
+   "entrada": "C",
+   "classe": "baixa",
+   "esperado": 295,
+   "eixo": 7.15,
+   "eixo_da_parede_norte": 37.25,
+   "eixo_da_parede_oeste": null,
+   "largura": 1.1,
+   "espaco_ate_vizinho": [
+    1.3
+   ],
+   "trilho_ate_frente_modulo": 6.7,
+   "trilho_ate_linha_espera": 5.2,
+   "linha_espera_da_mesa": 1.5,
+   "marcas": 8,
+   "frente": [
+    43.199999999999996,
+    7.15
+   ],
+   "boca": [
+    36.49999999999999,
+    7.15
+   ]
+  }
+ ],
+ "fita_por_cor": {
+  "A": 206.7,
+  "B": 111.3,
+  "C": 202.6,
+  "espera": 30.8
+ },
+ "conferir_em_campo": [
+  {
+   "avenida": "A",
+   "trilho_com_vaos": "interno",
+   "topo_trilho_com_vaos": 35.57,
+   "topo_outro_trilho": 36.3,
+   "entra_na_banda_norte_m": 0.9,
+   "fim_sugerido": 35.4,
+   "mesas_norte_dentro": [
+    "B1 (eleitor 10, x = 11,86)"
+   ],
+   "economia_fita_m": 1.1
+  },
+  {
+   "avenida": "C",
+   "trilho_com_vaos": "externo",
+   "topo_trilho_com_vaos": 39.5,
+   "topo_outro_trilho": 39.5,
+   "entra_na_banda_norte_m": 4.1,
+   "fim_sugerido": 36.1,
+   "mesas_norte_dentro": [
+    "B4 (eleitor 16, x = 35,43)"
+   ],
+   "economia_fita_m": 6.8
+  }
+ ]
+}

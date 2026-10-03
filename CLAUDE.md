@@ -10,7 +10,7 @@ necessário para chegar a elas.
 | Tema | Onde vive | Estado |
 |---|---|---|
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
-| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
+| **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` · `scripts/separadores_montagem.py` | desenho definitivo de 17/09, fechado; mapa de montagem cotado (03/10) |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
 | **App "Onde eu voto?"** — consulta de seção e rota para eleitor e equipe | `docs/app/` · `app/` · `scripts/app_*.py` | construído com a lista real do TRE (29/09); consulta **só por nome**, título desempata homônimos; v3 com tempo de espera e área do administrador; publicação em `gh-pages` |
 
@@ -130,6 +130,14 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - Três armadilhas conhecidas: mudar uma banda e esquecer a fita; contar a boca da
   avenida B duas vezes (ela entra inteira, não leva item de boca); e rotular por
   número de mesa. As três estão descritas em `docs/separadores/contexto.md`.
+- **Mapa de montagem** (03/10): `python3 scripts/separadores_montagem.py --grava` escreve
+  `saidas/montagem_fita_hall2.{svg,html,json}` e `docs/separadores/montagem_fita_hall2.md`
+  (lista de corte: cada trecho de fita em metros, vãos dos ramais, fita → mesa). Ele
+  **importa** a geometria de `separadores_fila.py`, não a copia: mudou lá, rode-o de novo.
+  O `.png` é a renderização do `.svg` (Chromium headless), não sai do script. O mapa expõe
+  dois pontos que `confere()` não cobre — os trilhos de A e C entram na banda norte
+  (y = 36,30 e 39,50; C passa por cima do ramal de B4) — e os lista em "conferir em campo";
+  encurtá-los é decisão do Posto, não deste script.
 
 ## Regras do app "Onde eu voto?"
 
