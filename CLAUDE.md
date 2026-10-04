@@ -145,12 +145,14 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. Dois PDFs chegaram
   commitados (29/09 em `appeleicoes`, e `DUBLIN.pdf` em `main`) e foram **purgados do
   histórico em 01/10**, com force-push; não recommitar.
-- **Única exceção: os CSVs cifrados** `data/eleitores/eleitores.csv.enc` (02/10: título completo,
-  é o que a v3 usa) e `eleitores_v2.csv.enc` (01/10: só dígitos 5–8), ambos AES-256-GCM pela senha
-  da equipe (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê
-  direto. Trocou a senha da equipe = recifrar as listas. **Senhas diferentes por versão desde 02/10:**
-  `eleitores.csv.enc` e `/v3/` usam a senha nova (passada no chat em 02/10 à tarde);
-  `eleitores_v2.csv.enc` e `/v2/` usam a de 01/10. Nenhuma está no git.
+- **Única exceção: o CSV cifrado** `data/eleitores/eleitores.csv.enc` (título completo, AES-256-GCM pela
+  senha da equipe, `scripts/app_cifra_lista.py`), recifrado em **04/10** a partir da relação do TRE de 29/09
+  com a senha atual da equipe. `app_construir.py --lista …csv.enc --senha-equipe` lê direto. Trocou a
+  senha = recifrar. O `eleitores_v2.csv.enc` (01/10, só dígitos 5–8, senha antiga perdida) foi removido em
+  04/10. Nenhuma senha está no git. **Um PDF da relação (`DUBLIN 1.pdf`) chegou por upload à raiz do
+  `appeleicoesv3` em 04/10 (commit `1b2443d`) e foi removido da ponta do branch no mesmo dia; continua no
+  histórico até uma purga com force-push (pendência).** `DUBLIN*.pdf` está no `.gitignore`. Nunca anexar
+  a relação pelo GitHub: ela entra no histórico.
 - **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
   já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
   `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.

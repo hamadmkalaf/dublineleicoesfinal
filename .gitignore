@@ -14,3 +14,4 @@ app/dist/
 app/testes/capturas/
 app/testes/__pycache__/
 .pytest_cache/
+DUBLIN*.pdf
