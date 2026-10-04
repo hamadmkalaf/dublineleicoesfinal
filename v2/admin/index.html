@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administrador · Onde eu voto? · Dublin 2026</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#557372">
+<link rel="icon" href="../icones/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<header class="topo equipe header-admin">
+  <div class="marca">ELEIÇÕES 2026<small>ADMINISTRADOR</small></div>
+  <div class="onde" id="onde">Dublin · RDS Hall 2</div>
+</header>
+<div class="faixa-equipe">Área do administrador: liga e desliga o status de fila que o eleitor vê. Precisa de internet.</div>
+<main>
+  <section id="bloqueado">
+    <h1>Administrador</h1>
+    <p class="sub">Senha do administrador (não é a senha do dia da equipe).</p>
+    <form class="consulta" id="form-senha">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" required autocomplete="current-password">
+      <button class="principal" id="botao-senha" type="submit" disabled>Entrar</button>
+      <p class="dica" id="estado-senha">Carregando…</p>
+    </form>
+  </section>
+
+  <section id="aberto" hidden>
+    <div class="painel">
+      <h2>Status de fila</h2>
+      <label class="interruptor"><input type="checkbox" id="ativo"> Ativar status de fila</label>
+      <p class="dica" style="margin-top:0">Marcado: a página do eleitor mostra, logo abaixo da nota da entrada preferencial, o <b>tempo estimado de espera</b> (da entrada no Ring 3 até votar) calculado da lotação que a equipe informa. Desmarcado: nada aparece ao eleitor, mesmo que a equipe publique lotações.</p>
+      <button class="principal" id="gravar" type="button">Gravar</button>
+      <p class="dica" id="estado-gravar"></p>
+    </div>
+
+    <div class="painel">
+      <h2>Lotação publicada pela equipe</h2>
+      <div id="zonas"></div>
+      <p class="dica" id="estado-publicado"></p>
+      <p><button class="secundario" id="recarregar" type="button">Recarregar</button>
+         <button class="secundario" id="zerar" type="button">Zerar lotações</button></p>
+    </div>
+
+    <div class="painel cofre">
+      <h2>Chave de publicação</h2>
+      <p>Token do GitHub (<i>fine-grained</i>, só este repositório, permissão <b>Contents: read and write</b>). Fica cifrado neste aparelho com a senha do administrador; a equipe guarda a dela cifrada com a senha do dia. Vazou? Revogue no GitHub e gere outra.</p>
+      <p id="estado-chave"></p>
+      <label for="chave">Nova chave</label>
+      <input type="password" id="chave" autocomplete="off" placeholder="github_pat_…">
+      <p><button class="secundario" id="guardar-chave" type="button">Guardar chave</button>
+         <button class="secundario" id="apagar-chave" type="button">Apagar deste aparelho</button></p>
+    </div>
+
+    <div class="painel">
+      <h2>Parâmetros da estimativa</h2>
+      <p class="dica" id="parametros" style="margin-top:0"></p>
+    </div>
+    <p><button class="secundario" id="sair" type="button">Sair</button></p>
+  </section>
+</main>
+<footer>
+  <p id="versao"></p>
+  <p><a href="../">Página do eleitor</a> · <a href="../equipe/">Equipe</a></p>
+</footer>
+<script src="../comum.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id);
+  const COFRE = "oev.chave_publicacao.admin";
+  let config = null, rotas = null, senha = "", chave = "", fila = null;
+  const cfgFila = () => config.fila || {};
+  OEV.sobeParaHTTPS("../dados/versao.json");
+
+  try {
+    const [c, r, versao] = await Promise.all([
+      OEV.carregaJSON("../dados/config.json"), OEV.carregaJSON("../dados/rotas.json"), OEV.carregaJSON("../dados/versao.json").catch(() => null),
+    ]);
+    config = c; rotas = r;
+    $("onde").textContent = `${config.local} · ${config.turno}`;
+    if (versao) $("versao").textContent = `Dados de ${new Date(versao.construido_em).toLocaleString("pt-BR")}`;
+    if (!config.admin || !config.admin.hash) throw new Error("config.json sem o bloco admin");
+    $("estado-senha").textContent = "";
+    $("botao-senha").disabled = false;
+  } catch (e) {
+    $("estado-senha").textContent = `Não foi possível carregar (${e.message}).`;
+    return;
+  }
+
+  $("form-senha").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    $("botao-senha").disabled = true;
+    try {
+      if (!(await OEV.confereAdmin(config.admin, $("senha").value))) { $("estado-senha").textContent = "Senha incorreta."; return; }
+      senha = $("senha").value; $("senha").value = "";
+      $("bloqueado").hidden = true; $("aberto").hidden = false;
+      try { chave = await OEV.leSegredo(COFRE, senha); } catch (e) { OEV.apagaSegredo(COFRE); chave = ""; }
+      mostraChave();
+      mostraParametros();
+      await recarrega();
+    } finally {
+      $("botao-senha").disabled = false;
+    }
+  });
+
+  function mostraChave() {
+    $("estado-chave").innerHTML = chave ? `<span class="estado-ok">Chave guardada neste aparelho</span> (${OEV.esc(chave.slice(0, 11))}…${OEV.esc(chave.slice(-4))}).` : `<span class="estado-erro">Nenhuma chave neste aparelho.</span> Sem ela não dá para gravar.`;
+  }
+  function mostraParametros() {
+    const f = cfgFila(), z = rotas.zonas || {};
+    $("parametros").innerHTML = `Lotação por zona <b>${f.lotacao_zona}</b> pessoas · <b>${f.segundos_por_eleitor} s</b> por eleitor na mesa (premissa) · <b>${f.minutos_travessia} min</b> de travessia do pátio · arredonda a <b>${f.arredonda_min} min</b> · informação vale <b>${f.validade_min} min</b>.<br>
+      Urnas por zona: ${["A", "B", "C"].map((l) => `${l} ${z[l] ? z[l].urnas : "?"}`).join(" · ")}. Fila cheia (100%) ≈ ${["A", "B", "C"].map((l) => `${l} ${OEV.estimaEspera(100, z[l], f).minutos} min`).join(" · ")}.<br>
+      Para mudar: <code>app/public/dados/config.json</code> (bloco <code>fila</code>) e reconstruir. Arquivo vivo: <code>${OEV.esc(f.repo)}</code> · branch <code>${OEV.esc(f.branch)}</code> · <code>${OEV.esc(f.arquivo)}</code>.`;
+  }
+  function desenhaZonas(f) {
+    const z = rotas.zonas || {};
+    $("zonas").innerHTML = ["A", "B", "C"].map((l) => {
+      const zz = (f && f.zonas && f.zonas[l]) || {};
+      const cor = OEV.COR_LETRA[l], corTexto = l === "A" ? "#FFF" : "#3F3F3F";
+      const est = zz.pct == null ? null : OEV.estimaEspera(zz.pct, z[l], cfgFila());
+      return `<div class="zona-fila"><span class="letra-mini" style="background:${cor};color:${corTexto}">${l}</span>
+        <span>${zz.pct == null ? "sem informação" : `${zz.pct}% cheia`}</span>
+        <span class="pct">${est ? `${est.minutos} min` : "—"}</span>
+        <span class="meta">${zz.em ? `informado às ${OEV.horaLocal(zz.em)}` : ""}</span></div>`;
+    }).join("");
+    $("ativo").checked = !!(f && f.ativo);
+    $("estado-publicado").textContent = f && f.atualizado ? `Última gravação às ${OEV.horaLocal(f.atualizado)}.` : "Nada publicado ainda.";
+  }
+  async function recarrega() {
+    $("estado-gravar").className = "dica"; $("estado-gravar").textContent = "";
+    try {
+      if (chave) fila = (await OEV.leFilaAPI(cfgFila(), chave)).fila;
+      else fila = await OEV.leFilaPublica(cfgFila(), 6000);
+      if (!fila) throw new Error("sem resposta (sem internet?)");
+      desenhaZonas(fila);
+    } catch (e) {
+      $("estado-publicado").className = "dica estado-erro"; $("estado-publicado").textContent = `Não deu para ler a fila: ${e.message}`;
+    }
+  }
+  async function grava(mutador, mensagem, botao) {
+    if (!chave) { $("estado-gravar").className = "dica estado-erro"; $("estado-gravar").textContent = "Guarde a chave de publicação primeiro."; return; }
+    botao.disabled = true;
+    try {
+      fila = await OEV.publicaFila(cfgFila(), chave, mutador, mensagem);
+      desenhaZonas(fila);
+      $("estado-gravar").className = "dica estado-ok"; $("estado-gravar").textContent = `Gravado às ${OEV.horaLocal(fila.atualizado)}: status ${fila.ativo ? "ATIVADO" : "desligado"}. O eleitor vê em até uns 5 minutos.`;
+    } catch (e) {
+      $("estado-gravar").className = "dica estado-erro"; $("estado-gravar").textContent = `Não gravou: ${e.message}`;
+    } finally {
+      botao.disabled = false;
+    }
+  }
+  $("gravar").addEventListener("click", () => { const ativo = $("ativo").checked; grava((f) => { f.ativo = ativo; return f; }, `fila: status ${ativo ? "ativado" : "desligado"} pelo administrador`, $("gravar")); });
+  $("zerar").addEventListener("click", () => { if (confirm("Zerar as lotações das três zonas?")) grava((f) => { for (const l of ["A", "B", "C"]) f.zonas[l] = { pct: null, em: null }; return f; }, "fila: lotações zeradas pelo administrador", $("zerar")); });
+  $("recarregar").addEventListener("click", recarrega);
+  $("guardar-chave").addEventListener("click", async () => {
+    const nova = $("chave").value.trim();
+    if (!nova) return;
+    await OEV.guardaSegredo(COFRE, nova, senha);
+    chave = nova; $("chave").value = ""; mostraChave(); await recarrega();
+  });
+  $("apagar-chave").addEventListener("click", () => { OEV.apagaSegredo(COFRE); chave = ""; mostraChave(); });
+  $("sair").addEventListener("click", () => { senha = ""; chave = ""; location.reload(); });
+})();
+</script>
+</body>
+</html>
