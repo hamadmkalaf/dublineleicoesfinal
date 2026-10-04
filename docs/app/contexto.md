@@ -182,6 +182,11 @@ só `rotas.json` muda no build (índice e pacote idênticos, mesma senha). Liç�
 do build compara as **letras** com a P0-Mestra, não os **grupos** com os painéis P6. Pendência: conferir
 também o grupo (`grupos_mesas.json` × `P6-Painel*`) no build.
 
+Publicado em 04/10 às 07:50 UTC com a lista real (`eleitores.csv.enc`, título completo na equipe), na raiz,
+em `v2/` e `v3/` do `gh-pages` e na raiz do `gh-pages2`: índice público byte a byte igual ao de 02/10, só
+`rotas.json` e o carimbo do service worker mudaram. Quem já tinha o site aberto vê "Há uma versão nova"
+e recarrega. `scripts/app_publicar_rotas.sh` faz a mesma publicação sem a senha, se voltar a ser preciso.
+
 ## 3. Como funciona
 
 ```
