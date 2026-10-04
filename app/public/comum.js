@@ -56,7 +56,19 @@ const OEV = (() => {
     return d ? d.padStart(12, "0") : "";
   }
 
-  /* Máscara 0000 0000 0000 num <input type="text">: só dígitos, espaços inseridos ao digitar; aceita colar com pontos. */
+  /* Título PARCIAL (v2): só os dígitos 5 a 8. Aceita os 4 dígitos ou o número completo de 8 a 12
+     dígitos (extrai os 4 aqui, no aparelho). Reimplementa titulo_parcial. */
+  const TITULO_JANELA = [5, 8];
+  function tituloParcial(valor) {
+    if (valor == null) return "";
+    const d = String(valor).trim().replace(/\.0+$/, "").replace(/\D/g, "");
+    if (d.length === 4) return d;
+    if (d.length >= 8 && d.length <= 12) return d.padStart(12, "0").slice(TITULO_JANELA[0] - 1, TITULO_JANELA[1]);
+    return "";
+  }
+
+  /* Máscara 0000 0000 0000 num <input type="text">: só dígitos, espaços inseridos ao digitar; aceita colar com pontos.
+     Com 4 dígitos (só a parte do meio) fica "0000". */
   function mascaraTitulo(el) {
     const aplica = () => {
       const d = el.value.replace(/\D/g, "").slice(0, 12);
@@ -112,22 +124,23 @@ const OEV = (() => {
      estado: "incompleto"      nome vazio;
              "ok"              uma pessoa: secao (e marca de turno, se a lista não diz "OK");
              "homonimo"        mais de uma pessoa com esse nome: peça o título;
-             "titulo_invalido" título digitado não tem 12 dígitos;
+             "titulo_invalido" título digitado não tem 4 dígitos (os do meio) nem 8 a 12 (completo);
              "titulo_errado"   há homônimos, mas o título não casa com nenhum deles;
+             "sem_desempate"   homônimos com o mesmo título parcial: o app não separa, manda ao P0;
              "nao_encontrado"  nenhuma chave do nome (completa ou primeiro+último) está no índice.
      Tenta primeiro o nome completo; se não há nada, tenta "primeiro + último", como o build indexa. */
   async function consultaPublica(indice, nomeDigitado, tituloDigitado = "") {
     const chaves = chavesNome(nomeDigitado);
     if (!chaves.length) return { estado: "incompleto" };
-    const digitos = String(tituloDigitado || "").replace(/\D/g, "");
-    if (String(tituloDigitado || "").trim() && digitos.length !== 12) return { estado: "titulo_invalido" };
-    const titulo = digitos ? normalizaInscricao(digitos) : "";
+    const titulo = tituloParcial(tituloDigitado);
+    if (String(tituloDigitado || "").trim() && !titulo) return { estado: "titulo_invalido" };
     for (const chave of chaves) {
       const v = indice.itens[await hashPublico(chave, "", indice)];
       if (!v) continue;
       if (v !== "H") return { estado: "ok", secao: v[0], marca: v[1] || "", chave };
       if (!titulo) return { estado: "homonimo", chave };
       const vt = indice.itens[await hashPublico(chave, titulo, indice)];
+      if (vt === "P") return { estado: "sem_desempate", chave };
       if (vt && vt !== "H") return { estado: "ok", secao: vt[0], marca: vt[1] || "", chave };
       return { estado: "titulo_errado", chave };
     }
@@ -185,8 +198,11 @@ const OEV = (() => {
     return m ? `${m[3]}/${m[2]}/${m[1]}` : iso || "";
   }
 
+  /* 4 dígitos (título parcial, v2) -> "···· 1234 ····"; 12 dígitos -> "0000 0000 0000". */
   function formataTitulo(t) {
-    return t ? t.replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3") : "";
+    if (!t) return "";
+    if (String(t).length === 4) return `···· ${t} ····`;
+    return t.replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3");
   }
 
   /* ---- Mini-mapa: Ring 3 + pátio de travessia + Hall 2, esquemático, com zona, porta e grupo em destaque ---- */
@@ -319,7 +335,7 @@ const OEV = (() => {
     }
   }
 
-  return { normalizaNome, chavesNome, normalizaData, normalizaInscricao, mascaraData, mascaraTitulo, hashPublico, consultaPublica,
+  return { normalizaNome, chavesNome, normalizaData, normalizaInscricao, tituloParcial, mascaraData, mascaraTitulo, hashPublico, consultaPublica,
            decifraEquipe, buscaEquipe, marcasTurno, carregaJSON, esc, formataData, formataTitulo, desenhaMapa, renderRota,
            rotaDaSecao, registraSW, COR_LETRA };
 })();

@@ -4,9 +4,14 @@ __pycache__/
 # App "Onde eu voto?": dado pessoal e saída construída de lista real nunca entram no git.
 # A lista nominal (PDF do TRE, planilha ou CSV) fica em data/eleitores/, só na máquina de quem constrói.
 data/eleitores/
+# exceção: a lista v2 CIFRADA (AES-256-GCM, senha da equipe) pode ficar no git — ver scripts/app_cifra_lista.py
+!data/eleitores/
+data/eleitores/*
+!data/eleitores/*.enc
 Lista de eleitores*.pdf
 *_Lista de eleitores*.pdf
 app/dist/
 app/testes/capturas/
 app/testes/__pycache__/
 .pytest_cache/
+DUBLIN*.pdf

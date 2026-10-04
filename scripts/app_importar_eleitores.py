@@ -4,8 +4,10 @@
     python3 scripts/app_importar_eleitores.py "data/eleitores/Lista de eleitores_Dublin.pdf" --grava  # escreve data/eleitores/eleitores.csv
     python3 scripts/app_importar_eleitores.py lista.xlsx --local 1015                                 # planilha, filtrando um posto
 
-Saída canônica (UTF-8, separador ';'):
-    NUM_INSCRICAO;NOM_ELEITOR;DAT_NASC;NUM_SECAO;NOM_MAE;NUM_LOCAL;TURNO1;TURNO2
+Saída canônica (UTF-8, separador ';'), por padrão com o TÍTULO PARCIAL (v2, 01/10/2026):
+    TITULO_5_8;NOM_ELEITOR;DAT_NASC;NUM_SECAO;NOM_MAE;NUM_LOCAL;TURNO1;TURNO2
+Só os dígitos 5 a 8 do título sobrevivem; o número completo não fica em lugar nenhum. Com
+--titulo-completo a coluna volta a ser NUM_INSCRICAO com os 12 dígitos (v1).
 Esse CSV contém dados pessoais: fica em data/eleitores/, que está no .gitignore. Nunca commitar.
 
 A lista real (TRE-DF, "Relação de eleitores por local de votação", 29/09/2026) é um PDF com
@@ -31,12 +33,14 @@ from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from app_normaliza import normaliza_data, normaliza_inscricao, normaliza_nome, normaliza_secao  # noqa: E402
+from app_normaliza import TITULO_JANELA, normaliza_data, normaliza_inscricao, normaliza_nome, normaliza_secao, titulo_parcial  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
 DADOS = RAIZ / "saidas" / "dados.json"
 DECISOES = RAIZ / "data" / "decisoes.json"
-DESTINO = RAIZ / "data" / "eleitores" / "eleitores.csv"
+DESTINO = RAIZ / "data" / "eleitores" / "eleitores_v2.csv"
+DESTINO_COMPLETO = RAIZ / "data" / "eleitores" / "eleitores.csv"
+COLUNA_PARCIAL = f"TITULO_{TITULO_JANELA[0]}_{TITULO_JANELA[1]}"
 
 # nome canônico -> nomes aceitos no cabeçalho (comparados já normalizados: maiúsculas, sem acento, sem pontuação)
 COLUNAS = {
@@ -192,7 +196,7 @@ def le(caminho, planilha=None):
 
 # ---------- normalização e conferência ----------
 
-def converte(linhas, local=None):
+def converte(linhas, local=None, parcial=True):
     i, mapa = acha_cabecalho(linhas)
     if i is None:
         raise SystemExit("não achei o cabeçalho com inscrição, nome e seção")
@@ -221,6 +225,8 @@ def converte(linhas, local=None):
             continue
         nasc = normaliza_data(cel(row, "DAT_NASC"))
         insc = normaliza_inscricao(cel(row, "NUM_INSCRICAO"))
+        if parcial:
+            insc = titulo_parcial(insc)
         sem_nasc += not nasc
         sem_insc += not insc
         saida.append({
@@ -235,13 +241,14 @@ def converte(linhas, local=None):
         })
     print(f"linhas: {len(saida)} eleitores · {vazias} vazias · {filtradas} de outros postos"
           + (f" · {sem_nasc} sem nascimento" if sem_nasc else "") + (f" · {sem_insc} sem inscrição" if sem_insc else ""))
+    print("título guardado: " + (f"dígitos {TITULO_JANELA[0]}-{TITULO_JANELA[1]} (4 de 12), coluna {COLUNA_PARCIAL}" if parcial else "completo, 12 dígitos (coluna NUM_INSCRICAO)"))
     marcas = Counter((e["TURNO1"], e["TURNO2"]) for e in saida)
     if any(k != ("", "") for k in marcas):
         print("marcas de turno (1º/2º): " + " · ".join(f"{a or '?'}/{b or '?'} {n}" for (a, b), n in marcas.most_common()))
     return saida
 
 
-def confere(saida):
+def confere(saida, parcial=True):
     dados = json.loads(DADOS.read_text(encoding="utf-8"))
     dec = json.loads(DECISOES.read_text(encoding="utf-8"))
     aptos = {normaliza_secao(s["Secao"]): s["Eleitores"] for s in dados["secoes"]}
@@ -252,9 +259,10 @@ def confere(saida):
     estranhas = {s: n for s, n in por_secao.items() if s not in aptos}
     if estranhas:
         erros.append(f"seções que não são de Dublin: {estranhas}")
-    dup = [t for t, n in Counter(e["NUM_INSCRICAO"] for e in saida if e["NUM_INSCRICAO"]).items() if n > 1]
-    if dup:
-        erros.append(f"{len(dup)} inscrições repetidas (ex.: {dup[:3]})")
+    if not parcial:
+        dup = [t for t, n in Counter(e["NUM_INSCRICAO"] for e in saida if e["NUM_INSCRICAO"]).items() if n > 1]
+        if dup:
+            erros.append(f"{len(dup)} inscrições repetidas (ex.: {dup[:3]})")
 
     # A lista vem por MESA (só seções principais, agregadas já somadas) ou por SEÇÃO original?
     por_mesa = not any(por_secao.get(s) for s in agregadas)
@@ -292,14 +300,17 @@ def main():
     ap.add_argument("arquivo", type=Path)
     ap.add_argument("--planilha", help="nome da aba, no .xlsx (padrão: a primeira com as colunas)")
     ap.add_argument("--local", help="manter só este NUM_LOCAL (ex.: 1015)")
-    ap.add_argument("--grava", action="store_true", help=f"escrever {DESTINO.relative_to(RAIZ)}")
-    ap.add_argument("--destino", type=Path, default=DESTINO)
+    ap.add_argument("--grava", action="store_true", help="escrever o CSV canônico em data/eleitores/")
+    ap.add_argument("--destino", type=Path, help=f"padrão: {DESTINO.relative_to(RAIZ)} (parcial) ou {DESTINO_COMPLETO.relative_to(RAIZ)} (completo)")
+    ap.add_argument("--titulo-completo", action="store_true", help="guardar os 12 dígitos do título (v1); o padrão guarda só os dígitos 5-8")
     ap.add_argument("--sem-conferencia", action="store_true", help="não comparar com saidas/dados.json (listas de outro posto)")
     args = ap.parse_args()
 
+    parcial = not args.titulo_completo
+    destino = args.destino or (DESTINO if parcial else DESTINO_COMPLETO)
     linhas = le(args.arquivo, args.planilha)
-    saida = converte(linhas, args.local)
-    erros = [] if args.sem_conferencia else confere(saida)
+    saida = converte(linhas, args.local, parcial)
+    erros = [] if args.sem_conferencia else confere(saida, parcial)
     for e in erros:
         print("ERRO:", e)
     if erros:
@@ -307,12 +318,14 @@ def main():
     if not args.grava:
         print("conferência ok; nada gravado (use --grava)")
         return
-    args.destino.parent.mkdir(parents=True, exist_ok=True)
-    with open(args.destino, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=SAIDA, delimiter=";")
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    colunas = [COLUNA_PARCIAL if c == "NUM_INSCRICAO" else c for c in SAIDA] if parcial else SAIDA
+    with open(destino, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=colunas, delimiter=";")
         w.writeheader()
-        w.writerows(saida)
-    print(f"gravado: {args.destino} ({len(saida)} eleitores). Este arquivo tem dados pessoais e não entra no git.")
+        for e in saida:
+            w.writerow({(COLUNA_PARCIAL if parcial and k == "NUM_INSCRICAO" else k): v for k, v in e.items()})
+    print(f"gravado: {destino} ({len(saida)} eleitores). Este arquivo tem dados pessoais e não entra no git.")
 
 
 if __name__ == "__main__":
