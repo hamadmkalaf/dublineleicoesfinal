@@ -629,6 +629,7 @@ const OEV = (() => {
   function renderRota(rota, opcoes = {}) {
     const cor = COR_LETRA[rota.letra], corTexto = COR_TEXTO_LETRA[rota.letra];
     const extra = opcoes.cabecalhoExtra || "";
+    const aposCartao = opcoes.aposCartao || ""; // 04/10: bloco em destaque logo abaixo do cartão (status da fila)
     const passos = rota.passos.map((p) => `<li><b>${esc(p.onde)}</b><span>${esc(p.texto)}</span></li>`).join("");
     const nota = opcoes.notaSecao == null
       ? "Confira a sua seção no e-Título ou no site do TSE antes de ir votar: ela está entre as seções deste grupo, mas é a do seu título que vale na mesa."
@@ -643,6 +644,7 @@ const OEV = (() => {
           <div class="rotulo">seções deste grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div>
         ${nota ? `<p class="nota-secao" id="nota-secao">${esc(nota)}${link}</p>` : ""}
       </div>
+      ${aposCartao}
       <ol class="passos">${passos}</ol>
       <div class="mapa">${desenhaMapa(rota)}</div>
       <p class="nota">Idoso, gestante, pessoa com deficiência ou com acompanhante: <b>entrada PREFERENCIAL</b>, a porta logo à direita da porta C, sem fila.</p>`;
@@ -706,7 +708,9 @@ const OEV = (() => {
     return String(modelo || "").replace(/\{(\w+)\}/g, (_, k) => (valores[k] == null ? "" : String(valores[k])));
   }
 
-  /* Bloco que aparece ao eleitor abaixo da nota da preferencial, quando o admin ativou o status da fila.
+  /* Bloco "status da fila" que aparece ao eleitor em destaque, logo abaixo do cartão de porta e grupo de mesas
+     (04/10: antes ficava abaixo da nota da preferencial, no fim da página, e passava despercebido), quando o admin
+     ativou o status da fila.
      fila = conteúdo de fila.json; rota = rota da seção; rotas.zonas = urnas por zona (do build). */
   function renderEspera(fila, rota, rotas, cfgFila, agora = Date.now()) {
     if (!fila || !fila.ativo || !rota) return "";
@@ -723,8 +727,8 @@ const OEV = (() => {
       : `<div class="espera-grande">cerca de ${est.minutos} min</div>
          <div class="espera-barra" aria-hidden="true"><span style="width:${est.pct}%;background:${cor}"></span></div>
          <p>${esc(preenche(cfgFila.explicacao, { letra: rota.letra, pct: est.pct, hora, seg: cfgFila.segundos_por_eleitor || 60 }))}</p>`;
-    return `<div class="espera${velho ? " velha" : ""}" id="espera" data-minutos="${est.minutos}" data-pct="${est.pct}">
-      <div class="rotulo">${esc(cfgFila.rotulo || "Tempo estimado de espera")} · fila ${esc(rota.letra)}</div>
+    return `<div class="espera${velho ? " velha" : ""}" id="espera" data-minutos="${est.minutos}" data-pct="${est.pct}" style="--cor:${cor}" role="status">
+      <div class="rotulo">Status da fila ${esc(rota.letra)} · ${esc(cfgFila.rotulo || "tempo estimado de espera")}</div>
       ${corpo}
       ${velho ? `<p class="espera-aviso">${esc(preenche(cfgFila.desatualizado, { hora, validade }))}</p>` : ""}
     </div>`;

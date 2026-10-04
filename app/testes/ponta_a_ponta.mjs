@@ -67,12 +67,17 @@ try {
   assert.equal(await pagina.locator('footer a[href="./admin/"]').count(), 1, "02/10 noite: link do administrador no rodapé do eleitor");
   assert.equal(await pagina.locator('footer a[href="./equipe/"]').count(), 1);
   passo("eleitor: rodapé com os links da equipe e do administrador");
-  // v3: estimativa de espera abaixo da nota da preferencial (status ativado, zona A 50% cheia)
+  // v3: status da fila em destaque logo abaixo do cartão, antes dos passos (status ativado, zona A 50% cheia)
   await pagina.waitForSelector("#espera");
   assert.match(await pagina.locator("#espera").textContent(), /cerca de 40 min/);
   assert.match(await pagina.locator("#espera").textContent(), /50%/);
-  assert.ok(await pagina.evaluate(() => { const n = document.querySelector("#resultado .nota"), e = document.querySelector("#espera"); return !!(n && e && (n.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)); }), "o bloco de espera vem depois da nota da preferencial");
-  passo("eleitor v3: status de fila ativado → “cerca de 40 min” para a zona A a 50%, abaixo da preferencial");
+  assert.ok(await pagina.evaluate(() => {
+    const c = document.querySelector("#resultado .cartao"), e = document.querySelector("#espera"), p = document.querySelector("#resultado ol.passos");
+    return !!(c && e && p && (c.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING) && (e.compareDocumentPosition(p) & Node.DOCUMENT_POSITION_FOLLOWING));
+  }), "o status da fila vem logo depois do cartão e antes dos passos");
+  assert.match(await pagina.locator("#espera .rotulo").textContent(), /Status da fila A/);
+  assert.ok(await pagina.evaluate(() => parseFloat(getComputedStyle(document.querySelector("#espera .espera-grande")).fontSize) >= 40), "tempo de espera em fonte grande");
+  passo("eleitor v3: status de fila ativado → “cerca de 40 min” para a zona A a 50%, em destaque abaixo do cartão");
   await pagina.screenshot({ path: path.join(capturas, "eleitor_resultado.png"), fullPage: true });
   // status desligado pelo administrador: o bloco some (a página relê a fila a cada consulta, com mais de 1 min; força relendo)
   escreveFila({ v: 1, ativo: false, zonas: { A: { pct: 50, em: new Date().toISOString() } }, atualizado: new Date().toISOString() });

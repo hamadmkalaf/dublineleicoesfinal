@@ -132,12 +132,12 @@
         const avisoMarca = r.marca
           ? `<div class="aviso erro" id="aviso-marca"><b>Atenção.</b> ${OEV.esc(estado.config.aviso_marca.replace("{marca}", r.marca))}</div>`
           : "";
-        // v3: estimativa de espera logo abaixo da nota da preferencial (só se o admin ativou o status da fila)
+        // v3: status da fila (só se o admin ativou), em destaque logo abaixo do cartão de porta e grupo de mesas (04/10)
         if (Date.now() - estado.filaEm > 60000) await atualizaFila(4000);
         const espera = OEV.renderEspera(estado.fila, rota, estado.rotas, estado.config.fila || {});
         // 02/10: sem a seção específica do eleitor (a lista do TRE é por mesa, agregadas somadas); ênfase em porta e grupo
-        const opcoes = { notaSecao: estado.config.nota_secao, linkTSE: estado.config.link_etitulo };
-        mostra(avisoMarca + OEV.renderRota(rota, opcoes) + espera + `<p class="dica">Tire uma foto desta tela ou anote: <b>porta ${rota.letra} · grupo ${OEV.esc(rota.grupo)}</b>.</p>`);
+        const opcoes = { notaSecao: estado.config.nota_secao, linkTSE: estado.config.link_etitulo, aposCartao: espera };
+        mostra(avisoMarca + OEV.renderRota(rota, opcoes) + `<p class="dica">Tire uma foto desta tela ou anote: <b>porta ${rota.letra} · grupo ${OEV.esc(rota.grupo)}</b>.</p>`);
       }
     } catch (e) {
       mostra(`<div class="aviso erro">Erro na consulta: ${OEV.esc(e.message)}</div>`);

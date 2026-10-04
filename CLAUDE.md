@@ -183,8 +183,8 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   é a relação de eleitores; o importador o rejeita. Nenhum PDF do TRE entra no git (ver purga de 01/10).
 - **v3** (branch `appeleicoesv3`, 01/10, publicada em `gh-pages/v3/`): a equipe
   informa **quão cheia está cada zona** do Ring 3; o **administrador** (`admin/`, senha só como hash
-  PBKDF2 em `config.json`) liga o "status de fila", e aí o eleitor vê o **tempo estimado de espera**
-  abaixo da nota da preferencial. O estado vivo mora em `fila.json` no **branch órfão `fila`**
+  PBKDF2 em `config.json`) liga o "status de fila", e aí o eleitor vê o **status da fila** (tempo estimado de espera)
+  em destaque logo abaixo do cartão de porta e grupo de mesas (04/10; antes ficava abaixo da nota da preferencial). O estado vivo mora em `fila.json` no **branch órfão `fila`**
   (escrito pela API do GitHub com a chave de publicação; lido por raw.githubusercontent.com).
   **Nunca editar `fila.json` à mão durante a votação**; nunca commitar a chave de publicação nem a
   senha do admin em claro. Parâmetros da estimativa (706 por zona, 60 s por eleitor, 3 min de
