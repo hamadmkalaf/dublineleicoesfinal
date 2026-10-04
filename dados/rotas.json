@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-09-16",
+ "atualizado": "2026-09-22",
  "zonas": {
   "A": {
    "urnas": 9,
@@ -139,15 +139,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A4",
+   "grupo": "A1",
    "secoes_do_grupo": [
     "0513",
     "0522",
     "1105",
     "1352"
    ],
-   "ordem_grupo": 4,
-   "coord_grupo": 25.92,
+   "ordem_grupo": 1,
+   "coord_grupo": 8.03,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -165,7 +165,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 0513 0522 1105 1352”."
     },
     {
      "onde": "Mesa",
@@ -393,15 +393,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A4",
+   "grupo": "A1",
    "secoes_do_grupo": [
     "0513",
     "0522",
     "1105",
     "1352"
    ],
-   "ordem_grupo": 4,
-   "coord_grupo": 29.82,
+   "ordem_grupo": 1,
+   "coord_grupo": 11.93,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -419,7 +419,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 0513 0522 1105 1352”."
     },
     {
      "onde": "Mesa",
@@ -495,15 +495,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A5",
+   "grupo": "A2",
    "secoes_do_grupo": [
     "0530",
     "2847",
     "3078",
     "3179"
    ],
-   "ordem_grupo": 5,
-   "coord_grupo": 36.12,
+   "ordem_grupo": 2,
+   "coord_grupo": 18.23,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -521,7 +521,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 0530 2847 3078 3179”."
     },
     {
      "onde": "Mesa",
@@ -648,15 +648,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A4",
+   "grupo": "A1",
    "secoes_do_grupo": [
     "0513",
     "0522",
     "1105",
     "1352"
    ],
-   "ordem_grupo": 4,
-   "coord_grupo": 25.92,
+   "ordem_grupo": 1,
+   "coord_grupo": 8.03,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -674,7 +674,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 0513 0522 1105 1352”."
     },
     {
      "onde": "Mesa",
@@ -750,15 +750,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A1",
+   "grupo": "A4",
    "secoes_do_grupo": [
     "1278",
     "1314",
     "3142",
     "3309"
    ],
-   "ordem_grupo": 1,
-   "coord_grupo": 11.93,
+   "ordem_grupo": 4,
+   "coord_grupo": 31.32,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -776,7 +776,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 1278 1314 3142 3309”."
     },
     {
      "onde": "Mesa",
@@ -852,15 +852,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A1",
+   "grupo": "A4",
    "secoes_do_grupo": [
     "1278",
     "1314",
     "3142",
     "3309"
    ],
-   "ordem_grupo": 1,
-   "coord_grupo": 8.03,
+   "ordem_grupo": 4,
+   "coord_grupo": 27.42,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -878,7 +878,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 1278 1314 3142 3309”."
     },
     {
      "onde": "Mesa",
@@ -903,15 +903,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A4",
+   "grupo": "A1",
    "secoes_do_grupo": [
     "0513",
     "0522",
     "1105",
     "1352"
    ],
-   "ordem_grupo": 4,
-   "coord_grupo": 29.82,
+   "ordem_grupo": 1,
+   "coord_grupo": 11.93,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -929,7 +929,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 0513 0522 1105 1352”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 0513 0522 1105 1352”."
     },
     {
      "onde": "Mesa",
@@ -954,15 +954,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A5",
+   "grupo": "A2",
    "secoes_do_grupo": [
     "0530",
     "2847",
     "3078",
     "3179"
    ],
-   "ordem_grupo": 5,
-   "coord_grupo": 32.22,
+   "ordem_grupo": 2,
+   "coord_grupo": 14.33,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -980,7 +980,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 0530 2847 3078 3179”."
     },
     {
      "onde": "Mesa",
@@ -1107,15 +1107,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A5",
+   "grupo": "A2",
    "secoes_do_grupo": [
     "0530",
     "2847",
     "3078",
     "3179"
    ],
-   "ordem_grupo": 5,
-   "coord_grupo": 32.22,
+   "ordem_grupo": 2,
+   "coord_grupo": 14.33,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -1133,7 +1133,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 0530 2847 3078 3179”."
     },
     {
      "onde": "Mesa",
@@ -1209,15 +1209,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A1",
+   "grupo": "A4",
    "secoes_do_grupo": [
     "1278",
     "1314",
     "3142",
     "3309"
    ],
-   "ordem_grupo": 1,
-   "coord_grupo": 11.93,
+   "ordem_grupo": 4,
+   "coord_grupo": 31.32,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -1235,7 +1235,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 1278 1314 3142 3309”."
     },
     {
      "onde": "Mesa",
@@ -1260,15 +1260,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A2",
+   "grupo": "A5",
    "secoes_do_grupo": [
     "3161",
     "3307",
     "3311",
     "3913"
    ],
-   "ordem_grupo": 2,
-   "coord_grupo": 14.33,
+   "ordem_grupo": 5,
+   "coord_grupo": 33.72,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -1286,7 +1286,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 3161 3307 3311 3913”."
     },
     {
      "onde": "Mesa",
@@ -1311,15 +1311,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A5",
+   "grupo": "A2",
    "secoes_do_grupo": [
     "0530",
     "2847",
     "3078",
     "3179"
    ],
-   "ordem_grupo": 5,
-   "coord_grupo": 36.12,
+   "ordem_grupo": 2,
+   "coord_grupo": 18.23,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -1337,7 +1337,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 0530 2847 3078 3179”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 0530 2847 3078 3179”."
     },
     {
      "onde": "Mesa",
@@ -1717,15 +1717,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A2",
+   "grupo": "A5",
    "secoes_do_grupo": [
     "3161",
     "3307",
     "3311",
     "3913"
    ],
-   "ordem_grupo": 2,
-   "coord_grupo": 14.33,
+   "ordem_grupo": 5,
+   "coord_grupo": 33.72,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -1743,7 +1743,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 3161 3307 3311 3913”."
     },
     {
      "onde": "Mesa",
@@ -1816,15 +1816,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A1",
+   "grupo": "A4",
    "secoes_do_grupo": [
     "1278",
     "1314",
     "3142",
     "3309"
    ],
-   "ordem_grupo": 1,
-   "coord_grupo": 8.03,
+   "ordem_grupo": 4,
+   "coord_grupo": 27.42,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -1842,7 +1842,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A1, o 1º corredor a partir da porta. Na placa alta: “grupo A1 · seções 1278 1314 3142 3309”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A4, o 4º corredor a partir da porta. Na placa alta: “grupo A4 · seções 1278 1314 3142 3309”."
     },
     {
      "onde": "Mesa",
@@ -1867,15 +1867,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A2",
+   "grupo": "A5",
    "secoes_do_grupo": [
     "3161",
     "3307",
     "3311",
     "3913"
    ],
-   "ordem_grupo": 2,
-   "coord_grupo": 18.23,
+   "ordem_grupo": 5,
+   "coord_grupo": 37.62,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -1893,7 +1893,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 3161 3307 3311 3913”."
     },
     {
      "onde": "Mesa",
@@ -1924,7 +1924,7 @@
     "3889"
    ],
    "ordem_grupo": 3,
-   "coord_grupo": 23.12,
+   "coord_grupo": 24.62,
    "grupos_na_parede": 5,
    "serpenteado": true,
    "passos": [
@@ -2514,7 +2514,7 @@
     "3889"
    ],
    "ordem_grupo": 3,
-   "coord_grupo": 23.12,
+   "coord_grupo": 24.62,
    "grupos_na_parede": 5,
    "serpenteado": true,
    "passos": [
@@ -2557,15 +2557,15 @@
    "parede": "oeste",
    "parede_rotulo": "da esquerda",
    "cor": "azul",
-   "grupo": "A2",
+   "grupo": "A5",
    "secoes_do_grupo": [
     "3161",
     "3307",
     "3311",
     "3913"
    ],
-   "ordem_grupo": 2,
-   "coord_grupo": 18.23,
+   "ordem_grupo": 5,
+   "coord_grupo": 37.62,
    "grupos_na_parede": 5,
    "serpenteado": false,
    "passos": [
@@ -2583,7 +2583,7 @@
     },
     {
      "onde": "Hall 2 · parede da esquerda",
-     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A2, o 2º corredor a partir da porta. Na placa alta: “grupo A2 · seções 3161 3307 3311 3913”."
+     "texto": "Sua mesa fica na parede da esquerda. Procure o painel A e siga até o grupo A5, o 5º corredor a partir da porta. Na placa alta: “grupo A5 · seções 3161 3307 3311 3913”."
     },
     {
      "onde": "Mesa",
