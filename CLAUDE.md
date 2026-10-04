@@ -56,7 +56,13 @@ do Hall 2. Espaço de travessia, sem raias.
 B, S6 = entrada C, S7 = preferencial**; **S2 e S8 são saídas**; S1, S3 e S9 ficam
 livres. As 28 mesas ficam encostadas nas paredes: **parede oeste = zona A (9 urnas),
 parede norte = zona B (9 urnas), parede leste = zona C (10 urnas)**. Sala de apoio no
-canto noroeste. Faixa livre de 3 m junto à parede leste para as saídas de emergência
+canto noroeste. **Ordem da parede oeste = revisão de 23/09** (branch `21026_final`, a mesma da
+sinalização impressa). **O código de grupo é posicional** (A1 é sempre o par mais ao sul), então
+**A1 = 513·1105 + 1352·522, A2 = 3078·2847 + 3179·530, A3 = 3313·3889, A4 = 3309·1314 +
+3142·1278, A5 = 3161·3307 + 3311·3913**. O app foi publicado em 01–02/10 com a ordem antiga
+(16/09, de `main`) e mandou 16 seções ao corredor errado; corrigido em 04/10 trazendo
+`data/decisoes.json` e `data/grupos_mesas.json` de `21026_final` (ver `appeleicoesv3`,
+`docs/app/contexto.md` §2f). Faixa livre de 3 m junto à parede leste para as saídas de emergência
 L1–L4. Portas O1 e N1 fechadas; O2, N2 e H1 livres. Serpentinas internas de 20
 pessoas nas três mesas maiores (3313, 3315, 3322).
 
