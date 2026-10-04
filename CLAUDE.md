@@ -56,7 +56,14 @@ do Hall 2. Espaço de travessia, sem raias.
 B, S6 = entrada C, S7 = preferencial**; **S2 e S8 são saídas**; S1, S3 e S9 ficam
 livres. As 28 mesas ficam encostadas nas paredes: **parede oeste = zona A (9 urnas),
 parede norte = zona B (9 urnas), parede leste = zona C (10 urnas)**. Sala de apoio no
-canto noroeste. Faixa livre de 3 m junto à parede leste para as saídas de emergência
+canto noroeste. **Ordem da parede oeste = revisão de 23/09** (branch `21026_final`, a mesma da
+sinalização impressa): os dois pares de maior carga foram para o norte e os de menor carga para o
+sul, junto à porta. **O código de grupo é posicional** (A1 é sempre o par mais ao sul), então
+**A1 = 513·1105 + 1352·522, A2 = 3078·2847 + 3179·530, A3 = 3313·3889, A4 = 3309·1314 +
+3142·1278, A5 = 3161·3307 + 3311·3913**. O app foi publicado em 01–02/10 com a ordem antiga
+(16/09, de `main`) e mandou 16 seções ao corredor errado; corrigido em 04/10 trazendo
+`data/decisoes.json` e `data/grupos_mesas.json` de `21026_final`. **Mudou a ordem de uma
+parede, reconstruir e republicar o app no mesmo dia.** Faixa livre de 3 m junto à parede leste para as saídas de emergência
 L1–L4. Portas O1 e N1 fechadas; O2, N2 e H1 livres. Serpentinas internas de 20
 pessoas nas três mesas maiores (3313, 3315, 3322).
 
@@ -146,12 +153,14 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   (equipe); o PDF do TRE e o CSV ficam só na máquina de quem constrói. Dois PDFs chegaram
   commitados (29/09 em `appeleicoes`, e `DUBLIN.pdf` em `main`) e foram **purgados do
   histórico em 01/10**, com force-push; não recommitar.
-- **Única exceção: os CSVs cifrados** `data/eleitores/eleitores.csv.enc` (02/10: título completo,
-  é o que a v3 usa) e `eleitores_v2.csv.enc` (01/10: só dígitos 5–8), ambos AES-256-GCM pela senha
-  da equipe (`scripts/app_cifra_lista.py`). `app_construir.py --lista …csv.enc --senha-equipe` lê
-  direto. Trocou a senha da equipe = recifrar as listas. **Senhas diferentes por versão desde 02/10:**
-  `eleitores.csv.enc` e `/v3/` usam a senha nova (passada no chat em 02/10 à tarde);
-  `eleitores_v2.csv.enc` e `/v2/` usam a de 01/10. Nenhuma está no git.
+- **Única exceção: o CSV cifrado** `data/eleitores/eleitores.csv.enc` (título completo, AES-256-GCM pela
+  senha da equipe, `scripts/app_cifra_lista.py`), recifrado em **04/10** a partir da relação do TRE de 29/09
+  com a senha atual da equipe. `app_construir.py --lista …csv.enc --senha-equipe` lê direto. Trocou a
+  senha = recifrar. O `eleitores_v2.csv.enc` (01/10, só dígitos 5–8, senha antiga perdida) foi removido em
+  04/10. Nenhuma senha está no git. **Um PDF da relação (`DUBLIN 1.pdf`) chegou por upload à raiz do
+  `appeleicoesv3` em 04/10 (commit `1b2443d`) e foi removido da ponta do branch no mesmo dia; continua no
+  histórico até uma purga com force-push (pendência).** `DUBLIN*.pdf` está no `.gitignore`. Nunca anexar
+  a relação pelo GitHub: ela entra no histórico.
 - **A lista do TRE vem por mesa, não por seção**: 28 seções principais, com as 23 agregadas
   já somadas. Sem data de nascimento nem nome da mãe. O importador lê o PDF com
   `pdftotext -layout` e confere por mesa contra `data/decisoes.json`.
@@ -193,6 +202,12 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - **Branch `gh-pages2`** (02/10): só a v3 na raiz (+ `CNAME`), sem `v2/` nem `v3/`. O Pages serve
   **um** branch por repositório: para o domínio passar a servir o `gh-pages2`, trocar em
   Settings → Pages → Branch. Publicar nele com `bash scripts/app_publicar.sh --branch gh-pages2`.
+- **Incidente de 04/10 (dia da votação):** o app estava publicado com os grupos da parede oeste na
+  ordem de 16/09, enquanto a sinalização seguia a revisão de 23/09 (parede oeste reordenada): as
+  seções de A1/A4 e de A2/A5 trocadas entre si, detectado no local em A1/A5. Causa: os dois
+  `data/*.json` que o app lê existiam em duas versões, uma em `main`/`appeleicoes*` e outra em
+  `21026_final`. Antes de qualquer build, conferir que `data/decisoes.json` e `data/grupos_mesas.json`
+  são os do branch que gerou a sinalização impressa (hoje `21026_final`).
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.

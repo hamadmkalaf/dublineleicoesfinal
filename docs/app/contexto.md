@@ -158,6 +158,35 @@ páginas com a correção acima, `CNAME`, `.nojekyll`), sem `v2/` nem `v3/`. O P
 por repositório: para o domínio passar a servir o `gh-pages2`, trocar em *Settings → Pages → Branch*.
 `app_publicar.sh --branch gh-pages2` publica nele a partir de `app/dist/`.
 
+### 2f. 04/10/2026 — grupos da parede oeste errados no app publicado (incidente do dia da votação)
+
+Relato do usuário no dia: "problema no site e na atribuição de mesas, detectado em A1/A5". Conferência:
+
+- A lista cifrada, o índice público e o pacote da equipe estão certos: 28 seções da lista com contagem
+  igual às 28 mesas; nenhuma pessoa mudou de seção, porta ou parede.
+- O erro estava em `rotas.json` (seção → grupo): o app lia o `data/decisoes.json` de **16/09** (`main`,
+  herdado por `appeleicoes*`), mas a sinalização impressa e republicada em 02/10 (`21026_final`) segue a
+  **revisão de 23/09**, que trocou dois pares de posição na parede oeste. Como o código do grupo é
+  posicional, 16 seções apareciam com o grupo errado; A3 (3313·3889) e as paredes norte e leste não mudaram.
+
+| Seções | App publicado (16/09) | Correto (23/09, = placas) |
+|---|---|---|
+| 0513 · 0522 · 1105 · 1352 | A4 (4º corredor) | **A1** (1º) |
+| 0530 · 2847 · 3078 · 3179 | A5 (5º) | **A2** (2º) |
+| 1278 · 1314 · 3142 · 3309 | A1 (1º) | **A4** (4º) |
+| 3161 · 3307 · 3311 · 3913 | A2 (2º) | **A5** (5º) |
+
+Correção: `data/decisoes.json` e `data/grupos_mesas.json` trazidos de `21026_final` (sem edição à mão);
+só `rotas.json` muda no build (índice e pacote idênticos, mesma senha). Lição: é o caso previsto no
+`CLAUDE.md` ("um gerador lendo um `decisoes.json` que outro branch já havia superado"); a conferência
+do build compara as **letras** com a P0-Mestra, não os **grupos** com os painéis P6. Pendência: conferir
+também o grupo (`grupos_mesas.json` × `P6-Painel*`) no build.
+
+Publicado em 04/10 às 07:50 UTC com a lista real (`eleitores.csv.enc`, título completo na equipe), na raiz,
+em `v2/` e `v3/` do `gh-pages` e na raiz do `gh-pages2`: índice público byte a byte igual ao de 02/10, só
+`rotas.json` e o carimbo do service worker mudaram. Quem já tinha o site aberto vê "Há uma versão nova"
+e recarrega. `scripts/app_publicar_rotas.sh` faz a mesma publicação sem a senha, se voltar a ser preciso.
+
 ## 3. Como funciona
 
 ```
