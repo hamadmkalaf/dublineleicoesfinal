@@ -1,4 +1,6 @@
-// Gera docs/cartas/modelo_carta_empregador.docx.
+// Sem argumentos: gera docs/cartas/modelo_carta_empregador.docx (modelo com campos {{...}}).
+// Com dados:  node scripts/gera_carta_docx.js dados.json pasta_saida [--data "7 October 2026"] [--contato "..."]
+// dados.json vem de scripts/xlsx_para_json.py. Gera um .docx por pessoa, nomeado com o nome dela.
 // Se docs/cartas/brasao.png existir, ele entra no timbre; senão fica o espaço reservado.
 const fs = require('fs');
 const path = require('path');
@@ -7,7 +9,8 @@ const { Document, Packer, Paragraph, TextRun, ImageRun, AlignmentType, BorderSty
 const dir = path.join(__dirname, '..', 'docs', 'cartas');
 const brasaoPath = path.join(dir, 'brasao.png');
 const FONT = 'Calibri';
-const run = (text, o = {}) => new TextRun({ text, font: FONT, size: 22, ...o });
+const baseRun = (text, o = {}) => new TextRun({ text, font: FONT, size: 22, ...o });
+const run = baseRun;
 const p = (children, o = {}) => new Paragraph({ spacing: { after: 160, line: 276 }, ...o, children: [].concat(children) });
 const center = (text, o = {}) => p(run(text, o), { alignment: AlignmentType.CENTER, spacing: { after: 0 } });
 
@@ -23,11 +26,18 @@ head.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 360
   border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: '444444', space: 6 } },
   children: [run('Embaixada do Brasil na Irlanda', { size: 20 })] }));
 
-const body = [
+const buildBody = (f) => {
+  const T = (x) => x
+    .replace(/\{\{nome_voluntario\}\}/g, f.nome || '{{nome_voluntario}}')
+    .replace(/\{\{pronome_poss\}\}/g, f.pronome || '{{pronome_poss}}')
+    .replace(/\{\{data_carta\}\}/g, f.data || '{{data_carta}}')
+    .replace(/\{\{contato\}\}/g, f.contato || '{{contato}}')
+    .replace(/\{\{nome_destinatario\}\}/g, f.empresas ? 'Sir or Madam' : '{{nome_destinatario}}');
+  const run = (text, o) => baseRun(T(text), o);
+  const addr = f.empresas ? ['Human Resources Department', ...f.empresas] : ['{{nome_destinatario}}', '{{empresa}}', '{{endereco_empresa}}'];
+  return [
   p(run('{{data_carta}}'), { alignment: AlignmentType.RIGHT }),
-  p([run('{{nome_destinatario}}')], { spacing: { after: 0 } }),
-  p([run('{{empresa}}')], { spacing: { after: 0 } }),
-  p([run('{{endereco_empresa}}')], { spacing: { after: 240 } }),
+  ...addr.map((l, i) => p([run(l)], { spacing: { after: i === addr.length - 1 ? 240 : 0 } })),
   p(run('Re: Voluntary service by {{nome_voluntario}} at the 2026 Brazilian Presidential Elections, Dublin', { bold: true })),
   p(run('Dear {{nome_destinatario}},')),
   p(run('I am writing as the administrator of the 2026 Brazilian Presidential Elections in Ireland, to let you know that your employee, {{nome_voluntario}}, took part in the organisation of the first round of voting held in Dublin on Sunday, 4 October 2026.')),
@@ -40,11 +50,27 @@ const body = [
   p(run('Administrator, 2026 Brazilian Presidential Elections in Ireland'), { spacing: { after: 0 } }),
   p(run('{{contato}}')),
 ];
+};
 
-const doc = new Document({
-  creator: 'Eleições 2026 – Posto de Dublin',
-  title: 'Modelo de carta aos empregadores',
+const makeDoc = (f) => new Document({
+  creator: 'Embaixada do Brasil na Irlanda',
+  title: 'Carta ao empregador',
   sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1134, bottom: 1134, left: 1417, right: 1417 } } },
-    children: [...head, ...body] }],
+    children: [...head, ...buildBody(f)] }],
 });
-Packer.toBuffer(doc).then((b) => { fs.writeFileSync(path.join(dir, 'modelo_carta_empregador.docx'), b); console.log('ok'); });
+
+const [dadosPath, outDir, ...rest] = process.argv.slice(2);
+const opt = (k) => { const i = rest.indexOf(k); return i >= 0 ? rest[i + 1] : undefined; };
+(async () => {
+  if (!dadosPath) {
+    fs.writeFileSync(path.join(dir, 'modelo_carta_empregador.docx'), await Packer.toBuffer(makeDoc({})));
+    return console.log('modelo ok');
+  }
+  fs.mkdirSync(outDir, { recursive: true });
+  const data = opt('--data') || '6 October 2026';
+  for (const v of JSON.parse(fs.readFileSync(dadosPath, 'utf8'))) {
+    const buf = await Packer.toBuffer(makeDoc({ nome: v.nome, pronome: v.pronome_poss, empresas: v.empresas, data, contato: opt('--contato') }));
+    fs.writeFileSync(path.join(outDir, `${v.nome}.docx`), buf);
+  }
+  console.log('cartas ok');
+})();
