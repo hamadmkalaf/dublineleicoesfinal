@@ -14,14 +14,25 @@ etapa). Tudo fora do bloco "Texto da carta" é nota interna e não vai na carta.
 | `{{nome_destinatario}}` | RH ou gestor direto | se desconhecido: "Human Resources Department" |
 | `{{empresa}}` | razão social | |
 | `{{endereco_empresa}}` | endereço postal | |
+| `variante` | A (mesário nomeado) ou B (apoio) | escolhe o parágrafo 3 |
 | `{{pronome_poss}}` | his / her / their | **vem do voluntário, nunca inferido do nome** |
 
-## Pontos que a decisão ainda precisa fechar (ver nota ao final)
+## Duas variantes do segundo parágrafo
 
-1. Base legal do segundo parágrafo: o texto abaixo está redigido como **analogia**,
-   não como direito do voluntário.
-2. Se o voluntário consentiu em ter o empregador informado (proteção de dados).
-3. Se a carta vai em papel timbrado de quem (consulado, comissão eleitoral, outro).
+O art. 98 da Lei 9.504/1997 dá a dispensa pelo dobro dos dias a quem foi **nomeado**
+para a mesa receptora ou **requisitado** para auxiliá-la. Por isso o parágrafo muda
+conforme o voluntário (campo `variante` na planilha):
+
+- **A — mesário nomeado:** afirma o direito, direto.
+- **B — apoio não nomeado:** só por analogia, sem afirmar direito.
+
+Consentimento dos voluntários: já obtido (informado em 07/10/2026).
+
+## Pontos ainda abertos
+
+1. Papel timbrado de quem (consulado, comissão eleitoral, outro) e `{{contato}}`.
+2. Se mesários nomeados já têm a declaração da Justiça Eleitoral, vale citá-la na
+   variante A ("a declaration is available on request").
 
 ---
 
@@ -47,12 +58,23 @@ worker. This was strictly voluntary work: it was unpaid, and it was carried out 
 community in Ireland exercises its right to vote. We are very grateful for
 {{pronome_poss}} commitment.
 
-In Brazil, citizens who serve at polling stations on election day are entitled by law
-to two days of leave, with no loss of pay, for each day worked (Law No. 9,504/1997,
-Article 98). We understand that Brazilian law creates no obligation for employers in
+**[Variante A — mesário nomeado]**
+{{nome_voluntario}} was formally appointed to serve at the polling station. Under
+Brazilian electoral law (Law No. 9,504/1997, Article 98), citizens appointed to
+polling stations are entitled to two days of leave, with no loss of pay, for each day
+worked. We understand that Brazilian law creates no obligation for employers in
 Ireland, and we do not suggest otherwise. We would, however, be grateful if you could
-consider, as a courtesy, granting {{nome_voluntario}} some additional time off in
+consider, as a courtesy, granting {{nome_voluntario}} additional time off in
 recognition of the service {{pronome_poss}} performed.
+
+**[Variante B — apoio não nomeado]**
+In Brazil, citizens who serve at polling stations on election day are entitled to two
+days of leave, with no loss of pay, for each day worked (Law No. 9,504/1997, Article
+98). Although {{nome_voluntario}} served in a support role, we understand that Brazilian
+law creates no obligation for employers in Ireland, and we do not suggest otherwise. We
+would, however, be grateful if you could consider, as a courtesy, granting
+{{nome_voluntario}} some additional time off in recognition of the service
+{{pronome_poss}} performed.
 
 Should you require any confirmation of the dates and hours described above, please do
 not hesitate to contact us at {{contato}}.
