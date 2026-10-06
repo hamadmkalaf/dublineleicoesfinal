@@ -53,14 +53,13 @@ worker. This was strictly voluntary work: it was unpaid, and it was carried out 
 community in Ireland exercises its right to vote. We are very grateful for
 {{pronome_poss}} commitment.
 
-{{nome_voluntario}} was registered with the Brazilian Electoral Court (TRE) as part of
-the polling station team. Under Brazilian electoral law (Law No. 9,504/1997, Article
+Under Brazilian electoral law (Law No. 9,504/1997, Article
 98), citizens who serve at polling stations, or who are called upon to assist them,
 are entitled to two days of leave, with no loss of pay, for each day worked. We
 understand that Brazilian law creates no obligation for employers in Ireland, and we do
 not suggest otherwise. We would, however, be grateful if you could consider, as a
 courtesy, granting {{nome_voluntario}} additional time off in recognition of the
-service {{pronome_poss}} performed.
+{{pronome_poss}} service.
 
 Should you require any confirmation of the dates and hours described above, please do
 not hesitate to contact us at {{contato}}.
@@ -72,5 +71,4 @@ Yours sincerely,
 &nbsp;
 
 **Eduardo de Mattos Hosannah**
-Administrator, 2026 Brazilian Presidential Elections in Ireland
-{{contato}}
+Administrator of the 2026 Brazilian Presidential Elections in Ireland
