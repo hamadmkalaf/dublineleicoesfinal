@@ -45,13 +45,13 @@ Dear {{nome_destinatario}},
 
 I am writing as the administrator of the 2026 Brazilian Presidential Elections in
 Ireland, to let you know that your employee, {{nome_voluntario}}, took part in the
-organisation of the first round of voting held in Dublin on Sunday, 4 October 2026.
+organisation of the first round of voting held in Dublin on Sunday, 4 October 2026, for which we are extremely grateful.
 
 On that day, between 06:30 and 18:00, {{nome_voluntario}} served as a polling station
 worker. This was strictly voluntary work: it was unpaid, and it was carried out on
 {{pronome_poss}} own time, on a Sunday, in support of an election in which the Brazilian
-community in Ireland exercises its right to vote. We are very grateful for
-{{pronome_poss}} commitment.
+community in Ireland exercises its right to vote. We would like to let you know that {{pronome_poss}} work was exceptionally
+useful and we are very grateful for {{pronome_poss}} commitment.
 
 Under Brazilian electoral law (Law No. 9,504/1997, Article
 98), citizens who serve at polling stations, or who are called upon to assist them,

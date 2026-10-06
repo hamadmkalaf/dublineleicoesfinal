@@ -40,9 +40,9 @@ const buildBody = (f) => {
   ...addr.map((l, i) => p([run(l)], { spacing: { after: i === addr.length - 1 ? 240 : 0 } })),
   p(run('Re: Voluntary service by {{nome_voluntario}} at the 2026 Brazilian Presidential Elections, Dublin', { bold: true })),
   p(run('Dear {{nome_destinatario}},')),
-  p(run('I am writing as the administrator of the 2026 Brazilian Presidential Elections in Ireland, to let you know that your employee, {{nome_voluntario}}, took part in the organisation of the first round of voting held in Dublin on Sunday, 4 October 2026.')),
-  p(run('On that day, between 06:30 and 18:00, {{nome_voluntario}} served as a polling station worker. This was strictly voluntary work: it was unpaid, and it was carried out on {{pronome_poss}} own time, on a Sunday, in support of an election in which the Brazilian community in Ireland exercises its right to vote. We are very grateful for {{pronome_poss}} commitment.')),
-  p(run('Under Brazilian electoral law (Law No. 9,504/1997, Article 98), citizens who serve at polling stations, or who are called upon to assist them, are entitled to two days of leave, with no loss of pay, for each day worked. We understand that Brazilian law creates no obligation for employers in Ireland, and we do not suggest otherwise. We would, however, be grateful if you could consider, as a courtesy, granting {{nome_voluntario}} additional time off in recognition of {{pronome_poss}} service.')),
+  p(run('I am writing as the administrator of the 2026 Brazilian Presidential Elections in Ireland, to let you know that your employee, {{nome_voluntario}}, took part in the organisation of the first round of voting held in Dublin on Sunday, 4 October 2026, for which we are extremely grateful.')),
+  p(run('On that day, between 06:30 and 18:00, {{nome_voluntario}} served as a polling station worker. This was strictly voluntary work: it was unpaid, and it was carried out on {{pronome_poss}} own time, on a Sunday, in support of an election in which the Brazilian community in Ireland exercises its right to vote. We would like to let you know that {{pronome_poss}} work was exceptionally useful and we are very grateful for {{pronome_poss}} commitment.')),
+  p(run('Under Brazilian electoral law (Law No. 9,504/1997, Article 98), citizens who serve at polling stations, or who are called upon to assist them, are entitled to two days of leave, with no loss of pay, for each day worked. We understand that Brazilian law creates no obligation for employers in Ireland, and we do not suggest otherwise. We would, however, be grateful if you could consider, as a courtesy, granting {{nome_voluntario}} additional time off in recognition of {{pronome_poss}} service, or any other kind of reward you would consider appropriate.')),
   p(run('Should you require any confirmation of the dates and hours described above, please do not hesitate to contact us at {{contato}}')),
   p(run('Thank you for your time and consideration.')),
   p(run('Yours sincerely,'), { spacing: { after: 720 } }),
@@ -68,8 +68,12 @@ const opt = (k) => { const i = rest.indexOf(k); return i >= 0 ? rest[i + 1] : un
   fs.mkdirSync(outDir, { recursive: true });
   const data = opt('--data') || '6 October 2026';
   for (const v of JSON.parse(fs.readFileSync(dadosPath, 'utf8'))) {
-    const buf = await Packer.toBuffer(makeDoc({ nome: v.nome, pronome: v.pronome_poss, empresas: v.empresas, data, contato: opt('--contato') || 'eleitoral.dublin@itamaraty.gov.br' }));
-    fs.writeFileSync(path.join(outDir, `${v.nome}.docx`), buf);
+    // uma_carta_por_empresa: cada empregador recebe a sua, sem ver os outros
+    const lotes = v.uma_carta_por_empresa ? v.empresas.map((e) => ({ empresas: [e], arq: `${v.nome} - ${e}` })) : [{ empresas: v.empresas, arq: v.nome }];
+    for (const l of lotes) {
+      const buf = await Packer.toBuffer(makeDoc({ nome: v.nome, pronome: v.pronome_poss, empresas: l.empresas, data, contato: opt('--contato') || 'eleitoral.dublin@itamaraty.gov.br' }));
+      fs.writeFileSync(path.join(outDir, `${l.arq}.docx`), buf);
+    }
   }
   console.log('cartas ok');
 })();
