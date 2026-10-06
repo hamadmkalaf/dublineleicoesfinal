@@ -14,14 +14,14 @@ const center = (text, o = {}) => p(run(text, o), { alignment: AlignmentType.CENT
 const head = [];
 if (fs.existsSync(brasaoPath)) {
   head.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 80 },
-    children: [new ImageRun({ type: 'png', data: fs.readFileSync(brasaoPath), transformation: { width: 80, height: 80 } })] }));
+    children: [new ImageRun({ type: 'png', data: fs.readFileSync(brasaoPath), transformation: { width: 84, height: 84 } })] }));
 } else {
   head.push(center('[ BRASÃO DAS ARMAS DA REPÚBLICA — inserir docs/cartas/brasao.png e rodar o gerador ]', { size: 16, color: '999999' }));
 }
 head.push(center('REPÚBLICA FEDERATIVA DO BRASIL', { bold: true, size: 24 }));
 head.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 360 },
   border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: '444444', space: 6 } },
-  children: [run('Eleições Presidenciais 2026 – Irlanda', { size: 20 })] }));
+  children: [run('Embaixada do Brasil na Irlanda', { size: 20 })] }));
 
 const body = [
   p(run('{{data_carta}}'), { alignment: AlignmentType.RIGHT }),
