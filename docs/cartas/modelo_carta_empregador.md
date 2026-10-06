@@ -58,8 +58,8 @@ Under Brazilian electoral law (Law No. 9,504/1997, Article
 are entitled to two days of leave, with no loss of pay, for each day worked. We
 understand that Brazilian law creates no obligation for employers in Ireland, and we do
 not suggest otherwise. We would, however, be grateful if you could consider, as a
-courtesy, granting {{nome_voluntario}} additional time off in recognition of the
-{{pronome_poss}} service.
+courtesy, granting {{nome_voluntario}} additional time off in recognition of
+{{pronome_poss}} service, or any other kind of reward you would consider appropriate.
 
 Should you require any confirmation of the dates and hours described above, please do
 not hesitate to contact us at {{contato}}.
