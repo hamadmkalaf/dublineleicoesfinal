@@ -18,6 +18,7 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`prancheta_hall2.html`](prancheta_hall2.html) | Prancheta pelas Seções | Coordenadas reais das portas e das 28 mesas. A planta do salão em `voluntarios_postos.html` foi gerada delas. |
 | [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado: 23 raias por zona, vão de 1,20 m, **180 CCBs** dos 200 em estoque, 506 m de fita grossa, lotação 2.118. |
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
+| [`linhas_maratona.html`](linhas_maratona.html) | Linhas até o RDS na maratona | Mapa das linhas de ônibus ao redor do RDS em 25/10/2026: traçados do GTFS, percurso da maratona, desvios, paradas de Donnybrook e caminhada até o portão da Anglesea Road, em três cenários. Gerado por `scripts/transporte_mapa_linhas.py`; a fonte está aqui, não na plataforma. |
 | [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **21 peças** P0–P7, os dois mapas de posição e o `canvas.json`. Fonte das seis cores de rolo e da convenção de rotular por grupo e seção. |
 
 As cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
