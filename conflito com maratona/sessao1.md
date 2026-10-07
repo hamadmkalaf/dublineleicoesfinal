@@ -166,3 +166,19 @@ Premissa do usuário: 10 min de caminhada é aceitável (por exemplo, descer em 
 | `RE_ (External)Re_ .eml` | Troca com a Garda (23/9 e 25/9) sobre o portão da Anglesea. |
 | `Re_ Embassy of Brazil… .eml` | Troca com a prefeitura (29/9–7/10) sobre as paradas confirmadas. |
 | `Screenshot 2026-10-07 13*.png` e `novosscreenshots/` | Capturas de tela da Citymapper com os percursos normais de E1, E2, 39A, 14, 44, 11, 11B, 4, 7, 7A, 7E e 27X. |
+
+## 11. Sessão 2 (07/10/2026, mais tarde) — documentos gerados
+
+Com a rede liberada, esta pasta ganhou dois documentos que **substituem as seções 5, 6 e
+parte da 3 e da 7 deste arquivo**:
+
+- `ranking_linhas_rds.md` — ranking das linhas por janela útil no dia, frequência de
+  domingo (GTFS da NTA de 06/10) e caminhada medida até o portão da Anglesea (11–13 min
+  desde Donnybrook, não 10).
+- `divergencias_garda_dublinbus.md` — Garda × Dublin Bus, mais prefeitura, organizador e
+  Irish Rail, com a lista de pedidos consolidada.
+
+Três fatos novos: **7 e 7A são desviadas desde as 8h** (não até 11h); **o DART não para
+em Sandymount nem Lansdowne Road de 24 a 26/10** (obras entre Grand Canal Dock e Bray);
+**7E, 27X, 7B e 7D não rodam aos domingos** (confirmado no GTFS). Dados e scripts em
+`dados/` e em `scripts/transporte_*.py`.
