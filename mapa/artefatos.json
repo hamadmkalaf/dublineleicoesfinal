@@ -84,6 +84,16 @@
    "o_que_e": "Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários.",
    "estado": "lido na íntegra",
    "sha256": "d65715289852943151161742afc9249d17f29a72647618a6a7156421597b0bd3"
+  },
+  {
+   "chave": "linhas_maratona",
+   "titulo": "Linhas até o RDS na maratona",
+   "url": "https://claude.ai/artifact/Wn9NNUuFZukE5sZp9L1W53",
+   "versao": "1791388004-e389",
+   "caminho": "mapa/linhas_maratona.html",
+   "o_que_e": "Mapa SVG georreferenciado das linhas de ônibus ao redor do RDS em 25/10/2026: traçados do GTFS, percurso da maratona, desvios de 4/7/7A, paradas 774/758/759, caminhada até o portão da Anglesea Road, três cenários (dia normal, até 11h, após 11h). Gerado por scripts/transporte_mapa_linhas.py.",
+   "estado": "fonte gerada neste repositório (não é cópia da plataforma)",
+   "sha256": "22e4719c079fb3a70d09984fc3d6689cf7f2cb6e7f76ae651dc4f1b7ae1b2072"
   }
  ]
 }
