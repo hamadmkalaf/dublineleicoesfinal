@@ -51,6 +51,31 @@ conduzir 11,5 mil eleitores da porta até a mesa. **Desenho definitivo, fechado 
 (846 m com 10% de retoque), em 20 rolos de 50 m, seis cores · faltam **8 rolos**
 (2 azul, 2 laranja, 1 zebrado, 1 verde, 2 branco) e, por pedido, **15 unifilas**.
 
+### Mesários do 2º turno
+
+Cruza a presença no 1º turno com o formulário de confirmação do 2º e diz, para cada mesário, se deve
+comparecer, se é preciso confirmar ou se não deve comparecer, e quais funções faltam preencher.
+
+| Arquivo | O que é |
+|---|---|
+| [`docs/mesarios/2turno.md`](docs/mesarios/2turno.md) | A regra de expectativa, as fontes, os ajustes e como atualizar. |
+| `saidas/mesarios/2026.10.12_Mesarios_2turno_consolidado.xlsx` | 4 abas: Expectativa, Mesários (onde se edita), Funções a preencher e Por seção. **Contém dados pessoais.** |
+| `saidas/mesarios/entrada/` | As três planilhas de origem, de 12/10/2026. |
+| `scripts/mesarios_2turno.py` | Gera a planilha; sem `--grava`, só confere. |
+
+**Retrato de 12/10:** de 112 funções, 58 devem comparecer, 28 precisam ser confirmadas, 25 não
+devem comparecer e 1 está vaga: **54 a preencher**.
+
+---|---|
+| [`docs/mesarios/2turno.md`](docs/mesarios/2turno.md) | Fontes, regras do cruzamento, números e premissas. |
+| `saidas/mesarios/2026.10.12_Mesarios_2turno_consolidado.xlsx` | A planilha consolidada. **Contém dados pessoais.** |
+| `saidas/mesarios/entrada/` | As três planilhas de origem, de 12/10/2026. |
+| `scripts/mesarios_2turno.py` | Gera a consolidada; sem `--grava`, só confere. |
+
+**Retrato de 12/10:** 55 de 111 confirmados, 45 sem resposta, déficit de **38 funções**
+para a meta (4 nas 7 urnas Alto/Médio, 3 nas demais), e **16 urnas sem Presidente
+confirmado**.
+
 ---
 
 ## Como rodar
@@ -67,6 +92,11 @@ python3 scripts/separadores_fila.py --grava
 
 # Tema voluntários — confere a composição das três zonas
 python3 scripts/zonas_balanceadas.py
+
+# Mesários do 2º turno — confere e imprime; --grava gera o .xlsx consolidado.
+# Única exceção à regra "só biblioteca padrão": precisa de openpyxl.
+python3 scripts/mesarios_2turno.py
+python3 scripts/mesarios_2turno.py --grava
 ```
 
 ### O que a conferência tem de imprimir
@@ -104,13 +134,15 @@ data/                         prancheta_hall2.json, decisoes.json, grupos_mesas.
 docs/
   TRANSFERENCIA_REALIZADA.md  o que veio de onde, e o que ficou para trás
   contexto_geral.md           orçamento, layout, histórico e taxas de 2022
+  mesarios/                   mesários do 2º turno: fontes, regras, números
   separadores/                o tema dos separadores de fila
   voluntarios/                o tema dos voluntários e do fluxo
 mapa/                         fonte versionada dos artefatos + artefatos.json (manifesto)
   sinalizacao/                as 21 peças P0–P7, os dois mapas e o canvas
 plantas/                      imagens das plantas do Ring 3 e do Hall 2  (a preencher)
 saidas/                       dados.json e as saídas geradas do tema dos separadores
-scripts/                      separadores_fila.py, zonas_balanceadas.py
+  mesarios/                   consolidado do 2º turno + entrada/ (planilhas de origem)
+scripts/                      separadores_fila.py, zonas_balanceadas.py, mesarios_2turno.py
 Identidadevisual/             identidade visual e banner
 Orçamentos/                   orçamentos, incl. sinalização
 ```
