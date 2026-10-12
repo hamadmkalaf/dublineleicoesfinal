@@ -53,11 +53,20 @@ conduzir 11,5 mil eleitores da porta até a mesa. **Desenho definitivo, fechado 
 
 ### Mesários do 2º turno
 
-Cruza a presença do 1º turno, o comparecimento efetivo dos 28 BUs e o formulário de
-confirmação para o 2º turno, e diz quais funções faltam preencher em cada urna.
+Cruza a presença no 1º turno com o formulário de confirmação do 2º e diz, para cada mesário, se deve
+comparecer, se é preciso confirmar ou se não deve comparecer, e quais funções faltam preencher.
 
 | Arquivo | O que é |
 |---|---|
+| [`docs/mesarios/2turno.md`](docs/mesarios/2turno.md) | A regra de expectativa, as fontes, os ajustes e como atualizar. |
+| `saidas/mesarios/2026.10.12_Mesarios_2turno_consolidado.xlsx` | 4 abas: Expectativa, Mesários (onde se edita), Funções a preencher e Por seção. **Contém dados pessoais.** |
+| `saidas/mesarios/entrada/` | As três planilhas de origem, de 12/10/2026. |
+| `scripts/mesarios_2turno.py` | Gera a planilha; sem `--grava`, só confere. |
+
+**Retrato de 12/10:** de 112 funções, 58 devem comparecer, 28 precisam ser confirmadas, 25 não
+devem comparecer e 1 está vaga: **54 a preencher**.
+
+---|---|
 | [`docs/mesarios/2turno.md`](docs/mesarios/2turno.md) | Fontes, regras do cruzamento, números e premissas. |
 | `saidas/mesarios/2026.10.12_Mesarios_2turno_consolidado.xlsx` | A planilha consolidada. **Contém dados pessoais.** |
 | `saidas/mesarios/entrada/` | As três planilhas de origem, de 12/10/2026. |
