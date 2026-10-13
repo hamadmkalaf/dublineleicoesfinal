@@ -107,3 +107,13 @@ anunciável.
 - A `sessao2.md` só existia no remoto no início da sessão; foi preciso `git pull` do branch
   `conflitomaratona` antes de lê-la.
 - As tabelas do PDF são imagens: `pdfimages -png` extrai as sete tabelas legíveis.
+
+## 9. Sessão 4 (13/10/2026) — documento operacional da Dublin Bus
+
+O "Dublin Bus Diversions Document" de 12/10
+(`Dublin Bus - Diversions Document (2026-10-12).pdf`) confirma o aviso de 07/10 em quase
+tudo, mas **a linha 4 provavelmente é desviada por Strand Road desde as 8h e não passa pelo
+RDS**: o "até 11h" é o encurtamento em Townsend St, não a Merrion Road. Com isso, a Merrion
+Road fica com duas horas (9h25 organizador × 10h Garda), não três. Também traz a largada às
+8h45 e o viaduto de Belfield fechado para E1/E2 até 17h. Confronto e correções em
+`sessao4.md`.
