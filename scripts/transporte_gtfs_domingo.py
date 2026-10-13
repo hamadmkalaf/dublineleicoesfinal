@@ -1,5 +1,7 @@
 """Analise GTFS: linhas com paradas perto do portao da Anglesea Road, servico de domingo 25/10/2026.
-uso: python3 -I gtfs_sunday.py <gtfs_dir> <saida.json> [raio_m]
+uso: python3 -I scripts/transporte_gtfs_domingo.py <gtfs_dir> <saida.json> [raio_m]
+Janelas pelos horarios do organizador (pagina "Road Closures" de 13/10): 8h-13h (Hatch St e
+Leeson St Lower fechadas ate 13h) e 13h-17h. Grava a versao enxuta (sem paradas_no_raio).
 """
 import csv, sys, math, json, collections, os
 gtfs, out = sys.argv[1], sys.argv[2]
@@ -96,10 +98,11 @@ for rid, sids in route_stops_any.items():
             'viagens_dia': len(times),
             'primeira': min(times), 'ultima': max(times),
             'viagens_7_18': hw(times, 7, 18)[0], 'headway_medio_min_7_18': hw(times, 7, 18)[1],
-            'viagens_8_11': hw(times, 8, 11)[0], 'headway_medio_min_8_11': hw(times, 8, 11)[1],
-            'viagens_11_17': hw(times, 11, 17)[0], 'headway_medio_min_11_17': hw(times, 11, 17)[1],
+            'viagens_8_13': hw(times, 8, 13)[0], 'headway_medio_min_8_13': hw(times, 8, 13)[1],
+            'viagens_13_17': hw(times, 13, 17)[0], 'headway_medio_min_13_17': hw(times, 13, 17)[1],
             'por_hora': {str(h): sum(1 for t in times if h*3600 <= t < (h+1)*3600) for h in range(6, 19)},
         }
+        del entry['paradas_no_raio']; del entry['domingo']['viagens_7_18']; del entry['domingo']['headway_medio_min_7_18']
         res.append(entry)
 
 # rotas que passam no raio mas sem servico de domingo
@@ -107,8 +110,11 @@ sem_dom = []
 for rid in route_stops_any:
     if sun_trips_by_route[rid] == 0:
         r = routes[rid]
-        sem_dom.append({'linha': r['route_short_name'], 'route_id': rid, 'nome_longo': r['nome_longo'] if 'nome_longo' in r else r['route_long_name'],
+        sem_dom.append({'linha': r['route_short_name'], 'route_id': rid, 'nome_longo': r['route_long_name'],
                         'viagens_total_feed': all_trips_by_route[rid], 'viagens_domingo': 0})
-json.dump({'data': DATE, 'raio_m': RAIO, 'portao_anglesea': G, 'portao_merrion': M, 'servicos_ativos': sorted(active),
-           'linhas': sorted(res, key=lambda e: (e['linha'], e['sentido'])), 'sem_servico_domingo': sem_dom}, open(out, 'w'), ensure_ascii=False, indent=1)
+feed = next(rd('feed_info.txt'), {}) if os.path.exists(os.path.join(gtfs, 'feed_info.txt')) else {}
+json.dump({'data': DATE, 'raio_m': RAIO, 'feed_start_date': feed.get('feed_start_date'),
+           'nota': 'Horario programado de domingo 25/10/2026 (GTFS NTA), na parada mais proxima do portao da Anglesea; '
+                   'nao inclui os desvios da maratona. primeira/ultima em segundos desde 0h. Janelas 8-13h e 13-17h pelo organizador.', 'portao_anglesea': G, 'portao_merrion': M, 'servicos_ativos': sorted(active),
+           'linhas': sorted(res, key=lambda e: (e['linha'], e['sentido'])), 'sem_servico_domingo': sem_dom}, open(out, 'w'), ensure_ascii=False, separators=(',', ':'))
 print('ok', len(res), 'linha/sentido;', len(sem_dom), 'sem domingo', file=sys.stderr)
