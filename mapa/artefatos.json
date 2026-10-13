@@ -89,11 +89,11 @@
    "chave": "linhas_maratona",
    "titulo": "Linhas até o RDS na maratona",
    "url": "https://claude.ai/artifact/Wn9NNUuFZukE5sZp9L1W53",
-   "versao": "1791388004-e389",
+   "versao": "1791901856-900f",
    "caminho": "mapa/linhas_maratona.html",
-   "o_que_e": "Mapa SVG georreferenciado das linhas de ônibus ao redor do RDS em 25/10/2026: traçados do GTFS, percurso da maratona, desvios de 4/7/7A, paradas 774/758/759, caminhada até o portão da Anglesea Road, três cenários (dia normal, até 11h, após 11h). Gerado por scripts/transporte_mapa_linhas.py.",
+   "o_que_e": "Mapa SVG georreferenciado das linhas de ônibus ao redor do RDS em 25/10/2026, com os horários de fechamento do organizador (13/10): traçados do GTFS (12/10), percurso da maratona, desvios de 4/7/7A, paradas 774/758/759, caminhada até o portão da Anglesea Road, três cenários (dia normal, 8h–13h, 13h–17h) e a tabela de fechamentos. Gerado por scripts/transporte_mapa_linhas.py a partir de conflito com maratona/dados/.",
    "estado": "fonte gerada neste repositório (não é cópia da plataforma)",
-   "sha256": "22e4719c079fb3a70d09984fc3d6689cf7f2cb6e7f76ae651dc4f1b7ae1b2072"
+   "sha256": "66d3bf26d990a5510205fb4099a3fb495bdd73fcc2ac95fad5e890068defa1ba"
   }
  ]
 }

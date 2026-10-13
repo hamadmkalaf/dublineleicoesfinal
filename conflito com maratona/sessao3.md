@@ -107,3 +107,12 @@ anunciável.
 - A `sessao2.md` só existia no remoto no início da sessão; foi preciso `git pull` do branch
   `conflitomaratona` antes de lê-la.
 - As tabelas do PDF são imagens: `pdfimages -png` extrai as sete tabelas legíveis.
+
+## 9. Sessão 4 (13/10/2026) — documento da Dublin Bus e refazer pelo organizador
+
+O documento operacional da Dublin Bus de 12/10
+(`Dublin Bus - Diversions Document (2026-10-12).pdf`) confirmou os trajetos. Em seguida o
+usuário mandou **ignorar o 11h da Dublin Bus e usar os horários do organizador**. Ranking,
+divergências e mapa foram refeitos: a linha 4 não passa pelo RDS no dia; E2, 39A, 11 e 11B só
+voltam a Donnybrook às **13h** (Hatch Street e Leeson Street Lower fechadas até 13h); a janela
+crítica passa a 8h–13h. As correções do §5 acima foram aplicadas. Detalhes em `sessao4.md`.

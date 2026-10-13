@@ -1,10 +1,15 @@
-"""Gera mapa/linhas_maratona.html a partir de shapes_linhas.json, geometrias_mapa.json e nom_rds.json.
-uso: python3 -I scripts/transporte_mapa_linhas.py <pasta com os json> mapa/linhas_maratona.html
+"""Gera mapa/linhas_maratona.html a partir dos JSON versionados em "conflito com maratona/dados/":
+shapes_linhas.json (scripts/transporte_shapes_gtfs.py), geometrias_mapa.json, nom_rds.json e
+caminhadas_ate_portoes.json.
+uso: python3 -I scripts/transporte_mapa_linhas.py "conflito com maratona/dados" mapa/linhas_maratona.html
+Horarios: fechamentos de via pela pagina "Road Closures" do organizador (13/10/2026); o 11h da
+Dublin Bus nao e usado. Rotas no dia: documento operacional da Dublin Bus (12/10/2026).
 """
 import json, math, sys, html
 S=sys.argv[1]; OUT=sys.argv[2]
 shapes=json.load(open(f'{S}/shapes_linhas.json')); geo=json.load(open(f'{S}/geometrias_mapa.json'))
 rds=json.load(open(f'{S}/nom_rds.json'))[0]['geojson']['coordinates'][0]
+cam=json.load(open(f'{S}/caminhadas_ate_portoes.json'))
 LAT0,LAT1,LON0,LON1=53.303,53.346,-6.262,-6.198
 K=20000; CX=math.cos(math.radians(53.325))
 def P(la,lo): return (round((lo-LON0)*CX*K,1), round((LAT1-la)*K,1))
@@ -45,11 +50,11 @@ pts=[
  ('774',53.321612,-6.2355,'774 Donnybrook (Garda) · 11 min','stop e'),
  ('758',53.3226869,-6.2376774,'758 Victoria Avenue · 12 min','stop e'),
  ('759',53.320349,-6.233346,'759 Donnybrook Stadium · 13 min','stop e'),
- ('771',53.31588,-6.227781,'771 Teresian School (terminal 39A após 11h) · 16 min','stop e2'),
- ('416',53.3286399,-6.2293696,'416/485 RDS Ballsbridge · 6 min (linha 4 só até ~10h)','stop o'),
+ ('771',53.31588,-6.227781,'771 Teresian School (terminal da 39A no dia) · 16 min','stop e2'),
+ ('416',53.3286399,-6.2293696,'416/485 RDS Ballsbridge · 6 min · sem ônibus em 25/10 (4, 7, 7A desviadas)','stop o'),
  ('smt',53.327928,-6.2210505,'DART Sandymount — FECHADA 24–26/10','dart'),
  ('ldr',53.3337709,-6.2287109,'DART Lansdowne Road — FECHADA 24–26/10','dart'),
- ('sg',53.33276,-6.21521,'Sandymount (desvio 4/7/7A após 11h) · 21 min, cruza o percurso','stop d'),
+ ('sg',53.33276,-6.21521,'Sandymount Green (desvio de 4/7/7A) · 21 min, cruza o percurso','stop d'),
 ]
 for id_,la,lo,label,cls in pts:
     x,y=P(la,lo)
@@ -70,7 +75,7 @@ for t,la,lo,rot in labels:
     cls='rua' if rot else 'lugar'
     g.append(f'<text class="{cls}" x="{x}" y="{y}" transform="rotate({rot} {x} {y})">{html.escape(t)}</text>')
 # anotações de linhas
-ann=[('E1 · E2 · 39A (e 14, 11, 44 no desvio)',53.3135,-6.2335,-33,'eixo'),('4 (até ~10h) · 7 · 7A (não rodam no dia)',53.3128,-6.2060,-48,'l4'),
+ann=[('E1 · E2 · 39A · 11B (e 14, 11, 44 no desvio)',53.3135,-6.2335,-33,'eixo'),('4 · 7 · 7A: rota normal',53.3165,-6.2120,-48,'l4'),
      ('desvio 4 · 7 · 7A por Strand Road',53.3300,-6.2060,-62,'desvio'),('percurso da maratona',53.3212,-6.2172,-40,'mar'),
      ('11 min a pé',53.3238,-6.2345,-55,'camt')]
 for t,la,lo,rot,cls in ann:
@@ -79,6 +84,37 @@ for t,la,lo,rot,cls in ann:
 x0,y0=P(53.3045,-6.2600); x1,_=P(53.3045,-6.2600+500/(111320*CX))
 g.append(f'<g class="escala"><line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y0}"/><text x="{x0}" y="{y0-6}">500 m</text></g>')
 svg='\n'.join(g)
+# --- tabela de caminhadas (de caminhadas_ate_portoes.json)
+CAM=[('774','774 Donnybrook (Garda Station)','E1 o dia todo; E2, 39A, 11B a partir de 13h','Não'),
+     ('758','758 Victoria Avenue','E1 o dia todo; E2, 39A, 11B a partir de 13h','Não'),
+     ('759','759 Donnybrook Stadium','E1 o dia todo; E2, 39A, 11B a partir de 13h','Não'),
+     ('771','771 Teresian School','39A (terminal), a partir de 13h','Não'),
+     ('416','416 / 485 RDS Ballsbridge','Nenhuma: 4, 7 e 7A desviadas desde as 8h','Está no percurso'),
+     ('Sandymount Green (desvio 4/7/7A, Sandymount Rd)','Sandymount Green','4, 7, 7A no desvio, o dia todo','Sim'),
+     ('DART-SMT','DART Sandymount','Sem trens em 25/10','Sim'),
+     ('Sussex Road (terminal E1 ate 13h)','Sussex Road (terminal da E1 até 13h)','E1, ponta norte até 13h','Não')]
+lin=['<div class="tw"><table>','<tr><th>Parada</th><th>Linhas no dia</th><th class="n">Distância</th><th class="n">Tempo a 4,8 km/h</th><th>Cruza o percurso?</th></tr>']
+for k,nome,lns,cruza in CAM:
+    m=cam[k]['anglesea_m']
+    dist=f'{m:,}'.replace(',','.'); mins=f'{m/80:.1f}'.replace('.',',')
+    lin.append(f'<tr><td>{html.escape(nome)}</td><td>{html.escape(lns)}</td><td class="n">{dist} m</td><td class="n">{mins} min</td><td>{cruza}</td></tr>')
+lin.append('</table></div>')
+tab_cam='\n'.join(lin)
+FECH=[('Merrion Road (sentido cidade)','9h25','17h30','A porta do RDS; tira a 4, 7 e 7A'),
+      ('Northumberland Road (Haddington Rd → Mount St Lower)','3h30','20h30','Rota normal de 4, 7 e 7A'),
+      ('Northumberland Road (Haddington Rd → Lansdowne Rd)','6h','18h30','Rota normal de 4, 7 e 7A'),
+      ('Mount Street Lower','3h30','17h30','Rota normal de 4, 7 e 7A'),
+      ('Leeson Street Lower e Hatch Street','3h30','13h','Saída do centro para Donnybrook (E1, E2, 39A, 11, 11B, 14)'),
+      ('Earlsfort Terrace','7h','11h','Desvio de 11, 14, 39A e 44'),
+      ('Stillorgan Road (N11), corredor de ônibus','9h15 / 9h30','16h30 / 17h','Ônibus do eixo em tráfego geral'),
+      ('Viaduto da UCD (Belfield)','9h30','17h','39A termina na 771; E1 e E2 passam por baixo'),
+      ('Nutley Lane','8h40','17h','Linha 47'),
+      ("Foster's Avenue (os dois sentidos)",'9h10','16h30','Retorno pela N11 de quem vem de carro')]
+lin=['<div class="tw"><table>','<tr><th>Via</th><th class="n">Fecha</th><th class="n">Reabre</th><th>O que afeta</th></tr>']
+for v,a_,b_,o in FECH:
+    lin.append(f'<tr><td>{html.escape(v)}</td><td class="n">{a_}</td><td class="n">{b_}</td><td>{html.escape(o)}</td></tr>')
+lin.append('</table></div>')
+tab_fech='\n'.join(lin)
 
 page=f'''<title>Linhas até o RDS na maratona</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,400;87.5,600;87.5,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -121,7 +157,7 @@ text{{font-family:Archivo,sans-serif;font-stretch:87.5%;fill:var(--fg)}}
 /* cenários */
 svg.normal .desvio, svg.normal .maratona, svg.normal .maratona-halo, svg.normal .corredor, svg.normal .ann.desvio, svg.normal .ann.mar{{display:none}}
 svg.normal .pt.dart circle{{fill:var(--eixo)}}
-svg.manha .corredor{{opacity:.55}} svg.manha .l7{{stroke:var(--malha)}} svg.manha .pt.d{{display:none}}
+svg.manha .corredor{{opacity:.55}} svg.manha .l4,svg.manha .l7{{stroke:var(--malha)}} svg.manha .ann.l4{{fill:var(--muted)}} svg.manha .pt.o circle{{fill:var(--malha)}}
 svg.tarde .l4,svg.tarde .l7{{stroke:var(--malha)}} svg.tarde .ann.l4{{fill:var(--muted)}} svg.tarde .pt.o circle{{fill:var(--malha)}}
 svg.manha .ann.l4,svg.tarde .ann.l4{{}}
 .leg{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px 20px;margin:14px 0 0;padding:0;list-style:none;font-family:Archivo,sans-serif;font-stretch:87.5%;font-size:.88rem}}
@@ -137,23 +173,23 @@ td.n{{text-align:right;white-space:nowrap}}
 @media (prefers-reduced-motion:no-preference){{.linha,.pt circle{{transition:stroke .25s,fill .25s,opacity .25s}}}}
 </style>
 <h1>Linhas de ônibus até o RDS no dia da maratona</h1>
-<p class="sub">Domingo 25/10/2026, 2º turno, 8h–17h. Portão de eleitores na Anglesea Road. Traçados do GTFS da NTA (06/10), desvios do aviso da Dublin Bus (07/10), fechamentos da Garda (18/9) e caminhadas medidas no OpenStreetMap.</p>
+<p class="sub">Domingo 25/10/2026, 2º turno, 8h–17h. Portão de eleitores na Anglesea Road. Horários de fechamento pelo organizador (página “Road Closures”, 13/10); rotas do dia pelo documento operacional da Dublin Bus (12/10); traçados do GTFS da NTA (12/10); caminhadas medidas no OpenStreetMap.</p>
 <div class="cen" role="group" aria-label="Cenário">
 <button type="button" id="b-normal" data-cen="normal" aria-pressed="false">Dia normal</button>
-<button type="button" id="b-manha" data-cen="manha" aria-pressed="true">25/10 · até 11h</button>
-<button type="button" id="b-tarde" data-cen="tarde" aria-pressed="false">25/10 · a partir de 11h</button>
+<button type="button" id="b-manha" data-cen="manha" aria-pressed="true">25/10 · 8h–13h</button>
+<button type="button" id="b-tarde" data-cen="tarde" aria-pressed="false">25/10 · 13h–17h</button>
 </div>
 <p class="nota" id="nota"></p>
 <div class="mapa"><svg class="manha" viewBox="0 0 {W} {H}" role="img" aria-label="Mapa das linhas de ônibus ao redor do RDS, Ballsbridge e Donnybrook">
 {svg}
 </svg></div>
 <ul class="leg">
-<li><span class="sw" style="border-color:var(--eixo)"></span>E1 · E2 · 39A pela Donnybrook Road (E2 e 39A só após 11h)</li>
+<li><span class="sw" style="border-color:var(--eixo)"></span>Eixo de Donnybrook: E1 o dia todo; E2, 39A e 11B a partir de 13h</li>
 <li><span class="sw cor"></span>Corredor de desvio da 14, 11 e 44 (paradas não confirmadas)</li>
-<li><span class="sw" style="border-color:var(--l4)"></span>Linha 4 pela Merrion Road (até o fechamento, 9h40–11h)</li>
-<li><span class="sw" style="border-color:var(--l7)"></span>7 e 7A, rota normal: não rodam por aqui em 25/10</li>
-<li><span class="sw dash" style="border-color:var(--l4)"></span>Desvio de 4, 7 e 7A por Ringsend, Sandymount e Strand Road</li>
-<li><span class="sw band"></span>Percurso da maratona (Merrion Road fechada 9h40–17h30)</li>
+<li><span class="sw" style="border-color:var(--l4)"></span>Linha 4, rota normal: só em dia normal</li>
+<li><span class="sw" style="border-color:var(--l7)"></span>7 e 7A, rota normal: só em dia normal</li>
+<li><span class="sw dash" style="border-color:var(--l4)"></span>Desvio de 4, 7 e 7A por Ringsend, Sandymount e Strand Road, desde as 8h</li>
+<li><span class="sw band"></span>Percurso da maratona (Merrion Road, sentido cidade, fechada 9h25–17h30)</li>
 <li><span class="sw dot"></span>Caminhada medida até o portão</li>
 <li><span class="sw ring"></span>Portão da Anglesea Road (ponto assumido)</li>
 <li><span class="sw pin" style="background:var(--eixo)"></span>Paradas 774, 758, 759 confirmadas pela prefeitura</li>
@@ -161,22 +197,15 @@ td.n{{text-align:right;white-space:nowrap}}
 <li><span class="sw" style="border-color:var(--malha)"></span>Outras ruas com ônibus (traçados do GTFS)</li>
 </ul>
 <h2>Caminhada de cada parada ao portão da Anglesea Road</h2>
-<div class="tw"><table>
-<tr><th>Parada</th><th>Linhas no dia</th><th class="n">Distância</th><th class="n">Tempo a 4,8 km/h</th><th>Cruza o percurso?</th></tr>
-<tr><td>774 Donnybrook (Garda Station)</td><td>E1 o dia todo; E2, 39A, 11B após 11h</td><td class="n">884 m</td><td class="n">11 min</td><td>Não</td></tr>
-<tr><td>758 Victoria Avenue</td><td>E1 o dia todo; E2, 39A, 11B após 11h</td><td class="n">932 m</td><td class="n">12 min</td><td>Não</td></tr>
-<tr><td>759 Donnybrook Stadium</td><td>E1 o dia todo; E2, 39A, 11B após 11h</td><td class="n">1.025 m</td><td class="n">13 min</td><td>Não</td></tr>
-<tr><td>771 Teresian School</td><td>39A (terminal após 11h)</td><td class="n">1.256 m</td><td class="n">16 min</td><td>Não</td></tr>
-<tr><td>416 / 485 RDS Ballsbridge</td><td>4, só até o fechamento da Merrion Road</td><td class="n">438 m</td><td class="n">6 min</td><td>Está no percurso</td></tr>
-<tr><td>Sandymount (desvio de 4/7/7A)</td><td>4, 7, 7A após 11h</td><td class="n">1.664 m</td><td class="n">21 min</td><td>Sim</td></tr>
-<tr><td>DART Sandymount</td><td>Sem trens em 25/10</td><td class="n">921 m</td><td class="n">12 min</td><td>Sim</td></tr>
-</table></div>
-<p class="fonte">O ponto do portão é o meio da testada do RDS Arena na Anglesea Road, premissa até o RDS confirmar. O percurso da maratona e os desvios foram traçados sobre a malha viária do OpenStreetMap a partir das descrições por escrito; os traçados de linha são os do GTFS. Fonte dos dados e método em <code>conflito com maratona/ranking_linhas_rds.md</code>.</p>
+{tab_cam}
+<h2>Fechamentos que decidem o acesso, pelo organizador</h2>
+{tab_fech}
+<p class="fonte">Horários da página “Road Closures” do organizador, capturada em 13/10/2026; ela avisa que podem mudar. A Garda dá 10h para a Merrion Road; a Dublin Bus prevê as linhas de Donnybrook pelo centro às 11h. O plano usa o organizador. O ponto do portão é o meio da testada do RDS Arena na Anglesea Road, premissa até o RDS confirmar. O percurso da maratona e os desvios foram traçados sobre a malha viária do OpenStreetMap a partir das descrições por escrito; os traçados de linha são os do GTFS. Fonte dos dados e método em <code>conflito com maratona/ranking_linhas_rds.md</code>.</p>
 <script>
 (function(){{
 var notas={{normal:"Dia normal: 4, 7 e 7A param na porta do RDS (Merrion Road); E1, E2, 39A e 11B passam por Donnybrook, a 11–13 min a pé do portão da Anglesea.",
-manha:"Até 11h em 25/10: só a E1 serve Donnybrook (vinda do sul, até Sussex Road). A 4 roda pela Merrion Road até o fechamento (9h40 pelo organizador, 10h pela Garda, 11h pela Dublin Bus). 7 e 7A já estão desviadas por Strand Road. DART sem trens em Sandymount e Lansdowne Road.",
-tarde:"A partir de 11h: E1, E2 e 39A a cada ~15 min por Donnybrook, mais 11B, 14, 11 e 44 no mesmo corredor. 4, 7 e 7A seguem por Ringsend e Strand Road, do outro lado do percurso. Merrion Road fechada até 17h30."}};
+manha:"8h–13h em 25/10: só a E1 serve Donnybrook (~17 min por sentido), e só a partir do sul: até 13h ela termina em Sussex Road, porque Hatch Street e Leeson Street Lower, por onde a Dublin Bus a faria voltar ao centro, ficam fechadas até 13h pelo organizador. A 14 (Dundrum ↔ Adelaide Road) passa pelo corredor. Nenhum ônibus na porta do RDS: Mount Street Lower e Northumberland Road fecham desde 3h30, a Merrion Road (sentido cidade) às 9h25; 4, 7 e 7A vão por Strand Road desde as 8h. DART sem trens em Sandymount e Lansdowne Road.",
+tarde:"13h–17h: reabrem Hatch Street e Leeson Street Lower. E1, E2 e 39A a cada ~15 min por Donnybrook (a 39A termina na 771), mais 11B, 14, 11 e 44 no mesmo corredor. A Dublin Bus prevê esta fase às 11h; pelo organizador, só às 13h. 4, 7 e 7A seguem por Strand Road. Merrion Road fechada até 17h30."}};
 var svg=document.querySelector('svg'),nota=document.getElementById('nota'),bs=document.querySelectorAll('.cen button');
 function set(c){{svg.setAttribute('class',c);nota.textContent=notas[c];bs.forEach(function(b){{b.setAttribute('aria-pressed',String(b.dataset.cen===c));}});try{{localStorage.setItem('cen',c);}}catch(e){{}}}}
 bs.forEach(function(b){{b.addEventListener('click',function(){{set(b.dataset.cen);}});}});
