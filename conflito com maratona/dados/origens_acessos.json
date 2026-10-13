@@ -1,0 +1,156 @@
+[
+ {
+  "regiao": "Norte",
+  "nome": "Drumcondra",
+  "lat": 53.3680988,
+  "lon": -6.2554727,
+  "osm": "Drumcondra, Botanic B ED, Dublin, County Dublin, Leinster, Éire / Irel"
+ },
+ {
+  "regiao": "Norte",
+  "nome": "Clontarf",
+  "lat": 53.3608138,
+  "lon": -6.1968538,
+  "osm": "Clontarf, Clontarf East C Ward 1986, Dublin, County Dublin, Leinster, "
+ },
+ {
+  "regiao": "Norte",
+  "nome": "Finglas",
+  "lat": 53.389167,
+  "lon": -6.296944,
+  "osm": "Finglas, Ballygall A ED, Dublin, County Dublin, Leinster, Éire / Irela"
+ },
+ {
+  "regiao": "Norte",
+  "nome": "Swords",
+  "lat": 53.4594799,
+  "lon": -6.219175,
+  "osm": "Swords, Fingal, County Dublin, Leinster, Éire / Ireland"
+ },
+ {
+  "regiao": "Norte",
+  "nome": "Phibsborough",
+  "lat": 53.3610883,
+  "lon": -6.2713186,
+  "osm": "Phibsborough, Cabra East A Ward 1986, Dublin, County Dublin, Leinster,"
+ },
+ {
+  "regiao": "Centro",
+  "nome": "O'Connell Street Upper",
+  "lat": 53.3522487,
+  "lon": -6.261209,
+  "osm": "O'Connell Street Upper, Hardwicke Street Flats, Rotunda A Ward 1986, D"
+ },
+ {
+  "regiao": "Centro-sul",
+  "nome": "Rathmines",
+  "lat": 53.3265199,
+  "lon": -6.2648571,
+  "osm": "Rathmines, Rathmines West B ED, Dublin, County Dublin, Leinster, D06 Y"
+ },
+ {
+  "regiao": "Centro-sul",
+  "nome": "Ranelagh",
+  "lat": 53.3252185,
+  "lon": -6.2550504,
+  "osm": "Ranelagh, Rathmines East D Ward 1986, Dublin, County Dublin, Leinster,"
+ },
+ {
+  "regiao": "Sul",
+  "nome": "Rathfarnham",
+  "lat": 53.2973285,
+  "lon": -6.2807096,
+  "osm": "Rathfarnham, South Dublin, County Dublin, Leinster, Éire / Ireland"
+ },
+ {
+  "regiao": "Sul",
+  "nome": "Dundrum",
+  "lat": 53.2891457,
+  "lon": -6.2433756,
+  "osm": "Dundrum, Dún Laoghaire-Rathdown, County Dublin, Leinster, D14 V9R3, Éi"
+ },
+ {
+  "regiao": "Sul",
+  "nome": "Stillorgan",
+  "lat": 53.2888378,
+  "lon": -6.198343,
+  "osm": "Stillorgan, Stillorgan-Merville DED 1986, Blackrock, Dún Laoghaire-Rat"
+ },
+ {
+  "regiao": "Sul",
+  "nome": "Sandyford",
+  "lat": 53.2698337,
+  "lon": -6.2245713,
+  "osm": "Sandyford, Dún Laoghaire-Rathdown, County Dublin, Leinster, D18 CY97, "
+ },
+ {
+  "regiao": "Leste",
+  "nome": "Ringsend",
+  "lat": 53.341944,
+  "lon": -6.226389,
+  "osm": "Ringsend, Pembroke East A ED, Dublin, County Dublin, Leinster, D04 Y97"
+ },
+ {
+  "regiao": "Leste",
+  "nome": "Sandymount",
+  "lat": 53.3279999,
+  "lon": -6.2209624,
+  "osm": "Sandymount, Sandymount Avenue, Sandymount, Pembroke East B Ward 1986, "
+ },
+ {
+  "regiao": "Leste",
+  "nome": "East Wall",
+  "lat": 53.3540688,
+  "lon": -6.233519,
+  "osm": "East Wall, North Dock B Ward 1986, Dublin, County Dublin, Leinster, D0"
+ },
+ {
+  "regiao": "Sudeste",
+  "nome": "Blackrock",
+  "lat": 53.3018639,
+  "lon": -6.1788342,
+  "osm": "Blackrock, Dún Laoghaire-Rathdown, County Dublin, Leinster, A94 VP03, "
+ },
+ {
+  "regiao": "Sudeste",
+  "nome": "Dún Laoghaire",
+  "lat": 53.2922794,
+  "lon": -6.1360079,
+  "osm": "Dún Laoghaire, Dún Laoghaire-Rathdown, County Dublin, Leinster, A96 T8"
+ },
+ {
+  "regiao": "Oeste",
+  "nome": "Inchicore",
+  "lat": 53.3394635,
+  "lon": -6.3209233,
+  "osm": "Inchicore, Ballyfermot F ED, Dublin, County Dublin, Leinster, D08 PN20"
+ },
+ {
+  "regiao": "Oeste",
+  "nome": "Crumlin",
+  "lat": 53.3202316,
+  "lon": -6.3161673,
+  "osm": "Crumlin, Walkinstown C Ward 1986, Dublin, County Dublin, Leinster, Éir"
+ },
+ {
+  "regiao": "Oeste",
+  "nome": "Tallaght",
+  "lat": 53.2878082,
+  "lon": -6.362355,
+  "osm": "Tallaght, South Dublin, County Dublin, Leinster, D24 DE62, Éire / Irel"
+ },
+ {
+  "regiao": "Oeste",
+  "nome": "Clondalkin",
+  "lat": 53.3219624,
+  "lon": -6.3942689,
+  "osm": "Clondalkin, South Dublin, County Dublin, Leinster, Éire / Ireland"
+ },
+ {
+  "regiao": "Oeste",
+  "nome": "Lucan",
+  "lat": 53.3567157,
+  "lon": -6.4501534,
+  "osm": "Lucan, South Dublin, County Dublin, Leinster, K78 HF83, Éire / Ireland"
+ }
+]
