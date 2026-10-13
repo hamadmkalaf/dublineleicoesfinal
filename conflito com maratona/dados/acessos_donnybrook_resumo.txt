@@ -1,0 +1,147 @@
+
+## Norte · Drumcondra
+  normal: Morehampton 10–10 min · Baggot Street Lower > Waterloo Road > Morehampton Road  | alt: Anglesea 10, Herbert Park 10, Marlborough 11, Belmont 11
+  7h45–9h30: Anglesea 10–10 min · Grand Canal Street Upper > Shelbourne Road > Anglesea Road  | alt: Herbert Park 10, Morehampton 11, Beaver Row 11, Marlborough 11
+  9h30–10h30: Beaver Row 21–21 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Ailesbury 22, Eglinton 22, N11 22, Belmont 22
+  10h30–13h00: Morehampton 11–12 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 12, Belmont 12, Herbert Park 13, Beaver Row 13
+  13h00–17h15: Morehampton 11–11 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 12, Belmont 12, Herbert Park 13, Beaver Row 13
+
+## Norte · Clontarf
+  normal: Morehampton 13–13 min · Waterloo Road > Morehampton Road  | alt: Anglesea 13, Herbert Park 14, Marlborough 14, Beaver Row 14
+  7h45–9h30: Anglesea 13–13 min · Grand Canal Street Upper > Shelbourne Road > Anglesea Road  | alt: Herbert Park 14, Morehampton 14, Beaver Row 14, Marlborough 14
+  9h30–10h30: Beaver Row 23–23 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Eglinton 24, Ailesbury 24, N11 24, Belmont 24
+  10h30–13h00: Morehampton 17–17 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 17, Belmont 18, Herbert Park 18, Beaver Row 19
+  13h00–17h15: Morehampton 17–17 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 17, Belmont 18, Herbert Park 18, Beaver Row 18
+
+## Norte · Finglas
+  normal: Morehampton 16–16 min · Baggot Street Lower > Waterloo Road > Morehampton Road  | alt: Herbert Park 16, Anglesea 16, Marlborough 16, Eglinton 17
+  7h45–8h15: Morehampton 16–16 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Anglesea 16, Herbert Park 16, Marlborough 17, Eglinton 17
+  8h15–9h30: Anglesea 16–16 min · Grand Canal Street Upper > Shelbourne Road > Anglesea Road  | alt: Herbert Park 16, Morehampton 17, Marlborough 17, Beaver Row 17
+  9h30–10h30: Beaver Row 27–27 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Morehampton 28, Marlborough 28, Eglinton 28, Ailesbury 28
+  10h30–13h00: Morehampton 16–18 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 16, Belmont 17, Herbert Park 17, Beaver Row 18
+  13h00–17h15: Morehampton 16–16 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 16, Belmont 17, Herbert Park 17, Beaver Row 18
+
+## Norte · Swords
+  normal: Morehampton 19–19 min · East Wall Road > Waterloo Road > Morehampton Road  | alt: Anglesea 19, Herbert Park 19, Marlborough 20, Belmont 20
+  7h45–9h30: Anglesea 19–19 min · East Wall Road > Grand Canal Street Upper > Shelbourne Road > Anglesea Road  | alt: Herbert Park 19, Morehampton 20, Marlborough 20, Beaver Row 20
+  9h30–10h30: Beaver Row 28–28 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Ailesbury 29, Eglinton 29, N11 29, Belmont 29
+  10h30–13h00: Morehampton 24–24 min · East Wall Road > Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 24, Belmont 25, Herbert Park 25, Beaver Row 26
+  13h00–17h15: Morehampton 24–24 min · East Wall Road > Leeson Street Upper > Morehampton Road  | alt: Marlborough 24, Belmont 25, Herbert Park 25, Beaver Row 26
+
+## Norte · Phibsborough
+  normal: Morehampton 9–9 min · Baggot Street Lower > Waterloo Road > Morehampton Road  | alt: Herbert Park 10, Anglesea 10, Marlborough 10, Belmont 10
+  7h45–9h30: Anglesea 10–10 min · Grand Canal Street Upper > Shelbourne Road > Anglesea Road  | alt: Herbert Park 10, Morehampton 11, Marlborough 11, Beaver Row 11
+  9h30–10h30: Beaver Row 21–21 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Ailesbury 22, N11 22, Eglinton 22, Belmont 22
+  10h30–13h00: Morehampton 10–12 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 10, Belmont 11, Herbert Park 11, Beaver Row 12
+  13h00–17h15: Morehampton 10–10 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 10, Belmont 11, Herbert Park 11, Beaver Row 12
+
+## Centro · O'Connell Street Upper
+  normal: Morehampton 7–7 min · Baggot Street Lower > Waterloo Road > Morehampton Road  | alt: Anglesea 8, Herbert Park 8, Marlborough 8, Belmont 8
+  7h45–9h30: Anglesea 8–8 min · Grand Canal Street Upper > Shelbourne Road > Anglesea Road  | alt: Herbert Park 8, Morehampton 8, Beaver Row 9, Marlborough 9
+  9h30–10h30: Beaver Row 19–19 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Eglinton 19, Ailesbury 20, N11 20, Belmont 20
+  10h30–13h00: Morehampton 10–10 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 10, Belmont 10, Herbert Park 11, Beaver Row 11
+  13h00–17h15: Morehampton 9–9 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 10, Belmont 10, Herbert Park 11, Beaver Row 11
+
+## Centro-sul · Rathmines
+  normal: Morehampton 4–4 min · Rathmines Road Lower > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 4, Eglinton 5, Belmont 5, Herbert Park 6
+  7h45–17h15: Morehampton 4–4 min · Rathmines Road Lower > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 4, Belmont 5, Herbert Park 6, Beaver Row 6
+
+## Centro-sul · Ranelagh
+  normal: Marlborough 2–2 min · Ranelagh  | alt: Morehampton 3, Eglinton 3, Belmont 4, Herbert Park 4
+  7h45–17h15: Marlborough 2–2 min · Ranelagh  | alt: Morehampton 3, Belmont 4, Herbert Park 4, Beaver Row 4
+
+## Sul · Rathfarnham
+  normal: Marlborough 10–10 min · Rathgar Road > Ranelagh  | alt: Eglinton 10, Morehampton 10, Belmont 10, Beaver Row 11
+  7h45–8h00: Marlborough 10–10 min · Rathgar Road > Ranelagh  | alt: Eglinton 10, Morehampton 10, Belmont 10, Beaver Row 11
+  8h00–9h00: Marlborough 10–10 min · Terenure Road North > Harold's Cross Road > Ranelagh  | alt: Morehampton 10, Eglinton 10, Belmont 11, Herbert Park 11
+  9h00–9h15: Eglinton 11–11 min · Orwell Road > Milltown Road > Eglinton Road  | alt: Beaver Row 12, Marlborough 12, Ailesbury 13, Belmont 13
+  9h15–16h00: Beaver Row 17–17 min · Churchtown Road Upper > Taney Road > Stillorgan Road  | alt: Ailesbury 17, Eglinton 17, N11 18, Belmont 18
+  16h00–17h15: Marlborough 10–10 min · Rathgar Road > Ranelagh  | alt: Eglinton 10, Morehampton 10, Belmont 10, Beaver Row 11
+
+## Sul · Dundrum
+  normal: Eglinton 6–6 min · Dundrum Road > Milltown Road > Eglinton Road  | alt: Beaver Row 7, Marlborough 8, Ailesbury 8, Belmont 8
+  7h45–9h15: Eglinton 6–6 min · Dundrum Road > Milltown Road > Eglinton Road  | alt: Beaver Row 7, Marlborough 8, Ailesbury 8, Belmont 8
+  9h15–16h00: Beaver Row 12–12 min · Taney Road > Stillorgan Road  | alt: Eglinton 12, Ailesbury 12, N11 12, Belmont 13
+  16h00–16h30: Marlborough 8–8 min · Dundrum Road > Milltown Road > Sandford Road  | alt: Morehampton 9, Belmont 9, Herbert Park 9, Beaver Row 10
+  16h30–17h15: Eglinton 6–6 min · Dundrum Road > Milltown Road > Eglinton Road  | alt: Beaver Row 7, Marlborough 8, Ailesbury 8, Belmont 8
+
+## Sul · Stillorgan
+  normal: Beaver Row 7–7 min · Stillorgan Road  | alt: Eglinton 8, Ailesbury 8, N11 8, Belmont 8
+  7h45–17h15: Beaver Row 7–7 min · Stillorgan Road  | alt: Eglinton 8, Ailesbury 8, N11 8, Belmont 8
+
+## Sul · Sandyford
+  normal: Beaver Row 10–10 min · Clonskeagh Road  | alt: Eglinton 11, Ailesbury 12, N11 12, Marlborough 12
+  7h45–9h15: Beaver Row 10–10 min · Clonskeagh Road  | alt: Eglinton 11, Ailesbury 12, N11 12, Marlborough 12
+  9h15–16h30: Beaver Row 11–11 min · Stillorgan Road  | alt: Eglinton 12, Ailesbury 12, N11 12, Belmont 12
+  16h30–17h15: Beaver Row 10–10 min · Clonskeagh Road  | alt: Eglinton 11, Ailesbury 12, N11 12, Marlborough 12
+
+## Leste · Ringsend
+  normal: Anglesea 5–5 min · South Lotts Road > Shelbourne Road > Anglesea Road  | alt: Herbert Park 5, Morehampton 6, Marlborough 6, Beaver Row 6
+  7h45–9h30: Anglesea 5–5 min · South Lotts Road > Shelbourne Road > Anglesea Road  | alt: Herbert Park 5, Morehampton 6, Marlborough 6, Beaver Row 6
+  9h30–10h30: Beaver Row 14–14 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Eglinton 15, Ailesbury 15, N11 15, Belmont 16
+  10h30–13h00: Morehampton 12–12 min · Ringsend Road > Pearse Street > Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 12, Belmont 13, Herbert Park 13, Beaver Row 13
+  13h00–17h15: Morehampton 12–12 min · Ringsend Road > Pearse Street > Leeson Street Upper > Morehampton Road  | alt: Marlborough 12, Belmont 12, Herbert Park 13, Beaver Row 13
+
+## Leste · Sandymount
+  normal: Anglesea 3–3 min · Merrion Road > Anglesea Road  | alt: Ailesbury 3, Beaver Row 3, Herbert Park 4, Eglinton 4
+  7h45–9h30: Anglesea 3–3 min · Merrion Road > Anglesea Road  | alt: Ailesbury 3, Beaver Row 3, Herbert Park 4, Eglinton 4
+  9h30–17h00: Beaver Row 13–13 min · Gilford Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Ailesbury 14, Eglinton 14, N11 14, Belmont 14
+  17h00–17h15: Beaver Row 12–12 min · Gilford Road > Strand Road > Merrion Road > Woodbine Road > Stillorgan Road  | alt: Eglinton 12, Ailesbury 12, N11 12, Belmont 13
+
+## Leste · East Wall
+  normal: Morehampton 8–8 min · Waterloo Road > Morehampton Road  | alt: Anglesea 8, Herbert Park 8, Marlborough 9, Belmont 9
+  7h45–9h30: Anglesea 8–8 min · Grand Canal Street Upper > Shelbourne Road > Anglesea Road  | alt: Herbert Park 8, Morehampton 9, Marlborough 9, Beaver Row 9
+  9h30–10h30: Beaver Row 19–19 min · Beach Road > Strand Road > Merrion Road > Rock Road > Booterstown Avenue > Stillorgan Road  | alt: Ailesbury 19, N11 19, Eglinton 19, Belmont 20
+  10h30–13h00: Morehampton 13–13 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 14, Belmont 14, Herbert Park 14, Beaver Row 15
+  13h00–17h15: Morehampton 13–13 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 14, Belmont 14, Herbert Park 14, Beaver Row 15
+
+## Sudeste · Blackrock
+  normal: Ailesbury 7–7 min · Rock Road > Merrion Road > Ailesbury Road  | alt: Beaver Row 8, Eglinton 9, N11 9, Belmont 9
+  7h45–9h30: Ailesbury 7–7 min · Rock Road > Merrion Road > Ailesbury Road  | alt: Beaver Row 8, Eglinton 9, N11 9, Belmont 9
+  9h30–17h15: Beaver Row 8–8 min · Mount Merrion Avenue > Stillorgan Road  | alt: Eglinton 9, Ailesbury 9, N11 9, Belmont 9
+
+## Sudeste · Dún Laoghaire
+  normal: Ailesbury 10–10 min · Rock Road > Merrion Road > Ailesbury Road  | alt: Beaver Row 11, Eglinton 12, N11 12, Anglesea 12
+  7h45–9h30: Ailesbury 10–10 min · Rock Road > Merrion Road > Ailesbury Road  | alt: Beaver Row 11, Eglinton 12, N11 12, Anglesea 12
+  9h30–17h15: Beaver Row 12–12 min · Mount Merrion Avenue > Stillorgan Road  | alt: Ailesbury 12, N11 12, Eglinton 12, Belmont 12
+
+## Oeste · Inchicore
+  normal: Morehampton 10–10 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 10, Eglinton 11, Belmont 11, Herbert Park 12
+  7h45–8h45: Morehampton 10–11 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 10, Eglinton 11, Belmont 11, Herbert Park 12
+  8h45–9h00: Marlborough 22–22 min · M50 > Terenure Road North > Harold's Cross Road > Ranelagh  | alt: Eglinton 22, Morehampton 22, Belmont 22, Beaver Row 23
+  9h00–9h15: Beaver Row 23–23 min · Clonskeagh Road  | alt: Eglinton 23, Marlborough 24, Ailesbury 24, N11 24
+  9h15–14h00: Beaver Row 24–24 min · Stillorgan Road  | alt: Ailesbury 25, Eglinton 25, N11 25, Belmont 25
+  14h00–14h30: Morehampton 12–12 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 12, Belmont 13, Herbert Park 13, Beaver Row 14
+  14h30–17h15: Morehampton 10–10 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 10, Belmont 11, Herbert Park 12, Beaver Row 12
+
+## Oeste · Crumlin
+  normal: Morehampton 10–10 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 11, Eglinton 11, Belmont 11, Herbert Park 12
+  7h45–17h15: Morehampton 10–11 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 11, Belmont 12, Herbert Park 12, Beaver Row 12
+
+## Oeste · Tallaght
+  normal: Marlborough 16–16 min · Rathgar Road > Ranelagh  | alt: Morehampton 16, Eglinton 16, Belmont 17, Beaver Row 17
+  7h45–8h00: Marlborough 16–16 min · Rathgar Road > Ranelagh  | alt: Morehampton 16, Eglinton 16, Belmont 17, Beaver Row 17
+  8h00–9h00: Marlborough 16–16 min · Terenure Road North > Harold's Cross Road > Ranelagh  | alt: Morehampton 16, Eglinton 16, Belmont 17, Beaver Row 18
+  9h00–9h15: Beaver Row 18–18 min · M50 > Clonskeagh Road  | alt: Eglinton 18, Marlborough 19, Ailesbury 20, N11 20
+  9h15–15h00: Beaver Row 19–19 min · M50 > Stillorgan Road  | alt: Ailesbury 20, Eglinton 20, N11 20, Belmont 20
+  15h00–16h00: Morehampton 18–18 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 18, Belmont 19, Herbert Park 19, Beaver Row 19
+  16h00–17h15: Marlborough 16–16 min · Rathgar Road > Ranelagh  | alt: Morehampton 16, Eglinton 16, Belmont 17, Beaver Row 17
+
+## Oeste · Clondalkin
+  normal: Morehampton 18–18 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 19, Eglinton 19, Belmont 19, Herbert Park 20
+  7h45–8h45: Morehampton 19–20 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 19, Eglinton 20, Belmont 20, Herbert Park 20
+  8h45–9h00: Marlborough 20–20 min · M50 > Terenure Road North > Harold's Cross Road > Ranelagh  | alt: Morehampton 20, Eglinton 20, Belmont 20, Beaver Row 21
+  9h00–9h15: Beaver Row 21–21 min · Clonskeagh Road  | alt: Eglinton 21, Marlborough 22, Ailesbury 22, N11 23
+  9h15–14h00: Beaver Row 22–22 min · Stillorgan Road  | alt: Ailesbury 23, N11 23, Eglinton 23, Belmont 23
+  14h00–14h30: Morehampton 22–22 min · Leeson Street Upper > Morehampton Road  | alt: Beaver Row 22, Marlborough 22, Belmont 23, Ailesbury 23
+  14h30–17h15: Morehampton 18–19 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 19, Belmont 19, Herbert Park 20, Beaver Row 20
+
+## Oeste · Lucan
+  normal: Morehampton 23–23 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 24, Eglinton 24, Belmont 24, Herbert Park 25
+  7h45–8h30: Morehampton 24–24 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 24, Eglinton 24, Belmont 24, Herbert Park 25
+  8h30–9h00: Marlborough 24–24 min · M50 > Terenure Road North > Harold's Cross Road > Ranelagh  | alt: Eglinton 24, Morehampton 24, Belmont 25, Beaver Row 25
+  9h00–9h15: Beaver Row 25–25 min · Clonskeagh Road  | alt: Eglinton 26, Morehampton 26, Marlborough 26, Anglesea 26
+  9h15–11h00: Morehampton 26–26 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 26, Belmont 27, Beaver Row 27, Herbert Park 27
+  11h00–13h00: Morehampton 25–25 min · Charlemont Street > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 25, Belmont 26, Herbert Park 26, Beaver Row 26
+  13h00–14h30: Morehampton 24–25 min · Leeson Street Upper > Morehampton Road  | alt: Marlborough 25, Belmont 26, Herbert Park 26, Beaver Row 26
+  14h30–17h15: Morehampton 23–24 min · Grove Road > Grand Parade > Leeson Street Upper > Morehampton Road  | alt: Marlborough 24, Belmont 24, Herbert Park 25, Beaver Row 25

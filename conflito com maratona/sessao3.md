@@ -116,3 +116,10 @@ usuário mandou **ignorar o 11h da Dublin Bus e usar os horários do organizador
 divergências e mapa foram refeitos: a linha 4 não passa pelo RDS no dia; E2, 39A, 11 e 11B só
 voltam a Donnybrook às **13h** (Hatch Street e Leeson Street Lower fechadas até 13h); a janela
 crítica passa a 8h–13h. As correções do §5 acima foram aplicadas. Detalhes em `sessao4.md`.
+
+## 10. Sessão 5 (13/10/2026) — acessos de carro à Donnybrook Road
+
+Roteamento de carro (OSM de 10/10, horários do organizador) de 22 origens até a Donnybrook
+Road, de 15 em 15 min. O percurso é um anel fechado com Donnybrook dentro; das ~9h25 às ~10h30
+a única porta para quem vem do norte, do centro e do leste é a N11 (Strand Rd → Booterstown Ave
+→ N11). Detalhes em `sessao5.md` e `acessos_donnybrook_road.md`.
