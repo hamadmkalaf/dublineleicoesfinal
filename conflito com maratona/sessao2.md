@@ -172,3 +172,12 @@ telefone e tema escuro além do código.
   do GitHub (dois commits via `push_files`), e o histórico local foi mesclado depois. Se
   acontecer de novo, a API é a saída; o JSON grande precisou ser enxuto para caber.
 - O `amend` de commit foi bloqueado pelo classificador do modo automático; usar commits novos.
+
+## 11. Sessão 3 (13/10/2026) — horários do organizador revistos
+
+A página "Road Closures" do organizador de 13/10
+(`Road Closures - Irish Life Dublin Marathon (2026-10-13).pdf`) **supera a página de tráfego
+salva em 07/10** e muda horários que este registro usa: **Merrion Road fecha às 9h25, não
+9h40** (plano: 9h25–17h30); Nutley Lane às 8h40; Northumberland Road em dois trechos
+(3h30–20h30 e 6h–18h30); Foster's Avenue fechada nos dois sentidos. Confronto completo e
+lista de correções pendentes em `sessao3.md`.
