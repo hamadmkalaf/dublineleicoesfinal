@@ -38,6 +38,8 @@ documento de 12/10 já na pasta; não foi copiado de novo.
 2. Merrion Road: **9h30** (Garda). Não usar 9h25 (organizador) nem 10h (Garda, 18/9) no material ao eleitor.
 3. **RDS confirmou o portão da Anglesea Road.** Encerra o pedido 14 de `divergencias_garda_dublinbus.md` §5.
 4. Linha **14** confirmada em Donnybrook; linha **44** retirada do material ao eleitor.
+5. Card 4: a linha **4 passa pela Merrion Road até 11h**; 7 e 7A desviadas desde 8h; parada mais próxima
+   no desvio (Sandymount, Tritonville Road) a **cerca de 17 min a pé** do RDS.
 
 ## 5. Pendências
 

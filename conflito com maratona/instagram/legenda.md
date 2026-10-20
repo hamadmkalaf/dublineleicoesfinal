@@ -14,7 +14,7 @@ Seis cards de 1080 × 1350 (`card1.png` a `card6.png`), gerados de `cards.html` 
 >
 > De carro, a Garda orienta: N11 (Stillorgan Road) → Donnybrook Road → Anglesea Road. Quem vem do norte deve seguir pela Strand Road até Booterstown e retornar pela N11 no sentido centro. Não será possível sair da Anglesea Road para a Merrion Road.
 >
-> De ônibus, segundo a Dublin Bus: as linhas 4, 7 e 7A não passarão pela Merrion Road. Até as 11h, Donnybrook é servida só por ônibus vindos do sul (E1 e 14). A partir das 11h, voltam ao trajeto completo as linhas E1, E2, 11, 11B, 14 e 39A. Desça nas paradas 774, 758 ou 759 e siga a pé até o portão da Anglesea Road (cerca de 11 a 13 minutos). Não haverá DART ao sul de Grand Canal Dock.
+> De ônibus, segundo a Dublin Bus: a linha 4 passa pela Merrion Road até as 11h; as linhas 7 e 7A serão desviadas pela Strand Road a partir das 8h. No desvio, a parada mais próxima fica em Sandymount (Tritonville Road), a cerca de 17 minutos a pé do RDS. Até as 11h, Donnybrook é servida só por ônibus vindos do sul (E1 e 14). A partir das 11h, voltam ao trajeto completo as linhas E1, E2, 11, 11B, 14 e 39A. Desça nas paradas 774, 758 ou 759 e siga a pé até o portão da Anglesea Road (cerca de 11 a 13 minutos). Não haverá DART ao sul de Grand Canal Dock.
 >
 > As informações estão sujeitas a alteração no dia.
 >
@@ -30,7 +30,9 @@ Seis cards de 1080 × 1350 (`card1.png` a `card6.png`), gerados de `cards.html` 
 | 3 | Do norte: Strand Road → Booterstown → N11 sentido centro | Garda, 25/9 |
 | 3 | Não se sai da Anglesea para a Merrion Road | Garda, 18/9 |
 | 3 | Estacionamento: Simmonscourt, Anglesea, Clyde, Elgin Road | Garda, 25/9 |
-| 4 | 4, 7 e 7A desviadas pela Strand Road desde 8h | Dublin Bus, documento de desvios e mapas anexos ao e-mail de 16/10 (`emails_dublinbus_16a19-10/`) |
+| 4 | Linha 4 pela Merrion Road até 11h | Decisão de 20/10, com base no aviso público da Dublin Bus de 07/10 ("From 11.00hrs"). O documento operacional de 12/10 e o mapa de 16/10 não trazem esse horário. |
+| 4 | 7 e 7A desviadas pela Strand Road desde 8h | Dublin Bus, documento de desvios e mapas anexos ao e-mail de 16/10 (`emails_dublinbus_16a19-10/`) |
+| 4 | Parada mais próxima no desvio a ~17 min a pé | Medição OSRM (`ranking_linhas_rds.md` §2): Tritonville Road 15,7 min até a Merrion Road e 18,4 min até o portão da Anglesea |
 | 4 | Sem DART ao sul de Grand Canal Dock, 24–26/10 | Irish Rail, 28/9 (`divergencias_garda_dublinbus.md` 4.1) |
 | 5 | Até 11h, Donnybrook só com ônibus do sul; E1 termina em Sussex Road | Dublin Bus, e-mails de 16/10 e 19/10 |
 | 5 | 14 até 11h: Dundrum ↔ Adelaide Road pela Donnybrook Road, com parada em Donnybrook | Dublin Bus, mapa "Route 14 Diversion 25th Oct"; paradas confirmadas (decisão de 20/10) |
@@ -51,3 +53,6 @@ As quatro ressalvas da primeira versão foram resolvidas assim:
 3. **Portão:** o **RDS confirmou o portão da Anglesea Road.**
 4. **Linhas 14 e 44:** a **14 está confirmada** em Donnybrook; a **44 foi retirada** dos cards e
    da legenda.
+5. **Linha 4 (decisão posterior, 20/10):** o card 4 informa que a 4 passa pela Merrion Road
+   até as 11h e que a parada mais próxima das 4, 7 e 7A no desvio fica a cerca de 17 minutos a
+   pé do RDS.
