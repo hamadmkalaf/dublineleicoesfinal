@@ -10,7 +10,7 @@ Seis cards de 1080 × 1350 (`card1.png` a `card6.png`), gerados de `cards.html` 
 >
 > As orientações abaixo foram obtidas pela Embaixada junto à Garda e à Dublin Bus:
 >
-> A Merrion Road fica aberta só até as 9h30. Se puder, vote pela manhã. Depois desse horário, chegue pela Donnybrook Road e entre pelo portão da Anglesea Road.
+> A Merrion Road fica aberta só até as 9h30. Se puder, vote pela manhã. De ônibus, só a linha 4 passa pela Merrion Road, até as 11h. Depois desse horário, chegue pela Donnybrook Road e entre pelo portão da Anglesea Road.
 >
 > De carro, a Garda orienta: N11 (Stillorgan Road) → Donnybrook Road → Anglesea Road. Quem vem do norte deve seguir pela Strand Road até Booterstown e retornar pela N11 no sentido centro. Não será possível sair da Anglesea Road para a Merrion Road.
 >
@@ -56,3 +56,4 @@ As quatro ressalvas da primeira versão foram resolvidas assim:
 5. **Linha 4 (decisão posterior, 20/10):** o card 4 informa que a 4 passa pela Merrion Road
    até as 11h e que a parada mais próxima das 4, 7 e 7A no desvio fica a cerca de 17 minutos a
    pé do RDS.
+6. **Card 2 (20/10):** acrescentado que na Merrion Road só passa a linha 4, até as 11h.

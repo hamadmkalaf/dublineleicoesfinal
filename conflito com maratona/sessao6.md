@@ -40,6 +40,9 @@ documento de 12/10 já na pasta; não foi copiado de novo.
 4. Linha **14** confirmada em Donnybrook; linha **44** retirada do material ao eleitor.
 5. Card 4: a linha **4 passa pela Merrion Road até 11h**; 7 e 7A desviadas desde 8h; parada mais próxima
    no desvio (Sandymount, Tritonville Road) a **cerca de 17 min a pé** do RDS.
+6. Card 2: na Merrion Road **só passa a linha 4**, até 11h. Base: leitura do usuário do documento
+   oficial da Dublin Bus ("until 1100hrs this route will operate to and from Townsend Street", e
+   depois rota normal).
 
 ## 5. Pendências
 
