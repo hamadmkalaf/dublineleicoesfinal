@@ -29,12 +29,17 @@ documento de 12/10 já na pasta; não foi copiado de novo.
    documentos não foram reescritos nesta sessão; leia-os com esta correção.
 2. Fica respondido o pedido 2 de `divergencias_garda_dublinbus.md` §5 e, em parte, o 3 (E2 e 39A
    não servem Donnybrook de manhã: confirmado).
-3. Sem resposta: linha 4 na Merrion Road (pedido 4), paradas da 14, 11 e 44 em Donnybrook
-   (pedido 5), reforço da E1 de manhã.
+3. Sem resposta da Dublin Bus: linha 4 na Merrion Road (pedido 4), paradas da 11 em Donnybrook
+   (pedido 5), reforço da E1 de manhã. A 14 foi confirmada depois (§4).
 
-## 4. Pendências
+## 4. Decisões de 20/10
 
-1. Confirmar com o RDS o portão da Anglesea Road antes de publicar (os cards 2 e 3 dependem dele).
-2. Atualizar `ranking_linhas_rds.md`, `divergencias_garda_dublinbus.md` e `mapa/linhas_maratona.html`
-   com o 11h.
-3. Ressalvas de publicação em `instagram/legenda.md`.
+1. Os cards mantêm a distinção: manhã para carro e a pé; ônibus do norte, centro e oeste só depois das 11h.
+2. Merrion Road: **9h30** (Garda). Não usar 9h25 (organizador) nem 10h (Garda, 18/9) no material ao eleitor.
+3. **RDS confirmou o portão da Anglesea Road.** Encerra o pedido 14 de `divergencias_garda_dublinbus.md` §5.
+4. Linha **14** confirmada em Donnybrook; linha **44** retirada do material ao eleitor.
+
+## 5. Pendências
+
+1. Atualizar `ranking_linhas_rds.md`, `divergencias_garda_dublinbus.md` e `mapa/linhas_maratona.html`
+   com o 11h, o portão confirmado e a 14 confirmada.
