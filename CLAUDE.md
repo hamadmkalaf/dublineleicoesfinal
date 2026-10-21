@@ -12,6 +12,7 @@ necessário para chegar a elas.
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Mesários do 2º turno** — quem volta, funções a preencher | `docs/mesarios/2turno.md` · `scripts/mesarios_2turno.py` · `saidas/mesarios/` | planilha de 4 abas (12/10/2026): 58 devem comparecer, 28 a confirmar, 54 funções a preencher |
 
 ---
 
