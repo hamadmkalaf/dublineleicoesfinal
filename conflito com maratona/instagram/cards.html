@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cards Instagram · 2º turno e maratona</title>
+<!--
+  Carrossel de 6 cards (1080 × 1350, formato 4:5 do Instagram) sobre o acesso ao RDS em
+  25/10/2026, dia da Maratona de Dublin. Fontes: Garda (insp. Wogan, 18/9 e 25/9) e
+  Dublin Bus (Tony Brennan, 16/10 a 19/10, com os mapas de desvio anexos).
+  Identidade: a mesma das peças de mapa/sinalizacao/ (Archivo + Nunito Sans, paleta TSE).
+  Para gerar os PNG: node scripts/instagram_cards_render.js
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amarelo: #F2C230;
+    --amarelo-claro: #F7D86A;
+    --ardosia: #4F6470;
+    --tinta: #2F3A40;
+    --creme: #F7F3E6;
+    --branco: #FFFFFF;
+    --azul: #33507E;
+    --azul-claro: #4888A8;
+    --verde: #588018;
+    --laranja: #DE7343;
+    --vermelho: #C2412D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #888; font-family: 'Nunito Sans', sans-serif; color: var(--tinta); }
+  .card {
+    width: 1080px; height: 1350px; position: relative; overflow: hidden;
+    background: var(--amarelo); margin: 0 auto 40px;
+    display: flex; flex-direction: column;
+  }
+  .card.creme { background: var(--creme); }
+
+  /* cabeçalho */
+  .topo { display: flex; justify-content: space-between; align-items: flex-start; padding: 64px 72px 0; }
+  .remetente { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.15; color: var(--ardosia); }
+  .remetente b { display: block; font-weight: 800; font-size: 30px; color: var(--tinta); }
+  .marca { text-align: right; font-family: 'Archivo', sans-serif; font-weight: 900; color: var(--branco); line-height: .9; }
+  .card.creme .marca { color: var(--tinta); }
+  .marca .p1 { font-size: 38px; letter-spacing: 1px; display: flex; align-items: center; gap: 2px; justify-content: flex-end; }
+  .marca .p2 { font-size: 64px; color: var(--branco); }
+  .card.creme .marca .p2 { color: var(--amarelo); }
+  .marca svg { width: 26px; height: 30px; margin: 0 1px; }
+
+  /* corpo */
+  .corpo { flex: 1; padding: 0 72px; display: flex; flex-direction: column; }
+  .kicker { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: 3px; text-transform: uppercase; color: var(--ardosia); margin-top: 40px; }
+  .titulo { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 84px; line-height: 1.0; color: var(--ardosia); margin-top: 18px; letter-spacing: -1px; }
+  .titulo em { font-style: normal; color: var(--branco); }
+  .card.creme .titulo em { color: var(--laranja); }
+  .faixa {
+    background: var(--branco); margin: 34px -72px 0 0; padding: 30px 72px 30px 44px;
+    border-radius: 0 0 0 0; border-top-left-radius: 60px; border-bottom-left-radius: 60px;
+    font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 46px; line-height: 1.1; color: var(--tinta);
+    align-self: stretch; margin-left: -24px;
+  }
+  .faixa small { display: block; font-family: 'Nunito Sans', sans-serif; font-weight: 700; font-size: 30px; color: var(--ardosia); margin-top: 8px; }
+  .faixa.escura { background: var(--ardosia); color: var(--branco); }
+  .faixa.escura small { color: var(--amarelo-claro); }
+  .texto { font-size: 32px; line-height: 1.36; font-weight: 600; color: var(--tinta); margin-top: 32px; }
+  .texto b { font-weight: 900; }
+
+  .itens { list-style: none; margin-top: 34px; display: flex; flex-direction: column; gap: 22px; }
+  .itens li { display: grid; grid-template-columns: 150px 1fr; gap: 26px; align-items: start; font-size: 31px; line-height: 1.3; font-weight: 600; }
+  .itens li b { font-weight: 900; }
+  .rot { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 30px; text-align: center; padding: 12px 0; border-radius: 14px; background: var(--ardosia); color: var(--branco); line-height: 1.05; }
+  .rot.ok { background: var(--verde); }
+  .rot.nao { background: var(--vermelho); }
+  .rot.az { background: var(--azul); }
+
+  /* rota de carro */
+  .rota { margin-top: 30px; display: flex; flex-direction: column; gap: 0; }
+  .passo { display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: center; }
+  .passo .no { width: 64px; height: 64px; border-radius: 50%; background: var(--ardosia); color: var(--branco); font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 36px; display: flex; align-items: center; justify-content: center; }
+  .passo.fim .no { background: var(--azul); }
+  .passo .nome { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 42px; color: var(--tinta); line-height: 1.05; }
+  .passo .nome span { display: block; font-family: 'Nunito Sans', sans-serif; font-weight: 700; font-size: 26px; color: var(--ardosia); margin-top: 2px; }
+  .liga { width: 64px; height: 20px; display: flex; justify-content: center; }
+  .liga i { display: block; width: 8px; height: 100%; background: var(--ardosia); border-radius: 4px; }
+  .nota { margin-top: 28px; background: rgba(255,255,255,.55); border-left: 10px solid var(--ardosia); border-radius: 12px; padding: 20px 26px; font-size: 28px; line-height: 1.35; font-weight: 600; }
+  .nota + .nota { margin-top: 14px; }
+  .nota b { font-weight: 900; }
+  .nota.alerta { border-left-color: var(--vermelho); }
+
+  /* linhas de ônibus */
+  .linhas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .linha { min-width: 112px; height: 88px; padding: 0 18px; border-radius: 20px; background: var(--azul); color: var(--branco); font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 50px; display: flex; align-items: center; justify-content: center; }
+  .linha.cortada { background: #9AA5AB; color: var(--branco); text-decoration: line-through; text-decoration-thickness: 6px; text-decoration-color: var(--vermelho); }
+  .linhas-desc { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+  .linhas-desc li { display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: center; font-size: 30px; line-height: 1.3; font-weight: 600; }
+  .linhas-desc .mini { height: 70px; border-radius: 16px; background: var(--azul); color: var(--branco); font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 40px; display: flex; align-items: center; justify-content: center; }
+  .paradas { margin-top: 28px; background: var(--ardosia); color: var(--branco); border-radius: 26px; padding: 24px 32px; }
+  .paradas h3 { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: 2px; text-transform: uppercase; color: var(--amarelo-claro); }
+  .paradas ul { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .paradas li { font-size: 29px; font-weight: 700; }
+  .paradas li b { font-family: 'Archivo', sans-serif; font-weight: 900; display: inline-block; min-width: 92px; }
+  .paradas p { margin-top: 14px; font-size: 27px; font-weight: 600; line-height: 1.35; color: #E8EEF1; }
+
+  /* rodapé */
+  .rodape { padding: 0 72px 50px; }
+  .fonte { border-top: 4px solid var(--ardosia); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+  .fonte p { font-size: 25px; line-height: 1.3; font-weight: 700; color: var(--tinta); }
+  .fonte p span { display: block; font-weight: 600; color: var(--ardosia); font-size: 23px; }
+  .pag { display: flex; gap: 10px; flex-shrink: 0; }
+  .pag i { width: 16px; height: 16px; border-radius: 50%; background: rgba(79,100,112,.35); }
+  .pag i.on { background: var(--ardosia); width: 40px; border-radius: 8px; }
+  .hashtag { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 28px; color: var(--ardosia); margin-top: auto; padding-bottom: 30px; }
+  .hashtag .na { color: var(--azul-claro); }
+  .hashtag .vo { color: var(--verde); }
+
+  /* capa */
+  .capa .titulo { font-size: 118px; margin-top: 26px; }
+  .capa .faixa { font-size: 74px; padding: 38px 72px 38px 48px; }
+  .seta { margin-top: 44px; display: flex; align-items: center; gap: 18px; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 32px; color: var(--ardosia); }
+  .seta svg { width: 58px; height: 58px; }
+  .onda { position: absolute; right: 72px; top: 300px; width: 210px; }
+  .estrela { position: absolute; width: 70px; }
+</style>
+</head>
+<body>
+
+<!-- ======================= 1 · CAPA ======================= -->
+<section class="card capa" id="card1">
+  <div class="topo">
+    <div class="remetente">Embaixada do Brasil<b>em Dublin</b></div>
+    <div class="marca"><div class="p1">EL<svg viewBox="0 0 26 30"><rect x="0" y="2" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="12" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="22" width="26" height="6" rx="3" fill="currentColor"/></svg>IÇÕES</div><div class="p2">2026</div></div>
+  </div>
+  <svg class="estrela" style="left:860px;top:420px" viewBox="0 0 100 100"><path d="M50 0 C55 38 62 45 100 50 C62 55 55 62 50 100 C45 62 38 55 0 50 C38 45 45 38 50 0Z" fill="#4888A8"/></svg>
+  <div class="corpo">
+    <div class="kicker">2º turno · domingo, 25 de outubro</div>
+    <div class="titulo">Eleição e<br>maratona<br><em>no mesmo dia</em></div>
+    <div class="faixa">Como chegar ao RDS<small>Merrion Road · carro · ônibus</small></div>
+    <p class="texto">A votação acontece no <b>RDS, em Ballsbridge, das 8h às 17h</b>, no mesmo dia da Maratona de Dublin. Vias serão fechadas e várias linhas de ônibus terão o trajeto alterado.</p>
+    <div class="seta"><svg viewBox="0 0 58 58"><circle cx="29" cy="29" r="26" fill="none" stroke="currentColor" stroke-width="4"/><path d="M24 17 L36 29 L24 41" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Arraste para ver as orientações</div>
+    <div class="hashtag">#<span class="vo">VOTO</span><span class="na">NA</span>DEMOCRACIA</div>
+  </div>
+  <div class="rodape"><div class="fonte"><p>Informações obtidas junto à Garda e à Dublin Bus.<span>Sujeitas a alteração no dia. Atualizadas em 20/10/2026.</span></p><div class="pag"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+</section>
+
+<!-- ======================= 2 · MERRION ROAD / MANHÃ ======================= -->
+<section class="card" id="card2">
+  <div class="topo">
+    <div class="remetente">Embaixada do Brasil<b>em Dublin</b></div>
+    <div class="marca"><div class="p1">EL<svg viewBox="0 0 26 30"><rect x="0" y="2" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="12" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="22" width="26" height="6" rx="3" fill="currentColor"/></svg>IÇÕES</div><div class="p2">2026</div></div>
+  </div>
+  <div class="corpo">
+    <div class="kicker">Atenção ao horário</div>
+    <div class="titulo">Merrion Road aberta só até as <em>9h30</em></div>
+    <div class="faixa escura">Se puder, vote pela manhã<small>A votação começa às 8h</small></div>
+    <ul class="itens">
+      <li><div class="rot ok">até<br>9h30</div><div>Acesso normal pela <b>Merrion Road</b> e pela entrada principal do RDS.</div></li>
+      <li><div class="rot nao">depois<br>de 9h30</div><div>A Merrion Road fecha para a maratona. Chegue pela <b>Donnybrook Road</b> e entre pelo <b>portão da Anglesea Road</b>.</div></li>
+      <li><div class="rot az">de<br>ônibus</div><div>Na Merrion Road, <b>só passa a linha 4</b>, até as 11h. Vindo do centro ou do norte, as linhas só voltam a Donnybrook <b>a partir das 11h</b>.</div></li>
+    </ul>
+  </div>
+  <div class="rodape"><div class="fonte"><p>Informações obtidas junto à Garda e à Dublin Bus.<span>Sujeitas a alteração no dia.</span></p><div class="pag"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div></div>
+</section>
+
+<!-- ======================= 3 · DE CARRO ======================= -->
+<section class="card creme" id="card3">
+  <div class="topo">
+    <div class="remetente">Embaixada do Brasil<b>em Dublin</b></div>
+    <div class="marca"><div class="p1">EL<svg viewBox="0 0 26 30"><rect x="0" y="2" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="12" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="22" width="26" height="6" rx="3" fill="currentColor"/></svg>IÇÕES</div><div class="p2">2026</div></div>
+  </div>
+  <div class="corpo">
+    <div class="kicker">Orientação da Garda</div>
+    <div class="titulo">De <em>carro</em></div>
+    <div class="rota">
+      <div class="passo"><div class="no">1</div><div class="nome">N11 · Stillorgan Road<span>aberta o dia todo, sentido centro</span></div></div>
+      <div class="liga"><i></i></div>
+      <div class="passo"><div class="no">2</div><div class="nome">Donnybrook Road<span>aberta o dia todo</span></div></div>
+      <div class="liga"><i></i></div>
+      <div class="passo"><div class="no">3</div><div class="nome">Anglesea Road<span>aberta ao tráfego do RDS</span></div></div>
+      <div class="liga"><i></i></div>
+      <div class="passo fim"><div class="no">4</div><div class="nome">Portão do RDS<span>na Anglesea Road</span></div></div>
+    </div>
+    <div class="nota"><b>Vindo do norte da cidade:</b> siga pela Strand Road até Booterstown e retorne pela N11, no sentido centro, até Donnybrook.</div>
+    <div class="nota alerta"><b>Não será possível</b> sair da Anglesea Road para a Merrion Road.</div>
+    <div class="nota"><b>Estacionamento na rua:</b> Simmonscourt Road, Anglesea Road, Clyde Road e Elgin Road.</div>
+  </div>
+  <div class="rodape"><div class="fonte"><p>Informações obtidas junto à Garda e à Dublin Bus.<span>Trânsito intenso nos desvios: saia com antecedência.</span></p><div class="pag"><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div></div></div>
+</section>
+
+<!-- ======================= 4 · ÔNIBUS: MERRION ROAD ======================= -->
+<section class="card" id="card4">
+  <div class="topo">
+    <div class="remetente">Embaixada do Brasil<b>em Dublin</b></div>
+    <div class="marca"><div class="p1">EL<svg viewBox="0 0 26 30"><rect x="0" y="2" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="12" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="22" width="26" height="6" rx="3" fill="currentColor"/></svg>IÇÕES</div><div class="p2">2026</div></div>
+  </div>
+  <div class="corpo">
+    <div class="kicker">De ônibus · Merrion Road · 1 de 3</div>
+    <div class="titulo">Linha 4 só <em>até as 11h</em></div>
+    <ul class="linhas-desc">
+      <li><div class="mini">4</div><div>Passa pela <b>Merrion Road até as 11h</b>. Depois, é desviada pela Strand Road.</div></li>
+      <li><div class="mini" style="background:#9AA5AB;font-size:32px;white-space:nowrap">7 · 7A</div><div><b>Desviadas pela Strand Road</b> a partir das 8h. Não passam pela Merrion Road.</div></li>
+    </ul>
+    <div class="nota" style="margin-top:30px">No desvio, a parada mais próxima fica em <b>Sandymount (Tritonville Road)</b>, a <b>cerca de 17 minutos a pé</b> do RDS.</div>
+    <div class="nota alerta"><b>Também não haverá DART</b> ao sul de Grand Canal Dock: as estações Lansdowne Road e Sandymount ficam fechadas de 24 a 26 de outubro (Irish Rail).</div>
+    <div class="faixa escura" style="margin-top:34px">Prefira as linhas da Donnybrook Road<small>Próximos cards</small></div>
+  </div>
+  <div class="rodape"><div class="fonte"><p>Informações obtidas junto à Garda e à Dublin Bus.<span>Sujeitas a alteração no dia.</span></p><div class="pag"><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div></div></div>
+</section>
+
+<!-- ======================= 5 · ÔNIBUS: DONNYBROOK ATÉ 11H ======================= -->
+<section class="card creme" id="card5">
+  <div class="topo">
+    <div class="remetente">Embaixada do Brasil<b>em Dublin</b></div>
+    <div class="marca"><div class="p1">EL<svg viewBox="0 0 26 30"><rect x="0" y="2" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="12" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="22" width="26" height="6" rx="3" fill="currentColor"/></svg>IÇÕES</div><div class="p2">2026</div></div>
+  </div>
+  <div class="corpo">
+    <div class="kicker">De ônibus · Donnybrook Road · 2 de 3</div>
+    <div class="titulo">Até as <em>11h</em></div>
+    <div class="faixa escura">Só ônibus vindos do sul<small>As linhas que cruzam a cidade estão divididas</small></div>
+    <ul class="linhas-desc">
+      <li><div class="mini">E1</div><div>De <b>Bray, Cabinteely e Stillorgan</b>, pela N11. Termina em Sussex Road.</div></li>
+      <li><div class="mini">14</div><div>De <b>Dundrum, Churchtown e Kilmacud</b>. Termina na Adelaide Road.</div></li>
+    </ul>
+    <div class="nota alerta"><b>Quem vem do norte, do centro ou do oeste</b> não tem ônibus direto até Donnybrook antes das 11h. Programe-se para depois desse horário ou vá de carro.</div>
+    <div class="paradas">
+      <h3>Desça em Donnybrook</h3>
+      <ul><li><b>774</b>Donnybrook Garda Station</li><li><b>758</b>Victoria Avenue</li><li><b>759</b>Donnybrook Stadium</li></ul>
+    </div>
+  </div>
+  <div class="rodape"><div class="fonte"><p>Informações obtidas junto à Garda e à Dublin Bus.<span>Sujeitas a alteração no dia.</span></p><div class="pag"><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div></div></div>
+</section>
+
+<!-- ======================= 6 · ÔNIBUS: DONNYBROOK A PARTIR DAS 11H ======================= -->
+<section class="card" id="card6">
+  <div class="topo">
+    <div class="remetente">Embaixada do Brasil<b>em Dublin</b></div>
+    <div class="marca"><div class="p1">EL<svg viewBox="0 0 26 30"><rect x="0" y="2" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="12" width="26" height="6" rx="3" fill="currentColor"/><rect x="0" y="22" width="26" height="6" rx="3" fill="currentColor"/></svg>IÇÕES</div><div class="p2">2026</div></div>
+  </div>
+  <div class="corpo">
+    <div class="kicker">De ônibus · Donnybrook Road · 3 de 3</div>
+    <div class="titulo">A partir das <em>11h</em></div>
+    <div class="faixa">Linhas voltam ao trajeto completo, de norte a sul</div>
+    <div class="linhas"><div class="linha">E1</div><div class="linha">E2</div><div class="linha">11</div><div class="linha">11B</div><div class="linha">14</div><div class="linha">39A</div></div>
+    <p class="texto" style="font-size:28px;margin-top:22px">A <b>39A</b> termina na parada 771 (Teresian School), logo depois de Donnybrook.</p>
+    <div class="paradas">
+      <h3>Desça em Donnybrook</h3>
+      <ul><li><b>774</b>Donnybrook Garda Station</li><li><b>758</b>Victoria Avenue</li><li><b>759</b>Donnybrook Stadium</li></ul>
+      <p>Siga a pé pela Donnybrook Road e pela Anglesea Road até o portão do RDS: cerca de 11 a 13 minutos.</p>
+    </div>
+  </div>
+  <div class="rodape"><div class="fonte"><p>Informações obtidas junto à Garda e à Dublin Bus.<span>Sujeitas a alteração no dia.</span></p><div class="pag"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div></div></div>
+</section>
+
+</body>
+</html>
