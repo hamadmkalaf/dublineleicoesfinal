@@ -1,8 +1,12 @@
 """Acrescenta ao briefing dos mesários os procedimentos de encerramento.
 
-Uso: python3 build.py ORIGEM.pptx DESTINO.pptx
+Uso: python3 scripts/briefing_encerramento.py ORIGEM.pptx DESTINO.pptx
+
+Serve aos dois briefings de 15 slides (Equipe Embaixada e Mesários), que
+compartilham a agenda em seis cartões e o checklist como último slide.
 """
 import copy
+import re
 import sys
 
 from pptx import Presentation
@@ -212,14 +216,16 @@ def atualiza_agenda(slide):
     shapes = list(slide.shapes)
     sub = next(sh for sh in shapes if sh.has_text_frame and sh.text_frame.text.startswith("Seis assuntos"))
     r = sub.text_frame.paragraphs[0].runs
-    r[0].text = ("Sete assuntos. Os quatro primeiros são sobre você; os dois seguintes, "
+    # "Os quatro primeiros são sobre você; os dois últimos, sobre o eleitor." → mesma conta, mais o 7º
+    m = re.search(r"Os (\w+) primeiros são sobre você; os (\w+) últimos, sobre o eleitor", sub.text_frame.text)
+    r[0].text = (f"Sete assuntos. Os {m.group(1)} primeiros são sobre você; os {m.group(2)} seguintes, "
                  "sobre o eleitor; o último, sobre o fim do dia.")
     for extra in r[1:]:
         extra.text = ""
     sub.width = Inches(12.09)
 
     # cada cartão: fundo, círculo, número, título, descrição (5 formas seguidas)
-    first = shapes.index(next(sh for sh in shapes if sh.name == "Shape 5"))
+    first = shapes.index(sub) + 1
     cards = [shapes[first + 5 * k: first + 5 * k + 5] for k in range(6)]
 
     # sétimo cartão: cópia do sexto
@@ -248,14 +254,19 @@ def atualiza_agenda(slide):
     gap, w = 0.3, (12.09 - 3 * 0.3) / 4
     for k, card in enumerate(cards):
         row, col = (0, k) if k < 4 else (1, k - 4)
-        x, y = 0.62 + col * (w + gap), 2.3 + row * 2.48
+        x, y = 0.62 + col * (w + gap), 2.1 + row * 2.5
         bg, dot, num, tit, desc = card
-        bg.left, bg.top, bg.width = Inches(x), Inches(y), Inches(w)
+        bg.left, bg.top, bg.width, bg.height = Inches(x), Inches(y), Inches(w), Inches(2.2)
+        # cartão mais estreito: descrição em até 10 pt, para caber em três linhas
+        for para in desc.text_frame.paragraphs:
+            for run in para.runs:
+                if run.font.size and run.font.size > Pt(10):
+                    run.font.size = Pt(10)
         for sh in (dot, num):
             sh.left, sh.top = Inches(x + 0.34), Inches(y + 0.34)
         tit.left, tit.top, tit.width = Inches(x + 0.34), Inches(y + 0.86), Inches(w - 0.68)
         desc.left, desc.top = Inches(x + 0.34), Inches(y + 1.24)
-        desc.width, desc.height = Inches(w - 0.68), Inches(0.75)
+        desc.width, desc.height = Inches(w - 0.68), Inches(0.8)
 
 
 def move_slide(prs, slide, new_index):
