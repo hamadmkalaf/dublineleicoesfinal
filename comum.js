@@ -548,9 +548,9 @@ const OEV = (() => {
     const marcador = (x, y, n) => p.push(`<g data-passo="${n}"><circle cx="${x}" cy="${y}" r="8.5" fill="${texto}" stroke="${amarelo}" stroke-width="1.5"/><text x="${x}" y="${y + 0.5}" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="800" fill="${amarelo}">${n}</text></g>`);
     p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até o grupo de mesas ${rota.grupo}, pela porta ${rota.letra}, com os seis passos marcados">`);
     p.push(`<defs><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${cor}"/></marker></defs>`);
-    // portão na Merrion Road e caminho de chegada: desce ao lado do Hall 2 (o Hall fica à direita de quem desce)
+    // portão de entrada (2º turno: Merrion Road até 11h, Anglesea Road depois) e caminho de chegada: desce ao lado do Hall 2 (o Hall fica à direita de quem desce)
     const xChegada = X(HALL_W) + 7;
-    p.push(`<text x="${xChegada}" y="${M + 8}" text-anchor="end" font-size="9" font-weight="700" fill="${texto}">portão · Merrion Road ▼</text>`);
+    p.push(`<text x="${xChegada}" y="${M + 8}" text-anchor="end" font-size="9" font-weight="700" fill="${texto}">portão de entrada ▼</text>`);
     p.push(`<path d="M ${xChegada} ${M + 14} L ${xChegada} ${ringTop - 6} L ${X(RING_X + RING_W - 1.5)} ${ringTop - 6} L ${X(RING_X + RING_W - 1.5)} ${ringTop}" stroke="${cor}" stroke-width="2" fill="none" stroke-dasharray="5 4"/>`);
     // Hall 2
     p.push(`<rect x="${X(0)}" y="${YH(HALL_D)}" width="${HALL_W * s}" height="${HALL_D * s}" fill="#FFFFFF" stroke="${texto}" stroke-width="1.5"/>`);
@@ -629,6 +629,7 @@ const OEV = (() => {
   function renderRota(rota, opcoes = {}) {
     const cor = COR_LETRA[rota.letra], corTexto = COR_TEXTO_LETRA[rota.letra];
     const extra = opcoes.cabecalhoExtra || "";
+    const aposCartao = opcoes.aposCartao || ""; // 04/10: bloco em destaque logo abaixo do cartão (status da fila)
     const passos = rota.passos.map((p) => `<li><b>${esc(p.onde)}</b><span>${esc(p.texto)}</span></li>`).join("");
     const nota = opcoes.notaSecao == null
       ? "Confira a sua seção no e-Título ou no site do TSE antes de ir votar: ela está entre as seções deste grupo, mas é a do seu título que vale na mesa."
@@ -643,6 +644,7 @@ const OEV = (() => {
           <div class="rotulo">seções deste grupo</div><div class="medio">${rota.secoes_do_grupo.map(esc).join(" · ")}</div></div>
         ${nota ? `<p class="nota-secao" id="nota-secao">${esc(nota)}${link}</p>` : ""}
       </div>
+      ${aposCartao}
       <ol class="passos">${passos}</ol>
       <div class="mapa">${desenhaMapa(rota)}</div>
       <p class="nota">Idoso, gestante, pessoa com deficiência ou com acompanhante: <b>entrada PREFERENCIAL</b>, a porta logo à direita da porta C, sem fila.</p>`;
@@ -706,7 +708,9 @@ const OEV = (() => {
     return String(modelo || "").replace(/\{(\w+)\}/g, (_, k) => (valores[k] == null ? "" : String(valores[k])));
   }
 
-  /* Bloco que aparece ao eleitor abaixo da nota da preferencial, quando o admin ativou o status da fila.
+  /* Bloco "status da fila" que aparece ao eleitor em destaque, logo abaixo do cartão de porta e grupo de mesas
+     (04/10: antes ficava abaixo da nota da preferencial, no fim da página, e passava despercebido), quando o admin
+     ativou o status da fila.
      fila = conteúdo de fila.json; rota = rota da seção; rotas.zonas = urnas por zona (do build). */
   function renderEspera(fila, rota, rotas, cfgFila, agora = Date.now()) {
     if (!fila || !fila.ativo || !rota) return "";
@@ -723,8 +727,8 @@ const OEV = (() => {
       : `<div class="espera-grande">cerca de ${est.minutos} min</div>
          <div class="espera-barra" aria-hidden="true"><span style="width:${est.pct}%;background:${cor}"></span></div>
          <p>${esc(preenche(cfgFila.explicacao, { letra: rota.letra, pct: est.pct, hora, seg: cfgFila.segundos_por_eleitor || 60 }))}</p>`;
-    return `<div class="espera${velho ? " velha" : ""}" id="espera" data-minutos="${est.minutos}" data-pct="${est.pct}">
-      <div class="rotulo">${esc(cfgFila.rotulo || "Tempo estimado de espera")} · fila ${esc(rota.letra)}</div>
+    return `<div class="espera${velho ? " velha" : ""}" id="espera" data-minutos="${est.minutos}" data-pct="${est.pct}" style="--cor:${cor}" role="status">
+      <div class="rotulo">Status da fila ${esc(rota.letra)} · ${esc(cfgFila.rotulo || "tempo estimado de espera")}</div>
       ${corpo}
       ${velho ? `<p class="espera-aviso">${esc(preenche(cfgFila.desatualizado, { hora, validade }))}</p>` : ""}
     </div>`;

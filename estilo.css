@@ -88,15 +88,15 @@ footer a { color: var(--navy); font-weight: 700; }
 #bloco-titulo { margin-top: 6px; }
 
 /* ---- v3 ---- */
-/* Estimativa de espera (eleitor), abaixo da nota da preferencial */
-.espera { margin-top: 14px; background: var(--branco); border-left: 5px solid var(--azul-claro); border-radius: 8px; padding: 12px 14px; color: var(--navy); }
-.espera .rotulo { color: var(--azul); }
-.espera-grande { font-size: 30px; font-weight: 900; line-height: 1.1; margin: 4px 0 8px; }
-.espera p { margin: 6px 0 0; font-size: 14px; color: var(--texto-suave); }
-.espera-barra { height: 10px; background: var(--campo); border-radius: 5px; overflow: hidden; }
-.espera-barra span { display: block; height: 100%; border-radius: 5px; }
+/* Status da fila (eleitor): cartão em destaque logo abaixo do cartão de porta e grupo de mesas (04/10) */
+.espera { margin: 14px 0 0; background: var(--branco); border-left: 10px solid var(--cor, var(--azul-claro)); border-radius: 14px; padding: 16px 18px; color: var(--navy); box-shadow: 0 2px 6px rgba(4,43,90,.15); }
+.espera .rotulo { color: var(--azul); font-size: 14px; font-weight: 900; }
+.espera-grande { font-size: 44px; font-weight: 900; line-height: 1.05; margin: 6px 0 10px; color: var(--navy); }
+.espera p { margin: 8px 0 0; font-size: 16px; font-weight: 700; color: var(--navy); }
+.espera-barra { height: 14px; background: var(--campo); border-radius: 7px; overflow: hidden; }
+.espera-barra span { display: block; height: 100%; border-radius: 7px; }
 .espera.velha { border-left-color: var(--laranja); }
-.espera-aviso { color: var(--navy) !important; font-weight: 700; }
+.espera-aviso { color: var(--laranja) !important; font-weight: 900; }
 /* Fila no Ring 3 (equipe) e painel do admin */
 .painel { background: var(--branco); border-radius: 14px; padding: 16px; box-shadow: 0 2px 6px rgba(4,43,90,.15); margin: 16px 0; }
 .painel h2 { font-size: 20px; margin: 0 0 6px; color: var(--navy); font-weight: 900; }
