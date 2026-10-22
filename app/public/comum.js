@@ -548,9 +548,9 @@ const OEV = (() => {
     const marcador = (x, y, n) => p.push(`<g data-passo="${n}"><circle cx="${x}" cy="${y}" r="8.5" fill="${texto}" stroke="${amarelo}" stroke-width="1.5"/><text x="${x}" y="${y + 0.5}" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="800" fill="${amarelo}">${n}</text></g>`);
     p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Esquema do caminho até o grupo de mesas ${rota.grupo}, pela porta ${rota.letra}, com os seis passos marcados">`);
     p.push(`<defs><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${cor}"/></marker></defs>`);
-    // portão na Merrion Road e caminho de chegada: desce ao lado do Hall 2 (o Hall fica à direita de quem desce)
+    // portão de entrada (2º turno: Merrion Road até 11h, Anglesea Road depois) e caminho de chegada: desce ao lado do Hall 2 (o Hall fica à direita de quem desce)
     const xChegada = X(HALL_W) + 7;
-    p.push(`<text x="${xChegada}" y="${M + 8}" text-anchor="end" font-size="9" font-weight="700" fill="${texto}">portão · Merrion Road ▼</text>`);
+    p.push(`<text x="${xChegada}" y="${M + 8}" text-anchor="end" font-size="9" font-weight="700" fill="${texto}">portão de entrada ▼</text>`);
     p.push(`<path d="M ${xChegada} ${M + 14} L ${xChegada} ${ringTop - 6} L ${X(RING_X + RING_W - 1.5)} ${ringTop - 6} L ${X(RING_X + RING_W - 1.5)} ${ringTop}" stroke="${cor}" stroke-width="2" fill="none" stroke-dasharray="5 4"/>`);
     // Hall 2
     p.push(`<rect x="${X(0)}" y="${YH(HALL_D)}" width="${HALL_W * s}" height="${HALL_D * s}" fill="#FFFFFF" stroke="${texto}" stroke-width="1.5"/>`);

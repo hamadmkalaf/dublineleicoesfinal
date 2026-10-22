@@ -155,12 +155,12 @@ def passos(letra, porta, parede, grupo, n_grupo, secoes_grupo):
     ordem = {"C": "a primeira que você encontra", "B": "a segunda", "A": "a última, no fim do trecho de fundo"}[letra]
     rotulo = ROTULO_PAREDE[parede]
     return [
-        {"onde": "Portão · Merrion Road", "texto": f"Lembre-se disso: sua porta de entrada é {letra}. Pegue a fila {letra} em frente ao Hall 2."},
+        {"onde": "Portão de entrada", "texto": f"Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é {letra}. Pegue a fila {letra} em frente ao Hall 2."},
         {"onde": "Ring 3 · pátio de fila", "texto": f"As filas serão formadas em frente ao Hall 2, no espaço chamado Ring 3. Entre no corredor e caminhe até o fundo. Chegando ao fundo, a fila {letra} será {ordem}."},
         {"onde": "Frente da fila · pátio", "texto": f"Quando liberado, atravesse o pátio até a porta de entrada {letra} (identificada com um adesivo no vidro)."},
         {"onde": f"Hall 2 · parede {rotulo}", "texto": f"Sua mesa fica na parede {rotulo}{', em frente a você' if parede == 'norte' else ''}. Procure o painel {letra} e siga até o grupo {grupo}, o {ORDINAL[n_grupo]} corredor a partir da porta. Na placa alta: “grupo {grupo} · seções {' '.join(secoes_grupo)}”."},
         {"onde": "Mesa", "texto": "Apresente o documento com foto ao mesário e diga a ele a sua seção, a que aparece no e-Título. Não encontrou sua seção no grupo? Pergunte ao mesário."},
-        {"onde": "Saída", "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."},
+        {"onde": "Saída", "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."},
     ]
 
 
