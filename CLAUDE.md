@@ -211,6 +211,8 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 - **2º turno (25/10), publicado em 22/10**: `config.json` com `turno_n` = 2 (índice com as marcas do 2º turno: 69 VT). Acesso
   pela **Merrion Road até as 11h e pela Anglesea Road a partir das 11h**; o passo 1, a saída, o mini-mapa e a mesa P0
   citam o portão de entrada sem fixar uma rua. O mini-mapa desenha só a chegada pelo lado da Merrion Road.
+  **Publicar sempre nos dois branches** (`app_publicar.sh` e `app_publicar.sh --branch gh-pages2`): em 22/10 só o
+  `gh-pages` foi atualizado e o domínio continuou mostrando 4/10, sinal de que o Pages serve o `gh-pages2`.
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.
