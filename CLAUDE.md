@@ -208,6 +208,9 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
   `data/*.json` que o app lê existiam em duas versões, uma em `main`/`appeleicoes*` e outra em
   `21026_final`. Antes de qualquer build, conferir que `data/decisoes.json` e `data/grupos_mesas.json`
   são os do branch que gerou a sinalização impressa (hoje `21026_final`).
+- **2º turno (25/10), publicado em 22/10**: `config.json` com `turno_n` = 2 (índice com as marcas do 2º turno: 69 VT). Acesso
+  pela **Merrion Road até as 11h e pela Anglesea Road a partir das 11h**; o passo 1, a saída, o mini-mapa e a mesa P0
+  citam o portão de entrada sem fixar uma rua. O mini-mapa desenha só a chegada pelo lado da Merrion Road.
 - O app **lê** `data/decisoes.json` e `data/grupos_mesas.json`; não os escreve. Mudou a
   distribuição das mesas, rode `python3 scripts/app_construir.py` (sem `--grava`): ele
   confere as 51 seções contra a tabela mestra P0 e sai com código 1 se algo não bater.
