@@ -50,8 +50,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -71,7 +71,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -101,8 +101,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -122,7 +122,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -152,8 +152,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -173,7 +173,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -203,8 +203,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -224,7 +224,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -254,8 +254,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -275,7 +275,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -304,8 +304,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -325,7 +325,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -355,8 +355,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -376,7 +376,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -406,8 +406,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -427,7 +427,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -457,8 +457,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -478,7 +478,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -508,8 +508,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -529,7 +529,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -559,8 +559,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -580,7 +580,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -610,8 +610,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -631,7 +631,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -661,8 +661,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -682,7 +682,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -712,8 +712,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -733,7 +733,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -763,8 +763,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -784,7 +784,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -814,8 +814,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -835,7 +835,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -865,8 +865,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -886,7 +886,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -916,8 +916,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -937,7 +937,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -967,8 +967,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -988,7 +988,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1018,8 +1018,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1039,7 +1039,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1069,8 +1069,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1090,7 +1090,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1120,8 +1120,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1141,7 +1141,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1171,8 +1171,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1192,7 +1192,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1222,8 +1222,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1243,7 +1243,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1273,8 +1273,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1294,7 +1294,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1324,8 +1324,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1345,7 +1345,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1375,8 +1375,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1396,7 +1396,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1426,8 +1426,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1447,7 +1447,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1476,8 +1476,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1497,7 +1497,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1526,8 +1526,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1547,7 +1547,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1577,8 +1577,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1598,7 +1598,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1628,8 +1628,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1649,7 +1649,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1679,8 +1679,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1700,7 +1700,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1730,8 +1730,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1751,7 +1751,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1778,8 +1778,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1799,7 +1799,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1829,8 +1829,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1850,7 +1850,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1880,8 +1880,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1901,7 +1901,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1929,8 +1929,8 @@
    "serpenteado": true,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1950,7 +1950,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -1978,8 +1978,8 @@
    "serpenteado": true,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -1999,7 +1999,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2027,8 +2027,8 @@
    "serpenteado": true,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2048,7 +2048,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2078,8 +2078,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2099,7 +2099,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2125,8 +2125,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2146,7 +2146,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2174,8 +2174,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2195,7 +2195,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2223,8 +2223,8 @@
    "serpenteado": true,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2244,7 +2244,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2272,8 +2272,8 @@
    "serpenteado": true,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2293,7 +2293,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2322,8 +2322,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2343,7 +2343,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2370,8 +2370,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2391,7 +2391,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2421,8 +2421,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é B. Pegue a fila B em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2442,7 +2442,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2470,8 +2470,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é C. Pegue a fila C em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2491,7 +2491,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2519,8 +2519,8 @@
    "serpenteado": true,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2540,7 +2540,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   },
@@ -2570,8 +2570,8 @@
    "serpenteado": false,
    "passos": [
     {
-     "onde": "Portão · Merrion Road",
-     "texto": "Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
+     "onde": "Portão de entrada",
+     "texto": "Até as 11h, entre pelo portão da Merrion Road; a partir das 11h, pelo portão da Anglesea Road. Lembre-se disso: sua porta de entrada é A. Pegue a fila A em frente ao Hall 2."
     },
     {
      "onde": "Ring 3 · pátio de fila",
@@ -2591,7 +2591,7 @@
     },
     {
      "onde": "Saída",
-     "texto": "Saia pelas portas com a placa SAÍDA; elas levam de volta à Merrion Road."
+     "texto": "Saia pelas portas com a placa SAÍDA e siga as placas até a rua."
     }
    ]
   }
