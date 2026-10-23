@@ -84,6 +84,16 @@
    "o_que_e": "Os 17 postos sobre a rota e sobre a planta do salão, com seletor dos quatro cenários.",
    "estado": "lido na íntegra",
    "sha256": "d65715289852943151161742afc9249d17f29a72647618a6a7156421597b0bd3"
+  },
+  {
+   "chave": "montagem_hall2",
+   "titulo": "Montagem do Hall 2",
+   "url": "https://claude.ai/artifact/3mnm77dKR4vZ2KGXVjbReL",
+   "versao": "1792770739-710a",
+   "caminho": "mapa/montagem_hall2.html",
+   "o_que_e": "Roteiro da véspera do 2º turno (24/10) em oito etapas, uma planta por etapa, e os ajustes de chão D1–D4 aprovados em 23/10. Gerado por scripts/montagem_hall2.py.",
+   "estado": "fonte gerada aqui; publicada sem invólucro",
+   "sha256": "061fcc29ae549d1343b4d6d87aedccb610ed2c9786874c7a971a876032113b29"
   }
  ]
 }
