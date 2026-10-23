@@ -12,6 +12,7 @@ necessário para chegar a elas.
 | **Voluntários de apoio e fluxo do eleitor** | `docs/voluntarios/` · `mapa/voluntarios_postos.html` | os 17 postos e os 4 cenários de efetivo |
 | **Separadores de fila e fita no chão no Hall 2** | `docs/separadores/` · `scripts/separadores_fila.py` | desenho definitivo de 17/09, fechado |
 | **Artefatos** — rota, prancheta, Ring 3, sinalização | `mapa/` · manifesto em `mapa/artefatos.json` | fonte versionada, não só a URL |
+| **Montagem do Hall 2 (2º turno)** | `mapa/montagem_hall2.html` · `scripts/montagem_hall2.py` | roteiro de 24/10 em 8 etapas; ajustes D1–D4 aprovados em 23/10 |
 
 ---
 
@@ -109,6 +110,20 @@ C1 e C2 só fecham com três compensações contratadas: os 20 seguranças assum
 presença de fila por escrito no briefing, uma CCB de separação no apron no lugar do
 posto A1, e a campanha "descubra sua seção antes de sair de casa".
 
+## Ajustes de chão aprovados em 23/10/2026 (montagem do 2º turno)
+
+Valem no lugar do desenho de 17/09 nesses pontos. Estão em `AJUSTES` de
+`scripts/montagem_hall2.py`; `AVENIDAS` em `separadores_fila.py` **não** foi alterado.
+
+- **D1 · cantos norte:** avenida C termina em y 36,20 (fechada em laranja), avenida A em
+  36,70; corredor nordeste livre de y 36,20 a 37,40 para B; os canais de B1-1, B4-2, B5-1 e
+  B5-2 começam em 37,40.
+- **D2:** canal verde da S7 com 6,00 m (não 10).
+- **D3:** guias brancas de S2 e S8 com 3,00 m (não 8); o "trilho sul da perna A" não é colado.
+- **D4:** serpenteados mantidos encostados no módulo, zebrado na saída.
+- Também aprovados: posição dos três painéis de porta e dois vãos de serviço (cinta
+  destacável) em cada trilho da avenida B.
+
 ## Regras do tema dos separadores de fila
 
 - **Leia `docs/separadores/contexto.md` antes de tocar na geometria.** As três
@@ -146,9 +161,8 @@ posto A1, e a campanha "descubra sua seção antes de sair de casa".
 
 ## Pendências que movem números
 
-1. **O RDS permite fita adesiva no piso do Hall 2?** Bloqueante: se não, o desenho
-   dos separadores cai inteiro, e as 100 unifilas passariam a ter de fazer sozinhas
-   um trabalho de 395.
+1. ~~O RDS permite fita adesiva no piso do Hall 2?~~ **Resolvida em 23/10/2026: o RDS
+   confirmou o uso de fita.** Falta só combinar no dia quem remove e em que prazo.
 2. Método de identificação do eleitor — eletrônico/biométrico ou caderno físico
    (`PENDENCIAS.md` item 5). Decide tempo por eleitor e criticidade do balcão de
    consulta.

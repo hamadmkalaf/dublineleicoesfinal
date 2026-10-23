@@ -17,8 +17,8 @@ Desenhar o chao trecho a trecho mostrou quatro pontos em que o desenho de 17/09
 pede duas fitas no mesmo lugar. A conferencia de ``separadores_fila.py`` so
 prova que as tres avenidas nao se cruzam entre si; estes cruzamentos sao de
 outros elementos com as avenidas e com os ramais, e ela nao os ve. Os ajustes
-abaixo estao em ``AJUSTES`` e sao propostas para o chefe de montagem decidir
-antes da colagem; o desenho definitivo nao foi alterado.
+abaixo estao em ``AJUSTES`` e foram aprovados pelo Posto em 23/10/2026 para a
+montagem do 2o turno; o desenho definitivo de 17/09 nao foi alterado.
 
 D1  Cantos norte. A avenida C vai ate y = 39,5 e passa por cima do ramal da
     2a mesa de B4; o ramal da 2a mesa de C6 cruza os dois de B5. A avenida C
@@ -30,7 +30,7 @@ D3  As bocas brancas de S2 e S8 (8 m) cortam a avenida A e o modulo de C1:
     passam a 3 m. O "trilho sul da perna A" repete o trilho interno da
     avenida A e fecharia a boca: sai.
 D4  Os serpenteados encostam no modulo e nao deixam os 1,50 m da linha de
-    espera. O desenho mantem o de 17/09; a pagina expoe a escolha.
+    espera. Decisao de 23/10: manter como em 17/09.
 
     python3 scripts/montagem_hall2.py
 """
@@ -47,7 +47,7 @@ RAIZ = sf.RAIZ
 SAIDA = os.path.join(RAIZ, "mapa", "montagem_hall2.html")
 
 # --------------------------------------------------------------------------
-# Ajustes de campo propostos (D1-D3). D4 nao muda a geometria desenhada.
+# Ajustes de campo aprovados em 23/10 (D1-D3). D4 nao muda a geometria.
 # --------------------------------------------------------------------------
 AJUSTES = {
     "topo_A": 36.70,        # D1: avenida A acaba logo acima do ramal de A5-2
@@ -1016,8 +1016,8 @@ def pagina(planta, dec, mesas, grupos):
         "As zonas protegidas são marcadas primeiro: tudo o que vier depois as contorna.",
         ["Percorrer o salão com o responsável do RDS. Fotografar piso e paredes nas quatro "
          "direções: é o registro do estado inicial para a devolução.",
-         "Confirmar com o RDS o tipo de fita permitido no piso e a regra de remoção. "
-         "Sem essa confirmação, não começar a etapa 5.",
+         "O RDS já autorizou a fita no piso. Combinar com o responsável do dia quem remove "
+         "a fita depois da votação e em que prazo.",
          "Testar as portas: <b>S4, S5, S6</b> (entradas), <b>S7</b> (preferencial), "
          "<b>S2, S8</b> (saídas), <b>L1–L4</b> (emergência). <b>O1</b> e <b>N1</b> ficam fechadas.",
          "Conferir duas medidas gerais com trena: largura do salão na fachada sul "
@@ -1027,7 +1027,7 @@ def pagina(planta, dec, mesas, grupos):
          "(L1–L4), recuos de S3, S7, R1, O2 e N2.",
          "Varrer e secar o piso nas faixas que vão receber fita (avenidas e bandas). "
          "Fita em piso com pó solta antes do meio-dia."],
-        "as zonas protegidas estão visíveis no chão e o RDS confirmou a fita por escrito.",
+        "as zonas protegidas estão visíveis no chão e a remoção da fita está combinada com o RDS.",
         fig[1], "Etapa 1 · zonas protegidas em destaque. Nada é colocado, apoiado ou "
         "estocado nelas durante a montagem, nem caixas vazias.",
         cuidado="a faixa de 3,00 m da fachada leste é a rota das quatro saídas de emergência. "
@@ -1101,10 +1101,10 @@ def pagina(planta, dec, mesas, grupos):
       "Alinhamento: as frentes de uma parede formam uma reta. Esticar linha de giz de ponta a "
       "ponta e ver se algum módulo avança ou recua.",
       "Recuos: O2 (y 19,36–22,43 na oeste), N2 (x 20,66–24,22 na norte), R1, S3 e S7 vazios.",
-      "Serpenteados: retângulos livres à frente de A3, B2 e C5 (4,20 × 2,80 m).",
-      "Decidir D1 a D4 (abaixo) e anotar a decisão nesta folha."])}
-  <div class="pronto"><b>Pronto quando:</b> o coordenador assinou a conferência e as quatro
-   decisões estão anotadas. Só então a fita começa.</div>
+      "Serpenteados: retângulos livres à frente de A3, B2 e C5 (4,20 × 2,80 m), encostados no módulo (D4).",
+      "Conferir que os piquetes de D1 (fim das avenidas A e C, corredor nordeste) estão no chão."])}
+  <div class="pronto"><b>Pronto quando:</b> o coordenador assinou a conferência. Só então a
+   fita começa.</div>
   <span class="parada">Ponto de parada · nenhuma fita antes da assinatura</span>
  </div>
  <div class="fig">
@@ -1116,39 +1116,39 @@ def pagina(planta, dec, mesas, grupos):
 
     decisoes = f"""
 <section class="bloco" id="decisoes">
- <div class="eyebrow">Antes da etapa 5</div>
- <h2>Quatro decisões de chão</h2>
+ <div class="eyebrow">Aprovados em 23/10 · valem para esta montagem</div>
+ <h2>Quatro ajustes de chão</h2>
  <p>Desenhar o chão trecho a trecho mostrou quatro pontos em que o desenho de 17/09 põe duas
   fitas no mesmo lugar. A conferência automática do desenho só prova que as três avenidas não se
-  cruzam entre si, e por isso não os pegou. As figuras desta página já aplicam as propostas
-  abaixo. <b>Se no 1º turno a equipe resolveu algum desses pontos de outro jeito e funcionou,
-  repita o que funcionou.</b></p>
+  cruzam entre si, e por isso não os pegou. Os quatro ajustes abaixo foram aprovados pelo Posto
+  em 23/10 e <b>valem no lugar do desenho de 17/09</b> nesses pontos. As figuras e as medidas
+  desta página já os aplicam.</p>
  <div class="decisoes">
   <div class="decisao"><h3>D1 · Os cantos norte</h3>
    <p>No desenho, a avenida C sobe até y 39,50 e passa por cima do canal da segunda mesa de
     <b>B4</b> (0518·3306). O canal da segunda mesa de <b>C6</b> (0511·1100) cruza os dois
     canais de <b>B5</b>. São cerca de 1.100 eleitores de B (B4-2 e B5) sem caminho que não
     atravesse a avenida C.</p>
-   <p><b>Proposta:</b> a avenida C acaba em y 36,20 e é fechada ali com fita laranja. Os
+   <p><b>Aprovado:</b> a avenida C acaba em y 36,20 e é fechada ali com fita laranja. Os
     eleitores de B4-2, B5-1 e B5-2 sobem pelo vão entre B4-1 e a avenida C (x 32,1–33,5) e
     seguem pelo <b>corredor nordeste</b>, faixa livre de y 36,20 a 37,40. Os três canais
     passam a começar em 37,40 (1,40 m, duas pessoas). No noroeste, a avenida A acaba em
     36,70 e o canal da primeira mesa de B1 (0512·2855) começa em 37,40.</p></div>
   <div class="decisao"><h3>D2 · O canal verde da S7</h3>
    <p>O canal da preferencial tem 10 m no desenho e corta os canais de <b>C1</b> (3442) e
-    <b>C2</b> (3688). <b>Proposta:</b> 6,00 m de verde, que terminam antes do canal de C1
+    <b>C2</b> (3688). <b>Aprovado:</b> 6,00 m de verde, que terminam antes do canal de C1
     (y 6,60). Gasta 8 m de verde a menos.</p></div>
   <div class="decisao"><h3>D3 · As guias brancas de S2 e S8</h3>
    <p>As guias de 8 m cortam a avenida A (S2) e o canal, o sigilo e o módulo de C1 (S8).
-    <b>Proposta:</b> 3,00 m de cada lado da porta. O "trilho sul da perna A" do desenho
+    <b>Aprovado:</b> 3,00 m de cada lado da porta. O "trilho sul da perna A" do desenho
     repete o trilho interno da avenida A e, levado até x 25,03, fecharia a boca da A:
     <b>não colar</b>.</p></div>
   <div class="decisao"><h3>D4 · Os serpenteados e o sigilo</h3>
    <p>Os serpenteados de A3, B2 e C5 começam colados no módulo (4,10 m), sem os 1,50 m da
-    linha de espera que as outras 25 mesas têm. As figuras mantêm o desenho: zebrado na saída do
-    serpenteado, junto ao módulo. <b>Alternativa:</b> recuar o serpenteado 1,50 m. Cabe na
-    oeste e na leste; na norte (B2) avança 0,80 m sobre o campo. Recomendo manter, salvo se
-    houve queixa de sigilo nessas mesas no 1º turno.</p></div>
+    linha de espera que as outras 25 mesas têm. <b>Aprovado: manter o desenho.</b> O zebrado
+    vai na saída do serpenteado, junto ao módulo. Se no dia houver queixa de sigilo, o
+    serpenteado de A3 ou de C5 pode recuar 1,50 m (cabe na oeste e na leste); o de B2 não
+    tem esse espaço.</p></div>
  </div>
  <div class="duas">
   <figure class="fig"><div class="fig-scroll">{planta_nordeste(planta, dec, mesas, False)}</div>
