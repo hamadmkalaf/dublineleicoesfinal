@@ -800,6 +800,33 @@ def tabela_banners(grupos):
             + "</tbody></table>")
 
 
+def _por_cor(mesas, dec):
+    import planta_cotada_a3 as pc   # importa este modulo: so em tempo de execucao
+    out = {}
+    for g in pc.trechos(mesas, dec).values():
+        out[g["cor"]] = out.get(g["cor"], 0.0) + g["m"]
+    return out
+
+
+def total_fita(mesas, dec):
+    return sum(_por_cor(mesas, dec).values()) * (1 + sf.RETOQUE)
+
+
+def linhas_fita(mesas, dec):
+    uso = {"A": "avenida A, 9 canais, marcas, galões", "B": "distribuidor, corredor NE, 9 canais, marcas, galões",
+           "C": "avenida C, 10 canais, marcas, galões", "Z": "28 linhas de espera",
+           "P": "canal da S7 (D2)", "S": "guias de S2/S8 (D3) e galões de saída"}
+    nomes = [("A", "Fita azul (zona A)"), ("B", "Fita amarela (zona B)"), ("C", "Fita laranja (zona C)"),
+             ("Z", "Fita zebrada preto-e-branco"), ("P", "Fita verde"), ("S", "Fita branca")]
+    pc = _por_cor(mesas, dec)
+    out = []
+    for c, n in nomes:
+        v = pc.get(c, 0.0) * (1 + sf.RETOQUE)
+        out.append(f'<tr><td>{n}</td><td class="n">{br(v, 0)} m · {math.ceil(v / sf.ROLO)} rolo(s)</td>'
+                   f'<td>{uso[c]}</td></tr>')
+    return "".join(out)
+
+
 def resumo_material(dec):
     bar = barreiras(dec)
     n = sum(sf.postes(sf.comp(t)) for _, t, _ in bar)
@@ -1293,19 +1320,14 @@ def pagina(planta, dec, mesas, grupos):
 <tr><td>Fita crepe e marcador permanente</td><td class="n">4 rolos</td><td>etapa 2 · piquetes e eixos</td></tr>
 <tr><td>Trenas de 30 a 50 m</td><td class="n">2 (+1 laser)</td><td>etapas 1, 2, 4</td></tr>
 <tr><td>Linha de giz</td><td class="n">2</td><td>etapas 2 e 4 · alinhamento das frentes</td></tr>
-<tr><td>Fita azul (zona A)</td><td class="n">≈ 270 m</td><td>avenida A, 9 canais, marcas, galões</td></tr>
-<tr><td>Fita amarela (zona B)</td><td class="n">≈ 165 m</td><td>distribuidor, 9 canais, marcas, galões</td></tr>
-<tr><td>Fita laranja (zona C)</td><td class="n">≈ 265 m</td><td>avenida C, 10 canais, marcas, galões</td></tr>
-<tr><td>Fita zebrada preto-e-branco</td><td class="n">≈ 34 m</td><td>28 linhas de espera</td></tr>
-<tr><td>Fita verde</td><td class="n">≈ 13 m</td><td>canal da S7 com D2</td></tr>
-<tr><td>Fita branca</td><td class="n">≈ 90 m</td><td>guias de S2/S8 e galões de saída</td></tr>
-<tr><td>Unifilas (Tensa, cinta de 2 m)</td><td class="n">98 + reserva</td><td>etapa 6</td></tr>
+{FITA_LINHAS}<tr><td>Unifilas (Tensa, cinta de 2 m)</td><td class="n">98 + reserva</td><td>etapa 6</td></tr>
 <tr><td>Pull-ups de porta · X-banners · vinis · correx</td><td class="n">3 · 16 · 4 · 2</td><td>etapa 7</td></tr>
 <tr><td>Papéis de seção plastificados</td><td class="n">28</td><td>etapa 7 · borda dos canais</td></tr>
 <tr><td>Passa-cabos, extensões, abraçadeiras</td><td class="n">conforme o eletricista</td><td>etapa 3</td></tr>
 <tr><td>Pano, vassoura, rolo para assentar fita</td><td class="n">2 kits</td><td>etapas 1 e 5</td></tr>
 <tr><td>Esta folha impressa em A3, uma por equipe</td><td class="n">6</td><td>todas</td></tr>
 </tbody></table>"""
+    material = material.replace("{FITA_LINHAS}", linhas_fita(mesas, dec))
 
     corpo = f"""
 <title>Montagem do Hall 2</title>
@@ -1323,7 +1345,7 @@ def pagina(planta, dec, mesas, grupos):
   já deveria estar pronto aparece em cinza, o que entra agora aparece em cor.</p>
  <div class="chips"><span class="chip">28 mesas · 16 grupos · 51 seções</span>
   <span class="chip">11.499 eleitores esperados</span><span class="chip">{n_post} unifilas</span>
-  <span class="chip">≈ 830 m de fita em 6 cores</span><span class="chip">salão 50,30 × 44,40 m</span></div>
+  <span class="chip">≈ {total_fita(mesas, dec):.0f} m de fita em 6 cores</span><span class="chip">salão 50,30 × 44,40 m</span></div>
 </header>
 
 <section class="bloco">
@@ -1362,8 +1384,9 @@ def pagina(planta, dec, mesas, grupos):
   <div class="eyebrow">Etapa 0 · antes de entrar</div>
   <h2>Material e equipes</h2>
   <div class="tabwrap">{material}</div>
-  <p class="hora">Metragem de fita: desenho definitivo de 17/09 com {ret:.0%} de retoque,
-   menos o que D2 e D3 economizam. A conferir contra as sobras do 1º turno.</p>
+  <p class="hora">Metragem de fita: medida trecho a trecho no traçado desta página (com D1–D4),
+   mais {ret:.0%} de retoque, em rolos de 50 m. É menor que a conta de 17/09, que media os canais
+   a partir do módulo e incluía trechos que D2 e D3 cortaram. Detalhe por trecho na prancha A3.</p>
  </div>
 </section>
 
