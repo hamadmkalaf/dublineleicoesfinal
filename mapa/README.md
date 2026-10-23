@@ -19,6 +19,7 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado: 23 raias por zona, vão de 1,20 m, **180 CCBs** dos 200 em estoque, 506 m de fita grossa, lotação 2.118. |
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
 | [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **21 peças** P0–P7, os dois mapas de posição e o `canvas.json`. Fonte das seis cores de rolo e da convenção de rotular por grupo e seção. |
+| [`montagem_hall2.html`](montagem_hall2.html) | Montagem do Hall 2 | Roteiro da véspera do 2º turno em oito etapas, com planta por etapa. **Gerado** por `scripts/montagem_hall2.py` (não é espelho de publicação). Propõe os ajustes de chão D1–D4. |
 
 As cópias são a página **tal como o serviço a entregou**, invólucro da plataforma
 incluído — não foram editadas. A única exceção é `voluntarios_postos.html`, que já
