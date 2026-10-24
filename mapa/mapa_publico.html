@@ -1,0 +1,400 @@
+<title>Onde você vota no RDS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --ground:#F2EFE2; --piso:#FFFFFF; --tinta:#042B5A; --regua:#E4DFCC;
+  --cinza:#6B6B6B;  --grafite:#404041;
+  --apron:#E4E0CF;  --patio:#EDEADB; --circ:#DBD6C2; --asfalto:#D8D3C3;
+  --faixa:#FFFFFF;  --rota:#5F882E;  --saida:#404041;
+  --cartao:#FBFAF4; --sombra:0 1px 0 #E4DFCC, 0 10px 26px rgba(4,43,90,.07);
+  --za:#33507E; --zb:#E8C63A; --zc:#C8102E; --pref:#1E3674;
+  /* o hex do rolo pinta a faixa; a TINTA de zona é outra coisa, e precisa de
+     contraste sobre o fundo de cada tema */
+  --zat:#33507E; --zbt:#9A7C00; --zct:#C8102E;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground:#0A1B30; --piso:#132741; --tinta:#F1ECDC; --regua:#284566;
+    --cinza:#A9B7C9;  --grafite:#CBD5E1;
+    --apron:#1B3452;  --patio:#17304C; --circ:#22405F; --asfalto:#16293F;
+    --faixa:#4C6684;  --rota:#8FBF54;  --saida:#CBD5E1;
+    --cartao:#122438; --sombra:0 1px 0 #284566, 0 10px 26px rgba(0,0,0,.35);
+    --zat:#8FADE0; --zbt:#F2D45C; --zct:#FF8497;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:#0A1B30; --piso:#132741; --tinta:#F1ECDC; --regua:#284566;
+  --cinza:#A9B7C9;  --grafite:#CBD5E1;
+  --apron:#1B3452;  --patio:#17304C; --circ:#22405F; --asfalto:#16293F;
+  --faixa:#4C6684;  --rota:#8FBF54;  --saida:#CBD5E1;
+  --cartao:#122438; --sombra:0 1px 0 #284566, 0 10px 26px rgba(0,0,0,.35);
+  --zat:#8FADE0; --zbt:#F2D45C; --zct:#FF8497;
+}
+
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--ground); color:var(--tinta);
+  font-family:'Montserrat', system-ui, sans-serif; font-size:16px; line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+.folha { max-width:1080px; margin:0 auto; padding-inline:18px; padding-block:0 56px; }
+
+header.topo { padding-block:38px 26px; border-bottom:3px solid var(--tinta); }
+.olho {
+  margin:0 0 10px; font-size:11.5px; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--cinza);
+}
+h1 {
+  margin:0; font-size:clamp(30px,6.4vw,54px); font-weight:900; line-height:1.03;
+  letter-spacing:-.022em; text-wrap:balance;
+}
+h1 em { font-style:normal; color:var(--rota); }
+.chamada {
+  margin:16px 0 0; max-width:62ch; font-size:clamp(15px,2.3vw,18px); font-weight:500;
+}
+.carimbo {
+  display:flex; flex-wrap:wrap; gap:10px 30px; margin:22px 0 0; padding:0; list-style:none;
+}
+.carimbo li { display:flex; flex-direction:column; }
+.carimbo b { font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; }
+.carimbo span { font-size:11.5px; font-weight:600; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--cinza); }
+
+section { padding-block:40px 0; }
+.rotulo {
+  margin:0 0 6px; font-size:11.5px; font-weight:800; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--rota);
+}
+h2 { margin:0 0 6px; font-size:clamp(22px,3.6vw,30px); font-weight:800;
+  letter-spacing:-.014em; text-wrap:balance; }
+.sub { margin:0 0 22px; max-width:64ch; color:var(--cinza); font-size:15px; }
+
+ol.passos {
+  counter-reset:p; list-style:none; margin:0 0 26px; padding:0;
+  display:grid; gap:14px 22px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+}
+ol.passos li { counter-increment:p; position:relative; padding-left:42px; }
+ol.passos li::before {
+  counter-reset:none; content:counter(p); position:absolute; left:0; top:1px;
+  width:28px; height:28px; border-radius:50%; background:var(--rota); color:#fff;
+  font-size:14px; font-weight:800; display:grid; place-items:center;
+}
+ol.passos h3 { margin:2px 0 3px; font-size:15.5px; font-weight:800; }
+ol.passos p { margin:0; font-size:14px; color:var(--cinza); }
+
+figure { margin:0; }
+.quadro {
+  background:var(--cartao); border:1px solid var(--regua); border-radius:10px;
+  box-shadow:var(--sombra); padding:14px; overflow-x:auto;
+}
+svg.mapa { display:block; width:100%; height:auto; min-width:520px; }
+svg.mapa--hall { min-width:880px; }
+figcaption { margin-top:12px; font-size:13px; color:var(--cinza); max-width:70ch; }
+
+svg.mapa text { font-family:'Montserrat', system-ui, sans-serif; }
+svg .rot   { font-size:19px; font-weight:900; letter-spacing:.1em; fill:var(--tinta); }
+svg .rotp  { font-size:11px; font-weight:600; fill:var(--cinza); }
+svg .rua   { font-size:12px; font-weight:800; letter-spacing:.2em; fill:var(--cinza); }
+svg .peq   { font-size:10.5px; font-weight:600; fill:var(--cinza); }
+svg .peq2  { font-size:11.5px; font-weight:800; }
+svg .zona  { font-size:30px; font-weight:900; }
+svg .porta { font-size:17px; font-weight:900; }
+svg .portaH{ font-size:21px; font-weight:900; }
+svg .passo { font-size:12px; font-weight:800; fill:#fff; }
+svg .portao{ font-size:13px; font-weight:900; fill:var(--rota); letter-spacing:.05em; }
+svg .mesa  { font-size:10.5px; font-weight:700; font-variant-numeric:tabular-nums;
+  letter-spacing:.02em; }
+
+.colunas { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.col {
+  background:var(--cartao); border:1px solid var(--regua); border-top:5px solid var(--z);
+  border-radius:8px; padding:16px 16px 18px;
+}
+.col h3 { margin:0; font-size:14.5px; font-weight:700; display:flex; align-items:center; gap:10px; }
+.col h3 b {
+  width:32px; height:32px; border-radius:6px; background:var(--z); color:var(--t);
+  display:grid; place-items:center; font-size:19px; font-weight:900; flex:none;
+}
+.col .n { margin:8px 0 12px; font-size:12px; font-weight:600; color:var(--cinza);
+  letter-spacing:.06em; text-transform:uppercase; }
+.secs { display:flex; flex-wrap:wrap; gap:6px; }
+.secs span {
+  font-size:13.5px; font-weight:700; font-variant-numeric:tabular-nums;
+  padding:3px 7px; border-radius:4px; background:var(--z); color:var(--t);
+}
+
+.aviso {
+  margin-top:22px; padding:14px 16px; border-left:4px solid var(--pref);
+  background:var(--cartao); border-radius:0 8px 8px 0; font-size:14.5px;
+}
+.aviso b { color:var(--pref); }
+footer {
+  margin-top:44px; padding-top:18px; border-top:1px solid var(--regua);
+  font-size:12.5px; color:var(--cinza); max-width:74ch;
+}
+@media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
+</style>
+
+<div class="folha">
+<header class="topo">
+  <p class="olho">Eleições 2026 · 1º turno · domingo, 4 de outubro · 8h às 17h</p>
+  <h1>Onde você vota no <em>RDS</em></h1>
+  <p class="chamada">Todas as seções da Irlanda votam num único lugar: o <b>Hall 2 do RDS</b>,
+  na Merrion Road, em Ballsbridge. O caminho é o mesmo para todo mundo — muda só uma coisa,
+  e é a <b>letra da sua porta</b>. Descubra o número da sua seção antes de sair de casa:
+  com ele, a letra está no fim desta página.</p>
+  <ul class="carimbo">
+    <li><b>51</b><span>seções</span></li>
+    <li><b>28</b><span>urnas</span></li>
+    <li><b>16.794</b><span>eleitores aptos</span></li>
+    <li><b>3</b><span>portas: A, B e C</span></li>
+  </ul>
+</header>
+
+<section>
+  <p class="rotulo">Passo a passo</p>
+  <h2>Da calçada até a urna</h2>
+  <p class="sub">Cinco trechos. A letra da sua porta aparece em todos eles — no portão, na
+  lateral do salão, na entrada do pátio e na própria porta.</p>
+  <ol class="passos">
+<li><h3>Portão B, na Merrion Road</h3><p>É por ali que o eleitor entra. Antes do portão há uma mesa de consulta: quem não sabe o número da sua seção descobre ali, e anota a letra da porta. Depois do portão, tudo pressupõe a seção conhecida.</p></li>
+<li><h3>Pela lateral leste do Hall 2</h3><p>O caminho contorna o salão pelo lado leste e desemboca no apron, a faixa pavimentada de 14,0 m entre o Hall 2 e o pátio.</p></li>
+<li><h3>Ring 3, pelo canto nordeste</h3><p>O pátio de fila fica ao ar livre, ao sul do salão. Entra-se pelo canto nordeste e desce-se pelo corredor de chegada; no fundo, o corredor distribui para as três zonas: <b>C primeiro, B depois, A no fim</b>.</p></li>
+<li><h3>A sua zona, a sua fila</h3><p>Cada zona é a fila de uma porta, e as três têm o mesmo tamanho. Entra-se pela boca no fundo, sobe-se a fila e sai-se pela abertura da frente — a que fica em frente à sua porta.</p></li>
+<li><h3>A porta A, B ou C</h3><p>Atravessado o apron, cada zona entra pela sua porta. Da porta até a mesa é sempre a mesma letra: a avenida da sua cor leva à parede, e a avenida da parede leva à sua seção.</p></li>
+  </ol>
+  <figure>
+    <div class="quadro"><svg viewBox="0 0 658 979" class="mapa" role="img" aria-label="Planta do percurso: o portão B na Merrion Road, a lateral leste do Hall 2, o apron, o pátio do Ring 3 com as três zonas A, B e C, e as três portas do salão.">
+<defs><marker id="pc" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="5.4" markerHeight="5.4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<rect x="562.4" y="8.0" width="79.2" height="962.7" fill="var(--asfalto)"/>
+<line x1="602.0" y1="8.0" x2="602.0" y2="970.7" stroke="var(--faixa)" stroke-width="2" stroke-dasharray="14 12"/>
+<text class="rua" x="602.0" y="122.4" text-anchor="middle" transform="rotate(-90 602.0 122.4)">MERRION ROAD</text>
+<line x1="548.3" y1="25.6" x2="548.3" y2="953.1" stroke="var(--regua)" stroke-width="3"/>
+<polygon points="103.0,477.9 477.0,477.9 477.0,87.2 34.4,87.2 34.4,416.3 103.0,416.3" fill="var(--piso)" stroke="var(--tinta)" stroke-width="2.2"/>
+<text class="rot" x="255.7" y="282.6" text-anchor="middle">HALL 2</text>
+<text class="rotp" x="255.7" y="298.6" text-anchor="middle">o salão de votação</text>
+<rect x="89.7" y="477.9" width="387.2" height="123.2" fill="var(--apron)"/>
+<text class="peq" x="116.1" y="542.5" text-anchor="start">apron · 14,0 m</text>
+<rect x="89.7" y="601.1" width="387.2" height="308.0" fill="var(--patio)" stroke="var(--tinta)" stroke-width="1.6" stroke-dasharray="7 5"/>
+<rect x="450.5" y="601.1" width="26.4" height="308.0" fill="var(--circ)"/>
+<rect x="89.7" y="882.7" width="360.8" height="26.4" fill="var(--circ)"/>
+<text class="peq" x="463.7" y="741.9" text-anchor="middle" transform="rotate(-90 463.7 741.9)">corredor de chegada</text>
+<text class="peq" x="270.1" y="899.4" text-anchor="middle">o corredor distribui as três filas: C, depois B, depois A</text>
+<rect x="89.7" y="601.1" width="113.3" height="281.6" fill="#33507E" fill-opacity=".22" stroke="#33507E" stroke-width="1.4"/>
+<text class="zona" x="146.3" y="741.9" text-anchor="middle" fill="var(--zat)">A</text>
+<text class="peq" x="146.3" y="758.9" text-anchor="middle">fila da porta A</text>
+<line x1="89.7" y1="882.7" x2="115.0" y2="882.7" stroke="#33507E" stroke-width="5"/>
+<line x1="185.4" y1="601.1" x2="203.0" y2="601.1" stroke="#33507E" stroke-width="5"/>
+<line x1="194.2" y1="599.1" x2="228.6" y2="481.9" stroke="#33507E" stroke-width="2.6" marker-end="url(#pc)"/>
+<rect x="213.5" y="601.1" width="113.2" height="281.6" fill="#E8C63A" fill-opacity=".22" stroke="#E8C63A" stroke-width="1.4"/>
+<text class="zona" x="270.1" y="741.9" text-anchor="middle" fill="var(--zbt)">B</text>
+<text class="peq" x="270.1" y="758.9" text-anchor="middle">fila da porta B</text>
+<line x1="301.5" y1="882.7" x2="326.7" y2="882.7" stroke="#E8C63A" stroke-width="5"/>
+<line x1="261.3" y1="601.1" x2="278.9" y2="601.1" stroke="#E8C63A" stroke-width="5"/>
+<line x1="270.1" y1="599.1" x2="283.3" y2="481.9" stroke="#E8C63A" stroke-width="2.6" marker-end="url(#pc)"/>
+<rect x="337.3" y="601.1" width="113.3" height="281.6" fill="#C8102E" fill-opacity=".22" stroke="#C8102E" stroke-width="1.4"/>
+<text class="zona" x="393.9" y="741.9" text-anchor="middle" fill="var(--zct)">C</text>
+<text class="peq" x="393.9" y="758.9" text-anchor="middle">fila da porta C</text>
+<line x1="425.3" y1="882.7" x2="450.5" y2="882.7" stroke="#C8102E" stroke-width="5"/>
+<line x1="337.3" y1="601.1" x2="354.9" y2="601.1" stroke="#C8102E" stroke-width="5"/>
+<line x1="346.1" y1="599.1" x2="338.0" y2="481.9" stroke="#C8102E" stroke-width="2.6" marker-end="url(#pc)"/>
+<line x1="151.0" y1="477.9" x2="161.6" y2="477.9" stroke="var(--saida)" stroke-width="7"/>
+<text class="peq" x="156.3" y="492.9" text-anchor="middle">saída</text>
+<line x1="202.5" y1="477.9" x2="254.7" y2="477.9" stroke="#33507E" stroke-width="7"/>
+<text class="porta" x="228.6" y="470.9" text-anchor="middle" fill="var(--zat)">A</text>
+<line x1="257.2" y1="477.9" x2="309.4" y2="477.9" stroke="#E8C63A" stroke-width="7"/>
+<text class="porta" x="283.3" y="470.9" text-anchor="middle" fill="var(--zbt)">B</text>
+<line x1="312.0" y1="477.9" x2="364.1" y2="477.9" stroke="#C8102E" stroke-width="7"/>
+<text class="porta" x="338.0" y="470.9" text-anchor="middle" fill="var(--zct)">C</text>
+<line x1="369.6" y1="477.9" x2="380.8" y2="477.9" stroke="#1E3674" stroke-width="7"/>
+<text class="peq" x="386.8" y="468.9" text-anchor="start" fill="#1E3674">preferencial</text>
+<line x1="405.1" y1="477.9" x2="415.6" y2="477.9" stroke="var(--saida)" stroke-width="7"/>
+<text class="peq" x="410.3" y="492.9" text-anchor="middle">saída</text>
+<polyline points="548.3,187.5 512.2,187.5 512.2,587.9 463.7,587.9 463.7,623.1" fill="none" stroke="var(--rota)" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="11 7" marker-end="url(#pc)"/>
+<circle cx="548.3" cy="187.5" r="7" fill="var(--rota)"/>
+<circle cx="444.5" cy="187.5" r="9.5" fill="var(--rota)"/>
+<text class="passo" x="444.5" y="191.3" text-anchor="middle">1</text>
+<circle cx="533.4" cy="363.5" r="9.5" fill="var(--rota)"/>
+<text class="passo" x="533.4" y="367.3" text-anchor="middle">2</text>
+<circle cx="499.8" cy="680.3" r="9.5" fill="var(--rota)"/>
+<text class="passo" x="499.8" y="684.1" text-anchor="middle">3</text>
+<circle cx="270.1" cy="825.5" r="9.5" fill="var(--rota)"/>
+<text class="passo" x="270.1" y="829.3" text-anchor="middle">4</text>
+<circle cx="283.3" cy="507.8" r="9.5" fill="var(--rota)"/>
+<text class="passo" x="283.3" y="511.6" text-anchor="middle">5</text>
+<text class="portao" x="534.3" y="191.5" text-anchor="end">PORTÃO B</text>
+<text class="peq" x="534.3" y="205.5" text-anchor="end">entrada do eleitor</text>
+<text class="peq" x="503.2" y="372.3" transform="rotate(-90 503.2 372.3)" text-anchor="middle">lateral leste do Hall 2</text>
+<text class="peq" x="255.7" y="314.6" text-anchor="middle">as 28 mesas ficam nas paredes — ver o mapa do salão abaixo</text>
+<g transform="translate(37.9 47.6)"><line x1="0" y1="14" x2="0" y2="-9" stroke="var(--tinta)" stroke-width="1.8" marker-end="url(#pc)"/><text class="peq" x="0" y="26" text-anchor="middle">N</text></g>
+<line x1="25.6" y1="944.3" x2="201.6" y2="944.3" stroke="var(--tinta)" stroke-width="2"/>
+<line x1="25.6" y1="940.3" x2="25.6" y2="948.3" stroke="var(--tinta)" stroke-width="1.4"/>
+<line x1="113.6" y1="940.3" x2="113.6" y2="948.3" stroke="var(--tinta)" stroke-width="1.4"/>
+<line x1="201.6" y1="940.3" x2="201.6" y2="948.3" stroke="var(--tinta)" stroke-width="1.4"/>
+<text class="peq" x="208.6" y="948.3">20 m</text>
+</svg></div>
+    <figcaption><b>O caminho.</b> O Hall 2, o apron de 14,0 m e o pátio do Ring 3 estão em
+    escala e na posição relativa medida em planta. O trecho entre o portão e o apron é
+    esquemático: indica o lado por onde se anda, não a distância. As três zonas do pátio têm
+    12,87 m cada e comportam 2.105 pessoas ao todo.</figcaption>
+  </figure>
+  <p class="aviso"><b>Atendimento preferencial.</b> Idoso, gestante, pessoa com deficiência e
+  quem os acompanha entram pela porta preferencial, à direita da porta C, <b>sem fila</b>.</p>
+</section>
+
+<section>
+  <p class="rotulo">Dentro do salão</p>
+  <h2>O Hall 2</h2>
+  <p class="sub">As mesas ficam encostadas nas paredes, e cada parede é de uma porta: a porta A
+  vota na parede oeste, a B na norte, a C na leste. As mesas não têm número — cada uma traz as
+  <b>seções que votam nela</b>, que é o que você tem na mão.</p>
+  <figure>
+    <div class="quadro"><svg viewBox="0 0 1124 1058" class="mapa mapa--hall" role="img" aria-label="Planta simplificada do Hall 2: as 28 mesas encostadas nas paredes oeste, norte e leste, cada uma rotulada pelas seções que votam nela; as portas A, B e C na fachada sul, a entrada preferencial, as duas saídas, e as avenidas que levam de cada porta à sua parede e da avenida a cada mesa.">
+<defs><marker id="ph" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<polygon points="197.8,966.4 1090.3,966.4 1090.3,34.0 34.0,34.0 34.0,819.4 197.8,819.4" fill="var(--piso)" stroke="var(--tinta)" stroke-width="2.4"/>
+<rect x="120.1" y="147.0" width="144.9" height="680.2" fill="#33507E" fill-opacity=".10"/>
+<rect x="253.7" y="120.1" width="686.1" height="102.9" fill="#E8C63A" fill-opacity=".10"/>
+<rect x="800.5" y="190.5" width="140.7" height="655.2" fill="#C8102E" fill-opacity=".10"/>
+<polygon points="492.4,966.4 492.4,895.0 265.0,895.0 265.0,126.4 328.0,126.4 328.0,832.0 559.6,832.0 559.6,966.4" fill="#33507E" fill-opacity=".22"/>
+<line x1="526.0" y1="941.2" x2="526.0" y2="808.9" stroke="#33507E" stroke-width="3" marker-end="url(#ph)"/>
+<polygon points="596.8,966.4 596.8,260.8 659.8,260.8 659.8,966.4" fill="#E8C63A" fill-opacity=".22"/>
+<line x1="628.3" y1="941.2" x2="628.3" y2="808.9" stroke="#E8C63A" stroke-width="3" marker-end="url(#ph)"/>
+<polygon points="706.0,966.4 706.0,899.2 737.5,857.2 737.5,136.9 800.5,136.9 800.5,857.2 769.0,899.2 769.0,966.4" fill="#C8102E" fill-opacity=".22"/>
+<line x1="737.5" y1="941.2" x2="737.5" y2="808.9" stroke="#C8102E" stroke-width="3" marker-end="url(#ph)"/>
+<rect x="265.0" y="223.0" width="535.5" height="37.8" fill="#E8C63A" fill-opacity=".22"/>
+<line x1="588.4" y1="241.9" x2="349.0" y2="241.9" stroke="#E8C63A" stroke-width="3" marker-end="url(#ph)"/>
+<line x1="668.2" y1="241.9" x2="748.0" y2="241.9" stroke="#E8C63A" stroke-width="3" marker-end="url(#ph)"/>
+<polygon points="34.0,788.3 34.0,807.2 120.1,807.2 120.1,788.3" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="797.8" x2="127.4" y2="797.8" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="801.4" text-anchor="middle" fill="#FFFFFF">0513 1105</text>
+<polygon points="34.0,706.4 34.0,725.3 120.1,725.3 120.1,706.4" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="715.9" x2="127.4" y2="715.9" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="719.5" text-anchor="middle" fill="#FFFFFF">1352 0522</text>
+<polygon points="34.0,656.0 34.0,674.9 120.1,674.9 120.1,656.0" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="665.5" x2="127.4" y2="665.5" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="669.1" text-anchor="middle" fill="#FFFFFF">3078 2847</text>
+<polygon points="34.0,574.1 34.0,593.0 120.1,593.0 120.1,574.1" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="583.6" x2="127.4" y2="583.6" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="587.2" text-anchor="middle" fill="#FFFFFF">3179 0530</text>
+<polygon points="34.0,439.9 34.0,458.8 120.1,458.8 120.1,439.9" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="449.4" x2="127.4" y2="449.4" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="453.0" text-anchor="middle" fill="#FFFFFF">3313 3889</text>
+<polygon points="34.0,381.1 34.0,400.0 120.1,400.0 120.1,381.1" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="390.6" x2="127.4" y2="390.6" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="394.2" text-anchor="middle" fill="#FFFFFF">3309 1314</text>
+<polygon points="34.0,299.2 34.0,318.1 120.1,318.1 120.1,299.2" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="308.7" x2="127.4" y2="308.7" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="312.3" text-anchor="middle" fill="#FFFFFF">3142 1278</text>
+<polygon points="34.0,248.8 34.0,267.7 120.1,267.7 120.1,248.8" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="258.3" x2="127.4" y2="258.3" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="261.9" text-anchor="middle" fill="#FFFFFF">3161 3307</text>
+<polygon points="34.0,166.9 34.0,185.8 120.1,185.8 120.1,166.9" fill="#33507E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="160.0" y1="176.4" x2="127.4" y2="176.4" stroke="#33507E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="77.0" y="180.0" text-anchor="middle" fill="#FFFFFF">3311 3913</text>
+<polygon points="292.5,34.0 273.6,34.0 273.6,120.1 292.5,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="283.1" y1="160.0" x2="283.1" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="283.1" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 283.1 77.0)">0512 2855</text>
+<polygon points="374.4,34.0 355.5,34.0 355.5,120.1 374.4,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="365.0" y1="160.0" x2="365.0" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="365.0" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 365.0 77.0)">1160 3845</text>
+<polygon points="433.2,34.0 414.3,34.0 414.3,120.1 433.2,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="423.8" y1="160.0" x2="423.8" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="423.8" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 423.8 77.0)">3315 3778</text>
+<polygon points="573.3,34.0 554.4,34.0 554.4,120.1 573.3,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="563.8" y1="160.0" x2="563.8" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="563.8" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 563.8 77.0)">3108 3422</text>
+<polygon points="655.2,34.0 636.3,34.0 636.3,120.1 655.2,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="645.7" y1="160.0" x2="645.7" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="645.7" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 645.7 77.0)">3302 3181</text>
+<polygon points="705.6,34.0 686.7,34.0 686.7,120.1 705.6,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="696.1" y1="160.0" x2="696.1" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="696.1" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 696.1 77.0)">3305 0521</text>
+<polygon points="787.5,34.0 768.6,34.0 768.6,120.1 787.5,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="778.0" y1="160.0" x2="778.0" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="778.0" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 778.0 77.0)">3306 0518</text>
+<polygon points="837.9,34.0 819.0,34.0 819.0,120.1 837.9,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="828.4" y1="160.0" x2="828.4" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="828.4" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 828.4 77.0)">3308</text>
+<polygon points="919.8,34.0 900.9,34.0 900.9,120.1 919.8,120.1" fill="#E8C63A" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="910.3" y1="160.0" x2="910.3" y2="127.4" stroke="#E8C63A" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="910.3" y="80.6" text-anchor="middle" fill="#042B5A" transform="rotate(-90 910.3 77.0)">3832</text>
+<polygon points="1027.3,229.3 1027.3,210.4 941.2,210.4 941.2,229.3" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="219.9" x2="933.8" y2="219.9" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="223.5" text-anchor="middle" fill="#FFFFFF">0511 1100</text>
+<polygon points="1027.3,311.2 1027.3,292.3 941.2,292.3 941.2,311.2" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="301.8" x2="933.8" y2="301.8" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="305.4" text-anchor="middle" fill="#FFFFFF">0517 1292</text>
+<polygon points="1027.3,370.0 1027.3,351.1 941.2,351.1 941.2,370.0" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="360.5" x2="933.8" y2="360.5" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="364.1" text-anchor="middle" fill="#FFFFFF">3322 3752</text>
+<polygon points="1027.3,428.8 1027.3,409.9 941.2,409.9 941.2,428.8" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="419.3" x2="933.8" y2="419.3" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="422.9" text-anchor="middle" fill="#FFFFFF">3054 1099</text>
+<polygon points="1027.3,510.7 1027.3,491.8 941.2,491.8 941.2,510.7" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="501.2" x2="933.8" y2="501.2" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="504.9" text-anchor="middle" fill="#FFFFFF">3216 0527</text>
+<polygon points="1027.3,561.1 1027.3,542.2 941.2,542.2 941.2,561.1" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="551.6" x2="933.8" y2="551.6" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="555.2" text-anchor="middle" fill="#FFFFFF">3862</text>
+<polygon points="1027.3,643.0 1027.3,624.1 941.2,624.1 941.2,643.0" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="633.5" x2="933.8" y2="633.5" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="637.1" text-anchor="middle" fill="#FFFFFF">3245 0519</text>
+<polygon points="1027.3,693.4 1027.3,674.5 941.2,674.5 941.2,693.4" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="683.9" x2="933.8" y2="683.9" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="687.5" text-anchor="middle" fill="#FFFFFF">3229 3821</text>
+<polygon points="1027.3,775.3 1027.3,756.4 941.2,756.4 941.2,775.3" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="765.8" x2="933.8" y2="765.8" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="769.4" text-anchor="middle" fill="#FFFFFF">3688</text>
+<polygon points="1027.3,825.7 1027.3,806.8 941.2,806.8 941.2,825.7" fill="#C8102E" stroke="var(--tinta)" stroke-width=".8" rx="2"/>
+<line x1="901.3" y1="816.2" x2="933.8" y2="816.2" stroke="#C8102E" stroke-width="1.6" marker-end="url(#ph)" opacity=".85"/>
+<text class="mesa" x="984.2" y="819.9" text-anchor="middle" fill="#FFFFFF">3442</text>
+<line x1="312.2" y1="966.4" x2="337.4" y2="966.4" stroke="var(--saida)" stroke-width="9" stroke-linecap="butt"/>
+<text class="peq2" x="324.8" y="992.4" text-anchor="middle" fill="var(--saida)">saída</text>
+<line x1="435.1" y1="966.4" x2="559.6" y2="966.4" stroke="#33507E" stroke-width="9" stroke-linecap="butt"/>
+<text class="portaH" x="497.4" y="992.4" text-anchor="middle" fill="var(--zat)">A</text>
+<text class="peq" x="497.4" y="1006.4" text-anchor="middle">entrada</text>
+<line x1="565.7" y1="966.4" x2="690.2" y2="966.4" stroke="#E8C63A" stroke-width="9" stroke-linecap="butt"/>
+<text class="portaH" x="628.0" y="992.4" text-anchor="middle" fill="var(--zbt)">B</text>
+<text class="peq" x="628.0" y="1006.4" text-anchor="middle">entrada</text>
+<line x1="696.3" y1="966.4" x2="820.9" y2="966.4" stroke="#C8102E" stroke-width="9" stroke-linecap="butt"/>
+<text class="portaH" x="758.6" y="992.4" text-anchor="middle" fill="var(--zct)">C</text>
+<text class="peq" x="758.6" y="1006.4" text-anchor="middle">entrada</text>
+<line x1="833.9" y1="966.4" x2="860.6" y2="966.4" stroke="#1E3674" stroke-width="9" stroke-linecap="butt"/>
+<text class="peq2" x="847.2" y="992.4" text-anchor="middle" fill="#1E3674">preferencial</text>
+<line x1="918.5" y1="966.4" x2="943.7" y2="966.4" stroke="var(--saida)" stroke-width="9" stroke-linecap="butt"/>
+<text class="peq2" x="931.1" y="992.4" text-anchor="middle" fill="var(--saida)">saída</text>
+<line x1="160.0" y1="714.4" x2="324.8" y2="916.0" stroke="var(--saida)" stroke-width="2" stroke-dasharray="3 5" marker-end="url(#ph)" opacity=".85"/>
+<line x1="937.0" y1="714.4" x2="930.7" y2="916.0" stroke="var(--saida)" stroke-width="2" stroke-dasharray="3 5" marker-end="url(#ph)" opacity=".85"/>
+<text class="peq" x="562.1" y="1044.4" text-anchor="middle">planta em escala · fachada sul embaixo, como quem chega do Ring 3</text>
+</svg></div>
+    <figcaption><b>O salão.</b> Da porta, a avenida da sua cor leva até a parede; da avenida da
+    parede, um passo até a sua seção. Quem votou volta pela mesma faixa da parede e sai pelas
+    saídas da fachada sul — ninguém atravessa a avenida de quem está entrando.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="rotulo">Sua seção, sua porta</p>
+  <h2>Ache o seu número</h2>
+  <p class="sub">As 51 seções da Irlanda, repartidas pelas três portas. Anote a letra: você
+  vai procurá-la três vezes no caminho.</p>
+  <div class="colunas">
+<div class="col" style="--z:#33507E;--t:#FFFFFF"><h3><b>A</b> porta S4 · parede oeste</h3><p class="n">18 seções</p><div class="secs"><span>0513</span> <span>0522</span> <span>0530</span> <span>1105</span> <span>1278</span> <span>1314</span> <span>1352</span> <span>2847</span> <span>3078</span> <span>3142</span> <span>3161</span> <span>3179</span> <span>3307</span> <span>3309</span> <span>3311</span> <span>3313</span> <span>3889</span> <span>3913</span></div></div>
+<div class="col" style="--z:#E8C63A;--t:#042B5A"><h3><b>B</b> porta S5 · parede norte</h3><p class="n">16 seções</p><div class="secs"><span>0512</span> <span>0518</span> <span>0521</span> <span>1160</span> <span>2855</span> <span>3108</span> <span>3181</span> <span>3302</span> <span>3305</span> <span>3306</span> <span>3308</span> <span>3315</span> <span>3422</span> <span>3778</span> <span>3832</span> <span>3845</span></div></div>
+<div class="col" style="--z:#C8102E;--t:#FFFFFF"><h3><b>C</b> porta S6 · parede leste</h3><p class="n">17 seções</p><div class="secs"><span>0511</span> <span>0517</span> <span>0519</span> <span>0527</span> <span>1099</span> <span>1100</span> <span>1292</span> <span>3054</span> <span>3216</span> <span>3229</span> <span>3245</span> <span>3322</span> <span>3442</span> <span>3688</span> <span>3752</span> <span>3821</span> <span>3862</span></div></div>
+  </div>
+</section>
+
+<footer>
+  <p>Royal Dublin Society, Hall 2 · Merrion Road, Ballsbridge, Dublin 4, D04 AK83. Entrada de
+  eleitores pelo portão B, na Merrion Road. Planta do salão e posição das mesas medidas sobre a
+  planta oficial do RDS; geometria do pátio gerada do mesmo desenho que produz a folha de
+  montagem do Ring 3. Página gerada por <code>scripts/mapa_publico.py</code>.</p>
+  <p>Consulte sempre o seu local e a sua seção no site do TSE antes de sair de casa.</p>
+</footer>
+</div>

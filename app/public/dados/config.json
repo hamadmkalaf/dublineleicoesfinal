@@ -1,0 +1,40 @@
+{
+  "turno": "1º turno",
+  "turno_n": 1,
+  "data": "domingo, 4 de outubro de 2026",
+  "horario": "8h às 17h",
+  "local": "RDS · Hall 2",
+  "endereco": "Merrion Road, Ballsbridge, Dublin 4 (D04 AK83)",
+  "link_etitulo": "https://www.tse.jus.br/servicos-eleitorais/titulo-e-local-de-votacao/consulta-por-nome",
+  "dica_nome": "Digite o nome completo, como está no título de eleitor. Não precisa de acento.",
+  "versao_app": "v3",
+  "aviso_homonimo": "Há mais de um eleitor com esse nome. Para saber a sua seção, confirme os 4 dígitos do meio do seu título de eleitor.",
+  "rotulo_titulo": "Título de eleitor: os 4 dígitos do meio (ou o número completo)",
+  "dica_titulo": "No número do título, 0000 XXXX 0000, são os quatro do meio. Está no título impresso, no e-Título ou na consulta do TSE. Nada sai do seu aparelho: a consulta é feita nele.",
+  "aviso_titulo_errado": "Esses dígitos não correspondem a esse nome. Confira o número no título ou no e-Título, ou procure a mesa “Descubra sua seção” na calçada, antes do portão.",
+  "aviso_sem_desempate": "Há mais de um eleitor com esse nome e os mesmos dígitos do título: o app não consegue separá-los. Procure a mesa “Descubra sua seção” na calçada, antes do portão.",
+  "aviso_marca": "A lista do TRE marca a sua situação neste turno como “{marca}”, e não como “OK”. Confira no e-Título antes de ir ao RDS; na dúvida, procure a mesa “Descubra sua seção” na calçada.",
+  "rodape": "Consulta oficial do Posto de Dublin para as Eleições 2026. A identificação na mesa é feita pelo mesário com documento oficial com foto.",
+
+  "fila": {
+    "repo": "hamadmkalaf/dublineleicoesfinal",
+    "branch": "fila",
+    "arquivo": "fila.json",
+    "url_leitura": "https://raw.githubusercontent.com/hamadmkalaf/dublineleicoesfinal/fila/fila.json",
+    "lotacao_zona": 706,
+    "segundos_por_eleitor": 60,
+    "minutos_travessia": 3,
+    "arredonda_min": 5,
+    "validade_min": 60,
+    "rotulo": "Tempo estimado de espera",
+    "explicacao": "Da entrada no Ring 3 até votar. Estimativa a partir de quanto a fila {letra} está cheia ({pct}% às {hora}), informado pela equipe no local. Premissa: cerca de {seg} s por eleitor na mesa.",
+    "sem_fila": "Sem fila na zona {letra} às {hora}: você deve votar em poucos minutos.",
+    "desatualizado": "Última informação da equipe às {hora}, há mais de {validade} min: a fila pode ter mudado."
+  },
+  "admin": {
+    "kdf": "PBKDF2-SHA256",
+    "sal": "dublin-2026-onde-eu-voto-admin",
+    "iteracoes": 200000,
+    "hash": "gz6lrDA23r8I0TaipbnJSmDAGqjgXLFPSEX3Y7BVpSg"
+  }
+}
