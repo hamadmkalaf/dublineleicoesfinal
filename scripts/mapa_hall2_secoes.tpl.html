@@ -1,0 +1,195 @@
+<title>Hall 2 por Seção</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap">
+<style>
+/* Layout: planta em escala no topo, busca por seção ao lado; abaixo, o índice por zona e a lista corrida das 51 seções. */
+:root {
+  --bg: #f2efe2; --papel: #fbfaf4; --fg: #2b2b28; --sub: #6b6a60; --linha: #c9c5b2;
+  --piso: #fffef9; --parede: #3f3f3b; --prot: #e6e1cf; --hach: #c9c2a8;
+  --zA: #2a78d6; --zB: #e08a00; --zC: #c2185b; --pref: #6d5a00; --saida: #1e8449;
+  --f-disp: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --f-txt: "Nunito Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1c1a; --papel: #232421; --fg: #ecebe4; --sub: #a3a196; --linha: #45463f;
+  --piso: #262723; --parede: #d8d6cb; --prot: #2f302b; --hach: #4a4b43;
+  --zA: #5b9cf0; --zB: #f2a531; --zC: #ec5a90; --pref: #d8be4a; --saida: #47b878; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #1b1c1a; --papel: #232421; --fg: #ecebe4; --sub: #a3a196; --linha: #45463f;
+  --piso: #262723; --parede: #d8d6cb; --prot: #2f302b; --hach: #4a4b43;
+  --zA: #5b9cf0; --zB: #f2a531; --zC: #ec5a90; --pref: #d8be4a; --saida: #47b878; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-txt); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 48px; }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 28px; }
+h1, h2 { font-family: var(--f-disp); text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
+h2 { font-size: 20px; font-weight: 700; }
+.lead { color: var(--sub); max-width: 68ch; margin: 6px 0 0; }
+.eyebrow { font: 700 12px/1 var(--f-disp); letter-spacing: .12em; text-transform: uppercase; color: var(--sub); }
+.zA { --z: var(--zA); } .zB { --z: var(--zB); } .zC { --z: var(--zC); }
+
+.topo { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 24px; align-items: start; }
+@media (max-width: 900px) { .topo { grid-template-columns: minmax(0, 1fr); } }
+.planta { background: var(--papel); border: 1px solid var(--linha); border-radius: 6px; overflow-x: auto; padding: 8px; }
+.planta svg { display: block; width: 100%; min-width: 640px; height: auto; font-family: var(--f-txt); }
+
+.piso { fill: var(--piso); stroke: var(--parede); stroke-width: 3; }
+.protegida { fill: url(#hach); }
+.hach { stroke: var(--hach); stroke-width: 2; }
+.apoio { fill: var(--prot); stroke: var(--linha); stroke-dasharray: 4 3; }
+.recuo { fill: var(--prot); opacity: .7; }
+.serp { fill: none; stroke: var(--sub); stroke-dasharray: 3 3; }
+.t-serp { font-size: 9px; fill: var(--sub); }
+.t-area, .t-faixa { font-size: 10px; fill: var(--sub); letter-spacing: .06em; }
+.letra { font: 800 120px var(--f-disp); fill: var(--z); opacity: .07; }
+.porta { stroke-width: 6; stroke: var(--piso); }
+.porta.ent { stroke: var(--z); stroke-width: 7; }
+.porta.pref { stroke: var(--pref); }
+.porta.saida { stroke: var(--saida); }
+.porta.fechada { stroke: var(--parede); stroke-dasharray: 2 2; stroke-width: 3; }
+.porta.emerg { stroke: var(--saida); stroke-width: 4; }
+.t-ent { font: 800 15px var(--f-disp); fill: var(--z); }
+.t-ent2 { font: 700 11px var(--f-disp); fill: var(--z); letter-spacing: .04em; text-transform: uppercase; }
+.t-porta { font-size: 10px; fill: var(--sub); }
+.t-porta.pref { fill: var(--pref); font-weight: 700; }
+.t-porta.saida { fill: var(--saida); font-weight: 700; }
+.t-sul { font: 700 11px var(--f-disp); fill: var(--sub); letter-spacing: .1em; }
+.norte path { fill: var(--fg); } .norte text, .escala text { font: 700 10px var(--f-disp); fill: var(--fg); }
+.escala line { stroke: var(--fg); stroke-width: 1.5; }
+
+.mesa { cursor: pointer; outline: none; }
+.mesa .tampo { fill: var(--z); }
+.mesa .cls { stroke: var(--piso); stroke-width: 1.5; }
+.t-sec { font: 800 12px var(--f-disp); fill: var(--fg); font-variant-numeric: tabular-nums; }
+.t-sec.ag { font-weight: 500; fill: var(--sub); }
+.grupo circle { fill: var(--piso); stroke: var(--z); stroke-width: 2.5; }
+.grupo text { font: 800 11px var(--f-disp); fill: var(--z); }
+.mesa:hover .tampo, .mesa:focus-visible .tampo { stroke: var(--fg); stroke-width: 2; }
+svg.foco .mesa, svg.foco .grupo { opacity: .18; transition: opacity .2s; }
+svg.foco .mesa.on, svg.foco .grupo.on { opacity: 1; }
+.mesa.on .tampo { stroke: var(--fg); stroke-width: 3; }
+.mesa.on .t-sec { font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { svg.foco .mesa { transition: none; } }
+
+.lado { display: grid; gap: 16px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+@media (max-width: 900px) { .lado { position: static; } }
+.busca { background: var(--papel); border: 1px solid var(--linha); border-radius: 6px; padding: 16px; display: grid; gap: 10px; }
+.busca label { font: 700 12px var(--f-disp); letter-spacing: .1em; text-transform: uppercase; color: var(--sub); }
+.busca input { font: 800 28px var(--f-disp); width: 100%; box-sizing: border-box; padding: 8px 12px; border: 2px solid var(--linha);
+  border-radius: 4px; background: var(--piso); color: var(--fg); letter-spacing: .05em; font-variant-numeric: tabular-nums; }
+.busca input:focus-visible { outline: none; border-color: var(--fg); }
+.resp { min-height: 96px; border-radius: 4px; padding: 12px 14px; background: var(--prot); }
+.resp.ok { background: var(--z); color: #fff; }
+.resp .big { font: 800 22px/1.15 var(--f-disp); display: block; }
+.resp p { margin: 4px 0 0; }
+.legenda { display: grid; gap: 6px; font-size: 13px; color: var(--sub); }
+.legenda span { display: flex; gap: 8px; align-items: center; }
+.legenda i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.legenda .sw { width: 18px; height: 8px; border-radius: 1px; }
+
+.zonas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 820px) { .zonas { grid-template-columns: minmax(0, 1fr); } }
+.zona { background: var(--papel); border: 1px solid var(--linha); border-top: 5px solid var(--z); border-radius: 6px; padding: 14px 16px; }
+.zona header { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+.letra-z { font: 800 40px/1 var(--f-disp); color: var(--z); }
+.zona strong { display: block; font-family: var(--f-disp); }
+.zona small { color: var(--sub); font-size: 13px; }
+.zona ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.zona li { display: flex; gap: 12px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--linha); }
+.chip { font: 800 12px var(--f-disp); color: var(--z); border: 2px solid var(--z); border-radius: 999px; padding: 1px 7px; flex: none; }
+.secs { font: 600 15px var(--f-disp); font-variant-numeric: tabular-nums; }
+
+.todas { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 6px; }
+.todas .s { all: unset; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 4px;
+  padding: 6px 8px; border-radius: 4px; background: var(--papel); border: 1px solid var(--linha); border-left: 4px solid var(--z); }
+.todas .s span { font: 800 15px var(--f-disp); font-variant-numeric: tabular-nums; }
+.todas .s em { font: 700 11px var(--f-disp); font-style: normal; color: var(--z); }
+.todas .s:hover, .todas .s:focus-visible { border-color: var(--z); }
+.nota { color: var(--sub); font-size: 13px; max-width: 80ch; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Eleições 2026 · Posto de Dublin · RDS Ballsbridge</div>
+    <h1>Hall 2 por seção</h1>
+    <p class="lead">As 28 mesas no salão de votação, cada uma com as suas seções. A letra é a mesma em toda a rota: zona do Ring 3, porta da fachada sul e parede do salão. Toque numa mesa ou digite a seção.</p>
+  </header>
+
+  <div class="topo">
+    <div class="planta">{{SVG}}</div>
+    <aside class="lado">
+      <form class="busca" id="f-busca" autocomplete="off">
+        <label for="busca">Qual é a sua seção?</label>
+        <input id="busca" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="ex.: 3313">
+        <div class="resp" id="resp" aria-live="polite"><span class="big">Digite os 3 ou 4 dígitos</span><p>A planta acende a mesa e diz por qual porta entrar.</p></div>
+      </form>
+      <div class="legenda">
+        <span><i class="sw" style="background:var(--zA)"></i>A · porta S4 · parede oeste</span>
+        <span><i class="sw" style="background:var(--zB)"></i>B · porta S5 · parede norte</span>
+        <span><i class="sw" style="background:var(--zC)"></i>C · porta S6 · parede leste</span>
+        {{CLASSES}}
+        <span>Número de cima: seção principal; de baixo: agregada.</span>
+        <span>Círculo com letra e número: grupo de mesas, o mesmo rótulo do x-banner.</span>
+      </div>
+    </aside>
+  </div>
+
+  <section style="display:grid;gap:12px">
+    <h2>Seções por zona e grupo</h2>
+    <div class="zonas">{{COLUNAS}}</div>
+  </section>
+
+  <section style="display:grid;gap:12px">
+    <h2>As 51 seções em ordem</h2>
+    <div class="todas" id="todas">{{ORDENADAS}}</div>
+  </section>
+
+  <p class="nota">Fontes: <code>data/grupos_mesas.json</code> e <code>data/prancheta_hall2.json</code> (planta de 16/09/2026), seções do CSV oficial do TSE em <code>saidas/dados.json</code>. A seção 3752 é agregada à 3322 (o PNG do TSE diz 3222 por erro de digitação). Comparecimento esperado pela base B, não oficial. Posição de cada mesa em escala; a profundidade da sala de apoio ainda é a confirmar em campo. Gerado por <code>scripts/mapa_hall2_secoes.py</code>.</p>
+</div>
+
+<script>
+const D = {{DADOS}};
+const svg = document.querySelector('.planta svg');
+const mesasEl = [...svg.querySelectorAll('.mesa')];
+const resp = document.getElementById('resp');
+const inp = document.getElementById('busca');
+const porSecao = {};
+D.mesas.forEach((m, i) => m.secoes.forEach(s => porSecao[s] = i));
+
+function limpa() {
+  svg.classList.remove('foco');
+  svg.querySelectorAll('.on').forEach(e => e.classList.remove('on'));
+  resp.className = 'resp';
+}
+function mostra(i, sec) {
+  limpa();
+  const m = D.mesas[i];
+  svg.classList.add('foco');
+  mesasEl[i].classList.add('on');
+  svg.querySelector(`.grupo[data-g="${m.grupo}"]`).classList.add('on');
+  resp.className = 'resp ok z' + m.zona;
+  const titulo = sec ? `Seção ${sec}` : `Seções ${m.secoes.join(' e ')}`;
+  const junto = sec && m.secoes.length > 1 ? `<p>Mesma urna da seção ${m.secoes.find(s => s != sec)}.</p>` : '';
+  resp.innerHTML = `<span class="big">${titulo}</span><p><b>Entrada ${m.zona} · porta ${m.porta}</b><br>Grupo ${m.grupo}, ${D.parede[m.zona]}.</p>${junto}`;
+}
+inp.addEventListener('input', () => {
+  const v = inp.value.replace(/\D/g, '');
+  if (!v) { limpa(); resp.innerHTML = '<span class="big">Digite os 3 ou 4 dígitos</span><p>A planta acende a mesa e diz por qual porta entrar.</p>'; return; }
+  if (v in porSecao) return mostra(porSecao[v], +v);
+  limpa();
+  const possiveis = Object.keys(porSecao).filter(s => s.startsWith(v));
+  resp.innerHTML = possiveis.length
+    ? `<span class="big">${v}…</span><p>Pode ser ${possiveis.slice(0, 8).join(', ')}${possiveis.length > 8 ? '…' : ''}.</p>`
+    : `<span class="big">${v} não vota no RDS</span><p>Nenhuma das 51 seções de Dublin tem esse número. Confira o título ou o e-Título; na dúvida, a mesa P0 na calçada consulta.</p>`;
+});
+document.getElementById('f-busca').addEventListener('submit', e => e.preventDefault());
+mesasEl.forEach((el, i) => {
+  el.addEventListener('click', () => { inp.value = ''; mostra(i); });
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inp.value = ''; mostra(i); } });
+});
+document.getElementById('todas').addEventListener('click', e => {
+  const b = e.target.closest('.s'); if (!b) return;
+  inp.value = b.dataset.s; inp.dispatchEvent(new Event('input'));
+  document.querySelector('.planta').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+});
+</script>

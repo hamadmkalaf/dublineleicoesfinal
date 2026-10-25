@@ -17,6 +17,7 @@ versão publicada de que a cópia foi tirada, e o `sha256` do arquivo neste repo
 | [`rota_do_eleitor.html`](rota_do_eleitor.html) | Rota do Eleitor RDS | Os pontos **P0–P7**, a tabela mestra seção → porta e o plano de sinalização. É a origem dos códigos de posto. |
 | [`prancheta_hall2.html`](prancheta_hall2.html) | Prancheta pelas Seções | Coordenadas reais das portas e das 28 mesas. A planta do salão em `voluntarios_postos.html` foi gerada delas. |
 | [`ring3_montagem.html`](ring3_montagem.html) | Montagem do Ring 3 | O cenário 3 adaptado: 23 raias por zona, vão de 1,20 m, **180 CCBs** dos 200 em estoque, 506 m de fita grossa, lotação 2.118. |
+| [`hall2_secoes.html`](hall2_secoes.html) | Hall 2 por Seção ([publicado](https://claude.ai/artifact/7yswrTbPz8heuynXWxmxhs)) | Planta em escala com as 51 seções nas 28 mesas, rotulada por grupo e seção, com busca por número. **Gerada** por `scripts/mapa_hall2_secoes.py` a partir de `data/` — não editar à mão. |
 | [`sinalizacao_interna.html`](sinalizacao_interna.html) | Sinalização RDS Hall 2 | As peças internas do salão. |
 | [`sinalizacao/`](sinalizacao/) | Sinalização Eleições 2026 (v2, 17/09) | As **21 peças** P0–P7, os dois mapas de posição e o `canvas.json`. Fonte das seis cores de rolo e da convenção de rotular por grupo e seção. |
 

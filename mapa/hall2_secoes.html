@@ -1,0 +1,195 @@
+<title>Hall 2 por Seção</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;900&display=swap">
+<style>
+/* Layout: planta em escala no topo, busca por seção ao lado; abaixo, o índice por zona e a lista corrida das 51 seções. */
+:root {
+  --bg: #f2efe2; --papel: #fbfaf4; --fg: #2b2b28; --sub: #6b6a60; --linha: #c9c5b2;
+  --piso: #fffef9; --parede: #3f3f3b; --prot: #e6e1cf; --hach: #c9c2a8;
+  --zA: #2a78d6; --zB: #e08a00; --zC: #c2185b; --pref: #6d5a00; --saida: #1e8449;
+  --f-disp: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --f-txt: "Nunito Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1c1a; --papel: #232421; --fg: #ecebe4; --sub: #a3a196; --linha: #45463f;
+  --piso: #262723; --parede: #d8d6cb; --prot: #2f302b; --hach: #4a4b43;
+  --zA: #5b9cf0; --zB: #f2a531; --zC: #ec5a90; --pref: #d8be4a; --saida: #47b878; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #1b1c1a; --papel: #232421; --fg: #ecebe4; --sub: #a3a196; --linha: #45463f;
+  --piso: #262723; --parede: #d8d6cb; --prot: #2f302b; --hach: #4a4b43;
+  --zA: #5b9cf0; --zB: #f2a531; --zC: #ec5a90; --pref: #d8be4a; --saida: #47b878; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-txt); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 48px; }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 28px; }
+h1, h2 { font-family: var(--f-disp); text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
+h2 { font-size: 20px; font-weight: 700; }
+.lead { color: var(--sub); max-width: 68ch; margin: 6px 0 0; }
+.eyebrow { font: 700 12px/1 var(--f-disp); letter-spacing: .12em; text-transform: uppercase; color: var(--sub); }
+.zA { --z: var(--zA); } .zB { --z: var(--zB); } .zC { --z: var(--zC); }
+
+.topo { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 24px; align-items: start; }
+@media (max-width: 900px) { .topo { grid-template-columns: minmax(0, 1fr); } }
+.planta { background: var(--papel); border: 1px solid var(--linha); border-radius: 6px; overflow-x: auto; padding: 8px; }
+.planta svg { display: block; width: 100%; min-width: 640px; height: auto; font-family: var(--f-txt); }
+
+.piso { fill: var(--piso); stroke: var(--parede); stroke-width: 3; }
+.protegida { fill: url(#hach); }
+.hach { stroke: var(--hach); stroke-width: 2; }
+.apoio { fill: var(--prot); stroke: var(--linha); stroke-dasharray: 4 3; }
+.recuo { fill: var(--prot); opacity: .7; }
+.serp { fill: none; stroke: var(--sub); stroke-dasharray: 3 3; }
+.t-serp { font-size: 9px; fill: var(--sub); }
+.t-area, .t-faixa { font-size: 10px; fill: var(--sub); letter-spacing: .06em; }
+.letra { font: 800 120px var(--f-disp); fill: var(--z); opacity: .07; }
+.porta { stroke-width: 6; stroke: var(--piso); }
+.porta.ent { stroke: var(--z); stroke-width: 7; }
+.porta.pref { stroke: var(--pref); }
+.porta.saida { stroke: var(--saida); }
+.porta.fechada { stroke: var(--parede); stroke-dasharray: 2 2; stroke-width: 3; }
+.porta.emerg { stroke: var(--saida); stroke-width: 4; }
+.t-ent { font: 800 15px var(--f-disp); fill: var(--z); }
+.t-ent2 { font: 700 11px var(--f-disp); fill: var(--z); letter-spacing: .04em; text-transform: uppercase; }
+.t-porta { font-size: 10px; fill: var(--sub); }
+.t-porta.pref { fill: var(--pref); font-weight: 700; }
+.t-porta.saida { fill: var(--saida); font-weight: 700; }
+.t-sul { font: 700 11px var(--f-disp); fill: var(--sub); letter-spacing: .1em; }
+.norte path { fill: var(--fg); } .norte text, .escala text { font: 700 10px var(--f-disp); fill: var(--fg); }
+.escala line { stroke: var(--fg); stroke-width: 1.5; }
+
+.mesa { cursor: pointer; outline: none; }
+.mesa .tampo { fill: var(--z); }
+.mesa .cls { stroke: var(--piso); stroke-width: 1.5; }
+.t-sec { font: 800 12px var(--f-disp); fill: var(--fg); font-variant-numeric: tabular-nums; }
+.t-sec.ag { font-weight: 500; fill: var(--sub); }
+.grupo circle { fill: var(--piso); stroke: var(--z); stroke-width: 2.5; }
+.grupo text { font: 800 11px var(--f-disp); fill: var(--z); }
+.mesa:hover .tampo, .mesa:focus-visible .tampo { stroke: var(--fg); stroke-width: 2; }
+svg.foco .mesa, svg.foco .grupo { opacity: .18; transition: opacity .2s; }
+svg.foco .mesa.on, svg.foco .grupo.on { opacity: 1; }
+.mesa.on .tampo { stroke: var(--fg); stroke-width: 3; }
+.mesa.on .t-sec { font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { svg.foco .mesa { transition: none; } }
+
+.lado { display: grid; gap: 16px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+@media (max-width: 900px) { .lado { position: static; } }
+.busca { background: var(--papel); border: 1px solid var(--linha); border-radius: 6px; padding: 16px; display: grid; gap: 10px; }
+.busca label { font: 700 12px var(--f-disp); letter-spacing: .1em; text-transform: uppercase; color: var(--sub); }
+.busca input { font: 800 28px var(--f-disp); width: 100%; box-sizing: border-box; padding: 8px 12px; border: 2px solid var(--linha);
+  border-radius: 4px; background: var(--piso); color: var(--fg); letter-spacing: .05em; font-variant-numeric: tabular-nums; }
+.busca input:focus-visible { outline: none; border-color: var(--fg); }
+.resp { min-height: 96px; border-radius: 4px; padding: 12px 14px; background: var(--prot); }
+.resp.ok { background: var(--z); color: #fff; }
+.resp .big { font: 800 22px/1.15 var(--f-disp); display: block; }
+.resp p { margin: 4px 0 0; }
+.legenda { display: grid; gap: 6px; font-size: 13px; color: var(--sub); }
+.legenda span { display: flex; gap: 8px; align-items: center; }
+.legenda i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.legenda .sw { width: 18px; height: 8px; border-radius: 1px; }
+
+.zonas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 820px) { .zonas { grid-template-columns: minmax(0, 1fr); } }
+.zona { background: var(--papel); border: 1px solid var(--linha); border-top: 5px solid var(--z); border-radius: 6px; padding: 14px 16px; }
+.zona header { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+.letra-z { font: 800 40px/1 var(--f-disp); color: var(--z); }
+.zona strong { display: block; font-family: var(--f-disp); }
+.zona small { color: var(--sub); font-size: 13px; }
+.zona ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.zona li { display: flex; gap: 12px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--linha); }
+.chip { font: 800 12px var(--f-disp); color: var(--z); border: 2px solid var(--z); border-radius: 999px; padding: 1px 7px; flex: none; }
+.secs { font: 600 15px var(--f-disp); font-variant-numeric: tabular-nums; }
+
+.todas { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 6px; }
+.todas .s { all: unset; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 4px;
+  padding: 6px 8px; border-radius: 4px; background: var(--papel); border: 1px solid var(--linha); border-left: 4px solid var(--z); }
+.todas .s span { font: 800 15px var(--f-disp); font-variant-numeric: tabular-nums; }
+.todas .s em { font: 700 11px var(--f-disp); font-style: normal; color: var(--z); }
+.todas .s:hover, .todas .s:focus-visible { border-color: var(--z); }
+.nota { color: var(--sub); font-size: 13px; max-width: 80ch; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Eleições 2026 · Posto de Dublin · RDS Ballsbridge</div>
+    <h1>Hall 2 por seção</h1>
+    <p class="lead">As 28 mesas no salão de votação, cada uma com as suas seções. A letra é a mesma em toda a rota: zona do Ring 3, porta da fachada sul e parede do salão. Toque numa mesa ou digite a seção.</p>
+  </header>
+
+  <div class="topo">
+    <div class="planta"><svg viewBox="0 0 866 774" role="img" aria-labelledby="svg-t"><title id="svg-t">Planta do Hall 2 com as seções de cada mesa</title><defs><pattern id="hach" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" class="hach"/></pattern></defs><polygon points="189.0,696.0 826.5,696.0 826.5,30.0 72.0,30.0 72.0,591.0 189.0,591.0" class="piso"/><rect x="781.5" y="30.0" width="45.0" height="666.0" class="protegida"/><text x="804.0" y="363.0" class="t-faixa" transform="rotate(90 804.0 363.0)">FAIXA LIVRE 3 m · EMERGÊNCIA L1–L4</text><rect x="72.0" y="30.0" width="117.0" height="88.5" class="apoio"/><text x="130.5" y="69.7" class="t-area" text-anchor="middle">sala de apoio</text><rect x="381.9" y="30.0" width="53.4" height="45.0" class="recuo"/><rect x="72.0" y="359.5" width="45.0" height="46.1" class="recuo"/><rect x="133.5" y="328.2" width="63.0" height="42.0" class="serp"/><text x="165.0" y="352.2" class="t-serp" text-anchor="middle">fila 20</text><rect x="329.4" y="91.5" width="42.0" height="63.0" class="serp"/><text x="350.4" y="126.0" class="t-serp" text-anchor="middle">fila 20</text><rect x="657.0" y="242.2" width="63.0" height="42.0" class="serp"/><text x="688.5" y="266.2" class="t-serp" text-anchor="middle">fila 20</text><text x="244.5" y="366.0" class="letra zA" text-anchor="middle">A</text><text x="454.5" y="193.5" class="letra zB" text-anchor="middle">B</text><text x="664.5" y="366.0" class="letra zC" text-anchor="middle">C</text><line x1="183.2" y1="30.0" x2="213.6" y2="30.0" class="porta fechada"/><text x="198.4" y="23.0" class="t-porta livre" text-anchor="middle">N1 fechada</text><line x1="381.9" y1="30.0" x2="435.3" y2="30.0" class="porta livre"/><text x="408.6" y="23.0" class="t-porta livre" text-anchor="middle">N2</text><line x1="826.5" y1="118.4" x2="826.5" y2="72.4" class="porta emerg"/><text x="831.5" y="99.4" class="t-porta emerg">L1</text><line x1="826.5" y1="296.1" x2="826.5" y2="250.2" class="porta emerg"/><text x="831.5" y="277.1" class="t-porta emerg">L2</text><line x1="826.5" y1="474.0" x2="826.5" y2="427.9" class="porta emerg"/><text x="831.5" y="455.0" class="t-porta emerg">L3</text><line x1="826.5" y1="651.7" x2="826.5" y2="605.9" class="porta emerg"/><text x="831.5" y="632.8" class="t-porta emerg">L4</text><line x1="189.4" y1="696.0" x2="243.8" y2="696.0" class="porta livre"/><text x="216.6" y="730.0" class="t-porta livre" text-anchor="middle">S1</text><line x1="270.8" y1="696.0" x2="288.8" y2="696.0" class="porta saida"/><text x="279.8" y="730.0" class="t-porta saida" text-anchor="middle">S2 · saída</text><line x1="330.3" y1="696.0" x2="349.0" y2="696.0" class="porta livre"/><text x="339.7" y="730.0" class="t-porta livre" text-anchor="middle">S3</text><line x1="358.5" y1="696.0" x2="447.5" y2="696.0" class="porta ent zA"/><text x="403.0" y="718.0" class="t-ent zA" text-anchor="middle">S4</text><text x="403.0" y="733.0" class="t-ent2 zA" text-anchor="middle">entrada A</text><line x1="451.8" y1="696.0" x2="540.8" y2="696.0" class="porta ent zB"/><text x="496.3" y="718.0" class="t-ent zB" text-anchor="middle">S5</text><text x="496.3" y="733.0" class="t-ent2 zB" text-anchor="middle">entrada B</text><line x1="545.1" y1="696.0" x2="634.0" y2="696.0" class="porta ent zC"/><text x="589.6" y="718.0" class="t-ent zC" text-anchor="middle">S6</text><text x="589.6" y="733.0" class="t-ent2 zC" text-anchor="middle">entrada C</text><line x1="643.4" y1="696.0" x2="662.4" y2="696.0" class="porta pref"/><text x="652.9" y="716.0" class="t-porta pref" text-anchor="middle">S7 · preferencial</text><line x1="703.8" y1="696.0" x2="721.8" y2="696.0" class="porta saida"/><text x="712.8" y="730.0" class="t-porta saida" text-anchor="middle">S8 · saída</text><line x1="748.8" y1="696.0" x2="803.2" y2="696.0" class="porta livre"/><text x="776.0" y="730.0" class="t-porta livre" text-anchor="middle">S9</text><line x1="72.0" y1="144.0" x2="72.0" y2="118.5" class="porta fechada"/><text x="67.0" y="135.2" class="t-porta livre" text-anchor="end">O1 fechada</text><line x1="72.0" y1="405.6" x2="72.0" y2="359.5" class="porta livre"/><text x="67.0" y="386.6" class="t-porta livre" text-anchor="end">O2</text><line x1="189.0" y1="651.0" x2="189.0" y2="598.5" class="porta livre"/><text x="449.2" y="758.0" class="t-sul" text-anchor="middle">FACHADA SUL  ·  APRON 14 m  ·  RING 3 (pátio de fila)</text><g class="mesa zA" data-i="0" tabindex="0" role="button" aria-label="Grupo A1, seções 1314 e 3309"><rect x="85.5" y="562.8" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="575.5" r="3.2" fill="#d4a017" class="cls"/><text x="102.0" y="573.0" class="t-sec" text-anchor="start">1314</text><text x="102.0" y="586.0" class="t-sec ag" text-anchor="start">3309</text></g><g class="mesa zA" data-i="1" tabindex="0" role="button" aria-label="Grupo A1, seções 1278 e 3142"><rect x="85.5" y="504.3" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="517.0" r="3.2" fill="#d4a017" class="cls"/><text x="102.0" y="514.5" class="t-sec" text-anchor="start">1278</text><text x="102.0" y="527.5" class="t-sec ag" text-anchor="start">3142</text></g><g class="mesa zA" data-i="2" tabindex="0" role="button" aria-label="Grupo A2, seções 3161 e 3307"><rect x="85.5" y="468.3" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="481.1" r="3.2" fill="#d4a017" class="cls"/><text x="102.0" y="478.6" class="t-sec" text-anchor="start">3161</text><text x="102.0" y="491.6" class="t-sec ag" text-anchor="start">3307</text></g><g class="mesa zA" data-i="3" tabindex="0" role="button" aria-label="Grupo A2, seções 3311 e 3913"><rect x="85.5" y="409.8" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="422.5" r="3.2" fill="#d4a017" class="cls"/><text x="102.0" y="420.0" class="t-sec" text-anchor="start">3311</text><text x="102.0" y="433.0" class="t-sec ag" text-anchor="start">3913</text></g><g class="mesa zA" data-i="4" tabindex="0" role="button" aria-label="Grupo A3, seções 3313 e 3889"><rect x="85.5" y="336.4" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="349.2" r="3.2" fill="#c0392b" class="cls"/><text x="102.0" y="346.7" class="t-sec" text-anchor="start">3313</text><text x="102.0" y="359.7" class="t-sec ag" text-anchor="start">3889</text></g><g class="mesa zA" data-i="5" tabindex="0" role="button" aria-label="Grupo A4, seções 513 e 1105"><rect x="85.5" y="294.4" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="307.2" r="3.2" fill="#1e8449" class="cls"/><text x="102.0" y="304.7" class="t-sec" text-anchor="start">513</text><text x="102.0" y="317.7" class="t-sec ag" text-anchor="start">1105</text></g><g class="mesa zA" data-i="6" tabindex="0" role="button" aria-label="Grupo A4, seções 522 e 1352"><rect x="85.5" y="235.9" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="248.7" r="3.2" fill="#1e8449" class="cls"/><text x="102.0" y="246.2" class="t-sec" text-anchor="start">522</text><text x="102.0" y="259.2" class="t-sec ag" text-anchor="start">1352</text></g><g class="mesa zA" data-i="7" tabindex="0" role="button" aria-label="Grupo A5, seções 2847 e 3078"><rect x="85.5" y="199.9" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="212.7" r="3.2" fill="#1e8449" class="cls"/><text x="102.0" y="210.2" class="t-sec" text-anchor="start">2847</text><text x="102.0" y="223.2" class="t-sec ag" text-anchor="start">3078</text></g><g class="mesa zA" data-i="8" tabindex="0" role="button" aria-label="Grupo A5, seções 530 e 3179"><rect x="85.5" y="141.4" width="12.0" height="25.5" class="tampo"/><circle cx="85.4" cy="154.2" r="3.2" fill="#1e8449" class="cls"/><text x="102.0" y="151.7" class="t-sec" text-anchor="start">530</text><text x="102.0" y="164.7" class="t-sec ag" text-anchor="start">3179</text></g><g class="mesa zB" data-i="9" tabindex="0" role="button" aria-label="Grupo B1, seções 512 e 2855"><rect x="237.2" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="249.9" cy="43.6" r="3.2" fill="#1e8449" class="cls"/><text x="249.9" y="71.0" class="t-sec" text-anchor="middle">512</text><text x="249.9" y="84.0" class="t-sec ag" text-anchor="middle">2855</text></g><g class="mesa zB" data-i="10" tabindex="0" role="button" aria-label="Grupo B1, seções 1160 e 3845"><rect x="295.6" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="308.4" cy="43.6" r="3.2" fill="#1e8449" class="cls"/><text x="308.4" y="71.0" class="t-sec" text-anchor="middle">1160</text><text x="308.4" y="84.0" class="t-sec ag" text-anchor="middle">3845</text></g><g class="mesa zB" data-i="11" tabindex="0" role="button" aria-label="Grupo B2, seções 3315 e 3778"><rect x="337.6" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="350.4" cy="43.6" r="3.2" fill="#c0392b" class="cls"/><text x="350.4" y="71.0" class="t-sec" text-anchor="middle">3315</text><text x="350.4" y="84.0" class="t-sec ag" text-anchor="middle">3778</text></g><g class="mesa zB" data-i="12" tabindex="0" role="button" aria-label="Grupo B3, seções 3108 e 3422"><rect x="437.7" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="450.4" cy="43.6" r="3.2" fill="#d4a017" class="cls"/><text x="450.4" y="71.0" class="t-sec" text-anchor="middle">3108</text><text x="450.4" y="84.0" class="t-sec ag" text-anchor="middle">3422</text></g><g class="mesa zB" data-i="13" tabindex="0" role="button" aria-label="Grupo B3, seções 3181 e 3302"><rect x="496.2" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="508.9" cy="43.6" r="3.2" fill="#d4a017" class="cls"/><text x="508.9" y="71.0" class="t-sec" text-anchor="middle">3181</text><text x="508.9" y="84.0" class="t-sec ag" text-anchor="middle">3302</text></g><g class="mesa zB" data-i="14" tabindex="0" role="button" aria-label="Grupo B4, seções 521 e 3305"><rect x="532.2" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="545.0" cy="43.6" r="3.2" fill="#d4a017" class="cls"/><text x="545.0" y="71.0" class="t-sec" text-anchor="middle">521</text><text x="545.0" y="84.0" class="t-sec ag" text-anchor="middle">3305</text></g><g class="mesa zB" data-i="15" tabindex="0" role="button" aria-label="Grupo B4, seções 518 e 3306"><rect x="590.7" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="603.5" cy="43.6" r="3.2" fill="#d4a017" class="cls"/><text x="603.5" y="71.0" class="t-sec" text-anchor="middle">518</text><text x="603.5" y="84.0" class="t-sec ag" text-anchor="middle">3306</text></g><g class="mesa zB" data-i="16" tabindex="0" role="button" aria-label="Grupo B5, seções 3308"><rect x="626.7" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="639.4" cy="43.6" r="3.2" fill="#1e8449" class="cls"/><text x="639.4" y="71.0" class="t-sec" text-anchor="middle">3308</text></g><g class="mesa zB" data-i="17" tabindex="0" role="button" aria-label="Grupo B5, seções 3832"><rect x="685.2" y="43.5" width="25.5" height="12.0" class="tampo"/><circle cx="697.9" cy="43.6" r="3.2" fill="#1e8449" class="cls"/><text x="697.9" y="71.0" class="t-sec" text-anchor="middle">3832</text></g><g class="mesa zC" data-i="18" tabindex="0" role="button" aria-label="Grupo C1, seções 3442"><rect x="756.0" y="576.0" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="588.8" r="3.2" fill="#1e8449" class="cls"/><text x="751.5" y="592.8" class="t-sec" text-anchor="end">3442</text></g><g class="mesa zC" data-i="19" tabindex="0" role="button" aria-label="Grupo C2, seções 3688"><rect x="756.0" y="540.0" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="552.7" r="3.2" fill="#1e8449" class="cls"/><text x="751.5" y="556.7" class="t-sec" text-anchor="end">3688</text></g><g class="mesa zC" data-i="20" tabindex="0" role="button" aria-label="Grupo C2, seções 3229 e 3821"><rect x="756.0" y="481.5" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="494.2" r="3.2" fill="#1e8449" class="cls"/><text x="751.5" y="491.8" class="t-sec" text-anchor="end">3229</text><text x="751.5" y="504.8" class="t-sec ag" text-anchor="end">3821</text></g><g class="mesa zC" data-i="21" tabindex="0" role="button" aria-label="Grupo C3, seções 519 e 3245"><rect x="756.0" y="445.5" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="458.2" r="3.2" fill="#d4a017" class="cls"/><text x="751.5" y="455.7" class="t-sec" text-anchor="end">519</text><text x="751.5" y="468.7" class="t-sec ag" text-anchor="end">3245</text></g><g class="mesa zC" data-i="22" tabindex="0" role="button" aria-label="Grupo C3, seções 3862"><rect x="756.0" y="387.0" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="399.8" r="3.2" fill="#d4a017" class="cls"/><text x="751.5" y="403.8" class="t-sec" text-anchor="end">3862</text></g><g class="mesa zC" data-i="23" tabindex="0" role="button" aria-label="Grupo C4, seções 527 e 3216"><rect x="756.0" y="351.0" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="363.8" r="3.2" fill="#1e8449" class="cls"/><text x="751.5" y="361.2" class="t-sec" text-anchor="end">527</text><text x="751.5" y="374.2" class="t-sec ag" text-anchor="end">3216</text></g><g class="mesa zC" data-i="24" tabindex="0" role="button" aria-label="Grupo C4, seções 1099 e 3054"><rect x="756.0" y="292.5" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="305.2" r="3.2" fill="#1e8449" class="cls"/><text x="751.5" y="302.7" class="t-sec" text-anchor="end">1099</text><text x="751.5" y="315.7" class="t-sec ag" text-anchor="end">3054</text></g><g class="mesa zC" data-i="25" tabindex="0" role="button" aria-label="Grupo C5, seções 3322 e 3752"><rect x="756.0" y="250.5" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="263.2" r="3.2" fill="#c0392b" class="cls"/><text x="751.5" y="260.7" class="t-sec" text-anchor="end">3322</text><text x="751.5" y="273.7" class="t-sec ag" text-anchor="end">3752</text></g><g class="mesa zC" data-i="26" tabindex="0" role="button" aria-label="Grupo C6, seções 517 e 1292"><rect x="756.0" y="208.5" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="221.2" r="3.2" fill="#1e8449" class="cls"/><text x="751.5" y="218.8" class="t-sec" text-anchor="end">517</text><text x="751.5" y="231.8" class="t-sec ag" text-anchor="end">1292</text></g><g class="mesa zC" data-i="27" tabindex="0" role="button" aria-label="Grupo C6, seções 511 e 1100"><rect x="756.0" y="150.0" width="12.0" height="25.5" class="tampo"/><circle cx="768.1" cy="162.8" r="3.2" fill="#1e8449" class="cls"/><text x="751.5" y="160.3" class="t-sec" text-anchor="end">511</text><text x="751.5" y="173.3" class="t-sec ag" text-anchor="end">1100</text></g><g class="grupo zA" data-g="A1"><circle cx="216.0" cy="546.3" r="13"/><text x="216.0" y="550.8" text-anchor="middle">A1</text></g><g class="grupo zA" data-g="A2"><circle cx="216.0" cy="451.8" r="13"/><text x="216.0" y="456.3" text-anchor="middle">A2</text></g><g class="grupo zA" data-g="A3"><circle cx="216.0" cy="349.2" r="13"/><text x="216.0" y="353.7" text-anchor="middle">A3</text></g><g class="grupo zA" data-g="A4"><circle cx="216.0" cy="277.9" r="13"/><text x="216.0" y="282.4" text-anchor="middle">A4</text></g><g class="grupo zA" data-g="A5"><circle cx="216.0" cy="183.4" r="13"/><text x="216.0" y="187.9" text-anchor="middle">A5</text></g><g class="grupo zB" data-g="B1"><circle cx="279.1" cy="174.0" r="13"/><text x="279.1" y="178.5" text-anchor="middle">B1</text></g><g class="grupo zB" data-g="B2"><circle cx="350.4" cy="174.0" r="13"/><text x="350.4" y="178.5" text-anchor="middle">B2</text></g><g class="grupo zB" data-g="B3"><circle cx="479.7" cy="174.0" r="13"/><text x="479.7" y="178.5" text-anchor="middle">B3</text></g><g class="grupo zB" data-g="B4"><circle cx="574.2" cy="174.0" r="13"/><text x="574.2" y="178.5" text-anchor="middle">B4</text></g><g class="grupo zB" data-g="B5"><circle cx="668.7" cy="174.0" r="13"/><text x="668.7" y="178.5" text-anchor="middle">B5</text></g><g class="grupo zC" data-g="C1"><circle cx="637.5" cy="588.8" r="13"/><text x="637.5" y="593.2" text-anchor="middle">C1</text></g><g class="grupo zC" data-g="C2"><circle cx="637.5" cy="523.5" r="13"/><text x="637.5" y="528.0" text-anchor="middle">C2</text></g><g class="grupo zC" data-g="C3"><circle cx="637.5" cy="429.0" r="13"/><text x="637.5" y="433.5" text-anchor="middle">C3</text></g><g class="grupo zC" data-g="C4"><circle cx="637.5" cy="334.5" r="13"/><text x="637.5" y="339.0" text-anchor="middle">C4</text></g><g class="grupo zC" data-g="C5"><circle cx="637.5" cy="263.2" r="13"/><text x="637.5" y="267.7" text-anchor="middle">C5</text></g><g class="grupo zC" data-g="C6"><circle cx="637.5" cy="192.0" r="13"/><text x="637.5" y="196.5" text-anchor="middle">C6</text></g><g class="norte"><path d="M822.5 10.0 l5 12 l-5 -3 l-5 3 z"/><text x="822.5" y="34.0" text-anchor="middle">N</text></g><g class="escala"><line x1="87.0" y1="758.0" x2="237.0" y2="758.0"/><line x1="87.0" y1="754.0" x2="87.0" y2="762.0"/><line x1="237.0" y1="754.0" x2="237.0" y2="762.0"/><text x="162.0" y="752.0" text-anchor="middle">10 m</text></g></svg></div>
+    <aside class="lado">
+      <form class="busca" id="f-busca" autocomplete="off">
+        <label for="busca">Qual é a sua seção?</label>
+        <input id="busca" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="ex.: 3313">
+        <div class="resp" id="resp" aria-live="polite"><span class="big">Digite os 3 ou 4 dígitos</span><p>A planta acende a mesa e diz por qual porta entrar.</p></div>
+      </form>
+      <div class="legenda">
+        <span><i class="sw" style="background:var(--zA)"></i>A · porta S4 · parede oeste</span>
+        <span><i class="sw" style="background:var(--zB)"></i>B · porta S5 · parede norte</span>
+        <span><i class="sw" style="background:var(--zC)"></i>C · porta S6 · parede leste</span>
+        <span><i style="background:#c0392b"></i>alto comparecimento</span><span><i style="background:#d4a017"></i>médio comparecimento</span><span><i style="background:#1e8449"></i>baixo comparecimento</span>
+        <span>Número de cima: seção principal; de baixo: agregada.</span>
+        <span>Círculo com letra e número: grupo de mesas, o mesmo rótulo do x-banner.</span>
+      </div>
+    </aside>
+  </div>
+
+  <section style="display:grid;gap:12px">
+    <h2>Seções por zona e grupo</h2>
+    <div class="zonas"><section class="zona zA"><header><span class="letra-z">A</span><div><strong>Porta S4 → parede oeste</strong><small>9 urnas · 5.695 aptos · 3.834 esperados</small></div></header><ul><li data-g="A1"><b class="chip zA">A1</b><span class="secs">1278 · 1314 · 3142 · 3309</span></li><li data-g="A2"><b class="chip zA">A2</b><span class="secs">3161 · 3307 · 3311 · 3913</span></li><li data-g="A3"><b class="chip zA">A3</b><span class="secs">3313 · 3889</span></li><li data-g="A4"><b class="chip zA">A4</b><span class="secs">513 · 522 · 1105 · 1352</span></li><li data-g="A5"><b class="chip zA">A5</b><span class="secs">530 · 2847 · 3078 · 3179</span></li></ul></section><section class="zona zB"><header><span class="letra-z">B</span><div><strong>Porta S5 → parede norte</strong><small>9 urnas · 5.600 aptos · 3.832 esperados</small></div></header><ul><li data-g="B1"><b class="chip zB">B1</b><span class="secs">512 · 1160 · 2855 · 3845</span></li><li data-g="B2"><b class="chip zB">B2</b><span class="secs">3315 · 3778</span></li><li data-g="B3"><b class="chip zB">B3</b><span class="secs">3108 · 3181 · 3302 · 3422</span></li><li data-g="B4"><b class="chip zB">B4</b><span class="secs">518 · 521 · 3305 · 3306</span></li><li data-g="B5"><b class="chip zB">B5</b><span class="secs">3308 · 3832</span></li></ul></section><section class="zona zC"><header><span class="letra-z">C</span><div><strong>Porta S6 → parede leste</strong><small>10 urnas · 5.499 aptos · 3.833 esperados</small></div></header><ul><li data-g="C1"><b class="chip zC">C1</b><span class="secs">3442</span></li><li data-g="C2"><b class="chip zC">C2</b><span class="secs">3229 · 3688 · 3821</span></li><li data-g="C3"><b class="chip zC">C3</b><span class="secs">519 · 3245 · 3862</span></li><li data-g="C4"><b class="chip zC">C4</b><span class="secs">527 · 1099 · 3054 · 3216</span></li><li data-g="C5"><b class="chip zC">C5</b><span class="secs">3322 · 3752</span></li><li data-g="C6"><b class="chip zC">C6</b><span class="secs">511 · 517 · 1100 · 1292</span></li></ul></section></div>
+  </section>
+
+  <section style="display:grid;gap:12px">
+    <h2>As 51 seções em ordem</h2>
+    <div class="todas" id="todas"><button type="button" class="s zC" data-s="511"><span>511</span><em>C6</em></button><button type="button" class="s zB" data-s="512"><span>512</span><em>B1</em></button><button type="button" class="s zA" data-s="513"><span>513</span><em>A4</em></button><button type="button" class="s zC" data-s="517"><span>517</span><em>C6</em></button><button type="button" class="s zB" data-s="518"><span>518</span><em>B4</em></button><button type="button" class="s zC" data-s="519"><span>519</span><em>C3</em></button><button type="button" class="s zB" data-s="521"><span>521</span><em>B4</em></button><button type="button" class="s zA" data-s="522"><span>522</span><em>A4</em></button><button type="button" class="s zC" data-s="527"><span>527</span><em>C4</em></button><button type="button" class="s zA" data-s="530"><span>530</span><em>A5</em></button><button type="button" class="s zC" data-s="1099"><span>1099</span><em>C4</em></button><button type="button" class="s zC" data-s="1100"><span>1100</span><em>C6</em></button><button type="button" class="s zA" data-s="1105"><span>1105</span><em>A4</em></button><button type="button" class="s zB" data-s="1160"><span>1160</span><em>B1</em></button><button type="button" class="s zA" data-s="1278"><span>1278</span><em>A1</em></button><button type="button" class="s zC" data-s="1292"><span>1292</span><em>C6</em></button><button type="button" class="s zA" data-s="1314"><span>1314</span><em>A1</em></button><button type="button" class="s zA" data-s="1352"><span>1352</span><em>A4</em></button><button type="button" class="s zA" data-s="2847"><span>2847</span><em>A5</em></button><button type="button" class="s zB" data-s="2855"><span>2855</span><em>B1</em></button><button type="button" class="s zC" data-s="3054"><span>3054</span><em>C4</em></button><button type="button" class="s zA" data-s="3078"><span>3078</span><em>A5</em></button><button type="button" class="s zB" data-s="3108"><span>3108</span><em>B3</em></button><button type="button" class="s zA" data-s="3142"><span>3142</span><em>A1</em></button><button type="button" class="s zA" data-s="3161"><span>3161</span><em>A2</em></button><button type="button" class="s zA" data-s="3179"><span>3179</span><em>A5</em></button><button type="button" class="s zB" data-s="3181"><span>3181</span><em>B3</em></button><button type="button" class="s zC" data-s="3216"><span>3216</span><em>C4</em></button><button type="button" class="s zC" data-s="3229"><span>3229</span><em>C2</em></button><button type="button" class="s zC" data-s="3245"><span>3245</span><em>C3</em></button><button type="button" class="s zB" data-s="3302"><span>3302</span><em>B3</em></button><button type="button" class="s zB" data-s="3305"><span>3305</span><em>B4</em></button><button type="button" class="s zB" data-s="3306"><span>3306</span><em>B4</em></button><button type="button" class="s zA" data-s="3307"><span>3307</span><em>A2</em></button><button type="button" class="s zB" data-s="3308"><span>3308</span><em>B5</em></button><button type="button" class="s zA" data-s="3309"><span>3309</span><em>A1</em></button><button type="button" class="s zA" data-s="3311"><span>3311</span><em>A2</em></button><button type="button" class="s zA" data-s="3313"><span>3313</span><em>A3</em></button><button type="button" class="s zB" data-s="3315"><span>3315</span><em>B2</em></button><button type="button" class="s zC" data-s="3322"><span>3322</span><em>C5</em></button><button type="button" class="s zB" data-s="3422"><span>3422</span><em>B3</em></button><button type="button" class="s zC" data-s="3442"><span>3442</span><em>C1</em></button><button type="button" class="s zC" data-s="3688"><span>3688</span><em>C2</em></button><button type="button" class="s zC" data-s="3752"><span>3752</span><em>C5</em></button><button type="button" class="s zB" data-s="3778"><span>3778</span><em>B2</em></button><button type="button" class="s zC" data-s="3821"><span>3821</span><em>C2</em></button><button type="button" class="s zB" data-s="3832"><span>3832</span><em>B5</em></button><button type="button" class="s zB" data-s="3845"><span>3845</span><em>B1</em></button><button type="button" class="s zC" data-s="3862"><span>3862</span><em>C3</em></button><button type="button" class="s zA" data-s="3889"><span>3889</span><em>A3</em></button><button type="button" class="s zA" data-s="3913"><span>3913</span><em>A2</em></button></div>
+  </section>
+
+  <p class="nota">Fontes: <code>data/grupos_mesas.json</code> e <code>data/prancheta_hall2.json</code> (planta de 16/09/2026), seções do CSV oficial do TSE em <code>saidas/dados.json</code>. A seção 3752 é agregada à 3322 (o PNG do TSE diz 3222 por erro de digitação). Comparecimento esperado pela base B, não oficial. Posição de cada mesa em escala; a profundidade da sala de apoio ainda é a confirmar em campo. Gerado por <code>scripts/mapa_hall2_secoes.py</code>.</p>
+</div>
+
+<script>
+const D = {"mesas": [{"grupo": "A1", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [1314, 3309]}, {"grupo": "A1", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [1278, 3142]}, {"grupo": "A2", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [3161, 3307]}, {"grupo": "A2", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [3311, 3913]}, {"grupo": "A3", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [3313, 3889]}, {"grupo": "A4", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [513, 1105]}, {"grupo": "A4", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [522, 1352]}, {"grupo": "A5", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [2847, 3078]}, {"grupo": "A5", "zona": "A", "parede": "oeste", "porta": "S4", "secoes": [530, 3179]}, {"grupo": "B1", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [512, 2855]}, {"grupo": "B1", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [1160, 3845]}, {"grupo": "B2", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [3315, 3778]}, {"grupo": "B3", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [3108, 3422]}, {"grupo": "B3", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [3181, 3302]}, {"grupo": "B4", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [521, 3305]}, {"grupo": "B4", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [518, 3306]}, {"grupo": "B5", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [3308]}, {"grupo": "B5", "zona": "B", "parede": "norte", "porta": "S5", "secoes": [3832]}, {"grupo": "C1", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [3442]}, {"grupo": "C2", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [3688]}, {"grupo": "C2", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [3229, 3821]}, {"grupo": "C3", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [519, 3245]}, {"grupo": "C3", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [3862]}, {"grupo": "C4", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [527, 3216]}, {"grupo": "C4", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [1099, 3054]}, {"grupo": "C5", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [3322, 3752]}, {"grupo": "C6", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [517, 1292]}, {"grupo": "C6", "zona": "C", "parede": "leste", "porta": "S6", "secoes": [511, 1100]}], "parede": {"A": "parede oeste", "B": "parede norte", "C": "parede leste"}};
+const svg = document.querySelector('.planta svg');
+const mesasEl = [...svg.querySelectorAll('.mesa')];
+const resp = document.getElementById('resp');
+const inp = document.getElementById('busca');
+const porSecao = {};
+D.mesas.forEach((m, i) => m.secoes.forEach(s => porSecao[s] = i));
+
+function limpa() {
+  svg.classList.remove('foco');
+  svg.querySelectorAll('.on').forEach(e => e.classList.remove('on'));
+  resp.className = 'resp';
+}
+function mostra(i, sec) {
+  limpa();
+  const m = D.mesas[i];
+  svg.classList.add('foco');
+  mesasEl[i].classList.add('on');
+  svg.querySelector(`.grupo[data-g="${m.grupo}"]`).classList.add('on');
+  resp.className = 'resp ok z' + m.zona;
+  const titulo = sec ? `Seção ${sec}` : `Seções ${m.secoes.join(' e ')}`;
+  const junto = sec && m.secoes.length > 1 ? `<p>Mesma urna da seção ${m.secoes.find(s => s != sec)}.</p>` : '';
+  resp.innerHTML = `<span class="big">${titulo}</span><p><b>Entrada ${m.zona} · porta ${m.porta}</b><br>Grupo ${m.grupo}, ${D.parede[m.zona]}.</p>${junto}`;
+}
+inp.addEventListener('input', () => {
+  const v = inp.value.replace(/\D/g, '');
+  if (!v) { limpa(); resp.innerHTML = '<span class="big">Digite os 3 ou 4 dígitos</span><p>A planta acende a mesa e diz por qual porta entrar.</p>'; return; }
+  if (v in porSecao) return mostra(porSecao[v], +v);
+  limpa();
+  const possiveis = Object.keys(porSecao).filter(s => s.startsWith(v));
+  resp.innerHTML = possiveis.length
+    ? `<span class="big">${v}…</span><p>Pode ser ${possiveis.slice(0, 8).join(', ')}${possiveis.length > 8 ? '…' : ''}.</p>`
+    : `<span class="big">${v} não vota no RDS</span><p>Nenhuma das 51 seções de Dublin tem esse número. Confira o título ou o e-Título; na dúvida, a mesa P0 na calçada consulta.</p>`;
+});
+document.getElementById('f-busca').addEventListener('submit', e => e.preventDefault());
+mesasEl.forEach((el, i) => {
+  el.addEventListener('click', () => { inp.value = ''; mostra(i); });
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inp.value = ''; mostra(i); } });
+});
+document.getElementById('todas').addEventListener('click', e => {
+  const b = e.target.closest('.s'); if (!b) return;
+  inp.value = b.dataset.s; inp.dispatchEvent(new Event('input'));
+  document.querySelector('.planta').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+});
+</script>
